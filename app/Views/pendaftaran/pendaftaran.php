@@ -8,7 +8,7 @@
     }
 
     .custom-card {
-        background-color: #F7F7F7;
+        background-color: #F5F5F7;
         color: #333;
         border: 1px solid #ccc;
     }
@@ -93,13 +93,13 @@
 
 
 <!-- judul -->
-<div class="pendaftaran-section">
+<div class="pendaftaran-section py-5" style="text-align: center;">
     <h2 class="text-custom-title">Pendaftaran</h2>
-    <p class="text-custom-paragraph">Ayo gabung dengan Komunitas Ekspor Indonesia dan jadi sukses bareng kami</p>
+    <p class="text-custom-paragraph">Ayo gabung dengan Komunitas Ekspor Indonesia dan jadi sukses bersama kami</p>
 </div>
 
 <!-- Form Pendaftaran -->
-<div class="container mt-5">
+<div class="container py-5">
     <div class="row gx-4">
         <div class="col-md-6 left-section">
             <h3>Keuntungan Menjadi Member</h3>
@@ -195,7 +195,7 @@
                 </div>
 
                 <!-- Tombol Submit -->
-                <button type="submit" class="btn btn-primary text-start">Daftar Member</button>
+                <button type="submit" class="btn btn-primary mt-3">Daftar Member</button>
                 </form>
             </div>
         </div>
