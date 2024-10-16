@@ -38,6 +38,9 @@
                 </div>
             <?php endforeach; ?>
         </div>
+        <div class="mt-2">
+            <?= $pager->links('default', 'bootstrap_pagination') ?>
+        </div>
     </div>
 </section>
 

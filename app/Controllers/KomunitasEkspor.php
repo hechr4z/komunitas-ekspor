@@ -13,17 +13,17 @@ class KomunitasEkspor extends BaseController
         //
     }
 
-    public function artikel(): string
+    public function artikel()
     {
         return view('artikel/artikel');
     }
 
-    public function pendaftaran(): string
+    public function pendaftaran()
     {
         return view('pendaftaran/pendaftaran');
     }
-
-    public function registrasiMember()
+  
+  public function registrasiMember()
     {
         $username = $this->request->getPost('username');
         $email = $this->request->getPost('email_member');
@@ -51,18 +51,22 @@ class KomunitasEkspor extends BaseController
         return redirect()->to($whatsapp);
     }
 
-    public function data_member(): string
+    public function data_member()
     {
         $model_member = new Member();
 
-        $member = $model_member->findAll();
+        // Set pagination
+        $perPage = 8; // Number of members per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
 
-        $data['member'] = $member;
+        // Fetch members with pagination
+        $data['member'] = $model_member->paginate($perPage);
+        $data['pager'] = $model_member->pager; // Get the pager instance
 
         return view('data-member/index', $data);
     }
 
-    public function detail_member(): string
+    public function detail_member()
     {
         return view('data-member/detail');
     }
