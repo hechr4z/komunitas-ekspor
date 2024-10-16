@@ -134,68 +134,69 @@
 
             <!-- Card untuk Form Pendaftaran -->
             <div class="card p-3 custom-card">
-                <!-- Form pendaftaran -->
-                <!-- Hidden field for role -->
-                <input type="hidden" name="role" value="user">
+                <form action="<?= base_url('daftar-member') ?>" method="post">
+                    <?= csrf_field() ?>
+                    <!-- Hidden field for role -->
+                    <input type="hidden" name="role" value="user">
 
-                <div class="textcontent mt-2">
-                    <h5>Informasi Akun</h5>
-                    <hr class="line-separatorkecil">
-                </div>
+                    <div class="textcontent mt-2">
+                        <h5>Informasi Akun</h5>
+                        <hr class="line-separatorkecil">
+                    </div>
 
-                <!-- Username -->
-                <div class="form-group">
-                    <label for="username">Username<span class="required">*</span></label>
-                    <input type="text" id="username" name="username" required placeholder="Masukkan Username">
-                </div>
+                    <!-- Username -->
+                    <div class="form-group">
+                        <label for="username">Username<span class="required">*</span></label>
+                        <input type="text" id="username" name="username" required placeholder="Masukkan Username">
+                    </div>
 
-                <!-- Email -->
-                <div class="form-group">
-                    <label for="email_member">Email<span class="required">*</span></label>
-                    <input type="email" id="email_member" name="email_member" required placeholder="Masukkan Email">
-                </div>
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email_member">Email<span class="required">*</span></label>
+                        <input type="email" id="email_member" name="email_member" required placeholder="Masukkan Email">
+                    </div>
 
-                <!-- Password -->
-                <div class="form-group">
-                    <label for="password">Password<span class="required">*</span></label>
-                    <input type="password" id="password" name="password" required placeholder="Masukkan Password">
-                </div>
-                <!-- Checkbox untuk Show Password -->
-                <div class="showpw">
-                    <input type="checkbox" id="show-password" onclick="togglePassword()"> Lihat Password
-                </div>
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for="password">Password<span class="required">*</span></label>
+                        <input type="password" id="password" name="password" required placeholder="Masukkan Password">
+                    </div>
+                    <!-- Checkbox untuk Show Password -->
+                    <div class="showpw">
+                        <input type="checkbox" id="show-password" onclick="togglePassword()"> Lihat Password
+                    </div>
 
-                <!-- Reveral -->
-                <div class="form-group">
-                    <label for="username">Kode Reveral (Opsional)</label>
-                    <input type="text" id="reveral" name="reveral" required placeholder="Masukkan Kode Reveral">
-                </div>
+                    <!-- Reveral -->
+                    <div class="form-group">
+                        <label for="username">Kode Reveral (Opsional)</label>
+                        <input type="text" id="reveral" name="reveral" placeholder="Masukkan Kode Reveral">
+                    </div>
 
-                <div class="textcontent mt-5">
-                    <h5>Profil Perusahaan</h5>
-                    <hr class="line-separatorkecil">
-                </div>
+                    <div class="textcontent mt-5">
+                        <h5>Profil Perusahaan</h5>
+                        <hr class="line-separatorkecil">
+                    </div>
 
-                <!-- Nama Perusahaan -->
-                <div class="form-group">
-                    <label for="nama_perusahaan">Nama Perusahaan<span class="required">*</span></label>
-                    <input type="text" id="nama_perusahaan" name="nama_perusahaan" required placeholder="Masukkan Nama Perusahaan">
-                </div>
+                    <!-- Nama Perusahaan -->
+                    <div class="form-group">
+                        <label for="nama_perusahaan">Nama Perusahaan<span class="required">*</span></label>
+                        <input type="text" id="nama_perusahaan" name="nama_perusahaan" required placeholder="Masukkan Nama Perusahaan">
+                    </div>
 
-                <!-- Nama PIC -->
-                <div class="form-group">
-                    <label for="pic">PIC<span class="required">*</span></label>
-                    <input type="text" id="pic" name="pic" required placeholder="Masukkan Nama PIC">
-                </div>
+                    <!-- Nama PIC -->
+                    <div class="form-group">
+                        <label for="pic">PIC<span class="required">*</span></label>
+                        <input type="text" id="pic" name="pic" required placeholder="Masukkan Nama PIC">
+                    </div>
 
-                <!-- No HP Perusahaan -->
-                <div class="form-group">
-                    <label for="pic">Nomor PIC<span class="required">*</span></label>
-                    <input type="tel" id="nomor_pic" name="nomor_pic" required placeholder="Masukkan Nomor PIC">
-                </div>
+                    <!-- No HP Perusahaan -->
+                    <div class="form-group">
+                        <label for="pic">Nomor PIC<span class="required">*</span></label>
+                        <input type="tel" id="nomor_pic" name="nomor_pic" required placeholder="Masukkan Nomor PIC">
+                    </div>
 
-                <!-- Tombol Submit -->
-                <button type="submit" class="btn btn-primary mt-3">Daftar Member</button>
+                    <!-- Tombol Submit -->
+                    <button type="submit" class="btn btn-primary mt-3">Daftar Member</button>
                 </form>
             </div>
         </div>

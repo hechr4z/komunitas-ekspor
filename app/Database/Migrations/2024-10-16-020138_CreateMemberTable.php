@@ -28,6 +28,10 @@ class CreateMemberTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
             ],
+            'foto_profil' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+            ],
             'kode_referral' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,

@@ -7,9 +7,9 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
-$routes->get('/artikel', 'Home::artikel');
+$routes->get('/artikel', 'KomunitasEkspor::artikel');
 
-$routes->get('/pendaftaran', 'Home::pendaftaran');
-
-$routes->get('/data-member', 'Home::data_member');
-$routes->get('/detail-member', 'Home::detail_member');
+$routes->get('/pendaftaran', 'KomunitasEkspor::pendaftaran');
+$routes->post('daftar-member', 'KomunitasEkspor::registrasiMember');
+$routes->get('/data-member', 'KomunitasEkspor::data_member');
+$routes->get('/detail-member', 'KomunitasEkspor::detail_member');
