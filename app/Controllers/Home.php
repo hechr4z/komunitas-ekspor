@@ -8,24 +8,4 @@ class Home extends BaseController
     {
         return view('welcome_message');
     }
-
-    public function artikel(): string
-    {
-        return view('artikel/artikel');
-    }
-
-    public function pendaftaran(): string
-    {
-        return view('pendaftaran/pendaftaran');
-    }
-
-    public function data_member(): string
-    {
-        return view('data-member/index');
-    }
-
-    public function detail_member(): string
-    {
-        return view('data-member/detail');
-    }
 }
