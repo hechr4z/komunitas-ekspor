@@ -8,4 +8,9 @@ class Home extends BaseController
     {
         return view('welcome_message');
     }
+
+    public function pendaftaran(): string
+    {
+        return view('pendaftaran/pendaftaran');
+    }
 }
