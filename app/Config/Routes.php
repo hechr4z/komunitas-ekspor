@@ -7,6 +7,8 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
+$routes->get('/artikel', 'Home::artikel');
+
 $routes->get('/pendaftaran', 'Home::pendaftaran');
 
 $routes->get('/data-member', 'Home::data_member');
