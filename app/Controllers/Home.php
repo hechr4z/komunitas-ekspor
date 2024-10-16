@@ -13,4 +13,14 @@ class Home extends BaseController
     {
         return view('pendaftaran/pendaftaran');
     }
+
+    public function data_member(): string
+    {
+        return view('data-member/index');
+    }
+
+    public function detail_member(): string
+    {
+        return view('data-member/detail');
+    }
 }
