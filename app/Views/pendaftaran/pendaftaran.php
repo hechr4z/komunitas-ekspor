@@ -95,7 +95,7 @@
 <!-- judul -->
 <div class="pendaftaran-section py-5" style="text-align: center;">
     <h2 class="text-custom-title">Pendaftaran</h2>
-    <p class="text-custom-paragraph">Ayo gabung dengan Komunitas Ekspor Indonesia dan jadi sukses bersama kami</p>
+    <p class="text-custom-paragraph mt-2">Ayo gabung dengan Komunitas Ekspor Indonesia dan jadi sukses bersama kami</p>
 </div>
 
 <!-- Form Pendaftaran -->
@@ -196,7 +196,7 @@
                     </div>
 
                     <!-- Tombol Submit -->
-                    <button type="submit" class="btn btn-primary mt-3">Daftar Member</button>
+                    <button type="submit" class="btn btn-primary mt-3" style="width: 100%;">Daftar Member</button>
                 </form>
             </div>
         </div>
