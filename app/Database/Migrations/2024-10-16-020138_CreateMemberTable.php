@@ -101,42 +101,6 @@ class CreateMemberTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
             ],
-            'sertifikat' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 255,
-            ],
-            'foto_produk' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 255,
-            ],
-            'nama_produk' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 255,
-            ],
-            'nama_produk_en' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 255,
-            ],
-            'deskripsi_produk' => [
-                'type'       => 'TEXT',
-            ],
-            'deskripsi_produk_en' => [
-                'type'       => 'TEXT',
-            ],
-            'hs_code' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 255,
-            ],
-            'minimum_order_qty' => [
-                'type'       => 'INT',
-                'constraint' => 11,
-                'default'    => 1,
-            ],
-            'kapasitas_produksi_bln' => [
-                'type'       => 'INT',
-                'constraint' => 11,
-                'default'    => 1,
-            ],
             'latitude' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
