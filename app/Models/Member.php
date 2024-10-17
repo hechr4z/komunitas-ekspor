@@ -33,15 +33,6 @@ class Member extends Model
         'tanggal_verifikasi',
         'kategori_produk',
         'kategori_produk_en',
-        'sertifikat',
-        'foto_produk',
-        'nama_produk',
-        'nama_produk_en',
-        'deskripsi_produk',
-        'deskripsi_produk_en',
-        'hs_code',
-        'minimum_order_qty',
-        'kapasitas_produksi_bln',
         'latitude',
         'longitude'
     ];
