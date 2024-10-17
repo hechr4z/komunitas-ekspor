@@ -60,6 +60,7 @@ class KomunitasEkspor extends BaseController
 
         // Nomor tujuan WA, Tambahkan Kode negeara seperi (+62) tanpa tanda +
         $nomor_wa = '62';
+        // $nomor_wa = '6283153270334'; // Nomor Tio
 
         $whatsapp = "https://wa.me/$nomor_wa?text=" . urlencode($pesan);
 
@@ -75,7 +76,9 @@ class KomunitasEkspor extends BaseController
         $page = $this->request->getVar('page') ?? 1; // Get the current page number
 
         // Fetch members with pagination
-        $data['member'] = $model_member->paginate($perPage);
+        $data['member'] = $model_member
+            ->orderBy('popular_point', 'DESC')
+            ->paginate($perPage);
         $data['pager'] = $model_member->pager; // Get the pager instance
 
         return view('data-member/index', $data);

@@ -23,7 +23,7 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                     <div class="card h-100 shadow-sm"
                         style="cursor: pointer; border-radius: 12px; transition: box-shadow 0.3s ease, transform 0.3s ease;">
-                        <img src="<?= base_url('img/' . $item['foto_profil']) ?>" class="card-img-top" alt="Sample Member 1"
+                        <img src="https://picsum.photos/400/300" class="card-img-top" alt="Sample Member 1"
                             style="height: 220px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px;">
                         <div class="card-body d-flex flex-column">
                             <h6 class="card-title text-center" style="margin-bottom: 12px; font-weight: bold; word-wrap: break-word; white-space: normal;">
