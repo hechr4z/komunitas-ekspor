@@ -13,17 +13,32 @@ class KomunitasEkspor extends BaseController
         //
     }
 
-    public function artikel()
+    public function belajar_ekspor()
     {
-        return view('artikel/artikel');
+        return view('belajar-ekspor/belajar_ekspor');
+    }
+
+    public function belajar_ekspor_detail()
+    {
+        return view('belajar-ekspor/belajar_ekspor_detail');
     }
 
     public function pendaftaran()
     {
         return view('pendaftaran/pendaftaran');
     }
-  
-  public function registrasiMember()
+
+    public function video_tutorial()
+    {
+        return view('video-tutorial/video_tutorial');
+    }
+
+    public function video_tutorial_detail()
+    {
+        return view('video-tutorial/video_tutorial_detail');
+    }
+
+    public function registrasiMember()
     {
         $username = $this->request->getPost('username');
         $email = $this->request->getPost('email_member');
