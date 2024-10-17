@@ -22,3 +22,6 @@ $routes->get('/video-tutorial-detail', 'KomunitasEkspor::video_tutorial_detail')
 // Member - Data Member
 $routes->get('/data-member', 'KomunitasEkspor::data_member');
 $routes->get('/detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
+
+// Member - Data Buyer
+$routes->get('/data-buyer', 'KomunitasEkspor::data_buyer');

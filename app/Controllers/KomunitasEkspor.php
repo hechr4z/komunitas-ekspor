@@ -146,4 +146,9 @@ class KomunitasEkspor extends BaseController
 
         return view('data-member/detail', $data);
     }
+
+    public function data_buyer()
+    {
+        return view('data-buyer/index');
+    }
 }
