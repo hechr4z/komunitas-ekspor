@@ -172,7 +172,7 @@
         <div class="row">
             <?php foreach ($belajar_ekspor as $item): ?>
                 <div class="col-md-4 mt-4">
-                    <div class="card h-80">
+                    <div class="card h-100">
                         <img src="<?= base_url('/img/' . $item['foto_belajar_ekspor']); ?>" class="card-img-top img-fluid" alt="<?= $item['judul_belajar_ekspor']; ?>" style="object-fit: cover; object-position: center; aspect-ratio: 16/9;" loading="lazy">
                         <div class="card-body d-flex flex-column">
                             <div class="mb-3 d-flex justify-content-between align-items-center">
