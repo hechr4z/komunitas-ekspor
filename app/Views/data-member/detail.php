@@ -98,7 +98,7 @@
 
             <!-- Badge with Code Referral -->
             <div class="text-center mb-3">
-                <span class="badge badge-lg bg-light text-dark p-2" style="font-size: 18px;">Code Referral: <?= $member['username'] ?></span>
+                <span class="badge badge-lg bg-light text-dark p-2" style="font-size: 18px;">Kode Referral: <?= $member['username'] ?></span>
             </div>
 
 
@@ -107,17 +107,17 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active custom-tab" id="personal-info-tab" data-bs-toggle="tab"
                         data-bs-target="#personal-info" type="button" role="tab" aria-controls="personal-info"
-                        aria-selected="true">Company Profile</button>
+                        aria-selected="true">Profil Perusahaan</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link custom-tab" id="education-job-tab" data-bs-toggle="tab"
                         data-bs-target="#education-job" type="button" role="tab" aria-controls="education-job"
-                        aria-selected="false">Certificate</button>
+                        aria-selected="false">Sertifikat</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link custom-tab" id="certification-tab" data-bs-toggle="tab"
                         data-bs-target="#certification" type="button" role="tab" aria-controls="certification"
-                        aria-selected="false">Data Product</button>
+                        aria-selected="false">Data Produk</button>
                 </li>
             </ul>
 
@@ -125,7 +125,7 @@
             <div class="tab-content mt-4" id="myTabContent">
                 <div class="tab-pane fade show active" id="personal-info" role="tabpanel"
                     aria-labelledby="personal-info-tab">
-                    <h5 class="mb-4">Company Profile</h5>
+                    <h5 class="mb-4">Profil Perusahaan</h5>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
@@ -136,7 +136,7 @@
                         <div class="col-md-6 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
                                 <i class="fas fa-industry fa-lg mb-2"></i>
-                                <p><strong>Business Type:</strong> <?= $member['tipe_bisnis'] ?></p>
+                                <p><strong>Tipe Bisnis:</strong> <?= $member['tipe_bisnis'] ?></p>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
@@ -149,19 +149,19 @@
                         <div class="col-md-6 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
                                 <i class="fas fa-box fa-lg mb-2"></i>
-                                <p><strong>Main Product:</strong> <?= $member['produk_utama'] ?></p>
+                                <p><strong>Produk Utama:</strong> <?= $member['produk_utama'] ?></p>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
                                 <i class="fas fa-calendar-alt fa-lg mb-2"></i>
-                                <p><strong>Year of Establishment:</strong> <?= $member['tahun_dibentuk'] ?></p>
+                                <p><strong>Tahun Didirikan:</strong> <?= $member['tahun_dibentuk'] ?></p>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
                                 <i class="fas fa-chart-line fa-lg mb-2"></i>
-                                <p><strong>Scale of Business:</strong> <?= $member['skala_bisnis'] ?></p>
+                                <p><strong>Skala Bisnis:</strong> <?= $member['skala_bisnis'] ?></p>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
@@ -185,15 +185,15 @@
                         <div class="col-md-6 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
                                 <i class="fas fa-phone fa-lg mb-2"></i>
-                                <p><strong>PIC Phone:</strong> <?= $member['pic_phone'] ?></p>
+                                <p><strong>No. Telp PIC:</strong> <?= $member['pic_phone'] ?></p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Certificate -->
+                <!-- Sertifikat -->
                 <div class="tab-pane fade" id="education-job" role="tabpanel" aria-labelledby="education-job-tab">
-                    <h5 class="mb-4">Certificate</h5>
+                    <h5 class="mb-4">Sertifikat</h5>
                     <div class="row">
                         <!-- Sertifikat Pendidikan -->
                         <?php if (empty($sertifikat)): ?>
@@ -226,7 +226,7 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="certificateModalLabel">Certificate</h5>
+                                <h5 class="modal-title" id="certificateModalLabel">Sertifikat</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -240,7 +240,7 @@
 
                 <!-- Data Product -->
                 <div class="tab-pane fade" id="certification" role="tabpanel" aria-labelledby="certification-tab">
-                    <h5 class="mb-4">Data Product</h5>
+                    <h5 class="mb-4">Data Produk</h5>
                     <div class="row">
                         <!-- Card Product -->
                         <?php if (empty($produk)): ?>
@@ -302,11 +302,11 @@
                                                     <textarea class="form-control" id="deskripsiProduk" rows="3" readonly></textarea>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="hsCode" class="form-label"><strong>HS Code</strong></label>
+                                                    <label for="hsCode" class="form-label"><strong>Kode HS</strong></label>
                                                     <input type="text" class="form-control" id="hsCode" value="" readonly>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="minOrderQty" class="form-label"><strong>Min Order Quantity</strong></label>
+                                                    <label for="minOrderQty" class="form-label"><strong>Jumlah Pesanan Minimal</strong></label>
                                                     <input type="number" class="form-control" id="minOrderQty" value="" readonly>
                                                 </div>
                                                 <div class="mb-3">
@@ -331,7 +331,7 @@
     <!-- Member Lainnya Section (Placed outside of the main card) -->
     <div class="col-lg-12 mt-5">
         <div class="section-title">
-            <h4 class="text-uppercase font-weight-bold text-center mb-4">Member Popular</h4>
+            <h4 class="text-uppercase font-weight-bold text-center mb-4">Member Populer</h4>
         </div>
         <?php if (empty($members)): ?>
             <div class="d-flex flex-wrap justify-content-center">
