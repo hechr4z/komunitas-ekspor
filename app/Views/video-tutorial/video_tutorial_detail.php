@@ -83,7 +83,7 @@
                         </div>
 
                         <!-- Video Title -->
-                        <h4 class="py-3 text-uppercase font-weight-bold">VLOG DEANKT NAIK FIRSTCLASS EMIRATES KE ARAB !! BISA MANDI DI PESAWAT GG !!</h4>
+                        <h4 class="py-3 text-uppercase font-weight-bold">VLOGg DEANKT NAIK FIRSTCLASS EMIRATES KE ARAB !! BISA MANDI DI PESAWAT GG !!</h4>
                         <!-- Video Player Start -->
                         <div class="ratio ratio-16x9 mb-3">
                             <iframe

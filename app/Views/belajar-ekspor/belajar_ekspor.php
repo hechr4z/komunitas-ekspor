@@ -365,7 +365,7 @@
                     </a>
                     <div class="submenu">
                         <div class="submenu-item">
-                            <a href="#" class="submenu-link"> Development </a>
+                            <a href="#" class="submenu-link"> Developmentt </a>
                         </div>
                         <div class="submenu-item">
                             <a href="#" class="submenu-link"> Design </a>
