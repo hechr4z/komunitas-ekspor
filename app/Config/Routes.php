@@ -29,7 +29,7 @@ $routes->get('/data-member', 'KomunitasEkspor::data_member_visitor');
 $routes->get('/detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
 
 // Member - Data Buyer
-$routes->get('/data-buyer', 'KomunitasEkspor::data_buyer');
+$routes->get('/data-buyers', 'KomunitasEkspor::data_buyers');
 
 // Member - Data Member
 $routes->get('/data-member', 'KomunitasEkspor::data_member_visitor');
