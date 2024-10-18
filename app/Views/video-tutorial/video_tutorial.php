@@ -20,12 +20,6 @@
         background-color: #03AADE;
     }
 
-    @media (max-width: 768px) {
-        .card-text {
-            display: none;
-        }
-    }
-
     .scrolling-wrapper {
         overflow-x: scroll;
         /* Allows horizontal scrolling */
@@ -44,11 +38,17 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         transform: scale(1.02);
     }
+
+    @media (max-width: 768px) {
+        .card-text {
+            display: none;
+        }
+    }
 </style>
 
 
 <!-- judul -->
-<div class="pendaftaran-section py-5 text-center">
+<div class="pendaftaran-section container py-5 text-center">
     <h2 class="text-custom-title">Video Tutorial</h2>
     <p class="text-custom-paragraph mt-2">Temukan video tutorial dari komunitas kami,
         <br>dan pelajari dengan mendalam melalui video-video yang informatif dan mudah dipahami.
@@ -57,7 +57,7 @@
 
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h5 class="text font-weight-bold mb-0">Nama Kategori Video</h5>
+        <h5 class="kategori font-weight-bold mb-0">Nama Kategori Video</h5>
         <a href="#" class="btn btn-primary">Selengkapnya</a>
     </div>
     <hr style="border-top: 2px solid #000;">

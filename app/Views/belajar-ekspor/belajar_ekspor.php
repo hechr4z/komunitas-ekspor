@@ -303,11 +303,29 @@
             --width-of-input: 250px;
             --height-of-input: 45px;
         }
+
+        .filter-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .menu {
+            font-size: 12px;
+            line-height: 1.2;
+            color: #000000;
+            width: fit-content;
+            display: flex;
+            list-style: none;
+            margin-right: 0;
+            background-color: #03AADE;
+            border-radius: 30px;
+        }
     }
 </style>
 
 <!-- judul -->
-<div class="pendaftaran-section py-5" style="text-align: center;">
+<div class="pendaftaran-section container py-5" style="text-align: center;">
     <h2 class="text-custom-title">Belajar Ekspor</h2>
     <p class="text-custom-paragraph mt-2">Tingkatkan bisnis Anda dengan strategi ekspor yang tepat!
         <br>Belajar ekspor sekarang, kuasai pasar global!
@@ -456,8 +474,8 @@
             </div>
 
 
-            <div class="mt-5" style="display: flex; justify-content: center;">
-                <a href="#" class="btn mt-auto" style="width: 15%; text-align: center; border-radius: 30px;">Lihat Lebih Banyak ></a>
+            <div class="lebih mt-5" style="display: flex; justify-content: center;">
+                <a href="#" class="btn mt-auto" style="min-width: 50px; text-align: center; border-radius: 30px;">Lihat Lebih Banyak ></a>
             </div>
 
         </div>
