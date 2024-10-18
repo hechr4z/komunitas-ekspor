@@ -8,6 +8,7 @@ use App\Models\KategoriBelajarEksporModel;
 use App\Models\Member;
 use App\Models\Sertifikat;
 use App\Models\Produk;
+use App\Models\Buyers;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class KomunitasEkspor extends BaseController
@@ -238,8 +239,23 @@ class KomunitasEkspor extends BaseController
         return view('data-member/detail', $data);
     }
 
-    public function data_buyer()
+    public function data_buyers()
     {
-        return view('data-buyer/index');
+        $model_buyers = new Buyers();
+
+        $new4_buyers = $model_buyers
+            ->orderBy('verif_date', 'DESC')
+            ->limit(4)
+            ->findAll();
+
+        $blur_buyers = $model_buyers
+            ->orderBy('verif_date', 'DESC')
+            ->limit(4, 4)
+            ->findAll();
+
+        $data['new4_buyers'] = $new4_buyers;
+        $data['blur_buyers'] = $blur_buyers;
+
+        return view('data-buyers/index', $data);
     }
 }

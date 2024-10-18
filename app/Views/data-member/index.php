@@ -23,7 +23,7 @@
         <?php if (empty($top4_member)): ?>
             <div class="col-12">
                 <div class="alert alert-info text-center" role="alert">
-                    Masih belum ada Data Member
+                    Masih belum ada Data Member.
                 </div>
             </div>
         <?php else: ?>
