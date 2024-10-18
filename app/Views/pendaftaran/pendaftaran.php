@@ -166,10 +166,10 @@
                         <input type="checkbox" id="show-password" onclick="togglePassword()"> Lihat Password
                     </div>
 
-                    <!-- Reveral -->
+                    <!-- referral -->
                     <div class="form-group">
-                        <label for="username">Kode Reveral (Opsional)</label>
-                        <input type="text" id="reveral" name="reveral" placeholder="Masukkan Kode Reveral">
+                        <label for="username">Kode Referral (Opsional)</label>
+                        <input type="text" id="referral" name="referral" placeholder="Masukkan Kode Referral">
                     </div>
 
                     <div class="textcontent mt-5">
