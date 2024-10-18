@@ -55,6 +55,15 @@
         display: inline-block;
         /* Menjamin badge sesuai dengan teks */
     }
+
+    .card {
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .card:hover {
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+        transform: translateY(-5px);
+    }
 </style>
 
 
@@ -74,7 +83,7 @@
                         </div>
 
                         <!-- Video Title -->
-                        <h4 class="py-3 text-uppercase font-weight-bold">VLOG DEANKT NAIK FIRSTCLASS EMIRATES KE ARAB !! BISA MANDI DI PESAWAT GG !!</h4>
+                        <h4 class="py-3 text-uppercase font-weight-bold">VLOGg DEANKT NAIK FIRSTCLASS EMIRATES KE ARAB !! BISA MANDI DI PESAWAT GG !!</h4>
                         <!-- Video Player Start -->
                         <div class="ratio ratio-16x9 mb-3">
                             <iframe
@@ -108,7 +117,7 @@
                         </h4>
                     </div>
                     <!-- card lainnya -->
-                    <div class="bg-white border border-top-0 p-3 rounded shadow-sm">
+                    <div class="card bg-white border border-top-0 p-3 rounded shadow-sm">
                         <a href="<?= base_url('/video-page-url') ?>" class="text-decoration-none">
                             <div class="d-flex align-items-center bg-white rounded border border-light overflow-hidden shadow-sm">
                                 <img class="img-fluid" style="object-fit: cover; width: 100px; height: 100px;" src="<?= base_url('/img/artikel1.jpg') ?>" alt="Thumbnail Video">
@@ -127,10 +136,10 @@
                     </div>
 
                     <!-- card lainnya -->
-                    <div class="bg-white border border-top-0 p-3 rounded shadow-sm">
+                    <div class="card bg-white border border-top-0 p-3 rounded shadow-sm">
                         <a href="<?= base_url('/video-page-url') ?>" class="text-decoration-none">
                             <div class="d-flex align-items-center bg-white rounded border border-light overflow-hidden shadow-sm">
-                                <img class="img-fluid" style="object-fit: cover; width: 100px; height: 100px;" src="<?= base_url('/img/artikel1.jpg') ?>" alt="Thumbnail Video">
+                                <img class="img-fluid" style="object-fit: cover; width: 100px; height: 100px;" src="<?= base_url('/img/artikel3.webp') ?>" alt="Thumbnail Video">
                                 <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center">
                                     <!-- Judul Video -->
                                     <h3 class="text-uppercase font-weight-bold text-dark" style="font-size: 18px; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
@@ -146,10 +155,10 @@
                     </div>
 
                     <!-- card lainnya -->
-                    <div class="bg-white border border-top-0 p-3 rounded shadow-sm">
+                    <div class="card bg-white border border-top-0 p-3 rounded shadow-sm">
                         <a href="<?= base_url('/video-page-url') ?>" class="text-decoration-none">
                             <div class="d-flex align-items-center bg-white rounded border border-light overflow-hidden shadow-sm">
-                                <img class="img-fluid" style="object-fit: cover; width: 100px; height: 100px;" src="<?= base_url('/img/artikel1.jpg') ?>" alt="Thumbnail Video">
+                                <img class="img-fluid" style="object-fit: cover; width: 100px; height: 100px;" src="<?= base_url('/img/artikel2.jpeg') ?>" alt="Thumbnail Video">
                                 <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center">
                                     <!-- Judul Video -->
                                     <h3 class="text-uppercase font-weight-bold text-dark" style="font-size: 18px; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
