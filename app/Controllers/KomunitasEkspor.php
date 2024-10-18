@@ -33,6 +33,11 @@ class KomunitasEkspor extends BaseController
         return view('video-tutorial/video_tutorial');
     }
 
+    public function video_selengkapnya()
+    {
+        return view('video-tutorial/video_selengkapnya');
+    }
+
     public function video_tutorial_detail()
     {
         return view('video-tutorial/video_tutorial_detail');

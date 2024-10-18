@@ -85,6 +85,10 @@
         padding: 0.8em 1.5em;
         border-radius: 3px;
         background-color: #03AADE;
+        width: auto;
+        /* Membuat lebar badge mengikuti panjang teks */
+        display: inline-block;
+        /* Menjamin badge sesuai dengan teks */
     }
 
     .line-separator {
