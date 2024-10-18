@@ -8,7 +8,6 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'KomunitasEkspor::index');
 
 // Visitor?Member - Belajar Ekspor
-// Visitor?Member - Belajar Ekspor
 $routes->get('/belajar-ekspor', 'KomunitasEkspor::belajar_ekspor');
 $routes->get('/belajar-ekspor-detail/(:segment)', 'KomunitasEkspor::belajar_ekspor_detail/$1');
 $routes->get('kategori/(:any)', 'KomunitasEkspor::kategori_belajar_ekspor/$1');
