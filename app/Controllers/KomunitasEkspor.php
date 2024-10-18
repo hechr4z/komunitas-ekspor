@@ -45,7 +45,7 @@ class KomunitasEkspor extends BaseController
         $username = $this->request->getPost('username');
         $email = $this->request->getPost('email_member');
         $password = $this->request->getPost('password');
-        $reveral = $this->request->getPost('reveral');
+        $reveral = $this->request->getPost('referral');
         $nama_perusahaan = $this->request->getPost('nama_perusahaan');
         $pic = $this->request->getPost('pic');
         $nomor_pic = $this->request->getPost('nomor_pic');
@@ -69,26 +69,46 @@ class KomunitasEkspor extends BaseController
         return redirect()->to($whatsapp);
     }
 
-    public function data_member()
+    // public function data_member()
+    // {
+    //     $model_member = new Member();
+
+    //     // Set pagination
+    //     $perPage = 12; // Number of members per page
+    //     $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
+    //     // Fetch members with pagination
+    //     $members = $model_member
+    //         ->orderBy('popular_point', 'DESC')
+    //         ->paginate($perPage);
+
+    //     // Modify members to add slug
+    //     foreach ($members as &$item) {
+    //         $item['slug'] = url_title($item['username'], '-', true);
+    //     }
+
+    //     $data['member'] = $members;
+    //     $data['pager'] = $model_member->pager; // Get the pager instance
+
+    //     return view('data-member/index', $data);
+    // }
+
+    public function data_member_visitor()
     {
         $model_member = new Member();
 
-        // Set pagination
-        $perPage = 12; // Number of members per page
-        $page = $this->request->getVar('page') ?? 1; // Get the current page number
-
-        // Fetch members with pagination
-        $members = $model_member
+        $top4_member = $model_member
             ->orderBy('popular_point', 'DESC')
-            ->paginate($perPage);
+            ->limit(4)
+            ->findAll();
 
-        // Modify members to add slug
-        foreach ($members as &$item) {
-            $item['slug'] = url_title($item['username'], '-', true);
-        }
+        $blur_member = $model_member
+            ->orderBy('popular_point', 'DESC')
+            ->limit(4, 4)
+            ->findAll();
 
-        $data['member'] = $members;
-        $data['pager'] = $model_member->pager; // Get the pager instance
+        $data['top4_member'] = $top4_member;
+        $data['blur_member'] = $blur_member;
 
         return view('data-member/index', $data);
     }
