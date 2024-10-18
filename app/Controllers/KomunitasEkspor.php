@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\BelajarEksporModel;
+use App\Models\KategoriBelajarEksporModel;
 use App\Models\Member;
 use App\Models\Sertifikat;
 use App\Models\Produk;
@@ -12,17 +14,81 @@ class KomunitasEkspor extends BaseController
 {
     public function index()
     {
-        //
+        return view('beranda/index');
     }
 
-    public function belajar_ekspor()
+    public function belajar_ekspor($slug = null)
     {
-        return view('belajar-ekspor/belajar_ekspor');
+        $belajarEksporModel = new BelajarEksporModel();
+        $kategoriBelajarEksporModel = new KategoriBelajarEksporModel();
+
+        // Mengambil semua kategori
+        $data['kategori_belajar_ekspor'] = $kategoriBelajarEksporModel->findAll();
+
+        if ($slug) {
+            // Jika slug kategori dipilih, ambil data sesuai kategori
+            $kategori = $kategoriBelajarEksporModel->where('slug', $slug)->first();
+            if (!$kategori) {
+                return redirect()->to('/')->with('error', 'Kategori tidak ditemukan');
+            }
+            // Mengambil data berdasarkan kategori
+            $data['belajar_ekspor'] = $belajarEksporModel->getByCategory($kategori['id_kategori_belajar_ekspor']);
+
+            // Mengirimkan data kategori yang dipilih ke view
+            $data['active_category'] = $kategori['id_kategori_belajar_ekspor'];
+        } else {
+            // Jika tidak ada slug, tampilkan semua data
+            $data['belajar_ekspor'] = $belajarEksporModel->getAllWithCategory();
+
+            // Tidak ada kategori yang aktif
+            $data['active_category'] = null;
+        }
+
+        return view('belajar-ekspor/belajar_ekspor', $data);
     }
 
-    public function belajar_ekspor_detail()
+    public function kategori_belajar_ekspor($slug)
     {
-        return view('belajar-ekspor/belajar_ekspor_detail');
+        $belajarEksporModel = new BelajarEksporModel();
+        $kategoriBelajarEksporModel = new KategoriBelajarEksporModel();
+
+        // Mengambil kategori berdasarkan slug
+        $kategori = $kategoriBelajarEksporModel->where('slug', $slug)->first();
+        if (!$kategori) {
+            // Jika kategori tidak ditemukan, redirect atau tampilkan error
+            return redirect()->to('/')->with('error', 'Kategori tidak ditemukan');
+        }
+
+        // Mengambil data belajar ekspor yang terkait dengan kategori yang dipilih
+        $data['belajar_ekspor'] = $belajarEksporModel->getByCategory($kategori['id_kategori_belajar_ekspor']);
+
+        // Mengambil semua kategori untuk menu dropdown
+        $data['kategori_belajar_ekspor'] = $kategoriBelajarEksporModel->findAll();
+
+        // Mengirim data kategori yang dipilih untuk ditampilkan di view
+        $data['active_category'] = $kategori['id_kategori_belajar_ekspor'];
+
+        return view('belajar-ekspor/belajar_ekspor', $data);
+    }
+
+    public function belajar_ekspor_detail($slug)
+    {
+        $belajarEksporModel = new BelajarEksporModel();
+
+        // Mengambil artikel berdasarkan slug
+        $artikel = $belajarEksporModel->where('slug', $slug)->first();
+
+        if (!$artikel) {
+            // Jika artikel tidak ditemukan, redirect atau tampilkan pesan error
+            return redirect()->to('/')->with('error', 'Artikel tidak ditemukan');
+        }
+
+        // Mengirim data artikel ke view
+        $data['artikel'] = $artikel;
+
+        $data['belajar_ekspor'] = $belajarEksporModel->where('slug !=', $slug)->orderBy('created_at', 'DESC')->limit(3)->findAll();
+
+        return view('belajar-ekspor/belajar_ekspor_detail', $data);
     }
 
     public function pendaftaran()
