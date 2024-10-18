@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?= $this->renderSection('meta'); ?>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flaticon/2.1.0/css/flaticon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -259,6 +258,7 @@
     .Btn.facebook:hover {
         background-color: darkblue;
     }
+
     /* end */
 </style>
 
@@ -295,7 +295,7 @@
                 <!-- Language Dropdown -->
                 <div class="dropdown">
                     <button class="btn dropdown-toggle text-light language-btn" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="/img/flag-en.png" alt="English" style="width: 24px;">
+                        <img src="/img/flag-id.png" alt="English" style="width: 24px;">
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
                         <li>
@@ -325,25 +325,25 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto d-flex align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Beranda</a>
+                        <a class="nav-link" href="<?= base_url('/'); ?>">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Belajar Ekspor</a>
+                      <a class="nav-link" href="<?= base_url('/belajar-ekspor'); ?>">Belajar Ekspor</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pendaftaran</a>
+                        <a class="nav-link" href="<?= base_url('/pendaftaran'); ?>">Pendaftaran</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Video Tutorial</a>
+                        <a class="nav-link" href="<?= base_url('/video-tutorial'); ?>">Video Tutorial</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Data Member</a>
-                    </li>
+                      <a class="nav-link" href="<?= base_url('/data-member'); ?>">Data Member</a>
+                  </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Aplikasi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Data Buyers</a>
+                      <a class="nav-link" href="<?= base_url('/data-buyers'); ?>">Data Buyers</a>
                     </li>
                     <div class="border-top" style="width: 1.5px; height: 40px; background-color: white; margin: 0 20px;"></div>
                     <a href="#"><button type="button" class="btn btn-outline-light">Login</button></a>
