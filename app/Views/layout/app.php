@@ -6,31 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?= $this->renderSection('meta'); ?>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flaticon/2.1.0/css/flaticon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- end -->
 </head>
 
 <style>
+    .language-btn {
+        padding: 5px 10px;
+        /* Ubah padding sesuai keinginan */
+        font-size: 0.875rem;
+        /* Ubah ukuran font */
+        width: 70px;
+        height: 30px;
+    }
+
+    .flag-icon {
+        width: 20px;
+        /* Ubah ukuran bendera jika perlu */
+        height: auto;
+        /* Mempertahankan rasio aspek */
+    }
+
     /* hover header */
     .social-link i {
-        color: black;
-        font-size: 24px;
-        transition: color 0.3s ease;
+        color: white;
+        font-size: 17px;
+        transition: color 0.3s ease, transform 0.3s ease;
+        /* Menambahkan transisi pada transform */
     }
 
     .social-link:hover i {
         color: #03AADE;
+        transform: scale(1.1);
+        /* Menambahkan efek scaling saat hover */
     }
 
     .language-btn {
         background-color: transparent;
-        border: 1px solid black;
+        border: 1px solid white;
         transition: all 0.3s ease;
     }
 
@@ -47,6 +66,7 @@
         transform: scale(1.1);
     }
 
+    /* end */
     /* end */
 
     /* hover navbar */
@@ -87,7 +107,6 @@
         background-color: white;
         color: #03AADE;
     }
-
     /* end */
 
     /* sticky navbar */
@@ -105,7 +124,6 @@
     }
 
     /* end */
-
     .dropdown-menu {
         position: absolute;
         z-index: 1050;
@@ -264,22 +282,23 @@
 
 <body>
     <!-- header -->
-    <header class="header" style="background-color: #f8f9fa;">
+    <header class="header" style="background-color: #F2BF02;">
         <div class="container">
-            <div class="head d-flex justify-content-between align-items-center" style="width: 100%; height: 60px;">
+            <div class="head d-flex justify-content-between align-items-center" style="width: 100%; height: 40px;">
+                <!-- Alamat dan Email -->
                 <div class="d-flex justify-content-start gap-3">
-                    <div class="d-flex align-items-center gap-2 icon-text" style="white-space: nowrap;">
-                        <i class="fas fa-map-marker-alt m-0" style="font-size: 18px;"></i>
-                        <p class="mb-0">Sawojajar, Malang, Jawa Timur</p>
+                    <div class="d-flex align-items-center gap-2 icon-text text-light" style="white-space: nowrap;">
+                        <i class="fas fa-map-marker-alt m-0" style="font-size: 12px; color: white;"></i>
+                        <p class="mb-0" style="color: white; font-size: 12px;">Sawojajar, Malang, Jawa Timur</p>
                     </div>
-                    <div class="d-flex align-items-center gap-2 icon-text" style="white-space: nowrap;">
-                        <i class="fas fa-envelope m-0" style="font-size: 18px;"></i>
-                        <p class="mb-0">komunitasekspor@gmail.com</p>
+                    <div class="d-flex align-items-center gap-2 icon-text text-light" style="white-space: nowrap;">
+                        <i class="fas fa-envelope m-0" style="font-size: 12px; color: white;"></i>
+                        <p class="mb-0" style="color: white; font-size: 12px;">komunitasekspor@gmail.com</p>
                     </div>
                 </div>
+                <!-- Ikon Sosial Media dan Garis -->
                 <div class="d-flex align-items-center" style="margin-left: 500px;">
-                    <!-- Social Media Icons -->
-                    <div class="d-flex gap-3 me-4" style="margin-left: 65px;">
+                    <div class="d-flex gap-3 me-4" style="margin-left: 190px;">
                         <a href="https://www.instagram.com" target="_blank" class="social-link">
                             <i class="fab fa-instagram"></i>
                         </a>
@@ -290,22 +309,23 @@
                             <i class="fab fa-facebook"></i>
                         </a>
                     </div>
-                    <div class="border-top" style="width: 1.5px; height: 40px; background-color: #03AADE;"></div>
+                    <div class="border-top" style="width: 1.5px; height: 20px; background-color: white;"></div>
                 </div>
                 <!-- Language Dropdown -->
                 <div class="dropdown">
-                    <button class="btn dropdown-toggle text-light language-btn" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="/img/flag-id.png" alt="English" style="width: 24px;">
+                    <button class="btn text-light language-btn" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="/img/flag-en.png" alt="English" class="flag-icon mb-1">
+                        <i class="bi bi-chevron-down ms-1"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
                         <li>
                             <a class="dropdown-item" href="?lang=id">
-                                <img src="/img/flag-id.png" alt="Indonesian" style="width: 24px;"> Indonesian
+                                <img src="/img/flag-id.png" alt="Indonesian" class="flag-icon"> Indonesian
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="?lang=en">
-                                <img src="/img/flag-en.png" alt="English" style="width: 24px;"> English
+                                <img src="/img/flag-en.png" alt="English" class="flag-icon"> English
                             </a>
                         </li>
                     </ul>
@@ -325,27 +345,27 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto d-flex align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('/'); ?>">Beranda</a>
+                        <a class="nav-link" href="#">Beranda</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="<?= base_url('/belajar-ekspor'); ?>">Belajar Ekspor</a>
+                        <a class="nav-link" href="#">Belajar Ekspor</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('/pendaftaran'); ?>">Pendaftaran</a>
+                        <a class="nav-link" href="#">Pendaftaran</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('/video-tutorial'); ?>">Video Tutorial</a>
+                        <a class="nav-link" href="#">Video Tutorial</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="<?= base_url('/data-member'); ?>">Data Member</a>
-                  </li>
+                        <a class="nav-link" href="#">Data Member</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Aplikasi</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="<?= base_url('/data-buyers'); ?>">Data Buyers</a>
+                        <a class="nav-link" href="#">Data Buyers</a>
                     </li>
-                    <div class="border-top" style="width: 1.5px; height: 40px; background-color: white; margin: 0 20px;"></div>
+                    <div class="border-top" style="width: 1.5px; height: 40px; background-color: white; margin: 0 23px;"></div>
                     <a href="#"><button type="button" class="btn btn-outline-light">Login</button></a>
                 </ul>
             </div>
@@ -452,8 +472,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 </body>
 
 </html>

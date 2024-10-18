@@ -1,5 +1,8 @@
+
 <?= $this->extend('layout/app'); ?>
 <?= $this->section('content'); ?>
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
 
 <style>
     .carousel-item img {
@@ -11,7 +14,6 @@
     }
 
     /* card popular member */
-    /* From Uiverse.io by gharsh11032000 */
     .card-container {
         width: 300px;
         height: 300px;
@@ -97,6 +99,19 @@
 
     /* end */
 
+    /* button daftar */
+    .button-find {
+        background-color: #03AADE;
+        transition: background-color 0.3s ease;
+    }
+
+    .button-find:hover {
+        background-color: #0288c7;
+        border: 1px solid #fff;
+    }
+
+    /* end */
+
     @media (min-width: 768px) {
         .carousel-item img {
             max-height: 600px;
@@ -112,27 +127,30 @@
         <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner">
+        <!-- Slide 1 -->
         <div class="carousel-item active" data-bs-interval="10000">
-            <img src="/img/slider-1.jpg" class="d-block w-100" alt="...">
+            <img src="/img/slider-1.jpg" class="d-block w-100" alt="Slide 1">
             <div class="carousel-caption d-none d-md-block text-light mb-3">
-                <h5>First slide label</h5>
-                <p>Some representative placeholder content for the first slide.</p>
+                <h5>Bangun Ekosistem Ekspor Bersama</h5>
+                <p>Komunitas Ekspor Indonesia berperan aktif dalam memperluas peluang ekspor.</p>
                 <button type="button" class="btn btn-outline-light">Daftar Sekarang</button>
             </div>
         </div>
+        <!-- Slide 2 -->
         <div class="carousel-item" data-bs-interval="2000">
-            <img src="/img/slider-2.jpg" class="d-block w-100" alt="...">
+            <img src="/img/slider-2.jpg" class="d-block w-100" alt="Slide 2">
             <div class="carousel-caption d-none d-md-block text-light mb-3">
-                <h5>Second slide label</h5>
-                <p>Some representative placeholder content for the second slide.</p>
+                <h5>Pelatihan & Pendampingan Ekspor</h5>
+                <p>Ikuti program pelatihan dan pendampingan ekspor untuk meningkatkan kapasitas usaha.</p>
                 <button type="button" class="btn btn-outline-light">Daftar Sekarang</button>
             </div>
         </div>
+        <!-- Slide 3 -->
         <div class="carousel-item">
-            <img src="/img/slider-3.jpg" class="d-block w-100" alt="...">
+            <img src="/img/slider-3.jpg" class="d-block w-100" alt="Slide 3">
             <div class="carousel-caption d-none d-md-block text-light mb-3">
-                <h5>Third slide label</h5>
-                <p>Some representative placeholder content for the third slide.</p>
+                <h5>Kolaborasi & Networking Global</h5>
+                <p>Komunitas ini menghubungkan Anda dengan buyer dan pelaku ekspor dari berbagai negara.</p>
                 <button type="button" class="btn btn-outline-light">Daftar Sekarang</button>
             </div>
         </div>
@@ -158,7 +176,7 @@
         </div>
         <h1 class="text-center" data-en="WHO WE ARE" data-id="SIAPA KAMI"><b>TOP MEMBER<span style="color: #03AADE;"> SPOTLIGHT</span></b></h1>
     </div>
-    <div class="container our-activities">
+    <div class="container">
         <div class="row">
             <div class="d-flex mt-3">
                 <hr style="color: #FF9900; width: 50px;">
@@ -166,8 +184,8 @@
             </div>
             <h1 class="fw-lighter">Komunitas Ekspor Indonesia</h1>
             <h1 class="fw-bold" style="color: #03AADE;">Member Populer Komunitas Ekspor</h1>
-            <div class="product d-flex justify-content-between">
-                <p class="text">Temukan anggota populer dalam komunitas ekspor Indonesia. Setiap anggota dipilih secara
+            <div class="d-flex justify-content-between">
+                <p>Temukan anggota populer dalam komunitas ekspor Indonesia. Setiap anggota dipilih secara
                     <br>teliti untuk memberikan kontribusi yang berguna dan berkelanjutan di bidang ekspor
                     <br>Indonesia. Masing-masing anggota membawa keunikan dalam komunitas ekspor Indonesia."
                 </p>
@@ -254,7 +272,7 @@
 
 <!-- keuntungan -->
 <section>
-    <div class="container text-center py-5 mt-5">
+    <div class="container text-center py-5 mt-2">
         <h2 class="fw-bold mb-3" style="color: #03AADE;">MANFAAT JOIN MEMBER.</h2>
         <div class="d-flex justify-content-center align-items-center mb-2">
             <div class="border-top" style="width: 60px; height: 3px; background-color: #03AADE;"></div>
@@ -324,7 +342,7 @@
             <p class="text-center fw-lighter text-light">Jadilah bagian dari jaringan eksportir yang sukses. Dapatkan peluang, pengetahuan, dan dukungan untuk mengembangkan bisnis ekspor Anda.</p>
         </div>
         <div class="text-center centered-button pt-2">
-            <a href="produk" class="btn btn-outline-light">Gabung Sekarang</a>
+            <a href="produk" class="btn btn-outline-light">Daftar Sekarang</a>
         </div>
     </div>
 </section>
@@ -340,22 +358,26 @@
         </div>
         <h1 class="text-center" data-en="TOP MEMBERS SPOTLIGHT" data-id="SOROTAN MEMBER UNGGUL"><b>SOROTAN MEMBER<span style="color: #03AADE;"> UNGGUL</span></b></h1>
     </div>
-    <div class="mt-5">
-        <div id="map" style="height: 400px; width: 100%;"></div>
+    <div class="container mt-5">
+        <div id="map" style="width: 100%; height: 700px;"></div>
     </div>
 </section>
 <!-- end -->
 
-<script>
-    // Inisialisasi peta
-    var map = L.map('map').setView([-6.200000, 106.816666], 13); // Koordinat dan zoom level
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 
-    // Tambahkan tile layer (peta dasar)
+<script>
+    var map = L.map('map').setView([-6.1751, 106.8650], 13); // Set koordinat lat dan long serta zoom level
+
+    // Tambahkan layer peta
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 18,
+        maxZoom: 19,
         attribution: '© OpenStreetMap'
     }).addTo(map);
+
+    // Tambahkan marker
+    var marker = L.marker([-6.1751, 106.8650]).addTo(map);
+    marker.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
 </script>
 
-<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 <?= $this->endSection(); ?>
