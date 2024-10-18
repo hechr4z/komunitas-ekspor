@@ -342,18 +342,27 @@
                         </svg>
                     </a>
                     <div class="submenu">
-                        <div class="submenu-item">
-                            <a href="#" class="submenu-link"> Development </a>
-                        </div>
-                        <div class="submenu-item">
-                            <a href="#" class="submenu-link"> Design </a>
-                        </div>
-                        <div class="submenu-item">
-                            <a href="#" class="submenu-link"> Marketing </a>
-                        </div>
-                        <div class="submenu-item">
-                            <a href="#" class="submenu-link"> SEO </a>
-                        </div>
+                        <!-- Tampilkan kategori dari database -->
+                        <?php if (!empty($kategori_belajar_ekspor)): ?>
+                            <!-- Tampilkan link ke semua kategori -->
+                            <div class="submenu-item">
+                                <a href="<?= base_url('belajar-ekspor'); ?>" class="submenu-link <?= empty($active_category) ? 'active' : ''; ?>">
+                                    Semua Kategori
+                                </a>
+                            </div>
+                            <!-- Loop kategori -->
+                            <?php foreach ($kategori_belajar_ekspor as $item): ?>
+                                <div class="submenu-item">
+                                    <a href="<?= base_url('kategori/' . $item['slug']); ?>" class="submenu-link <?= $active_category == $item['id_kategori_belajar_ekspor'] ? 'active' : ''; ?>">
+                                        <?= $item['nama_kategori']; ?>
+                                    </a>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <div class="submenu-item">
+                                <span class="submenu-link">Tidak ada kategori</span>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -361,106 +370,39 @@
         <!-- end filter -->
 
         <div class="row g-4 mb-5">
-            <!-- Card -->
-            <div class="col-md-4">
-                <div class="card h-80">
-                    <img src="<?= base_url('/img/artikel1.jpg'); ?>" class="card-img-top img-fluid" alt="foto studio" style="object-fit: cover; object-position: center; aspect-ratio: 16/9;" loading="lazy">
-                    <div class="card-body d-flex flex-column">
-                        <div class="mb-3 d-flex justify-content-between align-items-center">
-                            <p class="card-text mb-0" style="font-size: 1rem;">19 Juli 2024</p>
-                            <span class="badge">#Kategori</span>
+            <?php if (!empty($belajar_ekspor)): ?>
+                <!-- Menampilkan artikel sesuai kategori -->
+                <?php foreach ($belajar_ekspor as $item): ?>
+                    <!-- Card -->
+                    <div class="col-md-4">
+                        <div class="card h-80">
+                            <img src="<?= base_url('/img/' . $item['foto_belajar_ekspor']); ?>" class="card-img-top img-fluid" alt="<?= $item['judul_belajar_ekspor']; ?>" style="object-fit: cover; object-position: center; aspect-ratio: 16/9;" loading="lazy">
+                            <div class="card-body d-flex flex-column">
+                                <div class="mb-3 d-flex justify-content-between align-items-center">
+                                    <p class="card-text mb-0" style="font-size: 1rem;"><?= date('d F Y', strtotime($item['created_at'])); ?></p>
+                                    <span class="badge">#<?= $item['nama_kategori']; ?></span>
+                                </div>
+                                <h5 class="card-title" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+                                    <?= $item['judul_belajar_ekspor']; ?>
+                                </h5>
+                                <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+                                    <?= $item['deskripsi_belajar_ekspor']; ?>
+                                </p>
+                                <a href="<?= base_url('belajar-ekspor-detail/' . $item['slug']); ?>" class="btn mt-auto" style="width: 100%; display: block; text-align: center;">Baca Selengkapnya</a>
+                            </div>
                         </div>
-                        <h5 class="card-title" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">Lorem ipsum dolor sit: amet consectetur adipisicing elit.</h5>
-                        <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis expedita assumenda fugiat reiciendis sed eum, fuga quo voluptatem quas, deleniti, vel magnam reprehenderit doloremque ducimus illo suscipit. Sapiente, libero iusto.
-                        </p>
-                        <a href="#" class="btn mt-auto" style="width: 100%; display: block; text-align: center;">Baca Selengkapnya</a>
                     </div>
-                </div>
-            </div>
-
-            <!-- Card -->
-            <div class="col-md-4">
-                <div class="card h-80">
-                    <img src="<?= base_url('/img/artikel2.jpeg'); ?>" class="card-img-top img-fluid" alt="foto studio" style="object-fit: cover; object-position: center; aspect-ratio: 16/9;" loading="lazy">
-                    <div class="card-body d-flex flex-column">
-                        <div class="mb-3 d-flex justify-content-between align-items-center">
-                            <p class="card-text mb-0" style="font-size: 1rem;">19 Juli 2024</p>
-                            <span class="badge">#Kategori</span>
-                        </div>
-                        <h5 class="card-title" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">Lorem ipsum dolor sit: amet consectetur adipisicing elit.</h5>
-                        <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis expedita assumenda fugiat reiciendis sed eum, fuga quo voluptatem quas, deleniti, vel magnam reprehenderit doloremque ducimus illo suscipit. Sapiente, libero iusto.
-                        </p>
-                        <a href="#" class="btn mt-auto" style="width: 100%; display: block; text-align: center;">Baca Selengkapnya</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card -->
-            <div class="col-md-4">
-                <div class="card h-80">
-                    <img src="<?= base_url('/img/artikel3.webp'); ?>" class="card-img-top img-fluid" alt="foto studio" style="object-fit: cover; object-position: center; aspect-ratio: 16/9;" loading="lazy">
-                    <div class="card-body d-flex flex-column">
-                        <div class="mb-3 d-flex justify-content-between align-items-center">
-                            <p class="card-text mb-0" style="font-size: 1rem;">19 Juli 2024</p>
-                            <span class="badge">#Kategori</span>
-                        </div>
-                        <h5 class="card-title" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">Lorem ipsum dolor sit: amet consectetur adipisicing elit.</h5>
-                        <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis expedita assumenda fugiat reiciendis sed eum, fuga quo voluptatem quas, deleniti, vel magnam reprehenderit doloremque ducimus illo suscipit. Sapiente, libero iusto.
-                        </p>
-                        <a href="#" class="btn mt-auto" style="width: 100%; display: block; text-align: center;">Baca Selengkapnya</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card -->
-            <div class="col-md-4">
-                <div class="card h-80">
-                    <img src="<?= base_url('/img/artikel4.jpeg'); ?>" class="card-img-top img-fluid" alt="foto studio" style="object-fit: cover; object-position: center; aspect-ratio: 16/9;" loading="lazy">
-                    <div class="card-body d-flex flex-column">
-                        <div class="mb-3 d-flex justify-content-between align-items-center">
-                            <p class="card-text mb-0" style="font-size: 1rem;">19 Juli 2024</p>
-                            <span class="badge">#Kategori</span>
-                        </div>
-                        <h5 class="card-title" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">Lorem ipsum dolor sit: amet consectetur adipisicing elit.</h5>
-                        <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis expedita assumenda fugiat reiciendis sed eum, fuga quo voluptatem quas, deleniti, vel magnam reprehenderit doloremque ducimus illo suscipit. Sapiente, libero iusto.
-                        </p>
-                        <a href="#" class="btn mt-auto" style="width: 100%; display: block; text-align: center;">Baca Selengkapnya</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card -->
-            <div class="col-md-4">
-                <div class="card h-80">
-                    <img src="<?= base_url('/img/artikel5.jpeg'); ?>" class="card-img-top img-fluid" alt="foto studio" style="object-fit: cover; object-position: center; aspect-ratio: 16/9;" loading="lazy">
-                    <div class="card-body d-flex flex-column">
-                        <div class="mb-3 d-flex justify-content-between align-items-center">
-                            <p class="card-text mb-0" style="font-size: 1rem;">19 Juli 2024</p>
-                            <span class="badge">#Kategori</span>
-                        </div>
-                        <h5 class="card-title" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">Lorem ipsum dolor sit: amet consectetur adipisicing elit.</h5>
-                        <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis expedita assumenda fugiat reiciendis sed eum, fuga quo voluptatem quas, deleniti, vel magnam reprehenderit doloremque ducimus illo suscipit. Sapiente, libero iusto.
-                        </p>
-                        <a href="#" class="btn mt-auto" style="width: 100%; display: block; text-align: center;">Baca Selengkapnya</a>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="mt-5" style="display: flex; justify-content: center;">
-                <a href="#" class="btn mt-auto" style="width: 15%; text-align: center; border-radius: 30px;">Lihat Lebih Banyak ></a>
-            </div>
-
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>Belum ada artikel untuk ditampilkan di kategori ini.</p>
+            <?php endif; ?>
         </div>
+
+        <div class="my-5" style="display: flex; justify-content: center;">
+            <a href="#" class="btn mt-auto" style="width: 15%; text-align: center; border-radius: 30px;">Lihat Lebih Banyak ></a>
+        </div>
+
     </div>
 </section>
-
-
-
 
 <?= $this->endSection(); ?>
