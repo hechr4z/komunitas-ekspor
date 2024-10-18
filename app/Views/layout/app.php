@@ -258,6 +258,7 @@
     .Btn.facebook:hover {
         background-color: darkblue;
     }
+
     /* end */
 </style>
 
@@ -324,25 +325,25 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto d-flex align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Beranda</a>
+                        <a class="nav-link" href="<?= base_url('/'); ?>">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/belajar-ekspor">Belajar Ekspor</a>
+                      <a class="nav-link" href="<?= base_url('/belajar-ekspor'); ?>">Belajar Ekspor</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/pendaftaran">Pendaftaran</a>
+                        <a class="nav-link" href="<?= base_url('/pendaftaran'); ?>">Pendaftaran</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/video-tutorial">Video Tutorial</a>
+                        <a class="nav-link" href="<?= base_url('/video-tutorial'); ?>">Video Tutorial</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/data-member">Data Member</a>
-                    </li>
+                      <a class="nav-link" href="<?= base_url('/data-member'); ?>">Data Member</a>
+                  </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Aplikasi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/data-buyers">Data Buyers</a>
+                      <a class="nav-link" href="<?= base_url('/data-buyer'); ?>">Data Buyers</a>
                     </li>
                     <div class="border-top" style="width: 1.5px; height: 40px; background-color: white; margin: 0 20px;"></div>
                     <a href="#"><button type="button" class="btn btn-outline-light">Login</button></a>

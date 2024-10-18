@@ -398,7 +398,11 @@
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
-                <p>Belum ada artikel untuk ditampilkan di kategori ini.</p>
+                <div class="col-12">
+                    <div class="alert alert-info text-center" role="alert">
+                        Belum ada materi untuk ditampilkan di halaman ini.
+                    </div>
+                </div>
             <?php endif; ?>
         </div>
 
