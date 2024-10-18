@@ -124,3 +124,7 @@ nb-configuration.xml
 
 /results/
 /phpunit*.xml
+
+# Ignore public/
+public/img
+public/certificate
