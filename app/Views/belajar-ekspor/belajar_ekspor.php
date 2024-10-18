@@ -272,6 +272,10 @@
         padding: 0.5em 1em;
         border-radius: 3px;
         background-color: #03AADE;
+        width: auto;
+        /* Membuat lebar badge mengikuti panjang teks */
+        display: inline-block;
+        /* Menjamin badge sesuai dengan teks */
     }
 
     .btn {
