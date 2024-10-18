@@ -397,7 +397,7 @@
                 <?php foreach ($belajar_ekspor as $item): ?>
                     <!-- Card -->
                     <div class="col-md-4">
-                        <div class="card h-80">
+                        <div class="card h-100">
                             <img src="<?= base_url('/img/' . $item['foto_belajar_ekspor']); ?>" class="card-img-top img-fluid" alt="<?= $item['judul_belajar_ekspor']; ?>" style="object-fit: cover; object-position: center; aspect-ratio: 16/9;" loading="lazy">
                             <div class="card-body d-flex flex-column">
                                 <div class="mb-3 d-flex justify-content-between align-items-center">
@@ -421,12 +421,12 @@
                         Belum ada materi untuk ditampilkan di halaman ini.
                     </div>
                 </div>
-            </div>
-            <div class="lebih mt-5" style="display: flex; justify-content: center;">
-                <a href="#" class="btn mt-auto" style="min-width: 50px; text-align: center; border-radius: 30px;">Lihat Lebih Banyak ></a>
-            </div>
             <?php endif; ?>
         </div>
+        <div class="lebih mt-5" style="display: flex; justify-content: center;">
+            <a href="#" class="btn mt-auto" style="min-width: 50px; text-align: center; border-radius: 30px;">Lihat Lebih Banyak ></a>
+        </div>
+    </div>
     </div>
 </section>
 
