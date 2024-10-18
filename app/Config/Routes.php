@@ -36,3 +36,6 @@ $routes->get('/detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
 
 // Member - Data Buyer
 $routes->get('/data-buyer', 'KomunitasEkspor::data_buyer');
+
+// member - edit member
+$routes->get('/edit_profile', 'KomunitasEkspor::edit_profile');
