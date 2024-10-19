@@ -1,8 +1,7 @@
-
 <?= $this->extend('layout/app'); ?>
 <?= $this->section('content'); ?>
 
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 
 <style>
     .carousel-item img {
@@ -365,9 +364,10 @@
 <!-- end -->
 
 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-    var map = L.map('map').setView([-6.1751, 106.8650], 13); // Set koordinat lat dan long serta zoom level
+    var map = L.map('map').setView([-2.5489, 118.0149], 5); // Set koordinat lat dan long serta zoom level
 
     // Tambahkan layer peta
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -375,9 +375,46 @@
         attribution: '© OpenStreetMap'
     }).addTo(map);
 
-    // Tambahkan marker
-    var marker = L.marker([-6.1751, 106.8650]).addTo(map);
-    marker.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+    <?php foreach ($member as $item): ?>
+        <?php if (!empty($item['latitude']) && !empty($item['longitude'])): // Pastikan latitude dan longitude tidak kosong 
+        ?>
+            var marker = L.marker([<?= $item['latitude'] ?>, <?= $item['longitude'] ?>]).addTo(map);
+            marker.bindPopup(`
+                <div style="width: 200px; font-family: Arial, sans-serif;">
+                    <div onclick="showSweetAlert()" class="card h-100 shadow-sm" style="cursor: pointer; border-radius: 12px; overflow: hidden;">
+                        <img src="<?= base_url('img/' . $item['foto_profil']); ?>" class="card-img-top" alt="Member Image"
+                            style="height: 120px; object-fit: cover;">
+                        <div class="card-body">
+                            <h6 class="card-title text-center" style="font-weight: bold; word-wrap: break-word; white-space: normal;">
+                                <?= $item['username'] ?>
+                            </h6>
+                            <p class="card-text text-center text-muted" style="font-size: 0.9rem; word-wrap: break-word; white-space: normal;">
+                                <?= $item['nama_perusahaan'] ?>
+                            </p>
+                            <span class="btn btn-primary btn-sm mt-2" style="border-radius: 8px; width: 100%;">Lihat Profil</span>
+                        </div>
+                    </div>
+                </div>
+            `);
+        <?php endif; ?>
+    <?php endforeach; ?>
+
+    function showSweetAlert() {
+        Swal.fire({
+            title: "Mau Lihat Detail Member?",
+            text: "Yuk Daftar Member Dulu!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Daftar",
+            cancelButtonText: "Nanti"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/pendaftaran"; // Redirect to the registration page
+            } else {
+                Swal.fire("Oke, Jangan Lupa Daftar!"); // Optional message if "Nanti" is clicked
+            }
+        });
+    }
 </script>
 
 <?= $this->endSection(); ?>
