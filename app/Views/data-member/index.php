@@ -6,9 +6,27 @@
         transition: box-shadow 0.3s ease, transform 0.3s ease;
     }
 
+    .card-img-top {
+        padding: 10px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 20px;
+        width: 100%;
+        height: 220px;
+    }
+
+    button:hover {
+        color: #fff;
+        transform: scale(1.05);
+        box-shadow: 0px 0px 10px #03AADE;
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+
+
     .card:hover {
-        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-        transform: translateY(-5px);
+        box-shadow: 0px 0px 25px #03AADE !important;
+        transform: translateY(-5px) !important;
     }
 </style>
 
@@ -21,7 +39,7 @@
     </div>
     <div class="container">
         <?php if (empty($top4_member)): ?>
-            <div class="col-12">
+            <div class="col-12 mb-5">
                 <div class="alert alert-info text-center" role="alert">
                     Masih belum ada Data Member.
                 </div>
@@ -31,14 +49,17 @@
                 <!-- Card -->
                 <?php foreach ($top4_member as $item): ?>
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                        <div onclick="showSweetAlert()" class="card h-100 shadow-sm" style="cursor: pointer; border-radius: 12px; transition: box-shadow 0.3s ease, transform 0.3s ease;">
-                            <img src="<?= base_url('img/' . $item['foto_profil']); ?>" class="card-img-top" alt="Sample Member 1"
-                                style="height: 220px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px;">
+                        <div onclick="showSweetAlert()" class="card h-100 shadow-sm"
+                            style="cursor: pointer; border-radius: 12px;">
+                            <img src="<?= base_url('img/' . $item['foto_profil']); ?>" class="card-img-top"
+                                alt="Sample Member 1">
                             <div class="card-body d-flex flex-column">
-                                <h6 class="card-title text-center" style="margin-bottom: 12px; font-weight: bold; word-wrap: break-word; white-space: normal;">
+                                <h6 class="card-title text-center"
+                                    style="margin-bottom: 12px; font-weight: bold; word-wrap: break-word; white-space: normal;">
                                     <?= $item['username'] ?>
                                 </h6>
-                                <p class="card-text text-center text-muted" style="flex-grow: 1; word-wrap: break-word; white-space: normal; font-size: 0.9rem;">
+                                <p class="card-text text-center text-muted"
+                                    style="flex-grow: 1; word-wrap: break-word; white-space: normal; font-size: 0.9rem;">
                                     <?= $item['nama_perusahaan'] ?>
                                 </p>
                                 <span class="btn btn-primary mt-auto" style="border-radius: 8px;">Lihat Profil</span>
@@ -48,22 +69,24 @@
                 <?php endforeach; ?>
             </div>
             <!-- Bungkus row kedua dengan div baru untuk overlay -->
-            <div class="position-relative mt-3 mb-3" style="overflow: hidden; border-radius: 12px;">
+            <div class="position-relative mt-3 mb-5" style="border-radius: 12px;">
                 <!-- Row kedua: Member yang di-blur -->
                 <div class="row" style="filter: blur(5px); pointer-events: none;">
                     <!-- Card Member Blur -->
                     <?php foreach ($blur_member as $item): ?>
                         <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                            <div class="card h-100 shadow-sm"
-                                style="cursor: pointer; border-radius: 12px; transition: box-shadow 0.3s ease, transform 0.3s ease;">
-                                <img src="<?= base_url('img/' . $item['foto_profil']); ?>" class="card-img-top" alt="Sample Member Blur"
-                                    style="height: 220px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px;">
+                            <div onclick="showSweetAlert()" class="card h-100 shadow-sm"
+                                style="cursor: pointer; border-radius: 12px;">
+                                <img src="<?= base_url('img/' . $item['foto_profil']); ?>" class="card-img-top"
+                                    alt="Sample Member 1">
                                 <div class="card-body d-flex flex-column">
-                                    <h6 class="card-title text-center" style="margin-bottom: 12px; font-weight: bold; word-wrap: break-word; white-space: normal;">
-                                        Username Blur
+                                    <h6 class="card-title text-center"
+                                        style="margin-bottom: 12px; font-weight: bold; word-wrap: break-word; white-space: normal;">
+                                        <?= $item['username'] ?>
                                     </h6>
-                                    <p class="card-text text-center text-muted" style="flex-grow: 1; word-wrap: break-word; white-space: normal; font-size: 0.9rem;">
-                                        Nama Perusahaan Blur
+                                    <p class="card-text text-center text-muted"
+                                        style="flex-grow: 1; word-wrap: break-word; white-space: normal; font-size: 0.9rem;">
+                                        <?= $item['nama_perusahaan'] ?>
                                     </p>
                                     <span class="btn btn-primary mt-auto" style="border-radius: 8px;">Lihat Profil</span>
                                 </div>
@@ -73,9 +96,18 @@
                 </div>
 
                 <!-- Overlay teks hanya untuk row kedua -->
-                <div class="overlay text-center" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7); z-index: 10;">
-                    <p style="font-size: 1.5rem; font-weight: bold; color:#03AADE;">Daftar untuk melihat member lainnya!</p>
+                <div class="overlay text-center"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7); z-index: 10;">
+                    <p
+                        style="font-size: 1.5rem; font-weight: bold; color: white; text-shadow: 2px 2px 0 #03AADE, -2px -2px 0 #03AADE, 2px -2px 0 #03AADE, -2px 2px 0 #03AADE;">
+                        Daftar untuk melihat member lainnya!
+                    </p>
+                    <button
+                        style="margin-top: 10px; padding: 10px 20px; background-color: #03AADE; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">
+                        Daftar Member
+                    </button>
                 </div>
+
             </div>
         <?php endif; ?>
     </div>

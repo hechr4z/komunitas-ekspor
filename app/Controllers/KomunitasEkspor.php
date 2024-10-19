@@ -15,7 +15,13 @@ class KomunitasEkspor extends BaseController
 {
     public function index()
     {
-        return view('beranda/index');
+        $model_member = new Member();
+
+        $member = $model_member->findAll();
+
+        $data['member'] = $member;
+
+        return view('beranda/index', $data);
     }
 
     public function belajar_ekspor($slug = null)
@@ -257,5 +263,10 @@ class KomunitasEkspor extends BaseController
         $data['blur_buyers'] = $blur_buyers;
 
         return view('data-buyers/index', $data);
+    }
+
+    public function edit_profile()
+    {
+        return view('data-member/edit-profile');
     }
 }
