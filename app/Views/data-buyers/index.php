@@ -87,7 +87,8 @@
                                                 <td><?= $item['nama_perusahaan'] ?></td>
                                                 <td><?= $item['email_perusahaan'] ?></td>
                                                 <td><a href="https://<?= $item['website_perusahaan'] ?>" target="_blank"
-                                                        style="text-decoration: none;"><?= $item['website_perusahaan'] ?></a></td>
+                                                        style="text-decoration: none;"><?= $item['website_perusahaan'] ?></a>
+                                                </td>
                                                 <td><?= $item['hs_code'] ?></td>
                                                 <td><?= $item['negara_perusahaan'] ?></td>
                                             </tr>
@@ -95,10 +96,17 @@
                                     </table>
                                 </div>
 
-                                <!-- Overlay text -->
+                                <!-- Overlay teks hanya untuk row kedua -->
                                 <div class="overlay text-center"
-                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7); z-index: 10;">
-                                    <p style="font-size: 1.5rem; font-weight: bold; color:#03AADE;">Daftar untuk melihat buyers lainnya!</p>
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7); z-index: 10;">
+                                    <p
+                                        style="font-size: 1.5rem; font-weight: bold; color: white; text-shadow: 2px 2px 0 #03AADE, -2px -2px 0 #03AADE, 2px -2px 0 #03AADE, -2px 2px 0 #03AADE;">
+                                        Daftar untuk melihat buyers lainnya!
+                                    </p>
+                                    <button
+                                        style="margin-top: 10px; padding: 10px 20px; background-color: #03AADE; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">
+                                        Daftar Buyers
+                                    </button>
                                 </div>
                             </div>
                         </td>
