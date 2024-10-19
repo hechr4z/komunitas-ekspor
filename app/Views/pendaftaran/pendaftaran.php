@@ -68,6 +68,16 @@
         color: red;
     }
 
+    .btn {
+        background-color: #03AADE;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .btn:hover {
+        background-color: #F2BF02;
+        color: #ffffff;
+    }
 
     /*responsive mobile*/
     @media (max-width: 768px) {
@@ -196,7 +206,7 @@
                     </div>
 
                     <!-- Tombol Submit -->
-                    <button type="submit" class="btn btn-primary mt-3" style="width: 100%;">Daftar Member</button>
+                    <button type="submit" class="btn mt-3" style="width: 100%;">Daftar Member</button>
                 </form>
             </div>
         </div>

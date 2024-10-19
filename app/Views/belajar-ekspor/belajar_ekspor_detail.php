@@ -91,6 +91,20 @@
         /* Menjamin badge sesuai dengan teks */
     }
 
+    .badgepanjang {
+        font-weight: normal;
+        color: #000;
+        font-size: 0.9rem;
+        padding: 0.8em 1.5em;
+        border-radius: 5px;
+        background-color: #fff;
+        width: 100%;
+        border: 1px solid #cccccc;
+        /* Membuat lebar badge mengikuti panjang teks */
+        display: inline-block;
+        /* Menjamin badge sesuai dengan teks */
+    }
+
     .line-separator {
         width: 100%;
         height: 2px;
@@ -105,6 +119,28 @@
     .card:hover {
         box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
         transform: translateY(-5px);
+    }
+
+    .text-container {
+        display: -webkit-box;
+        -webkit-line-clamp: 10;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        position: relative;
+        user-select: none;
+    }
+
+    .text-container::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50px;
+        /* Sesuaikan tinggi efek blur */
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+        pointer-events: none;
+        /* Agar gradient tidak mengganggu */
     }
 
     @media (max-width: 768px) {
@@ -151,14 +187,29 @@
                 <hr class="line-separator">
             </div>
 
+
+            <!-- Deskripsi artikel -->
             <div class="artikel-text">
-                <?= $artikel['deskripsi_belajar_ekspor']; ?>
+                <!-- Teks hanya dipanggil sekali -->
+                <div class="text-container">
+                    <?= nl2br($artikel['deskripsi_belajar_ekspor']); ?>
+                </div>
+
+                <!-- Tombol Hilangi Blur -->
+                <div class="badgepanjang p-3">
+                    <div class="d-flex justify-content-between align-items-center mt-3 mb-3 flex-md-row flex-column">
+                        <h5 class="kategori font-weight-bold mb-0 text-left text-md-left">Gabung Member Yuk <br>Untuk Akses 100%</h5>
+                        <a href="/pendaftaran" class="btn mt-md-0">Pendaftaran Member</a>
+                    </div>
+                </div>
             </div>
+
         </div>
 
+
         <!-- Back Button -->
-        <div class="artikel-detail-footer text-center mt-4">
-            <a href="<?= base_url('belajar-ekspor'); ?>" class="btn btn-primary">Kembali ke Artikel</a>
+        <div class="artikel-detail-footer text-center mt-5">
+            <a href="<?= base_url('belajar-ekspor'); ?>" class="btn">Kembali ke Artikel</a>
         </div>
     </div>
 </section>
@@ -191,6 +242,7 @@
 </section>
 
 
-<!-- recommended articles section end -->
+
+
 
 <?= $this->endSection(); ?>
