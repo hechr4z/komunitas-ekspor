@@ -18,11 +18,17 @@
     button:hover {
         color: #fff;
         transform: scale(1.05);
-        box-shadow: 0px 0px 10px #03AADE;
+        box-shadow: 0px 0px 10px #F2BF02;
         transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        background-color: #F2BF02 !important;
+        /* Mengubah warna saat hover menjadi #F2BF02 */
     }
 
-
+    .card .btn:hover {
+        background-color: #F2BF02 !important;
+        color: #fff;
+        border: none;
+    }
 
     .card:hover {
         box-shadow: 0px 0px 25px #03AADE !important;
@@ -53,7 +59,7 @@
                             style="cursor: pointer; border-radius: 12px;">
                             <img src="<?= base_url('img/' . $item['foto_profil']); ?>" class="card-img-top"
                                 alt="Sample Member 1">
-                            <div class="card-body d-flex flex-column">
+                            <div class=" card-body d-flex flex-column">
                                 <h6 class="card-title text-center"
                                     style="margin-bottom: 12px; font-weight: bold; word-wrap: break-word; white-space: normal;">
                                     <?= $item['username'] ?>
@@ -62,7 +68,7 @@
                                     style="flex-grow: 1; word-wrap: break-word; white-space: normal; font-size: 0.9rem;">
                                     <?= $item['nama_perusahaan'] ?>
                                 </p>
-                                <span class="btn btn-primary mt-auto" style="border-radius: 8px;">Lihat Profil</span>
+                                <span class="btn btn-primary mt-auto">Lihat Profil</span>
                             </div>
                         </div>
                     </div>
@@ -79,7 +85,7 @@
                                 style="cursor: pointer; border-radius: 12px;">
                                 <img src="<?= base_url('img/' . $item['foto_profil']); ?>" class="card-img-top"
                                     alt="Sample Member 1">
-                                <div class="card-body d-flex flex-column">
+                                <div class=" card-body d-flex flex-column">
                                     <h6 class="card-title text-center"
                                         style="margin-bottom: 12px; font-weight: bold; word-wrap: break-word; white-space: normal;">
                                         <?= $item['username'] ?>
@@ -88,7 +94,7 @@
                                         style="flex-grow: 1; word-wrap: break-word; white-space: normal; font-size: 0.9rem;">
                                         <?= $item['nama_perusahaan'] ?>
                                     </p>
-                                    <span class="btn btn-primary mt-auto" style="border-radius: 8px;">Lihat Profil</span>
+                                    <span class="btn btn-primary mt-auto">Lihat Profil</span>
                                 </div>
                             </div>
                         </div>
@@ -103,7 +109,8 @@
                         Daftar untuk melihat member lainnya!
                     </p>
                     <a href="<?= base_url('/pendaftaran'); ?>">
-                        <button style="margin-top: 10px; padding: 10px 20px; background-color: #03AADE; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">
+                        <button
+                            style="margin-top: 10px; padding: 10px 20px; background-color: #03AADE; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">
                             Daftar Member
                         </button>
                     </a>

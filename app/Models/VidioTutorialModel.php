@@ -40,6 +40,14 @@ class VidioTutorialModel extends Model
             ->findAll();
     }
 
+    public function getRelatedVideos($id_kategori_video, $id_video)
+    {
+        return $this->where('id_kategori_video', $id_kategori_video)
+            ->where('id_video !=', $id_video) // Kecuali video yang sedang dilihat
+            ->limit(5) // Limit untuk jumlah video terkait
+            ->findAll();
+    }
+
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
 

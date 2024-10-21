@@ -11,6 +11,11 @@ use App\Models\Produk;
 use App\Models\Buyers;
 use App\Models\KategoriVidioModel;
 use App\Models\VidioTutorialModel;
+use App\Models\Exwork;
+use App\Models\FOB;
+use App\Models\CFR;
+use App\Models\CIF;
+use App\Models\Satuan;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class KomunitasEkspor extends BaseController
@@ -59,6 +64,43 @@ class KomunitasEkspor extends BaseController
         }
 
         return view('belajar-ekspor/belajar_ekspor', $data);
+    }
+
+    public function search_belajar_ekspor()
+    {
+        helper('text');
+
+        // Ambil keyword dari query string
+        $keyword = $this->request->getGet('keyword');
+
+        // Instansiasi model yang diperlukan
+        $belajarEksporModel = new BelajarEksporModel();
+        $kategoriBelajarEksporModel = new KategoriBelajarEksporModel();
+
+        // Mengambil semua kategori untuk ditampilkan di sidebar/filter
+        $data['kategori_belajar_ekspor'] = $kategoriBelajarEksporModel->findAll();
+
+        // Query pencarian: mencari berdasarkan judul, tags, atau deskripsi
+        $hasilPencarian = $belajarEksporModel->like('judul_belajar_ekspor', $keyword)
+            ->orLike('tags', $keyword)
+            ->orLike('deskripsi_belajar_ekspor', $keyword)
+            ->getAllWithCategory(); // Pastikan method ini mengembalikan data dengan kategori
+
+        // Jika ada hasil pencarian
+        if (count($hasilPencarian) > 0) {
+            $data['hasilPencarian'] = $hasilPencarian;
+        } else {
+            $data['hasilPencarian'] = [];
+        }
+
+        // Kirimkan keyword pencarian untuk ditampilkan di view
+        $data['keyword'] = $keyword;
+
+        // Tidak ada kategori yang aktif di pencarian
+        $data['active_category'] = null;
+
+        // Render view hasil pencarian
+        return view('belajar-ekspor/belajar_ekspor_search', $data);
     }
 
     public function kategori_belajar_ekspor($slug)
@@ -158,10 +200,37 @@ class KomunitasEkspor extends BaseController
         return view('video-tutorial/video_selengkapnya', $data);
     }
 
-    public function video_tutorial_detail()
+    public function video_tutorial_detail($slug)
     {
-        return view('video-tutorial/video_tutorial_detail');
+        // Inisialisasi model untuk video dan kategori
+        $vidioModel = new VidioTutorialModel();
+        $kategoriModel = new KategoriVidioModel();
+
+        // Mengambil data video berdasarkan slug
+        $video = $vidioModel->getVideoBySlug($slug);
+
+        // Memastikan bahwa video ditemukan, jika tidak redirect atau tampilkan error
+        if (!$video) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException("Video tidak ditemukan");
+        }
+
+        // Mengambil video terkait berdasarkan kategori video saat ini, dan pastikan tidak mengambil video yang sedang dilihat
+        $related_videos = $vidioModel->getRelatedVideos($video['id_kategori_video'], $video['id_video']);
+
+        // Mengambil informasi kategori video
+        $kategori = $kategoriModel->find($video['id_kategori_video']);
+
+        // Menyiapkan data untuk dikirimkan ke view
+        $data = [
+            'video' => $video,
+            'related_videos' => $related_videos,
+            'kategori' => $kategori
+        ];
+
+        // Mengembalikan view dengan data yang telah disiapkan
+        return view('video-tutorial/video_tutorial_detail', $data);
     }
+
 
     public function registrasiMember()
     {
@@ -299,13 +368,16 @@ class KomunitasEkspor extends BaseController
             ->limit(4)
             ->findAll();
 
-        $blur_buyers = $model_buyers
+        $buyers_lanjutan = $model_buyers
             ->orderBy('verif_date', 'DESC')
             ->limit(4, 4)
             ->findAll();
 
+        $total_buyers = $model_buyers->countAllResults();
+
         $data['new4_buyers'] = $new4_buyers;
-        $data['blur_buyers'] = $blur_buyers;
+        $data['buyers_lanjutan'] = $buyers_lanjutan;
+        $data['total_buyers'] = $total_buyers;
 
         return view('data-buyers/index', $data);
     }
@@ -313,5 +385,205 @@ class KomunitasEkspor extends BaseController
     public function edit_profile()
     {
         return view('data-member/edit-profile');
+    }
+
+    public function index_kalkulator()
+    {
+        $model_exwork = new Exwork();
+        $model_fob = new FOB();
+        $model_cfr = new CFR();
+        $model_cif = new CIF();
+        $model_satuan = new Satuan();
+
+        $exwork = $model_exwork->findAll();
+        $fob = $model_fob->findAll();
+        $cfr = $model_cfr->findAll();
+        $cif = $model_cif->findAll();
+        $satuan = $model_satuan->findAll();
+
+        $data['exwork'] = $exwork;
+        $data['fob'] = $fob;
+        $data['cfr'] = $cfr;
+        $data['cif'] = $cif;
+        $data['satuan'] = $satuan;
+
+        return view('kalkulator-ekspor/kalkulator_ekspor', $data);
+    }
+
+    public function ganti_satuan($id)
+    {
+        $model_satuan = new Satuan();
+
+        // Mencari satuan berdasarkan ID
+        $satuan = $model_satuan->find($id);
+
+        // Jika satuan ditemukan, lakukan update
+        if ($satuan) {
+            // Mengambil input dari form
+            $data = [
+                'satuan' => $this->request->getPost('satuan'),
+            ];
+
+            // Melakukan update data pada model
+            $model_satuan->update($id, $data);
+
+            // Redirect setelah update berhasil
+            return redirect()->to('/');
+        } else {
+            // Jika data tidak ditemukan, bisa diarahkan ke halaman error
+            return redirect()->to('/')->with('error', 'Data satuan tidak ditemukan.');
+        }
+    }
+
+    public function add_exwork()
+    {
+        // Validate input
+        $validation = \Config\Services::validation();
+        $validation->setRules([
+            'komponenExwork.*' => 'required',  // Ensure each component is required
+        ]);
+
+        if (!$this->validate($validation->getRules())) {
+            // If validation fails, redirect back with errors
+            return redirect()->back()->with('errors', $validation->getErrors())->withInput();
+        }
+
+        // Get the array of komponenExwork
+        $komponenExworkArray = $this->request->getPost('komponenExwork');
+
+        $model_exwork = new Exwork();
+
+        // Loop through the array and insert each komponenExwork into the database
+        foreach ($komponenExworkArray as $komponenExwork) {
+            $data = [
+                'komponen_exwork' => esc($komponenExwork),  // Sanitize the input
+            ];
+            $model_exwork->insert($data);
+        }
+
+        return redirect()->to('/')->with('success', 'Komponen Exwork berhasil ditambahkan!');
+    }
+
+    public function delete_exwork($id)
+    {
+        $model_exwork = new Exwork();
+
+        $model_exwork->delete($id);
+
+        return redirect()->to('/');
+    }
+
+    public function add_fob()
+    {
+        // Validate input
+        $validation = \Config\Services::validation();
+        $validation->setRules([
+            'komponenFOB.*' => 'required',  // Ensure each component is required
+        ]);
+
+        if (!$this->validate($validation->getRules())) {
+            // If validation fails, redirect back with errors
+            return redirect()->back()->with('errors', $validation->getErrors())->withInput();
+        }
+
+        // Get the array of komponenFOB
+        $komponenFOBArray = $this->request->getPost('komponenFOB');
+
+        $model_fob = new FOB();
+
+        // Loop through the array and insert each komponenFOB into the database
+        foreach ($komponenFOBArray as $komponenFOB) {
+            $data = [
+                'komponen_fob' => esc($komponenFOB),  // Sanitize the input
+            ];
+            $model_fob->insert($data);
+        }
+
+        return redirect()->to('/')->with('success', 'Komponen FOB berhasil ditambahkan!');
+    }
+
+    public function delete_fob($id)
+    {
+        $model_fob = new FOB();
+
+        $model_fob->delete($id);
+
+        return redirect()->to('/');
+    }
+
+    public function add_cfr()
+    {
+        // Validate input
+        $validation = \Config\Services::validation();
+        $validation->setRules([
+            'komponenCFR.*' => 'required',  // Ensure each component is required
+        ]);
+
+        if (!$this->validate($validation->getRules())) {
+            // If validation fails, redirect back with errors
+            return redirect()->back()->with('errors', $validation->getErrors())->withInput();
+        }
+
+        // Get the array of komponenCFR
+        $komponenCFRArray = $this->request->getPost('komponenCFR');
+
+        $model_cfr = new CFR();
+
+        // Loop through the array and insert each komponenCFR into the database
+        foreach ($komponenCFRArray as $komponenCFR) {
+            $data = [
+                'komponen_cfr' => esc($komponenCFR),  // Sanitize the input
+            ];
+            $model_cfr->insert($data);
+        }
+
+        return redirect()->to('/')->with('success', 'Komponen CFR berhasil ditambahkan!');
+    }
+
+    public function delete_cfr($id)
+    {
+        $model_cfr = new CFR();
+
+        $model_cfr->delete($id);
+
+        return redirect()->to('/');
+    }
+
+    public function add_cif()
+    {
+        // Validate input
+        $validation = \Config\Services::validation();
+        $validation->setRules([
+            'komponenCIF.*' => 'required',  // Ensure each component is required
+        ]);
+
+        if (!$this->validate($validation->getRules())) {
+            // If validation fails, redirect back with errors
+            return redirect()->back()->with('errors', $validation->getErrors())->withInput();
+        }
+
+        // Get the array of komponenCIF
+        $komponenCIFArray = $this->request->getPost('komponenCIF');
+
+        $model_cif = new CIF();
+
+        // Loop through the array and insert each komponenCIF into the database
+        foreach ($komponenCIFArray as $komponenCIF) {
+            $data = [
+                'komponen_cif' => esc($komponenCIF),  // Sanitize the input
+            ];
+            $model_cif->insert($data);
+        }
+
+        return redirect()->to('/')->with('success', 'Komponen CIF berhasil ditambahkan!');
+    }
+
+    public function delete_cif($id)
+    {
+        $model_cif = new CIF();
+
+        $model_cif->delete($id);
+
+        return redirect()->to('/');
     }
 }

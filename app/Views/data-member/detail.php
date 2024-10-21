@@ -72,13 +72,37 @@
         font-weight: bold;
     }
 
+    .product-img {
+        margin: 10px;
+        /* Add margin to create space around the image */
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        width: calc(100% - 20px);
+        /* Adjusts width to account for the margin */
+        object-fit: cover;
+    }
+
     .hover-card {
         transition: box-shadow 0.3s ease, transform 0.3s ease;
     }
 
     .hover-card:hover {
-        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-        transform: translateY(-5px);
+        box-shadow: 0px 0px 25px #03AADE !important;
+        transform: translateY(-5px) !important;
+    }
+
+    .member-img {
+        margin: 10px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        width: calc(100% - 20px);
+        object-fit: cover;
+    }
+
+    .card .btn:hover {
+        background-color: #F2BF02 !important;
+        color: #fff;
+        border: none;
     }
 </style>
 
@@ -264,7 +288,8 @@
                                         <div class="card hover-card mx-4 shadow-sm"
                                             style="cursor: pointer; transition: transform 0.2s; height: 100%;">
                                             <img src="<?= base_url('img/' . $item['foto_produk']) ?>"
-                                                class="card-img-top img-fluid" alt="Product Photo" style="height: 220px;">
+                                                class="card-img-top img-fluid product-img" alt="Product Photo"
+                                                style="height: 220px;">
                                             <div class="card-body d-flex flex-column">
                                                 <h5 class="card-title"><?= $item['nama_produk'] ?></h5>
                                                 <p class="card-text text-truncate-description text-justify flex-grow-1">
@@ -279,6 +304,7 @@
                                 </div>
                             <?php endforeach; ?>
                         <?php endif; ?>
+
 
                         <!-- Modal for Product Details -->
                         <div class="modal fade" id="productModal1" tabindex="-1" aria-labelledby="productModalLabel1"
@@ -309,9 +335,10 @@
                                                 <div class="mb-3">
                                                     <label for="deskripsiProduk" class="form-label"><strong>Deskripsi
                                                             Produk</strong></label>
-                                                    <textarea class="form-control" id="deskripsiProduk" rows="3"
+                                                    <textarea class="form-control" id="deskripsiProduk" rows="6"
                                                         readonly></textarea>
                                                 </div>
+
                                                 <div class="mb-3">
                                                     <label for="hsCode" class="form-label"><strong>Kode
                                                             HS</strong></label>
@@ -340,6 +367,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -360,12 +388,11 @@
         <?php else: ?>
             <div class="d-flex flex-wrap justify-content-center">
                 <?php foreach ($members as $item): ?>
-                    <!-- Example of Other Members -->
                     <a href="<?= base_url('detail-member/' . $item['slug']); ?>" class="text-decoration-none"
                         style="color: inherit;">
                         <div class="card hover-card mx-4 mb-5 shadow-sm"
                             style="width: 18rem; cursor: pointer; transition: transform 0.2s;">
-                            <img src="<?= base_url('img/' . $item['foto_profil']) ?>" class="card-img-top img-fluid"
+                            <img src="<?= base_url('img/' . $item['foto_profil']) ?>" class="card-img-top img-fluid member-img"
                                 alt="Member Photo" style="height: 220px;">
                             <div class="card-body text-center">
                                 <h5 class="card-title"><?= $item['username'] ?></h5>

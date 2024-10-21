@@ -68,13 +68,13 @@
         color: red;
     }
 
-    .btn {
+    .btn-custom {
         background-color: #03AADE;
         text-align: center;
         color: #ffffff;
     }
 
-    .btn:hover {
+    .btn-custom:hover {
         background-color: #F2BF02;
         color: #ffffff;
     }
@@ -206,7 +206,7 @@
                     </div>
 
                     <!-- Tombol Submit -->
-                    <button type="submit" class="btn mt-3" style="width: 100%;">Daftar Member</button>
+                    <button type="submit" class="btn btn-custom mt-3" style="width: 100%;">Daftar Member</button>
                 </form>
             </div>
         </div>
