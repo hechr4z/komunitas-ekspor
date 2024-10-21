@@ -69,7 +69,7 @@
                 <?php endforeach; ?>
             </div>
             <!-- Bungkus row kedua dengan div baru untuk overlay -->
-            <div class="position-relative mt-3 mb-5" style="border-radius: 12px;">
+            <div class="position-relative mt-3 mb-5" style="overflow: hidden; border-radius: 12px;">
                 <!-- Row kedua: Member yang di-blur -->
                 <div class="row" style="filter: blur(5px); pointer-events: none;">
                     <!-- Card Member Blur -->
@@ -102,10 +102,11 @@
                         style="font-size: 1.5rem; font-weight: bold; color: white; text-shadow: 2px 2px 0 #03AADE, -2px -2px 0 #03AADE, 2px -2px 0 #03AADE, -2px 2px 0 #03AADE;">
                         Daftar untuk melihat member lainnya!
                     </p>
-                    <button
-                        style="margin-top: 10px; padding: 10px 20px; background-color: #03AADE; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">
-                        Daftar Member
-                    </button>
+                    <a href="<?= base_url('/pendaftaran'); ?>">
+                        <button style="margin-top: 10px; padding: 10px 20px; background-color: #03AADE; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">
+                            Daftar Member
+                        </button>
+                    </a>
                 </div>
 
             </div>
