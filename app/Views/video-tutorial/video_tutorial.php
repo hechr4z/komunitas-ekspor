@@ -39,13 +39,13 @@
         transform: scale(1.02);
     }
 
-    .btn {
+    .btn-custom {
         background-color: #03AADE;
         text-align: center;
         color: #ffffff;
     }
 
-    .btn:hover {
+    .btn-custom:hover {
         background-color: #F2BF02;
         color: #ffffff;
     }
@@ -69,7 +69,7 @@
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h5 class="kategori font-weight-bold mb-0">Nama Kategori Video</h5>
-        <a href="#" class="btn">Selengkapnya</a>
+        <a href="#" class="btn btn-custom">Selengkapnya</a>
     </div>
     <hr style="border-top: 2px solid #000;">
 
@@ -137,7 +137,7 @@
 <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center  mb-3">
         <h5 class="kategori font-weight-bold mb-0">Nama Kategori Video</h5>
-        <a href="#" class="btn">Selengkapnya</a>
+        <a href="#" class="btn btn-custom">Selengkapnya</a>
     </div>
     <hr style="border-top: 2px solid #000;">
 
