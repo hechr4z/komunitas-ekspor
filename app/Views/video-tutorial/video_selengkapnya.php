@@ -20,6 +20,17 @@
         background-color: #03AADE;
     }
 
+    .btn-custom {
+        background-color: #03AADE;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .btn-custom:hover {
+        background-color: #F2BF02;
+        color: #ffffff;
+    }
+
     @media (max-width: 768px) {
         .card-text {
             display: none;
@@ -147,6 +158,11 @@
 
 
     </div>
+</div>
+
+<!-- Back Button -->
+<div class="artikel-detail-footer text-center mt-5">
+    <a href="<?= base_url('belajar-ekspor'); ?>" class="btn btn-custom">Kembali ke Video</a>
 </div>
 
 

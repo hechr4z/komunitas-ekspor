@@ -278,13 +278,13 @@
         /* Menjamin badge sesuai dengan teks */
     }
 
-    .btn {
+    .btn-custom {
         background-color: #03AADE;
         text-align: center;
         color: #ffffff;
     }
 
-    .btn:hover {
+    .btn-custom:hover {
         background-color: #F2BF02;
         color: #ffffff;
     }
@@ -410,7 +410,7 @@
                                 <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
                                     <?= $item['deskripsi_belajar_ekspor']; ?>
                                 </p>
-                                <a href="<?= base_url('belajar-ekspor-detail/' . $item['slug']); ?>" class="btn mt-auto" style="width: 100%; display: block; text-align: center;">Baca Selengkapnya</a>
+                                <a href="<?= base_url('belajar-ekspor-detail/' . $item['slug']); ?>" class="btn btn-custom mt-auto" style="width: 100%; display: block; text-align: center;">Baca Selengkapnya</a>
                             </div>
                         </div>
                     </div>
