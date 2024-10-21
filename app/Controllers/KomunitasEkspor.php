@@ -586,4 +586,14 @@ class KomunitasEkspor extends BaseController
 
         return redirect()->to('/');
     }
+
+    public function pengumuman()
+    {
+        return view('pengumuman/pengumuman');
+    }
+
+    public function detail_pengumuman()
+    {
+        return view('pengumuman/detail-pengumuman');
+    }
 }
