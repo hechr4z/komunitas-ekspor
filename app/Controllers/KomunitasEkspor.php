@@ -9,6 +9,8 @@ use App\Models\Member;
 use App\Models\Sertifikat;
 use App\Models\Produk;
 use App\Models\Buyers;
+use App\Models\KategoriVidioModel;
+use App\Models\VidioTutorialModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class KomunitasEkspor extends BaseController
@@ -103,14 +105,52 @@ class KomunitasEkspor extends BaseController
         return view('pendaftaran/pendaftaran');
     }
 
-    public function video_tutorial()
+    public function video_tutorial($slug = null)
     {
-        return view('video-tutorial/video_tutorial');
+        $vidioModel = new VidioTutorialModel();
+        $kategoriModel = new KategoriVidioModel();
+
+        // Mengambil semua kategori
+        $kategori = $kategoriModel->findAll();
+
+        if ($slug) {
+            // Jika ada slug kategori, ambil video berdasarkan kategori
+            $vidio = $vidioModel->getVideosByKategori($slug);
+        } else {
+            // Jika tidak ada kategori, ambil semua video tutorial
+            $vidio = $vidioModel->getAllVideos();
+        }
+
+        // Mengirimkan data ke view
+        $data['video_tutorial'] = $vidio;
+        $data['kategori_vidio'] = $kategori;
+        $data['selected_category'] = $slug;
+
+        return view('video-tutorial/video_tutorial', $data);
     }
 
-    public function video_selengkapnya()
+    public function video_selengkapnya($slug)
     {
-        return view('video-tutorial/video_selengkapnya');
+        $vidioModel = new VidioTutorialModel();
+        $kategoriModel = new KategoriVidioModel();
+
+        // Ambil data kategori berdasarkan slug
+        $kategori = $kategoriModel->where('slug', $slug)->first();
+
+        // Jika kategori ditemukan, ambil video yang sesuai
+        if ($kategori) {
+            $videos = $vidioModel->getVideosByKategori($slug);
+        } else {
+            $videos = [];
+        }
+
+        // Mengirim data ke view
+        $data = [
+            'kategori' => $kategori,
+            'video_tutorial' => $videos
+        ];
+
+        return view('video-tutorial/video_selengkapnya', $data);
     }
 
     public function video_tutorial_detail()
