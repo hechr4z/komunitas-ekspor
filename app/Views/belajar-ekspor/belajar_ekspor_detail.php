@@ -179,7 +179,7 @@
             <!-- Tags Badges -->
             <div style="display: flex; justify-content: center; align-items: center;">
                 <div class="badge mt-4">
-                    <?= $artikel['tags']; ?>
+                    <?= $kategori['nama_kategori']; ?>
                 </div>
             </div>
 
