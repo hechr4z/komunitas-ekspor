@@ -22,6 +22,15 @@
         vertical-align: middle;
     }
 
+    button:hover {
+        color: #fff;
+        transform: scale(1.05);
+        box-shadow: 0px 0px 10px #F2BF02;
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        background-color: #F2BF02 !important;
+        /* Mengubah warna saat hover menjadi #F2BF02 */
+    }
+
     /* Responsiveness for smaller screens */
     @media (max-width: 576px) {
         .btn {
@@ -74,44 +83,51 @@
                         </tr>
                     <?php endforeach; ?>
 
-                    <!-- Menampilkan data yang di-blur -->
-                    <tr class="position-relative">
-                        <td colspan="6" class="p-0">
-                            <!-- Overlay container untuk bagian yang blur -->
-                            <div class="position-relative" style="overflow: hidden; width: 100%;">
-                                <div class="table-blur-container" style="width: 100%;">
-                                    <table class="table table-bordered table-striped custom-table" style="width: 100%;">
-                                        <?php foreach ($blur_buyers as $item): ?>
-                                            <tr class="text-center" style="filter: blur(5px); pointer-events: none;">
-                                                <td><?= $i++ ?></td>
-                                                <td><?= $item['nama_perusahaan'] ?></td>
-                                                <td><?= $item['email_perusahaan'] ?></td>
-                                                <td><a href="https://<?= $item['website_perusahaan'] ?>" target="_blank"
-                                                        style="text-decoration: none;"><?= $item['website_perusahaan'] ?></a>
-                                                </td>
-                                                <td><?= $item['hs_code'] ?></td>
-                                                <td><?= $item['negara_perusahaan'] ?></td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </table>
-                                </div>
+                    <?php if ($total_buyers >= 4 && $total_buyers <= 7): ?>
+                        <tr>
+                            <td colspan="6" class="text-center">Masih belum ada 8 data buyers.</td>
+                        </tr>
+                    <?php elseif ($total_buyers == 8): ?>
+                        <!-- Menampilkan data yang di-blur -->
+                        <tr class="position-relative">
+                            <td colspan="6" class="p-0">
+                                <!-- Overlay container untuk bagian yang blur -->
+                                <div class="position-relative" style="overflow: hidden; width: 100%;">
+                                    <div class="table-blur-container" style="width: 100%;">
+                                        <table class="table table-bordered table-striped custom-table" style="width: 100%;">
+                                            <?php foreach ($buyers_lanjutan as $item): ?>
+                                                <tr class="text-center" style="filter: blur(5px); pointer-events: none;">
+                                                    <td><?= $i++ ?></td>
+                                                    <td><?= $item['nama_perusahaan'] ?></td>
+                                                    <td><?= $item['email_perusahaan'] ?></td>
+                                                    <td><a href="https://<?= $item['website_perusahaan'] ?>" target="_blank"
+                                                            style="text-decoration: none;"><?= $item['website_perusahaan'] ?></a>
+                                                    </td>
+                                                    <td><?= $item['hs_code'] ?></td>
+                                                    <td><?= $item['negara_perusahaan'] ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </table>
+                                    </div>
 
-                                <!-- Overlay teks hanya untuk row kedua -->
-                                <div class="overlay text-center"
-                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7); z-index: 10;">
-                                    <p
-                                        style="font-size: 1.5rem; font-weight: bold; color: white; text-shadow: 2px 2px 0 #03AADE, -2px -2px 0 #03AADE, 2px -2px 0 #03AADE, -2px 2px 0 #03AADE;">
-                                        Daftar untuk melihat buyers lainnya!
-                                    </p>
-                                    <a href="<?= base_url('/pendaftaran'); ?>">
-                                        <button style="margin-top: 10px; padding: 10px 20px; background-color: #03AADE; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">
-                                            Daftar Member
-                                        </button>
-                                    </a>
+                                    <!-- Overlay teks hanya untuk row kedua -->
+                                    <div class="overlay text-center"
+                                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: rgba(255, 255, 255, 0.7); z-index: 10;">
+                                        <p
+                                            style="font-size: 1.5rem; font-weight: bold; color: white; text-shadow: 2px 2px 0 #03AADE, -2px -2px 0 #03AADE, 2px -2px 0 #03AADE, -2px 2px 0 #03AADE;">
+                                            Daftar untuk melihat buyers lainnya!
+                                        </p>
+                                        <a href="<?= base_url('/pendaftaran'); ?>">
+                                            <button
+                                                style="margin-top: 15px; padding: 10px 20px; background-color: #03AADE; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">
+                                                Daftar Member
+                                            </button>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                    <?php endif; ?>
                 <?php endif; ?>
             </tbody>
         </table>
