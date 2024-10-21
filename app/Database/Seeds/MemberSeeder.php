@@ -115,8 +115,8 @@ class MemberSeeder extends Seeder
                 'tanggal_verifikasi' => Time::now()->subMonths(8),
                 'kategori_produk' => 'Elektronik Konsumen dan Teknologi',
                 'kategori_produk_en' => '',
-                'latitude' => '',
-                'longitude' => '',
+                'latitude' => -7.973597142181964,
+                'longitude' => 112.66212213104059,
             ],
             [
                 'id_member' => 5,

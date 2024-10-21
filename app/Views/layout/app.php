@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?= $this->renderSection('meta'); ?>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flaticon/2.1.0/css/flaticon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- end -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 
 <style>
@@ -65,10 +67,10 @@
     }
 
     /* end */
-    /* end */
 
     /* hover navbar */
-    .navbar-nav .nav-link {
+    .navbar-nav .nav-link,
+    .dropdown-item {
         color: white;
         font-weight: 500;
         padding: 10px 15px;
@@ -76,11 +78,13 @@
         transition: color 0.3s ease-in-out;
     }
 
-    .navbar-nav .nav-link:hover {
+    .navbar-nav .nav-link:hover,
+    .dropdown-item:hover {
         color: #FFD700;
     }
 
-    .navbar-nav .nav-link::before {
+    .navbar-nav .nav-link::before,
+    .dropdown-item::before {
         content: "";
         position: absolute;
         width: 0;
@@ -92,20 +96,39 @@
         transition: all 0.3s ease-in-out;
     }
 
-    .navbar-nav .nav-link:hover::before {
+    .navbar-nav .nav-link:hover::before,
+    .dropdown-item:hover::before {
         visibility: visible;
         width: 100%;
     }
 
-    .btn-outline-light {
-        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    /* Dropdown */
+    .dropdown-menu .dropdown-item {
+        color: black;
+        position: relative;
+        transition: color 0.3s ease-in-out;
     }
 
-    .btn-outline-light:hover {
-        background-color: white;
-        color: #03AADE;
+    .dropdown-menu .dropdown-item:hover {
+        color: #FFD700;
     }
 
+    .dropdown-menu .dropdown-item::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 3px;
+        bottom: 0;
+        left: 0;
+        background-color: #FFD700;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .dropdown-menu .dropdown-item:hover::before {
+        visibility: visible;
+        width: 100%;
+    }
     /* end */
 
     /* sticky navbar */
@@ -275,7 +298,6 @@
     .Btn.facebook:hover {
         background-color: darkblue;
     }
-
     /* end */
 </style>
 
@@ -313,7 +335,7 @@
                 <!-- Language Dropdown -->
                 <div class="dropdown">
                     <button class="btn text-light language-btn" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="/img/flag-id.png" alt="English" class="flag-icon mb-1">
+                        <img src="/img/flag-en.png" alt="English" class="flag-icon mb-1">
                         <i class="bi bi-chevron-down ms-1"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
@@ -346,23 +368,41 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('/') ?>">Beranda</a>
                     </li>
+                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <button class="btn dropdown-toggle text-light nav-link" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Belajar Ekspor
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-light">
+                                    <li><a class="dropdown-item nav-link" href="<?= base_url('belajar-ekspor') ?>">Belajar Ekspor</a></li>
+                                    <li><a class="dropdown-item nav-link" href="<?= base_url('video-tutorial') ?>">Video Tutorial</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('/belajar-ekspor') ?>">Belajar Ekspor</a>
+                        <a class="nav-link" href="<?= base_url('pendaftaran') ?>">Pendaftaran</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('/pendaftaran') ?>">Pendaftaran</a>
+                        <a class="nav-link" href="<?= base_url('data-member') ?>">Data Member</a>
                     </li>
+                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <button class="btn dropdown-toggle text-light nav-link" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Aplikasi
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-light">
+                                    <li><a class="dropdown-item" href="#">Kalkulator Harga Ekspor</a></li>
+                                    <li><a class="dropdown-item" href="#">Marketing Progress Monitoring</a></li>
+                                    <li><a class="dropdown-item" href="#">Website Audit</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('/video-tutorial') ?>">Video Tutorial</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('/data-member') ?>">Data Member</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Aplikasi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('/data-buyers') ?>">Data Buyers</a>
+                        <a class="nav-link" href="<?= base_url('data-buyers') ?>">Data Buyers</a>
                     </li>
                     <div class="border-top" style="width: 1.5px; height: 40px; background-color: white; margin: 0 23px;"></div>
                     <a href="#"><button type="button" class="btn btn-outline-light">Login</button></a>
