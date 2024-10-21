@@ -78,12 +78,13 @@
                         <!-- Tags Badges -->
                         <div style="display: flex;">
                             <div class="badge py-2">
-                                #Kategori
+                                #<?= $kategori['nama_kategori_video']; ?>
                             </div>
                         </div>
 
                         <!-- Video Title -->
-                        <h4 class="py-3 text-uppercase font-weight-bold">VLOGg DEANKT NAIK FIRSTCLASS EMIRATES KE ARAB !! BISA MANDI DI PESAWAT GG !!</h4>
+                        <h4 class="py-3 text-uppercase font-weight-bold"><?= $video['judul_video']; ?></h4>
+
                         <!-- Video Player Start -->
                         <div class="ratio ratio-16x9 mb-3">
                             <iframe
@@ -91,7 +92,7 @@
                                 class="rounded"
                                 controls
                                 preload="auto"
-                                src="https://www.youtube.com/embed/BOpUKv-VUao"
+                                src="https://www.youtube.com/embed/<?= $video['video_url']; ?>"
                                 sandbox="allow-scripts allow-same-origin"
                                 frameborder="0"
                                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -99,10 +100,11 @@
                             </iframe>
                         </div>
                         <!-- Video Player End -->
+
                         <!-- Description -->
                         <div class="mb-3">
                             <h5 class="font-weight-bold py-2">Deskripsi</h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod harum omnis fugiat repudiandae aliquid consequatur, cupiditate quaerat repellendus enim asperiores quo impedit hic cumque libero est reprehenderit non incidunt consectetur.</p>
+                            <p><?= $video['deskripsi_video']; ?></p>
                         </div>
                     </div>
                 </div>
@@ -116,62 +118,27 @@
                             Video Lainnya
                         </h4>
                     </div>
-                    <!-- card lainnya -->
-                    <div class="card bg-white border border-top-0 p-3 rounded shadow-sm">
-                        <a href="<?= base_url('/video-page-url') ?>" class="text-decoration-none">
-                            <div class="d-flex align-items-center bg-white rounded border border-light overflow-hidden shadow-sm">
-                                <img class="img-fluid" style="object-fit: cover; width: 100px; height: 100px;" src="<?= base_url('/img/artikel1.jpg') ?>" alt="Thumbnail Video">
-                                <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center">
-                                    <!-- Judul Video -->
-                                    <h3 class="text-uppercase font-weight-bold text-dark" style="font-size: 18px; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                        Judul Video Lainnya
-                                    </h3>
-                                    <!-- Deskripsi Video -->
-                                    <p class="text-dark" style="font-size: 14px; margin-bottom: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                        Ini adalah deskripsi singkat dari video lainnya yang tersedia.
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
 
-                    <!-- card lainnya -->
-                    <div class="card bg-white border border-top-0 p-3 rounded shadow-sm">
-                        <a href="<?= base_url('/video-page-url') ?>" class="text-decoration-none">
-                            <div class="d-flex align-items-center bg-white rounded border border-light overflow-hidden shadow-sm">
-                                <img class="img-fluid" style="object-fit: cover; width: 100px; height: 100px;" src="<?= base_url('/img/artikel3.webp') ?>" alt="Thumbnail Video">
-                                <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center">
-                                    <!-- Judul Video -->
-                                    <h3 class="text-uppercase font-weight-bold text-dark" style="font-size: 18px; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                        Judul Video Lainnya
-                                    </h3>
-                                    <!-- Deskripsi Video -->
-                                    <p class="text-dark" style="font-size: 14px; margin-bottom: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                        Ini adalah deskripsi singkat dari video lainnya yang tersedia.
-                                    </p>
+                    <?php foreach ($related_videos as $related_video): ?>
+                        <!-- card lainnya -->
+                        <div class="card bg-white border border-top-0 p-3 rounded shadow-sm mb-3">
+                            <a href="<?= base_url('/video-tutorial-detail/' . $related_video['slug']); ?>" class="text-decoration-none">
+                                <div class="d-flex align-items-center bg-white rounded border border-light overflow-hidden shadow-sm">
+                                    <img class="img-fluid" style="object-fit: cover; width: 100px; height: 100px;" src="<?= base_url('/img/' . $related_video['thumbnail']); ?>" alt="Thumbnail Video">
+                                    <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center">
+                                        <!-- Judul Video -->
+                                        <h3 class="text-uppercase font-weight-bold text-dark" style="font-size: 18px; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+                                            <?= $related_video['judul_video']; ?>
+                                        </h3>
+                                        <!-- Deskripsi Video -->
+                                        <p class="text-dark" style="font-size: 14px; margin-bottom: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+                                            <?= $related_video['deskripsi_video']; ?>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- card lainnya -->
-                    <div class="card bg-white border border-top-0 p-3 rounded shadow-sm">
-                        <a href="<?= base_url('/video-page-url') ?>" class="text-decoration-none">
-                            <div class="d-flex align-items-center bg-white rounded border border-light overflow-hidden shadow-sm">
-                                <img class="img-fluid" style="object-fit: cover; width: 100px; height: 100px;" src="<?= base_url('/img/artikel2.jpeg') ?>" alt="Thumbnail Video">
-                                <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center">
-                                    <!-- Judul Video -->
-                                    <h3 class="text-uppercase font-weight-bold text-dark" style="font-size: 18px; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                        Judul Video Lainnya
-                                    </h3>
-                                    <!-- Deskripsi Video -->
-                                    <p class="text-dark" style="font-size: 14px; margin-bottom: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                        Ini adalah deskripsi singkat dari video lainnya yang tersedia.
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
                 <!-- video lainnya End -->
             </div>
