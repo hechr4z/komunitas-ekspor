@@ -81,7 +81,7 @@
                     <!-- Hanya menampilkan video yang sesuai dengan kategori saat ini -->
                     <?php if ($video['id_kategori_video'] == $kategori['id_kategori_video']): ?>
                         <div class="col">
-                            <a href="<?= base_url('video/' . $video['slug']); ?>" class="text-decoration-none">
+                            <a href="<?= base_url('/video-tutorial-detail/' . $video['slug']); ?>" class="text-decoration-none">
                                 <div class="card h-100">
                                     <img src="<?= base_url('/img/' . $video['thumbnail']); ?>" class="card-img-top img-fluid" alt="<?= $video['judul_video']; ?>" style="object-fit: cover; object-position: center; aspect-ratio: 16/9;" loading="lazy">
                                     <div class="card-body d-flex flex-column">

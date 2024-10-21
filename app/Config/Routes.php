@@ -21,7 +21,7 @@ $routes->post('/daftar-member', 'KomunitasEkspor::registrasiMember');
 // Visitior?Member - Video Tutorial
 $routes->get('/video-tutorial', 'KomunitasEkspor::video_tutorial');
 $routes->get('/video-tutorial-selengkapnya/(:segment)', 'KomunitasEkspor::video_selengkapnya/$1');
-$routes->get('/video-tutorial-detail', 'KomunitasEkspor::video_tutorial_detail');
+$routes->get('/video-tutorial-detail/(:segment)', 'KomunitasEkspor::video_tutorial_detail/$1');
 
 // Member - Data Member
 $routes->get('/data-member', 'KomunitasEkspor::data_member_visitor');
