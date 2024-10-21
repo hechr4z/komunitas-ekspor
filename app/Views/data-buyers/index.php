@@ -103,10 +103,11 @@
                                         style="font-size: 1.5rem; font-weight: bold; color: white; text-shadow: 2px 2px 0 #03AADE, -2px -2px 0 #03AADE, 2px -2px 0 #03AADE, -2px 2px 0 #03AADE;">
                                         Daftar untuk melihat buyers lainnya!
                                     </p>
-                                    <button
-                                        style="margin-top: 10px; padding: 10px 20px; background-color: #03AADE; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">
-                                        Daftar Buyers
-                                    </button>
+                                    <a href="<?= base_url('/pendaftaran'); ?>">
+                                        <button style="margin-top: 10px; padding: 10px 20px; background-color: #03AADE; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">
+                                            Daftar Member
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </td>
