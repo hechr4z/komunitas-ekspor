@@ -202,35 +202,29 @@ class KomunitasEkspor extends BaseController
 
     public function video_tutorial_detail($slug)
     {
+        return view('video-tutorial/video_tutorial_detail');
         // Inisialisasi model untuk video dan kategori
         $vidioModel = new VidioTutorialModel();
         $kategoriModel = new KategoriVidioModel();
-
         // Mengambil data video berdasarkan slug
         $video = $vidioModel->getVideoBySlug($slug);
-
         // Memastikan bahwa video ditemukan, jika tidak redirect atau tampilkan error
         if (!$video) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException("Video tidak ditemukan");
         }
-
         // Mengambil video terkait berdasarkan kategori video saat ini, dan pastikan tidak mengambil video yang sedang dilihat
         $related_videos = $vidioModel->getRelatedVideos($video['id_kategori_video'], $video['id_video']);
-
         // Mengambil informasi kategori video
         $kategori = $kategoriModel->find($video['id_kategori_video']);
-
         // Menyiapkan data untuk dikirimkan ke view
         $data = [
             'video' => $video,
             'related_videos' => $related_videos,
             'kategori' => $kategori
         ];
-
         // Mengembalikan view dengan data yang telah disiapkan
         return view('video-tutorial/video_tutorial_detail', $data);
     }
-
 
     public function registrasiMember()
     {
