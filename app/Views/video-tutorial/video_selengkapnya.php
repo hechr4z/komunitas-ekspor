@@ -99,7 +99,7 @@
 
 <!-- Back Button -->
 <div class="artikel-detail-footer text-center mt-5">
-    <a href="<?= base_url('belajar-ekspor'); ?>" class="btn btn-custom">Kembali ke Video</a>
+    <a href="<?= base_url('video-tutorial'); ?>" class="btn btn-custom">Kembali ke Video</a>
 </div>
 
 

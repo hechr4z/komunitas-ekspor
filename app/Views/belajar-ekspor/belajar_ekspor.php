@@ -424,7 +424,7 @@
             <?php endif; ?>
         </div>
         <div class="lebih mt-5" style="display: flex; justify-content: center;">
-            <a href="#" class="btn mt-auto" style="min-width: 50px; text-align: center; border-radius: 30px;">Lihat Lebih Banyak ></a>
+            <a href="#" class="btn btn-custom mt-auto" style="min-width: 50px; text-align: center; border-radius: 30px;">Lihat Lebih Banyak ></a>
         </div>
     </div>
     </div>
