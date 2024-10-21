@@ -1,7 +1,14 @@
 <?= $this->extend('layout/app'); ?>
 <?= $this->section('content'); ?>
 
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<!-- Tambahkan link CSS dan JS Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+<!-- Tambahkan Plugin MarkerCluster -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 
 <style>
     .carousel-item img {
@@ -194,50 +201,19 @@
     </div>
     <div class="container mt-5">
         <div class="d-flex justify-content-center gap-5">
-            <div class="card-container">
-                <div class="card">
-                    <div class="img-content" style="display: flex; justify-content: center;">
-                        <img src="/img/navbar1.jpg" style="width: 90%; height: 90%; object-fit: cover; border-radius: 10px;" alt="...">
-                    </div>
-                    <div class="content" style="text-align: center; padding: 10px 0; color: #03AADE;">
-                        <p class="heading" style="margin-bottom: 5px; font-weight: bold; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;">Rudi Hartono</p>
-                        <p class="heading" style="margin-bottom: 5px; font-size: 15px; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;">Elecomp Indonesia</p>
-                    </div>
-                </div>
-            </div>
-            <div class="card-container">
-                <div class="card">
-                    <div class="img-content" style="display: flex; justify-content: center;">
-                        <img src="/img/navbar2.jpg" style="width: 90%; height: 90%; object-fit: cover; border-radius: 10px;" alt="...">
-                    </div>
-                    <div class="content" style="text-align: center; padding: 10px 0; color: #03AADE;">
-                        <p class="heading" style="margin-bottom: 5px; font-weight: bold; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;">Rudi Hartono</p>
-                        <p class="heading" style="margin-bottom: 5px; font-size: 15px; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;">Elecomp Indonesia</p>
+            <?php foreach ($top4_member as $item): ?>
+                <div class="card-container">
+                    <div class="card">
+                        <div class="img-content" style="display: flex; justify-content: center;">
+                            <img src="<?= base_url('img/' . $item['foto_profil']); ?>" style="width: 90%; height: 90%; object-fit: cover; border-radius: 10px;" alt="...">
+                        </div>
+                        <div class="content" style="text-align: center; padding: 10px 0; color: #03AADE;">
+                            <p class="heading" style="margin-bottom: 5px; font-weight: bold; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;"><?= $item['username'] ?></p>
+                            <p class="heading" style="margin-bottom: 5px; font-size: 15px; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;"><?= $item['nama_perusahaan'] ?></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-container">
-                <div class="card">
-                    <div class="img-content" style="display: flex; justify-content: center;">
-                        <img src="/img/navbar1.jpg" style="width: 90%; height: 90%; object-fit: cover; border-radius: 10px;" alt="...">
-                    </div>
-                    <div class="content" style="text-align: center; padding: 10px 0; color: #03AADE;">
-                        <p class="heading" style="margin-bottom: 5px; font-weight: bold; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;">Rudi Hartono</p>
-                        <p class="heading" style="margin-bottom: 5px; font-size: 15px; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;">Elecomp Indonesia</p>
-                    </div>
-                </div>
-            </div>
-            <div class="card-container">
-                <div class="card">
-                    <div class="img-content" style="display: flex; justify-content: center;">
-                        <img src="/img/navbar2.jpg" style="width: 90%; height: 90%; object-fit: cover; border-radius: 10px;" alt="...">
-                    </div>
-                    <div class="content" style="text-align: center; padding: 10px 0; color: #03AADE;">
-                        <p class="heading" style="margin-bottom: 5px; font-weight: bold; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;">Rudi Hartono</p>
-                        <p class="heading" style="margin-bottom: 5px; font-size: 15px; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;">Elecomp Indonesia</p>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>
@@ -355,7 +331,7 @@
             <h5 class="fw-lighter" data-en="MEMBER MAP" data-id="PETA MEMBER">PETA MEMBER</h5>
             <hr style="width: 40px; margin-top: 12px; margin-left: 10px;">
         </div>
-        <h1 class="text-center" data-en="TOP MEMBERS SPOTLIGHT" data-id="SOROTAN MEMBER UNGGUL"><b>SOROTAN MEMBER<span style="color: #03AADE;"> UNGGUL</span></b></h1>
+        <h1 class="text-center" data-en="TOP MEMBERS SPOTLIGHT" data-id="SOROTAN MEMBER UNGGUL"><b>SOROTAN MEMBER<span style="color: #03AADE;"> KOMUNITAS EKSPOR INDONESIA</span></b></h1>
     </div>
     <div class="container mt-5">
         <div id="map" style="width: 100%; height: 700px;"></div>
@@ -363,11 +339,10 @@
 </section>
 <!-- end -->
 
-<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-    var map = L.map('map').setView([-2.5489, 118.0149], 5); // Set koordinat lat dan long serta zoom level
+    var map = L.map('map').setView([-2.5489, 118.0149], 5); // Koordinat dan zoom level
 
     // Tambahkan layer peta
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -375,29 +350,28 @@
         attribution: '© OpenStreetMap'
     }).addTo(map);
 
+    // Tambahkan marker cluster
+    var markers = L.markerClusterGroup();
+
     <?php foreach ($member as $item): ?>
-        <?php if (!empty($item['latitude']) && !empty($item['longitude'])): // Pastikan latitude dan longitude tidak kosong 
-        ?>
-            var marker = L.marker([<?= $item['latitude'] ?>, <?= $item['longitude'] ?>]).addTo(map);
-            marker.bindPopup(`
-                <div style="width: 200px; font-family: Arial, sans-serif;">
-                    <div onclick="showSweetAlert()" class="card h-100 shadow-sm" style="cursor: pointer; border-radius: 12px; overflow: hidden;">
-                        <img src="<?= base_url('img/' . $item['foto_profil']); ?>" class="card-img-top" alt="Member Image"
-                            style="height: 120px; object-fit: cover;">
-                        <div class="card-body">
-                            <h6 class="card-title text-center" style="font-weight: bold; word-wrap: break-word; white-space: normal;">
-                                <?= $item['username'] ?>
-                            </h6>
-                            <p class="card-text text-center text-muted" style="font-size: 0.9rem; word-wrap: break-word; white-space: normal;">
-                                <?= $item['nama_perusahaan'] ?>
-                            </p>
-                            <span class="btn btn-primary btn-sm mt-2" style="border-radius: 8px; width: 100%;">Lihat Profil</span>
-                        </div>
-                    </div>
-                </div>
-            `);
+        <?php if (!empty($item['latitude']) && !empty($item['longitude'])): ?>
+            var marker = L.marker([<?= $item['latitude'] ?>, <?= $item['longitude'] ?>]);
+            marker.bindPopup(
+                '<div style="width: 200px; font-family: Arial, sans-serif;">' +
+                '<div onclick="showSweetAlert()" class="card h-100 shadow-sm" style="cursor: pointer; border-radius: 12px; overflow: hidden;">' +
+                '<img src="<?= base_url('img/' . $item['foto_profil']); ?>" class="card-img-top" alt="Member Image" style="height: 120px; object-fit: cover;">' +
+                '<div class="card-body">' +
+                '<h6 class="card-title text-center" style="font-weight: bold; word-wrap: break-word; white-space: normal;"><?= $item['username'] ?></h6>' +
+                '<p class="card-text text-center text-muted" style="font-size: 0.9rem; word-wrap: break-word; white-space: normal;"><?= $item['nama_perusahaan'] ?></p>' +
+                '<span class="btn btn-primary btn-sm mt-2" style="border-radius: 8px; width: 100%;">Lihat Profil</span>' +
+                '</div></div></div>'
+            );
+            markers.addLayer(marker);
         <?php endif; ?>
     <?php endforeach; ?>
+
+    // Tambahkan marker cluster ke peta
+    map.addLayer(markers);
 
     function showSweetAlert() {
         Swal.fire({

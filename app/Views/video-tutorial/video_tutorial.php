@@ -39,13 +39,13 @@
         transform: scale(1.02);
     }
 
-    .btn {
+    .btn-custom {
         background-color: #03AADE;
         text-align: center;
         color: #ffffff;
     }
 
-    .btn:hover {
+    .btn-custom:hover {
         background-color: #F2BF02;
         color: #ffffff;
     }
@@ -70,7 +70,7 @@
     <?php foreach ($kategori_vidio as $kategori) : ?>
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="kategori font-weight-bold mb-0">Video Kategori: <?= $kategori['nama_kategori_video']; ?></h5>
-            <a href="<?= base_url('/video-tutorial-selengkapnya/' . $kategori['slug']); ?>" class="btn">Selengkapnya</a>
+            <a href="<?= base_url('/video-tutorial-selengkapnya/' . $kategori['slug']); ?>" class="btn btn-custom">Selengkapnya</a>
         </div>
         <hr style="border-top: 2px solid #000;">
 

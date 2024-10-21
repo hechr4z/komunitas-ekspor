@@ -20,8 +20,13 @@ class KomunitasEkspor extends BaseController
         $model_member = new Member();
 
         $member = $model_member->findAll();
+        $top4_member = $model_member
+            ->orderBy('popular_point', 'DESC')
+            ->limit(4)
+            ->findAll();
 
         $data['member'] = $member;
+        $data['top4_member'] = $top4_member;
 
         return view('beranda/index', $data);
     }
