@@ -80,14 +80,57 @@
         box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
         transform: translateY(-5px);
     }
+
+    /* Animasi */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .container h2,
+    .container p,
+    .card h5,
+    .form-label,
+    .btn-warning {
+        opacity: 0;
+        animation: fadeIn 0.5s ease forwards;
+    }
+
+    .container h2 {
+        animation-delay: 0.2s;
+    }
+
+    .container p {
+        animation-delay: 0.4s;
+    }
+
+    .card h5 {
+        animation-delay: 0.6s;
+    }
+
+    .form-label {
+        animation-delay: 0.8s;
+    }
+
+    .btn-warning {
+        animation-delay: 1s;
+    }
+
+    /* end */
 </style>
 
 <div class="container mt-4">
     <div class="text-center mt-5">
         <h2>Edit Profile</h2>
-        <p>Anda Dapat mengubah data diri anda
+        <p>Anda Dapat mengubah data diri anda</p>
     </div>
-    </p>
     <div class="card p-4 shadow-sm mt-5">
         <!-- Image at the top -->
         <div class="text-center mb-2" style="width: 250px; height: 250px; margin: auto; overflow: hidden; border-radius: 50%; position: relative;">
@@ -127,7 +170,7 @@
                         <label for="nomerPIC" class="form-label">Password</label>
                         <input type="text" class="form-control" id="nomerPIC" value="Password" readonly>
                     </div>
-                    <button type="button" class="btn btn-warning" style="width: 100px; margin-left: 590px;">Submit</button>
+                    <button type="button" class="btn btn-warning mt-3">Submit</button>
                 </div>
             </div>
 
@@ -147,7 +190,7 @@
                         <label for="nomerPIC" class="form-label">Nomer PIC</label>
                         <input type="text" class="form-control" id="alamatPerusahaan" value="Nomer PIC" readonly>
                     </div>
-                    <button type="button" class="btn btn-warning" style="width: 100px; margin-left: 590px;">Submit</button>
+                    <button type="button" class="btn btn-warning mt-3">Submit</button>
                 </div>
             </div>
 
@@ -158,8 +201,13 @@
                     <div class="col-md-6 mb-3">
                         <div class="card p-4 shadow-sm">
                             <label for="fileSertifikat" class="form-label">Masukkan Sertifikat</label>
-                            <input type="file" class="form-control" id="namaSertifikat">
-                            <button type="button" class="btn btn-warning mt-3" style="width: 100px; margin-left: 230px;">Submit</button>
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="namaSertifikat">
+                                <button type="button" class="btn btn-danger" id="hapusGambar">
+                                    <i class="fas fa-trash-alt"></i> Hapus
+                                </button>
+                            </div>
+                            <button type="button" class="btn btn-warning mt-3">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -169,14 +217,6 @@
             <div class="tab-pane fade" id="produk" role="tabpanel" aria-labelledby="produk-tab">
                 <h5 class="mb-4">Data Produk</h5>
                 <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="ID Produk" class="form-label">ID Produk</label>
-                        <input type="text" class="form-control" id="namaProduk" value="ID Produk" readonly>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="ID Member" class="form-label">ID Member</label>
-                        <input type="text" class="form-control" id="deskripsiProduk" value="ID Member" readonly>
-                    </div>
                     <div class="col-md-6 mb-3">
                         <label for="fotoProduk" class="form-label">Foto Produk</label>
                         <input type="text" class="form-control" id="deskripsiProduk" value="Foto Produk" readonly>
@@ -201,7 +241,7 @@
                         <label for="kapasitasProduk" class="form-label">Kapasitas Produk</label>
                         <input type="text" class="form-control" id="deskripsiProduk" value="Kapasitas produk" readonly>
                     </div>
-                    <button type="button" class="btn btn-warning mt-3" style="width: 100px; margin-left: 590px;">Submit</button>
+                    <button type="button" class="btn btn-warning mt-3">Submit</button>
                 </div>
             </div>
         </div>

@@ -57,3 +57,9 @@ $routes->get('/komponen-cfr/delete/(:num)', 'KomunitasEkspor::delete_cfr/$1');
 
 $routes->post('/komponen-cif/add', 'KomunitasEkspor::add_cif');
 $routes->get('/komponen-cif/delete/(:num)', 'KomunitasEkspor::delete_cif/$1');
+
+// member - pengumuman
+$routes->get('/pengumuman', 'KomunitasEkspor::pengumuman');
+
+// detail pengumuman
+$routes->get('/detail-pengumuman', 'KomunitasEkspor::detail_pengumuman');
