@@ -196,14 +196,14 @@
                 </tr>
             </thead>
             <tbody>
-                <?php if (empty($new4_buyers)): ?>
+                <?php if (empty($buyers)): ?>
                     <tr>
                         <td colspan="6" class="text-center">Masih belum ada Data Buyers.</td>
                     </tr>
                 <?php else: ?>
                     <?php $i = 1; ?>
                     <!-- Menampilkan data yang tidak di-blur -->
-                    <?php foreach ($new4_buyers as $item): ?>
+                    <?php foreach ($buyers as $item): ?>
                         <tr class="text-center">
                             <td><?= $i++ ?></td>
                             <td><?= $item['nama_perusahaan'] ?></td>
