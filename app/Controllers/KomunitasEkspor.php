@@ -367,21 +367,11 @@ class KomunitasEkspor extends BaseController
     {
         $model_buyers = new Buyers();
 
-        $new4_buyers = $model_buyers
+        $buyers = $model_buyers
             ->orderBy('verif_date', 'DESC')
-            ->limit(4)
             ->findAll();
 
-        $buyers_lanjutan = $model_buyers
-            ->orderBy('verif_date', 'DESC')
-            ->limit(4, 4)
-            ->findAll();
-
-        $total_buyers = $model_buyers->countAllResults();
-
-        $data['new4_buyers'] = $new4_buyers;
-        $data['buyers_lanjutan'] = $buyers_lanjutan;
-        $data['total_buyers'] = $total_buyers;
+        $data['buyers'] = $buyers;
 
         return view('data-buyers/index', $data);
     }
