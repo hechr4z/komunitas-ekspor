@@ -6,14 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?= $this->renderSection('meta'); ?>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flaticon/2.1.0/css/flaticon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- end -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 
 <style>
@@ -129,6 +125,7 @@
         visibility: visible;
         width: 100%;
     }
+
     /* end */
 
     /* sticky navbar */
@@ -298,10 +295,63 @@
     .Btn.facebook:hover {
         background-color: darkblue;
     }
+
     /* end */
 </style>
 
 <body>
+<?php
+    // Ambil bahasa yang disimpan di session
+    $lang = session()->get('lang') ?? 'id'; // Default ke 'en' jika tidak ada di session
+
+    $current_url = uri_string();
+
+    // Simpan segmen bahasa saat ini
+    $lang_segment = substr($current_url, 0, strpos($current_url, '/') + 1); // Menyimpan 'id/' atau 'en/'
+
+    // Definisikan tautan untuk setiap halaman berdasarkan bahasa
+    $homeLink = ($lang_segment === 'en/') ? '/' : '/';
+    $belajarEksporLink = ($lang_segment === 'en/') ? 'export-learning' : 'belajar-ekspor';
+    $pendaftaranLink = ($lang_segment === 'en/') ? 'registration' : 'pendaftaran';
+    $videoTutorialLink = ($lang_segment === 'en/') ? 'video-tutorial' : 'tutorial-video';
+    $memberLink = ($lang_segment === 'en/') ? 'data-member' : 'data-member';
+    $buyersLink = ($lang_segment === 'en/') ? 'buyers' : 'data-buyers';
+
+    // Buat array untuk menggantikan segmen berdasarkan bahasa
+    $replace_map = [
+        'pendaftaran' => 'registration',
+        'belajar-ekspor' => 'export-learning',
+    ];
+
+    // Ambil bagian dari URL tanpa segmen bahasa
+    $url_without_lang = substr($current_url, strlen($lang_segment));
+
+    // Tentukan bahasa yang ingin digunakan
+    $new_lang_segment = ($lang_segment === 'en/') ? 'id/' : 'en/';
+
+    // Gantikan setiap segmen dalam URL berdasarkan bahasa yang aktif
+    foreach ($replace_map as $indonesian_segment => $english_segment) {
+        if ($lang_segment === 'en/') {
+            // Jika bahasa yang dipilih adalah 'en', maka ganti segmen ID ke EN
+            $url_without_lang = str_replace($english_segment, $indonesian_segment, $url_without_lang);
+        } else {
+            // Jika bahasa yang dipilih adalah 'id', maka ganti segmen EN ke ID
+            $url_without_lang = str_replace($indonesian_segment, $english_segment, $url_without_lang);
+        }
+    }
+
+    // Tautan dengan bahasa yang baru
+    $clean_url = $new_lang_segment . ltrim($url_without_lang, '/');
+
+
+    // Tautan Bahasa Inggris
+    $english_url = base_url($clean_url);
+
+    // Tautan Bahasa Indonesia
+    $indonesia_url = base_url($clean_url);
+    ?>
+
+
     <!-- header -->
     <header class="header" style="background-color: #F2BF02;">
         <div class="container">
@@ -318,8 +368,8 @@
                     </div>
                 </div>
                 <!-- Ikon Sosial Media dan Garis -->
-                <div class="d-flex align-items-center" style="margin-left: 500px;">
-                    <div class="d-flex gap-3 me-4" style="margin-left: 190px;">
+                <div class="d-flex align-items-center">
+                    <div class="d-flex gap-3 me-4">
                         <a href="https://www.instagram.com" target="_blank" class="social-link">
                             <i class="fab fa-instagram"></i>
                         </a>
@@ -335,18 +385,18 @@
                 <!-- Language Dropdown -->
                 <div class="dropdown">
                     <button class="btn text-light language-btn" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="/img/flag-id.png" alt="English" class="flag-icon mb-1">
+                        <img src="/img/flag-<?= $new_lang_segment === 'id' ? 'id' : 'en'; ?>.png" alt="<?= $new_lang_segment === 'id' ? 'Indonesian' : 'English'; ?>" class="flag-icon mb-1">
                         <i class="bi bi-chevron-down ms-1"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
                         <li>
-                            <a class="dropdown-item" href="?lang=id">
-                                <img src="/img/flag-id.png" alt="Indonesian" class="flag-icon"> Indonesian
+                            <a class="dropdown-item <?= $lang == 'id' ? 'disabled' : '' ?>" href="<?= $english_url ?>" <?= $lang == 'id' ? 'style="pointer-events: none; opacity: 0.5;"' : '' ?>>
+                                <img src="/img/flag-id.png" alt="Indonesian" class="flag-icon" <?= $lang == 'id' ? 'style="filter: grayscale(100%);"' : '' ?>> Indonesian
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="?lang=en">
-                                <img src="/img/flag-en.png" alt="English" class="flag-icon"> English
+                            <a class="dropdown-item <?= $lang == 'en' ? 'disabled' : '' ?>" href="<?= $indonesia_url ?>" <?= $lang == 'en' ? 'style="pointer-events: none; opacity: 0.5;"' : '' ?>>
+                                <img src="/img/flag-en.png" alt="English" class="flag-icon" <?= $lang == 'en' ? 'style="filter: grayscale(100%);"' : '' ?>> English
                             </a>
                         </li>
                     </ul>
@@ -355,6 +405,7 @@
         </div>
     </header>
     <!-- header end -->
+
 
     <!-- start navbar -->
     <nav class="navbar navbar-custom navbar-expand-lg sticky-top" style="background-color: #03AADE;">
@@ -366,43 +417,47 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto d-flex align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('/') ?>">Beranda</a>
+                        <a class="nav-link" href="<?= base_url('/') ?>"> <?php echo lang('Blog.headerBeranda'); ?>
+                        </a>
                     </li>
                     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <button class="btn dropdown-toggle text-light nav-link" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Belajar Ekspor
+                                    <?php echo lang('Blog.headerArtikel'); ?>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-light">
-                                    <li><a class="dropdown-item nav-link" href="<?= base_url('belajar-ekspor') ?>">Belajar Ekspor</a></li>
-                                    <li><a class="dropdown-item nav-link" href="<?= base_url('video-tutorial') ?>">Video Tutorial</a></li>
+                                    <li><a class="dropdown-item nav-link" href="<?= base_url($lang .  '/' . $belajarEksporLink  ) ?>"><?php echo lang('Blog.headerArtikel'); ?></a></li>
+                                    <li><a class="dropdown-item nav-link" href="<?= base_url('video-tutorial') ?>"><?php echo lang('Blog.headerVideo'); ?>
+                                        </a></li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('pendaftaran') ?>">Pendaftaran</a>
+                        <a class="nav-link" href="<?= base_url($lang .  '/' . $pendaftaranLink) ?>"><?php echo lang('Blog.headerPendaftaran'); ?>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('data-member') ?>">Data Member</a>
+                        <a class="nav-link" href="<?= base_url($lang .  '/' . $memberLink) ?>">Data Member</a>
                     </li>
                     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <button class="btn dropdown-toggle text-light nav-link" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Aplikasi
+                                    <?php echo lang('Blog.headerAplikasi'); ?>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-light">
-                                    <li><a class="dropdown-item" href="#">Kalkulator Harga Ekspor</a></li>
-                                    <li><a class="dropdown-item" href="#">Marketing Progress Monitoring</a></li>
-                                    <li><a class="dropdown-item" href="#">Website Audit</a></li>
+                                    <li><a class="dropdown-item" href="#"><?php echo lang('Blog.headerApp1'); ?></a></li>
+                                    <li><a class="dropdown-item" href="#"><?php echo lang('Blog.headerApp2'); ?></a></li>
+                                    <li><a class="dropdown-item" href="#"><?php echo lang('Blog.headerApp3'); ?></a></li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('data-buyers') ?>">Data Buyers</a>
+                        <a class="nav-link" href="<?= base_url('data-buyers') ?>"><?php echo lang('Blog.headerBuyers'); ?>
+                        </a>
                     </li>
                     <div class="border-top" style="width: 1.5px; height: 40px; background-color: white; margin: 0 23px;"></div>
                     <a href="#"><button type="button" class="btn btn-outline-light">Login</button></a>

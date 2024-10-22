@@ -25,6 +25,10 @@ class CreateVidioTutorialTables extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '150',
             ],
+            'judul_video_en' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '150',
+            ],
             'video_url' => [
                 'type'       => 'TEXT',
             ],
@@ -35,7 +39,14 @@ class CreateVidioTutorialTables extends Migration
             'deskripsi_video' => [
                 'type'       => 'TEXT',
             ],
+            'deskripsi_video_en' => [
+                'type'       => 'TEXT',
+            ],
             'slug' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '150',
+            ],
+            'slug_en' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '150',
             ],

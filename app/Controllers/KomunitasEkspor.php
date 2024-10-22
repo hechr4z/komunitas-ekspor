@@ -212,26 +212,31 @@ class KomunitasEkspor extends BaseController
 
     public function video_tutorial_detail($slug)
     {
-        return view('video-tutorial/video_tutorial_detail');
         // Inisialisasi model untuk video dan kategori
         $vidioModel = new VidioTutorialModel();
         $kategoriModel = new KategoriVidioModel();
+
         // Mengambil data video berdasarkan slug
         $video = $vidioModel->getVideoBySlug($slug);
+
         // Memastikan bahwa video ditemukan, jika tidak redirect atau tampilkan error
         if (!$video) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException("Video tidak ditemukan");
         }
+
         // Mengambil video terkait berdasarkan kategori video saat ini, dan pastikan tidak mengambil video yang sedang dilihat
         $related_videos = $vidioModel->getRelatedVideos($video['id_kategori_video'], $video['id_video']);
+
         // Mengambil informasi kategori video
         $kategori = $kategoriModel->find($video['id_kategori_video']);
+
         // Menyiapkan data untuk dikirimkan ke view
         $data = [
             'video' => $video,
             'related_videos' => $related_videos,
             'kategori' => $kategori
         ];
+
         // Mengembalikan view dengan data yang telah disiapkan
         return view('video-tutorial/video_tutorial_detail', $data);
     }
@@ -258,7 +263,7 @@ class KomunitasEkspor extends BaseController
 
         // Nomor tujuan WA, Tambahkan Kode negeara seperi (+62) tanpa tanda +
         $nomor_wa = '62';
-        // $nomor_wa = '6283153270334'; // Nomor Tio
+        // $nomor_wa = '6283453456234';
 
         $whatsapp = "https://wa.me/$nomor_wa?text=" . urlencode($pesan);
 
@@ -267,6 +272,9 @@ class KomunitasEkspor extends BaseController
 
     public function data_member_visitor()
     {
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+        
         $model_member = new Member();
 
         // Set pagination
@@ -311,6 +319,9 @@ class KomunitasEkspor extends BaseController
 
     public function detail_member($slug)
     {
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+
         $model_member = new Member();
         $model_sertifikat = new Sertifikat();
         $model_produk = new Produk();
@@ -367,21 +378,11 @@ class KomunitasEkspor extends BaseController
     {
         $model_buyers = new Buyers();
 
-        $new4_buyers = $model_buyers
+        $buyers = $model_buyers
             ->orderBy('verif_date', 'DESC')
-            ->limit(4)
             ->findAll();
 
-        $buyers_lanjutan = $model_buyers
-            ->orderBy('verif_date', 'DESC')
-            ->limit(4, 4)
-            ->findAll();
-
-        $total_buyers = $model_buyers->countAllResults();
-
-        $data['new4_buyers'] = $new4_buyers;
-        $data['buyers_lanjutan'] = $buyers_lanjutan;
-        $data['total_buyers'] = $total_buyers;
+        $data['buyers'] = $buyers;
 
         return view('data-buyers/index', $data);
     }

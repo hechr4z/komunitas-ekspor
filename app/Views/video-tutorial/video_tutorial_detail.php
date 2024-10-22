@@ -78,7 +78,7 @@
                         <!-- Tags Badges -->
                         <div style="display: flex;">
                             <div class="badge py-2">
-                                #<?= $kategori['nama_kategori_video']; ?>
+                                <?= $kategori['nama_kategori_video']; ?>
                             </div>
                         </div>
 
@@ -86,20 +86,22 @@
                         <h4 class="py-3 text-uppercase font-weight-bold"><?= $video['judul_video']; ?></h4>
 
                         <!-- Video Player Start -->
-                        <div class="ratio ratio-16x9 mb-3">
-                            <iframe
-                                id="my-video"
-                                class="rounded"
-                                controls
-                                preload="auto"
-                                src="https://www.youtube.com/embed/<?= $video['video_url']; ?>"
-                                sandbox="allow-scripts allow-same-origin"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen>
-                            </iframe>
+                        <div class="ratio ratio-16x9 mb-3 position-relative" style="width: 100%; height: auto; cursor: pointer;" onclick="showSweetAlert()">
+                            <img
+                                id="my-video-thumbnail"
+                                class="rounded img-fluid"
+                                src="<?= base_url('/img/' . $video['thumbnail']); ?>"
+                                alt="Thumbnail"
+                                style="object-fit: cover;">
+
+                            <!-- Play Icon -->
+                            <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+                                <i class="fas fa-play-circle" style="font-size: 64px; color: white;"></i>
+                            </div>
                         </div>
                         <!-- Video Player End -->
+
+
 
                         <!-- Description -->
                         <div class="mb-3">
@@ -147,6 +149,26 @@
 </div>
 <!-- Video Details End -->
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function showSweetAlert() {
+        Swal.fire({
+            title: "Mau Lihat Videonya?",
+            text: "Yuk Daftar Member Dulu!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Daftar",
+            cancelButtonText: "Nanti"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/pendaftaran"; // Redirect to the registration page
+            } else {
+                Swal.fire("Oke, Jangan Lupa Daftar!"); // Optional message if "Nanti" is clicked
+            }
+        });
+    }
+</script>
 
 
 <?= $this->endSection(); ?>
