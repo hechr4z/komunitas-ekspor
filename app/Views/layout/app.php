@@ -335,7 +335,7 @@
                 <!-- Language Dropdown -->
                 <div class="dropdown">
                     <button class="btn text-light language-btn" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="/img/flag-en.png" alt="English" class="flag-icon mb-1">
+                        <img src="/img/flag-id.png" alt="English" class="flag-icon mb-1">
                         <i class="bi bi-chevron-down ms-1"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
