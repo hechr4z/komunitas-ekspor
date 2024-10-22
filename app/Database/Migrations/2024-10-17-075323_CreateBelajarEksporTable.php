@@ -22,6 +22,10 @@ class CreateBelajarEksporTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
+            'judul_belajar_ekspor_en' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
             'foto_belajar_ekspor' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
@@ -33,6 +37,10 @@ class CreateBelajarEksporTable extends Migration
                 'type' => 'TEXT',
             ],
             'tags' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'tags_en' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
@@ -49,6 +57,10 @@ class CreateBelajarEksporTable extends Migration
                 'null'    => true,
             ],
             'slug' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'slug_en' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
