@@ -70,7 +70,7 @@
     <?php foreach ($kategori_vidio as $kategori) : ?>
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="kategori font-weight-bold mb-0">Video Kategori: <?= $kategori['nama_kategori_video']; ?></h5>
-            <a onclick="showSweetAlert()" class="btn btn-custom">Selengkapnya</a>
+            <a href="<?= base_url('/video-tutorial-selengkapnya/' . $kategori['slug']); ?>" class="btn btn-custom">Selengkapnya</a>
         </div>
         <hr style="border-top: 2px solid #000;">
 
@@ -81,7 +81,7 @@
                     <!-- Hanya menampilkan video yang sesuai dengan kategori saat ini -->
                     <?php if ($video['id_kategori_video'] == $kategori['id_kategori_video']): ?>
                         <div class="col">
-                            <a onclick="showSweetAlert()" class="text-decoration-none">
+                            <a href="<?= base_url('/video-tutorial-detail/' . $video['slug']); ?>" class="text-decoration-none">
                                 <div class="card h-100">
                                     <img src="<?= base_url('/img/' . $video['thumbnail']); ?>" class="card-img-top img-fluid" alt="<?= $video['judul_video']; ?>" style="object-fit: cover; object-position: center; aspect-ratio: 16/9;" loading="lazy">
                                     <div class="card-body d-flex flex-column">
@@ -111,25 +111,7 @@
     <?php endforeach; ?>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script>
-    function showSweetAlert() {
-        Swal.fire({
-            title: "Mau Akses Video Tutorial?",
-            text: "Yuk Daftar Member Dulu!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Daftar",
-            cancelButtonText: "Nanti"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = "/pendaftaran"; // Redirect to the registration page
-            } else {
-                Swal.fire("Oke, Jangan Lupa Daftar!"); // Optional message if "Nanti" is clicked
-            }
-        });
-    }
-</script>
+
 
 <?= $this->endSection(); ?>
