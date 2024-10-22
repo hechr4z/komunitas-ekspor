@@ -40,10 +40,21 @@
     .nav-link {
         font-weight: 600;
     }
+
+    .form-group {
+        margin-bottom: 20px;
+        /* Menambah jarak antar field */
+    }
 </style>
 
-<div class="container py-2">
-    <div class="form-group">
+<!-- judul -->
+<div class="py-5" style="text-align: center;">
+    <h2 class="text-custom-title">Kalkulator Ekspor</h2>
+    <p class="text-custom-paragraph mt-2">Berikut aplikasi Kalkulator Ekspor Indonesia</p>
+</div>
+
+<div class="container py-2 mt-3">
+    <div class="form-group mb-3">
         <label for="ukuran_kontainer">Ukuran Kontainer:</label>
         <div class="input-group">
             <select required class="form-control" id="ukuran_kontainer" name="ukuran_kontainer">
@@ -56,17 +67,22 @@
         </div>
     </div>
 
-    <form action="<?= base_url('/ganti-satuan/' . $satuan[0]['id_satuan']); ?>" method="post" enctype="multipart/form-data">
-        <div class="form-group">
+    <form action="<?= base_url('/ganti-satuan/' . $satuan[0]['id_satuan']); ?>" method="post"
+        enctype="multipart/form-data">
+        <div class="form-group mb-3">
             <label for="satuan">Satuan:</label>
             <div class="input-group">
-                <input required type="text" class="form-control" id="satuan" name="satuan" placeholder="Masukkan Satuan" value="<?= $satuan[0]['satuan']; ?>" autocomplete="off" disabled>
+                <input required type="text" class="form-control" id="satuan" name="satuan" placeholder="Masukkan Satuan"
+                    value="<?= $satuan[0]['satuan']; ?>" autocomplete="off" disabled>
                 <div class="input-group-prepend">
-                    <button id="editButton" type="button" class="btn btn-primary">Edit Satuan</button>
+                    <button id="editButton" type="button" class="btn btn-primary" style="margin-left: 20px;">Edit
+                        Satuan</button>
                 </div>
             </div>
         </div>
     </form>
+
+    <!-- Exwork Form -->
     <div class="card shadow p-4">
         <h1 class="text-center mb-4" id="exwork">Exwork Form</h1>
 
@@ -75,7 +91,8 @@
             <div class="col-md-6">
                 <label id="jumlahBarangLabel" for="jumlahBarang">Jumlah Barang Dalam 1 Kontainer:</label>
                 <div class="input-group">
-                    <input required type="text" class="form-control" id="jumlahBarang" name="jumlahBarang" placeholder="Masukkan Jumlah Barang" autocomplete="off">
+                    <input required type="text" class="form-control" id="jumlahBarang" name="jumlahBarang"
+                        placeholder="Masukkan Jumlah Barang" autocomplete="off">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><?= $satuan[0]['satuan']; ?></span>
                     </div>
@@ -91,7 +108,8 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Rp.</span>
                     </div>
-                    <input required type="text" class="form-control" id="hpp" name="hpp" placeholder="Masukkan Biaya HPP" autocomplete="off">
+                    <input required type="text" class="form-control" id="hpp" name="hpp"
+                        placeholder="Masukkan Biaya HPP" autocomplete="off">
                     <div class="input-group-prepend">
                         <span class="input-group-text">/ <?= $satuan[0]['satuan']; ?></span>
                     </div>
@@ -107,7 +125,8 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Rp.</span>
                     </div>
-                    <input required type="text" class="form-control" id="keuntungan" name="keuntungan" placeholder="Masukkan Biaya Keuntungan" autocomplete="off">
+                    <input required type="text" class="form-control" id="keuntungan" name="keuntungan"
+                        placeholder="Masukkan Biaya Keuntungan" autocomplete="off">
                     <div class="input-group-prepend">
                         <span class="input-group-text">/ <?= $satuan[0]['satuan']; ?></span>
                     </div>
@@ -142,11 +161,14 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp.</span>
                                         </div>
-                                        <input required type="text" class="form-control" id="exwork_<?= $item['id_exwork'] ?>" name="exwork_<?= $item['id_exwork'] ?>" placeholder="Masukkan <?= $item['komponen_exwork'] ?>" autocomplete="off">
+                                        <input required type="text" class="form-control" id="exwork_<?= $item['id_exwork'] ?>"
+                                            name="exwork_<?= $item['id_exwork'] ?>"
+                                            placeholder="Masukkan <?= $item['komponen_exwork'] ?>" autocomplete="off">
                                     </div>
                                 </td>
                                 <td class="text-center">
-                                    <a href="<?= base_url('/komponen-exwork/delete/' . $item['id_exwork']) ?>" class="btn btn-outline-danger btn-sm align-center">
+                                    <a href="<?= base_url('/komponen-exwork/delete/' . $item['id_exwork']) ?>"
+                                        class="btn btn-outline-danger btn-sm align-center">
                                         <i class="bi bi-x-lg"></i> Hapus
                                     </a>
                                 </td>
@@ -155,11 +177,14 @@
                     <?php endif; ?>
                     <tr>
                         <td colspan="4" class="text-center">
-                            <form action="<?= base_url('/komponen-exwork/add'); ?>" method="post" enctype="multipart/form-data">
-                                <button type="button" class="btn btn-success mb-2" id="tambahKolomExwork">Tambah Komponen Baru</button>
+                            <form action="<?= base_url('/komponen-exwork/add'); ?>" method="post"
+                                enctype="multipart/form-data">
+                                <button type="button" class="btn btn-success mb-2" id="tambahKolomExwork">Tambah
+                                    Komponen Baru</button>
                                 <div id="komponenExworkContainer"></div>
                                 <div class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary" id="submitKomponenExworkButton">Simpan Komponen (0)</button>
+                                    <button type="submit" class="btn btn-primary" id="submitKomponenExworkButton">Simpan
+                                        Komponen (0)</button>
                                 </div>
                             </form>
                         </td>
@@ -169,7 +194,9 @@
         </div>
 
         <div class="d-flex justify-content-between">
-            <h3 class="result-harga-exwork mt-2">Harga Exwork: <?php if (session()->getFlashdata('harga_exwork')): ?> <?= session()->getFlashdata('harga_exwork') ?> <?php endif; ?></h3>
+            <h3 class="result-harga-exwork mt-2">Harga Exwork: <?php if (session()->getFlashdata('harga_exwork')): ?>
+                    <?= session()->getFlashdata('harga_exwork') ?> <?php endif; ?>
+            </h3>
         </div>
 
         <hr class="mt-2" style="border: 1px solid black; background-color: black;">
@@ -186,7 +213,8 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Rp.</span>
                     </div>
-                    <input required type="text" class="form-control" id="hargaExwork" name="hargaExwork" placeholder="Masukkan Harga Exwork" autocomplete="off">
+                    <input required type="text" class="form-control" id="hargaExwork" name="hargaExwork"
+                        placeholder="Masukkan Harga Exwork" autocomplete="off">
                     <div class="input-group-prepend">
                         <span class="input-group-text">/ <?= $satuan[0]['satuan']; ?></span>
                     </div>
@@ -221,11 +249,14 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Rp.</span>
                                         </div>
-                                        <input required type="text" class="form-control" id="fob_<?= $item['id_fob'] ?>" name="fob_<?= $item['id_fob'] ?>" placeholder="Masukkan <?= $item['komponen_fob'] ?>" autocomplete="off">
+                                        <input required type="text" class="form-control" id="fob_<?= $item['id_fob'] ?>"
+                                            name="fob_<?= $item['id_fob'] ?>"
+                                            placeholder="Masukkan <?= $item['komponen_fob'] ?>" autocomplete="off">
                                     </div>
                                 </td>
                                 <td class="text-center">
-                                    <a href="<?= base_url('/komponen-fob/delete/' . $item['id_fob']) ?>" class="btn btn-outline-danger btn-sm align-center">
+                                    <a href="<?= base_url('/komponen-fob/delete/' . $item['id_fob']) ?>"
+                                        class="btn btn-outline-danger btn-sm align-center">
                                         <i class="bi bi-x-lg"></i> Hapus
                                     </a>
                                 </td>
@@ -234,11 +265,14 @@
                     <?php endif; ?>
                     <tr>
                         <td colspan="4" class="text-center">
-                            <form action="<?= base_url('/komponen-fob/add'); ?>" method="post" enctype="multipart/form-data">
-                                <button type="button" class="btn btn-success mb-2" id="tambahKolomFOB">Tambah Komponen Baru</button>
+                            <form action="<?= base_url('/komponen-fob/add'); ?>" method="post"
+                                enctype="multipart/form-data">
+                                <button type="button" class="btn btn-success mb-2" id="tambahKolomFOB">Tambah Komponen
+                                    Baru</button>
                                 <div id="komponenFOBContainer"></div>
                                 <div class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary" id="submitKomponenFOBButton">Simpan Komponen (0)</button>
+                                    <button type="submit" class="btn btn-primary" id="submitKomponenFOBButton">Simpan
+                                        Komponen (0)</button>
                                 </div>
                             </form>
                         </td>
@@ -267,7 +301,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Rp.</span>
                         </div>
-                        <input required type="text" class="form-control" id="hargaFOB" name="hargaFOB" placeholder="Masukkan Harga FOB" autocomplete="off">
+                        <input required type="text" class="form-control" id="hargaFOB" name="hargaFOB"
+                            placeholder="Masukkan Harga FOB" autocomplete="off">
                         <div class="input-group-prepend">
                             <span class="input-group-text">/ <?= $satuan[0]['satuan']; ?></span>
                         </div>
@@ -302,11 +337,14 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Rp.</span>
                                             </div>
-                                            <input required type="text" class="form-control" id="cfr_<?= $item['id_cfr'] ?>" name="cfr_<?= $item['id_cfr'] ?>" placeholder="Masukkan <?= $item['komponen_cfr'] ?>" autocomplete="off">
+                                            <input required type="text" class="form-control" id="cfr_<?= $item['id_cfr'] ?>"
+                                                name="cfr_<?= $item['id_cfr'] ?>"
+                                                placeholder="Masukkan <?= $item['komponen_cfr'] ?>" autocomplete="off">
                                         </div>
                                     </td>
                                     <td class="text-center">
-                                        <a href="<?= base_url('/komponen-cfr/delete/' . $item['id_cfr']) ?>" class="btn btn-outline-danger btn-sm align-center">
+                                        <a href="<?= base_url('/komponen-cfr/delete/' . $item['id_cfr']) ?>"
+                                            class="btn btn-outline-danger btn-sm align-center">
                                             <i class="bi bi-x-lg"></i> Hapus
                                         </a>
                                     </td>
@@ -315,11 +353,14 @@
                         <?php endif; ?>
                         <tr>
                             <td colspan="4" class="text-center">
-                                <form action="<?= base_url('/komponen-cfr/add'); ?>" method="post" enctype="multipart/form-data">
-                                    <button type="button" class="btn btn-success mb-2" id="tambahKolomCFR">Tambah Komponen Baru</button>
+                                <form action="<?= base_url('/komponen-cfr/add'); ?>" method="post"
+                                    enctype="multipart/form-data">
+                                    <button type="button" class="btn btn-success mb-2" id="tambahKolomCFR">Tambah
+                                        Komponen Baru</button>
                                     <div id="komponenCFRContainer"></div>
                                     <div class="d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary" id="submitKomponenCFRButton">Simpan Komponen (0)</button>
+                                        <button type="submit" class="btn btn-primary"
+                                            id="submitKomponenCFRButton">Simpan Komponen (0)</button>
                                     </div>
                                 </form>
                             </td>
@@ -348,7 +389,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Rp.</span>
                         </div>
-                        <input required type="text" class="form-control" id="hargaCFR" name="hargaCFR" placeholder="Masukkan Harga CFR" autocomplete="off">
+                        <input required type="text" class="form-control" id="hargaCFR" name="hargaCFR"
+                            placeholder="Masukkan Harga CFR" autocomplete="off">
                         <div class="input-group-prepend">
                             <span class="input-group-text">/ <?= $satuan[0]['satuan']; ?></span>
                         </div>
@@ -383,11 +425,14 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Rp.</span>
                                             </div>
-                                            <input required type="text" class="form-control" id="cif_<?= $item['id_cif'] ?>" name="cif_<?= $item['id_cif'] ?>" placeholder="Masukkan <?= $item['komponen_cif'] ?>" autocomplete="off">
+                                            <input required type="text" class="form-control" id="cif_<?= $item['id_cif'] ?>"
+                                                name="cif_<?= $item['id_cif'] ?>"
+                                                placeholder="Masukkan <?= $item['komponen_cif'] ?>" autocomplete="off">
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="<?= base_url('/komponen-cif/delete/' . $item['id_cif']) ?>" class="btn btn-outline-danger btn-sm align-center">
+                                        <a href="<?= base_url('/komponen-cif/delete/' . $item['id_cif']) ?>"
+                                            class="btn btn-outline-danger btn-sm align-center">
                                             <i class="bi bi-x-lg"></i> Hapus
                                         </a>
                                     </td>
@@ -396,11 +441,14 @@
                         <?php endif; ?>
                         <tr>
                             <td colspan="4" class="text-center">
-                                <form action="<?= base_url('/komponen-cif/add'); ?>" method="post" enctype="multipart/form-data">
-                                    <button type="button" class="btn btn-success mb-2" id="tambahKolomCIF">Tambah Komponen Baru</button>
+                                <form action="<?= base_url('/komponen-cif/add'); ?>" method="post"
+                                    enctype="multipart/form-data">
+                                    <button type="button" class="btn btn-success mb-2" id="tambahKolomCIF">Tambah
+                                        Komponen Baru</button>
                                     <div id="komponenCIFContainer"></div>
                                     <div class="d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary" id="submitKomponenCIFButton">Simpan Komponen (0)</button>
+                                        <button type="submit" class="btn btn-primary"
+                                            id="submitKomponenCIFButton">Simpan Komponen (0)</button>
                                     </div>
                                 </form>
                             </td>
@@ -425,7 +473,7 @@
 
 <script>
     // Ketika dropdown berubah
-    document.getElementById('ukuran_kontainer').addEventListener('change', function() {
+    document.getElementById('ukuran_kontainer').addEventListener('change', function () {
         var selectedUkuran = this.value; // Ambil ukuran kontainer yang dipilih
         var label = document.getElementById('jumlahBarangLabel'); // Ambil elemen label
 
@@ -438,7 +486,7 @@
         }
     });
 
-    document.getElementById('editButton').addEventListener('click', function() {
+    document.getElementById('editButton').addEventListener('click', function () {
         // Enable the input field
         document.getElementById('satuan').disabled = false;
 
@@ -585,8 +633,8 @@
     }
 
     // Add listeners to inputs for dynamic calculation
-    document.querySelectorAll('#jumlahBarang, #hpp, #keuntungan, #hargaEXwork, #hargaFOB, #hargaCFR').forEach(function(element) {
-        element.addEventListener('keyup', function(e) {
+    document.querySelectorAll('#jumlahBarang, #hpp, #keuntungan, #hargaEXwork, #hargaFOB, #hargaCFR').forEach(function (element) {
+        element.addEventListener('keyup', function (e) {
             e.target.value = formatRupiah(e.target.value); // Format as rupiah
             hitungExwork(); // Calculate Exwork
             hitungFOB();
@@ -597,7 +645,7 @@
 
     // Add event listeners to exwork component inputs
     <?php foreach ($exwork as $item): ?>
-        document.getElementById('exwork_<?= $item['id_exwork'] ?>').addEventListener('keyup', function(e) {
+        document.getElementById('exwork_<?= $item['id_exwork'] ?>').addEventListener('keyup', function (e) {
             e.target.value = formatRupiah(e.target.value); // Format as rupiah
             hitungExwork(); // Calculate Exwork
             hitungFOB();
@@ -607,7 +655,7 @@
     <?php endforeach; ?>
 
     <?php foreach ($fob as $item): ?>
-        document.getElementById('fob_<?= $item['id_fob'] ?>').addEventListener('keyup', function(e) {
+        document.getElementById('fob_<?= $item['id_fob'] ?>').addEventListener('keyup', function (e) {
             e.target.value = formatRupiah(e.target.value);
             hitungFOB();
             hitungCFR();
@@ -616,7 +664,7 @@
     <?php endforeach; ?>
 
     <?php foreach ($cfr as $item): ?>
-        document.getElementById('cfr_<?= $item['id_cfr'] ?>').addEventListener('keyup', function(e) {
+        document.getElementById('cfr_<?= $item['id_cfr'] ?>').addEventListener('keyup', function (e) {
             e.target.value = formatRupiah(e.target.value);
             hitungCFR();
             hitungCIF();
@@ -624,14 +672,14 @@
     <?php endforeach; ?>
 
     <?php foreach ($cif as $item): ?>
-        document.getElementById('cif_<?= $item['id_cif'] ?>').addEventListener('keyup', function(e) {
+        document.getElementById('cif_<?= $item['id_cif'] ?>').addEventListener('keyup', function (e) {
             e.target.value = formatRupiah(e.target.value);
             hitungCIF();
         });
     <?php endforeach; ?>
 
     function tambahKolomKomponen(idTambahKolom, idContainer, idSubmitButton, placeholderText, inputName) {
-        document.getElementById(idTambahKolom).addEventListener('click', function() {
+        document.getElementById(idTambahKolom).addEventListener('click', function () {
             // Tampilkan container dan tombol submit jika belum tampil
             document.getElementById(idContainer).style.display = 'block';
             document.getElementById(idSubmitButton).style.display = 'inline-block';
@@ -658,7 +706,7 @@
             updateJumlahKolom(idContainer, idSubmitButton);
 
             // Tambahkan event listener ke tombol hapus yang baru
-            newField.querySelector('.btn-remove-komponen').addEventListener('click', function() {
+            newField.querySelector('.btn-remove-komponen').addEventListener('click', function () {
                 newField.remove();
 
                 // Jika semua field dihapus, sembunyikan tombol submit dan container
