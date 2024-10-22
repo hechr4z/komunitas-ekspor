@@ -28,7 +28,14 @@ class CreateProdukTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
             ],
+            'nama_produk_en' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+            ],
             'deskripsi_produk' => [
+                'type'       => 'TEXT',
+            ],
+            'deskripsi_produk_en' => [
                 'type'       => 'TEXT',
             ],
             'hs_code' => [

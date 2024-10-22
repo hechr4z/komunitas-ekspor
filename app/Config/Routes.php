@@ -5,13 +5,44 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'KomunitasEkspor::index');
+$routes->group('id', function ($routes) {
+    $routes->get('/', 'KomunitasEkspor::index');
 
-// Visitor?Member - Belajar Ekspor
-$routes->get('/belajar-ekspor', 'KomunitasEkspor::belajar_ekspor');
-$routes->get('/belajar-ekspor/search', 'KomunitasEkspor::search_belajar_ekspor');
-$routes->get('/belajar-ekspor-detail/(:segment)', 'KomunitasEkspor::belajar_ekspor_detail/$1');
-$routes->get('/kategori/(:any)', 'KomunitasEkspor::kategori_belajar_ekspor/$1');
+
+    // Visitor?Member - Belajar Ekspor
+    $routes->get('belajar-ekspor', 'KomunitasEkspor::belajar_ekspor');
+    $routes->get('belajar-ekspor/search', 'KomunitasEkspor::search_belajar_ekspor');
+    $routes->get('belajar-ekspor-detail/(:segment)', 'KomunitasEkspor::belajar_ekspor_detail/$1');
+    $routes->get('kategori/(:any)', 'KomunitasEkspor::kategori_belajar_ekspor/$1');
+
+    $routes->get('pendaftaran', 'KomunitasEkspor::pendaftaran');
+
+    // Member - Data Member
+    $routes->get('data-member', 'KomunitasEkspor::data_member_visitor');
+    $routes->get('detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
+});
+
+$routes->group('en', function ($routes) {
+    $routes->get('/', 'KomunitasEkspor::index');
+
+    // Visitor?Member - Belajar Ekspor
+    $routes->get('export-learning', 'KomunitasEkspor::belajar_ekspor');
+    $routes->get('export-learning/search', 'KomunitasEkspor::search_belajar_ekspor');
+    $routes->get('belajar-ekspor-detail/(:segment)', 'KomunitasEkspor::belajar_ekspor_detail/$1');
+    $routes->get('kategori/(:any)', 'KomunitasEkspor::kategori_belajar_ekspor/$1');
+
+    $routes->get('registration', 'KomunitasEkspor::pendaftaran');
+    
+    // Member - Data Member
+    $routes->get('data-member', 'KomunitasEkspor::data_member_visitor');
+    $routes->get('detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
+});
+
+// // Visitor?Member - Belajar Ekspor
+// $routes->get('/belajar-ekspor', 'KomunitasEkspor::belajar_ekspor');
+// $routes->get('/belajar-ekspor/search', 'KomunitasEkspor::search_belajar_ekspor');
+// $routes->get('/belajar-ekspor-detail/(:segment)', 'KomunitasEkspor::belajar_ekspor_detail/$1');
+// $routes->get('/kategori/(:any)', 'KomunitasEkspor::kategori_belajar_ekspor/$1');
 
 $routes->get('/pendaftaran', 'KomunitasEkspor::pendaftaran');
 $routes->post('/daftar-member', 'KomunitasEkspor::registrasiMember');
@@ -31,9 +62,9 @@ $routes->get('/detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
 // Member - Data Buyer
 $routes->get('/data-buyers', 'KomunitasEkspor::data_buyers');
 
-// Member - Data Member
-$routes->get('/data-member', 'KomunitasEkspor::data_member_visitor');
-$routes->get('/detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
+// // Member - Data Member
+// $routes->get('/data-member', 'KomunitasEkspor::data_member_visitor');
+// $routes->get('/detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
 
 // Member - Data Buyer
 $routes->get('/data-buyer', 'KomunitasEkspor::data_buyer');

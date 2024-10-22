@@ -104,42 +104,45 @@
 
 <!-- judul -->
 <div class="pendaftaran-section py-5" style="text-align: center;">
-    <h2 class="text-custom-title">Pendaftaran</h2>
-    <p class="text-custom-paragraph mt-2">Ayo gabung dengan Komunitas Ekspor Indonesia dan jadi sukses bersama kami</p>
+    <h2 class="text-custom-title"><?= lang('Blog.pendaftaranJudul'); ?></h2>
+    <p class="text-custom-paragraph mt-2"><?= lang('Blog.pendaftaranDeskripsi'); ?></p>
 </div>
 
 <!-- Form Pendaftaran -->
 <div class="container py-5">
     <div class="row gx-4">
         <div class="col-md-6 left-section">
-            <h3>Keuntungan Menjadi Member</h3>
+            <h3><?= lang('Blog.keuntunganMember'); ?></h3>
             <hr class="line-separator">
 
-            <p>Berikut adalah beberapa keuntungan yang dapat diberikan kepada anggota yang bergabung dengan Komunitas Ekspor Indonesia:</p>
-            <p><strong>1. Akses Pelatihan Ekspor Eksklusif</strong><br>
-                Sebagai member, Anda akan mendapatkan akses ke berbagai pelatihan eksklusif mengenai ekspor dan perdagangan internasional, yang dirancang untuk meningkatkan keterampilan dan pengetahuan Anda dalam menjalankan bisnis ekspor.</p>
+            <p><?= lang('Blog.keuntunganDeskripsi'); ?></p>
 
-            <p><strong>2. Jaringan Luas dengan Pelaku Usaha</strong><br>
-                Anda akan memiliki kesempatan untuk berjejaring dengan pelaku usaha lainnya di bidang ekspor. Ini memberikan peluang kolaborasi dan kemitraan yang dapat membantu mengembangkan bisnis Anda lebih jauh.</p>
+            <p><strong><?= lang('Blog.keuntungan1Judul'); ?></strong><br>
+                <?= lang('Blog.keuntungan1Deskripsi'); ?></p>
 
-            <p><strong>3. Informasi Terbaru tentang Perdagangan Internasional</strong><br>
-                Tetap up-to-date dengan berita dan tren terbaru mengenai pasar internasional, kebijakan perdagangan, serta regulasi ekspor-impor yang bisa berdampak pada bisnis Anda.</p>
+            <p><strong><?= lang('Blog.keuntungan2Judul'); ?></strong><br>
+                <?= lang('Blog.keuntungan2Deskripsi'); ?></p>
 
-            <p><strong>4. Akses ke Acara dan Webinar Khusus</strong><br>
-                Member komunitas akan mendapatkan undangan eksklusif ke berbagai acara, seminar, dan webinar yang diselenggarakan oleh Komunitas Ekspor Indonesia. Ini mencakup topik-topik menarik seperti strategi ekspor, regulasi internasional, dan peluang pasar global.</p>
+            <p><strong><?= lang('Blog.keuntungan3Judul'); ?></strong><br>
+                <?= lang('Blog.keuntungan3Deskripsi'); ?></p>
 
-            <p><strong>5. Peluang Promosi dan Eksposur Bisnis</strong><br>
-                Komunitas akan memberikan kesempatan kepada member untuk mempromosikan produk dan layanan mereka di platform yang dikelola oleh komunitas, baik melalui website, acara offline, maupun jejaring sosial.</p>
+            <p><strong><?= lang('Blog.keuntungan4Judul'); ?></strong><br>
+                <?= lang('Blog.keuntungan4Deskripsi'); ?></p>
 
-            <p><strong>6. Panduan Mendapatkan Sertifikasi Ekspor</strong><br>
-                Anda akan mendapatkan panduan lengkap tentang bagaimana mendapatkan berbagai sertifikasi ekspor yang diperlukan untuk bisnis Anda, seperti sertifikasi produk halal, organik, dan lainnya yang sesuai dengan standar pasar internasional.</p>
+            <p><strong><?= lang('Blog.keuntungan5Judul'); ?></strong><br>
+                <?= lang('Blog.keuntungan5Deskripsi'); ?></p>
 
-            <p><strong>7. Layanan Konsultasi Ekspor</strong><br>
-                Sebagai member, Anda akan mendapatkan akses ke layanan konsultasi dengan para pakar ekspor yang bisa membantu dalam perencanaan strategi, penyelesaian masalah, hingga optimalisasi kinerja bisnis Anda.</p>
+            <p><strong><?= lang('Blog.keuntungan6Judul'); ?></strong><br>
+                <?= lang('Blog.keuntungan6Deskripsi'); ?></p>
+
+            <p><strong><?= lang('Blog.keuntungan7Judul'); ?></strong><br>
+                <?= lang('Blog.keuntungan7Deskripsi'); ?></p>
         </div>
 
+
+
         <div class="col-md-6 right-section">
-            <h3 class="h3">Ayo Daftar Sebagai Member!</h3>
+            <h3 class="h3"><?= lang('Blog.daftarJudul'); ?></h3>
             <hr class="line-separator">
 
             <!-- Card untuk Form Pendaftaran -->
@@ -150,63 +153,63 @@
                     <input type="hidden" name="role" value="user">
 
                     <div class="textcontent mt-2">
-                        <h5>Informasi Akun</h5>
+                        <h5><?= lang('Blog.infoAkun'); ?></h5>
                         <hr class="line-separatorkecil">
                     </div>
 
                     <!-- Username -->
                     <div class="form-group">
-                        <label for="username">Username<span class="required">*</span></label>
-                        <input type="text" id="username" name="username" required placeholder="Masukkan Username">
+                        <label for="username"><?= lang('Blog.username'); ?><span class="required">*</span></label>
+                        <input type="text" id="username" name="username" required placeholder="<?= lang('Blog.placeholderUsername'); ?>">
                     </div>
 
                     <!-- Email -->
                     <div class="form-group">
-                        <label for="email_member">Email<span class="required">*</span></label>
-                        <input type="email" id="email_member" name="email_member" required placeholder="Masukkan Email">
+                        <label for="email_member"><?= lang('Blog.email'); ?><span class="required">*</span></label>
+                        <input type="email" id="email_member" name="email_member" required placeholder="<?= lang('Blog.placeholderEmail'); ?>">
                     </div>
 
                     <!-- Password -->
                     <div class="form-group">
-                        <label for="password">Password<span class="required">*</span></label>
-                        <input type="password" id="password" name="password" required placeholder="Masukkan Password">
+                        <label for="password"><?= lang('Blog.password'); ?><span class="required">*</span></label>
+                        <input type="password" id="password" name="password" required placeholder="<?= lang('Blog.placeholderPassword'); ?>">
                     </div>
                     <!-- Checkbox untuk Show Password -->
                     <div class="showpw">
-                        <input type="checkbox" id="show-password" onclick="togglePassword()"> Lihat Password
+                        <input type="checkbox" id="show-password" onclick="togglePassword()"> <?= lang('Blog.showPassword'); ?>
                     </div>
 
                     <!-- referral -->
                     <div class="form-group">
-                        <label for="username">Kode Referral (Opsional)</label>
-                        <input type="text" id="referral" name="referral" placeholder="Masukkan Kode Referral">
+                        <label for="username"><?= lang('Blog.referral'); ?></label>
+                        <input type="text" id="referral" name="referral" placeholder="<?= lang('Blog.placeholderReferral'); ?>">
                     </div>
 
                     <div class="textcontent mt-5">
-                        <h5>Profil Perusahaan</h5>
+                        <h5><?= lang('Blog.profilPerusahaan'); ?></h5>
                         <hr class="line-separatorkecil">
                     </div>
 
                     <!-- Nama Perusahaan -->
                     <div class="form-group">
-                        <label for="nama_perusahaan">Nama Perusahaan<span class="required">*</span></label>
-                        <input type="text" id="nama_perusahaan" name="nama_perusahaan" required placeholder="Masukkan Nama Perusahaan">
+                        <label for="nama_perusahaan"><?= lang('Blog.namaPerusahaan'); ?><span class="required">*</span></label>
+                        <input type="text" id="nama_perusahaan" name="nama_perusahaan" required placeholder="<?= lang('Blog.placeholderNamaPerusahaan'); ?>">
                     </div>
 
                     <!-- Nama PIC -->
                     <div class="form-group">
-                        <label for="pic">PIC<span class="required">*</span></label>
-                        <input type="text" id="pic" name="pic" required placeholder="Masukkan Nama PIC">
+                        <label for="pic"><?= lang('Blog.pic'); ?><span class="required">*</span></label>
+                        <input type="text" id="pic" name="pic" required placeholder="<?= lang('Blog.placeholderPIC'); ?>">
                     </div>
 
                     <!-- No HP Perusahaan -->
                     <div class="form-group">
-                        <label for="pic">Nomor PIC<span class="required">*</span></label>
-                        <input type="tel" id="nomor_pic" name="nomor_pic" required placeholder="Masukkan Nomor PIC">
+                        <label for="pic"><?= lang('Blog.noPIC'); ?><span class="required">*</span></label>
+                        <input type="tel" id="nomor_pic" name="nomor_pic" required placeholder="<?= lang('Blog.placeholderNoPIC'); ?>">
                     </div>
 
                     <!-- Tombol Submit -->
-                    <button type="submit" class="btn btn-custom mt-3" style="width: 100%;">Daftar Member</button>
+                    <button type="submit" class="btn mt-3" style="width: 100%;"><?= lang('Blog.submitButton'); ?></button>
                 </form>
             </div>
         </div>
