@@ -29,6 +29,9 @@ class CreateBelajarEksporTable extends Migration
             'deskripsi_belajar_ekspor' => [
                 'type' => 'TEXT',
             ],
+            'deskripsi_belajar_ekspor_en' => [
+                'type' => 'TEXT',
+            ],
             'tags' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
