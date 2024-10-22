@@ -130,6 +130,7 @@ class KomunitasEkspor extends BaseController
     public function belajar_ekspor_detail($slug)
     {
         $belajarEksporModel = new BelajarEksporModel();
+        $kategoriModel = new KategoriBelajarEksporModel();
 
         // Mengambil artikel berdasarkan slug
         $artikel = $belajarEksporModel->where('slug', $slug)->first();
@@ -139,13 +140,22 @@ class KomunitasEkspor extends BaseController
             return redirect()->to('/')->with('error', 'Artikel tidak ditemukan');
         }
 
-        // Mengirim data artikel ke view
-        $data['artikel'] = $artikel;
+        // Mengambil kategori artikel berdasarkan id_kategori
+        $kategori = $kategoriModel->find($artikel['id_kategori_belajar_ekspor']);
 
-        $data['belajar_ekspor'] = $belajarEksporModel->where('slug !=', $slug)->orderBy('created_at', 'DESC')->limit(3)->findAll();
+        // Mengambil artikel terkait
+        $related_artikel = $belajarEksporModel->where('slug !=', $slug)->orderBy('created_at', 'DESC')->limit(3)->findAll();
+
+        // Mengirim data artikel, kategori, dan artikel terkait ke view
+        $data = [
+            'artikel' => $artikel,
+            'kategori' => $kategori,
+            'belajar_ekspor' => $related_artikel
+        ];
 
         return view('belajar-ekspor/belajar_ekspor_detail', $data);
     }
+
 
     public function pendaftaran()
     {
