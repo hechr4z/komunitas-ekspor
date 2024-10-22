@@ -14,6 +14,7 @@ class AllInOne extends Seeder
         $this->call(KategoriVidioSeeder::class);
         $this->call(VidioTutorialSeeder::class);
         $this->call(MemberSeeder::class);
+        $this->call(Buyers::class);
         $this->call(SatuanSeeder::class);
     }
 }
