@@ -40,8 +40,8 @@
 <section class="member-section">
     <!-- judul -->
     <div class="py-5" style="text-align: center;">
-        <h2 class="text-custom-title">Data Member</h2>
-        <p class="text-custom-paragraph mt-2">Berikut data member Komunitas Ekspor Indonesia</p>
+        <h2 class="text-custom-title">  <?php echo lang('Blog.dataMemberTitle') ?></h2>
+        <p class="text-custom-paragraph mt-2">  <?php echo lang('Blog.dataMemberSubtitle') ?></p>
     </div>
     <div class="container">
         <?php if (empty($member)): ?>
@@ -55,7 +55,7 @@
                 <!-- Card -->
                 <?php foreach ($member as $item): ?>
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                        <a href="<?= base_url('/detail-member/' . $item['slug']); ?>" style="text-decoration: none;">
+                        <a href="<?= base_url($lang . '/detail-member/' . $item['slug']); ?>" style="text-decoration: none;">
                             <div class="card h-100 shadow-sm" style="cursor: pointer; border-radius: 12px;">
                                 <img src="<?= base_url('img/' . $item['foto_profil']); ?>" class="card-img-top"
                                     alt="Sample Member 1">
@@ -68,7 +68,7 @@
                                         style="flex-grow: 1; word-wrap: break-word; white-space: normal; font-size: 0.9rem;">
                                         <?= $item['nama_perusahaan'] ?>
                                     </p>
-                                    <span class="btn btn-primary mt-auto">Lihat Profil</span>
+                                    <span class="btn btn-primary mt-auto">  <?php echo lang('Blog.btndataMember') ?></span>
                                 </div>
                             </div>
                         </a>

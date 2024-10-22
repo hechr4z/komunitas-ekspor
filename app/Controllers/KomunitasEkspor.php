@@ -272,6 +272,9 @@ class KomunitasEkspor extends BaseController
 
     public function data_member_visitor()
     {
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+        
         $model_member = new Member();
 
         // Set pagination
@@ -316,6 +319,9 @@ class KomunitasEkspor extends BaseController
 
     public function detail_member($slug)
     {
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+
         $model_member = new Member();
         $model_sertifikat = new Sertifikat();
         $model_produk = new Produk();
