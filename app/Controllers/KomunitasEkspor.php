@@ -255,49 +255,49 @@ class KomunitasEkspor extends BaseController
         return redirect()->to($whatsapp);
     }
 
-    // public function data_member()
-    // {
-    //     $model_member = new Member();
-
-    //     // Set pagination
-    //     $perPage = 12; // Number of members per page
-    //     $page = $this->request->getVar('page') ?? 1; // Get the current page number
-
-    //     // Fetch members with pagination
-    //     $members = $model_member
-    //         ->orderBy('popular_point', 'DESC')
-    //         ->paginate($perPage);
-
-    //     // Modify members to add slug
-    //     foreach ($members as &$item) {
-    //         $item['slug'] = url_title($item['username'], '-', true);
-    //     }
-
-    //     $data['member'] = $members;
-    //     $data['pager'] = $model_member->pager; // Get the pager instance
-
-    //     return view('data-member/index', $data);
-    // }
-
     public function data_member_visitor()
     {
         $model_member = new Member();
 
-        $top4_member = $model_member
-            ->orderBy('popular_point', 'DESC')
-            ->limit(4)
-            ->findAll();
+        // Set pagination
+        $perPage = 12; // Number of members per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
 
-        $blur_member = $model_member
+        // Fetch members with pagination
+        $members = $model_member
             ->orderBy('popular_point', 'DESC')
-            ->limit(4, 4)
-            ->findAll();
+            ->paginate($perPage);
 
-        $data['top4_member'] = $top4_member;
-        $data['blur_member'] = $blur_member;
+        // Modify members to add slug
+        foreach ($members as &$item) {
+            $item['slug'] = url_title($item['username'], '-', true);
+        }
+
+        $data['member'] = $members;
+        $data['pager'] = $model_member->pager; // Get the pager instance
 
         return view('data-member/index', $data);
     }
+
+    // public function data_member_visitor()
+    // {
+    //     $model_member = new Member();
+
+    //     $top4_member = $model_member
+    //         ->orderBy('popular_point', 'DESC')
+    //         ->limit(4)
+    //         ->findAll();
+
+    //     $blur_member = $model_member
+    //         ->orderBy('popular_point', 'DESC')
+    //         ->limit(4, 4)
+    //         ->findAll();
+
+    //     $data['top4_member'] = $top4_member;
+    //     $data['blur_member'] = $blur_member;
+
+    //     return view('data-member/index', $data);
+    // }
 
     public function detail_member($slug)
     {
