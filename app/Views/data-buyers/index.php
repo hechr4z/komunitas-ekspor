@@ -196,14 +196,14 @@
                 </tr>
             </thead>
             <tbody>
-                <?php if (empty($new4_buyers)): ?>
+                <?php if (empty($buyers)): ?>
                     <tr>
                         <td colspan="6" class="text-center">Masih belum ada Data Buyers.</td>
                     </tr>
                 <?php else: ?>
                     <?php $i = 1; ?>
                     <!-- Menampilkan data yang tidak di-blur -->
-                    <?php foreach ($new4_buyers as $item): ?>
+                    <?php foreach ($buyers as $item): ?>
                         <tr class="text-center">
                             <td><?= $i++ ?></td>
                             <td><?= $item['nama_perusahaan'] ?></td>
@@ -211,10 +211,9 @@
                                 <span style="filter: blur(5px); user-select: none;"><?= $item['email_perusahaan'] ?></span>
                             </td>
                             <td>
-                                <a href="https://<?= $item['website_perusahaan'] ?>" target="_blank"
-                                    style="text-decoration: none; color:#03AADE; filter: blur(5px); user-select: none;">
+                                <span style="text-decoration: none; color:#03AADE; filter: blur(5px); user-select: none;">
                                     <?= $item['website_perusahaan'] ?>
-                                </a>
+                                </span>
                             </td>
                             <td><?= $item['hs_code'] ?></td>
                             <td><?= $item['negara_perusahaan'] ?></td>
@@ -226,13 +225,13 @@
         <!-- Tombol Hilangi Blur -->
         <div class="badgepanjang p-3 mt-3">
             <div class="d-flex justify-content-between align-items-center mt-3 mb-3 flex-md-row flex-column">
-                <h5 class="kategori font-weight-bold mb-0 text-left text-md-left">Gabung Member Yuk <br>Untuk Akses 100%
+                <h5 class="kategori font-weight-bold mb-0 text-left text-md-left">Gabung Member Yuk <br>Untuk Akses
+                    100%
                 </h5>
                 <a href="/pendaftaran" class="btn btn-custom mt-md-0">Pendaftaran Member</a>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 
