@@ -78,7 +78,7 @@
                         <!-- Tags Badges -->
                         <div style="display: flex;">
                             <div class="badge py-2">
-                                #<?= $kategori['nama_kategori_video']; ?>
+                                <?= $kategori['nama_kategori_video']; ?>
                             </div>
                         </div>
 
