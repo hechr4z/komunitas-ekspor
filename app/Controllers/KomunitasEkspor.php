@@ -170,12 +170,16 @@ class KomunitasEkspor extends BaseController
         // Mengambil semua kategori
         $kategori = $kategoriModel->findAll();
 
+        $vidio = [];
+
         if ($slug) {
-            // Jika ada slug kategori, ambil video berdasarkan kategori
-            $vidio = $vidioModel->getVideosByKategori($slug);
+            // Jika ada slug kategori, ambil video berdasarkan kategori dan batasi hanya 3
+            $vidio = $vidioModel->getLimitedVideosByKategori($slug, 3);
         } else {
-            // Jika tidak ada kategori, ambil semua video tutorial
-            $vidio = $vidioModel->getAllVideos();
+            // Jika tidak ada kategori, ambil 3 video dari setiap kategori
+            foreach ($kategori as $kat) {
+                $vidio[$kat['nama_kategori_video']] = $vidioModel->getLimitedVideosByKategori($kat['slug'], 3);
+            }
         }
 
         // Mengirimkan data ke view
@@ -185,6 +189,7 @@ class KomunitasEkspor extends BaseController
 
         return view('video-tutorial/video_tutorial', $data);
     }
+
 
     public function video_selengkapnya($slug)
     {
@@ -274,7 +279,7 @@ class KomunitasEkspor extends BaseController
     {
         $lang = session()->get('lang') ?? 'id';
         $data['lang'] = $lang;
-        
+
         $model_member = new Member();
 
         // Set pagination

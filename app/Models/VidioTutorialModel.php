@@ -48,6 +48,16 @@ class VidioTutorialModel extends Model
             ->findAll();
     }
 
+    // Method untuk mengambil video berdasarkan kategori dengan batas tertentu
+    public function getLimitedVideosByKategori($kategoriSlug, $limit = 3)
+    {
+        return $this->select('video_tutorial.*, kategori_video.nama_kategori_video')
+            ->join('kategori_video', 'video_tutorial.id_kategori_video = kategori_video.id_kategori_video')
+            ->where('kategori_video.slug', $kategoriSlug)
+            ->limit($limit) // Membatasi jumlah data yang diambil
+            ->findAll();
+    }
+
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
 
