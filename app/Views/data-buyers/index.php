@@ -208,12 +208,10 @@
                             <td><?= $i++ ?></td>
                             <td><?= $item['nama_perusahaan'] ?></td>
                             <td>
-                                <span style="filter: blur(5px); user-select: none;"><?= $item['email_perusahaan'] ?></span>
+                                <span style="filter: blur(5px); user-select: none;">perusahaan@email.com</span>
                             </td>
                             <td>
-                                <span style="text-decoration: none; color:#03AADE; filter: blur(5px); user-select: none;">
-                                    <?= $item['website_perusahaan'] ?>
-                                </span>
+                                <span style="text-decoration: none; color:#03AADE; filter: blur(5px); user-select: none;">perusahaan.com</span>
                             </td>
                             <td><?= $item['hs_code'] ?></td>
                             <td><?= $item['negara_perusahaan'] ?></td>
