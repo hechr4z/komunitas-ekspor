@@ -248,15 +248,35 @@ class KomunitasEkspor extends BaseController
 
     public function registrasiMember()
     {
+        $userModel = new Member(); // Asumsikan UserModel digunakan untuk mengakses tabel pengguna
+
+        // Ambil input dari form
         $username = $this->request->getPost('username');
         $email = $this->request->getPost('email_member');
         $password = $this->request->getPost('password');
-        $reveral = $this->request->getPost('referral');
+        $referral = $this->request->getPost('referral');
         $nama_perusahaan = $this->request->getPost('nama_perusahaan');
         $pic = $this->request->getPost('pic');
         $nomor_pic = $this->request->getPost('nomor_pic');
 
-        // pesan Wa
+        // Cek apakah username sudah ada di database
+        $existingUserByUsername = $userModel->where('username', $username)->first();
+        if ($existingUserByUsername) {
+            return redirect()->back()->withInput()->with('error', 'Username sudah digunakan. Silakan pilih username lain.');
+        }
+
+        // Cek apakah email sudah ada di database
+        $existingUserByEmail = $userModel->where('email_perusahaan', $email)->first();
+        if ($existingUserByEmail) {
+            return redirect()->back()->withInput()->with('error', 'Email sudah digunakan. Silakan gunakan email lain.');
+        }
+
+        if ($referral && $referral == $username) {
+            return redirect()->back()->withInput()->with('error', 'Kode referral tidak boleh sama dengan username.');
+        }
+
+
+        // Pesan untuk WhatsApp
         $pesan = "Pendaftaran Member Komunitas Ekspor Indonesia Baru:\n\n" .
             "Username: $username\n" .
             "Email: $email\n" .
@@ -264,16 +284,18 @@ class KomunitasEkspor extends BaseController
             "Nama Perusahaan: $nama_perusahaan\n" .
             "Nama PIC: $pic\n" .
             "Nomor PIC: $nomor_pic\n" .
-            ($reveral ? "Kode Reveral: $reveral\n" : "");
+            ($referral ? "Kode Referral: $referral\n" : "");
 
-        // Nomor tujuan WA, Tambahkan Kode negeara seperi (+62) tanpa tanda +
-        $nomor_wa = '62';
-        // $nomor_wa = '6283453456234';
+        // Nomor tujuan WA
+        $nomor_wa = '6283325805748'; // Ganti dengan nomor WA yang benar
 
+        // Membuat URL WhatsApp dengan pesan
         $whatsapp = "https://wa.me/$nomor_wa?text=" . urlencode($pesan);
 
+        // Redirect ke WhatsApp dengan pesan yang sudah dibuat
         return redirect()->to($whatsapp);
     }
+
 
     public function data_member_visitor()
     {
