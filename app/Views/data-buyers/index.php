@@ -157,13 +157,13 @@
 </style>
 
 <!-- judul -->
-<div class="py-5" style="text-align: center;">
+<div class="py-4" style="text-align: center;">
     <h2 class="text-custom-title">Data Buyers</h2>
     <p class="text-custom-paragraph mt-2">Berikut data buyers Komunitas Ekspor Indonesia</p>
 </div>
 
 <!-- Search Bar Start -->
-<form class="form mt-3" action="<?= base_url('belajar-ekspor/search') ?>" method="GET">
+<form class="form" action="<?= base_url('data-buyers/search') ?>" method="GET">
     <button>
         <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
             <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
