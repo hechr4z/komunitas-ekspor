@@ -45,6 +45,20 @@
         margin-bottom: 20px;
         /* Menambah jarak antar field */
     }
+
+    .btn-custom {
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .btn-custom:hover {
+        color: #fff;
+        transform: scale(1.05);
+        box-shadow: 0px 0px 10px #F2BF02;
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        background-color: #F2BF02 !important;
+        /* Mengubah warna saat hover menjadi #F2BF02 */
+    }
 </style>
 
 <!-- judul -->
@@ -75,7 +89,8 @@
                 <input required type="text" class="form-control" id="satuan" name="satuan" placeholder="Masukkan Satuan"
                     value="<?= $satuan[0]['satuan']; ?>" autocomplete="off" disabled>
                 <div class="input-group-prepend">
-                    <button id="editButton" type="button" class="btn btn-primary" style="margin-left: 20px;">Edit
+                    <button id="editButton" type="button" class="btn btn-custom"
+                        style="margin-left: 20px; background-color:#FFA500">Edit
                         Satuan</button>
                 </div>
             </div>
@@ -179,11 +194,13 @@
                         <td colspan="4" class="text-center">
                             <form action="<?= base_url('/komponen-exwork/add'); ?>" method="post"
                                 enctype="multipart/form-data">
-                                <button type="button" class="btn btn-success mb-2" id="tambahKolomExwork">Tambah
+                                <button type="button" class="btn btn-custom mb-2" style="background-color: #03AADE;"
+                                    id="tambahKolomExwork">Tambah
                                     Komponen Baru</button>
                                 <div id="komponenExworkContainer"></div>
                                 <div class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary" id="submitKomponenExworkButton">Simpan
+                                    <button type="submit" class="btn btn-custom" style="background-color: #77DD77;"
+                                        id="submitKomponenExworkButton">Simpan
                                         Komponen (0)</button>
                                 </div>
                             </form>
@@ -267,11 +284,13 @@
                         <td colspan="4" class="text-center">
                             <form action="<?= base_url('/komponen-fob/add'); ?>" method="post"
                                 enctype="multipart/form-data">
-                                <button type="button" class="btn btn-success mb-2" id="tambahKolomFOB">Tambah Komponen
+                                <button type="button" class="btn btn-custom mb-2" style="background-color: #03AADE;"
+                                    id="tambahKolomFOB">Tambah Komponen
                                     Baru</button>
                                 <div id="komponenFOBContainer"></div>
                                 <div class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary" id="submitKomponenFOBButton">Simpan
+                                    <button type="submit" class="btn btn-custom" style="background-color: #77DD77;"
+                                        id="submitKomponenFOBButton">Simpan
                                         Komponen (0)</button>
                                 </div>
                             </form>
@@ -355,12 +374,14 @@
                             <td colspan="4" class="text-center">
                                 <form action="<?= base_url('/komponen-cfr/add'); ?>" method="post"
                                     enctype="multipart/form-data">
-                                    <button type="button" class="btn btn-success mb-2" id="tambahKolomCFR">Tambah
+                                    <button type="button" class="btn btn-custom mb-2" style="background-color:#03AADE;"
+                                        id="tambahKolomCFR">Tambah
                                         Komponen Baru</button>
                                     <div id="komponenCFRContainer"></div>
                                     <div class="d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary"
-                                            id="submitKomponenCFRButton">Simpan Komponen (0)</button>
+                                        <button type="submit" class="btn btn-custom" style="background-color:#77DD77;"
+                                            id="submitKomponenCFRButton">Simpan
+                                            Komponen (0)</button>
                                     </div>
                                 </form>
                             </td>
@@ -443,12 +464,14 @@
                             <td colspan="4" class="text-center">
                                 <form action="<?= base_url('/komponen-cif/add'); ?>" method="post"
                                     enctype="multipart/form-data">
-                                    <button type="button" class="btn btn-success mb-2" id="tambahKolomCIF">Tambah
+                                    <button type="button" class="btn btn-custom mb-2" style="background-color:#03AADE;"
+                                        id="tambahKolomCIF">Tambah
                                         Komponen Baru</button>
                                     <div id="komponenCIFContainer"></div>
                                     <div class="d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary"
-                                            id="submitKomponenCIFButton">Simpan Komponen (0)</button>
+                                        <button type="submit" class="btn btn-custom" style="background-color:#77DD77;"
+                                            id="submitKomponenCIFButton">Simpan
+                                            Komponen (0)</button>
                                     </div>
                                 </form>
                             </td>
@@ -491,7 +514,7 @@
         document.getElementById('satuan').disabled = false;
 
         // Change the button to a "Submit" button
-        this.outerHTML = '<button type="submit" class="btn btn-success">Simpan Satuan</button>';
+        this.outerHTML = '<button type="submit" class="btn btn-custom" style="margin-left: 20px; background-color: #8FD14F">Simpan Satuan</button>';
     });
 
     // Format number to rupiah format (1.000.000)
