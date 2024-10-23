@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title><?= isset($meta_title) ? $meta_title : 'Default Title'; ?></title>
     <meta name="title" content="<?= isset($meta_title) ? $meta_title : 'Default Title for the website.'; ?>">
     <meta name="description" content="<?= isset($meta_description) ? $meta_description : 'Default description for the website.'; ?>">
@@ -444,7 +444,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url($lang .  '/' . $memberLink) ?>">Data Member</a>
+                        <a class="nav-link" href="<?= base_url($lang .  '/' . $memberLink) ?>"><?php echo lang('Blog.headerMember'); ?></a>
                     </li>
                     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                         <ul class="navbar-nav">
@@ -530,18 +530,18 @@
                     <div class="col-md-2">
                         <h5 class="mt-4"><b>Menu</b></h5>
                         <div class="list-unstyled pt-2">
-                            <p><a href="#" class="footer-link">Belajar Ekspor</a></p>
-                            <p><a href="#" class="footer-link">Video Tutorial</a></p>
-                            <p><a href="#" class="footer-link">Data Member</a></p>
-                            <p><a href="#" class="footer-link">Data Buyers</a></p>
+                            <p><a href="<?= base_url($lang .  '/' . $belajarEksporLink) ?>" class="footer-link"><?php echo lang('Blog.headerArtikel'); ?></a></p>
+                            <p><a href="#" class="footer-link"><?php echo lang('Blog.headerVideo'); ?></a></p>
+                            <p><a href="<?= base_url($lang .  '/' . $memberLink) ?>" class="footer-link"><?php echo lang('Blog.headerMember'); ?></a></p>
+                            <p><a href="#" class="footer-link"><?php echo lang('Blog.headerBuyers'); ?></a></p>
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <h5 class="mt-4"><b>Aplikasi</b></h5>
+                        <h5 class="mt-4"><b><?php echo lang('Blog.headerAplikasi'); ?></b></h5>
                         <div class="list-unstyled pt-2">
-                            <p><a href="#" class="footer-link">Kalkulator Harga Ekspor</a></p>
-                            <p><a href="#" class="footer-link">Marketing Progress Monitoring</a></p>
-                            <p><a href="#" class="footer-link">Website Audit</a></p>
+                            <p><a href="#" class="footer-link"><?php echo lang('Blog.headerApp1'); ?></a></p>
+                            <p><a href="#" class="footer-link"><?php echo lang('Blog.headerApp2'); ?></a></p>
+                            <p><a href="#" class="footer-link"><?php echo lang('Blog.headerApp3'); ?></a></p>
                         </div>
                     </div>
                 </div>
