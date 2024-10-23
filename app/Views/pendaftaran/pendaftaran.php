@@ -174,8 +174,8 @@
 
                     <!-- Email -->
                     <div class="form-group">
-                        <label for="email_member"><?= lang('Blog.email'); ?><span class="required">*</span></label>
-                        <input type="email" id="email_member" name="email_member" required placeholder="<?= lang('Blog.placeholderEmail'); ?>" value="<?= old('email_member') ?>">
+                        <label for="email"><?= lang('Blog.emailPendaftaran'); ?><span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="<?= lang('Blog.placeholderEmail'); ?>" value="<?= old('email') ?>">
                     </div>
 
                     <!-- Password -->
