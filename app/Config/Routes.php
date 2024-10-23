@@ -60,6 +60,7 @@ $routes->get('/detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
 
 // Member - Data Buyer
 $routes->get('/data-buyers', 'KomunitasEkspor::data_buyers');
+$routes->get('/data-buyers/search', 'KomunitasEkspor::search_buyers');
 
 // Member - Data Buyer
 $routes->get('/data-buyer', 'KomunitasEkspor::data_buyer');
