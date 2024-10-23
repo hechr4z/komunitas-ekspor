@@ -252,7 +252,7 @@ class KomunitasEkspor extends BaseController
 
         // Ambil input dari form
         $username = $this->request->getPost('username');
-        $email = $this->request->getPost('email_member');
+        $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
         $referral = $this->request->getPost('referral');
         $nama_perusahaan = $this->request->getPost('nama_perusahaan');
@@ -266,7 +266,7 @@ class KomunitasEkspor extends BaseController
         }
 
         // Cek apakah email sudah ada di database
-        $existingUserByEmail = $userModel->where('email_perusahaan', $email)->first();
+        $existingUserByEmail = $userModel->where('email', $email)->first();
         if ($existingUserByEmail) {
             return redirect()->back()->withInput()->with('error', 'Email sudah digunakan. Silakan gunakan email lain.');
         }
@@ -274,7 +274,6 @@ class KomunitasEkspor extends BaseController
         if ($referral && $referral == $username) {
             return redirect()->back()->withInput()->with('error', 'Kode referral tidak boleh sama dengan username.');
         }
-
 
         // Pesan untuk WhatsApp
         $pesan = "Pendaftaran Member Komunitas Ekspor Indonesia Baru:\n\n" .
@@ -412,6 +411,34 @@ class KomunitasEkspor extends BaseController
         $data['buyers'] = $buyers;
 
         return view('data-buyers/index', $data);
+    }
+
+    public function search_buyers()
+    {
+        helper('text');
+
+        // Ambil keyword dari query string
+        $keyword = $this->request->getGet('keyword');
+
+        $model_buyers = new Buyers();
+
+        // Query pencarian: mencari berdasarkan judul, tags, atau deskripsi
+        $hasilPencarian = $model_buyers->like('nama_perusahaan', $keyword)
+            ->orLike('hs_code', $keyword)
+            ->orLike('negara_perusahaan', $keyword)
+            ->findAll(); // Pastikan method ini mengembalikan data dengan kategori
+
+        // Jika ada hasil pencarian
+        if (count($hasilPencarian) > 0) {
+            $data['hasilPencarian'] = $hasilPencarian;
+        } else {
+            $data['hasilPencarian'] = [];
+        }
+
+        // Kirimkan keyword pencarian untuk ditampilkan di view
+        $data['keyword'] = $keyword;
+
+        return view('data-buyers/search', $data);
     }
 
     public function edit_profile()
