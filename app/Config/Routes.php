@@ -31,7 +31,7 @@ $routes->group('en', function ($routes) {
     $routes->get('kategori/(:any)', 'KomunitasEkspor::kategori_belajar_ekspor/$1');
 
     $routes->get('registration', 'KomunitasEkspor::pendaftaran');
-    
+
     // Member - Data Member
     $routes->get('data-member', 'KomunitasEkspor::data_member_visitor');
     $routes->get('detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
@@ -90,3 +90,6 @@ $routes->get('/pengumuman', 'KomunitasEkspor::pengumuman');
 
 // detail pengumuman
 $routes->get('/detail-pengumuman', 'KomunitasEkspor::detail_pengumuman');
+
+// MPM
+$routes->get('/mpm', 'KomunitasEkspor::mpm');
