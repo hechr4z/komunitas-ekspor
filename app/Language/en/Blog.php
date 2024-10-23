@@ -12,6 +12,46 @@ return [
     'headerApp3' => 'Website Audit',
     'headerBuyers' => 'Buyers Data',
 
+    //beranda
+    // Carousel Texts
+    'carouselSlide1Title' => 'Build an Export Ecosystem Together',
+    'carouselSlide1Description' => 'The Indonesian Export Community plays an active role in expanding export opportunities.',
+    'carouselSlide2Title' => 'Export Training & Assistance',
+    'carouselSlide2Description' => 'Join export training and mentoring programs to increase business capacity.',
+    'carouselSlide3Title' => 'Global Collaboration & Networking',
+    'carouselSlide3Description' => 'This community connects you with buyers and exporters from various countries.',
+    'btnCarousel' => 'Register Now',
+    // Populer Member Section
+    'populerMemberTitle' => 'POPULAR MEMBER',
+    'topMemberSpotlightTitle' => 'TOP MEMBER',
+    'populerMemberSubtitle' => 'Popular Member',
+    'communityTitle' => 'Indonesian Export Community',
+    'populerMemberDescription' => 'Popular Members of the Export Community',
+    'populerMemberContent' => 'Discover popular members in Indonesia’s export community.<br>Each member is carefully selected to contribute valuable and sustainable efforts in Indonesia’s export sector.<br>Every member brings uniqueness to the Indonesian export community.',
+    // Join Us Section
+    'joinUsTitle' => 'Join Us',
+    'communityExporterTitle' => 'EXPORTER<br>COMMUNITY',
+    'joinUsDescription' => 'Come, join our exporter community and enhance your business opportunities. Be part of a network that supports success.',
+    // Benefits of Joining as a Member Section
+    'benefitsJoinTitle' => 'BENEFITS OF JOINING AS A MEMBER',
+    'benefitsJoinDescription' => 'Becoming a member of the export community provides access to broader opportunities and valuable support. <br> Join to expand your network and enhance your skills.',
+    // Sub-sections
+    'businessOpportunities' => 'Business Opportunities',
+    'networkAccess' => 'Access to Business Networks. <br> International Collaboration Opportunities',
+
+    'trainingAndWorkshops' => 'Training and Workshops',
+    'freeTrainingAccess' => 'Access to Free Training. <br> Export Skills Development',
+
+    'certificates' => 'Certificates',
+    'officialCertificate' => 'Receive Official Certificate. <br> Expand Your Network & Relationships',
+    // Join Exporter Community Section
+    'joinExporterCommunityTitle' => 'Join the Exporter Community!',
+    'joinExporterCommunityDescription' => 'Be part of a successful exporter network. Gain opportunities, knowledge, and support to grow your export business.', // Member Map and Spotlight Section
+    'memberMapTitle' => 'MEMBER MAP',
+    'communityMemberSpotlightTitle' => 'INDONESIAN EXPORT',
+    'communityMemberSpotlightTitle2' => 'COMMUNITY MEMBER SPOTLIGHT',
+
+
     //halaman_belajar_ekspor
     'belajarEksporTitle' => 'Learn Exporting',
     'belajarEksporSubtitle' => 'Enhance your business with the right export strategies!',
