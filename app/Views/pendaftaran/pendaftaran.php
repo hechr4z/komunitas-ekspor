@@ -147,8 +147,17 @@
 
             <!-- Card untuk Form Pendaftaran -->
             <div class="card p-3 custom-card">
+
+                <!-- Menampilkan pesan error jika username atau email sudah ada -->
+                <?php if (session()->getFlashdata('error')) : ?>
+                    <div class="alert alert-danger">
+                        <?= session()->getFlashdata('error'); ?>
+                    </div>
+                <?php endif; ?>
+
                 <form action="<?= base_url('daftar-member') ?>" method="post">
                     <?= csrf_field() ?>
+
                     <!-- Hidden field for role -->
                     <input type="hidden" name="role" value="user">
 
@@ -160,13 +169,13 @@
                     <!-- Username -->
                     <div class="form-group">
                         <label for="username"><?= lang('Blog.username'); ?><span class="required">*</span></label>
-                        <input type="text" id="username" name="username" required placeholder="<?= lang('Blog.placeholderUsername'); ?>">
+                        <input type="text" id="username" name="username" required placeholder="<?= lang('Blog.placeholderUsername'); ?>" value="<?= old('username') ?>">
                     </div>
 
                     <!-- Email -->
                     <div class="form-group">
                         <label for="email_member"><?= lang('Blog.email'); ?><span class="required">*</span></label>
-                        <input type="email" id="email_member" name="email_member" required placeholder="<?= lang('Blog.placeholderEmail'); ?>">
+                        <input type="email" id="email_member" name="email_member" required placeholder="<?= lang('Blog.placeholderEmail'); ?>" value="<?= old('email_member') ?>">
                     </div>
 
                     <!-- Password -->
@@ -174,15 +183,16 @@
                         <label for="password"><?= lang('Blog.password'); ?><span class="required">*</span></label>
                         <input type="password" id="password" name="password" required placeholder="<?= lang('Blog.placeholderPassword'); ?>">
                     </div>
+
                     <!-- Checkbox untuk Show Password -->
                     <div class="showpw">
                         <input type="checkbox" id="show-password" onclick="togglePassword()"> <?= lang('Blog.showPassword'); ?>
                     </div>
 
-                    <!-- referral -->
+                    <!-- Referral -->
                     <div class="form-group">
-                        <label for="username"><?= lang('Blog.referral'); ?></label>
-                        <input type="text" id="referral" name="referral" placeholder="<?= lang('Blog.placeholderReferral'); ?>">
+                        <label for="referral"><?= lang('Blog.referral'); ?></label>
+                        <input type="text" id="referral" name="referral" placeholder="<?= lang('Blog.placeholderReferral'); ?>" value="<?= old('referral') ?>">
                     </div>
 
                     <div class="textcontent mt-5">
@@ -193,26 +203,27 @@
                     <!-- Nama Perusahaan -->
                     <div class="form-group">
                         <label for="nama_perusahaan"><?= lang('Blog.namaPerusahaan'); ?><span class="required">*</span></label>
-                        <input type="text" id="nama_perusahaan" name="nama_perusahaan" required placeholder="<?= lang('Blog.placeholderNamaPerusahaan'); ?>">
+                        <input type="text" id="nama_perusahaan" name="nama_perusahaan" required placeholder="<?= lang('Blog.placeholderNamaPerusahaan'); ?>" value="<?= old('nama_perusahaan') ?>">
                     </div>
 
                     <!-- Nama PIC -->
                     <div class="form-group">
                         <label for="pic"><?= lang('Blog.pic'); ?><span class="required">*</span></label>
-                        <input type="text" id="pic" name="pic" required placeholder="<?= lang('Blog.placeholderPIC'); ?>">
+                        <input type="text" id="pic" name="pic" required placeholder="<?= lang('Blog.placeholderPIC'); ?>" value="<?= old('pic') ?>">
                     </div>
 
                     <!-- No HP Perusahaan -->
                     <div class="form-group">
-                        <label for="pic"><?= lang('Blog.noPIC'); ?><span class="required">*</span></label>
-                        <input type="tel" id="nomor_pic" name="nomor_pic" required placeholder="<?= lang('Blog.placeholderNoPIC'); ?>">
+                        <label for="nomor_pic"><?= lang('Blog.noPIC'); ?><span class="required">*</span></label>
+                        <input type="tel" id="nomor_pic" name="nomor_pic" required placeholder="<?= lang('Blog.placeholderNoPIC'); ?>" value="<?= old('nomor_pic') ?>">
                     </div>
 
                     <!-- Tombol Submit -->
-                    <button type="submit" class="btn mt-3" style="width: 100%;"><?= lang('Blog.submitButton'); ?></button>
+                    <button type="submit" class="btn btn-primary mt-3" style="width: 100%;"><?= lang('Blog.submitButton'); ?></button>
                 </form>
             </div>
         </div>
+
     </div>
 </div>
 
