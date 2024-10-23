@@ -78,7 +78,7 @@ class CreateMemberTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
             ],
-            'email_perusahaan' => [
+            'email' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
             ],
