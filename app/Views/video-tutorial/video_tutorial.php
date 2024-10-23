@@ -76,8 +76,8 @@
 
         <div class="row row-cols-1 row-cols-md-3 g-4 mt-1 mb-5">
             <!-- Looping untuk setiap video tutorial dalam kategori -->
-            <?php if (!empty($video_tutorial)): ?>
-                <?php foreach ($video_tutorial as $video): ?>
+            <?php if (!empty($video_tutorial[$kategori['nama_kategori_video']])): ?>
+                <?php foreach ($video_tutorial[$kategori['nama_kategori_video']] as $video): ?>
                     <!-- Hanya menampilkan video yang sesuai dengan kategori saat ini -->
                     <?php if ($video['id_kategori_video'] == $kategori['id_kategori_video']): ?>
                         <div class="col">
