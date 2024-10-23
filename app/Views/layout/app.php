@@ -300,7 +300,7 @@
 </style>
 
 <body>
-<?php
+    <?php
     // Ambil bahasa yang disimpan di session
     $lang = session()->get('lang') ?? 'id'; // Default ke 'en' jika tidak ada di session
 
@@ -368,8 +368,8 @@
                     </div>
                 </div>
                 <!-- Ikon Sosial Media dan Garis -->
-                <div class="d-flex align-items-center">
-                    <div class="d-flex gap-3 me-4">
+                <div class="d-flex align-items-center" style="margin-left: 500px;">
+                    <div class="d-flex gap-3 me-4" style="margin-left: 190px;">
                         <a href="https://www.instagram.com" target="_blank" class="social-link">
                             <i class="fab fa-instagram"></i>
                         </a>
@@ -385,7 +385,7 @@
                 <!-- Language Dropdown -->
                 <div class="dropdown">
                     <button class="btn text-light language-btn" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="/img/flag-<?= $new_lang_segment === 'id' ? 'id' : 'en'; ?>.png" alt="<?= $new_lang_segment === 'id' ? 'Indonesian' : 'English'; ?>" class="flag-icon mb-1">
+                        <img src="/img/flag-<?= $lang === 'id' ? 'id' : 'en'; ?>.png" alt="<?= $lang === 'id' ? 'Indonesian' : 'English'; ?>" class="flag-icon mb-1">
                         <i class="bi bi-chevron-down ms-1"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
@@ -427,7 +427,7 @@
                                     <?php echo lang('Blog.headerArtikel'); ?>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-light">
-                                    <li><a class="dropdown-item nav-link" href="<?= base_url($lang .  '/' . $belajarEksporLink  ) ?>"><?php echo lang('Blog.headerArtikel'); ?></a></li>
+                                    <li><a class="dropdown-item nav-link" href="<?= base_url($lang .  '/' . $belajarEksporLink) ?>"><?php echo lang('Blog.headerArtikel'); ?></a></li>
                                     <li><a class="dropdown-item nav-link" href="<?= base_url('video-tutorial') ?>"><?php echo lang('Blog.headerVideo'); ?>
                                         </a></li>
                                 </ul>
