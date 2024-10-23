@@ -13,6 +13,49 @@ return [
     'headerApp3' => 'Audit Website',
     'headerBuyers' => 'Data Buyers',
 
+    //beranda
+    // Carousel Texts
+    'carouselSlide1Title' => 'Bangun Ekosistem Ekspor Bersama',
+    'carouselSlide1Description' => 'Komunitas Ekspor Indonesia berperan aktif dalam memperluas peluang ekspor.',
+    'carouselSlide2Title' => 'Pelatihan & Pendampingan Ekspor',
+    'carouselSlide2Description' => 'Ikuti program pelatihan dan pendampingan ekspor untuk meningkatkan kapasitas usaha.',
+    'carouselSlide3Title' => 'Kolaborasi & Networking Global',
+    'carouselSlide3Description' => 'Komunitas ini menghubungkan Anda dengan buyer dan pelaku ekspor dari berbagai negara.',
+    'btnCarousel' => 'Daftar Sekarang',
+    // Populer Member Section
+    'populerMemberTitle' => 'POPULER MEMBER',
+    'topMemberSpotlightTitle' => 'TOP MEMBER SPOTLIGHT',
+    'populerMemberSubtitle' => 'Populer Member',
+    'communityTitle' => 'Komunitas Ekspor Indonesia',
+    'populerMemberDescription' => 'Member Populer Komunitas Ekspor',
+    'populerMemberContent' => 'Temukan anggota populer dalam komunitas ekspor Indonesia.<br>Setiap anggota dipilih secara teliti untuk memberikan kontribusi yang berguna dan berkelanjutan di bidang ekspor Indonesia.<br>Masing-masing anggota membawa keunikan dalam komunitas ekspor Indonesia.',
+    // Bergabunglah Bersama Kami Section
+    'joinUsTitle' => 'Bergabunglah Bersama Kami',
+    'communityExporterTitle' => 'KOMUNITAS<br>EKSORTIR',
+    'joinUsDescription' => 'Ayo, bergabunglah dengan komunitas eksportir kami dan tingkatkan peluang bisnis Anda. Jadilah bagian dari jaringan yang mendukung kesuksesan.',
+    // Manfaat Join Member Section
+    'benefitsJoinTitle' => 'MANFAAT JOIN MEMBER',
+    'benefitsJoinDescription' => 'Menjadi anggota komunitas ekspor memberikan akses ke peluang yang lebih luas dan dukungan yang berharga. <br> Bergabunglah untuk meningkatkan jaringan dan keterampilan Anda.',
+    // Sub-sections
+    'businessOpportunities' => 'Peluang Bisnis',
+    'networkAccess' => 'Akses ke Jaringan Bisnis. <br> Kesempatan Kolaborasi Internasional',
+
+    'trainingAndWorkshops' => 'Pelatihan dan Workshop',
+    'freeTrainingAccess' => 'Akses Pelatihan Gratis',
+    'exportSkillsDevelopment' => 'Pengembangan Keterampilan Ekspor',
+
+    'certificates' => 'Sertifikat',
+    'officialCertificate' => 'Mendapatkan Sertifikat Resmi',
+    'networkExpansion' => 'Memperluas Jaringan & Relasi',
+    // Join Exporter Community Section
+    'joinExporterCommunityTitle' => 'Bergabunglah dengan Komunitas Eksportir!',
+    'joinExporterCommunityDescription' => 'Jadilah bagian dari jaringan eksportir yang sukses. Dapatkan peluang, pengetahuan, dan dukungan untuk mengembangkan bisnis ekspor Anda.',
+    // Member Map and Spotlight Section
+    'memberMapTitle' => 'PETA MEMBER',
+    'communityMemberSpotlightTitle' => 'SOROTAN MEMBER',
+    'communityMemberSpotlightTitle2' => 'KOMUNITAS EKSPOR INDONESIA',
+
+
     //halaman_belajar_ekspor
     'belajarEksporTitle' => 'Belajar Ekspor',
     'belajarEksporSubtitle' => 'Tingkatkan bisnis Anda dengan strategi ekspor yang tepat!',
@@ -42,12 +85,6 @@ return [
     'picPhone' => 'No Telp. PIC: ',
 
 
-
-    'populerMember' => 'POPULER MEMBER',
-    'topMemberSpotlight' => 'TOP MEMBER SPOTLIGHT',
-    'populerMemberLower' => 'Populer Member',
-    'komunitasEksporIndonesia' => 'Komunitas Ekspor Indonesia',
-    'memberPopulerKomunitasEkspor' => 'Member Populer Komunitas Ekspor',
 
     //halaman pendaftaran
     'pendaftaranJudul' => 'Pendaftaran',

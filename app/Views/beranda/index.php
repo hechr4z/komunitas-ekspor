@@ -1,6 +1,14 @@
 <?= $this->extend('layout/app'); ?>
 <?= $this->section('content'); ?>
 
+<?php
+// Mengirimkan meta title dan description
+$this->setData([
+    'meta_title' => 'Beranda - Komunitas Ekspor',
+    'meta_description' => 'Sorotan member komunitas ekspor Indonesia. Temukan anggota populer dalam peta eksportir kami.'
+]);
+?>
+
 <!-- Tambahkan link CSS dan JS Leaflet -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
@@ -137,27 +145,27 @@
         <div class="carousel-item active" data-bs-interval="10000">
             <img src="/img/slider-1.jpg" class="d-block w-100" alt="Slide 1">
             <div class="carousel-caption d-none d-md-block text-light mb-3">
-                <h5>Bangun Ekosistem Ekspor Bersama</h5>
-                <p>Komunitas Ekspor Indonesia berperan aktif dalam memperluas peluang ekspor.</p>
-                <button type="button" class="btn btn-outline-light">Daftar Sekarang</button>
+                <h5><?= lang('Blog.carouselSlide1Title'); ?></h5>
+                <p><?= lang('Blog.carouselSlide1Description'); ?></p>
+                <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
             </div>
         </div>
         <!-- Slide 2 -->
         <div class="carousel-item" data-bs-interval="2000">
             <img src="/img/slider-2.jpg" class="d-block w-100" alt="Slide 2">
             <div class="carousel-caption d-none d-md-block text-light mb-3">
-                <h5>Pelatihan & Pendampingan Ekspor</h5>
-                <p>Ikuti program pelatihan dan pendampingan ekspor untuk meningkatkan kapasitas usaha.</p>
-                <button type="button" class="btn btn-outline-light">Daftar Sekarang</button>
+                <h5><?= lang('Blog.carouselSlide2Title'); ?></h5>
+                <p><?= lang('Blog.carouselSlide2Description'); ?></p>
+                <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
             </div>
         </div>
         <!-- Slide 3 -->
         <div class="carousel-item">
             <img src="/img/slider-3.jpg" class="d-block w-100" alt="Slide 3">
             <div class="carousel-caption d-none d-md-block text-light mb-3">
-                <h5>Kolaborasi & Networking Global</h5>
-                <p>Komunitas ini menghubungkan Anda dengan buyer dan pelaku ekspor dari berbagai negara.</p>
-                <button type="button" class="btn btn-outline-light">Daftar Sekarang</button>
+                <h5><?= lang('Blog.carouselSlide3Title'); ?></h5>
+                <p><?= lang('Blog.carouselSlide3Description'); ?></p>
+                <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
             </div>
         </div>
     </div>
@@ -177,25 +185,22 @@
     <div class="container mt-5">
         <div class="d-flex justify-content-center">
             <hr style="width: 40px; margin-top: 12px; margin-right: 10px;">
-            <h5 class="fw-lighter" data-en="ABOUT US" data-id="TENTANG KAMI">POPULER MEMBER</h5>
+            <h5 class="fw-lighter" data-en="ABOUT US" data-id="TENTANG KAMI"><?= lang('Blog.populerMemberTitle'); ?></h5>
             <hr style="width: 40px; margin-top: 12px; margin-left: 10px;">
         </div>
-        <h1 class="text-center" data-en="WHO WE ARE" data-id="SIAPA KAMI"><b>TOP MEMBER<span style="color: #03AADE;"> SPOTLIGHT</span></b></h1>
+        <h1 class="text-center" data-en="WHO WE ARE" data-id="SIAPA KAMI"><b><?= lang('Blog.topMemberSpotlightTitle'); ?><span style="color: #03AADE;"> SPOTLIGHT</span></b></h1>
     </div>
     <div class="container">
         <div class="row">
             <div class="d-flex mt-3">
                 <hr style="color: #FF9900; width: 50px;">
-                <p class="fw-lighter ms-3 mt-1">Populer Member</p>
+                <p class="fw-lighter ms-3 mt-1"><?= lang('Blog.populerMemberSubtitle'); ?></p>
             </div>
-            <h1 class="fw-lighter">Komunitas Ekspor Indonesia</h1>
-            <h1 class="fw-bold" style="color: #03AADE;">Member Populer Komunitas Ekspor</h1>
+            <h1 class="fw-lighter"><?= lang('Blog.communityTitle'); ?></h1>
+            <h1 class="fw-bold" style="color: #03AADE;"><?= lang('Blog.populerMemberDescription'); ?></h1>
             <div class="d-flex justify-content-between">
-                <p>Temukan anggota populer dalam komunitas ekspor Indonesia. Setiap anggota dipilih secara
-                    <br>teliti untuk memberikan kontribusi yang berguna dan berkelanjutan di bidang ekspor
-                    <br>Indonesia. Masing-masing anggota membawa keunikan dalam komunitas ekspor Indonesia."
-                </p>
-                <a href="produk"><button type="button" class="button-find btn text-light mt-3" style="height: 40px; background-color: #03AADE;">Daftar Sekarang</button></a>
+                <p><?= lang('Blog.populerMemberContent'); ?></p>
+                <a href="produk"><button type="button" class="button-find btn text-light mt-3" style="height: 40px; background-color: #03AADE;"><?= lang('Blog.btnCarousel'); ?></button></a>
             </div>
         </div>
     </div>
@@ -226,14 +231,13 @@
             <div class="bg-transparent py-5 ms-5">
                 <div class="bg-transparent py-5 ms-5">
                     <div class="card-body py-5 mb-5">
-                        <p class="text-light fw-lighter h6" style="font-size: 20px">Bergabunglah Bersama Kami</p>
-                        <p class="text-light" style="font-size: 57px; font-family: Poetsen One, sans-serif;">KOMUNITAS
-                            <br>EKSORTIR
+                        <p class="text-light fw-lighter h6" style="font-size: 20px"><?= lang('Blog.joinUsTitle'); ?></p>
+                        <p class="text-light" style="font-size: 57px; font-family: Poetsen One, sans-serif;">
+                            <?= lang('Blog.communityExporterTitle'); ?>
                         </p>
-                        <p class="text-light fw-lighter" style="font-size: 18px">Ayo, bergabunglah dengan komunitas eksportir
-                            kami dan tingkatkan peluang bisnis Anda. Jadilah bagian dari jaringan yang mendukung kesuksesan.
+                        <p class="text-light fw-lighter" style="font-size: 18px"><?= lang('Blog.joinUsDescription'); ?>
                         </p>
-                        <button type="button" class="btn btn-outline-light">Daftar Sekarang</button>
+                        <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
                     </div>
                 </div>
             </div>
@@ -248,7 +252,7 @@
 <!-- keuntungan -->
 <section>
     <div class="container text-center py-5 mt-2">
-        <h2 class="fw-bold mb-3" style="color: #03AADE;">MANFAAT JOIN MEMBER.</h2>
+        <h2 class="fw-bold mb-3" style="color: #03AADE;"><?= lang('Blog.benefitsJoinTitle'); ?></h2>
         <div class="d-flex justify-content-center align-items-center mb-2">
             <div class="border-top" style="width: 60px; height: 3px; background-color: #03AADE;"></div>
         </div>
@@ -256,8 +260,7 @@
             <div class="border-top" style="width: 30px; height: 2px; background-color: #03AADE;"></div>
         </div>
         <p class="text-muted mt-3">
-            Menjadi anggota komunitas ekspor memberikan akses ke peluang yang lebih luas dan dukungan <br>yang berharga.
-            Bergabunglah untuk meningkatkan jaringan dan keterampilan Anda.
+            <?= lang('Blog.benefitsJoinDescription'); ?>
         </p>
     </div>
     <div class="container">
@@ -272,8 +275,8 @@
                     </svg>
                 </div>
                 <div class="ms-4 mt-1">
-                    <p style="font-size: 20px;"><b>Peluang Bisnis</b></p>
-                    <p>Akses ke Jaringan Bisnis<br>Kesempatan Kolaborasi Internasional</p>
+                    <p style="font-size: 20px;"><b><?= lang('Blog.businessOpportunities'); ?></b></p>
+                    <p><?= lang('Blog.networkAccess'); ?></p>
                 </div>
             </div>
             <div class="d-flex">
@@ -286,8 +289,8 @@
                     </svg>
                 </div>
                 <div class="ms-4 mt-1">
-                    <p style="font-size: 20px;"><b>Pelatihan dan Workshop</b></p>
-                    <p>Akses Pelatihan Gratis<br>Pengembangan Keterampilan Ekspor</p>
+                    <p style="font-size: 20px;"><b><?= lang('Blog.trainingAndWorkshops'); ?></b></p>
+                    <p><?= lang('Blog.freeTrainingAccess'); ?></p>
                 </div>
             </div>
             <div class="d-flex">
@@ -300,8 +303,8 @@
                     </svg>
                 </div>
                 <div class="ms-4 mt-1">
-                    <p style="font-size: 20px;"><b>Sertifikat</b></p>
-                    <p>Mendapatkan Sertifikat Resmi<br>Memperluas Jaringan & Relasi</p>
+                    <p style="font-size: 20px;"><b><?= lang('Blog.certificates'); ?></b></p>
+                    <p><?= lang('Blog.officialCertificate'); ?></p>
                 </div>
             </div>
         </div>
@@ -313,11 +316,11 @@
 <section class="animasi container-fluid mt-5 footer-custom" style="background-color: #03AADE; width: 100%; height: 350px;">
     <div class="background-image animated-element">
         <div class="centered-text">
-            <h2 class="text-center text-light" style="padding-top: 100px; font-family: Lato, sans-serif;"><b>Bergabunglah dengan Komunitas Eksportir!</b></h2>
-            <p class="text-center fw-lighter text-light">Jadilah bagian dari jaringan eksportir yang sukses. Dapatkan peluang, pengetahuan, dan dukungan untuk mengembangkan bisnis ekspor Anda.</p>
+            <h2 class="text-center text-light" style="padding-top: 100px; font-family: Lato, sans-serif;"><b><?= lang('Blog.joinExporterCommunityTitle'); ?></b></h2>
+            <p class="text-center fw-lighter text-light"><?= lang('Blog.joinExporterCommunityDescription'); ?></p>
         </div>
         <div class="text-center centered-button pt-2">
-            <a href="produk" class="btn btn-outline-light">Daftar Sekarang</a>
+            <a href="produk" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></a>
         </div>
     </div>
 </section>
@@ -328,10 +331,10 @@
     <div class="mt-5">
         <div class="d-flex justify-content-center">
             <hr style="width: 40px; margin-top: 12px; margin-right: 10px;">
-            <h5 class="fw-lighter" data-en="MEMBER MAP" data-id="PETA MEMBER">PETA MEMBER</h5>
+            <h5 class="fw-lighter" data-en="MEMBER MAP" data-id="PETA MEMBER"><?= lang('Blog.memberMapTitle'); ?></h5>
             <hr style="width: 40px; margin-top: 12px; margin-left: 10px;">
         </div>
-        <h1 class="text-center" data-en="TOP MEMBERS SPOTLIGHT" data-id="SOROTAN MEMBER UNGGUL"><b>SOROTAN MEMBER<span style="color: #03AADE;"> KOMUNITAS EKSPOR INDONESIA</span></b></h1>
+        <h1 class="text-center" data-en="TOP MEMBERS SPOTLIGHT" data-id="SOROTAN MEMBER UNGGUL"><b><?= lang('Blog.communityMemberSpotlightTitle'); ?><span style="color: #03AADE;"> <?= lang('Blog.communityMemberSpotlightTitle2'); ?></span></b></h1>
     </div>
     <div class="container mt-5">
         <div id="map" style="width: 100%; height: 700px;"></div>
