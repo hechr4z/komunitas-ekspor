@@ -8,7 +8,6 @@ use CodeIgniter\Router\RouteCollection;
 $routes->group('id', function ($routes) {
     $routes->get('/', 'KomunitasEkspor::index');
 
-
     // Visitor?Member - Belajar Ekspor
     $routes->get('belajar-ekspor', 'KomunitasEkspor::belajar_ekspor');
     $routes->get('belajar-ekspor/search', 'KomunitasEkspor::search_belajar_ekspor');
@@ -61,10 +60,6 @@ $routes->get('/detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
 
 // Member - Data Buyer
 $routes->get('/data-buyers', 'KomunitasEkspor::data_buyers');
-
-// // Member - Data Member
-// $routes->get('/data-member', 'KomunitasEkspor::data_member_visitor');
-// $routes->get('/detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
 
 // Member - Data Buyer
 $routes->get('/data-buyer', 'KomunitasEkspor::data_buyer');
