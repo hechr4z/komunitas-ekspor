@@ -199,7 +199,7 @@
                 <div class="badgepanjang p-3">
                     <div class="d-flex justify-content-between align-items-center mt-3 mb-3 flex-md-row flex-column">
                         <h5 class="kategori font-weight-bold mb-0 text-left text-md-left">Gabung Member Yuk <br>Untuk Akses 100%</h5>
-                        <a href="/pendaftaran" class="btn btn-custom mt-md-0">Pendaftaran Member</a>
+                        <a href="<?= base_url('id/pendaftaran') ?>" class="btn btn-custom mt-md-0">Pendaftaran Member</a>
                     </div>
                 </div>
             </div>
@@ -209,7 +209,7 @@
 
         <!-- Back Button -->
         <div class="artikel-detail-footer text-center mt-5">
-            <a href="<?= base_url('belajar-ekspor'); ?>" class="btn btn-custom">Kembali ke Artikel</a>
+            <a href="<?= base_url('id/belajar-ekspor'); ?>" class="btn btn-custom">Kembali ke Artikel</a>
         </div>
     </div>
 </section>
@@ -232,7 +232,7 @@
                             </div>
                             <h5 class="card-title" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;"><?= $item['judul_belajar_ekspor']; ?></h5>
                             <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;"><?= $item['deskripsi_belajar_ekspor']; ?></p>
-                            <a href="<?= base_url('belajar-ekspor-detail/' . $item['slug']); ?>" class="btn btn-custom mt-auto" style="width: 100%; display: block; text-align: center;">Baca Selengkapnya</a>
+                            <a href="<?= base_url('id/belajar-ekspor-detail/' . $item['slug']); ?>" class="btn btn-custom mt-auto" style="width: 100%; display: block; text-align: center;">Baca Selengkapnya</a>
                         </div>
                     </div>
                 </div>
