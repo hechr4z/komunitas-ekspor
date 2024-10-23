@@ -453,7 +453,7 @@
                                     <?php echo lang('Blog.headerAplikasi'); ?>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-light">
-                                    <li><a class="dropdown-item" href="#"><?php echo lang('Blog.headerApp1'); ?></a></li>
+                                    <li><a class="dropdown-item" href="<?= base_url('kalkulator-ekspor') ?>"><?php echo lang('Blog.headerApp1'); ?></a></li>
                                     <li><a class="dropdown-item" href="#"><?php echo lang('Blog.headerApp2'); ?></a></li>
                                     <li><a class="dropdown-item" href="#"><?php echo lang('Blog.headerApp3'); ?></a></li>
                                 </ul>
@@ -539,7 +539,7 @@
                     <div class="col-md-2">
                         <h5 class="mt-4"><b><?php echo lang('Blog.headerAplikasi'); ?></b></h5>
                         <div class="list-unstyled pt-2">
-                            <p><a href="#" class="footer-link"><?php echo lang('Blog.headerApp1'); ?></a></p>
+                            <p><a href="<?= base_url('kalkulator-ekspor') ?>" class="footer-link"><?php echo lang('Blog.headerApp1'); ?></a></p>
                             <p><a href="#" class="footer-link"><?php echo lang('Blog.headerApp2'); ?></a></p>
                             <p><a href="#" class="footer-link"><?php echo lang('Blog.headerApp3'); ?></a></p>
                         </div>
