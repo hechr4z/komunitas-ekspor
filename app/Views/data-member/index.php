@@ -15,15 +15,6 @@
         height: 220px;
     }
 
-    button:hover {
-        color: #fff;
-        transform: scale(1.05);
-        box-shadow: 0px 0px 10px #F2BF02;
-        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-        background-color: #F2BF02 !important;
-        /* Mengubah warna saat hover menjadi #F2BF02 */
-    }
-
     .card .btn:hover {
         background-color: #F2BF02 !important;
         color: #fff;
