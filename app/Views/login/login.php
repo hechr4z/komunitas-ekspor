@@ -78,13 +78,14 @@
         }
 
         .showpw {
-            margin-left: 10px;
+            margin-left: 2px;
         }
+
     }
 </style>
 
-<body style="background-image: url('<?= base_url('img/slider-1.jpg') ?>'); background-size: cover; background-position: center; background-repeat: no-repeat;height: 102vh; margin: 0;">
-    <div class="container d-flex justify-content-center align-items-center full-height md-6">
+<body style="background-image: url('<?php echo base_url('img/slider-1.jpg'); ?>'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 104vh;">
+    <div class="container d-flex justify-content-center align-items-center full-height mt-4">
         <div class="card p-5">
             <div class="app-auth-branding mp-2 mb-5 text-center">
                 <a class="app-logo" href="/"><img style="height:60px;" src="<?php echo base_url('img/logokeiwarna.png'); ?>" alt="logo"></a>
