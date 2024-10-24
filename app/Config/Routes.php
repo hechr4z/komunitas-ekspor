@@ -8,6 +8,9 @@ use CodeIgniter\Router\RouteCollection;
 $routes->group('id', function ($routes) {
     $routes->get('/', 'KomunitasEkspor::index');
 
+    // login
+    $routes->get('login', 'KomunitasEkspor::login');
+
     // Visitor?Member - Belajar Ekspor
     $routes->get('belajar-ekspor', 'KomunitasEkspor::belajar_ekspor');
     $routes->get('belajar-ekspor/search', 'KomunitasEkspor::search_belajar_ekspor');
@@ -27,6 +30,9 @@ $routes->group('id', function ($routes) {
 
 $routes->group('en', function ($routes) {
     $routes->get('/', 'KomunitasEkspor::index');
+
+    // login
+    $routes->get('login', 'KomunitasEkspor::login');
 
     // Visitor?Member - Belajar Ekspor
     $routes->get('export-learning', 'KomunitasEkspor::belajar_ekspor');
@@ -103,6 +109,3 @@ $routes->get('/detail-pengumuman', 'KomunitasEkspor::detail_pengumuman');
 $routes->get('/mpm', 'KomunitasEkspor::mpm');
 
 $routes->get('mpm/getEmailsByDate/(:num)/(:num)', 'KomunitasEkspor::getEmailsByDate/$1/$2');
-
-// login
-$routes->get('/login', 'KomunitasEkspor::login');
