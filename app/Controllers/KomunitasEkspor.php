@@ -421,7 +421,7 @@ class KomunitasEkspor extends BaseController
     {
         $lang = session()->get('lang') ?? 'id';
         $data['lang'] = $lang;
-        
+
         helper('text');
 
         // Ambil keyword dari query string
@@ -704,5 +704,26 @@ class KomunitasEkspor extends BaseController
         // $data['mpm_year'] = $mpm_year; // Data dari database
 
         return view('mpm/mpm', $data);
+    }
+
+    public function getEmailsByDate($month, $year)
+    {
+        $model_mpm = new MPM();
+
+        // Ambil jumlah email yang dikirim per tanggal dalam bulan dan tahun tertentu
+        $result = $model_mpm
+            ->select('DAY(tgl_kirim_email) as hari, COUNT(*) as jumlah_email')
+            ->where('MONTH(tgl_kirim_email)', $month)
+            ->where('YEAR(tgl_kirim_email)', $year)
+            ->groupBy('hari')
+            ->findAll();
+
+        // Buat array dengan format [hari => jumlah_email]
+        $emailData = [];
+        foreach ($result as $row) {
+            $emailData[$row['hari']] = $row['jumlah_email'];
+        }
+
+        return $this->response->setJSON($emailData);
     }
 }
