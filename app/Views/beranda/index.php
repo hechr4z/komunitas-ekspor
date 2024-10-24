@@ -133,58 +133,69 @@ $this->setData([
     }
 </style>
 
-<!-- slider -->
-<div id="carouselExampleDark" class="carousel carousel-dark slide">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-        <!-- Slide 1 -->
-        <div class="carousel-item active" data-bs-interval="10000">
-            <img src="<?= base_url('img/' . $slider[0]['img_slider']); ?>" class="d-block w-100" alt="Slide 1">
-            <div class="carousel-caption d-none d-md-block text-light mb-3">
-                <h5><?= ($lang == 'en') ? $slider[0]['judul_slider_en'] : $slider[0]['judul_slider'] ?></h5>
-                <p><?= ($lang == 'en') ? $slider[0]['deskripsi_slider_en'] : $slider[0]['deskripsi_slider'] ?></p>
-                <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
-                    <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
-                </a>
-            </div>
-        </div>
-        <!-- Slide 2 -->
-        <div class="carousel-item" data-bs-interval="2000">
-            <img src="<?= base_url('img/' . $slider[1]['img_slider']); ?>" class="d-block w-100" alt="Slide 2">
-            <div class="carousel-caption d-none d-md-block text-light mb-3">
-                <h5><?= ($lang == 'en') ? $slider[1]['judul_slider_en'] : $slider[1]['judul_slider'] ?></h5>
-                <p><?= ($lang == 'en') ? $slider[1]['deskripsi_slider_en'] : $slider[1]['deskripsi_slider'] ?></p>
-                <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
-                    <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
-                </a>
-            </div>
-        </div>
-        <!-- Slide 3 -->
-        <div class="carousel-item">
-            <img src="<?= base_url('img/' . $slider[2]['img_slider']); ?>" class="d-block w-100" alt="Slide 3">
-            <div class="carousel-caption d-none d-md-block text-light mb-3">
-                <h5><?= ($lang == 'en') ? $slider[2]['judul_slider_en'] : $slider[2]['judul_slider'] ?></h5>
-                <p><?= ($lang == 'en') ? $slider[2]['deskripsi_slider_en'] : $slider[2]['deskripsi_slider'] ?></p>
-                <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
-                    <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
-                </a>
+<?php if (empty($slider)): ?>
+    <div class="container">
+        <div class="col-12 mt-2">
+            <div class="alert alert-info text-center" role="alert">
+                Masih belum ada Data Slider.
             </div>
         </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
-<!-- end -->
+<?php else: ?>
+    <!-- slider -->
+    <div id="carouselExampleDark" class="carousel carousel-dark slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <!-- Slide 1 -->
+            <div class="carousel-item active" data-bs-interval="10000">
+                <img src="<?= base_url('img/' . $slider[0]['img_slider']); ?>" class="d-block w-100" alt="Slide 1">
+                <div class="carousel-caption d-none d-md-block text-light mb-3">
+                    <h5><?= ($lang == 'en') ? $slider[0]['judul_slider_en'] : $slider[0]['judul_slider'] ?></h5>
+                    <p><?= ($lang == 'en') ? $slider[0]['deskripsi_slider_en'] : $slider[0]['deskripsi_slider'] ?></p>
+                    <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
+                        <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
+                    </a>
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="<?= base_url('img/' . $slider[1]['img_slider']); ?>" class="d-block w-100" alt="Slide 2">
+                <div class="carousel-caption d-none d-md-block text-light mb-3">
+                    <h5><?= ($lang == 'en') ? $slider[1]['judul_slider_en'] : $slider[1]['judul_slider'] ?></h5>
+                    <p><?= ($lang == 'en') ? $slider[1]['deskripsi_slider_en'] : $slider[1]['deskripsi_slider'] ?></p>
+                    <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
+                        <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
+                    </a>
+                </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+                <img src="<?= base_url('img/' . $slider[2]['img_slider']); ?>" class="d-block w-100" alt="Slide 3">
+                <div class="carousel-caption d-none d-md-block text-light mb-3">
+                    <h5><?= ($lang == 'en') ? $slider[2]['judul_slider_en'] : $slider[2]['judul_slider'] ?></h5>
+                    <p><?= ($lang == 'en') ? $slider[2]['deskripsi_slider_en'] : $slider[2]['deskripsi_slider'] ?></p>
+                    <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
+                        <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!-- end -->
+<?php endif; ?>
+
 
 <!-- populer member -->
 <section>
@@ -213,21 +224,29 @@ $this->setData([
         </div>
     </div>
     <div class="container mt-5">
-        <div class="d-flex justify-content-center gap-5">
-            <?php foreach ($top4_member as $item): ?>
-                <div class="card-container">
-                    <div class="card">
-                        <div class="img-content" style="display: flex; justify-content: center;">
-                            <img src="<?= base_url('img/' . $item['foto_profil']); ?>" style="width: 90%; height: 90%; object-fit: cover; border-radius: 10px;" alt="...">
-                        </div>
-                        <div class="content" style="text-align: center; padding: 10px 0; color: #03AADE;">
-                            <p class="heading" style="margin-bottom: 5px; font-weight: bold; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;"><?= $item['username'] ?></p>
-                            <p class="heading" style="margin-bottom: 5px; font-size: 15px; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;"><?= $item['nama_perusahaan'] ?></p>
+        <?php if (empty($top4_member)): ?>
+            <div class="col-12 mt-2">
+                <div class="alert alert-info text-center" role="alert">
+                    Masih belum ada Data Member.
+                </div>
+            </div>
+        <?php else: ?>
+            <div class="d-flex justify-content-center gap-5">
+                <?php foreach ($top4_member as $item): ?>
+                    <div class="card-container">
+                        <div class="card">
+                            <div class="img-content" style="display: flex; justify-content: center;">
+                                <img src="<?= base_url('img/' . $item['foto_profil']); ?>" style="width: 90%; height: 90%; object-fit: cover; border-radius: 10px;" alt="...">
+                            </div>
+                            <div class="content" style="text-align: center; padding: 10px 0; color: #03AADE;">
+                                <p class="heading" style="margin-bottom: 5px; font-weight: bold; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;"><?= $item['username'] ?></p>
+                                <p class="heading" style="margin-bottom: 5px; font-size: 15px; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;"><?= $item['nama_perusahaan'] ?></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
     </div>
 </section>
 <!-- end -->
