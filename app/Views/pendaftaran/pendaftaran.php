@@ -248,7 +248,12 @@
             // Cek kode referral tidak boleh sama dengan username
             if (referral && username === referral) {
                 event.preventDefault();
-                alert('Kode referral tidak boleh sama dengan username.');
+                Swal.fire({
+                    title: "Pastikan Input Sesuai Dengan Ketentuan!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Oke",
+                });
                 isReferralValid = false;
                 return;
             }
@@ -256,7 +261,12 @@
             // Cek apakah semua input sudah valid
             if (!checkFormValidity()) {
                 event.preventDefault();
-                alert('Form tidak dapat disubmit. Periksa kembali input Anda.');
+                Swal.fire({
+                    title: "Pastikan Input Sesuai Dengan Ketentuan!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Oke",
+                });
             }
         });
 
