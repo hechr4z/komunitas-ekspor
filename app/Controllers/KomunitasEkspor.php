@@ -17,20 +17,27 @@ use App\Models\CFR;
 use App\Models\CIF;
 use App\Models\Satuan;
 use App\Models\MPM;
+use App\Models\Slider;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class KomunitasEkspor extends BaseController
 {
     public function index()
     {
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+
+        $model_slider = new Slider();
         $model_member = new Member();
 
+        $slider = $model_slider->findAll();
         $member = $model_member->findAll();
         $top4_member = $model_member
             ->orderBy('popular_point', 'DESC')
             ->limit(4)
             ->findAll();
 
+        $data['slider'] = $slider;
         $data['member'] = $member;
         $data['top4_member'] = $top4_member;
 
