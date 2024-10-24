@@ -16,6 +16,7 @@ use App\Models\FOB;
 use App\Models\CFR;
 use App\Models\CIF;
 use App\Models\Satuan;
+use App\Models\MPM;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class KomunitasEkspor extends BaseController
@@ -654,5 +655,48 @@ class KomunitasEkspor extends BaseController
     public function detail_pengumuman()
     {
         return view('pengumuman/detail-pengumuman');
+    }
+
+    public function mpm()
+    {
+        $model_mpm = new MPM();
+
+        // Cari tahun paling lama yang ada di database
+        $oldest_year = $model_mpm
+            ->select('YEAR(tgl_kirim_email) as tahun_kirim')
+            ->orderBy('tahun_kirim', 'ASC') // Ambil yang terlama
+            ->first(); // Hanya ambil satu record (tahun terlama)
+
+        // Jika data ada, set tahun terlama dari database, jika tidak, default ke tahun sekarang
+        $start_year = isset($oldest_year['tahun_kirim']) ? $oldest_year['tahun_kirim'] : date('Y');
+
+        $current_year = date('Y'); // Tahun sekarang
+
+        // Buat array tahun dari tahun terlama hingga tahun saat ini
+        $years = [];
+        for ($year = $start_year; $year <= $current_year; $year++) {
+            $years[] = $year;
+        }
+
+        // Balik array agar tahun terbaru ada di atas
+        $years = array_reverse($years);
+
+        // // Ambil data dari database hanya untuk tahun-tahun yang ada
+        // $mpm_data = $model_mpm
+        //     ->select('YEAR(tgl_kirim_email) as tahun_kirim, COUNT(*) as jumlah') // Hitung jumlah data per tahun
+        //     ->groupBy('tahun_kirim')
+        //     ->orderBy('tahun_kirim', 'DESC')
+        //     ->findAll();
+
+        // // Buat array untuk memetakan data dari database berdasarkan tahun
+        // $mpm_year = [];
+        // foreach ($mpm_data as $data) {
+        //     $mpm_year[$data['tahun_kirim']] = $data['jumlah']; // Simpan jumlah data per tahun
+        // }
+
+        $data['years'] = $years; // Semua tahun dari yang terlama sampai sekarang, dengan urutan terbaru di atas
+        // $data['mpm_year'] = $mpm_year; // Data dari database
+
+        return view('mpm/mpm', $data);
     }
 }
