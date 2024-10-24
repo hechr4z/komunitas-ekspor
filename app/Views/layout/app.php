@@ -462,9 +462,9 @@
                                     <?php echo lang('Blog.headerAplikasi'); ?>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-light">
-                                    <li><a class="dropdown-item" href="<?= base_url('kalkulator-ekspor') ?>"><?php echo lang('Blog.headerApp1'); ?></a></li>
-                                    <li><a class="dropdown-item" href="<?= base_url('mpm') ?>"><?php echo lang('Blog.headerApp2'); ?></a></li>
-                                    <li><a class="dropdown-item" href="#"><?php echo lang('Blog.headerApp3'); ?></a></li>
+                                    <li onclick="showSweetAlertKHE()"><a class="dropdown-item" href="#"><?php echo lang('Blog.headerApp1'); ?></a></li>
+                                    <li onclick="showSweetAlertMPP()"><a class="dropdown-item" href="#"><?php echo lang('Blog.headerApp2'); ?></a></li>
+                                    <li onclick="showSweetAlertAW()"><a class="dropdown-item" href="#"><?php echo lang('Blog.headerApp3'); ?></a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -566,6 +566,7 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         window.addEventListener('scroll', function() {
@@ -576,6 +577,57 @@
                 navbar.classList.remove('scrolled');
             }
         });
+
+        function showSweetAlertKHE() {
+            Swal.fire({
+                title: "Mau Buka Aplikasi Kalkulator Harga Ekspor?",
+                text: "Yuk Daftar Member Dulu!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Daftar",
+                cancelButtonText: "Nanti"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/pendaftaran"; // Redirect to the registration page
+                } else {
+                    Swal.fire("Oke, Jangan Lupa Daftar!"); // Optional message if "Nanti" is clicked
+                }
+            });
+        }
+
+        function showSweetAlertMPP() {
+            Swal.fire({
+                title: "Mau Buka Aplikasi Monitoring Progres Pemasaran?",
+                text: "Yuk Daftar Member Dulu!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Daftar",
+                cancelButtonText: "Nanti"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/pendaftaran"; // Redirect to the registration page
+                } else {
+                    Swal.fire("Oke, Jangan Lupa Daftar!"); // Optional message if "Nanti" is clicked
+                }
+            });
+        }
+
+        function showSweetAlertAW() {
+            Swal.fire({
+                title: "Mau Buka Aplikasi Audit Website?",
+                text: "Yuk Daftar Member Dulu!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Daftar",
+                cancelButtonText: "Nanti"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/pendaftaran"; // Redirect to the registration page
+                } else {
+                    Swal.fire("Oke, Jangan Lupa Daftar!"); // Optional message if "Nanti" is clicked
+                }
+            });
+        }
     </script>
 
 
