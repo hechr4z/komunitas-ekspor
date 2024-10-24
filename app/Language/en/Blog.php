@@ -14,12 +14,12 @@ return [
 
     //beranda
     // Carousel Texts
-    'carouselSlide1Title' => 'Build an Export Ecosystem Together',
-    'carouselSlide1Description' => 'The Indonesian Export Community plays an active role in expanding export opportunities.',
-    'carouselSlide2Title' => 'Export Training & Assistance',
-    'carouselSlide2Description' => 'Join export training and mentoring programs to increase business capacity.',
-    'carouselSlide3Title' => 'Global Collaboration & Networking',
-    'carouselSlide3Description' => 'This community connects you with buyers and exporters from various countries.',
+    // 'carouselSlide1Title' => 'Build an Export Ecosystem Together',
+    // 'carouselSlide1Description' => 'The Indonesian Export Community plays an active role in expanding export opportunities.',
+    // 'carouselSlide2Title' => 'Export Training & Assistance',
+    // 'carouselSlide2Description' => 'Join export training and mentoring programs to increase business capacity.',
+    // 'carouselSlide3Title' => 'Global Collaboration & Networking',
+    // 'carouselSlide3Description' => 'This community connects you with buyers and exporters from various countries.',
     'btnCarousel' => 'Register Now',
     // Populer Member Section
     'populerMemberTitle' => 'POPULAR MEMBER',
