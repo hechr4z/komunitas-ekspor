@@ -139,15 +139,12 @@
                 <?= lang('Blog.keuntungan7Deskripsi'); ?></p>
         </div>
 
-
-
         <div class="col-md-6 right-section">
             <h3 class="h3"><?= lang('Blog.daftarJudul'); ?></h3>
             <hr class="line-separator">
 
             <!-- Card untuk Form Pendaftaran -->
             <div class="card p-3 custom-card">
-
                 <!-- Menampilkan pesan error jika username atau email sudah ada -->
                 <?php if (session()->getFlashdata('error')) : ?>
                     <div class="alert alert-danger">
@@ -167,12 +164,14 @@
                     </div>
 
                     <!-- Username -->
+                    <span id="username-status" class="form-text" style="margin-bottom: 10px; display: block; margin-left: 160px;"></span>
                     <div class="form-group">
                         <label for="username"><?= lang('Blog.username'); ?><span class="required">*</span></label>
                         <input type="text" id="username" name="username" required placeholder="<?= lang('Blog.placeholderUsername'); ?>" value="<?= old('username') ?>">
                     </div>
 
                     <!-- Email -->
+                    <span id="email-status" class="form-text" style="margin-bottom: 10px; display: block; margin-left: 160px;"></span> <!-- Status pengecekan email di bawah input -->
                     <div class="form-group">
                         <label for="email"><?= lang('Blog.emailPendaftaran'); ?><span class="required">*</span></label>
                         <input type="email" id="email" name="email" required placeholder="<?= lang('Blog.placeholderEmail'); ?>" value="<?= old('email') ?>">
@@ -190,6 +189,7 @@
                     </div>
 
                     <!-- Referral -->
+                    <span id="referral-status" class="form-text" style="margin-bottom: 10px; display: block; margin-left: 160px;"></span> <!-- Status pengecekan referral -->
                     <div class="form-group">
                         <label for="referral"><?= lang('Blog.referral'); ?></label>
                         <input type="text" id="referral" name="referral" placeholder="<?= lang('Blog.placeholderReferral'); ?>" value="<?= old('referral') ?>">
@@ -219,13 +219,98 @@
                     </div>
 
                     <!-- Tombol Submit -->
-                    <button type="submit" class="btn btn-primary mt-3" style="width: 100%;"><?= lang('Blog.submitButton'); ?></button>
+                    <button type="submit" class="btn btn-custom mt-3" style="width: 100%;"><?= lang('Blog.submitButton'); ?></button>
                 </form>
             </div>
         </div>
 
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Pengecekan di sisi client ketika form akan disubmit
+        $('form').on('submit', function(event) {
+            var username = $('#username').val();
+            var referral = $('#referral').val();
+
+            // Pengecekan kode referral tidak boleh sama dengan username
+            if (referral && username === referral) {
+                event.preventDefault(); // Mencegah form disubmit
+                alert('Kode referral tidak boleh sama dengan username.'); // Menampilkan pesan error
+                return;
+            }
+        });
+
+        // Pengecekan username dari server
+        $('#username').on('input', function() {
+            var username = $(this).val();
+            var referral = $('#referral').val();
+
+            if (username.length > 0) {
+                $.ajax({
+                    url: '/user/checkAvailability',
+                    type: 'POST',
+                    data: {
+                        username: username
+                    },
+                    success: function(response) {
+                        if (response.status === 'exists') {
+                            $('#username-status').html('<span style="color: red;">Username sudah terdaftar</span>');
+                        } else {
+                            $('#username-status').html('<span style="color: green;">Username tersedia</span>');
+                        }
+                    }
+                });
+            } else {
+                $('#username-status').html('');
+            }
+
+            // Cek jika referral tidak boleh sama dengan username
+            if (referral && username === referral) {
+                $('#referral-status').html('<span style="color: red;">Kode referral tidak boleh sama dengan username</span>');
+            } else {
+                $('#referral-status').html('');
+            }
+        });
+
+        // Pengecekan email dari server
+        $('#email').on('input', function() {
+            var email = $(this).val();
+            if (email.length > 0) {
+                $.ajax({
+                    url: '/user/checkAvailability',
+                    type: 'POST',
+                    data: {
+                        email: email
+                    },
+                    success: function(response) {
+                        if (response.status === 'exists') {
+                            $('#email-status').html('<span style="color: red;">Email sudah terdaftar</span>');
+                        } else {
+                            $('#email-status').html('<span style="color: green;">Email tersedia</span>');
+                        }
+                    }
+                });
+            } else {
+                $('#email-status').html('');
+            }
+        });
+
+        // Pengecekan referral di sisi client
+        $('#referral').on('input', function() {
+            var referral = $(this).val();
+            var username = $('#username').val();
+
+            // Cek jika referral tidak boleh sama dengan username
+            if (referral && username === referral) {
+                $('#referral-status').html('<span style="color: red;">Kode referral tidak boleh sama dengan username</span>');
+            } else {
+                $('#referral-status').html('');
+            }
+        });
+    });
+</script>
 
 <script>
     function togglePassword() {
