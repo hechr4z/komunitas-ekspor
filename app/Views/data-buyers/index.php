@@ -158,19 +158,19 @@
 
 <!-- judul -->
 <div class="py-4" style="text-align: center;">
-    <h2 class="text-custom-title">Data Buyers</h2>
-    <p class="text-custom-paragraph mt-2">Berikut data buyers Komunitas Ekspor Indonesia</p>
+    <h2 class="text-custom-title"><?= lang('Blog.buyersDataTitle') ?></h2>
+    <p class="text-custom-paragraph mt-2"><?= lang('Blog.buyersDataDescription') ?></p>
 </div>
 
 <!-- Search Bar Start -->
-<form class="form" action="<?= base_url('data-buyers/search') ?>" method="GET">
+<form class="form" action="<?= base_url($lang . '/data-buyers/search') ?>" method="GET">
     <button>
         <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
             <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
                 stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
     </button>
-    <input class="input" autocomplete="off" placeholder="Cari artikel..." name="keyword" required="" type="text"
+    <input class="input" autocomplete="off" placeholder="<?= lang('Blog.searchArticlePlaceholder') ?>" name="keyword" required="" type="text"
         value="<?= isset($keyword) ? esc($keyword) : '' ?>">
     <button class="reset" type="reset">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -188,17 +188,18 @@
             <thead class="thead-blue">
                 <tr>
                     <th>No</th>
-                    <th>Nama Perusahaan</th>
-                    <th>Email</th>
-                    <th>Website</th>
-                    <th>Kode HS</th>
-                    <th>Negara</th>
+                    <th><?= lang('Blog.tableCompanyName') ?></th>
+                    <th><?= lang('Blog.tableEmail') ?></th>
+                    <th><?= lang('Blog.tableWebsite') ?></th>
+                    <th><?= lang('Blog.tableHsCode') ?></th>
+                    <th><?= lang('Blog.tableCountry') ?></th>
+
                 </tr>
             </thead>
             <tbody>
                 <?php if (empty($buyers)): ?>
                     <tr>
-                        <td colspan="6" class="text-center">Masih belum ada Data Buyers.</td>
+                        <td colspan="6" class="text-center"> <?= lang('Blog.noBuyersDataYet') ?></td>
                     </tr>
                 <?php else: ?>
                     <?php $i = 1; ?>
@@ -223,10 +224,10 @@
         <!-- Tombol Hilangi Blur -->
         <div class="badgepanjang p-3 mt-3">
             <div class="d-flex justify-content-between align-items-center mt-3 mb-3 flex-md-row flex-column">
-                <h5 class="kategori font-weight-bold mb-0 text-left text-md-left">Gabung Member Yuk <br>Untuk Akses
-                    100%
+                <h5 class="kategori font-weight-bold mb-0 text-left text-md-left">
+                    <?= lang('Blog.joinMemberTitle') ?>
                 </h5>
-                <a href="/pendaftaran" class="btn btn-custom mt-md-0">Pendaftaran Member</a>
+                <a href="/pendaftaran" class="btn btn-custom mt-md-0"><?= lang('Blog.memberRegistration') ?></a>
             </div>
         </div>
     </div>

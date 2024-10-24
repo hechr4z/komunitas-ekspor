@@ -81,8 +81,6 @@ return [
     'picPhone' => 'PIC Phone No.: ',
 
 
-
-
     'populerMember' => 'POPULAR MEMBER',
     'topMemberSpotlight' => 'TOP MEMBER SPOTLIGHT',
     'populerMemberLower' => 'Popular Member',
@@ -135,4 +133,27 @@ return [
     'noPIC' => 'PIC Number',
     'placeholderNoPIC' => 'Enter PIC Number',
     'submitButton' => 'Register Member',
+
+    //halaman data buyers
+    // Buyers Data Section
+    'buyersDataTitle' => 'Buyers Data',
+    'buyersDataDescription' => 'Here is the buyers data for the Indonesian Export Community',
+
+    // Search Results Section
+    'searchResultsFor' => 'Displaying search results for:',
+    'noBuyersDataFound' => 'No buyers data found.',
+    'noBuyersDataYet' => 'No buyers data available yet.',
+
+    // Table Headers
+    'searchArticlePlaceholder' => 'Search buyers...',
+    'tableNumber' => 'No',
+    'tableCompanyName' => 'Company Name',
+    'tableEmail' => 'Email',
+    'tableWebsite' => 'Website',
+    'tableHsCode' => 'HS Code',
+    'tableCountry' => 'Country',
+
+    // Join Member Section
+    'joinMemberTitle' => 'Join as a Member <br> for 100% Access',
+    'memberRegistration' => 'Member Registration',
 ];

@@ -311,6 +311,9 @@
 
     $current_url = uri_string();
 
+    // Ambil query string (misalnya ?keyword=sukses)
+    $query_string = $_SERVER['QUERY_STRING']; // Mengambil query string dari URL
+
     // Simpan segmen bahasa saat ini
     $lang_segment = substr($current_url, 0, strpos($current_url, '/') + 1); // Menyimpan 'id/' atau 'en/'
 
@@ -320,12 +323,13 @@
     $pendaftaranLink = ($lang_segment === 'en/') ? 'registration' : 'pendaftaran';
     $videoTutorialLink = ($lang_segment === 'en/') ? 'video-tutorial' : 'tutorial-video';
     $memberLink = ($lang_segment === 'en/') ? 'data-member' : 'data-member';
-    $buyersLink = ($lang_segment === 'en/') ? 'buyers' : 'data-buyers';
+    $buyersLink = ($lang_segment === 'en/') ? 'data-buyers' : 'data-buyers';
 
     // Buat array untuk menggantikan segmen berdasarkan bahasa
     $replace_map = [
         'pendaftaran' => 'registration',
         'belajar-ekspor' => 'export-learning',
+
     ];
 
     // Ambil bagian dari URL tanpa segmen bahasa
@@ -347,6 +351,11 @@
 
     // Tautan dengan bahasa yang baru
     $clean_url = $new_lang_segment . ltrim($url_without_lang, '/');
+
+    // Gabungkan query string jika ada
+    if (!empty($query_string)) {
+        $clean_url .= '?' . $query_string;
+    }
 
 
     // Tautan Bahasa Inggris
@@ -461,7 +470,7 @@
                         </ul>
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('data-buyers') ?>"><?php echo lang('Blog.headerBuyers'); ?>
+                        <a class="nav-link" href="<?= base_url($lang . '/' . $buyersLink) ?>"><?php echo lang('Blog.headerBuyers'); ?>
                         </a>
                     </li>
                     <div class="border-top" style="width: 1.5px; height: 40px; background-color: white; margin: 0 23px;"></div>
