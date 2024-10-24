@@ -227,18 +227,36 @@
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
     $(document).ready(function() {
+        // Flag untuk mengecek status validasi input
+        var isUsernameValid = false;
+        var isEmailValid = false;
+        var isReferralValid = true; // Default true karena referral bersifat opsional
+
+        // Fungsi untuk mengecek form valid atau tidak sebelum submit
+        function checkFormValidity() {
+            return isUsernameValid && isEmailValid && isReferralValid;
+        }
+
         // Pengecekan di sisi client ketika form akan disubmit
         $('form').on('submit', function(event) {
             var username = $('#username').val();
             var referral = $('#referral').val();
 
-            // Pengecekan kode referral tidak boleh sama dengan username
+            // Cek kode referral tidak boleh sama dengan username
             if (referral && username === referral) {
-                event.preventDefault(); // Mencegah form disubmit
-                alert('Kode referral tidak boleh sama dengan username.'); // Menampilkan pesan error
+                event.preventDefault();
+                alert('Kode referral tidak boleh sama dengan username.');
+                isReferralValid = false;
                 return;
+            }
+
+            // Cek apakah semua input sudah valid
+            if (!checkFormValidity()) {
+                event.preventDefault();
+                alert('Form tidak dapat disubmit. Periksa kembali input Anda.');
             }
         });
 
@@ -257,20 +275,25 @@
                     success: function(response) {
                         if (response.status === 'exists') {
                             $('#username-status').html('<span style="color: red;">Username sudah terdaftar</span>');
+                            isUsernameValid = false;
                         } else {
                             $('#username-status').html('<span style="color: green;">Username tersedia</span>');
+                            isUsernameValid = true;
                         }
                     }
                 });
             } else {
                 $('#username-status').html('');
+                isUsernameValid = false;
             }
 
             // Cek jika referral tidak boleh sama dengan username
             if (referral && username === referral) {
                 $('#referral-status').html('<span style="color: red;">Kode referral tidak boleh sama dengan username</span>');
+                isReferralValid = false;
             } else {
                 $('#referral-status').html('');
+                isReferralValid = true;
             }
         });
 
@@ -287,13 +310,16 @@
                     success: function(response) {
                         if (response.status === 'exists') {
                             $('#email-status').html('<span style="color: red;">Email sudah terdaftar</span>');
+                            isEmailValid = false;
                         } else {
                             $('#email-status').html('<span style="color: green;">Email tersedia</span>');
+                            isEmailValid = true;
                         }
                     }
                 });
             } else {
                 $('#email-status').html('');
+                isEmailValid = false;
             }
         });
 
@@ -305,12 +331,15 @@
             // Cek jika referral tidak boleh sama dengan username
             if (referral && username === referral) {
                 $('#referral-status').html('<span style="color: red;">Kode referral tidak boleh sama dengan username</span>');
+                isReferralValid = false;
             } else {
                 $('#referral-status').html('');
+                isReferralValid = true;
             }
         });
     });
 </script>
+
 
 <script>
     function togglePassword() {
