@@ -101,3 +101,5 @@ $routes->get('/detail-pengumuman', 'KomunitasEkspor::detail_pengumuman');
 
 // MPM
 $routes->get('/mpm', 'KomunitasEkspor::mpm');
+
+$routes->get('mpm/getEmailsByDate/(:num)/(:num)', 'KomunitasEkspor::getEmailsByDate/$1/$2');
