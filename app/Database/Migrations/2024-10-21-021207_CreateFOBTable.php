@@ -15,6 +15,7 @@ class CreateFOBTable extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
+            // maybe id member?
             'komponen_fob' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,

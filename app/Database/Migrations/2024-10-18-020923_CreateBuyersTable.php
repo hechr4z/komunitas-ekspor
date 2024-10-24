@@ -15,6 +15,7 @@ class CreateBuyersTable extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
+            // maybe id member?
             'nama_perusahaan' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,

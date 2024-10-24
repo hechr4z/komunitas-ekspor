@@ -15,6 +15,7 @@ class CreateCFRTable extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
+            // maybe id member?
             'komponen_cfr' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,

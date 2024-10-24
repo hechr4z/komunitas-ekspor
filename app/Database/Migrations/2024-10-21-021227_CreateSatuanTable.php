@@ -15,6 +15,7 @@ class CreateSatuanTable extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
+            // maybe id member?
             'satuan' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,

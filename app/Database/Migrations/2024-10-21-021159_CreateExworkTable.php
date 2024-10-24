@@ -15,6 +15,7 @@ class CreateExworkTable extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
+            // maybe id member?
             'komponen_exwork' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
