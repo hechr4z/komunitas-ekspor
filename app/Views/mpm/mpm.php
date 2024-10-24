@@ -284,33 +284,38 @@
                             <div class="col-md-6 col-lg-4">
                                 <label for="filter-bulan" class="form-label">Bulan:</label>
                                 <select id="filter-bulan" class="form-select">
+                                    <option value="" selected disabled>Pilih Bulan</option>
                                     <?php
-                                    // Generate opsi bulan
+                                    $current_month = date('n'); // Mendapatkan bulan saat ini (1-12)
                                     $months = [
-                                        '01' => 'Januari',
-                                        '02' => 'Februari',
-                                        '03' => 'Maret',
-                                        '04' => 'April',
-                                        '05' => 'Mei',
-                                        '06' => 'Juni',
-                                        '07' => 'Juli',
-                                        '08' => 'Agustus',
-                                        '09' => 'September',
-                                        '10' => 'Oktober',
-                                        '11' => 'November',
-                                        '12' => 'Desember'
+                                        1 => 'Januari',
+                                        2 => 'Februari',
+                                        3 => 'Maret',
+                                        4 => 'April',
+                                        5 => 'Mei',
+                                        6 => 'Juni',
+                                        7 => 'Juli',
+                                        8 => 'Agustus',
+                                        9 => 'September',
+                                        10 => 'Oktober',
+                                        11 => 'November',
+                                        12 => 'Desember'
                                     ];
-                                    foreach ($months as $key => $month) {
-                                        echo "<option value='$key'>$month</option>";
-                                    }
-                                    ?>
+                                    foreach ($months as $key => $month): ?>
+                                        <option value="<?= $key; ?>" <?= ($key == $current_month) ? 'selected' : ''; ?>><?= $month; ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
 
                             <div class="col-md-6 col-lg-4">
                                 <label for="filter-tahun" class="form-label">Tahun:</label>
                                 <select id="filter-tahun" class="form-select">
-                                    <!-- Tahun akan di-generate oleh JavaScript -->
+                                    <option value="" selected disabled>Pilih Tahun</option>
+                                    <?php
+                                    $current_year = date('Y'); // Mendapatkan tahun saat ini
+                                    foreach ($years as $item): ?>
+                                        <option value="<?= $item; ?>" <?= ($item == $current_year) ? 'selected' : ''; ?>><?= $item; ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
 
@@ -322,11 +327,10 @@
 
                     <div class="date-container mt-4">
                         <div id="dates" class="row g-2">
-                            <!-- Deretan tanggal akan di-generate oleh JavaScript -->
+                            <!-- Tanggal-tanggal akan diisi di sini secara dinamis -->
                         </div>
 
                         <div class="total-kirim-email mt-4">
-                            <h5>Total Kirim Email dalam Tahun: <span id="total-email-tahun">0</span></h5>
                             <h5>Total Kirim Email dalam Bulan: <span id="total-email-bulan">0</span></h5>
                         </div>
                     </div>
@@ -338,102 +342,52 @@
 </div>
 
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        populateYearOptions(); // Generate opsi tahun berdasarkan tahun saat ini
-
-        // Ambil bulan dan tahun saat ini
-        const today = new Date();
-        const currentMonth = today.getMonth() + 1;
-        const currentYear = today.getFullYear();
-
-        document.getElementById('filter-bulan').value = String(currentMonth).padStart(2, '0');
-        document.getElementById('filter-tahun').value = currentYear;
-
-        generateDates(currentMonth, currentYear);
-
-        document.getElementById('filter-button').addEventListener('click', function () {
-            const bulan = document.getElementById('filter-bulan').value;
-            const tahun = document.getElementById('filter-tahun').value;
-
-            generateDates(bulan, tahun);
-        });
-    });
-
-
-    function populateYearOptions() {
+    document.addEventListener('DOMContentLoaded', function() {
+        const monthSelect = document.getElementById('filter-bulan');
         const yearSelect = document.getElementById('filter-tahun');
-        const currentYear = new Date().getFullYear();
-        const startYear = 2019; // Tentukan tahun awal (opsional)
-
-        for (let year = currentYear; year >= startYear; year--) {
-            const option = document.createElement('option');
-            option.value = year;
-            option.textContent = year;
-            yearSelect.appendChild(option);
-        }
-    }
-
-    function generateDates(bulan, tahun) {
+        const filterButton = document.getElementById('filter-button');
         const datesContainer = document.getElementById('dates');
-        datesContainer.innerHTML = '';
 
-        const daysInMonth = new Date(tahun, bulan, 0).getDate(); // Jumlah hari dalam bulan
-        let totalEmailsTahun = 0;
-        let totalEmailsBulan = 0;
+        // Fungsi untuk menambahkan tanggal
+        function generateDates(month, year) {
+            const daysInMonth = new Date(year, month, 0).getDate();
 
-        // Dummy data untuk jumlah kirim email per hari
-        const emailPerDay = getEmailDataForMonth(bulan, tahun); // Fungsi simulasi untuk mendapatkan data kirim email
+            // Kosongkan kontainer sebelum mengisi ulang
+            datesContainer.innerHTML = '';
 
-        // Membuat deretan tanggal
-        for (let day = 1; day <= daysInMonth; day++) {
-            const emailCount = emailPerDay[day] || 0; // Jumlah kirim email di hari tertentu
-            totalEmailsTahun += emailCount;
-            totalEmailsBulan += emailCount;
-
-            const dateCard = document.createElement('div');
-            dateCard.classList.add('col-6', 'col-md-4', 'col-lg-3');
-            dateCard.innerHTML = `
-            <div class="card text-center p-3">
-                <h6>${day} ${getMonthName(bulan)} ${tahun}</h6>
-                <p>${emailCount} email</p>
-            </div>
-        `;
-            datesContainer.appendChild(dateCard);
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateCard = `
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="card text-center p-3">
+                        <h6>${day} ${monthSelect.options[month].text} ${year}</h6>
+                        <p>0 Email</p>
+                    </div>
+                </div>`;
+                datesContainer.innerHTML += dateCard;
+            }
         }
 
-        document.getElementById('total-email-tahun').innerText = totalEmailsTahun;
-        document.getElementById('total-email-bulan').innerText = totalEmailsBulan;
-    }
+        // Ambil nilai default yang sudah dipilih (bulan & tahun saat ini)
+        const selectedMonth = parseInt(monthSelect.value || <?= $current_month; ?>);
+        const selectedYear = parseInt(yearSelect.value || <?= $current_year; ?>);
 
-    // Fungsi simulasi data kirim email per hari
-    function getEmailDataForMonth(bulan, tahun) {
-        const emailData = {
-            '2024': {
-                '10': { 1: 10, 2: 5, 3: 12, 4: 20, 5: 8, 6: 15, 7: 30, 10: 50, 15: 3, 20: 18, 25: 25, 28: 9 }
+        // Generate tanggal berdasarkan default bulan dan tahun
+        generateDates(selectedMonth, selectedYear);
+
+        // Event listener ketika tombol filter diklik
+        filterButton.addEventListener('click', function() {
+            const selectedMonth = parseInt(monthSelect.value);
+            const selectedYear = parseInt(yearSelect.value);
+
+            if (!selectedMonth || !selectedYear) {
+                alert('Pilih bulan dan tahun terlebih dahulu!');
+                return;
             }
-        };
 
-        return emailData[tahun] && emailData[tahun][bulan] ? emailData[tahun][bulan] : {};
-    }
-
-    // Fungsi untuk mendapatkan nama bulan
-    function getMonthName(bulan) {
-        const monthNames = [
-            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-        ];
-        return monthNames[parseInt(bulan) - 1];
-    }
-
-    // CKEDITOR
-    document.addEventListener('DOMContentLoaded', function () {
-        // Inisialisasi CKEditor
-        ClassicEditor
-            .create(document.querySelector('#progress-editor'))
-            .catch(error => {
-                console.error(error);
-            });
+            generateDates(selectedMonth, selectedYear);
+        });
     });
 </script>
 
