@@ -733,4 +733,9 @@ class KomunitasEkspor extends BaseController
 
         return $this->response->setJSON($emailData);
     }
+
+    public function login()
+    {
+        return view('login/login');
+    }
 }
