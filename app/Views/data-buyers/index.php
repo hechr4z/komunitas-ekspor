@@ -170,8 +170,8 @@
                 stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
     </button>
-    <input class="input" autocomplete="off" placeholder="<?= lang('Blog.searchArticlePlaceholder') ?>" name="keyword" required="" type="text"
-        value="<?= isset($keyword) ? esc($keyword) : '' ?>">
+    <input class="input" autocomplete="off" placeholder="<?= lang('Blog.searchArticlePlaceholder') ?>" name="keyword"
+        required="" type="text" value="<?= isset($keyword) ? esc($keyword) : '' ?>">
     <button class="reset" type="reset">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
             stroke-width="2">
@@ -189,11 +189,10 @@
                 <tr>
                     <th>No</th>
                     <th><?= lang('Blog.tableCompanyName') ?></th>
+                    <th><?= lang('Blog.tableCountry') ?></th>
+                    <th><?= lang('Blog.tableHsCode') ?></th>
                     <th><?= lang('Blog.tableEmail') ?></th>
                     <th><?= lang('Blog.tableWebsite') ?></th>
-                    <th><?= lang('Blog.tableHsCode') ?></th>
-                    <th><?= lang('Blog.tableCountry') ?></th>
-
                 </tr>
             </thead>
             <tbody>
@@ -208,14 +207,15 @@
                         <tr class="text-center">
                             <td><?= $i++ ?></td>
                             <td><?= $item['nama_perusahaan'] ?></td>
+                            <td><?= $item['negara_perusahaan'] ?></td>
+                            <td><?= $item['hs_code'] ?></td>
                             <td>
                                 <span style="filter: blur(5px); user-select: none;">perusahaan@email.com</span>
                             </td>
                             <td>
-                                <span style="text-decoration: none; color:#03AADE; filter: blur(5px); user-select: none;">perusahaan.com</span>
+                                <span
+                                    style="text-decoration: none; color:#03AADE; filter: blur(5px); user-select: none;">perusahaan.com</span>
                             </td>
-                            <td><?= $item['hs_code'] ?></td>
-                            <td><?= $item['negara_perusahaan'] ?></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>

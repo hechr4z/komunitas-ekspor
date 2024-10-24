@@ -160,7 +160,8 @@
 <div class="py-5" style="text-align: center;">
     <h2 class="text-custom-title"><?= lang('Blog.buyersDataTitle') ?></h2>
     <?php if (!empty($keyword)): ?>
-        <p class="text-custom-paragraph mt-2"> <?= lang('Blog.searchResultsFor') ?> <strong><?= esc($keyword) ?></strong></p>
+        <p class="text-custom-paragraph mt-2"> <?= lang('Blog.searchResultsFor') ?> <strong><?= esc($keyword) ?></strong>
+        </p>
     <?php endif; ?>
 </div>
 
@@ -172,8 +173,8 @@
                 stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
     </button>
-    <input class="input" autocomplete="off" placeholder="<?= lang('Blog.searchArticlePlaceholder') ?>" name="keyword" required="" type="text"
-        value="<?= isset($keyword) ? esc($keyword) : '' ?>">
+    <input class="input" autocomplete="off" placeholder="<?= lang('Blog.searchArticlePlaceholder') ?>" name="keyword"
+        required="" type="text" value="<?= isset($keyword) ? esc($keyword) : '' ?>">
     <button class="reset" type="reset">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
             stroke-width="2">
@@ -190,18 +191,18 @@
             <thead class="thead-blue">
                 <tr>
                     <th>No</th>
-                    <th><?= lang('Blog.tableCompanyName')?></th>
-                    <th><?= lang('Blog.tableEmail')?></th>
-                    <th><?= lang('Blog.tableWebsite')?></th>
-                    <th><?= lang('Blog.tableHsCode')?></th>
-                    <th><?= lang('Blog.tableCountry')?></th>
+                    <th><?= lang('Blog.tableCompanyName') ?></th>
+                    <th><?= lang('Blog.tableCountry') ?></th>
+                    <th><?= lang('Blog.tableHsCode') ?></th>
+                    <th><?= lang('Blog.tableEmail') ?></th>
+                    <th><?= lang('Blog.tableWebsite') ?></th>
                 </tr>
             </thead>
             <tbody>
                 <?php if (empty($hasilPencarian)): ?>
                     <tr>
                         <td colspan="6" class="text-center">
-                            <?= lang('Blog.noBuyersDataFound')?>
+                            <?= lang('Blog.noBuyersDataFound') ?>
                         </td>
                     </tr>
                 <?php else: ?>
@@ -211,14 +212,15 @@
                         <tr class="text-center">
                             <td><?= $i++ ?></td>
                             <td><?= $item['nama_perusahaan'] ?></td>
+                            <td><?= $item['negara_perusahaan'] ?></td>
+                            <td><?= $item['hs_code'] ?></td>
                             <td>
                                 <span style="filter: blur(5px); user-select: none;">perusahaan@email.com</span>
                             </td>
                             <td>
-                                <span style="text-decoration: none; color:#03AADE; filter: blur(5px); user-select: none;">perusahaan.com</span>
+                                <span
+                                    style="text-decoration: none; color:#03AADE; filter: blur(5px); user-select: none;">perusahaan.com</span>
                             </td>
-                            <td><?= $item['hs_code'] ?></td>
-                            <td><?= $item['negara_perusahaan'] ?></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>
@@ -227,10 +229,10 @@
         <!-- Tombol Hilangi Blur -->
         <div class="badgepanjang p-3 mt-3">
             <div class="d-flex justify-content-between align-items-center mt-3 mb-3 flex-md-row flex-column">
-            <h5 class="kategori font-weight-bold mb-0 text-left text-md-left">
-                    <?= lang('Blog.joinMemberTitle')?>
+                <h5 class="kategori font-weight-bold mb-0 text-left text-md-left">
+                    <?= lang('Blog.joinMemberTitle') ?>
                 </h5>
-                <a href="/pendaftaran" class="btn btn-custom mt-md-0"><?= lang('Blog.memberRegistration')?></a>
+                <a href="/pendaftaran" class="btn btn-custom mt-md-0"><?= lang('Blog.memberRegistration') ?></a>
             </div>
         </div>
     </div>
