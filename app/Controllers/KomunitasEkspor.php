@@ -37,6 +37,10 @@ class KomunitasEkspor extends BaseController
             ->limit(4)
             ->findAll();
 
+        foreach ($member as &$item) {
+            $item['slug'] = url_title($item['username'], '-', true);
+        }
+
         $data['slider'] = $slider;
         $data['member'] = $member;
         $data['top4_member'] = $top4_member;
