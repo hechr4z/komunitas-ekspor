@@ -307,6 +307,46 @@ class KomunitasEkspor extends BaseController
         return redirect()->to($whatsapp);
     }
 
+    public function checkAvailability()
+    {
+        // Mengambil data dari request
+        $username = $this->request->getPost('username');
+        $email = $this->request->getPost('email');
+        $referral = $this->request->getPost('referral');
+        $userModel = new Member();
+
+        // Cek apakah username ada
+        if ($username) {
+            $userExists = $userModel->where('username', $username)->first();
+            if ($userExists) {
+                return $this->response->setJSON(['status' => 'exists', 'field' => 'username']);
+            } else {
+                return $this->response->setJSON(['status' => 'available', 'field' => 'username']);
+            }
+        }
+
+        // Cek apakah email ada
+        if ($email) {
+            $emailExists = $userModel->where('email', $email)->first();
+            if ($emailExists) {
+                return $this->response->setJSON(['status' => 'exists', 'field' => 'email']);
+            } else {
+                return $this->response->setJSON(['status' => 'available', 'field' => 'email']);
+            }
+        }
+
+
+        // Cek apakah kode referral sama dengan username
+        if ($referral && $username) {
+            if ($referral === $username) {
+                return $this->response->setJSON(['status' => 'invalid', 'field' => 'referral', 'message' => 'Kode referral tidak bisa sama dengan username']);
+            }
+        }
+
+
+        // Jika tidak ada username atau email di request
+        return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid request']);
+    }
 
     public function data_member_visitor()
     {

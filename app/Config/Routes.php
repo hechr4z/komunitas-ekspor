@@ -51,6 +51,9 @@ $routes->group('en', function ($routes) {
     $routes->get('data-buyers/search', 'KomunitasEkspor::search_buyers');
 });
 
+$routes->post('/user/checkAvailability', 'KomunitasEkspor::checkAvailability');
+
+
 // // Visitor?Member - Belajar Ekspor
 // $routes->get('/belajar-ekspor', 'KomunitasEkspor::belajar_ekspor');
 // $routes->get('/belajar-ekspor/search', 'KomunitasEkspor::search_belajar_ekspor');
