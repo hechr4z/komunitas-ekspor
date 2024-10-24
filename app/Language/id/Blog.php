@@ -15,12 +15,12 @@ return [
 
     //beranda
     // Carousel Texts
-    'carouselSlide1Title' => 'Bangun Ekosistem Ekspor Bersama',
-    'carouselSlide1Description' => 'Komunitas Ekspor Indonesia berperan aktif dalam memperluas peluang ekspor.',
-    'carouselSlide2Title' => 'Pelatihan & Pendampingan Ekspor',
-    'carouselSlide2Description' => 'Ikuti program pelatihan dan pendampingan ekspor untuk meningkatkan kapasitas usaha.',
-    'carouselSlide3Title' => 'Kolaborasi & Networking Global',
-    'carouselSlide3Description' => 'Komunitas ini menghubungkan Anda dengan buyer dan pelaku ekspor dari berbagai negara.',
+    // 'carouselSlide1Title' => 'Bangun Ekosistem Ekspor Bersama',
+    // 'carouselSlide1Description' => 'Komunitas Ekspor Indonesia berperan aktif dalam memperluas peluang ekspor.',
+    // 'carouselSlide2Title' => 'Pelatihan & Pendampingan Ekspor',
+    // 'carouselSlide2Description' => 'Ikuti program pelatihan dan pendampingan ekspor untuk meningkatkan kapasitas usaha.',
+    // 'carouselSlide3Title' => 'Kolaborasi & Networking Global',
+    // 'carouselSlide3Description' => 'Komunitas ini menghubungkan Anda dengan buyer dan pelaku ekspor dari berbagai negara.',
     'btnCarousel' => 'Daftar Sekarang',
     // Populer Member Section
     'populerMemberTitle' => 'POPULER MEMBER',

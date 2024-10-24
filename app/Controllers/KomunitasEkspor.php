@@ -17,20 +17,31 @@ use App\Models\CFR;
 use App\Models\CIF;
 use App\Models\Satuan;
 use App\Models\MPM;
+use App\Models\Slider;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class KomunitasEkspor extends BaseController
 {
     public function index()
     {
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+
+        $model_slider = new Slider();
         $model_member = new Member();
 
+        $slider = $model_slider->findAll();
         $member = $model_member->findAll();
         $top4_member = $model_member
             ->orderBy('popular_point', 'DESC')
             ->limit(4)
             ->findAll();
 
+        foreach ($member as &$item) {
+            $item['slug'] = url_title($item['username'], '-', true);
+        }
+
+        $data['slider'] = $slider;
         $data['member'] = $member;
         $data['top4_member'] = $top4_member;
 
@@ -744,5 +755,31 @@ class KomunitasEkspor extends BaseController
         // $data['mpm_year'] = $mpm_year; // Data dari database
 
         return view('mpm/mpm', $data);
+    }
+
+    public function getEmailsByDate($month, $year)
+    {
+        $model_mpm = new MPM();
+
+        // Ambil jumlah email yang dikirim per tanggal dalam bulan dan tahun tertentu
+        $result = $model_mpm
+            ->select('DAY(tgl_kirim_email) as hari, COUNT(*) as jumlah_email')
+            ->where('MONTH(tgl_kirim_email)', $month)
+            ->where('YEAR(tgl_kirim_email)', $year)
+            ->groupBy('hari')
+            ->findAll();
+
+        // Buat array dengan format [hari => jumlah_email]
+        $emailData = [];
+        foreach ($result as $row) {
+            $emailData[$row['hari']] = $row['jumlah_email'];
+        }
+
+        return $this->response->setJSON($emailData);
+    }
+
+    public function login()
+    {
+        return view('login/login');
     }
 }

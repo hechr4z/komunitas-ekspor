@@ -59,7 +59,7 @@
                                         style="flex-grow: 1; word-wrap: break-word; white-space: normal; font-size: 0.9rem;">
                                         <?= $item['nama_perusahaan'] ?>
                                     </p>
-                                    <span class="btn btn-primary mt-auto">  <?php echo lang('Blog.btndataMember') ?></span>
+                                    <span class="btn btn-primary mt-auto"><?php echo lang('Blog.btndataMember') ?></span>
                                 </div>
                             </div>
                         </a>

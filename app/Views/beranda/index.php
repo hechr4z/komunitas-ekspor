@@ -143,29 +143,35 @@ $this->setData([
     <div class="carousel-inner">
         <!-- Slide 1 -->
         <div class="carousel-item active" data-bs-interval="10000">
-            <img src="/img/slider-1.jpg" class="d-block w-100" alt="Slide 1">
+            <img src="<?= base_url('img/' . $slider[0]['img_slider']); ?>" class="d-block w-100" alt="Slide 1">
             <div class="carousel-caption d-none d-md-block text-light mb-3">
-                <h5><?= lang('Blog.carouselSlide1Title'); ?></h5>
-                <p><?= lang('Blog.carouselSlide1Description'); ?></p>
-                <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
+                <h5><?= ($lang == 'en') ? $slider[0]['judul_slider_en'] : $slider[0]['judul_slider'] ?></h5>
+                <p><?= ($lang == 'en') ? $slider[0]['deskripsi_slider_en'] : $slider[0]['deskripsi_slider'] ?></p>
+                <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
+                    <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
+                </a>
             </div>
         </div>
         <!-- Slide 2 -->
         <div class="carousel-item" data-bs-interval="2000">
-            <img src="/img/slider-2.jpg" class="d-block w-100" alt="Slide 2">
+            <img src="<?= base_url('img/' . $slider[1]['img_slider']); ?>" class="d-block w-100" alt="Slide 2">
             <div class="carousel-caption d-none d-md-block text-light mb-3">
-                <h5><?= lang('Blog.carouselSlide2Title'); ?></h5>
-                <p><?= lang('Blog.carouselSlide2Description'); ?></p>
-                <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
+                <h5><?= ($lang == 'en') ? $slider[1]['judul_slider_en'] : $slider[1]['judul_slider'] ?></h5>
+                <p><?= ($lang == 'en') ? $slider[1]['deskripsi_slider_en'] : $slider[1]['deskripsi_slider'] ?></p>
+                <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
+                    <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
+                </a>
             </div>
         </div>
         <!-- Slide 3 -->
         <div class="carousel-item">
-            <img src="/img/slider-3.jpg" class="d-block w-100" alt="Slide 3">
+            <img src="<?= base_url('img/' . $slider[2]['img_slider']); ?>" class="d-block w-100" alt="Slide 3">
             <div class="carousel-caption d-none d-md-block text-light mb-3">
-                <h5><?= lang('Blog.carouselSlide3Title'); ?></h5>
-                <p><?= lang('Blog.carouselSlide3Description'); ?></p>
-                <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
+                <h5><?= ($lang == 'en') ? $slider[2]['judul_slider_en'] : $slider[2]['judul_slider'] ?></h5>
+                <p><?= ($lang == 'en') ? $slider[2]['deskripsi_slider_en'] : $slider[2]['deskripsi_slider'] ?></p>
+                <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
+                    <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
+                </a>
             </div>
         </div>
     </div>
@@ -200,7 +206,9 @@ $this->setData([
             <h1 class="fw-bold" style="color: #03AADE;"><?= lang('Blog.populerMemberDescription'); ?></h1>
             <div class="d-flex justify-content-between">
                 <p><?= lang('Blog.populerMemberContent'); ?></p>
-                <a href="produk"><button type="button" class="button-find btn text-light mt-3" style="height: 40px; background-color: #03AADE;"><?= lang('Blog.btnCarousel'); ?></button></a>
+                <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
+                    <button type="button" class="button-find btn text-light mt-3" style="height: 40px; background-color: #03AADE;"><?= lang('Blog.btnCarousel'); ?></button>
+                </a>
             </div>
         </div>
     </div>
@@ -237,7 +245,9 @@ $this->setData([
                         </p>
                         <p class="text-light fw-lighter" style="font-size: 18px"><?= lang('Blog.joinUsDescription'); ?>
                         </p>
-                        <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
+                        <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
+                            <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -320,7 +330,9 @@ $this->setData([
             <p class="text-center fw-lighter text-light"><?= lang('Blog.joinExporterCommunityDescription'); ?></p>
         </div>
         <div class="text-center centered-button pt-2">
-            <a href="produk" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></a>
+            <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>" class="btn btn-outline-light">
+                <?= lang('Blog.btnCarousel'); ?>
+            </a>
         </div>
     </div>
 </section>
@@ -342,8 +354,6 @@ $this->setData([
 </section>
 <!-- end -->
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <script>
     var map = L.map('map').setView([-2.5489, 118.0149], 5); // Koordinat dan zoom level
 
@@ -361,13 +371,14 @@ $this->setData([
             var marker = L.marker([<?= $item['latitude'] ?>, <?= $item['longitude'] ?>]);
             marker.bindPopup(
                 '<div style="width: 200px; font-family: Arial, sans-serif;">' +
-                '<div onclick="showSweetAlert()" class="card h-100 shadow-sm" style="cursor: pointer; border-radius: 12px; overflow: hidden;">' +
+                '<a href="<?= base_url($lang . '/detail-member/' . $item['slug']); ?>" style="text-decoration: none;">' +
+                '<div class="card h-100 shadow-sm" style="cursor: pointer; border-radius: 12px; overflow: hidden;">' +
                 '<img src="<?= base_url('img/' . $item['foto_profil']); ?>" class="card-img-top" alt="Member Image" style="height: 120px; object-fit: cover;">' +
                 '<div class="card-body">' +
                 '<h6 class="card-title text-center" style="font-weight: bold; word-wrap: break-word; white-space: normal;"><?= $item['username'] ?></h6>' +
                 '<p class="card-text text-center text-muted" style="font-size: 0.9rem; word-wrap: break-word; white-space: normal;"><?= $item['nama_perusahaan'] ?></p>' +
-                '<span class="btn btn-primary btn-sm mt-2" style="border-radius: 8px; width: 100%;">Lihat Profil</span>' +
-                '</div></div></div>'
+                '<span class="btn btn-primary btn-sm mt-2" style="border-radius: 8px; width: 100%;"><?php echo lang('Blog.btndataMember') ?></span>' +
+                '</div></div></a></div>'
             );
             markers.addLayer(marker);
         <?php endif; ?>
@@ -375,23 +386,6 @@ $this->setData([
 
     // Tambahkan marker cluster ke peta
     map.addLayer(markers);
-
-    function showSweetAlert() {
-        Swal.fire({
-            title: "Mau Lihat Detail Member?",
-            text: "Yuk Daftar Member Dulu!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Daftar",
-            cancelButtonText: "Nanti"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = "/pendaftaran"; // Redirect to the registration page
-            } else {
-                Swal.fire("Oke, Jangan Lupa Daftar!"); // Optional message if "Nanti" is clicked
-            }
-        });
-    }
 </script>
 
 <?= $this->endSection(); ?>
