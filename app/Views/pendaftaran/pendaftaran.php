@@ -251,7 +251,6 @@
                 Swal.fire({
                     title: "Pastikan Input Sesuai Dengan Ketentuan!",
                     icon: "warning",
-                    showCancelButton: true,
                     confirmButtonText: "Oke",
                 });
                 isReferralValid = false;
@@ -264,7 +263,6 @@
                 Swal.fire({
                     title: "Pastikan Input Sesuai Dengan Ketentuan!",
                     icon: "warning",
-                    showCancelButton: true,
                     confirmButtonText: "Oke",
                 });
             }
