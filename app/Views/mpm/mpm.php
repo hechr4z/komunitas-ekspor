@@ -349,7 +349,7 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         const monthSelect = document.getElementById('filter-bulan');
         const yearSelect = document.getElementById('filter-tahun');
         const filterButton = document.getElementById('filter-button');
@@ -357,21 +357,32 @@
 
         // Fungsi untuk menambahkan tanggal
         function generateDates(month, year) {
-            const daysInMonth = new Date(year, month, 0).getDate();
+            // Buat permintaan AJAX untuk mendapatkan jumlah email berdasarkan bulan dan tahun
+            fetch(`/mpm/getEmailsByDate/${month}/${year}`)
+                .then(response => response.json())
+                .then(data => {
+                    const daysInMonth = new Date(year, month, 0).getDate();
 
-            // Kosongkan kontainer sebelum mengisi ulang
-            datesContainer.innerHTML = '';
+                    // Kosongkan kontainer sebelum mengisi ulang
+                    datesContainer.innerHTML = '';
 
-            for (let day = 1; day <= daysInMonth; day++) {
-                const dateCard = `
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card text-center p-3">
-                        <h6>${day} ${monthSelect.options[month].text} ${year}</h6>
-                        <p>0 Email</p>
-                    </div>
-                </div>`;
-                datesContainer.innerHTML += dateCard;
-            }
+                    for (let day = 1; day <= daysInMonth; day++) {
+                        // Ambil jumlah email dari data atau default 0 jika tidak ada
+                        const emailCount = data[day] ? data[day] : 0;
+
+                        const icon = emailCount > 0 ? '✔️' : '❌'; // Gunakan emoji atau ikon lainnya
+                        const dateCard = `
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="card text-center p-3">
+                                <h6>${day} ${monthSelect.options[month].text} ${year} ${icon}</h6>
+                                <p>${emailCount} Email</p>
+                            </div>
+                        </div>`;
+
+                        datesContainer.innerHTML += dateCard;
+                    }
+                })
+                .catch(error => console.error('Error:', error));
         }
 
         // Ambil nilai default yang sudah dipilih (bulan & tahun saat ini)
@@ -382,7 +393,7 @@
         generateDates(selectedMonth, selectedYear);
 
         // Event listener ketika tombol filter diklik
-        filterButton.addEventListener('click', function () {
+        filterButton.addEventListener('click', function() {
             const selectedMonth = parseInt(monthSelect.value);
             const selectedYear = parseInt(yearSelect.value);
 
