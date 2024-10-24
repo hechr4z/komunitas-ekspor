@@ -171,6 +171,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Tanggal Kirim Email</th>
+                                    <th>Update Terakhir</th>
                                     <th>Nama Perusahaan</th>
                                     <th>Negara Perusahaan</th>
                                     <th>Status Terkirim</th>
@@ -182,6 +183,7 @@
                                 <tr class="text-center">
                                     <td>1</td>
                                     <td>2024-10-01</td>
+                                    <td>2024-10-24</td>
                                     <td>PT. ABC Indonesia</td>
                                     <td>Indonesia</td>
                                     <td><span style="color: green;">Terkirim</span></td>
@@ -195,6 +197,7 @@
                                 <tr class="text-center">
                                     <td>1</td>
                                     <td>2024-10-01</td>
+                                    <td>2024-10-24</td>
                                     <td>PT. ABC Indonesia</td>
                                     <td>Indonesia</td>
                                     <td><span style="color: red;">Gagal</span></td>
@@ -302,7 +305,8 @@
                                         12 => 'Desember'
                                     ];
                                     foreach ($months as $key => $month): ?>
-                                        <option value="<?= $key; ?>" <?= ($key == $current_month) ? 'selected' : ''; ?>><?= $month; ?></option>
+                                        <option value="<?= $key; ?>" <?= ($key == $current_month) ? 'selected' : ''; ?>>
+                                            <?= $month; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -314,7 +318,8 @@
                                     <?php
                                     $current_year = date('Y'); // Mendapatkan tahun saat ini
                                     foreach ($years as $item): ?>
-                                        <option value="<?= $item; ?>" <?= ($item == $current_year) ? 'selected' : ''; ?>><?= $item; ?></option>
+                                        <option value="<?= $item; ?>" <?= ($item == $current_year) ? 'selected' : ''; ?>>
+                                            <?= $item; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -344,7 +349,7 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const monthSelect = document.getElementById('filter-bulan');
         const yearSelect = document.getElementById('filter-tahun');
         const filterButton = document.getElementById('filter-button');
@@ -377,7 +382,7 @@
         generateDates(selectedMonth, selectedYear);
 
         // Event listener ketika tombol filter diklik
-        filterButton.addEventListener('click', function() {
+        filterButton.addEventListener('click', function () {
             const selectedMonth = parseInt(monthSelect.value);
             const selectedYear = parseInt(yearSelect.value);
 
