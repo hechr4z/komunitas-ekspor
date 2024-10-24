@@ -335,16 +335,16 @@ class KomunitasEkspor extends BaseController
             }
         }
 
-
-        // Cek apakah kode referral sama dengan username
-        if ($referral && $username) {
-            if ($referral === $username) {
-                return $this->response->setJSON(['status' => 'invalid', 'field' => 'referral', 'message' => 'Kode referral tidak bisa sama dengan username']);
+        // Cek apakah referral valid (harus ada di database)
+        if ($referral) {
+            $referralExists = $userModel->where('username', $referral)->first();  // Cek referral sebagai username di database
+            if (!$referralExists) {
+                return $this->response->setJSON(['status' => 'invalid', 'field' => 'referral', 'message' => 'Kode referral tidak valid']);
+            } else {
+                return $this->response->setJSON(['status' => 'valid', 'field' => 'referral']);
             }
         }
 
-
-        // Jika tidak ada username atau email di request
         return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid request']);
     }
 

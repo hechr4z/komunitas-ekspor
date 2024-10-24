@@ -230,12 +230,10 @@
 
 <script>
     $(document).ready(function() {
-        // Flag untuk mengecek status validasi input
         var isUsernameValid = false;
         var isEmailValid = false;
-        var isReferralValid = true; // Default true karena referral bersifat opsional
+        var isReferralValid = true;
 
-        // Fungsi untuk mengecek form valid atau tidak sebelum submit
         function checkFormValidity() {
             return isUsernameValid && isEmailValid && isReferralValid;
         }
@@ -245,7 +243,6 @@
             var username = $('#username').val();
             var referral = $('#referral').val();
 
-            // Cek kode referral tidak boleh sama dengan username
             if (referral && username === referral) {
                 event.preventDefault();
                 Swal.fire({
@@ -257,7 +254,6 @@
                 return;
             }
 
-            // Cek apakah semua input sudah valid
             if (!checkFormValidity()) {
                 event.preventDefault();
                 Swal.fire({
@@ -295,7 +291,6 @@
                 isUsernameValid = false;
             }
 
-            // Cek jika referral tidak boleh sama dengan username
             if (referral && username === referral) {
                 $('#referral-status').html('<span style="color: red;">Kode referral tidak boleh sama dengan username</span>');
                 isReferralValid = false;
@@ -331,19 +326,34 @@
             }
         });
 
-        // Pengecekan referral di sisi client
+        // Pengecekan referral dari server
         $('#referral').on('input', function() {
             var referral = $(this).val();
             var username = $('#username').val();
 
-            // Cek jika referral tidak boleh sama dengan username
-            if (referral && username === referral) {
-                $('#referral-status').html('<span style="color: red;">Kode referral tidak boleh sama dengan username</span>');
-                isReferralValid = false;
+            if (referral.length > 0) {
+                $.ajax({
+                    url: '/user/checkAvailability',
+                    type: 'POST',
+                    data: {
+                        referral: referral
+                    },
+                    success: function(response) {
+                        if (response.status === 'invalid') {
+                            $('#referral-status').html('<span style="color: red;">' + response.message + '</span>');
+                            isReferralValid = false;
+                        } else {
+                            $('#referral-status').html('<span style="color: green;">Kode referral valid</span>');
+                            isReferralValid = true;
+                        }
+                    }
+                });
             } else {
                 $('#referral-status').html('');
                 isReferralValid = true;
             }
+
+
         });
     });
 </script>
