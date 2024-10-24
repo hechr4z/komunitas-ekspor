@@ -403,6 +403,9 @@ class KomunitasEkspor extends BaseController
 
     public function data_buyers()
     {
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+
         $model_buyers = new Buyers();
 
         $buyers = $model_buyers
@@ -416,6 +419,9 @@ class KomunitasEkspor extends BaseController
 
     public function search_buyers()
     {
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+        
         helper('text');
 
         // Ambil keyword dari query string

@@ -19,6 +19,10 @@ $routes->group('id', function ($routes) {
     // Member - Data Member
     $routes->get('data-member', 'KomunitasEkspor::data_member_visitor');
     $routes->get('detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
+
+    // Member - Data Buyer
+    $routes->get('data-buyers', 'KomunitasEkspor::data_buyers');
+    $routes->get('data-buyers/search', 'KomunitasEkspor::search_buyers');
 });
 
 $routes->group('en', function ($routes) {
@@ -35,6 +39,10 @@ $routes->group('en', function ($routes) {
     // Member - Data Member
     $routes->get('data-member', 'KomunitasEkspor::data_member_visitor');
     $routes->get('detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
+
+    // Member - Data Buyer
+    $routes->get('data-buyers', 'KomunitasEkspor::data_buyers');
+    $routes->get('data-buyers/search', 'KomunitasEkspor::search_buyers');
 });
 
 // // Visitor?Member - Belajar Ekspor
@@ -58,12 +66,12 @@ $routes->get('/video-tutorial-detail/(:segment)', 'KomunitasEkspor::video_tutori
 $routes->get('/data-member', 'KomunitasEkspor::data_member_visitor');
 $routes->get('/detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
 
-// Member - Data Buyer
-$routes->get('/data-buyers', 'KomunitasEkspor::data_buyers');
-$routes->get('/data-buyers/search', 'KomunitasEkspor::search_buyers');
+// // Member - Data Buyer
+// $routes->get('/data-buyers', 'KomunitasEkspor::data_buyers');
+// $routes->get('/data-buyers/search', 'KomunitasEkspor::search_buyers');
 
-// Member - Data Buyer
-$routes->get('/data-buyer', 'KomunitasEkspor::data_buyer');
+// // Member - Data Buyer
+// $routes->get('/data-buyer', 'KomunitasEkspor::data_buyer');
 
 // member - edit member
 $routes->get('/edit-profile', 'KomunitasEkspor::edit_profile');

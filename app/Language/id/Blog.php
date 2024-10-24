@@ -132,4 +132,27 @@ return [
     'noPIC' => 'Nomor PIC',
     'placeholderNoPIC' => 'Masukkan Nomor PIC',
     'submitButton' => 'Daftar Member',
+
+    //halaman data buyers
+    // Buyers Data Section
+    'buyersDataTitle' => 'Data Buyers',
+    'buyersDataDescription' => 'Berikut data buyers Komunitas Ekspor Indonesia',
+
+    // Search Results Section
+    'searchResultsFor' => 'Menampilkan hasil pencarian untuk:',
+    'noBuyersDataFound' => 'Tidak ada data buyers yang ditemukan.',
+    'noBuyersDataYet' => 'Masih belum ada Data Buyers.',
+
+    // Table Headers
+    'searchArticlePlaceholder' => 'Cari buyers...',
+    'tableNumber' => 'No',
+    'tableCompanyName' => 'Nama Perusahaan',
+    'tableEmail' => 'Email',
+    'tableWebsite' => 'Website',
+    'tableHsCode' => 'Kode HS',
+    'tableCountry' => 'Negara',
+
+    // Join Member Section
+    'joinMemberTitle' => 'Gabung Member Yuk<br> untuk Akses 100%',
+    'memberRegistration' => 'Pendaftaran Member',
 ];
