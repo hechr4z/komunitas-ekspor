@@ -143,28 +143,28 @@ $this->setData([
     <div class="carousel-inner">
         <!-- Slide 1 -->
         <div class="carousel-item active" data-bs-interval="10000">
-            <img src="/img/slider-1.jpg" class="d-block w-100" alt="Slide 1">
+            <img src="<?= base_url('img/' . $slider[0]['img_slider']); ?>" class="d-block w-100" alt="Slide 1">
             <div class="carousel-caption d-none d-md-block text-light mb-3">
-                <h5><?= lang('Blog.carouselSlide1Title'); ?></h5>
-                <p><?= lang('Blog.carouselSlide1Description'); ?></p>
+                <h5><?= ($lang == 'en') ? $slider[0]['judul_slider_en'] : $slider[0]['judul_slider'] ?></h5>
+                <p><?= ($lang == 'en') ? $slider[0]['deskripsi_slider_en'] : $slider[0]['deskripsi_slider'] ?></p>
                 <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
             </div>
         </div>
         <!-- Slide 2 -->
         <div class="carousel-item" data-bs-interval="2000">
-            <img src="/img/slider-2.jpg" class="d-block w-100" alt="Slide 2">
+            <img src="<?= base_url('img/' . $slider[1]['img_slider']); ?>" class="d-block w-100" alt="Slide 2">
             <div class="carousel-caption d-none d-md-block text-light mb-3">
-                <h5><?= lang('Blog.carouselSlide2Title'); ?></h5>
-                <p><?= lang('Blog.carouselSlide2Description'); ?></p>
+                <h5><?= ($lang == 'en') ? $slider[1]['judul_slider_en'] : $slider[1]['judul_slider'] ?></h5>
+                <p><?= ($lang == 'en') ? $slider[1]['deskripsi_slider_en'] : $slider[1]['deskripsi_slider'] ?></p>
                 <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
             </div>
         </div>
         <!-- Slide 3 -->
         <div class="carousel-item">
-            <img src="/img/slider-3.jpg" class="d-block w-100" alt="Slide 3">
+            <img src="<?= base_url('img/' . $slider[2]['img_slider']); ?>" class="d-block w-100" alt="Slide 3">
             <div class="carousel-caption d-none d-md-block text-light mb-3">
-                <h5><?= lang('Blog.carouselSlide3Title'); ?></h5>
-                <p><?= lang('Blog.carouselSlide3Description'); ?></p>
+                <h5><?= ($lang == 'en') ? $slider[2]['judul_slider_en'] : $slider[2]['judul_slider'] ?></h5>
+                <p><?= ($lang == 'en') ? $slider[2]['deskripsi_slider_en'] : $slider[2]['deskripsi_slider'] ?></p>
                 <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
             </div>
         </div>
