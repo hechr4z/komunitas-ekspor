@@ -474,7 +474,7 @@
                         </a>
                     </li>
                     <div class="border-top" style="width: 1.5px; height: 40px; background-color: white; margin: 0 23px;"></div>
-                    <a href="#"><button type="button" class="btn btn-outline-light">Login</button></a>
+                    <a href="<?= ($lang == 'en') ? base_url('/en/login') : base_url('/id/login') ?>"><button type="button" class="btn btn-outline-light">Login</button></a>
                 </ul>
             </div>
         </div>
