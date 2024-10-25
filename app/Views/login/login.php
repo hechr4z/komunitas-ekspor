@@ -63,10 +63,6 @@
     /*responsive mobile*/
     @media (max-width: 768px) {
 
-        body {
-            height: fit-content;
-        }
-
         .form-group {
             display: block;
         }
