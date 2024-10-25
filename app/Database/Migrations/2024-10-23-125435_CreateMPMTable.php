@@ -25,6 +25,7 @@ class CreateMPMTable extends Migration
             ],
             'update_terakhir' => [
                 'type' => 'DATETIME',
+                'null' => TRUE,
             ],
             'nama_perusahaan' => [
                 'type'       => 'VARCHAR',
@@ -38,10 +39,10 @@ class CreateMPMTable extends Migration
                 'type' => 'ENUM',
                 'constraint' => ['Terkirim', 'Gagal'],
                 'default' => 'Terkirim',
-                'null' => false,
             ],
             'progres' => [
                 'type'       => 'TEXT',
+                'null' => TRUE,
             ],
         ]);
 
