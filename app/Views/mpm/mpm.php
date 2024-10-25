@@ -119,40 +119,35 @@
                 <!-- Tambah Progress Form -->
                 <div class="tab-pane fade show active" id="tambah-progress" role="tabpanel"
                     aria-labelledby="tambah-progress-tab">
-                    <form action="your-action-url" method="POST" class="col-md-6 mx-auto">
+                    <form action="<?= base_url('/mpm-add'); ?>" method="POST" enctype="multipart/form-data" class="col-md-6 mx-auto">
                         <!-- Tanggal Kirim Email -->
                         <div class="mb-3">
-                            <label for="tanggalKirimEmail" class="form-label">Tanggal Kirim Email</label>
-                            <input type="date" class="form-control" id="tanggalKirimEmail" name="tanggal_kirim_email"
+                            <label for="tgl_kirim_email" class="form-label">Tanggal Kirim Email</label>
+                            <input type="date" class="form-control" id="tgl_kirim_email" name="tgl_kirim_email"
                                 required>
                         </div>
 
                         <!-- Nama Perusahaan -->
                         <div class="mb-3">
-                            <label for="namaPerusahaan" class="form-label">Nama Perusahaan</label>
-                            <input type="text" class="form-control" id="namaPerusahaan" name="nama_perusahaan" required>
+                            <label for="nama_perusahaan" class="form-label">Nama Perusahaan</label>
+                            <input type="text" class="form-control" id="nama_perusahaan" name="nama_perusahaan" required>
                         </div>
 
                         <!-- Negara Perusahaan Dropdown -->
                         <div class="mb-3">
-                            <label for="negaraPerusahaan" class="form-label">Negara Perusahaan</label>
-                            <select class="form-select" id="negaraPerusahaan" name="negara_perusahaan" required>
+                            <label for="negara_perusahaan" class="form-label">Negara Perusahaan</label>
+                            <select class="form-select" id="negara_perusahaan" name="negara_perusahaan" required>
                                 <option value="" selected disabled>Pilih Negara</option>
-                                <option value="Indonesia">Indonesia</option>
-                                <option value="Malaysia">Malaysia</option>
-                                <option value="Singapura">Singapura</option>
-                                <option value="Amerika Serikat">Amerika Serikat</option>
-                                <!-- Add more countries as needed -->
                             </select>
                         </div>
 
-                        <!-- Status Terkirim Dropdown -->
+                        <!-- Status Progres Dropdown -->
                         <div class="mb-3">
-                            <label for="statusTerkirim" class="form-label">Status Terkirim</label>
-                            <select class="form-select" id="statusTerkirim" name="status_terkirim" required>
+                            <label for="status_progres" class="form-label">Status Progres</label>
+                            <select class="form-select" id="status_progres" name="status_progres" required>
                                 <option value="" selected disabled>Pilih Status</option>
                                 <option value="Terkirim">Terkirim</option>
-                                <option value="Belum Terkirim">Belum Terkirim</option>
+                                <option value="Gagal">Gagal</option>
                             </select>
                         </div>
 
@@ -174,7 +169,7 @@
                                     <th>Update Terakhir</th>
                                     <th>Nama Perusahaan</th>
                                     <th>Negara Perusahaan</th>
-                                    <th>Status Terkirim</th>
+                                    <th>Status Progres</th>
                                     <th style="min-width: 150px;">Progress</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -253,10 +248,10 @@
                                         </select>
                                     </div>
 
-                                    <!-- Status Terkirim -->
+                                    <!-- Status Progres -->
                                     <div class="mb-3">
-                                        <label for="status-terkirim" class="form-label">Status Terkirim</label>
-                                        <select id="status-terkirim" name="status-terkirim" class="form-select"
+                                        <label for="status_progres" class="form-label">Status Progres</label>
+                                        <select id="status_progres" name="status_progres" class="form-select"
                                             required>
                                             <option value="Terkirim">Terkirim</option>
                                             <option value="Gagal">Gagal</option>
@@ -349,6 +344,35 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 
 <script>
+    // CKEDITOR
+    document.addEventListener('DOMContentLoaded', function() {
+        // Inisialisasi CKEditor
+        ClassicEditor
+            .create(document.querySelector('#progress-editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    });
+
+    // Fetch data from a public API that provides country lists
+    fetch('https://restcountries.com/v3.1/all')
+        .then(response => response.json())
+        .then(data => {
+            const selectElement = document.getElementById('negara_perusahaan');
+
+            // Sort countries alphabetically by name
+            data.sort((a, b) => a.name.common.localeCompare(b.name.common));
+
+            // Loop through the countries and add them to the select element
+            data.forEach(country => {
+                const option = document.createElement('option');
+                option.value = country.name.common;
+                option.textContent = country.name.common;
+                selectElement.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching country data:', error));
+
     document.addEventListener('DOMContentLoaded', function() {
         const monthSelect = document.getElementById('filter-bulan');
         const yearSelect = document.getElementById('filter-tahun');
