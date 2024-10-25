@@ -859,6 +859,24 @@ class KomunitasEkspor extends BaseController
         return view('mpm/mpm', $data);
     }
 
+    public function add_mpm()
+    {
+        $data = [
+            'id_member' =>  1,
+            'tgl_kirim_email' => $this->request->getPost('tgl_kirim_email'),
+            'update_terakhir' => NULL,
+            'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
+            'negara_perusahaan' => $this->request->getPost('negara_perusahaan'),
+            'status_progres' => $this->request->getPost('status_progres'),
+            'progres' => NULL,
+        ];
+
+        $model_mpm = new MPM();
+        $model_mpm->insert($data);
+
+        return redirect()->to('/mpm');
+    }
+
     public function getEmailsByDate($month, $year)
     {
         $model_mpm = new MPM();
