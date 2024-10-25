@@ -656,7 +656,7 @@
     }
 
     // Add listeners to inputs for dynamic calculation
-    document.querySelectorAll('#jumlahBarang, #hpp, #keuntungan, #hargaEXwork, #hargaFOB, #hargaCFR').forEach(function (element) {
+    document.querySelectorAll('#jumlahBarang, #hpp, #keuntungan, #hargaExwork, #hargaFOB, #hargaCFR').forEach(function (element) {
         element.addEventListener('keyup', function (e) {
             e.target.value = formatRupiah(e.target.value); // Format as rupiah
             hitungExwork(); // Calculate Exwork
