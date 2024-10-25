@@ -213,7 +213,7 @@ $this->setData([
                 <hr style="color: #FF9900; width: 50px;">
                 <p class="fw-lighter ms-3 mt-1"><?= lang('Blog.populerMemberSubtitle'); ?></p>
             </div>
-            <h1 class="fw-lighter"><?= lang('Blog.communityTitle'); ?></h1>
+            <h1 class="fw-lighter"><?= ($lang == 'en') ? $webprofile[0]['nama_web_en'] : $webprofile[0]['nama_web'] ?></h1>
             <h1 class="fw-bold" style="color: #03AADE;"><?= lang('Blog.populerMemberDescription'); ?></h1>
             <div class="d-flex justify-content-between">
                 <p><?= lang('Blog.populerMemberContent'); ?></p>
@@ -300,12 +300,12 @@ $this->setData([
                         <path fill="currentColor"
                             d="M16 1c-8.84 0-16 7.16-16 16s7.16 16 16 16 16-7.16 16-16S24.84 1 16 1zm0 28c-6.61 0-12-5.39-12-12S9.39 5 16 5s12 5.39 12 12-5.39 12-12 12z" />
                         <path fill="currentColor"
-                            d="M16 10c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2s2-.9 2-2v-4c0-1.1-.9-2-2-2zm0 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+                            d="<?= $manfaatjoin[0]['path_d'] ?>" />
                     </svg>
                 </div>
                 <div class="ms-4 mt-1">
-                    <p style="font-size: 20px;"><b><?= lang('Blog.businessOpportunities'); ?></b></p>
-                    <p><?= lang('Blog.networkAccess'); ?></p>
+                    <p style="font-size: 20px;"><b><?= ($lang == 'en') ? $manfaatjoin[0]['judul_manfaat_en'] : $manfaatjoin[0]['judul_manfaat'] ?></b></p>
+                    <p><?= ($lang == 'en') ? $manfaatjoin[0]['deskripsi_manfaat_en'] : $manfaatjoin[0]['deskripsi_manfaat'] ?></p>
                 </div>
             </div>
             <div class="d-flex">
@@ -314,12 +314,12 @@ $this->setData([
                         <path fill="currentColor"
                             d="M16 1c-8.84 0-16 7.16-16 16s7.16 16 16 16 16-7.16 16-16S24.84 1 16 1zm0 28c-6.61 0-12-5.39-12-12S9.39 5 16 5s12 5.39 12 12-5.39 12-12 12z" />
                         <path fill="currentColor"
-                            d="M22 15h-6V9h-4v6H10l6 6 6-6z" />
+                            d="<?= $manfaatjoin[1]['path_d'] ?>" />
                     </svg>
                 </div>
                 <div class="ms-4 mt-1">
-                    <p style="font-size: 20px;"><b><?= lang('Blog.trainingAndWorkshops'); ?></b></p>
-                    <p><?= lang('Blog.freeTrainingAccess'); ?></p>
+                    <p style="font-size: 20px;"><b><?= ($lang == 'en') ? $manfaatjoin[1]['judul_manfaat_en'] : $manfaatjoin[1]['judul_manfaat'] ?></b></p>
+                    <p><?= ($lang == 'en') ? $manfaatjoin[1]['deskripsi_manfaat_en'] : $manfaatjoin[1]['deskripsi_manfaat'] ?></p>
                 </div>
             </div>
             <div class="d-flex">
@@ -328,12 +328,12 @@ $this->setData([
                         <path fill="currentColor"
                             d="M16 1c-8.84 0-16 7.16-16 16s7.16 16 16 16 16-7.16 16-16S24.84 1 16 1zm0 28c-6.61 0-12-5.39-12-12S9.39 5 16 5s12 5.39 12 12-5.39 12-12 12z" />
                         <path fill="currentColor"
-                            d="M12 18h-2l6 6 6-6h-2v-4h-8z" />
+                            d="<?= $manfaatjoin[2]['path_d'] ?>" />
                     </svg>
                 </div>
                 <div class="ms-4 mt-1">
-                    <p style="font-size: 20px;"><b><?= lang('Blog.certificates'); ?></b></p>
-                    <p><?= lang('Blog.officialCertificate'); ?></p>
+                    <p style="font-size: 20px;"><b><?= ($lang == 'en') ? $manfaatjoin[2]['judul_manfaat_en'] : $manfaatjoin[2]['judul_manfaat'] ?></b></p>
+                    <p><?= ($lang == 'en') ? $manfaatjoin[2]['deskripsi_manfaat_en'] : $manfaatjoin[2]['deskripsi_manfaat'] ?></p>
                 </div>
             </div>
         </div>
