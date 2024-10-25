@@ -26,7 +26,7 @@ return [
     'populerMemberTitle' => 'POPULER MEMBER',
     'topMemberSpotlightTitle' => 'TOP MEMBER SPOTLIGHT',
     'populerMemberSubtitle' => 'Populer Member',
-    'communityTitle' => 'Komunitas Ekspor Indonesia',
+    // 'communityTitle' => 'Komunitas Ekspor Indonesia',
     'populerMemberDescription' => 'Member Populer Komunitas Ekspor',
     'populerMemberContent' => 'Temukan anggota populer dalam komunitas ekspor Indonesia.<br>Setiap anggota dipilih secara teliti untuk memberikan kontribusi yang berguna dan berkelanjutan di bidang ekspor Indonesia.<br>Masing-masing anggota membawa keunikan dalam komunitas ekspor Indonesia.',
     // Bergabunglah Bersama Kami Section
@@ -37,15 +37,15 @@ return [
     'benefitsJoinTitle' => 'MANFAAT JOIN MEMBER',
     'benefitsJoinDescription' => 'Menjadi anggota komunitas ekspor memberikan akses ke peluang yang lebih luas dan dukungan yang berharga. <br> Bergabunglah untuk meningkatkan jaringan dan keterampilan Anda.',
     // Sub-sections
-    'businessOpportunities' => 'Peluang Bisnis',
-    'networkAccess' => 'Akses ke Jaringan Bisnis. <br> Kesempatan Kolaborasi Internasional',
+    // 'businessOpportunities' => 'Peluang Bisnis',
+    // 'networkAccess' => 'Akses ke Jaringan Bisnis. <br> Kesempatan Kolaborasi Internasional',
 
-    'trainingAndWorkshops' => 'Pelatihan dan Workshop',
-    'freeTrainingAccess' => 'Akses Pelatihan Gratis',
+    // 'trainingAndWorkshops' => 'Pelatihan dan Workshop',
+    // 'freeTrainingAccess' => 'Akses Pelatihan Gratis',
     'exportSkillsDevelopment' => 'Pengembangan Keterampilan Ekspor',
 
-    'certificates' => 'Sertifikat',
-    'officialCertificate' => 'Mendapatkan Sertifikat Resmi',
+    // 'certificates' => 'Sertifikat',
+    // 'officialCertificate' => 'Mendapatkan Sertifikat Resmi',
     'networkExpansion' => 'Memperluas Jaringan & Relasi',
     // Join Exporter Community Section
     'joinExporterCommunityTitle' => 'Bergabunglah dengan Komunitas Eksportir!',

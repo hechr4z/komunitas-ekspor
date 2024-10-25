@@ -133,58 +133,69 @@ $this->setData([
     }
 </style>
 
-<!-- slider -->
-<div id="carouselExampleDark" class="carousel carousel-dark slide">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-        <!-- Slide 1 -->
-        <div class="carousel-item active" data-bs-interval="10000">
-            <img src="<?= base_url('img/' . $slider[0]['img_slider']); ?>" class="d-block w-100" alt="Slide 1">
-            <div class="carousel-caption d-none d-md-block text-light mb-3">
-                <h5><?= ($lang == 'en') ? $slider[0]['judul_slider_en'] : $slider[0]['judul_slider'] ?></h5>
-                <p><?= ($lang == 'en') ? $slider[0]['deskripsi_slider_en'] : $slider[0]['deskripsi_slider'] ?></p>
-                <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
-                    <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
-                </a>
-            </div>
-        </div>
-        <!-- Slide 2 -->
-        <div class="carousel-item" data-bs-interval="2000">
-            <img src="<?= base_url('img/' . $slider[1]['img_slider']); ?>" class="d-block w-100" alt="Slide 2">
-            <div class="carousel-caption d-none d-md-block text-light mb-3">
-                <h5><?= ($lang == 'en') ? $slider[1]['judul_slider_en'] : $slider[1]['judul_slider'] ?></h5>
-                <p><?= ($lang == 'en') ? $slider[1]['deskripsi_slider_en'] : $slider[1]['deskripsi_slider'] ?></p>
-                <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
-                    <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
-                </a>
-            </div>
-        </div>
-        <!-- Slide 3 -->
-        <div class="carousel-item">
-            <img src="<?= base_url('img/' . $slider[2]['img_slider']); ?>" class="d-block w-100" alt="Slide 3">
-            <div class="carousel-caption d-none d-md-block text-light mb-3">
-                <h5><?= ($lang == 'en') ? $slider[2]['judul_slider_en'] : $slider[2]['judul_slider'] ?></h5>
-                <p><?= ($lang == 'en') ? $slider[2]['deskripsi_slider_en'] : $slider[2]['deskripsi_slider'] ?></p>
-                <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
-                    <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
-                </a>
+<?php if (empty($slider)): ?>
+    <div class="container">
+        <div class="col-12 mt-2">
+            <div class="alert alert-info text-center" role="alert">
+                Masih belum ada Data Slider.
             </div>
         </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
-<!-- end -->
+<?php else: ?>
+    <!-- slider -->
+    <div id="carouselExampleDark" class="carousel carousel-dark slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <!-- Slide 1 -->
+            <div class="carousel-item active" data-bs-interval="10000">
+                <img src="<?= base_url('img/' . $slider[0]['img_slider']); ?>" class="d-block w-100" alt="Slide 1">
+                <div class="carousel-caption d-none d-md-block text-light mb-3">
+                    <h5><?= ($lang == 'en') ? $slider[0]['judul_slider_en'] : $slider[0]['judul_slider'] ?></h5>
+                    <p><?= ($lang == 'en') ? $slider[0]['deskripsi_slider_en'] : $slider[0]['deskripsi_slider'] ?></p>
+                    <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
+                        <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
+                    </a>
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="<?= base_url('img/' . $slider[1]['img_slider']); ?>" class="d-block w-100" alt="Slide 2">
+                <div class="carousel-caption d-none d-md-block text-light mb-3">
+                    <h5><?= ($lang == 'en') ? $slider[1]['judul_slider_en'] : $slider[1]['judul_slider'] ?></h5>
+                    <p><?= ($lang == 'en') ? $slider[1]['deskripsi_slider_en'] : $slider[1]['deskripsi_slider'] ?></p>
+                    <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
+                        <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
+                    </a>
+                </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+                <img src="<?= base_url('img/' . $slider[2]['img_slider']); ?>" class="d-block w-100" alt="Slide 3">
+                <div class="carousel-caption d-none d-md-block text-light mb-3">
+                    <h5><?= ($lang == 'en') ? $slider[2]['judul_slider_en'] : $slider[2]['judul_slider'] ?></h5>
+                    <p><?= ($lang == 'en') ? $slider[2]['deskripsi_slider_en'] : $slider[2]['deskripsi_slider'] ?></p>
+                    <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
+                        <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!-- end -->
+<?php endif; ?>
+
 
 <!-- populer member -->
 <section>
@@ -202,7 +213,7 @@ $this->setData([
                 <hr style="color: #FF9900; width: 50px;">
                 <p class="fw-lighter ms-3 mt-1"><?= lang('Blog.populerMemberSubtitle'); ?></p>
             </div>
-            <h1 class="fw-lighter"><?= lang('Blog.communityTitle'); ?></h1>
+            <h1 class="fw-lighter"><?= ($lang == 'en') ? $webprofile[0]['nama_web_en'] : $webprofile[0]['nama_web'] ?></h1>
             <h1 class="fw-bold" style="color: #03AADE;"><?= lang('Blog.populerMemberDescription'); ?></h1>
             <div class="d-flex justify-content-between">
                 <p><?= lang('Blog.populerMemberContent'); ?></p>
@@ -213,21 +224,29 @@ $this->setData([
         </div>
     </div>
     <div class="container mt-5">
-        <div class="d-flex justify-content-center gap-5">
-            <?php foreach ($top4_member as $item): ?>
-                <div class="card-container">
-                    <div class="card">
-                        <div class="img-content" style="display: flex; justify-content: center;">
-                            <img src="<?= base_url('img/' . $item['foto_profil']); ?>" style="width: 90%; height: 90%; object-fit: cover; border-radius: 10px;" alt="...">
-                        </div>
-                        <div class="content" style="text-align: center; padding: 10px 0; color: #03AADE;">
-                            <p class="heading" style="margin-bottom: 5px; font-weight: bold; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;"><?= $item['username'] ?></p>
-                            <p class="heading" style="margin-bottom: 5px; font-size: 15px; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;"><?= $item['nama_perusahaan'] ?></p>
+        <?php if (empty($top4_member)): ?>
+            <div class="col-12 mt-2">
+                <div class="alert alert-info text-center" role="alert">
+                    Masih belum ada Data Member.
+                </div>
+            </div>
+        <?php else: ?>
+            <div class="d-flex justify-content-center gap-5">
+                <?php foreach ($top4_member as $item): ?>
+                    <div class="card-container">
+                        <div class="card">
+                            <div class="img-content" style="display: flex; justify-content: center;">
+                                <img src="<?= base_url('img/' . $item['foto_profil']); ?>" style="width: 90%; height: 90%; object-fit: cover; border-radius: 10px;" alt="...">
+                            </div>
+                            <div class="content" style="text-align: center; padding: 10px 0; color: #03AADE;">
+                                <p class="heading" style="margin-bottom: 5px; font-weight: bold; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;"><?= $item['username'] ?></p>
+                                <p class="heading" style="margin-bottom: 5px; font-size: 15px; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;"><?= $item['nama_perusahaan'] ?></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
     </div>
 </section>
 <!-- end -->
@@ -281,12 +300,12 @@ $this->setData([
                         <path fill="currentColor"
                             d="M16 1c-8.84 0-16 7.16-16 16s7.16 16 16 16 16-7.16 16-16S24.84 1 16 1zm0 28c-6.61 0-12-5.39-12-12S9.39 5 16 5s12 5.39 12 12-5.39 12-12 12z" />
                         <path fill="currentColor"
-                            d="M16 10c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2s2-.9 2-2v-4c0-1.1-.9-2-2-2zm0 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+                            d="<?= $manfaatjoin[0]['path_d'] ?>" />
                     </svg>
                 </div>
                 <div class="ms-4 mt-1">
-                    <p style="font-size: 20px;"><b><?= lang('Blog.businessOpportunities'); ?></b></p>
-                    <p><?= lang('Blog.networkAccess'); ?></p>
+                    <p style="font-size: 20px;"><b><?= ($lang == 'en') ? $manfaatjoin[0]['judul_manfaat_en'] : $manfaatjoin[0]['judul_manfaat'] ?></b></p>
+                    <p><?= ($lang == 'en') ? $manfaatjoin[0]['deskripsi_manfaat_en'] : $manfaatjoin[0]['deskripsi_manfaat'] ?></p>
                 </div>
             </div>
             <div class="d-flex">
@@ -295,12 +314,12 @@ $this->setData([
                         <path fill="currentColor"
                             d="M16 1c-8.84 0-16 7.16-16 16s7.16 16 16 16 16-7.16 16-16S24.84 1 16 1zm0 28c-6.61 0-12-5.39-12-12S9.39 5 16 5s12 5.39 12 12-5.39 12-12 12z" />
                         <path fill="currentColor"
-                            d="M22 15h-6V9h-4v6H10l6 6 6-6z" />
+                            d="<?= $manfaatjoin[1]['path_d'] ?>" />
                     </svg>
                 </div>
                 <div class="ms-4 mt-1">
-                    <p style="font-size: 20px;"><b><?= lang('Blog.trainingAndWorkshops'); ?></b></p>
-                    <p><?= lang('Blog.freeTrainingAccess'); ?></p>
+                    <p style="font-size: 20px;"><b><?= ($lang == 'en') ? $manfaatjoin[1]['judul_manfaat_en'] : $manfaatjoin[1]['judul_manfaat'] ?></b></p>
+                    <p><?= ($lang == 'en') ? $manfaatjoin[1]['deskripsi_manfaat_en'] : $manfaatjoin[1]['deskripsi_manfaat'] ?></p>
                 </div>
             </div>
             <div class="d-flex">
@@ -309,12 +328,12 @@ $this->setData([
                         <path fill="currentColor"
                             d="M16 1c-8.84 0-16 7.16-16 16s7.16 16 16 16 16-7.16 16-16S24.84 1 16 1zm0 28c-6.61 0-12-5.39-12-12S9.39 5 16 5s12 5.39 12 12-5.39 12-12 12z" />
                         <path fill="currentColor"
-                            d="M12 18h-2l6 6 6-6h-2v-4h-8z" />
+                            d="<?= $manfaatjoin[2]['path_d'] ?>" />
                     </svg>
                 </div>
                 <div class="ms-4 mt-1">
-                    <p style="font-size: 20px;"><b><?= lang('Blog.certificates'); ?></b></p>
-                    <p><?= lang('Blog.officialCertificate'); ?></p>
+                    <p style="font-size: 20px;"><b><?= ($lang == 'en') ? $manfaatjoin[2]['judul_manfaat_en'] : $manfaatjoin[2]['judul_manfaat'] ?></b></p>
+                    <p><?= ($lang == 'en') ? $manfaatjoin[2]['deskripsi_manfaat_en'] : $manfaatjoin[2]['deskripsi_manfaat'] ?></p>
                 </div>
             </div>
         </div>

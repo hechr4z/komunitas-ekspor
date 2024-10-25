@@ -25,7 +25,7 @@ return [
     'populerMemberTitle' => 'POPULAR MEMBER',
     'topMemberSpotlightTitle' => 'TOP MEMBER',
     'populerMemberSubtitle' => 'Popular Member',
-    'communityTitle' => 'Indonesian Export Community',
+    // 'communityTitle' => 'Indonesian Export Community',
     'populerMemberDescription' => 'Popular Members of the Export Community',
     'populerMemberContent' => 'Discover popular members in Indonesia’s export community.<br>Each member is carefully selected to contribute valuable and sustainable efforts in Indonesia’s export sector.<br>Every member brings uniqueness to the Indonesian export community.',
     // Join Us Section
@@ -36,14 +36,14 @@ return [
     'benefitsJoinTitle' => 'BENEFITS OF JOINING AS A MEMBER',
     'benefitsJoinDescription' => 'Becoming a member of the export community provides access to broader opportunities and valuable support. <br> Join to expand your network and enhance your skills.',
     // Sub-sections
-    'businessOpportunities' => 'Business Opportunities',
-    'networkAccess' => 'Access to Business Networks. <br> International Collaboration Opportunities',
+    // 'businessOpportunities' => 'Business Opportunities',
+    // 'networkAccess' => 'Access to Business Networks. <br> International Collaboration Opportunities',
 
-    'trainingAndWorkshops' => 'Training and Workshops',
-    'freeTrainingAccess' => 'Access to Free Training. <br> Export Skills Development',
+    // 'trainingAndWorkshops' => 'Training and Workshops',
+    // 'freeTrainingAccess' => 'Access to Free Training. <br> Export Skills Development',
 
-    'certificates' => 'Certificates',
-    'officialCertificate' => 'Receive Official Certificate. <br> Expand Your Network & Relationships',
+    // 'certificates' => 'Certificates',
+    // 'officialCertificate' => 'Receive Official Certificate. <br> Expand Your Network & Relationships',
     // Join Exporter Community Section
     'joinExporterCommunityTitle' => 'Join the Exporter Community!',
     'joinExporterCommunityDescription' => 'Be part of a successful exporter network. Gain opportunities, knowledge, and support to grow your export business.', // Member Map and Spotlight Section

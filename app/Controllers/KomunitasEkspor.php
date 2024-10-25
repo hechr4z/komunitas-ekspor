@@ -18,6 +18,8 @@ use App\Models\CIF;
 use App\Models\Satuan;
 use App\Models\MPM;
 use App\Models\Slider;
+use App\Models\WebProfile;
+use App\Models\ManfaatJoin;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class KomunitasEkspor extends BaseController
@@ -27,8 +29,15 @@ class KomunitasEkspor extends BaseController
         $lang = session()->get('lang') ?? 'id';
         $data['lang'] = $lang;
 
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
         $model_slider = new Slider();
         $model_member = new Member();
+        $model_manfaatjoin = new ManfaatJoin();
 
         $slider = $model_slider->findAll();
         $member = $model_member->findAll();
@@ -36,6 +45,7 @@ class KomunitasEkspor extends BaseController
             ->orderBy('popular_point', 'DESC')
             ->limit(4)
             ->findAll();
+        $manfaatjoin = $model_manfaatjoin->findAll();
 
         foreach ($member as &$item) {
             $item['slug'] = url_title($item['username'], '-', true);
@@ -43,6 +53,7 @@ class KomunitasEkspor extends BaseController
 
         $data['slider'] = $slider;
         $data['member'] = $member;
+        $data['manfaatjoin'] = $manfaatjoin;
         $data['top4_member'] = $top4_member;
 
         return view('beranda/index', $data);
@@ -50,6 +61,12 @@ class KomunitasEkspor extends BaseController
 
     public function belajar_ekspor($slug = null)
     {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
         $belajarEksporModel = new BelajarEksporModel();
         $kategoriBelajarEksporModel = new KategoriBelajarEksporModel();
 
@@ -80,6 +97,12 @@ class KomunitasEkspor extends BaseController
 
     public function search_belajar_ekspor()
     {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
         helper('text');
 
         // Ambil keyword dari query string
@@ -117,6 +140,12 @@ class KomunitasEkspor extends BaseController
 
     public function kategori_belajar_ekspor($slug)
     {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
         $belajarEksporModel = new BelajarEksporModel();
         $kategoriBelajarEksporModel = new KategoriBelajarEksporModel();
 
@@ -141,6 +170,10 @@ class KomunitasEkspor extends BaseController
 
     public function belajar_ekspor_detail($slug)
     {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
         $belajarEksporModel = new BelajarEksporModel();
         $kategoriModel = new KategoriBelajarEksporModel();
 
@@ -162,7 +195,8 @@ class KomunitasEkspor extends BaseController
         $data = [
             'artikel' => $artikel,
             'kategori' => $kategori,
-            'belajar_ekspor' => $related_artikel
+            'belajar_ekspor' => $related_artikel,
+            'webprofile' => $webprofile,
         ];
 
         return view('belajar-ekspor/belajar_ekspor_detail', $data);
@@ -171,11 +205,23 @@ class KomunitasEkspor extends BaseController
 
     public function pendaftaran()
     {
-        return view('pendaftaran/pendaftaran');
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
+        return view('pendaftaran/pendaftaran', $data);
     }
 
     public function video_tutorial($slug = null)
     {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
         $vidioModel = new VidioTutorialModel();
         $kategoriModel = new KategoriVidioModel();
 
@@ -205,6 +251,10 @@ class KomunitasEkspor extends BaseController
 
     public function video_selengkapnya($slug)
     {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
         $vidioModel = new VidioTutorialModel();
         $kategoriModel = new KategoriVidioModel();
 
@@ -221,7 +271,8 @@ class KomunitasEkspor extends BaseController
         // Mengirim data ke view
         $data = [
             'kategori' => $kategori,
-            'video_tutorial' => $videos
+            'video_tutorial' => $videos,
+            'webprofile' => $webprofile,
         ];
 
         return view('video-tutorial/video_selengkapnya', $data);
@@ -229,6 +280,10 @@ class KomunitasEkspor extends BaseController
 
     public function video_tutorial_detail($slug)
     {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
         // Inisialisasi model untuk video dan kategori
         $vidioModel = new VidioTutorialModel();
         $kategoriModel = new KategoriVidioModel();
@@ -251,7 +306,8 @@ class KomunitasEkspor extends BaseController
         $data = [
             'video' => $video,
             'related_videos' => $related_videos,
-            'kategori' => $kategori
+            'kategori' => $kategori,
+            'webprofile' => $webprofile,
         ];
 
         // Mengembalikan view dengan data yang telah disiapkan
@@ -335,21 +391,27 @@ class KomunitasEkspor extends BaseController
             }
         }
 
-
-        // Cek apakah kode referral sama dengan username
-        if ($referral && $username) {
-            if ($referral === $username) {
-                return $this->response->setJSON(['status' => 'invalid', 'field' => 'referral', 'message' => 'Kode referral tidak bisa sama dengan username']);
+        // Cek apakah referral valid (harus ada di database)
+        if ($referral) {
+            $referralExists = $userModel->where('username', $referral)->first();  // Cek referral sebagai username di database
+            if (!$referralExists) {
+                return $this->response->setJSON(['status' => 'invalid', 'field' => 'referral', 'message' => 'Kode referral tidak valid']);
+            } else {
+                return $this->response->setJSON(['status' => 'valid', 'field' => 'referral']);
             }
         }
 
-
-        // Jika tidak ada username atau email di request
         return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid request']);
     }
 
     public function data_member_visitor()
     {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
         $lang = session()->get('lang') ?? 'id';
         $data['lang'] = $lang;
 
@@ -397,6 +459,12 @@ class KomunitasEkspor extends BaseController
 
     public function detail_member($slug)
     {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
         $lang = session()->get('lang') ?? 'id';
         $data['lang'] = $lang;
 
@@ -454,22 +522,39 @@ class KomunitasEkspor extends BaseController
 
     public function data_buyers()
     {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
         $lang = session()->get('lang') ?? 'id';
         $data['lang'] = $lang;
 
         $model_buyers = new Buyers();
 
+        // Set pagination
+        $perPage = 10; // Number of members per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
         $buyers = $model_buyers
             ->orderBy('verif_date', 'DESC')
-            ->findAll();
+            ->paginate($perPage);
 
         $data['buyers'] = $buyers;
+        $data['pager'] = $model_buyers->pager;
 
         return view('data-buyers/index', $data);
     }
 
     public function search_buyers()
     {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
         $lang = session()->get('lang') ?? 'id';
         $data['lang'] = $lang;
 
@@ -480,11 +565,15 @@ class KomunitasEkspor extends BaseController
 
         $model_buyers = new Buyers();
 
+        // Set pagination
+        $perPage = 10; // Number of members per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
         // Query pencarian: mencari berdasarkan judul, tags, atau deskripsi
         $hasilPencarian = $model_buyers->like('nama_perusahaan', $keyword)
             ->orLike('hs_code', $keyword)
             ->orLike('negara_perusahaan', $keyword)
-            ->findAll(); // Pastikan method ini mengembalikan data dengan kategori
+            ->paginate($perPage); // Pastikan method ini mengembalikan data dengan kategori
 
         // Jika ada hasil pencarian
         if (count($hasilPencarian) > 0) {
@@ -495,6 +584,7 @@ class KomunitasEkspor extends BaseController
 
         // Kirimkan keyword pencarian untuk ditampilkan di view
         $data['keyword'] = $keyword;
+        $data['pager'] = $model_buyers->pager;
 
         return view('data-buyers/search', $data);
     }
@@ -506,6 +596,12 @@ class KomunitasEkspor extends BaseController
 
     public function index_kalkulator()
     {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
         $model_exwork = new Exwork();
         $model_fob = new FOB();
         $model_cfr = new CFR();
@@ -716,6 +812,12 @@ class KomunitasEkspor extends BaseController
 
     public function mpm()
     {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
         $model_mpm = new MPM();
 
         // Cari tahun paling lama yang ada di database

@@ -374,23 +374,23 @@
                 <div class="d-flex justify-content-start gap-3">
                     <div class="d-flex align-items-center gap-2 icon-text text-light" style="white-space: nowrap;">
                         <i class="fas fa-map-marker-alt m-0" style="font-size: 12px; color: white;"></i>
-                        <p class="mb-0" style="color: white; font-size: 12px;">Sawojajar, Malang, Jawa Timur</p>
+                        <p class="mb-0" style="color: white; font-size: 12px;"><?= $webprofile[0]['lokasi_web'] ?></p>
                     </div>
                     <div class="d-flex align-items-center gap-2 icon-text text-light" style="white-space: nowrap;">
                         <i class="fas fa-envelope m-0" style="font-size: 12px; color: white;"></i>
-                        <p class="mb-0" style="color: white; font-size: 12px;">komunitasekspor@gmail.com</p>
+                        <p class="mb-0" style="color: white; font-size: 12px;"><?= $webprofile[0]['email_web'] ?></p>
                     </div>
                 </div>
                 <!-- Ikon Sosial Media dan Garis -->
                 <div class="d-flex align-items-center" style="margin-left: 500px;">
                     <div class="d-flex gap-3 me-4" style="margin-left: 190px;">
-                        <a href="https://www.instagram.com" target="_blank" class="social-link">
+                        <a href="<?= 'https://' . $webprofile[0]['link_ig_web'] ?>" target="_blank" class="social-link">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="https://www.youtube.com" target="_blank" class="social-link">
+                        <a href="<?= 'https://' . $webprofile[0]['link_yt_web'] ?>" target="_blank" class="social-link">
                             <i class="fab fa-youtube"></i>
                         </a>
-                        <a href="https://www.facebook.com" target="_blank" class="social-link">
+                        <a href="<?= 'https://' . $webprofile[0]['link_fb_web'] ?>" target="_blank" class="social-link">
                             <i class="fab fa-facebook"></i>
                         </a>
                     </div>
@@ -424,7 +424,7 @@
     <!-- start navbar -->
     <nav class="navbar navbar-custom navbar-expand-lg sticky-top" style="background-color: #03AADE;">
         <div class="container d-flex justify-content-between align-items-center py-1">
-            <img onclick="window.location.href='/'" style="width:160px;" src="/img/logokei.png" alt="logo">
+            <img onclick="window.location.href='/'" style="width:160px;" src="<?= base_url('img/' . $webprofile[0]['logo_web']); ?>" alt="logo">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -494,46 +494,52 @@
                 <div class="row d-flex justify-content-center gap-5">
                     <!-- Logo and Company Description -->
                     <div class="col-md-6 mb-4">
-                        <img src="/img/logokei.png" alt="logo" style="width: 180px;">
-                        <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                        <img src="<?= base_url('img/' . $webprofile[0]['logo_web']); ?>" alt="logo" style="width: 180px;">
+                        <p class="mt-4"><?= ($lang == 'en') ? $webprofile[0]['deskripsi_web_en'] : $webprofile[0]['deskripsi_web'] ?></p>
                         <!-- Social Media Icons -->
                         <div class="container2 gap-2 mt-3">
-                            <button class="Btn instagram">
-                                <svg
-                                    class="svgIcon"
-                                    viewBox="0 0 448 512"
-                                    height="1.5em"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path>
-                                </svg>
-                                <span class="text">Instagram</span>
-                            </button>
+                            <a href="<?= 'https://' . $webprofile[0]['link_ig_web'] ?>" target="_blank">
+                                <button class="Btn instagram">
+                                    <svg
+                                        class="svgIcon"
+                                        viewBox="0 0 448 512"
+                                        height="1.5em"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path>
+                                    </svg>
+                                    <span class="text">Instagram</span>
+                                </button>
+                            </a>
 
-                            <button class="Btn youtube">
-                                <svg
-                                    class="svgIcon"
-                                    viewBox="0 0 576 512"
-                                    height="1.5em"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M549.655 148.28c-6.281-23.64-24.041-42.396-47.655-48.685C462.923 85 288 85 288 85S113.077 85 74 99.595c-23.614 6.289-41.374 25.045-47.655 48.685-12.614 47.328-12.614 147.717-12.614 147.717s0 100.39 12.614 147.718c6.281 23.64 24.041 42.396 47.655 48.684C113.077 427 288 427 288 427s174.923 0 214-14.595c23.614-6.289 41.374-25.045 47.655-48.685 12.614-47.328 12.614-147.718 12.614-147.718s0-100.389-12.614-147.717zM240 336V176l144 80-144 80z"></path>
-                                </svg>
-                                <span class="text">YouTube</span>
-                            </button>
+                            <a href="<?= 'https://' . $webprofile[0]['link_yt_web'] ?>" target="_blank">
+                                <button class="Btn youtube">
+                                    <svg
+                                        class="svgIcon"
+                                        viewBox="0 0 576 512"
+                                        height="1.5em"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M549.655 148.28c-6.281-23.64-24.041-42.396-47.655-48.685C462.923 85 288 85 288 85S113.077 85 74 99.595c-23.614 6.289-41.374 25.045-47.655 48.685-12.614 47.328-12.614 147.717-12.614 147.717s0 100.39 12.614 147.718c6.281 23.64 24.041 42.396 47.655 48.684C113.077 427 288 427 288 427s174.923 0 214-14.595c23.614-6.289 41.374-25.045 47.655-48.685 12.614-47.328 12.614-147.718 12.614-147.718s0-100.389-12.614-147.717zM240 336V176l144 80-144 80z"></path>
+                                    </svg>
+                                    <span class="text">YouTube</span>
+                                </button>
+                            </a>
 
-                            <button class="Btn facebook">
-                                <svg
-                                    class="svgIcon"
-                                    viewBox="0 0 512 512"
-                                    height="1.5em"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.5 90.7 225.9 209 240v-168h-63v-72h63v-55.2c0-62.2 37-96.8 93.6-96.8 27.1 0 55.4 4.8 55.4 4.8v61h-31.2c-30.8 0-40.4 19.1-40.4 38.7V256h68l-11 72h-57v168c118.3-14.1 209-116.5 209-240z"
-                                        fill="white"></path>
-                                </svg>
-                                <span class="text">Facebook</span>
-                            </button>
+                            <a href="<?= 'https://' . $webprofile[0]['link_fb_web'] ?>" target="_blank">
+                                <button class="Btn facebook">
+                                    <svg
+                                        class="svgIcon"
+                                        viewBox="0 0 512 512"
+                                        height="1.5em"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.5 90.7 225.9 209 240v-168h-63v-72h63v-55.2c0-62.2 37-96.8 93.6-96.8 27.1 0 55.4 4.8 55.4 4.8v61h-31.2c-30.8 0-40.4 19.1-40.4 38.7V256h68l-11 72h-57v168c118.3-14.1 209-116.5 209-240z"
+                                            fill="white"></path>
+                                    </svg>
+                                    <span class="text">Facebook</span>
+                                </button>
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -542,15 +548,15 @@
                             <p><a href="<?= base_url($lang .  '/' . $belajarEksporLink) ?>" class="footer-link"><?php echo lang('Blog.headerArtikel'); ?></a></p>
                             <p><a href="#" class="footer-link"><?php echo lang('Blog.headerVideo'); ?></a></p>
                             <p><a href="<?= base_url($lang .  '/' . $memberLink) ?>" class="footer-link"><?php echo lang('Blog.headerMember'); ?></a></p>
-                            <p><a href="#" class="footer-link"><?php echo lang('Blog.headerBuyers'); ?></a></p>
+                            <p><a href="<?= base_url($lang .  '/' . $buyersLink) ?>" class="footer-link"><?php echo lang('Blog.headerBuyers'); ?></a></p>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <h5 class="mt-4"><b><?php echo lang('Blog.headerAplikasi'); ?></b></h5>
                         <div class="list-unstyled pt-2">
-                            <p><a href="<?= base_url('kalkulator-ekspor') ?>" class="footer-link"><?php echo lang('Blog.headerApp1'); ?></a></p>
-                            <p><a href="<?= base_url('mpm') ?>" class="footer-link"><?php echo lang('Blog.headerApp2'); ?></a></p>
-                            <p><a href="#" class="footer-link"><?php echo lang('Blog.headerApp3'); ?></a></p>
+                            <p onclick="showSweetAlertKHE()"><a href="#" class="footer-link"><?php echo lang('Blog.headerApp1'); ?></a></p>
+                            <p onclick="showSweetAlertKHE()"><a href="#" class="footer-link"><?php echo lang('Blog.headerApp2'); ?></a></p>
+                            <p onclick="showSweetAlertKHE()"><a href="#" class="footer-link"><?php echo lang('Blog.headerApp3'); ?></a></p>
                         </div>
                     </div>
                 </div>
@@ -562,7 +568,7 @@
     <!-- Bottom Footer -->
     <div class="py-4" style="background-color: #F2BF02; height: 70px;">
         <div class="container">
-            <p class="text-light mb-0 ms-5 ps-1">&copy; 2024 Komunitas Ekspor Indonesia 24. All rights reserved.</p>
+            <p class="text-light mb-0 ms-5 ps-1"><?= $webprofile[0]['footer_text'] ?></p>
         </div>
     </div>
 

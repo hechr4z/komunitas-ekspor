@@ -223,18 +223,21 @@
                             </td>
                         </tr>
                     <?php endforeach; ?>
-                <?php endif; ?>
             </tbody>
         </table>
-        <!-- Tombol Hilangi Blur -->
-        <div class="badgepanjang p-3 mt-3">
-            <div class="d-flex justify-content-between align-items-center mt-3 mb-3 flex-md-row flex-column">
-                <h5 class="kategori font-weight-bold mb-0 text-left text-md-left">
-                    <?= lang('Blog.joinMemberTitle') ?>
-                </h5>
-                <a href="/pendaftaran" class="btn btn-custom mt-md-0"><?= lang('Blog.memberRegistration') ?></a>
-            </div>
+        <div class="mt-2">
+            <?= $pager->links('default', 'bootstrap_pagination') ?>
         </div>
+    <?php endif; ?>
+    <!-- Tombol Hilangi Blur -->
+    <div class="badgepanjang p-3 mt-3">
+        <div class="d-flex justify-content-between align-items-center mt-3 mb-3 flex-md-row flex-column">
+            <h5 class="kategori font-weight-bold mb-0 text-left text-md-left">
+                <?= lang('Blog.joinMemberTitle') ?>
+            </h5>
+            <a href="/pendaftaran" class="btn btn-custom mt-md-0"><?= lang('Blog.memberRegistration') ?></a>
+        </div>
+    </div>
     </div>
 </div>
 
