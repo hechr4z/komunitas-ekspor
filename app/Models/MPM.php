@@ -13,6 +13,7 @@ class MPM extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        'id_member',
         'tgl_kirim_email',
         'update_terakhir',
         'nama_perusahaan',
