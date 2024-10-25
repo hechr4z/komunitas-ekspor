@@ -462,9 +462,9 @@
                                     <?php echo lang('Blog.headerAplikasi'); ?>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-light">
-                                    <li onclick="showSweetAlertKHE()"><a class="dropdown-item" href="#"><?php echo lang('Blog.headerApp1'); ?></a></li>
-                                    <li onclick="showSweetAlertMPP()"><a class="dropdown-item" href="#"><?php echo lang('Blog.headerApp2'); ?></a></li>
-                                    <li onclick="showSweetAlertAW()"><a class="dropdown-item" href="#"><?php echo lang('Blog.headerApp3'); ?></a></li>
+                                    <li onclick="showSweetAlertKHE()"><a class="dropdown-item nav-link" href="#"><?php echo lang('Blog.headerApp1'); ?></a></li>
+                                    <li onclick="showSweetAlertMPP()"><a class="dropdown-item nav-link" href="#"><?php echo lang('Blog.headerApp2'); ?></a></li>
+                                    <li onclick="showSweetAlertAW()"><a class="dropdown-item nav-link" href="#"><?php echo lang('Blog.headerApp3'); ?></a></li>
                                 </ul>
                             </li>
                         </ul>
