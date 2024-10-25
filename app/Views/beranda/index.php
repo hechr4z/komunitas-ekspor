@@ -128,7 +128,7 @@ $this->setData([
 
     @media (min-width: 768px) {
         .carousel-item img {
-            max-height: 600px;
+            max-height: 400px;
         }
     }
 </style>
@@ -201,16 +201,22 @@ $this->setData([
 <section>
     <div class="container mt-5">
         <div class="d-flex justify-content-center">
-            <hr style="width: 40px; margin-top: 12px; margin-right: 10px;">
+            <div class="d-flex justify-content-center align-items-center mb-2">
+                <div class="border-top mx-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
+            </div>
             <h5 class="fw-lighter" data-en="ABOUT US" data-id="TENTANG KAMI"><?= lang('Blog.populerMemberTitle'); ?></h5>
-            <hr style="width: 40px; margin-top: 12px; margin-left: 10px;">
+            <div class="d-flex justify-content-center align-items-center mb-2">
+                <div class="border-top ms-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
+            </div>
         </div>
         <h1 class="text-center" data-en="WHO WE ARE" data-id="SIAPA KAMI"><b><?= lang('Blog.topMemberSpotlightTitle'); ?><span style="color: #03AADE;"> SPOTLIGHT</span></b></h1>
     </div>
     <div class="container">
         <div class="row">
             <div class="d-flex mt-3">
-                <hr style="color: #FF9900; width: 50px;">
+                <div class="d-flex justify-content-center align-items-center mb-2">
+                    <div class="border-top" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
+                </div>
                 <p class="fw-lighter ms-3 mt-1"><?= lang('Blog.populerMemberSubtitle'); ?></p>
             </div>
             <h1 class="fw-lighter"><?= ($lang == 'en') ? $webprofile[0]['nama_web_en'] : $webprofile[0]['nama_web'] ?></h1>
@@ -361,9 +367,13 @@ $this->setData([
 <section class="container mt-5">
     <div class="mt-5">
         <div class="d-flex justify-content-center">
-            <hr style="width: 40px; margin-top: 12px; margin-right: 10px;">
+            <div class="d-flex justify-content-center align-items-center mb-2">
+                <div class="border-top mx-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
+            </div>
             <h5 class="fw-lighter" data-en="MEMBER MAP" data-id="PETA MEMBER"><?= lang('Blog.memberMapTitle'); ?></h5>
-            <hr style="width: 40px; margin-top: 12px; margin-left: 10px;">
+            <div class="d-flex justify-content-center align-items-center mb-2">
+                <div class="border-top ms-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
+            </div>
         </div>
         <h1 class="text-center" data-en="TOP MEMBERS SPOTLIGHT" data-id="SOROTAN MEMBER UNGGUL"><b><?= lang('Blog.communityMemberSpotlightTitle'); ?><span style="color: #03AADE;"> <?= lang('Blog.communityMemberSpotlightTitle2'); ?></span></b></h1>
     </div>
