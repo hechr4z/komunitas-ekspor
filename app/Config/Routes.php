@@ -113,3 +113,6 @@ $routes->get('/mpm', 'KomunitasEkspor::mpm');
 $routes->post('/mpm-add', 'KomunitasEkspor::add_mpm');
 
 $routes->get('mpm/getEmailsByDate/(:num)/(:num)', 'KomunitasEkspor::getEmailsByDate/$1/$2');
+
+// Member = Data Buyers
+$routes->get('/member-data-buyers', 'KomunitasEkspor::member_data_buyers');
