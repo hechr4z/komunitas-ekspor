@@ -10,6 +10,10 @@
 </head>
 
 <style>
+    body {
+        margin: 0;
+    }
+
     .form-group {
         display: flex;
         align-items: center;
@@ -17,7 +21,7 @@
     }
 
     .form-group label {
-        width: 110px;
+        width: 100px;
         text-align: left;
         font-weight: normal;
     }
@@ -51,10 +55,6 @@
         color: #ffffff;
     }
 
-    .full-height {
-        height: 100vh;
-    }
-
     .card:hover {
         box-shadow: 0 4px 8px rgba(255, 255, 255, 255.0);
     }
@@ -84,10 +84,10 @@
     }
 </style>
 
-<body style="background-image: url('<?php echo base_url('img/slider-1.jpg'); ?>'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 104vh;">
-    <div class="container d-flex justify-content-center align-items-center full-height mt-5">
-        <div class="card p-5">
-            <div class="app-auth-branding mp-2 mb-5 text-center">
+<body style="background-image: url('<?php echo base_url('img/slider-1.jpg'); ?>'); background-size: cover; background-position: center; max-height: 200vh;">
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="card p-5 mt-4 mb-4" style="width: 100vh; height:auto">
+            <div class="mb-5 text-center">
                 <a class="app-logo" href="/"><img style="height:60px;" src="<?php echo base_url('img/logokeiwarna.png'); ?>" alt="logo"></a>
             </div>
             <h4 class="auth-heading text-center mb-5">Masuk Sebagai Member Komunitas Ekspor Indonesia</h4>
@@ -97,7 +97,6 @@
                     <label for="username">Username<span class="required">*</span></label>
                     <input type="text" id="username" name="username" required placeholder="Masukkan Username">
                 </div>
-
 
                 <div class="form-group">
                     <label for="password">Password<span class="required">*</span></label>
@@ -115,6 +114,7 @@
         </div><!--//card-->
     </div><!--//app-auth-body-->
 </body>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
