@@ -90,25 +90,31 @@
             <div class="mb-5 text-center">
                 <a class="app-logo" href="/"><img style="height:60px;" src="<?php echo base_url('img/logokeiwarna.png'); ?>" alt="logo"></a>
             </div>
+            <!-- Flashdata untuk error -->
+            <?php if (session()->getFlashdata('error')) : ?>
+                <div class="alert alert-danger">
+                    <?= session()->getFlashdata('error') ?>
+                </div>
+            <?php endif; ?>
             <h4 class="auth-heading text-center mb-5">Masuk Sebagai Member Komunitas Ekspor Indonesia</h4>
             <div class="auth-form-container text-start">
+                <form action="<?= base_url('auth/authenticate') ?>" method="post">
+                    <div class="form-group">
+                        <label for="username">Username<span class="required">*</span></label>
+                        <input type="text" id="username" name="username" required placeholder="Masukkan Username">
+                    </div>
 
-                <div class="form-group">
-                    <label for="username">Username<span class="required">*</span></label>
-                    <input type="text" id="username" name="username" required placeholder="Masukkan Username">
-                </div>
+                    <div class="form-group">
+                        <label for="password">Password<span class="required">*</span></label>
+                        <input type="password" id="password" name="password" required placeholder="Masukkan Password">
+                    </div>
 
-                <div class="form-group">
-                    <label for="password">Password<span class="required">*</span></label>
-                    <input type="password" id="password" name="password" required placeholder="Masukkan Password">
-                </div>
+                    <div class="showpw">
+                        <input type="checkbox" id="show-password" onclick="togglePassword()"> Lihat Password
+                    </div>
 
-                <div class="showpw">
-                    <input type="checkbox" id="show-password" onclick="togglePassword()"> Lihat Password
-                </div>
-
-                <button type="submit" class="btn btn-custom mt-3 mb-2" style="width: 100%;">Login Member</button>
-                <button type="submit" class="btn btn-danger mb-2" style="width: 100%;">Kembali</button>
+                    <button type="submit" class="btn btn-custom mt-3 mb-2" style="width: 100%;">Login Member</button>
+                    <button type="submit" class="btn btn-danger mb-2" style="width: 100%;">Kembali</button>
                 </form>
             </div>
         </div><!--//card-->

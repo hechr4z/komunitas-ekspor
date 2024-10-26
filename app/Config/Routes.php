@@ -53,6 +53,8 @@ $routes->group('en', function ($routes) {
 
 $routes->post('/user/checkAvailability', 'KomunitasEkspor::checkAvailability');
 
+$routes->post('/auth/authenticate', 'KomunitasEkspor::authenticate');
+$routes->get('/logout', 'KomunitasEkspor::logout');
 
 // // Visitor?Member - Belajar Ekspor
 // $routes->get('/belajar-ekspor', 'KomunitasEkspor::belajar_ekspor');
