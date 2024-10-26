@@ -209,7 +209,7 @@
                                                 <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#editModal" style="background-color:#FFA500"
                                                     data-kirim="<?= $item['tgl_kirim_email'] ?>" data-perusahaan="<?= $item['nama_perusahaan'] ?>"
                                                     data-negara="<?= $item['negara_perusahaan'] ?>" data-status="<?= $item['status_progres'] ?>"
-                                                    data-progres="<?= $item['progres'] ?>">
+                                                    data-progres="<?= $item['progres'] ?>" data-id="<?= $item['id_mpm'] ?>">
                                                     Edit
                                                 </button>
                                             </td>
@@ -232,8 +232,11 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                <form id="editForm">
+                            <form id="editForm" action="<?= base_url('/mpm-edit'); ?>" method="POST" enctype="multipart/form-data">
+                                <div class="modal-body">
+                                    <!-- ID MPM -->
+                                    <input type="hidden" id="id_mpm" name="id_mpm">
+
                                     <!-- Tanggal Kirim Email -->
                                     <div class="mb-3">
                                         <label for="tgl_kirim_email_edit" class="form-label">Tanggal Kirim Email</label>
@@ -268,14 +271,16 @@
                                         <label for="progres-editor" class="form-label">Progres</label>
                                         <textarea id="progres-editor" name="progres"></textarea>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-custom" style="background-color:#C62E2E;"
-                                    data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-custom" style="background-color:#77DD77;">Save
-                                    changes</button>
-                            </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-custom" style="background-color:#C62E2E;" data-bs-dismiss="modal">
+                                        Close
+                                    </button>
+                                    <button type="submit" class="btn btn-custom" style="background-color:#77DD77;">
+                                        Save changes
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -336,7 +341,7 @@
                         </div>
 
                         <div class="total-kirim-email mt-4">
-                            <h5>Total Kirim Email dalam Bulan: <span id="total-email-bulan">0</span></h5>
+                            <h5><span id="total-email-bulan"></span></h5>
                         </div>
                     </div>
                 </div>
@@ -389,12 +394,14 @@
         const negaraPerusahaan = button.getAttribute('data-negara');
         const statusProgres = button.getAttribute('data-status');
         const progres = button.getAttribute('data-progres'); // Ambil nilai progres dari atribut data
+        const idmpm = button.getAttribute('data-id');
 
         // Update modal content untuk field input
         document.getElementById('tgl_kirim_email_edit').value = tglKirimEmail;
         document.getElementById('nama_perusahaan_edit').value = namaPerusahaan;
         document.getElementById('negara_perusahaan_edit').value = negaraPerusahaan;
         document.getElementById('status_progres_edit').value = statusProgres;
+        document.getElementById('id_mpm').value = idmpm;
 
         // Hancurkan instance CKEditor jika sudah ada
         if (editorInstance) {
@@ -457,12 +464,12 @@
         }
     });
 
-
     document.addEventListener('DOMContentLoaded', function() {
         const monthSelect = document.getElementById('filter-bulan');
         const yearSelect = document.getElementById('filter-tahun');
         const filterButton = document.getElementById('filter-button');
         const datesContainer = document.getElementById('dates');
+        const totalEmailText = document.querySelector('.total-kirim-email h5');
 
         // Fungsi untuk menambahkan tanggal
         function generateDates(month, year) {
@@ -471,24 +478,29 @@
                 .then(response => response.json())
                 .then(data => {
                     const daysInMonth = new Date(year, month, 0).getDate();
+                    let totalEmails = 0; // Variabel untuk menghitung total email
 
                     // Kosongkan kontainer sebelum mengisi ulang
                     datesContainer.innerHTML = '';
 
                     for (let day = 1; day <= daysInMonth; day++) {
                         // Ambil jumlah email dari data atau default 0 jika tidak ada
-                        const emailCount = data[day] ? data[day] : 0;
+                        const emailCount = parseInt(data[day] || 0); // Pastikan `emailCount` adalah angka
+                        totalEmails += emailCount; // Tambahkan jumlah email ke total
 
                         const dateCard = `
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <div class="card text-center p-3 ${emailCount > 0 ? 'has-emails' : 'no-emails'}">
-                                <h6>${day} ${monthSelect.options[month].text} ${year}</h6>
-                                <p>${emailCount} Email</p>
-                            </div>
-                        </div>`;
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="card text-center p-3 ${emailCount > 0 ? 'has-emails' : 'no-emails'}">
+                            <h6>${day} ${monthSelect.options[month].text} ${year}</h6>
+                            <p>${emailCount} Email</p>
+                        </div>
+                    </div>`;
 
                         datesContainer.innerHTML += dateCard;
                     }
+
+                    // Update total email dan teks bulan-tahun
+                    totalEmailText.innerHTML = `Total Kirim Email pada ${monthSelect.options[month].text} ${year}: ${totalEmails}`;
                 })
                 .catch(error => console.error('Error:', error));
         }
