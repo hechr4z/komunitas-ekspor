@@ -902,4 +902,40 @@ class KomunitasEkspor extends BaseController
     {
         return view('login/login');
     }
+
+    public function authenticate()
+    {
+        $session = session();
+        $memberModel = new Member();
+
+        $username = $this->request->getVar('username');
+        $password = $this->request->getVar('password');
+
+        $user = $memberModel->where('username', $username)->first();
+
+        if ($user) {
+            if (password_verify($password, $user['password'])) {
+                $sessionData = [
+                    'user_id' => $user['id_member'],
+                    'username' => $user['username'],
+                    'logged_in' => true
+                ];
+                $session->set($sessionData);
+                return redirect()->to('/video-tutorial');
+            } else {
+                $session->setFlashdata('error', 'Password salah.');
+                return redirect()->back();
+            }
+        } else {
+            $session->setFlashdata('error', 'Username tidak ditemukan.');
+            return redirect()->back();
+        }
+    }
+
+    public function logout()
+    {
+        $session = session();
+        $session->destroy();
+        return redirect()->to('/');
+    }
 }
