@@ -20,6 +20,7 @@ use App\Models\MPM;
 use App\Models\Slider;
 use App\Models\WebProfile;
 use App\Models\ManfaatJoin;
+use CodeIgniter\I18n\Time;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class KomunitasEkspor extends BaseController
@@ -591,7 +592,13 @@ class KomunitasEkspor extends BaseController
 
     public function edit_profile()
     {
-        return view('data-member/edit-profile');
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
+        return view('data-member/edit-profile', $data);
     }
 
     public function index_kalkulator()
@@ -802,12 +809,24 @@ class KomunitasEkspor extends BaseController
 
     public function pengumuman()
     {
-        return view('pengumuman/pengumuman');
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
+        return view('member/pengumuman/pengumuman', $data);
     }
 
     public function detail_pengumuman()
     {
-        return view('pengumuman/detail-pengumuman');
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
+        return view('member/pengumuman/detail-pengumuman', $data);
     }
 
     public function mpm()
@@ -819,6 +838,39 @@ class KomunitasEkspor extends BaseController
         $data['webprofile'] = $webprofile;
 
         $model_mpm = new MPM();
+        $mpm = $model_mpm->findAll();
+
+        $bulanIndonesia = [
+            'January' => 'Januari',
+            'February' => 'Februari',
+            'March' => 'Maret',
+            'April' => 'April',
+            'May' => 'Mei',
+            'June' => 'Juni',
+            'July' => 'Juli',
+            'August' => 'Agustus',
+            'September' => 'September',
+            'October' => 'Oktober',
+            'November' => 'November',
+            'December' => 'Desember'
+        ];
+
+        foreach ($mpm as &$item) {
+            // Mengubah format tgl_kirim_email
+            $tgl_kirim = date('d F Y', strtotime($item['tgl_kirim_email']));
+            $bulanInggris_kirim = date('F', strtotime($item['tgl_kirim_email']));
+            $item['tgl_kirim_email'] = str_replace($bulanInggris_kirim, $bulanIndonesia[$bulanInggris_kirim], $tgl_kirim);
+
+            // Memeriksa jika update_terakhir bernilai null
+            if (is_null($item['update_terakhir'])) {
+                $item['update_terakhir'] = '';
+            } else {
+                // Mengubah format update_terakhir jika tidak null
+                $tgl_update = date('d F Y', strtotime($item['update_terakhir']));
+                $bulanInggris_update = date('F', strtotime($item['update_terakhir']));
+                $item['update_terakhir'] = str_replace($bulanInggris_update, $bulanIndonesia[$bulanInggris_update], $tgl_update);
+            }
+        }
 
         // Cari tahun paling lama yang ada di database
         $oldest_year = $model_mpm
@@ -853,6 +905,7 @@ class KomunitasEkspor extends BaseController
         //     $mpm_year[$data['tahun_kirim']] = $data['jumlah']; // Simpan jumlah data per tahun
         // }
 
+        $data['mpm'] = $mpm;
         $data['years'] = $years; // Semua tahun dari yang terlama sampai sekarang, dengan urutan terbaru di atas
         // $data['mpm_year'] = $mpm_year; // Data dari database
 
@@ -861,6 +914,27 @@ class KomunitasEkspor extends BaseController
 
     public function add_mpm()
     {
+        $tgl_kirim_email =  $this->request->getPost('tgl_kirim_email');
+
+        $bulanIndonesia = [
+            'January' => 'Januari',
+            'February' => 'Februari',
+            'March' => 'Maret',
+            'April' => 'April',
+            'May' => 'Mei',
+            'June' => 'Juni',
+            'July' => 'Juli',
+            'August' => 'Agustus',
+            'September' => 'September',
+            'October' => 'Oktober',
+            'November' => 'November',
+            'December' => 'Desember'
+        ];
+
+        $tgl = date('d F Y', strtotime($tgl_kirim_email));
+        $bulanInggris = date('F', strtotime($tgl_kirim_email));
+        $tgl_kirim_email = str_replace($bulanInggris, $bulanIndonesia[$bulanInggris], $tgl);
+
         $data = [
             'id_member' =>  1,
             'tgl_kirim_email' => $this->request->getPost('tgl_kirim_email'),
@@ -868,11 +942,29 @@ class KomunitasEkspor extends BaseController
             'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
             'negara_perusahaan' => $this->request->getPost('negara_perusahaan'),
             'status_progres' => $this->request->getPost('status_progres'),
-            'progres' => NULL,
+            'progres' => '1. Mengirim email pada tanggal ' . $tgl_kirim_email,
         ];
 
         $model_mpm = new MPM();
         $model_mpm->insert($data);
+
+        return redirect()->to('/mpm');
+    }
+
+    public function edit_mpm()
+    {
+        $model_mpm = new MPM();
+
+        $id_mpm = $this->request->getPost('id_mpm');
+
+        $now = Time::now();
+
+        $data = [
+            'update_terakhir' => $now,
+            'progres' => $this->request->getPost('progres'),
+        ];
+
+        $model_mpm->update($id_mpm, $data);
 
         return redirect()->to('/mpm');
     }
@@ -937,5 +1029,16 @@ class KomunitasEkspor extends BaseController
         $session = session();
         $session->destroy();
         return redirect()->to('/');
+    }
+
+    public function member_data_buyers()
+    {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
+        return view('member/data-buyers/index', $data);
     }
 }

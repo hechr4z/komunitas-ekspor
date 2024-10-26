@@ -1,4 +1,4 @@
-<?= $this->extend('layout/app'); ?>
+<?= $this->extend('member/layout/app'); ?>
 <?= $this->section('content'); ?>
 
 <section class="container mt-4">

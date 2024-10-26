@@ -305,67 +305,6 @@
 </style>
 
 <body>
-    <?php
-    // Ambil bahasa yang disimpan di session
-    $lang = session()->get('lang') ?? 'id'; // Default ke 'en' jika tidak ada di session
-
-    $current_url = uri_string();
-
-    // Ambil query string (misalnya ?keyword=sukses)
-    $query_string = $_SERVER['QUERY_STRING']; // Mengambil query string dari URL
-
-    // Simpan segmen bahasa saat ini
-    $lang_segment = substr($current_url, 0, strpos($current_url, '/') + 1); // Menyimpan 'id/' atau 'en/'
-
-    // Definisikan tautan untuk setiap halaman berdasarkan bahasa
-    $homeLink = ($lang_segment === 'en/') ? '/' : '/';
-    $belajarEksporLink = ($lang_segment === 'en/') ? 'export-learning' : 'belajar-ekspor';
-    $pendaftaranLink = ($lang_segment === 'en/') ? 'registration' : 'pendaftaran';
-    $videoTutorialLink = ($lang_segment === 'en/') ? 'video-tutorial' : 'tutorial-video';
-    $memberLink = ($lang_segment === 'en/') ? 'data-member' : 'data-member';
-    $buyersLink = ($lang_segment === 'en/') ? 'data-buyers' : 'data-buyers';
-
-    // Buat array untuk menggantikan segmen berdasarkan bahasa
-    $replace_map = [
-        'pendaftaran' => 'registration',
-        'belajar-ekspor' => 'export-learning',
-
-    ];
-
-    // Ambil bagian dari URL tanpa segmen bahasa
-    $url_without_lang = substr($current_url, strlen($lang_segment));
-
-    // Tentukan bahasa yang ingin digunakan
-    $new_lang_segment = ($lang_segment === 'en/') ? 'id/' : 'en/';
-
-    // Gantikan setiap segmen dalam URL berdasarkan bahasa yang aktif
-    foreach ($replace_map as $indonesian_segment => $english_segment) {
-        if ($lang_segment === 'en/') {
-            // Jika bahasa yang dipilih adalah 'en', maka ganti segmen ID ke EN
-            $url_without_lang = str_replace($english_segment, $indonesian_segment, $url_without_lang);
-        } else {
-            // Jika bahasa yang dipilih adalah 'id', maka ganti segmen EN ke ID
-            $url_without_lang = str_replace($indonesian_segment, $english_segment, $url_without_lang);
-        }
-    }
-
-    // Tautan dengan bahasa yang baru
-    $clean_url = $new_lang_segment . ltrim($url_without_lang, '/');
-
-    // Gabungkan query string jika ada
-    if (!empty($query_string)) {
-        $clean_url .= '?' . $query_string;
-    }
-
-
-    // Tautan Bahasa Inggris
-    $english_url = base_url($clean_url);
-
-    // Tautan Bahasa Indonesia
-    $indonesia_url = base_url($clean_url);
-    ?>
-
-
     <!-- header -->
     <header class="header" style="background-color: #F2BF02;">
         <div class="container">
@@ -383,7 +322,7 @@
                 </div>
                 <!-- Ikon Sosial Media dan Garis -->
                 <div class="d-flex align-items-center" style="margin-left: 500px;">
-                    <div class="d-flex gap-3 me-4" style="margin-left: 190px;">
+                    <div class="d-flex gap-3" style="margin-left: 190px;">
                         <a href="<?= 'https://' . $webprofile[0]['link_ig_web'] ?>" target="_blank" class="social-link">
                             <i class="fab fa-instagram"></i>
                         </a>
@@ -394,26 +333,6 @@
                             <i class="fab fa-facebook"></i>
                         </a>
                     </div>
-                    <div class="border-top" style="width: 1.5px; height: 20px; background-color: white;"></div>
-                </div>
-                <!-- Language Dropdown -->
-                <div class="dropdown">
-                    <button class="btn text-light language-btn" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="/img/flag-<?= $lang === 'id' ? 'id' : 'en'; ?>.png" alt="<?= $lang === 'id' ? 'Indonesian' : 'English'; ?>" class="flag-icon mb-1">
-                        <i class="bi bi-chevron-down ms-1"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-                        <li>
-                            <a class="dropdown-item <?= $lang == 'id' ? 'disabled' : '' ?>" href="<?= $english_url ?>" <?= $lang == 'id' ? 'style="pointer-events: none; opacity: 0.5;"' : '' ?>>
-                                <img src="/img/flag-id.png" alt="Indonesian" class="flag-icon" <?= $lang == 'id' ? 'style="filter: grayscale(100%);"' : '' ?>> Indonesian
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item <?= $lang == 'en' ? 'disabled' : '' ?>" href="<?= $indonesia_url ?>" <?= $lang == 'en' ? 'style="pointer-events: none; opacity: 0.5;"' : '' ?>>
-                                <img src="/img/flag-en.png" alt="English" class="flag-icon" <?= $lang == 'en' ? 'style="filter: grayscale(100%);"' : '' ?>> English
-                            </a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -424,68 +343,65 @@
     <!-- start navbar -->
     <nav class="navbar navbar-custom navbar-expand-lg sticky-top" style="background-color: #03AADE;">
         <div class="container d-flex justify-content-between align-items-center py-1">
-            <img onclick="window.location.href='/'" style="width:160px;" src="<?= base_url('img/' . $webprofile[0]['logo_web']); ?>" alt="logo">
+            <img onclick="window.location.href='/pengumuman'" style="width:160px;" src="<?= base_url('img/' . $webprofile[0]['logo_web']); ?>" alt="logo">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto d-flex align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('/') ?>"> <?php echo lang('Blog.headerBeranda'); ?>
+                        <a class="nav-link" href="<?= base_url('/pengumuman') ?>">
+                            Pengumuman
                         </a>
                     </li>
                     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <button class="btn dropdown-toggle text-light nav-link" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <?php echo lang('Blog.headerArtikel'); ?>
+                                    Belajar Ekspor
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-light">
-                                    <li><a class="dropdown-item nav-link" href="<?= base_url($lang .  '/' . $belajarEksporLink) ?>"><?php echo lang('Blog.headerArtikel'); ?></a></li>
-                                    <li><a class="dropdown-item nav-link" href="<?= base_url('video-tutorial') ?>"><?php echo lang('Blog.headerVideo'); ?>
-                                        </a></li>
+                                    <li>
+                                        <a class="dropdown-item nav-link" href="<?= base_url('belajar-ekspor') ?>">
+                                            Belajar Ekspor
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item nav-link" href="<?= base_url('video-tutorial') ?>">
+                                            Video Tutorial
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url($lang .  '/' . $pendaftaranLink) ?>"><?php echo lang('Blog.headerPendaftaran'); ?>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url($lang .  '/' . $memberLink) ?>"><?php echo lang('Blog.headerMember'); ?></a>
-                    </li>
                     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <button class="btn dropdown-toggle text-light nav-link" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <?php echo lang('Blog.headerAplikasi'); ?>
+                                    Aplikasi
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-light">
-                                    <li onclick="showSweetAlertKHE()"><a class="dropdown-item nav-link" href="#"><?php echo lang('Blog.headerApp1'); ?></a></li>
-                                    <li onclick="showSweetAlertMPP()"><a class="dropdown-item nav-link" href="#"><?php echo lang('Blog.headerApp2'); ?></a></li>
-                                    <li onclick="showSweetAlertAW()"><a class="dropdown-item nav-link" href="#"><?php echo lang('Blog.headerApp3'); ?></a></li>
+                                    <li><a class="dropdown-item nav-link" href="<?= base_url('kalkulator-ekspor') ?>">Kalkulator Harga Ekspor</a></li>
+                                    <li><a class="dropdown-item nav-link" href="<?= base_url('mpm') ?>">Marketing Progress Monitoring</a></li>
+                                    <li><a class="dropdown-item nav-link" href="#">Website Audit</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url($lang . '/' . $buyersLink) ?>"><?php echo lang('Blog.headerBuyers'); ?>
+                        <a class="nav-link" href="<?= base_url('data-member') ?>">Data Member</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('member-data-buyers') ?>">Data Buyers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('edit-profile') ?>">
+                            Edit Profile
                         </a>
                     </li>
                     <div class="border-top" style="width: 1.5px; height: 40px; background-color: white; margin: 0 23px;"></div>
-                    <?php if (session()->get('logged_in')): ?>
-                        <!-- Jika sudah login, tampilkan tombol Logout -->
-                        <a href="<?= base_url('/logout') ?>">
-                            <button type="button" class="btn btn-outline-light">Logout</button>
-                        </a>
-                    <?php else: ?>
-                        <!-- Jika belum login, tampilkan tombol Login dengan kondisi bahasa -->
-                        <a href="<?= ($lang == 'en') ? base_url('/en/login') : base_url('/id/login') ?>">
-                            <button type="button" class="btn btn-outline-light">Login</button>
-                        </a>
-                    <?php endif; ?>
-
+                    <a href="#"><button type="button" class="btn btn-outline-light">Login</button></a>
                 </ul>
             </div>
         </div>
@@ -506,7 +422,7 @@
                     <!-- Logo and Company Description -->
                     <div class="col-md-6 mb-4">
                         <img src="<?= base_url('img/' . $webprofile[0]['logo_web']); ?>" alt="logo" style="width: 180px;">
-                        <p class="mt-4"><?= ($lang == 'en') ? $webprofile[0]['deskripsi_web_en'] : $webprofile[0]['deskripsi_web'] ?></p>
+                        <p class="mt-4"><?= $webprofile[0]['deskripsi_web'] ?></p>
                         <!-- Social Media Icons -->
                         <div class="container2 gap-2 mt-3">
                             <a href="<?= 'https://' . $webprofile[0]['link_ig_web'] ?>" target="_blank">
@@ -556,18 +472,20 @@
                     <div class="col-md-2">
                         <h5 class="mt-4"><b>Menu</b></h5>
                         <div class="list-unstyled pt-2">
-                            <p><a href="<?= base_url($lang .  '/' . $belajarEksporLink) ?>" class="footer-link"><?php echo lang('Blog.headerArtikel'); ?></a></p>
-                            <p><a href="#" class="footer-link"><?php echo lang('Blog.headerVideo'); ?></a></p>
-                            <p><a href="<?= base_url($lang .  '/' . $memberLink) ?>" class="footer-link"><?php echo lang('Blog.headerMember'); ?></a></p>
-                            <p><a href="<?= base_url($lang .  '/' . $buyersLink) ?>" class="footer-link"><?php echo lang('Blog.headerBuyers'); ?></a></p>
+                            <p><a href="<?= base_url('pengumuman') ?>" class="footer-link">Pengumuman</a></p>
+                            <p><a href="<?= base_url('belajar-ekspor') ?>" class="footer-link">Belajar Ekspor</a></p>
+                            <p><a href="<?= base_url('video-tutorial') ?>" class="footer-link">Video Tutorial</a></p>
+                            <p><a href="<?= base_url('data-member') ?>" class="footer-link">Data Member</a></p>
+                            <p><a href="<?= base_url('member-data-buyers') ?>" class="footer-link">Data Buyers</a></p>
+                            <p><a href="<?= base_url('edit-profile') ?>" class="footer-link">Edit Profile</a></p>
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <h5 class="mt-4"><b><?php echo lang('Blog.headerAplikasi'); ?></b></h5>
+                        <h5 class="mt-4"><b>Aplikasi</b></h5>
                         <div class="list-unstyled pt-2">
-                            <p onclick="showSweetAlertKHE()"><a href="#" class="footer-link"><?php echo lang('Blog.headerApp1'); ?></a></p>
-                            <p onclick="showSweetAlertKHE()"><a href="#" class="footer-link"><?php echo lang('Blog.headerApp2'); ?></a></p>
-                            <p onclick="showSweetAlertKHE()"><a href="#" class="footer-link"><?php echo lang('Blog.headerApp3'); ?></a></p>
+                            <p><a href="<?= base_url('kalkulator-ekspor') ?>" class="footer-link">Kalkulator Harga Ekspor</a></p>
+                            <p><a href="<?= base_url('mpm') ?>" class="footer-link">Marketing Progress Monitoring</a></p>
+                            <p><a href="#" class="footer-link">Website Audit</a></p>
                         </div>
                     </div>
                 </div>
@@ -583,8 +501,6 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.querySelector('.navbar-custom');
@@ -594,59 +510,7 @@
                 navbar.classList.remove('scrolled');
             }
         });
-
-        function showSweetAlertKHE() {
-            Swal.fire({
-                title: "Mau Buka Aplikasi Kalkulator Harga Ekspor?",
-                text: "Yuk Daftar Member Dulu!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Daftar",
-                cancelButtonText: "Nanti"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "/pendaftaran"; // Redirect to the registration page
-                } else {
-                    Swal.fire("Oke, Jangan Lupa Daftar!"); // Optional message if "Nanti" is clicked
-                }
-            });
-        }
-
-        function showSweetAlertMPP() {
-            Swal.fire({
-                title: "Mau Buka Aplikasi Monitoring Progres Pemasaran?",
-                text: "Yuk Daftar Member Dulu!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Daftar",
-                cancelButtonText: "Nanti"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "/pendaftaran"; // Redirect to the registration page
-                } else {
-                    Swal.fire("Oke, Jangan Lupa Daftar!"); // Optional message if "Nanti" is clicked
-                }
-            });
-        }
-
-        function showSweetAlertAW() {
-            Swal.fire({
-                title: "Mau Buka Aplikasi Audit Website?",
-                text: "Yuk Daftar Member Dulu!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Daftar",
-                cancelButtonText: "Nanti"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "/pendaftaran"; // Redirect to the registration page
-                } else {
-                    Swal.fire("Oke, Jangan Lupa Daftar!"); // Optional message if "Nanti" is clicked
-                }
-            });
-        }
     </script>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
