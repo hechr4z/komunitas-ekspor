@@ -122,8 +122,40 @@
     .btn-warning {
         animation-delay: 1s;
     }
-
     /* end */
+
+    @media (max-width: 768px) {
+        .card-body h5 {
+            font-size: 1.25rem; /* Adjust title size */
+        }
+
+        .card-img-top {
+            height: 180px; /* Adjust image height */
+        }
+
+        .row .col-md-4 {
+            flex-basis: 50%; /* Two cards per row on tablet */
+        }
+    }
+
+    @media (max-width: 576px) {
+        .row .col-md-4 {
+            flex-basis: 100%; /* Full width card on mobile */
+        }
+
+        .card-img-top {
+            height: 150px; /* Smaller image height */
+        }
+
+        .card-body h5 {
+            font-size: 1rem; /* Smaller title on mobile */
+        }
+    }
+
+    @media (max-width: 320px) {
+    
+}
+
 </style>
 
 <div class="container mt-4">
@@ -136,6 +168,7 @@
         <div class="text-center mb-2" style="width: 250px; height: 250px; margin: auto; overflow: hidden; border-radius: 50%; position: relative;">
             <img src="/img/slider-1.jpg" class="img-fluid" alt="" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
         </div>
+        <h4 class="text-center mt-1">Username</h4>
         <!-- Tabs Navigation -->
         <ul class="nav nav-tabs justify-content-center gap-3 mt-3" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -159,16 +192,12 @@
                 <h5 class="mb-4">Informasi Akun</h5>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="namaPerusahaan" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="namaPerusahaan" value="Username" readonly>
-                    </div>
-                    <div class="col-md-6 mb-3">
                         <label for="nomerPIC" class="form-label">Email</label>
                         <input type="text" class="form-control" id="nomerPIC" value="Email" readonly>
                     </div>
-                    <div class="col-md-12 mb-3">
-                        <label for="nomerPIC" class="form-label">Password</label>
-                        <input type="text" class="form-control" id="nomerPIC" value="Password" readonly>
+                    <div class="col-md-6 mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="text" class="form-control" id="namaPerusahaan" value="Username" readonly>
                     </div>
                     <button type="button" class="btn btn-warning mt-3">Submit</button>
                 </div>
@@ -183,31 +212,176 @@
                         <input type="text" class="form-control" id="alamatPerusahaan" value="Nama Perusahaan" readonly>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="PIC" class="form-label">PIC (Person In Charge)</label>
-                        <input type="text" class="form-control" id="namaPIC" value="PIC" readonly>
+                        <label for="PIC" class="form-label">Tipe Bisnis</label>
+                        <input type="text" class="form-control" id="namaPIC" value="Tipe Bisnis" readonly>
                     </div>
-                    <div class="col-md-12 mb-3">
-                        <label for="nomerPIC" class="form-label">Nomer PIC</label>
-                        <input type="text" class="form-control" id="alamatPerusahaan" value="Nomer PIC" readonly>
+                    <div class="col-md-6 mb-3">
+                        <label for="nomerPIC" class="form-label">Deskripsi Perusahaan</label>
+                        <input type="text" class="form-control" id="alamatPerusahaan" value="Deskripsi Perusahaan" readonly>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="namaPerusahaan" class="form-label">Produk Utama</label>
+                        <input type="text" class="form-control" id="alamatPerusahaan" value="Produk Utama" readonly>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="PIC" class="form-label">Tahun Didirikan</label>
+                        <input type="text" class="form-control" id="namaPIC" value="Tahun Didirikan" readonly>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="nomerPIC" class="form-label">Skala Perusahaan</label>
+                        <input type="text" class="form-control" id="alamatPerusahaan" value="Skala Perusahaan" readonly>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="namaPerusahaan" class="form-label">Email</label>
+                        <input type="text" class="form-control" id="alamatPerusahaan" value="Email" readonly>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="PIC" class="form-label">Kategori Produk</label>
+                        <input type="text" class="form-control" id="namaPIC" value="Kategori Produk" readonly>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="nomerPIC" class="form-label">PIC</label>
+                        <input type="text" class="form-control" id="alamatPerusahaan" value="PIC" readonly>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="nomerPIC" class="form-label">No.Telp PIC</label>
+                        <input type="text" class="form-control" id="alamatPerusahaan" value="No.Telp PIC" readonly>
                     </div>
                     <button type="button" class="btn btn-warning mt-3">Submit</button>
                 </div>
             </div>
 
             <!-- Sertifikat -->
-            <div class="tab-pane fade" id="sertifikat" role="tabpanel" aria-labelledby="sertifikat-tab">
-                <h5 class="mb-4 text-center">Sertifikat</h5>
-                <div class="row justify-content-center">
-                    <div class="col-md-6 mb-3">
-                        <div class="card p-4 shadow-sm">
-                            <label for="fileSertifikat" class="form-label">Masukkan Sertifikat</label>
+            <div class="tab-pane fade" id="sertifikat" role="tabpanel" aria-labelledby="produk-tab">
+                <h5 class="mb-4">Masukan Sertifikat</h5>
+                <div class="row">
+                <label for="fileSertifikat" class="form-label">Masukkan Sertifikat</label>
                             <div class="input-group">
                                 <input type="file" class="form-control" id="namaSertifikat">
                                 <button type="button" class="btn btn-danger" id="hapusGambar">
                                     <i class="fas fa-trash-alt"></i> Hapus
                                 </button>
                             </div>
-                            <button type="button" class="btn btn-warning mt-3">Submit</button>
+                    <button type="button" class="btn btn-warning mt-3">Submit</button>
+                </div>
+                <div class="container mt-4">
+                    <div class="p-4 mt-5">
+                        <div class="text-center">
+                            <h2>Sertifikat Anda</h2>
+                            <p>Semua Sertifikat anda ada disini</p>
+                        </div>
+
+                        <div class="row mt-4">
+                            <!-- Card 1 -->
+                            <div class="col-md-4 mb-5 animate__animated animate__zoomIn">
+                                <a href="#" class="text-decoration-none" style="color: inherit;" data-bs-toggle="modal"
+                                    data-bs-target="#productModal1">
+                                    <div class="card hover-card mx-4 shadow-sm"
+                                        style="cursor: pointer; transition: transform 0.2s; height: 100%;">
+                                        <img src="img/p5.jpg" class="card-img-top img-fluid product-img" alt="Product Photo"
+                                            style="height: 220px;">
+                                        <div class="card-body d-flex flex-column">
+                                            <h5 class="card-title text-center mt-2">Sertifikat A</h5>
+                                        </div>
+                                        <button type="button" class="btn btn-danger position-absolute top-0 end-0 m-3" style="border-radius: 50%;">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Card 2 -->
+                            <div class="col-md-4 mb-5 animate__animated animate__zoomIn">
+                                <a href="#" class="text-decoration-none" style="color: inherit;" data-bs-toggle="modal"
+                                    data-bs-target="#productModal2">
+                                    <div class="card hover-card mx-4 shadow-sm"
+                                        style="cursor: pointer; transition: transform 0.2s; height: 100%;">
+                                        <img src="img/p5.jpg" class="card-img-top img-fluid product-img" alt="Product Photo"
+                                            style="height: 220px;">
+                                        <div class="card-body d-flex flex-column">
+                                            <h5 class="card-title text-center mt-2">Sertifikat B</h5>
+                                        </div>
+                                        <button type="button" class="btn btn-danger position-absolute top-0 end-0 m-3" style="border-radius: 50%;">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Card 3 -->
+                            <div class="col-md-4 mb-5 animate__animated animate__zoomIn">
+                                <a href="#" class="text-decoration-none" style="color: inherit;" data-bs-toggle="modal"
+                                    data-bs-target="#productModal3">
+                                    <div class="card hover-card mx-4 shadow-sm"
+                                        style="cursor: pointer; transition: transform 0.2s; height: 100%;">
+                                        <img src="img/p5.jpg" class="card-img-top img-fluid product-img" alt="Product Photo"
+                                            style="height: 220px;">
+                                        <div class="card-body d-flex flex-column">
+                                            <h5 class="card-title text-center mt-2">Sertifikat C</h5>
+                                        </div>
+                                        <button type="button" class="btn btn-danger position-absolute top-0 end-0 m-3" style="border-radius: 50%;">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal 1 -->
+                <div class="modal fade" id="productModal1" tabindex="-1" aria-labelledby="productModalLabel1" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="productModalLabel1">Produk A</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="img/product1.jpg" class="img-fluid mb-3" alt="Product A">
+                                <p>Deskripsi lengkap produk A.</p>
+                                <p>HS Code: 123456</p>
+                                <p>Min. Order: 100 pcs</p>
+                                <p>Kapasitas Produksi: 1000 pcs/bulan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal 2 -->
+                <div class="modal fade" id="productModal2" tabindex="-1" aria-labelledby="productModalLabel2" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="productModalLabel2">Produk B</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="img/product2.jpg" class="img-fluid mb-3" alt="Product B">
+                                <p>Deskripsi lengkap produk B.</p>
+                                <p>HS Code: 654321</p>
+                                <p>Min. Order: 200 pcs</p>
+                                <p>Kapasitas Produksi: 2000 pcs/bulan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal 3 -->
+                <div class="modal fade" id="productModal3" tabindex="-1" aria-labelledby="productModalLabel3" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="productModalLabel3">Produk C</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="img/product3.jpg" class="img-fluid mb-3" alt="Product C">
+                                <p>Deskripsi lengkap produk C.</p>
+                                <p>HS Code: 987654</p>
+                                <p>Min. Order: 300 pcs</p>
+                                <p>Kapasitas Produksi: 3000 pcs/bulan</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -243,9 +417,149 @@
                     </div>
                     <button type="button" class="btn btn-warning mt-3">Submit</button>
                 </div>
+                <div class="container mt-4">
+                    <div class="p-4 mt-5">
+                        <div class="text-center">
+                            <h2>Data Produk</h2>
+                            <p>Semua produk anda ada disini</p>
+                        </div>
+
+                        <div class="row mt-4">
+                            <!-- Card 1 -->
+                            <div class="col-md-4 mb-5 animate__animated animate__zoomIn">
+                                <a href="#" class="text-decoration-none" style="color: inherit;" data-bs-toggle="modal"
+                                    data-bs-target="#productModal1">
+                                    <div class="card hover-card mx-4 shadow-sm"
+                                        style="cursor: pointer; transition: transform 0.2s; height: 100%;">
+                                        <img src="img/p5.jpg" class="card-img-top img-fluid product-img" alt="Product Photo"
+                                            style="height: 220px;">
+                                        <div class="card-body d-flex flex-column">
+                                            <h5 class="card-title">Produk A</h5>
+                                            <p class="card-text text-truncate-description text-justify flex-grow-1">
+                                                Deskripsi singkat produk A.
+                                            </p>
+                                            <button type="button" class="btn btn-info text-light mt-auto">
+                                                Lihat Detail
+                                            </button>
+                                        </div>
+                                        <button type="button" class="btn btn-danger position-absolute top-0 end-0 m-3" style="border-radius: 50%;">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Card 2 -->
+                            <div class="col-md-4 mb-5 animate__animated animate__zoomIn">
+                                <a href="#" class="text-decoration-none" style="color: inherit;" data-bs-toggle="modal"
+                                    data-bs-target="#productModal2">
+                                    <div class="card hover-card mx-4 shadow-sm"
+                                        style="cursor: pointer; transition: transform 0.2s; height: 100%;">
+                                        <img src="img/p5.jpg" class="card-img-top img-fluid product-img" alt="Product Photo"
+                                            style="height: 220px;">
+                                        <div class="card-body d-flex flex-column">
+                                            <h5 class="card-title">Produk B</h5>
+                                            <p class="card-text text-truncate-description text-justify flex-grow-1">
+                                                Deskripsi singkat produk B.
+                                            </p>
+                                            <button type="button" class="btn btn-info text-light mt-auto">
+                                                Lihat Detail
+                                            </button>
+                                        </div>
+                                        <button type="button" class="btn btn-danger position-absolute top-0 end-0 m-3" style="border-radius: 50%;">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Card 3 -->
+                            <div class="col-md-4 mb-5 animate__animated animate__zoomIn">
+                                <a href="#" class="text-decoration-none" style="color: inherit;" data-bs-toggle="modal"
+                                    data-bs-target="#productModal3">
+                                    <div class="card hover-card mx-4 shadow-sm"
+                                        style="cursor: pointer; transition: transform 0.2s; height: 100%;">
+                                        <img src="img/p5.jpg" class="card-img-top img-fluid product-img" alt="Product Photo"
+                                            style="height: 220px;">
+                                        <div class="card-body d-flex flex-column">
+                                            <h5 class="card-title">Produk C</h5>
+                                            <p class="card-text text-truncate-description text-justify flex-grow-1">
+                                                Deskripsi singkat produk C.
+                                            </p>
+                                            <button type="button" class="btn btn-info text-light mt-auto">
+                                                Lihat Detail
+                                            </button>
+                                        </div>
+                                        <button type="button" class="btn btn-danger position-absolute top-0 end-0 m-3" style="border-radius: 50%;">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal 1 -->
+                <div class="modal fade" id="productModal1" tabindex="-1" aria-labelledby="productModalLabel1" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="productModalLabel1">Produk A</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="img/product1.jpg" class="img-fluid mb-3" alt="Product A">
+                                <p>Deskripsi lengkap produk A.</p>
+                                <p>HS Code: 123456</p>
+                                <p>Min. Order: 100 pcs</p>
+                                <p>Kapasitas Produksi: 1000 pcs/bulan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal 2 -->
+                <div class="modal fade" id="productModal2" tabindex="-1" aria-labelledby="productModalLabel2" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="productModalLabel2">Produk B</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="img/product2.jpg" class="img-fluid mb-3" alt="Product B">
+                                <p>Deskripsi lengkap produk B.</p>
+                                <p>HS Code: 654321</p>
+                                <p>Min. Order: 200 pcs</p>
+                                <p>Kapasitas Produksi: 2000 pcs/bulan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal 3 -->
+                <div class="modal fade" id="productModal3" tabindex="-1" aria-labelledby="productModalLabel3" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="productModalLabel3">Produk C</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="img/product3.jpg" class="img-fluid mb-3" alt="Product C">
+                                <p>Deskripsi lengkap produk C.</p>
+                                <p>HS Code: 987654</p>
+                                <p>Min. Order: 300 pcs</p>
+                                <p>Kapasitas Produksi: 3000 pcs/bulan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <?= $this->endSection(); ?>
+
