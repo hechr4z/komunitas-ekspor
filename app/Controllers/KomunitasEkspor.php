@@ -20,6 +20,7 @@ use App\Models\MPM;
 use App\Models\Slider;
 use App\Models\WebProfile;
 use App\Models\ManfaatJoin;
+use CodeIgniter\I18n\Time;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class KomunitasEkspor extends BaseController
@@ -814,7 +815,7 @@ class KomunitasEkspor extends BaseController
 
         $data['webprofile'] = $webprofile;
 
-        return view('pengumuman/pengumuman', $data);
+        return view('member/pengumuman/pengumuman', $data);
     }
 
     public function detail_pengumuman()
@@ -825,7 +826,7 @@ class KomunitasEkspor extends BaseController
 
         $data['webprofile'] = $webprofile;
 
-        return view('pengumuman/detail-pengumuman', $data);
+        return view('member/pengumuman/detail-pengumuman', $data);
     }
 
     public function mpm()
@@ -855,9 +856,20 @@ class KomunitasEkspor extends BaseController
         ];
 
         foreach ($mpm as &$item) {
-            $tgl = date('d F Y', strtotime($item['tgl_kirim_email']));
-            $bulanInggris = date('F', strtotime($item['tgl_kirim_email']));
-            $item['tgl_kirim_email'] = str_replace($bulanInggris, $bulanIndonesia[$bulanInggris], $tgl);
+            // Mengubah format tgl_kirim_email
+            $tgl_kirim = date('d F Y', strtotime($item['tgl_kirim_email']));
+            $bulanInggris_kirim = date('F', strtotime($item['tgl_kirim_email']));
+            $item['tgl_kirim_email'] = str_replace($bulanInggris_kirim, $bulanIndonesia[$bulanInggris_kirim], $tgl_kirim);
+
+            // Memeriksa jika update_terakhir bernilai null
+            if (is_null($item['update_terakhir'])) {
+                $item['update_terakhir'] = '';
+            } else {
+                // Mengubah format update_terakhir jika tidak null
+                $tgl_update = date('d F Y', strtotime($item['update_terakhir']));
+                $bulanInggris_update = date('F', strtotime($item['update_terakhir']));
+                $item['update_terakhir'] = str_replace($bulanInggris_update, $bulanIndonesia[$bulanInggris_update], $tgl_update);
+            }
         }
 
         // Cari tahun paling lama yang ada di database
@@ -935,6 +947,24 @@ class KomunitasEkspor extends BaseController
 
         $model_mpm = new MPM();
         $model_mpm->insert($data);
+
+        return redirect()->to('/mpm');
+    }
+
+    public function edit_mpm()
+    {
+        $model_mpm = new MPM();
+
+        $id_mpm = $this->request->getPost('id_mpm');
+
+        $now = Time::now();
+
+        $data = [
+            'update_terakhir' => $now,
+            'progres' => $this->request->getPost('progres'),
+        ];
+
+        $model_mpm->update($id_mpm, $data);
 
         return redirect()->to('/mpm');
     }
