@@ -20,7 +20,15 @@ class CreateKategoriVidioTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],
+            'nama_kategori_video_en' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '100',
+            ],
             'slug' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '100',
+            ],
+            'slug_en' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],
