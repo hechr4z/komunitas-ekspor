@@ -236,6 +236,9 @@ class KomunitasEkspor extends BaseController
 
     public function video_tutorial($slug = null)
     {
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();
@@ -1069,7 +1072,7 @@ class KomunitasEkspor extends BaseController
                     'logged_in' => true
                 ];
                 $session->set($sessionData);
-                return redirect()->to('/video-tutorial');
+                return redirect()->to('/pengumuman');
             } else {
                 $session->setFlashdata('error', 'Password salah.');
                 return redirect()->back();
