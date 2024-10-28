@@ -101,7 +101,7 @@ class KomunitasEkspor extends BaseController
 
     public function search_belajar_ekspor()
     {
-        $lang = session()->get('lang')?? 'id';
+        $lang = session()->get('lang') ?? 'id';
         $data['lang'] = $lang;
         $model_webprofile = new WebProfile();
 
@@ -424,7 +424,7 @@ class KomunitasEkspor extends BaseController
         return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid request']);
     }
 
-    public function data_member_visitor()
+    public function visitor_data_member()
     {
         $model_webprofile = new WebProfile();
 
@@ -617,7 +617,43 @@ class KomunitasEkspor extends BaseController
 
         $data['webprofile'] = $webprofile;
 
-        return view('data-member/edit-profile', $data);
+        $model_member = new Member();
+
+        $member = $model_member->where('id_member', 1)->first();
+
+        $data['member'] = $member;
+
+        return view('member/edit-profile', $data);
+    }
+
+    public function ubah_informasi_akun() {
+        $model_member = new Member();
+
+        $email = $this->request->getPost('email');
+        $password = $this->request->getPost('password');
+
+        if ($email != null && $password == null) {
+            $data = [
+                'email' => $email,
+            ];
+    
+            $model_member->update(1, $data);
+        } elseif ($email == null && $password != null) {
+            $data = [
+                'password' => password_hash($password, PASSWORD_DEFAULT),
+            ];
+
+            $model_member->update(1, $data);
+        } elseif ($email != null && $password != null) {
+            $data = [
+                'email' => $email,
+                'password' => password_hash($password, PASSWORD_DEFAULT),
+            ];
+
+            $model_member->update(1, $data);
+        }
+
+        return redirect()->to('/edit-profile');
     }
 
     public function index_kalkulator()
@@ -1057,6 +1093,20 @@ class KomunitasEkspor extends BaseController
         $webprofile = $model_webprofile->findAll();
 
         $data['webprofile'] = $webprofile;
+
+        $model_produk = new Produk();
+        $model_buyers = new Buyers();
+
+        $produk = $model_produk->where('id_member', 1)->findColumn('hs_code');
+
+        // If there are hs_codes, find buyers with matching hs_codes
+        $buyers = [];
+        if ($produk) {
+            $buyers = $model_buyers->whereIn('hs_code', $produk)->findAll();
+        }
+
+        // Prepare data to pass to the view
+        $data['buyers'] = $buyers;
 
         return view('member/data-buyers/index', $data);
     }
