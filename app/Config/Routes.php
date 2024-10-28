@@ -18,6 +18,11 @@ $routes->group('id', function ($routes) {
     $routes->get('belajar-ekspor/(:segment)', 'KomunitasEkspor::belajar_ekspor_detail/$1');
     $routes->get('kategori/(:any)', 'KomunitasEkspor::kategori_belajar_ekspor/$1');
 
+    // Visitior - Video Tutorial
+    $routes->get('tutorial-video', 'KomunitasEkspor::video_tutorial');
+    $routes->get('tutorial-video-selengkapnya/(:segment)', 'KomunitasEkspor::video_selengkapnya/$1');
+    $routes->get('tutorial-video-detail/(:segment)', 'KomunitasEkspor::video_tutorial_detail/$1');
+
     $routes->get('pendaftaran', 'KomunitasEkspor::pendaftaran');
 
     // Visitor - Data Member
@@ -41,10 +46,15 @@ $routes->group('en', function ($routes) {
     $routes->get('export-learning/(:segment)', 'KomunitasEkspor::belajar_ekspor_detail/$1');
     $routes->get('kategori/(:any)', 'KomunitasEkspor::kategori_belajar_ekspor/$1');
 
+    // Visitior - Video Tutorial
+    $routes->get('video-tutorial', 'KomunitasEkspor::video_tutorial');
+    $routes->get('video-tutorial-selengkapnya/(:segment)', 'KomunitasEkspor::video_selengkapnya/$1');
+    $routes->get('video-tutorial-detail/(:segment)', 'KomunitasEkspor::video_tutorial_detail/$1');
+
     $routes->get('registration', 'KomunitasEkspor::pendaftaran');
 
     // Visitor - Data Member
-    $routes->get('data-member', 'KomunitasEkspor::data_member_visitor');
+    $routes->get('data-member', 'KomunitasEkspor::visitor_data_member');
     $routes->get('detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
 
     // Visitor - Data Buyer
@@ -58,11 +68,6 @@ $routes->post('/auth/authenticate', 'KomunitasEkspor::authenticate');
 $routes->get('/logout', 'KomunitasEkspor::logout');
 
 $routes->post('/daftar-member', 'KomunitasEkspor::registrasiMember');
-
-// Visitior - Video Tutorial
-$routes->get('/video-tutorial', 'KomunitasEkspor::video_tutorial');
-$routes->get('/video-tutorial-selengkapnya/(:segment)', 'KomunitasEkspor::video_selengkapnya/$1');
-$routes->get('/video-tutorial-detail/(:segment)', 'KomunitasEkspor::video_tutorial_detail/$1');
 
 // Member - Edit Member
 $routes->get('/edit-profile', 'KomunitasEkspor::edit_profile');
