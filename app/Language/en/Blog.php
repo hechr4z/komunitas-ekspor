@@ -170,4 +170,15 @@ return [
     'joinMemberTitle' => 'Join as a Member <br> for 100% Access',
     'memberRegistration' => 'Member Registration',
     'backtoArticle' => 'Back to Article',
+
+    // Sweetalert
+    'wantToOpenApp1' => 'Want To Open The Export Price Calculator Application?',
+    'wantToOpenApp2' => 'Want To Open A Marketing Progress Monitoring Application?',
+    'wantToOpenApp3' => 'Want To Open A Website Audit Application?',
+
+    'letsGoRegisterSA' => 'Come On, Register As A Member First!',
+    'registerSA' => 'Register',
+    'laterSA' => 'Later',
+
+    'dontForgetSA' => 'OK, Dont Forget To Register!',
 ];
