@@ -169,4 +169,15 @@ return [
     'joinMemberTitle' => 'Gabung Member Yuk<br> untuk Akses 100%',
     'memberRegistration' => 'Pendaftaran Member',
     'backtoArticle' => 'Kembali ke Artikel',
+
+    // Sweetalert
+    'wantToOpenApp1' => 'Mau Buka Aplikasi Kalkulator Harga Ekspor?',
+    'wantToOpenApp2' => 'Mau Buka Aplikasi Monitoring Progres Pemasaran?',
+    'wantToOpenApp3' => 'Mau Buka Aplikasi Audit Website?',
+
+    'letsGoRegisterSA' => 'Yuk Daftar Member Dulu!',
+    'registerSA' => 'Daftar',
+    'laterSA' => 'Nanti',
+
+    'dontForgetSA' => 'Oke, Jangan Lupa Daftar!',
 ];
