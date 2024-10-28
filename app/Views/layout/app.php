@@ -442,7 +442,7 @@
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-light">
                                     <li><a class="dropdown-item nav-link" href="<?= base_url($lang .  '/' . $belajarEksporLink) ?>"><?php echo lang('Blog.headerArtikel'); ?></a></li>
-                                    <li><a class="dropdown-item nav-link" href="<?= base_url('video-tutorial') ?>"><?php echo lang('Blog.headerVideo'); ?>
+                                    <li><a class="dropdown-item nav-link" href="<?= base_url($lang . '/' . $videoTutorialLink) ?>"><?php echo lang('Blog.headerVideo'); ?>
                                         </a></li>
                                 </ul>
                             </li>
@@ -597,51 +597,51 @@
 
         function showSweetAlertKHE() {
             Swal.fire({
-                title: "Mau Buka Aplikasi Kalkulator Harga Ekspor?",
-                text: "Yuk Daftar Member Dulu!",
+                title: "<?php echo lang('Blog.wantToOpenApp1'); ?>",
+                text: "<?php echo lang('Blog.letsGoRegisterSA'); ?>",
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonText: "Daftar",
-                cancelButtonText: "Nanti"
+                confirmButtonText: "<?php echo lang('Blog.registerSA'); ?>",
+                cancelButtonText: "<?php echo lang('Blog.laterSA'); ?>"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "/pendaftaran"; // Redirect to the registration page
+                    window.location.href = "<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>";
                 } else {
-                    Swal.fire("Oke, Jangan Lupa Daftar!"); // Optional message if "Nanti" is clicked
+                    Swal.fire("<?php echo lang('Blog.dontForgetSA'); ?>");
                 }
             });
         }
 
         function showSweetAlertMPP() {
             Swal.fire({
-                title: "Mau Buka Aplikasi Monitoring Progres Pemasaran?",
-                text: "Yuk Daftar Member Dulu!",
+                title: "<?php echo lang('Blog.wantToOpenApp2'); ?>",
+                text: "<?php echo lang('Blog.letsGoRegisterSA'); ?>",
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonText: "Daftar",
-                cancelButtonText: "Nanti"
+                confirmButtonText: "<?php echo lang('Blog.registerSA'); ?>",
+                cancelButtonText: "<?php echo lang('Blog.laterSA'); ?>"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "/pendaftaran"; // Redirect to the registration page
+                    window.location.href = "<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>";
                 } else {
-                    Swal.fire("Oke, Jangan Lupa Daftar!"); // Optional message if "Nanti" is clicked
+                    Swal.fire("<?php echo lang('Blog.dontForgetSA'); ?>");
                 }
             });
         }
 
         function showSweetAlertAW() {
             Swal.fire({
-                title: "Mau Buka Aplikasi Audit Website?",
-                text: "Yuk Daftar Member Dulu!",
+                title: "<?php echo lang('Blog.wantToOpenApp3'); ?>",
+                text: "<?php echo lang('Blog.letsGoRegisterSA'); ?>",
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonText: "Daftar",
-                cancelButtonText: "Nanti"
+                confirmButtonText: "<?php echo lang('Blog.registerSA'); ?>",
+                cancelButtonText: "<?php echo lang('Blog.laterSA'); ?>"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "/pendaftaran"; // Redirect to the registration page
+                    window.location.href = "<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>";
                 } else {
-                    Swal.fire("Oke, Jangan Lupa Daftar!"); // Optional message if "Nanti" is clicked
+                    Swal.fire("<?php echo lang('Blog.dontForgetSA'); ?>");
                 }
             });
         }

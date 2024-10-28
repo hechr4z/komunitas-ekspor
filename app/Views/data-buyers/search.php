@@ -235,7 +235,7 @@
             <h5 class="kategori font-weight-bold mb-0 text-left text-md-left">
                 <?= lang('Blog.joinMemberTitle') ?>
             </h5>
-            <a href="/pendaftaran" class="btn btn-custom mt-md-0"><?= lang('Blog.memberRegistration') ?></a>
+            <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>" class="btn btn-custom mt-md-0"><?= lang('Blog.memberRegistration') ?></a>
         </div>
     </div>
     </div>

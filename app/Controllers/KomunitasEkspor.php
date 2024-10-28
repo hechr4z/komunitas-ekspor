@@ -149,6 +149,9 @@ class KomunitasEkspor extends BaseController
 
     public function kategori_belajar_ekspor($slug)
     {
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();

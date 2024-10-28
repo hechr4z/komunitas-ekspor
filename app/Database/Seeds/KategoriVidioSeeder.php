@@ -11,11 +11,15 @@ class KategoriVidioSeeder extends Seeder
         $data = [
             [
                 'nama_kategori_video' => 'Pembelajaran',
-                'slug' => 'vidio-pembelajaran'
+                'nama_kategori_video_en' => 'Learning',
+                'slug' => 'video-pembelajaran',
+                'slug_en' => 'video-based-learning',
             ],
             [
                 'nama_kategori_video' => 'Tutorial',
-                'slug' => 'vidio-tutorial'
+                'nama_kategori_video_en' => 'Tutorial',
+                'slug' => 'video-tutorial',
+                'slug_en' => 'video-tutorial',
             ],
         ];
 
