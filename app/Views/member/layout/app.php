@@ -401,7 +401,17 @@
                         </a>
                     </li>
                     <div class="border-top" style="width: 1.5px; height: 40px; background-color: white; margin: 0 23px;"></div>
-                    <a href="#"><button type="button" class="btn btn-outline-light">Login</button></a>
+                    <?php if (session()->get('logged_in')): ?>
+                        <!-- Jika sudah login, tampilkan tombol Logout -->
+                        <a href="<?= base_url('/logout') ?>">
+                            <button type="button" class="btn btn-outline-light">Logout</button>
+                        </a>
+                    <?php else: ?>
+                        <!-- Jika belum login, tampilkan tombol Login dengan kondisi bahasa -->
+                        <a href="<?= ($lang == 'en') ? base_url('/en/login') : base_url('/id/login') ?>">
+                            <button type="button" class="btn btn-outline-light">Login</button>
+                        </a>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>

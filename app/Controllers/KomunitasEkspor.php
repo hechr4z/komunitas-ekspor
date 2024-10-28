@@ -1075,7 +1075,7 @@ class KomunitasEkspor extends BaseController
                     'logged_in' => true
                 ];
                 $session->set($sessionData);
-                return redirect()->to('/video-tutorial');
+                return redirect()->to('/pengumuman');
             } else {
                 $session->setFlashdata('error', 'Password salah.');
                 return redirect()->back();
