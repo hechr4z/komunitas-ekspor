@@ -362,12 +362,12 @@
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-light">
                                     <li>
-                                        <a class="dropdown-item nav-link" href="<?= base_url('belajar-ekspor') ?>">
+                                        <a class="dropdown-item nav-link" href="<?= base_url('member-belajar-ekspor') ?>">
                                             Belajar Ekspor
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item nav-link" href="<?= base_url('video-tutorial') ?>">
+                                        <a class="dropdown-item nav-link" href="<?= base_url('member-video-tutorial') ?>">
                                             Video Tutorial
                                         </a>
                                     </li>

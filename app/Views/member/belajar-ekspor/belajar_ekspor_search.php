@@ -1,4 +1,4 @@
-<?= $this->extend('layout/app'); ?>
+<?= $this->extend('member/layout/app'); ?>
 <?= $this->section('content'); ?>
 
 <style>
@@ -326,94 +326,49 @@
 
 <!-- judul -->
 <div class="pendaftaran-section container py-5" style="text-align: center;">
-    <h2 class="text-custom-title"><?= lang('Blog.belajarEksporTitle') ?></h2>
-    <p class="text-custom-paragraph mt-2">
-        <?= lang('Blog.belajarEksporSubtitle') ?>
-    </p>
+    <h2 class="text-custom-title">Belajar Ekspor</h2>
+    <?php if (!empty($keyword)): ?>
+        <p class="text-custom-paragraph mt-2">Menampilkan hasil pencarian untuk: <strong><?= esc($keyword) ?></strong></p>
+    <?php endif; ?>
+
     <!-- Search Bar Start -->
-    <form class="form mt-4" action="<?= base_url('id/belajar-ekspor/search') ?>" method="GET">
-        <button type="submit">
+    <form class="form mt-4" action="<?= base_url('member-belajar-ekspor/search') ?>" method="GET">
+        <button>
             <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
                 <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
         </button>
-        <input class="input" name="keyword" placeholder="<?= lang('Blog.belajarEksporCTA') ?>" required="" type="text" autocomplete="off">
+        <input class="input" autocomplete="off" placeholder="Cari artikel..." name="keyword" required="" type="text" value="<?= isset($keyword) ? esc($keyword) : '' ?>">
+        <button class="reset" type="reset">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
     </form>
-    <button class="reset" type="reset">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-    </button>
     <!-- Search Bar End -->
 </div>
 
 <section>
     <div class="container">
-        <!-- start filter -->
-        <div class="filter-container">
-            <div class="menu">
-                <div class="item">
-                    <a href="#" class="link text-light">
-                        <span><?= lang('Blog.filterCategory') ?></span>
-                        <svg viewBox="0 0 360 360" xml:space="preserve">
-                            <g id="SVGRepo_iconCarrier">
-                                <path
-                                    id="XMLID_225_"
-                                    d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393 c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393 s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"></path>
-                            </g>
-                        </svg>
-                    </a>
-                    <div class="submenu">
-                        <!-- Tampilkan kategori dari database -->
-                        <?php if (!empty($kategori_belajar_ekspor)): ?>
-                            <!-- Tampilkan link ke semua kategori -->
-                            <div class="submenu-item">
-                                <a href="<?= base_url('id/belajar-ekspor'); ?>" class="submenu-link <?= empty($active_category) ? 'active' : ''; ?>">
-                                    <?= lang('Blog.filterAllPlaceholder') ?>
-                                </a>
-                            </div>
-                            <!-- Loop kategori -->
-                            <?php foreach ($kategori_belajar_ekspor as $item): ?>
-                                <div class="submenu-item">
-                                    <a href="<?= base_url('id/kategori/' . $item['slug']); ?>" class="submenu-link <?= $active_category == $item['id_kategori_belajar_ekspor'] ? 'active' : ''; ?>">
-                                        <?= $item['nama_kategori']; ?>
-                                    </a>
-                                </div>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <div class="submenu-item">
-                                <span class="submenu-link"><?= lang('Blog.noCategory') ?></span>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- end filter -->
-
         <div class="row g-4 mb-5">
-            <?php if (!empty($belajar_ekspor)): ?>
-                <!-- Menampilkan artikel sesuai kategori -->
-                <?php foreach ($belajar_ekspor as $item): ?>
+            <?php if (!empty($hasilPencarian)): ?>
+                <?php foreach ($hasilPencarian as $item): ?>
                     <!-- Card -->
                     <div class="col-md-4">
                         <div class="card h-100">
-                            <img src="<?= base_url('/img/' . $item['foto_belajar_ekspor']); ?>" class="card-img-top img-fluid" alt="<?= ($lang == 'en') ? $item['judul_belajar_ekspor_en'] : $item['judul_belajar_ekspor']; ?>" style="object-fit: cover; object-position: center; aspect-ratio: 16/9;" loading="lazy">
+                            <img src="<?= base_url('/img/' . $item['foto_belajar_ekspor']); ?>" class="card-img-top img-fluid" alt="<?= $item['judul_belajar_ekspor']; ?>" style="object-fit: cover; object-position: center; aspect-ratio: 16/9;" loading="lazy">
                             <div class="card-body d-flex flex-column">
                                 <div class="mb-3 d-flex justify-content-between align-items-center">
                                     <p class="card-text mb-0" style="font-size: 1rem;"><?= date('d F Y', strtotime($item['created_at'])); ?></p>
-                                    <span class="badge"><?= $item['nama_kategori']; ?></span>
+                                    <span class="badge">#<?= $item['nama_kategori']; ?></span>
                                 </div>
                                 <h5 class="card-title" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                    <?= ($lang == 'en') ? $item['judul_belajar_ekspor_en'] : $item['judul_belajar_ekspor']; ?>
+                                    <?= $item['judul_belajar_ekspor']; ?>
                                 </h5>
                                 <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                    <?= ($lang == 'en') ? $item['deskripsi_belajar_ekspor_en'] : $item['deskripsi_belajar_ekspor']; ?>
+                                    <?= $item['deskripsi_belajar_ekspor']; ?>
                                 </p>
-                                <a href="<?= base_url(($lang == 'en' ? 'en/export-learning/' : 'id/belajar-ekspor/') . (($lang == 'en') ? $item['slug_en'] : $item['slug'])); ?>" class="btn btn-custom mt-auto" style="width: 100%; display: block; text-align: center;">
-                                    <?= lang('Blog.readMore') ?>
-                                </a>
-
+                                <a href="<?= base_url('member-belajar-ekspor-detail/' . $item['slug']); ?>" class="btn btn-custom mt-auto" style="width: 100%; display: block; text-align: center;">Baca Selengkapnya</a>
                             </div>
                         </div>
                     </div>
@@ -421,15 +376,11 @@
             <?php else: ?>
                 <div class="col-12">
                     <div class="alert alert-info text-center" role="alert">
-                        <?= lang('Blog.noContent') ?>
+                        Tidak ada artikel yang ditemukan.
                     </div>
                 </div>
             <?php endif; ?>
         </div>
-        <div class="lebih mt-5" style="display: flex; justify-content: center;">
-            <a href="#" class="btn btn-custom mt-auto" style="min-width: 50px; text-align: center; border-radius: 30px;">Lihat Lebih Banyak ></a>
-        </div>
-    </div>
     </div>
 </section>
 

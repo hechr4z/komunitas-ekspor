@@ -122,10 +122,13 @@
 
             <!-- Badge with Code Referral -->
             <div class="text-center mb-3">
-                <span class="badge badge-lg bg-light text-dark p-2" style="font-size: 18px;"><?php echo lang('Blog.referralCode') ?>
-                    <?= $member['username'] ?></span>
+                <span class="badge badge-lg bg-light text-dark p-2" style="font-size: 18px;">
+                    <?php echo lang('Blog.referralCode') ?><?= $member['username'] ?>
+                </span>
+                <span class="badge badge-lg bg-light text-dark p-2" style="font-size: 18px;">
+                    <?php echo lang('Blog.emailDetail') ?><?= $member['email'] ?>
+                </span>
             </div>
-
 
             <!-- Tabs Navigation -->
             <ul class="nav nav-tabs justify-content-center gap-3 mt-3" id="myTab" role="tablist">
@@ -197,12 +200,6 @@
                                 <p><strong><?php echo lang('Blog.businessScale') ?></strong>
                                     <?= ($lang == 'en') ? $member['skala_bisnis_en'] : $member['skala_bisnis'] ?>
                                 </p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="card p-3 shadow-sm bg-light">
-                                <i class="fas fa-envelope fa-lg mb-2"></i>
-                                <p><strong><?php echo lang('Blog.emailDetail') ?></strong> <?= $member['email'] ?></p>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">

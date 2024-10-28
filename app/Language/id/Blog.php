@@ -12,6 +12,7 @@ return [
     'headerApp2' => 'Monitoring Progres Pemasaran',
     'headerApp3' => 'Audit Website',
     'headerBuyers' => 'Data Buyers',
+    //endnavbar
 
     //beranda
     // Carousel Texts
@@ -62,6 +63,18 @@ return [
     'belajarEksporCTA' => 'Belajar ekspor sekarang, kuasai pasar global!',
     'belajarEksporPlaceholder' => 'Cari Materi Ekspor ...',
     'filterAllPlaceholder' => 'Semua Kategori',
+    // Filter Section
+    'filterCategory' => 'Filter Kategori',
+    'noCategory' => 'Tidak ada kategori yang tersedia',
+    'noContent' => 'Belum ada konten yang dapat ditampilkan di halaman ini.',
+    'readMore' => 'Baca Selengkapnya',
+
+    //halaman search belajar artikel
+    'searchTitle' => 'Belajar Ekspor',
+    'searchResults' => 'Menampilkan hasil pencarian untuk:',
+    'searchPlaceholder' => 'Cari artikel...',
+    'noArticlesFound' => 'Tidak ada artikel yang ditemukan.',
+    'readMore' => 'Baca Selengkapnya',
 
     //halaman data member
     'dataMemberTitle' => 'Data Member',
@@ -155,4 +168,5 @@ return [
     // Join Member Section
     'joinMemberTitle' => 'Gabung Member Yuk<br> untuk Akses 100%',
     'memberRegistration' => 'Pendaftaran Member',
+    'backtoArticle' => 'Kembali ke Artikel',
 ];

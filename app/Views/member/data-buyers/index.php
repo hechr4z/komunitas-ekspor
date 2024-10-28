@@ -169,17 +169,17 @@
             <thead class="thead-blue">
                 <tr>
                     <th>No</th>
-                    <th><?= lang('Blog.tableCompanyName') ?></th>
-                    <th><?= lang('Blog.tableCountry') ?></th>
-                    <th><?= lang('Blog.tableHsCode') ?></th>
-                    <th><?= lang('Blog.tableEmail') ?></th>
-                    <th><?= lang('Blog.tableWebsite') ?></th>
+                    <th>Nama Perusahaan</th>
+                    <th>Negara</th>
+                    <th>Kode HS</th>
+                    <th>Email</th>
+                    <th>Website</th>
                 </tr>
             </thead>
             <tbody>
                 <?php if (empty($buyers)): ?>
                     <tr>
-                        <td colspan="6" class="text-center"> <?= lang('Blog.noBuyersDataYet') ?></td>
+                        <td colspan="6" class="text-center">Tidak ada Data Buyers yang cocok dengan Kode HS produk Anda.</td>
                     </tr>
                 <?php else: ?>
                     <?php $i = 1; ?>
@@ -199,6 +199,5 @@
         </table>
     </div>
 </div>
-
 
 <?= $this->endSection(); ?>

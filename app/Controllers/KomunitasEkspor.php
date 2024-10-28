@@ -62,6 +62,9 @@ class KomunitasEkspor extends BaseController
 
     public function belajar_ekspor($slug = null)
     {
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();
@@ -98,6 +101,8 @@ class KomunitasEkspor extends BaseController
 
     public function search_belajar_ekspor()
     {
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();
@@ -118,8 +123,11 @@ class KomunitasEkspor extends BaseController
 
         // Query pencarian: mencari berdasarkan judul, tags, atau deskripsi
         $hasilPencarian = $belajarEksporModel->like('judul_belajar_ekspor', $keyword)
+            ->orLike('judul_belajar_ekspor_en', $keyword)
             ->orLike('tags', $keyword)
+            ->orLike('tags_en', $keyword)
             ->orLike('deskripsi_belajar_ekspor', $keyword)
+            ->orLike('deskripsi_belajar_ekspor_en', $keyword)
             ->getAllWithCategory(); // Pastikan method ini mengembalikan data dengan kategori
 
         // Jika ada hasil pencarian
@@ -171,6 +179,8 @@ class KomunitasEkspor extends BaseController
 
     public function belajar_ekspor_detail($slug)
     {
+        $lang = session()->get('lang') ?? 'id';
+
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();
@@ -179,11 +189,19 @@ class KomunitasEkspor extends BaseController
         $kategoriModel = new KategoriBelajarEksporModel();
 
         // Mengambil artikel berdasarkan slug
-        $artikel = $belajarEksporModel->where('slug', $slug)->first();
+        $artikel = $belajarEksporModel->where('slug', $slug)->orWhere('slug_en', $slug)->first();
 
         if (!$artikel) {
             // Jika artikel tidak ditemukan, redirect atau tampilkan pesan error
             return redirect()->to('/')->with('error', 'Artikel tidak ditemukan');
+        }
+
+        // Cek apakah slug sesuai dengan bahasa yang sedang aktif
+        if (($lang === 'id' && $slug !== $artikel['slug']) || ($lang === 'en' && $slug !== $artikel['slug_en'])) {
+            // Redirect ke URL slug yang benar sesuai bahasa
+            $correctSlug = $lang === 'id' ? $artikel['slug'] : $artikel['slug_en'];
+            $correctulr = $lang === 'id' ? 'belajar-ekspor' : 'export-learning';
+            return redirect()->to("$lang/$correctulr/$correctSlug");
         }
 
         // Mengambil kategori artikel berdasarkan id_kategori
@@ -198,6 +216,7 @@ class KomunitasEkspor extends BaseController
             'kategori' => $kategori,
             'belajar_ekspor' => $related_artikel,
             'webprofile' => $webprofile,
+            'lang' => $lang
         ];
 
         return view('belajar-ekspor/belajar_ekspor_detail', $data);
@@ -405,7 +424,7 @@ class KomunitasEkspor extends BaseController
         return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid request']);
     }
 
-    public function data_member_visitor()
+    public function visitor_data_member()
     {
         $model_webprofile = new WebProfile();
 
@@ -598,7 +617,44 @@ class KomunitasEkspor extends BaseController
 
         $data['webprofile'] = $webprofile;
 
-        return view('data-member/edit-profile', $data);
+        $model_member = new Member();
+
+        $member = $model_member->where('id_member', 1)->first();
+
+        $data['member'] = $member;
+
+        return view('member/edit-profile', $data);
+    }
+
+    public function ubah_informasi_akun()
+    {
+        $model_member = new Member();
+
+        $email = $this->request->getPost('email');
+        $password = $this->request->getPost('password');
+
+        if ($email != null && $password == null) {
+            $data = [
+                'email' => $email,
+            ];
+
+            $model_member->update(1, $data);
+        } elseif ($email == null && $password != null) {
+            $data = [
+                'password' => password_hash($password, PASSWORD_DEFAULT),
+            ];
+
+            $model_member->update(1, $data);
+        } elseif ($email != null && $password != null) {
+            $data = [
+                'email' => $email,
+                'password' => password_hash($password, PASSWORD_DEFAULT),
+            ];
+
+            $model_member->update(1, $data);
+        }
+
+        return redirect()->to('/edit-profile');
     }
 
     public function index_kalkulator()
@@ -1039,6 +1095,263 @@ class KomunitasEkspor extends BaseController
 
         $data['webprofile'] = $webprofile;
 
+        $model_produk = new Produk();
+        $model_buyers = new Buyers();
+
+        $produk = $model_produk->where('id_member', 1)->findColumn('hs_code');
+
+        // If there are hs_codes, find buyers with matching hs_codes
+        $buyers = [];
+        if ($produk) {
+            $buyers = $model_buyers->whereIn('hs_code', $produk)->findAll();
+        }
+
+        // Prepare data to pass to the view
+        $data['buyers'] = $buyers;
+
         return view('member/data-buyers/index', $data);
+    }
+
+    public function member_belajar_ekspor($slug = null)
+    {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
+        $belajarEksporModel = new BelajarEksporModel();
+        $kategoriBelajarEksporModel = new KategoriBelajarEksporModel();
+
+        // Mengambil semua kategori
+        $data['kategori_belajar_ekspor'] = $kategoriBelajarEksporModel->findAll();
+
+        if ($slug) {
+            // Jika slug kategori dipilih, ambil data sesuai kategori
+            $kategori = $kategoriBelajarEksporModel->where('slug', $slug)->first();
+            if (!$kategori) {
+                return redirect()->to('/')->with('error', 'Kategori tidak ditemukan');
+            }
+            // Mengambil data berdasarkan kategori
+            $data['belajar_ekspor'] = $belajarEksporModel->getByCategory($kategori['id_kategori_belajar_ekspor']);
+
+            // Mengirimkan data kategori yang dipilih ke view
+            $data['active_category'] = $kategori['id_kategori_belajar_ekspor'];
+        } else {
+            // Jika tidak ada slug, tampilkan semua data
+            $data['belajar_ekspor'] = $belajarEksporModel->getAllWithCategory();
+
+            // Tidak ada kategori yang aktif
+            $data['active_category'] = null;
+        }
+
+        return view('member/belajar-ekspor/belajar_ekspor', $data);
+    }
+
+    public function member_search_belajar_ekspor()
+    {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
+        helper('text');
+
+        // Ambil keyword dari query string
+        $keyword = $this->request->getGet('keyword');
+
+        // Instansiasi model yang diperlukan
+        $belajarEksporModel = new BelajarEksporModel();
+        $kategoriBelajarEksporModel = new KategoriBelajarEksporModel();
+
+        // Mengambil semua kategori untuk ditampilkan di sidebar/filter
+        $data['kategori_belajar_ekspor'] = $kategoriBelajarEksporModel->findAll();
+
+        // Query pencarian: mencari berdasarkan judul, tags, atau deskripsi
+        $hasilPencarian = $belajarEksporModel->like('judul_belajar_ekspor', $keyword)
+            ->orLike('tags', $keyword)
+            ->orLike('deskripsi_belajar_ekspor', $keyword)
+            ->getAllWithCategory(); // Pastikan method ini mengembalikan data dengan kategori
+
+        // Jika ada hasil pencarian
+        if (count($hasilPencarian) > 0) {
+            $data['hasilPencarian'] = $hasilPencarian;
+        } else {
+            $data['hasilPencarian'] = [];
+        }
+
+        // Kirimkan keyword pencarian untuk ditampilkan di view
+        $data['keyword'] = $keyword;
+
+        // Tidak ada kategori yang aktif di pencarian
+        $data['active_category'] = null;
+
+        // Render view hasil pencarian
+        return view('member/belajar-ekspor/belajar_ekspor_search', $data);
+    }
+
+    public function member_kategori_belajar_ekspor($slug)
+    {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
+        $belajarEksporModel = new BelajarEksporModel();
+        $kategoriBelajarEksporModel = new KategoriBelajarEksporModel();
+
+        // Mengambil kategori berdasarkan slug
+        $kategori = $kategoriBelajarEksporModel->where('slug', $slug)->first();
+        if (!$kategori) {
+            // Jika kategori tidak ditemukan, redirect atau tampilkan error
+            return redirect()->to('/')->with('error', 'Kategori tidak ditemukan');
+        }
+
+        // Mengambil data belajar ekspor yang terkait dengan kategori yang dipilih
+        $data['belajar_ekspor'] = $belajarEksporModel->getByCategory($kategori['id_kategori_belajar_ekspor']);
+
+        // Mengambil semua kategori untuk menu dropdown
+        $data['kategori_belajar_ekspor'] = $kategoriBelajarEksporModel->findAll();
+
+        // Mengirim data kategori yang dipilih untuk ditampilkan di view
+        $data['active_category'] = $kategori['id_kategori_belajar_ekspor'];
+
+        return view('member/belajar-ekspor/belajar_ekspor', $data);
+    }
+
+    public function member_belajar_ekspor_detail($slug)
+    {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $belajarEksporModel = new BelajarEksporModel();
+        $kategoriModel = new KategoriBelajarEksporModel();
+
+        // Mengambil artikel berdasarkan slug
+        $artikel = $belajarEksporModel->where('slug', $slug)->first();
+
+        if (!$artikel) {
+            // Jika artikel tidak ditemukan, redirect atau tampilkan pesan error
+            return redirect()->to('/')->with('error', 'Artikel tidak ditemukan');
+        }
+
+        // Mengambil kategori artikel berdasarkan id_kategori
+        $kategori = $kategoriModel->find($artikel['id_kategori_belajar_ekspor']);
+
+        // Mengambil artikel terkait
+        $related_artikel = $belajarEksporModel->where('slug !=', $slug)->orderBy('created_at', 'DESC')->limit(3)->findAll();
+
+        // Mengirim data artikel, kategori, dan artikel terkait ke view
+        $data = [
+            'artikel' => $artikel,
+            'kategori' => $kategori,
+            'belajar_ekspor' => $related_artikel,
+            'webprofile' => $webprofile,
+        ];
+
+        return view('member/belajar-ekspor/belajar_ekspor_detail', $data);
+    }
+
+    public function member_video_tutorial($slug = null)
+    {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
+        $vidioModel = new VidioTutorialModel();
+        $kategoriModel = new KategoriVidioModel();
+
+        // Mengambil semua kategori
+        $kategori = $kategoriModel->findAll();
+
+        $vidio = [];
+
+        if ($slug) {
+            // Jika ada slug kategori, ambil video berdasarkan kategori dan batasi hanya 3
+            $vidio = $vidioModel->getLimitedVideosByKategori($slug, 3);
+        } else {
+            // Jika tidak ada kategori, ambil 3 video dari setiap kategori
+            foreach ($kategori as $kat) {
+                $vidio[$kat['nama_kategori_video']] = $vidioModel->getLimitedVideosByKategori($kat['slug'], 3);
+            }
+        }
+
+        // Mengirimkan data ke view
+        $data['video_tutorial'] = $vidio;
+        $data['kategori_vidio'] = $kategori;
+        $data['selected_category'] = $slug;
+
+        return view('member/video-tutorial/video_tutorial', $data);
+    }
+
+
+    public function member_video_selengkapnya($slug)
+    {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $vidioModel = new VidioTutorialModel();
+        $kategoriModel = new KategoriVidioModel();
+
+        // Ambil data kategori berdasarkan slug
+        $kategori = $kategoriModel->where('slug', $slug)->first();
+
+        // Jika kategori ditemukan, ambil video yang sesuai
+        if ($kategori) {
+            $videos = $vidioModel->getVideosByKategori($slug);
+        } else {
+            $videos = [];
+        }
+
+        // Mengirim data ke view
+        $data = [
+            'kategori' => $kategori,
+            'video_tutorial' => $videos,
+            'webprofile' => $webprofile,
+        ];
+
+        return view('member/video-tutorial/video_selengkapnya', $data);
+    }
+
+    public function member_video_tutorial_detail($slug)
+    {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        // Inisialisasi model untuk video dan kategori
+        $vidioModel = new VidioTutorialModel();
+        $kategoriModel = new KategoriVidioModel();
+
+        // Mengambil data video berdasarkan slug
+        $video = $vidioModel->getVideoBySlug($slug);
+
+        // Memastikan bahwa video ditemukan, jika tidak redirect atau tampilkan error
+        if (!$video) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException("Video tidak ditemukan");
+        }
+
+        // Mengambil video terkait berdasarkan kategori video saat ini, dan pastikan tidak mengambil video yang sedang dilihat
+        $related_videos = $vidioModel->getRelatedVideos($video['id_kategori_video'], $video['id_video']);
+
+        // Mengambil informasi kategori video
+        $kategori = $kategoriModel->find($video['id_kategori_video']);
+
+        // Menyiapkan data untuk dikirimkan ke view
+        $data = [
+            'video' => $video,
+            'related_videos' => $related_videos,
+            'kategori' => $kategori,
+            'webprofile' => $webprofile,
+        ];
+
+        // Mengembalikan view dengan data yang telah disiapkan
+        return view('member/video-tutorial/video_tutorial_detail', $data);
     }
 }

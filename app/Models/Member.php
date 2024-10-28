@@ -27,7 +27,7 @@ class Member extends Model
         'tahun_dibentuk',
         'skala_bisnis',
         'skala_bisnis_en',
-        'email_perusahaan',
+        'email',
         'pic',
         'pic_phone',
         'tanggal_verifikasi',
