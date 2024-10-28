@@ -70,7 +70,7 @@ $routes->get('/logout', 'KomunitasEkspor::logout');
 
 $routes->post('/daftar-member', 'KomunitasEkspor::registrasiMember');
 
-$routes->group('', ['middleware' => 'auth'], function ($routes) {
+$routes->group('', ['filter' => 'auth'], function ($routes) {
 
     // Member - Edit Member
     $routes->get('/edit-profile', 'KomunitasEkspor::edit_profile');
