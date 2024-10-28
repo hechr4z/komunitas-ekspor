@@ -239,6 +239,9 @@ class KomunitasEkspor extends BaseController
 
     public function video_tutorial($slug = null)
     {
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();
