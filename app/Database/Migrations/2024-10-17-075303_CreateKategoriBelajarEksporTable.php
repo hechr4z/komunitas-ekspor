@@ -18,7 +18,15 @@ class CreateKategoriBelajarEksporTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
+            'nama_kategori_en' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
             'slug' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'slug_en' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
