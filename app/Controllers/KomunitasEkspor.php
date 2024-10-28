@@ -617,6 +617,9 @@ class KomunitasEkspor extends BaseController
 
     public function edit_profile()
     {
+        $session = session();
+        $user_id = $session->get('user_id');
+
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();
@@ -625,7 +628,7 @@ class KomunitasEkspor extends BaseController
 
         $model_member = new Member();
 
-        $member = $model_member->where('id_member', 1)->first();
+        $member = $model_member->where('id_member', $user_id)->first();
 
         $data['member'] = $member;
 
@@ -1095,6 +1098,9 @@ class KomunitasEkspor extends BaseController
 
     public function member_data_buyers()
     {
+        $session = session();
+        $user_id = $session->get('user_id');
+
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();
@@ -1104,7 +1110,7 @@ class KomunitasEkspor extends BaseController
         $model_produk = new Produk();
         $model_buyers = new Buyers();
 
-        $produk = $model_produk->where('id_member', 1)->findColumn('hs_code');
+        $produk = $model_produk->where('id_member', $user_id)->findColumn('hs_code');
 
         // If there are hs_codes, find buyers with matching hs_codes
         $buyers = [];
