@@ -11,6 +11,7 @@ return [
     'headerApp2' => 'Marketing Progress Monitoring',
     'headerApp3' => 'Website Audit',
     'headerBuyers' => 'Buyers Data',
+    //en navbar
 
     //beranda
     // Carousel Texts
@@ -58,6 +59,18 @@ return [
     'belajarEksporCTA' => 'Start learning about exporting now, conquer the global market!',
     'belajarEksporPlaceholder' => 'Search Export Materials ...',
     'filterAllPlaceholder' => 'All Categories',
+    // Filter Section
+    'filterCategory' => 'Filter Category',
+    'noCategory' => 'No categories available',
+    'noContent' => 'There is no content to display on this page yet.',
+    'readMore' => 'Read More',
+
+    //halaman search artikel
+    'searchTitle' => 'Export Learning',
+    'searchResults' => 'Displaying search results for:',
+    'searchPlaceholder' => 'Search articles...',
+    'noArticlesFound' => 'No articles found.',
+    'readMore' => 'Read More',
 
     //halaman data member
     'dataMemberTitle' => 'Member Data',
@@ -156,4 +169,5 @@ return [
     // Join Member Section
     'joinMemberTitle' => 'Join as a Member <br> for 100% Access',
     'memberRegistration' => 'Member Registration',
+    'backtoArticle' => 'Back to Article',
 ];

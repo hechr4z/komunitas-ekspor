@@ -326,9 +326,9 @@
 
 <!-- judul -->
 <div class="pendaftaran-section container py-5" style="text-align: center;">
-    <h2 class="text-custom-title">Belajar Ekspor</h2>
-    <p class="text-custom-paragraph mt-2">Tingkatkan bisnis Anda dengan strategi ekspor yang tepat!
-        <br>Belajar ekspor sekarang, kuasai pasar global!
+    <h2 class="text-custom-title"><?= lang('Blog.belajarEksporTitle') ?></h2>
+    <p class="text-custom-paragraph mt-2">
+        <?= lang('Blog.belajarEksporSubtitle') ?>
     </p>
     <!-- Search Bar Start -->
     <form class="form mt-4" action="<?= base_url('id/belajar-ekspor/search') ?>" method="GET">
@@ -337,7 +337,7 @@
                 <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
         </button>
-        <input class="input" name="keyword" placeholder="Cari Materi Ekspor..." required="" type="text" autocomplete="off">
+        <input class="input" name="keyword" placeholder="<?= lang('Blog.belajarEksporCTA') ?>" required="" type="text" autocomplete="off">
     </form>
     <button class="reset" type="reset">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -354,7 +354,7 @@
             <div class="menu">
                 <div class="item">
                     <a href="#" class="link text-light">
-                        <span>Filter Kategori</span>
+                        <span><?= lang('Blog.filterCategory') ?></span>
                         <svg viewBox="0 0 360 360" xml:space="preserve">
                             <g id="SVGRepo_iconCarrier">
                                 <path
@@ -369,7 +369,7 @@
                             <!-- Tampilkan link ke semua kategori -->
                             <div class="submenu-item">
                                 <a href="<?= base_url('id/belajar-ekspor'); ?>" class="submenu-link <?= empty($active_category) ? 'active' : ''; ?>">
-                                    Semua Kategori
+                                    <?= lang('Blog.filterAllPlaceholder') ?>
                                 </a>
                             </div>
                             <!-- Loop kategori -->
@@ -382,7 +382,7 @@
                             <?php endforeach; ?>
                         <?php else: ?>
                             <div class="submenu-item">
-                                <span class="submenu-link">Tidak ada kategori</span>
+                                <span class="submenu-link"><?= lang('Blog.noCategory') ?></span>
                             </div>
                         <?php endif; ?>
                     </div>
@@ -398,19 +398,22 @@
                     <!-- Card -->
                     <div class="col-md-4">
                         <div class="card h-100">
-                            <img src="<?= base_url('/img/' . $item['foto_belajar_ekspor']); ?>" class="card-img-top img-fluid" alt="<?= $item['judul_belajar_ekspor']; ?>" style="object-fit: cover; object-position: center; aspect-ratio: 16/9;" loading="lazy">
+                            <img src="<?= base_url('/img/' . $item['foto_belajar_ekspor']); ?>" class="card-img-top img-fluid" alt="<?= ($lang == 'en') ? $item['judul_belajar_ekspor_en'] : $item['judul_belajar_ekspor']; ?>" style="object-fit: cover; object-position: center; aspect-ratio: 16/9;" loading="lazy">
                             <div class="card-body d-flex flex-column">
                                 <div class="mb-3 d-flex justify-content-between align-items-center">
                                     <p class="card-text mb-0" style="font-size: 1rem;"><?= date('d F Y', strtotime($item['created_at'])); ?></p>
                                     <span class="badge"><?= $item['nama_kategori']; ?></span>
                                 </div>
                                 <h5 class="card-title" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                    <?= $item['judul_belajar_ekspor']; ?>
+                                    <?= ($lang == 'en') ? $item['judul_belajar_ekspor_en'] : $item['judul_belajar_ekspor']; ?>
                                 </h5>
                                 <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                    <?= $item['deskripsi_belajar_ekspor']; ?>
+                                    <?= ($lang == 'en') ? $item['deskripsi_belajar_ekspor_en'] : $item['deskripsi_belajar_ekspor']; ?>
                                 </p>
-                                <a href="<?= base_url('id/belajar-ekspor-detail/' . $item['slug']); ?>" class="btn btn-custom mt-auto" style="width: 100%; display: block; text-align: center;">Baca Selengkapnya</a>
+                                <a href="<?= base_url(($lang == 'en' ? 'en/export-learning/' : 'id/belajar-ekspor/') . (($lang == 'en') ? $item['slug_en'] : $item['slug'])); ?>" class="btn btn-custom mt-auto" style="width: 100%; display: block; text-align: center;">
+                                    <?= lang('Blog.readMore') ?>
+                                </a>
+
                             </div>
                         </div>
                     </div>
@@ -418,7 +421,7 @@
             <?php else: ?>
                 <div class="col-12">
                     <div class="alert alert-info text-center" role="alert">
-                        Belum ada materi untuk ditampilkan di halaman ini.
+                        <?= lang('Blog.noContent') ?>
                     </div>
                 </div>
             <?php endif; ?>

@@ -14,7 +14,7 @@ $routes->group('id', function ($routes) {
     // Visitor?Member - Belajar Ekspor
     $routes->get('belajar-ekspor', 'KomunitasEkspor::belajar_ekspor');
     $routes->get('belajar-ekspor/search', 'KomunitasEkspor::search_belajar_ekspor');
-    $routes->get('belajar-ekspor-detail/(:segment)', 'KomunitasEkspor::belajar_ekspor_detail/$1');
+    $routes->get('belajar-ekspor/(:segment)', 'KomunitasEkspor::belajar_ekspor_detail/$1');
     $routes->get('kategori/(:any)', 'KomunitasEkspor::kategori_belajar_ekspor/$1');
 
     $routes->get('pendaftaran', 'KomunitasEkspor::pendaftaran');
@@ -37,7 +37,7 @@ $routes->group('en', function ($routes) {
     // Visitor?Member - Belajar Ekspor
     $routes->get('export-learning', 'KomunitasEkspor::belajar_ekspor');
     $routes->get('export-learning/search', 'KomunitasEkspor::search_belajar_ekspor');
-    $routes->get('belajar-ekspor-detail/(:segment)', 'KomunitasEkspor::belajar_ekspor_detail/$1');
+    $routes->get('export-learning/(:segment)', 'KomunitasEkspor::belajar_ekspor_detail/$1');
     $routes->get('kategori/(:any)', 'KomunitasEkspor::kategori_belajar_ekspor/$1');
 
     $routes->get('registration', 'KomunitasEkspor::pendaftaran');
