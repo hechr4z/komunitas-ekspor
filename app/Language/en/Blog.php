@@ -11,6 +11,7 @@ return [
     'headerApp2' => 'Marketing Progress Monitoring',
     'headerApp3' => 'Website Audit',
     'headerBuyers' => 'Buyers Data',
+    //en navbar
 
     //beranda
     // Carousel Texts
@@ -62,6 +63,13 @@ return [
     'filterCategory' => 'Filter Category',
     'noCategory' => 'No categories available',
     'noContent' => 'There is no content to display on this page yet.',
+    'readMore' => 'Read More',
+
+    //halaman search artikel
+    'searchTitle' => 'Export Learning',
+    'searchResults' => 'Displaying search results for:',
+    'searchPlaceholder' => 'Search articles...',
+    'noArticlesFound' => 'No articles found.',
     'readMore' => 'Read More',
 
     //halaman data member
