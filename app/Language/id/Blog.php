@@ -155,4 +155,5 @@ return [
     // Join Member Section
     'joinMemberTitle' => 'Gabung Member Yuk<br> untuk Akses 100%',
     'memberRegistration' => 'Pendaftaran Member',
+    'backtoArticle' => 'Kembali ke Artikel',
 ];

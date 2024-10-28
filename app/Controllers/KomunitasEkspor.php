@@ -62,6 +62,9 @@ class KomunitasEkspor extends BaseController
 
     public function belajar_ekspor($slug = null)
     {
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();
@@ -171,6 +174,8 @@ class KomunitasEkspor extends BaseController
 
     public function belajar_ekspor_detail($slug)
     {
+        $lang = session()->get('lang') ?? 'id';
+
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();
@@ -179,11 +184,19 @@ class KomunitasEkspor extends BaseController
         $kategoriModel = new KategoriBelajarEksporModel();
 
         // Mengambil artikel berdasarkan slug
-        $artikel = $belajarEksporModel->where('slug', $slug)->first();
+        $artikel = $belajarEksporModel->where('slug', $slug)->orWhere('slug_en', $slug)->first();
 
         if (!$artikel) {
             // Jika artikel tidak ditemukan, redirect atau tampilkan pesan error
             return redirect()->to('/')->with('error', 'Artikel tidak ditemukan');
+        }
+
+        // Cek apakah slug sesuai dengan bahasa yang sedang aktif
+        if (($lang === 'id' && $slug !== $artikel['slug']) || ($lang === 'en' && $slug !== $artikel['slug_en'])) {
+            // Redirect ke URL slug yang benar sesuai bahasa
+            $correctSlug = $lang === 'id' ? $artikel['slug'] : $artikel['slug_en'];
+            $correctulr = $lang === 'id' ? 'belajar-ekspor' : 'export-learning';
+            return redirect()->to("$lang/$correctulr/$correctSlug");
         }
 
         // Mengambil kategori artikel berdasarkan id_kategori
@@ -198,6 +211,7 @@ class KomunitasEkspor extends BaseController
             'kategori' => $kategori,
             'belajar_ekspor' => $related_artikel,
             'webprofile' => $webprofile,
+            'lang' => $lang
         ];
 
         return view('belajar-ekspor/belajar_ekspor_detail', $data);

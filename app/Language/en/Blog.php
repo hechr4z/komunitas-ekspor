@@ -58,6 +58,11 @@ return [
     'belajarEksporCTA' => 'Start learning about exporting now, conquer the global market!',
     'belajarEksporPlaceholder' => 'Search Export Materials ...',
     'filterAllPlaceholder' => 'All Categories',
+    // Filter Section
+    'filterCategory' => 'Filter Category',
+    'noCategory' => 'No categories available',
+    'noContent' => 'There is no content to display on this page yet.',
+    'readMore' => 'Read More',
 
     //halaman data member
     'dataMemberTitle' => 'Member Data',
@@ -156,4 +161,5 @@ return [
     // Join Member Section
     'joinMemberTitle' => 'Join as a Member <br> for 100% Access',
     'memberRegistration' => 'Member Registration',
+    'backtoArticle' => 'Back to Article',
 ];
