@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 use App\Models\BelajarEksporModel;
 use App\Models\KategoriBelajarEksporModel;
 use App\Models\Member;
@@ -380,7 +381,7 @@ class KomunitasEkspor extends BaseController
             ($referral ? "Kode Referral: $referral\n" : "");
 
         // Nomor tujuan WA
-        $nomor_wa = '6283325805748'; // Ganti dengan nomor WA yang benar
+        $nomor_wa = '6283153270334'; // Ganti dengan nomor WA yang benar
 
         // Membuat URL WhatsApp dengan pesan
         $whatsapp = "https://wa.me/$nomor_wa?text=" . urlencode($pesan);
@@ -637,6 +638,9 @@ class KomunitasEkspor extends BaseController
 
     public function ubah_informasi_akun()
     {
+        $session = session();
+        $user_id = $session->get('user_id');
+
         $model_member = new Member();
 
         $email = $this->request->getPost('email');
@@ -647,21 +651,102 @@ class KomunitasEkspor extends BaseController
                 'email' => $email,
             ];
 
-            $model_member->update(1, $data);
+            $model_member->update($user_id, $data);
         } elseif ($email == null && $password != null) {
             $data = [
                 'password' => password_hash($password, PASSWORD_DEFAULT),
             ];
 
-            $model_member->update(1, $data);
+            $model_member->update($user_id, $data);
         } elseif ($email != null && $password != null) {
             $data = [
                 'email' => $email,
                 'password' => password_hash($password, PASSWORD_DEFAULT),
             ];
 
-            $model_member->update(1, $data);
+            $model_member->update($user_id, $data);
         }
+
+        return redirect()->to('/edit-profile');
+    }
+
+    public function ubah_profil_perusahaan()
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_member = new Member();
+
+        $tr = new GoogleTranslate('en');
+
+        $fields = [
+            'nama_perusahaan',
+            'tipe_bisnis',
+            'deskripsi_perusahaan',
+            'produk_utama',
+            'tahun_dibentuk',
+            'skala_bisnis',
+            'kategori_produk',
+            'pic',
+            'pic_phone',
+            'latitude',
+            'longitude'
+        ];
+
+        $fields = [
+            'nama_perusahaan',
+            'tipe_bisnis',
+            'deskripsi_perusahaan',
+            'produk_utama',
+            'tahun_dibentuk',
+            'skala_bisnis',
+            'kategori_produk',
+            'pic',
+            'pic_phone',
+            'latitude',
+            'longitude'
+        ];
+
+        // Initialize validation rules without individual error messages
+        $validationRules = array_fill_keys($fields, [
+            'rules' => 'required'
+        ]);
+
+        // Perform validation
+        if (!$this->validate($validationRules)) {
+            // Get all validation errors
+            $errors = $this->validator->getErrors();
+
+            // Count the number of missing fields
+            $missingCount = count($errors);
+
+            // Set the custom error message with the missing count
+            $generalErrorMessage = "Ada $missingCount Input Yang Masih Belum Diisi!";
+
+            // Redirect back with the input and only the general error message
+            return redirect()->back()->withInput()->with('errors', ['general' => $generalErrorMessage]);
+        }
+
+        $data = [
+            'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
+            'tipe_bisnis' => $this->request->getPost('tipe_bisnis'),
+            'tipe_bisnis_en' => $tr->translate($this->request->getPost('tipe_bisnis')),
+            'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
+            'deskripsi_perusahaan_en' => $tr->translate($this->request->getPost('deskripsi_perusahaan')),
+            'produk_utama' => $this->request->getPost('produk_utama'),
+            'produk_utama_en' => $tr->translate($this->request->getPost('produk_utama')),
+            'tahun_dibentuk' => $this->request->getPost('tahun_dibentuk'),
+            'skala_bisnis' => $this->request->getPost('skala_bisnis'),
+            'skala_bisnis_en' => $tr->translate($this->request->getPost('skala_bisnis')),
+            'kategori_produk' => $this->request->getPost('kategori_produk'),
+            'kategori_produk_en' => $tr->translate($this->request->getPost('kategori_produk')),
+            'pic' => $this->request->getPost('pic'),
+            'pic_phone' => $this->request->getPost('pic_phone'),
+            'latitude' => $this->request->getPost('latitude'),
+            'longitude' => $this->request->getPost('longitude'),
+        ];
+
+        $model_member->update($user_id, $data);
 
         return redirect()->to('/edit-profile');
     }
