@@ -25,9 +25,10 @@ class VidioTutorialModel extends Model
     // Method untuk mengambil video berdasarkan slug
     public function getVideoBySlug($slug)
     {
-        return $this->select('video_tutorial.*, kategori_video.nama_kategori_video')
+        return $this->select('video_tutorial.*, kategori_video.nama_kategori_video, kategori_video.nama_kategori_video_en')
             ->join('kategori_video', 'video_tutorial.id_kategori_video = kategori_video.id_kategori_video')
             ->where('video_tutorial.slug', $slug)
+            ->orwhere('video_tutorial.slug_en', $slug)
             ->first();
     }
 
@@ -37,6 +38,7 @@ class VidioTutorialModel extends Model
         return $this->select('video_tutorial.*, kategori_video.nama_kategori_video')
             ->join('kategori_video', 'video_tutorial.id_kategori_video = kategori_video.id_kategori_video')
             ->where('kategori_video.slug', $kategoriSlug)
+            ->orwhere('kategori_video.slug_en', $kategoriSlug)
             ->findAll();
     }
 

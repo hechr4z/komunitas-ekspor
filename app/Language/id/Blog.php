@@ -75,6 +75,17 @@ return [
     'searchPlaceholder' => 'Cari artikel...',
     'noArticlesFound' => 'Tidak ada artikel yang ditemukan.',
     'readMore' => 'Baca Selengkapnya',
+    'seeMore' => 'Lihat lebih banyak artikel',
+    //end halaman belaajr ekspor
+
+    //halaman tutorial video
+    // Video Tutorial Section
+    'videoTutorialTitle' => 'Video Tutorial',
+    'videoTutorialDescription' => 'Temukan video tutorial dari komunitas kami,<br>dan pelajari dengan mendalam melalui video-video yang informatif dan mudah dipahami.',
+    // Video Category Section
+    'noVideosAvailable' => 'Belum ada video yang tersedia di kategori ini.',
+    'readMore' => 'Selengkapnya',
+    'videoCategory' => 'Video Kategori:',
 
     //halaman data member
     'dataMemberTitle' => 'Data Member',

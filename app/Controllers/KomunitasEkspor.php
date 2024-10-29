@@ -162,7 +162,7 @@ class KomunitasEkspor extends BaseController
         $kategoriBelajarEksporModel = new KategoriBelajarEksporModel();
 
         // Mengambil kategori berdasarkan slug
-        $kategori = $kategoriBelajarEksporModel->where('slug', $slug)->first();
+        $kategori = $kategoriBelajarEksporModel->where('slug', $slug)->orWhere('slug_en', $slug )->first();
         if (!$kategori) {
             // Jika kategori tidak ditemukan, redirect atau tampilkan error
             return redirect()->to('/')->with('error', 'Kategori tidak ditemukan');
@@ -285,7 +285,7 @@ class KomunitasEkspor extends BaseController
         $kategoriModel = new KategoriVidioModel();
 
         // Ambil data kategori berdasarkan slug
-        $kategori = $kategoriModel->where('slug', $slug)->first();
+        $kategori = $kategoriModel->where('slug', $slug)->orWhere('slug_en' , $slug)->first();
 
         // Jika kategori ditemukan, ambil video yang sesuai
         if ($kategori) {
@@ -316,6 +316,9 @@ class KomunitasEkspor extends BaseController
 
         // Mengambil data video berdasarkan slug
         $video = $vidioModel->getVideoBySlug($slug);
+
+        var_dump($video);
+        die();
 
         // Memastikan bahwa video ditemukan, jika tidak redirect atau tampilkan error
         if (!$video) {

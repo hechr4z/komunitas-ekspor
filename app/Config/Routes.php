@@ -20,8 +20,8 @@ $routes->group('id', function ($routes) {
 
     // Visitior - Video Tutorial
     $routes->get('tutorial-video', 'KomunitasEkspor::video_tutorial');
-    $routes->get('tutorial-video-selengkapnya/(:segment)', 'KomunitasEkspor::video_selengkapnya/$1');
-    $routes->get('tutorial-video-detail/(:segment)', 'KomunitasEkspor::video_tutorial_detail/$1');
+    $routes->get('tutorial-video/(:segment)', 'KomunitasEkspor::video_selengkapnya/$1');
+    $routes->get('tutorial-video/(:segment)', 'KomunitasEkspor::video_tutorial_detail/$1');
 
     $routes->get('pendaftaran', 'KomunitasEkspor::pendaftaran');
 
@@ -44,12 +44,12 @@ $routes->group('en', function ($routes) {
     $routes->get('export-learning', 'KomunitasEkspor::belajar_ekspor');
     $routes->get('export-learning/search', 'KomunitasEkspor::search_belajar_ekspor');
     $routes->get('export-learning/(:segment)', 'KomunitasEkspor::belajar_ekspor_detail/$1');
-    $routes->get('kategori/(:any)', 'KomunitasEkspor::kategori_belajar_ekspor/$1');
+    $routes->get('category/(:any)', 'KomunitasEkspor::kategori_belajar_ekspor/$1');
 
     // Visitior - Video Tutorial
     $routes->get('video-tutorial', 'KomunitasEkspor::video_tutorial');
-    $routes->get('video-tutorial-selengkapnya/(:segment)', 'KomunitasEkspor::video_selengkapnya/$1');
-    $routes->get('video-tutorial-detail/(:segment)', 'KomunitasEkspor::video_tutorial_detail/$1');
+    $routes->get('video-tutorial/(:segment)', 'KomunitasEkspor::video_selengkapnya/$1');
+    $routes->get('video-tutorial/(:segment)', 'KomunitasEkspor::video_tutorial_detail/$1');
 
     $routes->get('registration', 'KomunitasEkspor::pendaftaran');
 
