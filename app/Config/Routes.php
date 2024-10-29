@@ -20,7 +20,7 @@ $routes->group('id', function ($routes) {
 
     // Visitior - Video Tutorial
     $routes->get('tutorial-video', 'KomunitasEkspor::video_tutorial');
-    $routes->get('tutorial-video/kategori/(:segment)');
+    // $routes->get('tutorial-video/kategori/(:segment)');
     $routes->get('tutorial-video/(:segment)', 'KomunitasEkspor::video_tutorial_detail/$1');
 
     $routes->get('pendaftaran', 'KomunitasEkspor::pendaftaran');
@@ -105,6 +105,10 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->post('/mpm-add', 'KomunitasEkspor::add_mpm');
     $routes->post('/mpm-edit', 'KomunitasEkspor::edit_mpm');
     $routes->get('mpm/getEmailsByDate/(:num)/(:num)', 'KomunitasEkspor::getEmailsByDate/$1/$2');
+
+    // Member - Data Member
+    $routes->get('member-data-member', 'KomunitasEkspor::member_data_member');
+    $routes->get('member-detail-member/(:any)', 'KomunitasEkspor::member_detail_member/$1');
 
     // Member = Data Buyers
     $routes->get('/member-data-buyers', 'KomunitasEkspor::member_data_buyers');

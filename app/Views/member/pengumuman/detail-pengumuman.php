@@ -1,6 +1,22 @@
 <?= $this->extend('member/layout/app'); ?>
 <?= $this->section('content'); ?>
 
+<style>
+    .btn-custom {
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .btn-custom:hover {
+        color: #fff;
+        transform: scale(1.05);
+        box-shadow: 0px 0px 10px #F2BF02;
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        background-color: #F2BF02 !important;
+        /* Mengubah warna saat hover menjadi #F2BF02 */
+    }
+</style>
+
 <section class="container mt-4">
     <!-- Header Pengumuman -->
     <div class="text-center mt-5">
@@ -20,7 +36,8 @@
                     <h5 class="card-title">Judul Pengumuman</h5>
                     <p class="text-muted"><small><i class="far fa-calendar-alt"></i> 21 Oktober 2024</small></p>
                     <div class="card-text">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor urna sit amet urna malesuada, id pharetra ex tincidunt.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor urna sit amet urna
+                            malesuada, id pharetra ex tincidunt.</p>
                     </div>
                 </div>
             </div>
@@ -37,11 +54,13 @@
                 <img src="/img/navbar1.jpg" class="card-img-top" alt="Pengumuman 1">
                 <div class="card-body">
                     <h5 class="card-title">Judul Pengumuman 1</h5>
-                    <p class="card-text">Deskripsi singkat untuk pengumuman pertama. Gambaran singkat isi pengumuman.</p>
+                    <p class="card-text">Deskripsi singkat untuk pengumuman pertama. Gambaran singkat isi pengumuman.
+                    </p>
                     <p class="text-muted"><small><i class="far fa-calendar-alt"></i> 21 Oktober 2024</small></p>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="#" class="btn btn-info text-white">Baca Selengkapnya</a>
+                    <a href="detail-pengumuman" class="btn btn-custom" style="background-color: #03AADE;">Baca
+                        Selengkapnya</a>
                 </div>
             </div>
         </div>
@@ -56,7 +75,8 @@
                     <p class="text-muted"><small><i class="far fa-calendar-alt"></i> 19 Oktober 2024</small></p>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="#" class="btn btn-info text-white">Baca Selengkapnya</a>
+                    <a href="detail-pengumuman" class="btn btn-custom" style="background-color: #03AADE;">Baca
+                        Selengkapnya</a>
                 </div>
             </div>
         </div>
@@ -71,7 +91,8 @@
                     <p class="text-muted"><small><i class="far fa-calendar-alt"></i> 18 Oktober 2024</small></p>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="#" class="btn btn-info text-white">Baca Selengkapnya</a>
+                    <a href="detail-pengumuman" class="btn btn-custom" style="background-color: #03AADE;">Baca
+                        Selengkapnya</a>
                 </div>
             </div>
         </div>
