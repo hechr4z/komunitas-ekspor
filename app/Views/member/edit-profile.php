@@ -455,9 +455,11 @@
                                                         Lihat Detail
                                                     </button>
                                                 </div>
-                                                <button type="button" class="btn btn-danger position-absolute top-0 end-0 m-3" style="border-radius: 50%;">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
+                                                <a href="<?= base_url('/delete-produk/' . $item['id_produk']) ?>">
+                                                    <button type="submit" class="btn btn-danger position-absolute top-0 end-0 m-3" style="border-radius: 50%;">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </a>
                                             </div>
                                         </a>
                                     </div>
