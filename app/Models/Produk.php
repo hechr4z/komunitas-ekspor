@@ -13,6 +13,7 @@ class Produk extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        'id_member',
         'foto_produk',
         'nama_produk',
         'deskripsi_produk',
