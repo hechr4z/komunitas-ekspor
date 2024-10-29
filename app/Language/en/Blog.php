@@ -80,6 +80,8 @@ return [
     'noVideosAvailable' => 'No videos are available in this category.',
     'readMore' => 'Read More',
     'videoCategory' => 'Video Category:',
+    'titleDesc' => 'Description',
+    'titleOther' => 'Other Videos',
 
 
     //halaman data member

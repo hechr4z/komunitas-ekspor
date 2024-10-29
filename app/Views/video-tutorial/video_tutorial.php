@@ -72,7 +72,7 @@
                 <?= lang('Blog.videoCategory') ?>
                 <?= ($lang === 'en') ? $kategori['nama_kategori_video_en'] : $kategori['nama_kategori_video']; ?>
             </h5>
-            <a href="<?= base_url(($lang === 'en' ? 'en/video-tutorial/' : 'id/tutorial-video/') . ($lang === 'en' ? $kategori['slug_en'] : $kategori['slug'])); ?>" class="btn btn-custom">
+            <a href="<?= base_url(($lang === 'en' ? 'en/video-tutorial/category/' : 'id/tutorial-video/kategori/') . ($lang === 'en' ? $kategori['slug_en'] : $kategori['slug'])); ?>" class="btn btn-custom">
                 <?= lang('Blog.readMore') ?>
             </a>
         </div>

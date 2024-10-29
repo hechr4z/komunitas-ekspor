@@ -86,6 +86,9 @@ return [
     'noVideosAvailable' => 'Belum ada video yang tersedia di kategori ini.',
     'readMore' => 'Selengkapnya',
     'videoCategory' => 'Video Kategori:',
+    'titleDesc' => 'Deskripsi',
+    'titleOther' => 'Video Lainnya',
+
 
     //halaman data member
     'dataMemberTitle' => 'Data Member',
