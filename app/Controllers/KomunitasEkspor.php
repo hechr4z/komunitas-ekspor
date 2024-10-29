@@ -628,10 +628,13 @@ class KomunitasEkspor extends BaseController
         $data['webprofile'] = $webprofile;
 
         $model_member = new Member();
+        $model_produk = new Produk();
 
         $member = $model_member->where('id_member', $user_id)->first();
+        $produk = $model_produk->where('id_member', $user_id)->findAll();
 
         $data['member'] = $member;
+        $data['produk'] = $produk;
 
         return view('member/edit-profile', $data);
     }
@@ -693,20 +696,6 @@ class KomunitasEkspor extends BaseController
             'longitude'
         ];
 
-        $fields = [
-            'nama_perusahaan',
-            'tipe_bisnis',
-            'deskripsi_perusahaan',
-            'produk_utama',
-            'tahun_dibentuk',
-            'skala_bisnis',
-            'kategori_produk',
-            'pic',
-            'pic_phone',
-            'latitude',
-            'longitude'
-        ];
-
         // Initialize validation rules without individual error messages
         $validationRules = array_fill_keys($fields, [
             'rules' => 'required'
@@ -748,6 +737,75 @@ class KomunitasEkspor extends BaseController
 
         $model_member->update($user_id, $data);
 
+        return redirect()->to('/edit-profile');
+    }
+
+    public function add_produk()
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_produk = new Produk();
+
+        $tr = new GoogleTranslate('en');
+
+        $fields = [
+            'nama_produk',
+            'deskripsi_produk',
+            'hs_code',
+            'minimum_order_qty',
+            'kapasitas_produksi_bln',
+        ];
+
+        // Set validation rules without `foto_produk` and apply only required rules
+        $validationRules = array_fill_keys($fields, [
+            'rules' => 'required'
+        ]);
+
+        // Validate other fields
+        if (!$this->validate($validationRules)) {
+            $errors = $this->validator->getErrors();
+        } else {
+            $errors = [];
+        }
+
+        // Separate check for `foto_produk`
+        $fotoProduk = $this->request->getFile('foto_produk');
+        if (!$fotoProduk || !$fotoProduk->isValid()) {
+            $errors['foto_produk'] = "Foto produk harus diunggah!";
+        }
+
+        // Count errors and handle response if there are any missing inputs
+        if (!empty($errors)) {
+            $missingCount = count($errors);
+            $generalErrorMessage = "Ada $missingCount Input Yang Masih Belum Diisi!";
+            return redirect()->back()->withInput()->with('errors', ['general' => $generalErrorMessage]);
+        }
+
+        // Process and move `foto_produk` if uploaded
+        $namaFile = null;
+        if ($fotoProduk && $fotoProduk->isValid() && !$fotoProduk->hasMoved()) {
+            $namaFile = uniqid() . '.' . $fotoProduk->getClientExtension();
+            $fotoProduk->move(ROOTPATH . 'public/img', $namaFile);
+        }
+
+        // Prepare data for insertion
+        $data = [
+            'id_member' => $user_id,
+            'foto_produk' => $namaFile,
+            'nama_produk' => $this->request->getPost('nama_produk'),
+            'nama_produk_en' => $tr->translate($this->request->getPost('nama_produk')),
+            'deskripsi_produk' => $this->request->getPost('deskripsi_produk'),
+            'deskripsi_produk_en' => $tr->translate($this->request->getPost('deskripsi_produk')),
+            'hs_code' => $this->request->getPost('hs_code'),
+            'minimum_order_qty' => $this->request->getPost('minimum_order_qty'),
+            'kapasitas_produksi_bln' => $this->request->getPost('kapasitas_produksi_bln'),
+        ];
+
+        // Insert data into the database
+        $model_produk->insert($data);
+
+        // Redirect after successful insert
         return redirect()->to('/edit-profile');
     }
 
