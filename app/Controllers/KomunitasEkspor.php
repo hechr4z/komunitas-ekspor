@@ -1254,7 +1254,7 @@ class KomunitasEkspor extends BaseController
 
     public function add_mpm()
     {
-        $tgl_kirim_email =  $this->request->getPost('tgl_kirim_email');
+        $tgl_kirim_email = $this->request->getPost('tgl_kirim_email');
 
         $bulanIndonesia = [
             'January' => 'Januari',
@@ -1276,7 +1276,7 @@ class KomunitasEkspor extends BaseController
         $tgl_kirim_email = str_replace($bulanInggris, $bulanIndonesia[$bulanInggris], $tgl);
 
         $data = [
-            'id_member' =>  1,
+            'id_member' => 1,
             'tgl_kirim_email' => $this->request->getPost('tgl_kirim_email'),
             'update_terakhir' => NULL,
             'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
@@ -1640,5 +1640,17 @@ class KomunitasEkspor extends BaseController
 
         // Mengembalikan view dengan data yang telah disiapkan
         return view('member/video-tutorial/video_tutorial_detail', $data);
+    }
+
+    public function website_audit()
+    {
+
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
+        return view('member/website-audit/website-audit', $data);
     }
 }
