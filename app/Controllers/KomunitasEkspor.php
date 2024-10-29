@@ -21,6 +21,7 @@ use App\Models\MPM;
 use App\Models\Slider;
 use App\Models\WebProfile;
 use App\Models\ManfaatJoin;
+use App\Models\Pengumuman;
 use CodeIgniter\I18n\Time;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -1146,10 +1147,13 @@ class KomunitasEkspor extends BaseController
     public function pengumuman()
     {
         $model_webprofile = new WebProfile();
+        $model_pengumuman = new Pengumuman();
 
+        $pengumuman = $model_pengumuman->findAll();
         $webprofile = $model_webprofile->findAll();
 
         $data['webprofile'] = $webprofile;
+        $data['pengumuman'] = $pengumuman;
 
         return view('member/pengumuman/pengumuman', $data);
     }
