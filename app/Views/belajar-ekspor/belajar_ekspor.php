@@ -368,15 +368,15 @@
                         <?php if (!empty($kategori_belajar_ekspor)): ?>
                             <!-- Tampilkan link ke semua kategori -->
                             <div class="submenu-item">
-                                <a href="<?= base_url('id/belajar-ekspor'); ?>" class="submenu-link <?= empty($active_category) ? 'active' : ''; ?>">
+                                <a href="<?= base_url(($lang === 'en' ? 'en/export-learning' : '/idbelajar-ekspor')); ?>" class="submenu-link <?= empty($active_category) ? 'active' : ''; ?>">
                                     <?= lang('Blog.filterAllPlaceholder') ?>
                                 </a>
                             </div>
                             <!-- Loop kategori -->
                             <?php foreach ($kategori_belajar_ekspor as $item): ?>
                                 <div class="submenu-item">
-                                    <a href="<?= base_url('id/kategori/' . $item['slug']); ?>" class="submenu-link <?= $active_category == $item['id_kategori_belajar_ekspor'] ? 'active' : ''; ?>">
-                                        <?= $item['nama_kategori']; ?>
+                                    <a href="<?= base_url(($lang === 'en' ? 'en/category' : 'id/kategori') . '/' . ($lang === 'en' ? $item['slug_en'] : $item['slug'])); ?>" class="submenu-link <?= $active_category == $item['id_kategori_belajar_ekspor'] ? 'active' : ''; ?>">
+                                        <?= $lang === 'en' ? $item['nama_kategori_en'] : $item['nama_kategori']; ?>
                                     </a>
                                 </div>
                             <?php endforeach; ?>
@@ -386,6 +386,7 @@
                             </div>
                         <?php endif; ?>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -427,7 +428,7 @@
             <?php endif; ?>
         </div>
         <div class="lebih mt-5" style="display: flex; justify-content: center;">
-            <a href="#" class="btn btn-custom mt-auto" style="min-width: 50px; text-align: center; border-radius: 30px;">Lihat Lebih Banyak ></a>
+            <a href="#" class="btn btn-custom mt-auto" style="min-width: 50px; text-align: center; border-radius: 30px;"><?= lang('Blog.seeMore') ?> </a>
         </div>
     </div>
     </div>

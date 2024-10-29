@@ -329,7 +329,8 @@
     $replace_map = [
         'pendaftaran' => 'registration',
         'belajar-ekspor' => 'export-learning',
-
+        'kategori' => 'category',
+        'tutorial-video' => 'video-tutorial',
     ];
 
     // Ambil bagian dari URL tanpa segmen bahasa

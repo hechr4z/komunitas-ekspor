@@ -20,8 +20,8 @@ $routes->group('id', function ($routes) {
 
     // Visitior - Video Tutorial
     $routes->get('tutorial-video', 'KomunitasEkspor::video_tutorial');
-    $routes->get('tutorial-video-selengkapnya/(:segment)', 'KomunitasEkspor::video_selengkapnya/$1');
-    $routes->get('tutorial-video-detail/(:segment)', 'KomunitasEkspor::video_tutorial_detail/$1');
+    // $routes->get('tutorial-video/kategori/(:segment)');
+    $routes->get('tutorial-video/(:segment)', 'KomunitasEkspor::video_tutorial_detail/$1');
 
     $routes->get('pendaftaran', 'KomunitasEkspor::pendaftaran');
 
@@ -44,12 +44,12 @@ $routes->group('en', function ($routes) {
     $routes->get('export-learning', 'KomunitasEkspor::belajar_ekspor');
     $routes->get('export-learning/search', 'KomunitasEkspor::search_belajar_ekspor');
     $routes->get('export-learning/(:segment)', 'KomunitasEkspor::belajar_ekspor_detail/$1');
-    $routes->get('kategori/(:any)', 'KomunitasEkspor::kategori_belajar_ekspor/$1');
+    $routes->get('category/(:any)', 'KomunitasEkspor::kategori_belajar_ekspor/$1');
 
     // Visitior - Video Tutorial
     $routes->get('video-tutorial', 'KomunitasEkspor::video_tutorial');
-    $routes->get('video-tutorial-selengkapnya/(:segment)', 'KomunitasEkspor::video_selengkapnya/$1');
-    $routes->get('video-tutorial-detail/(:segment)', 'KomunitasEkspor::video_tutorial_detail/$1');
+    $routes->get('video-tutorial/category/(:segment)', 'KomunitasEkspor::video_selengkapnya/$1');
+    $routes->get('video-tutorial/(:segment)', 'KomunitasEkspor::video_tutorial_detail/$1');
 
     $routes->get('registration', 'KomunitasEkspor::pendaftaran');
 
@@ -75,6 +75,9 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     // Member - Edit Member
     $routes->get('/edit-profile', 'KomunitasEkspor::edit_profile');
     $routes->post('/ubah-informasi-akun', 'KomunitasEkspor::ubah_informasi_akun');
+    $routes->post('/ubah-profil-perusahaan', 'KomunitasEkspor::ubah_profil_perusahaan');
+    $routes->post('/add-produk', 'KomunitasEkspor::add_produk');
+    $routes->get('/delete-produk/(:num)', 'KomunitasEkspor::delete_produk/$1');
 
     // Visitor - Aplikasi Kalkulator Ekspor
     $routes->get('/kalkulator-ekspor', 'KomunitasEkspor::index_kalkulator');
@@ -102,6 +105,10 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->post('/mpm-add', 'KomunitasEkspor::add_mpm');
     $routes->post('/mpm-edit', 'KomunitasEkspor::edit_mpm');
     $routes->get('mpm/getEmailsByDate/(:num)/(:num)', 'KomunitasEkspor::getEmailsByDate/$1/$2');
+
+    // Member - Data Member
+    $routes->get('member-data-member', 'KomunitasEkspor::member_data_member');
+    $routes->get('member-detail-member/(:any)', 'KomunitasEkspor::member_detail_member/$1');
 
     // Member = Data Buyers
     $routes->get('/member-data-buyers', 'KomunitasEkspor::member_data_buyers');

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 use App\Models\BelajarEksporModel;
 use App\Models\KategoriBelajarEksporModel;
 use App\Models\Member;
@@ -162,7 +163,7 @@ class KomunitasEkspor extends BaseController
         $kategoriBelajarEksporModel = new KategoriBelajarEksporModel();
 
         // Mengambil kategori berdasarkan slug
-        $kategori = $kategoriBelajarEksporModel->where('slug', $slug)->first();
+        $kategori = $kategoriBelajarEksporModel->where('slug', $slug)->orWhere('slug_en', $slug)->first();
         if (!$kategori) {
             // Jika kategori tidak ditemukan, redirect atau tampilkan error
             return redirect()->to('/')->with('error', 'Kategori tidak ditemukan');
@@ -277,6 +278,8 @@ class KomunitasEkspor extends BaseController
 
     public function video_selengkapnya($slug)
     {
+        $lang = session()->get('lang') ?? 'id';
+
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();
@@ -285,7 +288,9 @@ class KomunitasEkspor extends BaseController
         $kategoriModel = new KategoriVidioModel();
 
         // Ambil data kategori berdasarkan slug
-        $kategori = $kategoriModel->where('slug', $slug)->first();
+        $kategori = $kategoriModel->where('slug', $slug)
+            ->orWhere('slug_en', $slug)->first();
+
 
         // Jika kategori ditemukan, ambil video yang sesuai
         if ($kategori) {
@@ -299,6 +304,7 @@ class KomunitasEkspor extends BaseController
             'kategori' => $kategori,
             'video_tutorial' => $videos,
             'webprofile' => $webprofile,
+            'lang' => $lang
         ];
 
         return view('video-tutorial/video_selengkapnya', $data);
@@ -306,6 +312,8 @@ class KomunitasEkspor extends BaseController
 
     public function video_tutorial_detail($slug)
     {
+        $lang = session()->get('lang') ?? 'id';
+
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();
@@ -314,8 +322,17 @@ class KomunitasEkspor extends BaseController
         $vidioModel = new VidioTutorialModel();
         $kategoriModel = new KategoriVidioModel();
 
+
         // Mengambil data video berdasarkan slug
         $video = $vidioModel->getVideoBySlug($slug);
+
+        // Cek apakah slug sesuai dengan bahasa yang sedang aktif
+        if (($lang === 'id' && $slug !== $video['slug']) || ($lang === 'en' && $slug !== $video['slug_en'])) {
+            // Redirect ke URL slug yang benar sesuai bahasa
+            $correctSlug = $lang === 'id' ? $video['slug'] : $video['slug_en'];
+            $correctulr = $lang === 'id' ? 'tutorial-video' : 'video-tutorial';
+            return redirect()->to("$lang/$correctulr/$correctSlug");
+        }
 
         // Memastikan bahwa video ditemukan, jika tidak redirect atau tampilkan error
         if (!$video) {
@@ -334,6 +351,7 @@ class KomunitasEkspor extends BaseController
             'related_videos' => $related_videos,
             'kategori' => $kategori,
             'webprofile' => $webprofile,
+            'lang' => $lang
         ];
 
         // Mengembalikan view dengan data yang telah disiapkan
@@ -380,7 +398,7 @@ class KomunitasEkspor extends BaseController
             ($referral ? "Kode Referral: $referral\n" : "");
 
         // Nomor tujuan WA
-        $nomor_wa = '6283325805748'; // Ganti dengan nomor WA yang benar
+        $nomor_wa = '6283153270334'; // Ganti dengan nomor WA yang benar
 
         // Membuat URL WhatsApp dengan pesan
         $whatsapp = "https://wa.me/$nomor_wa?text=" . urlencode($pesan);
@@ -546,6 +564,102 @@ class KomunitasEkspor extends BaseController
         return view('data-member/detail', $data);
     }
 
+    public function member_data_member()
+    {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+
+        $model_member = new Member();
+
+        // Set pagination
+        $perPage = 12; // Number of members per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
+        // Fetch members with pagination
+        $members = $model_member
+            ->orderBy('popular_point', 'DESC')
+            ->paginate($perPage);
+
+        // Modify members to add slug
+        foreach ($members as &$item) {
+            $item['slug'] = url_title($item['username'], '-', true);
+        }
+
+        $data['member'] = $members;
+        $data['pager'] = $model_member->pager; // Get the pager instance
+
+        return view('member/data-member/index', $data);
+    }
+
+    public function member_detail_member($slug)
+    {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+
+        $model_member = new Member();
+        $model_sertifikat = new Sertifikat();
+        $model_produk = new Produk();
+
+        // Cari member berdasarkan username, karena slug dibuat dari username
+        $member = $model_member->where('username', url_title($slug, '-', true))->first();
+
+        // Jika member ditemukan
+        if ($member) {
+            // Iterasi setiap field dalam array member
+            foreach ($member as $key => $value) {
+                // Cek jika field kosong atau null
+                if (empty($value)) {
+                    $member[$key] = '-';
+                }
+            }
+        } else {
+            // Jika member tidak ditemukan, lemparkan 404
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Member tidak ditemukan: ' . $slug);
+        }
+
+        // Top 3 popular members
+        $members = $model_member
+            ->orderBy('popular_point', 'DESC')
+            ->findAll(); // Tambahkan findAll() untuk mengambil data
+
+        $top3_members = [];
+        foreach ($members as $key => $item) {
+            if ($item['id_member'] != $member['id_member']) {
+                // Buat slug dari judul_artikel dan tanggal
+                $item['slug'] = url_title($item['username'], '-', true);
+                $top3_members[] = $item;
+            }
+        }
+
+        $top3_members = array_slice($top3_members, 0, 3);
+
+        $member_id = $member['id_member'];
+
+        // Mengambil data sertifikat dan produk berdasarkan id_member
+        $sertifikat = $model_sertifikat->where('id_member', $member_id)->findAll();
+        $produk = $model_produk->where('id_member', $member_id)->findAll();
+
+        // Kirimkan data ke view
+        $data['member'] = $member;
+        $data['members'] = $top3_members;
+        $data['sertifikat'] = $sertifikat;
+        $data['produk'] = $produk;
+
+        return view('member/data-member/detail', $data);
+    }
+
     public function data_buyers()
     {
         $model_webprofile = new WebProfile();
@@ -617,6 +731,9 @@ class KomunitasEkspor extends BaseController
 
     public function edit_profile()
     {
+        $session = session();
+        $user_id = $session->get('user_id');
+
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();
@@ -624,16 +741,22 @@ class KomunitasEkspor extends BaseController
         $data['webprofile'] = $webprofile;
 
         $model_member = new Member();
+        $model_produk = new Produk();
 
-        $member = $model_member->where('id_member', 1)->first();
+        $member = $model_member->where('id_member', $user_id)->first();
+        $produk = $model_produk->where('id_member', $user_id)->findAll();
 
         $data['member'] = $member;
+        $data['produk'] = $produk;
 
         return view('member/edit-profile', $data);
     }
 
     public function ubah_informasi_akun()
     {
+        $session = session();
+        $user_id = $session->get('user_id');
+
         $model_member = new Member();
 
         $email = $this->request->getPost('email');
@@ -644,21 +767,172 @@ class KomunitasEkspor extends BaseController
                 'email' => $email,
             ];
 
-            $model_member->update(1, $data);
+            $model_member->update($user_id, $data);
         } elseif ($email == null && $password != null) {
             $data = [
                 'password' => password_hash($password, PASSWORD_DEFAULT),
             ];
 
-            $model_member->update(1, $data);
+            $model_member->update($user_id, $data);
         } elseif ($email != null && $password != null) {
             $data = [
                 'email' => $email,
                 'password' => password_hash($password, PASSWORD_DEFAULT),
             ];
 
-            $model_member->update(1, $data);
+            $model_member->update($user_id, $data);
         }
+
+        return redirect()->to('/edit-profile');
+    }
+
+    public function ubah_profil_perusahaan()
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_member = new Member();
+
+        $tr = new GoogleTranslate('en');
+
+        $fields = [
+            'nama_perusahaan',
+            'tipe_bisnis',
+            'deskripsi_perusahaan',
+            'produk_utama',
+            'tahun_dibentuk',
+            'skala_bisnis',
+            'kategori_produk',
+            'pic',
+            'pic_phone',
+            'latitude',
+            'longitude'
+        ];
+
+        // Initialize validation rules without individual error messages
+        $validationRules = array_fill_keys($fields, [
+            'rules' => 'required'
+        ]);
+
+        // Perform validation
+        if (!$this->validate($validationRules)) {
+            // Get all validation errors
+            $errors = $this->validator->getErrors();
+
+            // Count the number of missing fields
+            $missingCount = count($errors);
+
+            // Set the custom error message with the missing count
+            $generalErrorMessage = "Ada $missingCount Input Yang Masih Belum Diisi!";
+
+            // Redirect back with the input and only the general error message
+            return redirect()->back()->withInput()->with('errors', ['general' => $generalErrorMessage]);
+        }
+
+        $data = [
+            'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
+            'tipe_bisnis' => $this->request->getPost('tipe_bisnis'),
+            'tipe_bisnis_en' => $tr->translate($this->request->getPost('tipe_bisnis')),
+            'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
+            'deskripsi_perusahaan_en' => $tr->translate($this->request->getPost('deskripsi_perusahaan')),
+            'produk_utama' => $this->request->getPost('produk_utama'),
+            'produk_utama_en' => $tr->translate($this->request->getPost('produk_utama')),
+            'tahun_dibentuk' => $this->request->getPost('tahun_dibentuk'),
+            'skala_bisnis' => $this->request->getPost('skala_bisnis'),
+            'skala_bisnis_en' => $tr->translate($this->request->getPost('skala_bisnis')),
+            'kategori_produk' => $this->request->getPost('kategori_produk'),
+            'kategori_produk_en' => $tr->translate($this->request->getPost('kategori_produk')),
+            'pic' => $this->request->getPost('pic'),
+            'pic_phone' => $this->request->getPost('pic_phone'),
+            'latitude' => $this->request->getPost('latitude'),
+            'longitude' => $this->request->getPost('longitude'),
+        ];
+
+        $model_member->update($user_id, $data);
+
+        return redirect()->to('/edit-profile');
+    }
+
+    public function add_produk()
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_produk = new Produk();
+
+        $tr = new GoogleTranslate('en');
+
+        $fields = [
+            'nama_produk',
+            'deskripsi_produk',
+            'hs_code',
+            'minimum_order_qty',
+            'kapasitas_produksi_bln',
+        ];
+
+        // Set validation rules without `foto_produk` and apply only required rules
+        $validationRules = array_fill_keys($fields, [
+            'rules' => 'required'
+        ]);
+
+        // Validate other fields
+        if (!$this->validate($validationRules)) {
+            $errors = $this->validator->getErrors();
+        } else {
+            $errors = [];
+        }
+
+        // Separate check for `foto_produk`
+        $fotoProduk = $this->request->getFile('foto_produk');
+        if (!$fotoProduk || !$fotoProduk->isValid()) {
+            $errors['foto_produk'] = "Foto produk harus diunggah!";
+        }
+
+        // Count errors and handle response if there are any missing inputs
+        if (!empty($errors)) {
+            $missingCount = count($errors);
+            $generalErrorMessage = "Ada $missingCount Input Yang Masih Belum Diisi!";
+            return redirect()->back()->withInput()->with('errors', ['general' => $generalErrorMessage]);
+        }
+
+        // Process and move `foto_produk` if uploaded
+        $namaFile = null;
+        if ($fotoProduk && $fotoProduk->isValid() && !$fotoProduk->hasMoved()) {
+            $namaFile = uniqid() . '.' . $fotoProduk->getClientExtension();
+            $fotoProduk->move(ROOTPATH . 'public/img', $namaFile);
+        }
+
+        // Prepare data for insertion
+        $data = [
+            'id_member' => $user_id,
+            'foto_produk' => $namaFile,
+            'nama_produk' => $this->request->getPost('nama_produk'),
+            'nama_produk_en' => $tr->translate($this->request->getPost('nama_produk')),
+            'deskripsi_produk' => $this->request->getPost('deskripsi_produk'),
+            'deskripsi_produk_en' => $tr->translate($this->request->getPost('deskripsi_produk')),
+            'hs_code' => $this->request->getPost('hs_code'),
+            'minimum_order_qty' => $this->request->getPost('minimum_order_qty'),
+            'kapasitas_produksi_bln' => $this->request->getPost('kapasitas_produksi_bln'),
+        ];
+
+        // Insert data into the database
+        $model_produk->insert($data);
+
+        // Redirect after successful insert
+        return redirect()->to('/edit-profile');
+    }
+
+    public function delete_produk($id)
+    {
+        $model_produk = new Produk();
+
+        $produk = $model_produk->find($id);
+
+        if ($produk['foto_produk'] && file_exists(ROOTPATH . 'public/img/' . $produk['foto_produk'])) {
+            unlink(ROOTPATH . 'public/img/' . $produk['foto_produk']);
+        }
+
+        $model_produk->delete($id);
 
         return redirect()->to('/edit-profile');
     }
@@ -1095,6 +1369,9 @@ class KomunitasEkspor extends BaseController
 
     public function member_data_buyers()
     {
+        $session = session();
+        $user_id = $session->get('user_id');
+
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();
@@ -1104,7 +1381,7 @@ class KomunitasEkspor extends BaseController
         $model_produk = new Produk();
         $model_buyers = new Buyers();
 
-        $produk = $model_produk->where('id_member', 1)->findColumn('hs_code');
+        $produk = $model_produk->where('id_member', $user_id)->findColumn('hs_code');
 
         // If there are hs_codes, find buyers with matching hs_codes
         $buyers = [];

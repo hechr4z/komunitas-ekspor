@@ -1,4 +1,4 @@
-<?= $this->extend('layout/app'); ?>
+<?= $this->extend('member/layout/app'); ?>
 <?= $this->section('content'); ?>
 
 <style>
@@ -123,10 +123,10 @@
             <!-- Badge with Code Referral -->
             <div class="text-center mb-3">
                 <span class="badge badge-lg bg-light text-dark p-2" style="font-size: 18px;">
-                    <?php echo lang('Blog.referralCode') ?><?= $member['username'] ?>
+                    Kode Refferal: <?= $member['username'] ?>
                 </span>
                 <span class="badge badge-lg bg-light text-dark p-2" style="font-size: 18px;">
-                    <?php echo lang('Blog.emailDetail') ?><?= $member['email'] ?>
+                    Email: <?= $member['email'] ?>
                 </span>
             </div>
 
@@ -135,17 +135,17 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active custom-tab" id="personal-info-tab" data-bs-toggle="tab"
                         data-bs-target="#personal-info" type="button" role="tab" aria-controls="personal-info"
-                        aria-selected="true"><?php echo lang('Blog.companyProfile') ?></button>
+                        aria-selected="true">Profil Perusahaan</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link custom-tab" id="education-job-tab" data-bs-toggle="tab"
                         data-bs-target="#education-job" type="button" role="tab" aria-controls="education-job"
-                        aria-selected="false"><?php echo lang('Blog.certificate') ?></button>
+                        aria-selected="false">Sertifikat</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link custom-tab" id="certification-tab" data-bs-toggle="tab"
                         data-bs-target="#certification" type="button" role="tab" aria-controls="certification"
-                        aria-selected="false"><?php echo lang('Blog.productData') ?></button>
+                        aria-selected="false">Data Produk</button>
                 </li>
             </ul>
 
@@ -153,28 +153,29 @@
             <div class="tab-content mt-4" id="myTabContent">
                 <div class="tab-pane fade show active" id="personal-info" role="tabpanel"
                     aria-labelledby="personal-info-tab">
-                    <h5 class="mb-4"><?php echo lang('Blog.referralCode') ?></h5>
+                    <h5 class="mb-4">Kode Refferal: </h5>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
                                 <i class="fas fa-building fa-lg mb-2"></i>
-                                <p><strong><?php echo lang('Blog.companyName') ?></strong> <?= $member['nama_perusahaan'] ?></p>
+                                <p><strong>Nama Perusahaan: </strong>
+                                    <?= $member['nama_perusahaan'] ?></p>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
                                 <i class="fas fa-industry fa-lg mb-2"></i>
-                                <p><strong><?php echo lang('Blog.businessType') ?></strong>
-                                    <?= ($lang == 'en') ? $member['tipe_bisnis_en'] : $member['tipe_bisnis'] ?>
+                                <p><strong>Tipe Bisnis: </strong>
+                                    <?= $member['tipe_bisnis'] ?>
                                 </p>
                             </div>
                         </div>
                         <div class="col-12 mb-3">
                             <div class="card p-3 shadow-sm bg-light d-flex flex-column">
                                 <i class="fas fa-file-alt fa-lg mb-2"></i>
-                                <label class="form-label"><strong><?php echo lang('Blog.companyDesc') ?></strong></label>
+                                <label class="form-label"><strong>Deskripsi Perusahaan: </strong></label>
                                 <p class="mb-0">
-                                    <?= nl2br(htmlspecialchars(($lang == 'en') ? $member['deskripsi_perusahaan_en'] : $member['deskripsi_perusahaan'])) ?>
+                                    <?= nl2br(htmlspecialchars($member['deskripsi_perusahaan'])) ?>
                                 </p>
 
                             </div>
@@ -182,8 +183,8 @@
                         <div class="col-md-6 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
                                 <i class="fas fa-box fa-lg mb-2"></i>
-                                <p><strong><?php echo lang('Blog.mainProduct') ?></strong>
-                                    <?= ($lang == 'en') ? $member['produk_utama_en'] : $member['produk_utama'] ?>
+                                <p><strong>Skala Bisnis: </strong>
+                                    <?= $member['produk_utama'] ?>
                                 </p>
 
                             </div>
@@ -191,35 +192,36 @@
                         <div class="col-md-6 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
                                 <i class="fas fa-calendar-alt fa-lg mb-2"></i>
-                                <p><strong><?php echo lang('Blog.yearEstablished') ?></strong> <?= $member['tahun_dibentuk'] ?></p>
+                                <p><strong>Tahun Didirikan: </strong>
+                                    <?= $member['tahun_dibentuk'] ?></p>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
                                 <i class="fas fa-chart-line fa-lg mb-2"></i>
-                                <p><strong><?php echo lang('Blog.businessScale') ?></strong>
-                                    <?= ($lang == 'en') ? $member['skala_bisnis_en'] : $member['skala_bisnis'] ?>
+                                <p><strong>Skala Bisnis: </strong>
+                                    <?= $member['skala_bisnis'] ?>
                                 </p>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
                                 <i class="fas fa-leaf fa-lg mb-2"></i>
-                                <p><strong><?php echo lang('Blog.productCategory') ?></strong>
-                                    <?= ($lang == 'en') ? $member['kategori_produk_en'] : $member['kategori_produk'] ?>
+                                <p><strong>Kategori Produk: </strong>
+                                    <?= $member['kategori_produk'] ?>
                                 </p>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
                                 <i class="fas fa-user-tie fa-lg mb-2"></i>
-                                <p><strong>PIC:</strong> <?= $member['pic'] ?></p>
+                                <p><strong>PIC: </strong> <?= $member['pic'] ?></p>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
                                 <i class="fas fa-phone fa-lg mb-2"></i>
-                                <p><strong><?php echo lang('Blog.picPhone') ?></strong> <?= $member['pic_phone'] ?></p>
+                                <p><strong>No Telp. PIC: </strong> <?= $member['pic_phone'] ?></p>
                             </div>
                         </div>
                     </div>
@@ -397,7 +399,7 @@
         <?php else: ?>
             <div class="d-flex flex-wrap justify-content-center">
                 <?php foreach ($members as $item): ?>
-                    <a href="<?= base_url($lang . '/detail-member/' . $item['slug']); ?>" class="text-decoration-none"
+                    <a href="<?= base_url('/member-detail-member/' . $item['slug']); ?>" class="text-decoration-none"
                         style="color: inherit;">
                         <div class="card hover-card mx-4 mb-5 shadow-sm"
                             style="width: 18rem; cursor: pointer; transition: transform 0.2s;">
@@ -406,20 +408,20 @@
                             <div class="card-body text-center">
                                 <h5 class="card-title"><?= $item['username'] ?></h5>
                                 <p class="card-text"><?= $item['nama_perusahaan'] ?></p>
-                                <span class="btn btn-primary mt-auto" style="border-radius: 8px;"><?php echo lang('Blog.btndataMember') ?></span>
+                                <span class="btn btn-primary mt-auto" style="border-radius: 8px;">Lihat Profil</span>
                             </div>
                         </div>
                     </a>
                 <?php endforeach; ?>
             </div>
-    </div>
-<?php endif; ?>
+        </div>
+    <?php endif; ?>
 </div>
 </div>
 
 <script>
     const certificateModal = document.getElementById('certificateModal');
-    certificateModal.addEventListener('show.bs.modal', function(event) {
+    certificateModal.addEventListener('show.bs.modal', function (event) {
         const button = event.relatedTarget;
         const filename = button.getAttribute('data-filename');
         const iframe = document.getElementById('certificateFrame');
@@ -427,7 +429,7 @@
     });
 
     const productModal = document.getElementById('productModal1');
-    productModal.addEventListener('show.bs.modal', function(event) {
+    productModal.addEventListener('show.bs.modal', function (event) {
         const button = event.relatedTarget;
         const productName = button.getAttribute('data-nama');
         const productDescription = button.getAttribute('data-deskripsi');

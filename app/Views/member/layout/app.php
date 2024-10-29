@@ -7,10 +7,12 @@
 
     <title><?= isset($meta_title) ? $meta_title : 'Default Title'; ?></title>
     <meta name="title" content="<?= isset($meta_title) ? $meta_title : 'Default Title for the website.'; ?>">
-    <meta name="description" content="<?= isset($meta_description) ? $meta_description : 'Default description for the website.'; ?>">
+    <meta name="description"
+        content="<?= isset($meta_description) ? $meta_description : 'Default description for the website.'; ?>">
 
     <?= $this->renderSection('meta'); ?>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -343,8 +345,10 @@
     <!-- start navbar -->
     <nav class="navbar navbar-custom navbar-expand-lg sticky-top" style="background-color: #03AADE;">
         <div class="container d-flex justify-content-between align-items-center py-1">
-            <img onclick="window.location.href='/pengumuman'" style="width:160px;" src="<?= base_url('img/' . $webprofile[0]['logo_web']); ?>" alt="logo">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <img onclick="window.location.href='/pengumuman'" style="width:160px;"
+                src="<?= base_url('img/' . $webprofile[0]['logo_web']); ?>" alt="logo">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -357,17 +361,20 @@
                     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
-                                <button class="btn dropdown-toggle text-light nav-link" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn dropdown-toggle text-light nav-link" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
                                     Belajar Ekspor
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-light">
                                     <li>
-                                        <a class="dropdown-item nav-link" href="<?= base_url('member-belajar-ekspor') ?>">
+                                        <a class="dropdown-item nav-link"
+                                            href="<?= base_url('member-belajar-ekspor') ?>">
                                             Belajar Ekspor
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item nav-link" href="<?= base_url('member-video-tutorial') ?>">
+                                        <a class="dropdown-item nav-link"
+                                            href="<?= base_url('member-video-tutorial') ?>">
                                             Video Tutorial
                                         </a>
                                     </li>
@@ -378,19 +385,22 @@
                     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
-                                <button class="btn dropdown-toggle text-light nav-link" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn dropdown-toggle text-light nav-link" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
                                     Aplikasi
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-light">
-                                    <li><a class="dropdown-item nav-link" href="<?= base_url('kalkulator-ekspor') ?>">Kalkulator Harga Ekspor</a></li>
-                                    <li><a class="dropdown-item nav-link" href="<?= base_url('mpm') ?>">Marketing Progress Monitoring</a></li>
+                                    <li><a class="dropdown-item nav-link"
+                                            href="<?= base_url('kalkulator-ekspor') ?>">Kalkulator Harga Ekspor</a></li>
+                                    <li><a class="dropdown-item nav-link" href="<?= base_url('mpm') ?>">Marketing
+                                            Progress Monitoring</a></li>
                                     <li><a class="dropdown-item nav-link" href="#">Website Audit</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('data-member') ?>">Data Member</a>
+                        <a class="nav-link" href="<?= base_url('member-data-member') ?>">Data Member</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('member-data-buyers') ?>">Data Buyers</a>
@@ -400,7 +410,8 @@
                             Edit Profile
                         </a>
                     </li>
-                    <div class="border-top" style="width: 1.5px; height: 40px; background-color: white; margin: 0 23px;"></div>
+                    <div class="border-top"
+                        style="width: 1.5px; height: 40px; background-color: white; margin: 0 23px;"></div>
                     <?php if (session()->get('logged_in')): ?>
                         <!-- Dropdown untuk pengguna yang sudah login -->
                         <div class="dropdown">
@@ -438,19 +449,18 @@
                 <div class="row d-flex justify-content-center gap-5">
                     <!-- Logo and Company Description -->
                     <div class="col-md-6 mb-4">
-                        <img src="<?= base_url('img/' . $webprofile[0]['logo_web']); ?>" alt="logo" style="width: 180px;">
+                        <img src="<?= base_url('img/' . $webprofile[0]['logo_web']); ?>" alt="logo"
+                            style="width: 180px;">
                         <p class="mt-4"><?= $webprofile[0]['deskripsi_web'] ?></p>
                         <!-- Social Media Icons -->
                         <div class="container2 gap-2 mt-3">
                             <a href="<?= 'https://' . $webprofile[0]['link_ig_web'] ?>" target="_blank">
                                 <button class="Btn instagram">
-                                    <svg
-                                        class="svgIcon"
-                                        viewBox="0 0 448 512"
-                                        height="1.5em"
+                                    <svg class="svgIcon" viewBox="0 0 448 512" height="1.5em"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
-                                            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path>
+                                            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z">
+                                        </path>
                                     </svg>
                                     <span class="text">Instagram</span>
                                 </button>
@@ -458,13 +468,11 @@
 
                             <a href="<?= 'https://' . $webprofile[0]['link_yt_web'] ?>" target="_blank">
                                 <button class="Btn youtube">
-                                    <svg
-                                        class="svgIcon"
-                                        viewBox="0 0 576 512"
-                                        height="1.5em"
+                                    <svg class="svgIcon" viewBox="0 0 576 512" height="1.5em"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
-                                            d="M549.655 148.28c-6.281-23.64-24.041-42.396-47.655-48.685C462.923 85 288 85 288 85S113.077 85 74 99.595c-23.614 6.289-41.374 25.045-47.655 48.685-12.614 47.328-12.614 147.717-12.614 147.717s0 100.39 12.614 147.718c6.281 23.64 24.041 42.396 47.655 48.684C113.077 427 288 427 288 427s174.923 0 214-14.595c23.614-6.289 41.374-25.045 47.655-48.685 12.614-47.328 12.614-147.718 12.614-147.718s0-100.389-12.614-147.717zM240 336V176l144 80-144 80z"></path>
+                                            d="M549.655 148.28c-6.281-23.64-24.041-42.396-47.655-48.685C462.923 85 288 85 288 85S113.077 85 74 99.595c-23.614 6.289-41.374 25.045-47.655 48.685-12.614 47.328-12.614 147.717-12.614 147.717s0 100.39 12.614 147.718c6.281 23.64 24.041 42.396 47.655 48.684C113.077 427 288 427 288 427s174.923 0 214-14.595c23.614-6.289 41.374-25.045 47.655-48.685 12.614-47.328 12.614-147.718 12.614-147.718s0-100.389-12.614-147.717zM240 336V176l144 80-144 80z">
+                                        </path>
                                     </svg>
                                     <span class="text">YouTube</span>
                                 </button>
@@ -472,10 +480,7 @@
 
                             <a href="<?= 'https://' . $webprofile[0]['link_fb_web'] ?>" target="_blank">
                                 <button class="Btn facebook">
-                                    <svg
-                                        class="svgIcon"
-                                        viewBox="0 0 512 512"
-                                        height="1.5em"
+                                    <svg class="svgIcon" viewBox="0 0 512 512" height="1.5em"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.5 90.7 225.9 209 240v-168h-63v-72h63v-55.2c0-62.2 37-96.8 93.6-96.8 27.1 0 55.4 4.8 55.4 4.8v61h-31.2c-30.8 0-40.4 19.1-40.4 38.7V256h68l-11 72h-57v168c118.3-14.1 209-116.5 209-240z"
@@ -500,8 +505,10 @@
                     <div class="col-md-2">
                         <h5 class="mt-4"><b>Aplikasi</b></h5>
                         <div class="list-unstyled pt-2">
-                            <p><a href="<?= base_url('kalkulator-ekspor') ?>" class="footer-link">Kalkulator Harga Ekspor</a></p>
-                            <p><a href="<?= base_url('mpm') ?>" class="footer-link">Marketing Progress Monitoring</a></p>
+                            <p><a href="<?= base_url('kalkulator-ekspor') ?>" class="footer-link">Kalkulator Harga
+                                    Ekspor</a></p>
+                            <p><a href="<?= base_url('mpm') ?>" class="footer-link">Marketing Progress Monitoring</a>
+                            </p>
                             <p><a href="#" class="footer-link">Website Audit</a></p>
                         </div>
                     </div>
@@ -519,7 +526,7 @@
     </div>
 
     <script>
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             var navbar = document.querySelector('.navbar-custom');
             if (window.scrollY > 100) {
                 navbar.classList.add('scrolled');
@@ -529,7 +536,9 @@
         });
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

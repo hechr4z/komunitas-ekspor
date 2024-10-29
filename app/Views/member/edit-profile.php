@@ -170,9 +170,16 @@
     <div class="card p-4 shadow-sm mt-5">
         <!-- Image at the top -->
         <div class="text-center mb-2" style="width: 250px; height: 250px; margin: auto; overflow: hidden; border-radius: 50%; position: relative;">
-            <img src="/img/slider-1.jpg" class="img-fluid" alt="" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <img src="<?= base_url('img/' . $member['foto_profil']); ?>" class="img-fluid" alt="" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
         </div>
         <h4 class="text-center mt-1"><?= $member['username'] ?></h4>
+        <?php if (session()->get('errors')) : ?>
+            <div class="alert alert-danger">
+                <?php foreach (session()->get('errors') as $error) : ?>
+                    <p><?= esc($error) ?></p>
+                <?php endforeach ?>
+            </div>
+        <?php endif ?>
         <!-- Tabs Navigation -->
         <ul class="nav nav-tabs justify-content-center gap-3 mt-3" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -198,11 +205,11 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="email" name="email" value="<?= $member['email'] ?>" placeholder="Masukkan Email Jika Ingin Diganti">
+                            <input type="text" class="form-control" id="email" name="email" value="<?= $member['email'] ?>" placeholder="Masukkan Email">
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="text" class="form-control" id="password" name="password" placeholder="Masukkan Password Jika Ingin Diganti">
+                            <input type="text" class="form-control" id="password" name="password" placeholder="Masukkan Password">
                         </div>
                         <button type="submit" class="btn btn-warning mt-3">Submit</button>
                     </div>
@@ -212,45 +219,55 @@
             <!-- Profil Perusahaan -->
             <div class="tab-pane fade" id="profil" role="tabpanel" aria-labelledby="profil-tab">
                 <h5 class="mb-4">Profil Perusahaan</h5>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="nama_perusahaan" class="form-label">Nama Perusahaan</label>
-                        <input type="text" class="form-control" id="nama_perusahaan" name="nama_perusahaan" value="<?= $member['nama_perusahaan'] ?>" placeholder="Masukkan Nama Perusahaan Jika Ingin Diganti">
+                <form action="<?= base_url('/ubah-profil-perusahaan'); ?>" method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="nama_perusahaan" class="form-label">Nama Perusahaan</label>
+                            <input type="text" class="form-control" id="nama_perusahaan" name="nama_perusahaan" value="<?= $member['nama_perusahaan'] ?>" placeholder="Masukkan Nama Perusahaan">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="tipe_bisnis" class="form-label">Tipe Bisnis</label>
+                            <input type="text" class="form-control" id="tipe_bisnis" name="tipe_bisnis" value="<?= $member['tipe_bisnis'] ?>" placeholder="Masukkan Tipe Bisnis">
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="deskripsi_perusahaan" class="form-label">Deskripsi Perusahaan</label>
+                            <textarea class="form-control" id="deskripsi_perusahaan" name="deskripsi_perusahaan" placeholder="Masukkan Deskripsi Perusahaan"><?= $member['deskripsi_perusahaan'] ?></textarea>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="produk_utama" class="form-label">Produk Utama</label>
+                            <input type="text" class="form-control" id="produk_utama" name="produk_utama" value="<?= $member['produk_utama'] ?>" placeholder="Masukkan Produk Utama">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="tahun_dibentuk" class="form-label">Tahun Didirikan</label>
+                            <input type="number" class="form-control" id="tahun_dibentuk" name="tahun_dibentuk" value="<?= $member['tahun_dibentuk'] ?>" placeholder="Masukkan Tahun Didirikan" min="1900" max="2099">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="skala_bisnis" class="form-label">Skala Bisnis</label>
+                            <input type="text" class="form-control" id="skala_bisnis" name="skala_bisnis" value="<?= $member['skala_bisnis'] ?>" placeholder="Masukkan Skala Bisnis">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="kategori_produk" class="form-label">Kategori Produk</label>
+                            <input type="text" class="form-control" id="kategori_produk" name="kategori_produk" value="<?= $member['kategori_produk'] ?>" placeholder="Masukkan Kategori Produk">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="pic" class="form-label">PIC</label>
+                            <input type="text" class="form-control" id="pic" name="pic" value="<?= $member['pic'] ?>" placeholder="Masukkan PIC">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="pic_phone" class="form-label">No.Telp PIC</label>
+                            <input type="text" class="form-control" id="pic_phone" name="pic_phone" value="<?= $member['pic_phone'] ?>" placeholder="Masukkan No.Telp PIC">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="latitude" class="form-label">Latitude</label>
+                            <input type="text" class="form-control" id="latitude" name="latitude" value="<?= $member['latitude'] ?>" placeholder="Masukkan Latitude">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="longitude" class="form-label">Longitude</label>
+                            <input type="text" class="form-control" id="longitude" name="longitude" value="<?= $member['longitude'] ?>" placeholder="Masukkan Longitude">
+                        </div>
+                        <button type="submit" class="btn btn-warning mt-3">Submit</button>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="tipe_bisnis" class="form-label">Tipe Bisnis</label>
-                        <input type="text" class="form-control" id="tipe_bisnis" name="tipe_bisnis" value="<?= $member['tipe_bisnis'] ?>" placeholder="Masukkan Tipe Bisnis Jika Ingin Diganti">
-                    </div>
-                    <div class="col-md-12 mb-3">
-                        <label for="deskripsi_perusahaan" class="form-label">Deskripsi Perusahaan</label>
-                        <textarea class="form-control" id="deskripsi_perusahaan" name="deskripsi_perusahaan" placeholder="Masukkan Deskripsi Perusahaan Jika Ingin Diganti"><?= $member['deskripsi_perusahaan'] ?></textarea>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="produk_utama" class="form-label">Produk Utama</label>
-                        <input type="text" class="form-control" id="produk_utama" name="produk_utama" value="<?= $member['produk_utama'] ?>" placeholder="Masukkan Produk Utama Jika Ingin Diganti">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="tahun_dibentuk" class="form-label">Tahun Didirikan</label>
-                        <input type="text" class="form-control" id="tahun_dibentuk" name="tahun_dibentuk" value="<?= $member['tahun_dibentuk'] ?>" placeholder="Masukkan Tahun Didirikan Jika Ingin Diganti">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="skala_bisnis" class="form-label">Skala Bisnis</label>
-                        <input type="text" class="form-control" id="skala_bisnis" name="skala_bisnis" value="<?= $member['skala_bisnis'] ?>" placeholder="Masukkan Skala Bisnis Jika Ingin Diganti">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="kategori_produk" class="form-label">Kategori Produk</label>
-                        <input type="text" class="form-control" id="kategori_produk" name="kategori_produk" value="<?= $member['kategori_produk'] ?>" placeholder="Masukkan Kategori Produk Jika Ingin Diganti">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="pic" class="form-label">PIC</label>
-                        <input type="text" class="form-control" id="pic" name="pic" value="<?= $member['pic'] ?>" placeholder="Masukkan PIC Jika Ingin Diganti">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="pic_phone" class="form-label">No.Telp PIC</label>
-                        <input type="text" class="form-control" id="pic_phone" name="pic_phone" value="<?= $member['pic_phone'] ?>" placeholder="Masukkan Nomor PIC Jika Ingin Diganti">
-                    </div>
-                    <button type="submit" class="btn btn-warning mt-3">Submit</button>
-                </div>
+                </form>
             </div>
 
             <!-- Sertifikat -->
@@ -331,25 +348,6 @@
                     </div>
                 </div>
 
-                <!-- Modal 1 -->
-                <div class="modal fade" id="productModal1" tabindex="-1" aria-labelledby="productModalLabel1" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="productModalLabel1">Produk A</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <img src="img/produk1-rafqiputra.png" class="img-fluid mb-3" alt="Product A">
-                                <p>Deskripsi lengkap produk A.</p>
-                                <p>HS Code: 123456</p>
-                                <p>Min. Order: 100 pcs</p>
-                                <p>Kapasitas Produksi: 1000 pcs/bulan</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Modal 2 -->
                 <div class="modal fade" id="productModal2" tabindex="-1" aria-labelledby="productModalLabel2" aria-hidden="true">
                     <div class="modal-dialog">
@@ -392,33 +390,35 @@
             <!-- Data Produk -->
             <div class="tab-pane fade" id="produk" role="tabpanel" aria-labelledby="produk-tab">
                 <h5 class="mb-4">Data Produk</h5>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="foto_produk" class="form-label">Foto Produk</label>
-                        <input type="text" class="form-control" id="foto_produk" value="Foto Produk" readonly>
+                <form action="<?= base_url('/add-produk'); ?>" method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="foto_produk" class="form-label">Foto Produk</label>
+                            <input type="file" class="form-control" id="foto_produk" name="foto_produk">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="nama_produk" class="form-label">Nama Produk</label>
+                            <input type="text" class="form-control" id="nama_produk" name="nama_produk">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="deskripsi_produk" class="form-label">Deskripsi Produk</label>
+                            <input type="text" class="form-control" id="deskripsi_produk" name="deskripsi_produk">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="hs_code" class="form-label">HS Code</label>
+                            <input type="text" class="form-control" id="hs_code" name="hs_code">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="minimum_order_qty" class="form-label">Minimum Order</label>
+                            <input type="text" class="form-control" id="minimum_order_qty" name="minimum_order_qty">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="kapasitas_produksi_bln" class="form-label">Kapasitas Produk</label>
+                            <input type="text" class="form-control" id="kapasitas_produksi_bln" name="kapasitas_produksi_bln">
+                        </div>
+                        <button type="submit" class="btn btn-warning mt-3">Submit</button>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="nama_produk" class="form-label">Nama Produk</label>
-                        <input type="text" class="form-control" id="nama_produk" value="Nama Produk" readonly>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="deskripsi_produk" class="form-label">Deskripsi Produk</label>
-                        <input type="text" class="form-control" id="deskripsi_produk" value="Deskripsi Produk" readonly>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="hs_code" class="form-label">HS Code</label>
-                        <input type="text" class="form-control" id="hs_code" value="HS Code" readonly>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="minimum_order_qty" class="form-label">Minimum Order</label>
-                        <input type="text" class="form-control" id="minimum_order_qty" value="Minimum Order" readonly>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="kapasitas_produksi_bln" class="form-label">Kapasitas Produk</label>
-                        <input type="text" class="form-control" id="kapasitas_produksi_bln" value="Kapasitas produk" readonly>
-                    </div>
-                    <button type="submit" class="btn btn-warning mt-3">Submit</button>
-                </div>
+                </form>
                 <div class="container mt-4">
                     <div class="p-4 mt-5">
                         <div class="text-center">
@@ -427,133 +427,105 @@
                         </div>
 
                         <div class="row mt-4">
-                            <!-- Card 1 -->
-                            <div class="col-md-4 mb-5 animate__animated animate__zoomIn">
-                                <a href="#" class="text-decoration-none" style="color: inherit;" data-bs-toggle="modal"
-                                    data-bs-target="#productModal1">
-                                    <div class="card hover-card mx-4 shadow-sm"
-                                        style="cursor: pointer; transition: transform 0.2s; height: 100%;">
-                                        <img src="img/p5.jpg" class="card-img-top img-fluid product-img" alt="Product Photo"
-                                            style="height: 220px;">
-                                        <div class="card-body d-flex flex-column">
-                                            <h5 class="card-title">Produk A</h5>
-                                            <p class="card-text text-truncate-description text-justify flex-grow-1">
-                                                Deskripsi singkat produk A.
-                                            </p>
-                                            <button type="button" class="btn btn-info text-light mt-auto">
-                                                Lihat Detail
-                                            </button>
-                                        </div>
-                                        <button type="button" class="btn btn-danger position-absolute top-0 end-0 m-3" style="border-radius: 50%;">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
+                            <?php if (empty($produk)): ?>
+                                <div class="col-12 mb-5">
+                                    <div class="alert alert-info text-center" role="alert">
+                                        Masih belum ada Data Produk.
                                     </div>
-                                </a>
-                            </div>
-
-                            <!-- Card 2 -->
-                            <div class="col-md-4 mb-5 animate__animated animate__zoomIn">
-                                <a href="#" class="text-decoration-none" style="color: inherit;" data-bs-toggle="modal"
-                                    data-bs-target="#productModal2">
-                                    <div class="card hover-card mx-4 shadow-sm"
-                                        style="cursor: pointer; transition: transform 0.2s; height: 100%;">
-                                        <img src="img/p5.jpg" class="card-img-top img-fluid product-img" alt="Product Photo"
-                                            style="height: 220px;">
-                                        <div class="card-body d-flex flex-column">
-                                            <h5 class="card-title">Produk B</h5>
-                                            <p class="card-text text-truncate-description text-justify flex-grow-1">
-                                                Deskripsi singkat produk B.
-                                            </p>
-                                            <button type="button" class="btn btn-info text-light mt-auto">
-                                                Lihat Detail
-                                            </button>
-                                        </div>
-                                        <button type="button" class="btn btn-danger position-absolute top-0 end-0 m-3" style="border-radius: 50%;">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
+                                </div>
+                            <?php else: ?>
+                                <?php foreach ($produk as $item): ?>
+                                    <!-- Card 1 -->
+                                    <div class="col-md-4 mb-5 animate__animated animate__zoomIn">
+                                        <a href="#" class="text-decoration-none" style="color: inherit;" data-bs-toggle="modal"
+                                            data-bs-target="#productModal1" data-nama="<?= $item['nama_produk'] ?>"
+                                            data-deskripsi="<?= $item['deskripsi_produk'] ?>" data-hscode="<?= $item['hs_code'] ?>"
+                                            data-minorder="<?= $item['minimum_order_qty'] ?>" data-kapasitas="<?= $item['kapasitas_produksi_bln'] ?>"
+                                            data-foto="<?= base_url('img/' . $item['foto_produk']) ?>">
+                                            <div class="card hover-card mx-4 shadow-sm"
+                                                style="cursor: pointer; transition: transform 0.2s; height: 100%;">
+                                                <img src="<?= base_url('img/' . $item['foto_produk']); ?>" class="card-img-top img-fluid product-img" alt="Product Photo"
+                                                    style="height: 220px;">
+                                                <div class="card-body d-flex flex-column">
+                                                    <h5 class="card-title"><?= $item['nama_produk']; ?></h5>
+                                                    <p class="card-text text-truncate-description text-justify flex-grow-1">
+                                                        <?= $item['deskripsi_produk']; ?>
+                                                    </p>
+                                                    <button type="button" class="btn btn-info text-light mt-auto">
+                                                        Lihat Detail
+                                                    </button>
+                                                </div>
+                                                <a href="<?= base_url('/delete-produk/' . $item['id_produk']) ?>">
+                                                    <button type="submit" class="btn btn-danger position-absolute top-0 end-0 m-3" style="border-radius: 50%;">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
-
-                            <!-- Card 3 -->
-                            <div class="col-md-4 mb-5 animate__animated animate__zoomIn">
-                                <a href="#" class="text-decoration-none" style="color: inherit;" data-bs-toggle="modal"
-                                    data-bs-target="#productModal3">
-                                    <div class="card hover-card mx-4 shadow-sm"
-                                        style="cursor: pointer; transition: transform 0.2s; height: 100%;">
-                                        <img src="img/p5.jpg" class="card-img-top img-fluid product-img" alt="Product Photo"
-                                            style="height: 220px;">
-                                        <div class="card-body d-flex flex-column">
-                                            <h5 class="card-title">Produk C</h5>
-                                            <p class="card-text text-truncate-description text-justify flex-grow-1">
-                                                Deskripsi singkat produk C.
-                                            </p>
-                                            <button type="button" class="btn btn-info text-light mt-auto">
-                                                Lihat Detail
-                                            </button>
-                                        </div>
-                                        <button type="button" class="btn btn-danger position-absolute top-0 end-0 m-3" style="border-radius: 50%;">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </div>
-                                </a>
-                            </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
 
-                <!-- Modal 1 -->
-                <div class="modal fade" id="productModal1" tabindex="-1" aria-labelledby="productModalLabel1" aria-hidden="true">
-                    <div class="modal-dialog">
+                <!-- Modal for Product Details -->
+                <div class="modal fade" id="productModal1" tabindex="-1" aria-labelledby="productModalLabel1"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="productModalLabel1">Produk A</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <h5 class="modal-title" id="productModalLabel1">Detail Produk</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <img src="img/produk1-rafqiputra.png" class="img-fluid mb-3" alt="Product A">
-                                <p>Deskripsi lengkap produk A.</p>
-                                <p>HS Code: 123456</p>
-                                <p>Min. Order: 100 pcs</p>
-                                <p>Kapasitas Produksi: 1000 pcs/bulan</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                <div class="row">
+                                    <!-- Foto Produk -->
+                                    <div class="col-md-6">
+                                        <img id="productImage" src="" class="img-fluid rounded mb-3"
+                                            alt="Product Photo">
+                                    </div>
+                                    <!-- Detail Produk -->
+                                    <div class="col-md-6">
+                                        <h5 class="mb-4 fw-bold">Informasi Produk</h5>
+                                        <div class="mb-3">
+                                            <label for="namaProduk" class="form-label"><strong>Nama
+                                                    Produk</strong></label>
+                                            <input type="text" class="form-control" id="namaProduk" value=""
+                                                readonly>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="deskripsiProduk" class="form-label"><strong>Deskripsi
+                                                    Produk</strong></label>
+                                            <textarea class="form-control" id="deskripsiProduk" rows="6"
+                                                readonly></textarea>
+                                        </div>
 
-                <!-- Modal 2 -->
-                <div class="modal fade" id="productModal2" tabindex="-1" aria-labelledby="productModalLabel2" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="productModalLabel2">Produk B</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <div class="mb-3">
+                                            <label for="hsCode" class="form-label"><strong>Kode
+                                                    HS</strong></label>
+                                            <input type="text" class="form-control" id="hsCode" value=""
+                                                readonly>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="minOrderQty" class="form-label"><strong>Jumlah Pesanan
+                                                    Minimal</strong></label>
+                                            <input type="number" class="form-control" id="minOrderQty" value=""
+                                                readonly>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="kapasitasProduksi" class="form-label"><strong>Kapasitas
+                                                    Produksi Bulanan</strong></label>
+                                            <input type="number" class="form-control" id="kapasitasProduksi"
+                                                value="" readonly>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="modal-body">
-                                <img src="img/product2.jpg" class="img-fluid mb-3" alt="Product B">
-                                <p>Deskripsi lengkap produk B.</p>
-                                <p>HS Code: 654321</p>
-                                <p>Min. Order: 200 pcs</p>
-                                <p>Kapasitas Produksi: 2000 pcs/bulan</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Modal 3 -->
-                <div class="modal fade" id="productModal3" tabindex="-1" aria-labelledby="productModalLabel3" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="productModalLabel3">Produk C</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <img src="img/product3.jpg" class="img-fluid mb-3" alt="Product C">
-                                <p>Deskripsi lengkap produk C.</p>
-                                <p>HS Code: 987654</p>
-                                <p>Min. Order: 300 pcs</p>
-                                <p>Kapasitas Produksi: 3000 pcs/bulan</p>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Tutup</button>
                             </div>
                         </div>
                     </div>
@@ -562,5 +534,26 @@
         </div>
     </div>
 </div>
+
+<script>
+    const productModal = document.getElementById('productModal1');
+    productModal.addEventListener('show.bs.modal', function(event) {
+        const button = event.relatedTarget;
+        const productName = button.getAttribute('data-nama');
+        const productDescription = button.getAttribute('data-deskripsi');
+        const productHsCode = button.getAttribute('data-hscode');
+        const productMinOrder = button.getAttribute('data-minorder');
+        const productCapacity = button.getAttribute('data-kapasitas');
+        const productImage = button.getAttribute('data-foto');
+
+        // Update modal content
+        document.getElementById('namaProduk').value = productName;
+        document.getElementById('deskripsiProduk').value = productDescription;
+        document.getElementById('hsCode').value = productHsCode;
+        document.getElementById('minOrderQty').value = productMinOrder;
+        document.getElementById('kapasitasProduksi').value = productCapacity;
+        document.getElementById('productImage').src = productImage;
+    });
+</script>
 
 <?= $this->endSection(); ?>

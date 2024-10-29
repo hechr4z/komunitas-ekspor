@@ -1,12 +1,28 @@
 <?= $this->extend('member/layout/app'); ?>
 <?= $this->section('content'); ?>
 
+<style>
+    .btn-custom {
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .btn-custom:hover {
+        color: #fff;
+        transform: scale(1.05);
+        box-shadow: 0px 0px 10px #F2BF02;
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        background-color: #F2BF02 !important;
+        /* Mengubah warna saat hover menjadi #F2BF02 */
+    }
+</style>
+
 <section class="container mt-4">
     <div class="text-center mt-5">
         <h2 class="animate__animated animate__fadeInDown">Pengumuman</h2>
         <p class="animate__animated animate__fadeInUp">Pengumuman special untuk anda</p>
     </div>
-    
+
     <div class="row mt-5">
         <!-- Card Pengumuman 1 -->
         <div class="col-md-4 mb-4 animate__animated animate__zoomIn">
@@ -14,11 +30,13 @@
                 <img src="/img/navbar1.jpg" class="card-img-top" alt="Pengumuman 1">
                 <div class="card-body">
                     <h5 class="card-title">Judul Pengumuman 1</h5>
-                    <p class="card-text">Ini adalah deskripsi singkat untuk pengumuman pertama. Deskripsi ini memberikan gambaran mengenai isi pengumuman.</p>
+                    <p class="card-text">Ini adalah deskripsi singkat untuk pengumuman pertama. Deskripsi ini memberikan
+                        gambaran mengenai isi pengumuman.</p>
                     <p class="text-muted"><small><i class="far fa-calendar-alt"></i> 21 Oktober 2024</small></p>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="detail-pengumuman" class="btn btn-info text-white">Baca Selengkapnya</a>
+                    <a href="detail-pengumuman" class="btn btn-custom" style="background-color: #03AADE;">Baca
+                        Selengkapnya</a>
                 </div>
             </div>
         </div>
@@ -29,11 +47,13 @@
                 <img src="/img/navbar1.jpg" class="card-img-top" alt="Pengumuman 2">
                 <div class="card-body">
                     <h5 class="card-title">Judul Pengumuman 2</h5>
-                    <p class="card-text">Ini adalah deskripsi singkat untuk pengumuman kedua. Deskripsi ini memberikan gambaran mengenai isi pengumuman.</p>
+                    <p class="card-text">Ini adalah deskripsi singkat untuk pengumuman kedua. Deskripsi ini memberikan
+                        gambaran mengenai isi pengumuman.</p>
                     <p class="text-muted"><small><i class="far fa-calendar-alt"></i> 19 Oktober 2024</small></p>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="#" class="btn btn-info text-white">Baca Selengkapnya</a>
+                    <a href="detail-pengumuman" class="btn btn-custom" style="background-color: #03AADE;">Baca
+                        Selengkapnya</a>
                 </div>
             </div>
         </div>
@@ -44,11 +64,13 @@
                 <img src="/img/navbar1.jpg" class="card-img-top" alt="Pengumuman 3">
                 <div class="card-body">
                     <h5 class="card-title">Judul Pengumuman 3</h5>
-                    <p class="card-text">Ini adalah deskripsi singkat untuk pengumuman ketiga. Deskripsi ini memberikan gambaran mengenai isi pengumuman.</p>
+                    <p class="card-text">Ini adalah deskripsi singkat untuk pengumuman ketiga. Deskripsi ini memberikan
+                        gambaran mengenai isi pengumuman.</p>
                     <p class="text-muted"><small><i class="far fa-calendar-alt"></i> 18 Oktober 2024</small></p>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="#" class="btn btn-info text-white">Baca Selengkapnya</a>
+                    <a href="detail-pengumuman" class="btn btn-custom" style="background-color: #03AADE;">Baca
+                        Selengkapnya</a>
                 </div>
             </div>
         </div>
