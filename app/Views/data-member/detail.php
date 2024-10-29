@@ -205,7 +205,9 @@
                         <div class="col-md-6 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
                                 <i class="fas fa-leaf fa-lg mb-2"></i>
-                                <p><strong><?php echo lang('Blog.productCategory') ?></strong> <?= $member['kategori_produk'] ?></p>
+                                <p><strong><?php echo lang('Blog.productCategory') ?></strong>
+                                    <?= ($lang == 'en') ? $member['kategori_produk_en'] : $member['kategori_produk'] ?>
+                                </p>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">

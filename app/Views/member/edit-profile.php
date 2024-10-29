@@ -173,6 +173,13 @@
             <img src="<?= base_url('img/' . $member['foto_profil']); ?>" class="img-fluid" alt="" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
         </div>
         <h4 class="text-center mt-1"><?= $member['username'] ?></h4>
+        <?php if (session()->get('errors')) : ?>
+            <div class="alert alert-danger">
+                <?php foreach (session()->get('errors') as $error) : ?>
+                    <p><?= esc($error) ?></p>
+                <?php endforeach ?>
+            </div>
+        <?php endif ?>
         <!-- Tabs Navigation -->
         <ul class="nav nav-tabs justify-content-center gap-3 mt-3" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -198,11 +205,11 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="email" name="email" value="<?= $member['email'] ?>" placeholder="Masukkan Email Jika Ingin Diganti">
+                            <input type="text" class="form-control" id="email" name="email" value="<?= $member['email'] ?>" placeholder="Masukkan Email">
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="text" class="form-control" id="password" name="password" placeholder="Masukkan Password Jika Ingin Diganti">
+                            <input type="text" class="form-control" id="password" name="password" placeholder="Masukkan Password">
                         </div>
                         <button type="submit" class="btn btn-warning mt-3">Submit</button>
                     </div>
@@ -212,45 +219,55 @@
             <!-- Profil Perusahaan -->
             <div class="tab-pane fade" id="profil" role="tabpanel" aria-labelledby="profil-tab">
                 <h5 class="mb-4">Profil Perusahaan</h5>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="nama_perusahaan" class="form-label">Nama Perusahaan</label>
-                        <input type="text" class="form-control" id="nama_perusahaan" name="nama_perusahaan" value="<?= $member['nama_perusahaan'] ?>" placeholder="Masukkan Nama Perusahaan Jika Ingin Diganti">
+                <form action="<?= base_url('/ubah-profil-perusahaan'); ?>" method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="nama_perusahaan" class="form-label">Nama Perusahaan</label>
+                            <input type="text" class="form-control" id="nama_perusahaan" name="nama_perusahaan" value="<?= $member['nama_perusahaan'] ?>" placeholder="Masukkan Nama Perusahaan">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="tipe_bisnis" class="form-label">Tipe Bisnis</label>
+                            <input type="text" class="form-control" id="tipe_bisnis" name="tipe_bisnis" value="<?= $member['tipe_bisnis'] ?>" placeholder="Masukkan Tipe Bisnis">
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="deskripsi_perusahaan" class="form-label">Deskripsi Perusahaan</label>
+                            <textarea class="form-control" id="deskripsi_perusahaan" name="deskripsi_perusahaan" placeholder="Masukkan Deskripsi Perusahaan"><?= $member['deskripsi_perusahaan'] ?></textarea>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="produk_utama" class="form-label">Produk Utama</label>
+                            <input type="text" class="form-control" id="produk_utama" name="produk_utama" value="<?= $member['produk_utama'] ?>" placeholder="Masukkan Produk Utama">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="tahun_dibentuk" class="form-label">Tahun Didirikan</label>
+                            <input type="number" class="form-control" id="tahun_dibentuk" name="tahun_dibentuk" value="<?= $member['tahun_dibentuk'] ?>" placeholder="Masukkan Tahun Didirikan" min="1900" max="2099">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="skala_bisnis" class="form-label">Skala Bisnis</label>
+                            <input type="text" class="form-control" id="skala_bisnis" name="skala_bisnis" value="<?= $member['skala_bisnis'] ?>" placeholder="Masukkan Skala Bisnis">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="kategori_produk" class="form-label">Kategori Produk</label>
+                            <input type="text" class="form-control" id="kategori_produk" name="kategori_produk" value="<?= $member['kategori_produk'] ?>" placeholder="Masukkan Kategori Produk">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="pic" class="form-label">PIC</label>
+                            <input type="text" class="form-control" id="pic" name="pic" value="<?= $member['pic'] ?>" placeholder="Masukkan PIC">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="pic_phone" class="form-label">No.Telp PIC</label>
+                            <input type="text" class="form-control" id="pic_phone" name="pic_phone" value="<?= $member['pic_phone'] ?>" placeholder="Masukkan No.Telp PIC">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="latitude" class="form-label">Latitude</label>
+                            <input type="text" class="form-control" id="latitude" name="latitude" value="<?= $member['latitude'] ?>" placeholder="Masukkan Latitude">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="longitude" class="form-label">Longitude</label>
+                            <input type="text" class="form-control" id="longitude" name="longitude" value="<?= $member['longitude'] ?>" placeholder="Masukkan Longitude">
+                        </div>
+                        <button type="submit" class="btn btn-warning mt-3">Submit</button>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="tipe_bisnis" class="form-label">Tipe Bisnis</label>
-                        <input type="text" class="form-control" id="tipe_bisnis" name="tipe_bisnis" value="<?= $member['tipe_bisnis'] ?>" placeholder="Masukkan Tipe Bisnis Jika Ingin Diganti">
-                    </div>
-                    <div class="col-md-12 mb-3">
-                        <label for="deskripsi_perusahaan" class="form-label">Deskripsi Perusahaan</label>
-                        <textarea class="form-control" id="deskripsi_perusahaan" name="deskripsi_perusahaan" placeholder="Masukkan Deskripsi Perusahaan Jika Ingin Diganti"><?= $member['deskripsi_perusahaan'] ?></textarea>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="produk_utama" class="form-label">Produk Utama</label>
-                        <input type="text" class="form-control" id="produk_utama" name="produk_utama" value="<?= $member['produk_utama'] ?>" placeholder="Masukkan Produk Utama Jika Ingin Diganti">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="tahun_dibentuk" class="form-label">Tahun Didirikan</label>
-                        <input type="text" class="form-control" id="tahun_dibentuk" name="tahun_dibentuk" value="<?= $member['tahun_dibentuk'] ?>" placeholder="Masukkan Tahun Didirikan Jika Ingin Diganti">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="skala_bisnis" class="form-label">Skala Bisnis</label>
-                        <input type="text" class="form-control" id="skala_bisnis" name="skala_bisnis" value="<?= $member['skala_bisnis'] ?>" placeholder="Masukkan Skala Bisnis Jika Ingin Diganti">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="kategori_produk" class="form-label">Kategori Produk</label>
-                        <input type="text" class="form-control" id="kategori_produk" name="kategori_produk" value="<?= $member['kategori_produk'] ?>" placeholder="Masukkan Kategori Produk Jika Ingin Diganti">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="pic" class="form-label">PIC</label>
-                        <input type="text" class="form-control" id="pic" name="pic" value="<?= $member['pic'] ?>" placeholder="Masukkan PIC Jika Ingin Diganti">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="pic_phone" class="form-label">No.Telp PIC</label>
-                        <input type="text" class="form-control" id="pic_phone" name="pic_phone" value="<?= $member['pic_phone'] ?>" placeholder="Masukkan Nomor PIC Jika Ingin Diganti">
-                    </div>
-                    <button type="submit" class="btn btn-warning mt-3">Submit</button>
-                </div>
+                </form>
             </div>
 
             <!-- Sertifikat -->
