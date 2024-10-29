@@ -809,6 +809,21 @@ class KomunitasEkspor extends BaseController
         return redirect()->to('/edit-profile');
     }
 
+    public function delete_produk($id)
+    {
+        $model_produk = new Produk();
+
+        $produk = $model_produk->find($id);
+
+        if ($produk['foto_produk'] && file_exists(ROOTPATH . 'public/img/' . $produk['foto_produk'])) {
+            unlink(ROOTPATH . 'public/img/' . $produk['foto_produk']);
+        }
+
+        $model_produk->delete($id);
+
+        return redirect()->to('/edit-profile');
+    }
+
     public function index_kalkulator()
     {
         $model_webprofile = new WebProfile();
