@@ -64,13 +64,25 @@ return [
     'noCategory' => 'No categories available',
     'noContent' => 'There is no content to display on this page yet.',
     'readMore' => 'Read More',
-
     //halaman search artikel
     'searchTitle' => 'Export Learning',
     'searchResults' => 'Displaying search results for:',
     'searchPlaceholder' => 'Search articles...',
     'noArticlesFound' => 'No articles found.',
     'readMore' => 'Read More',
+    'seeMore' => 'See more articles',
+    //end halaman search artikel
+
+    // Video Tutorial Section
+    'videoTutorialTitle' => 'Tutorial Videos',
+    'videoTutorialDescription' => 'Find tutorial videos from our community,<br>and dive deep with informative and easy-to-understand videos.',
+    // Video Category Section
+    'noVideosAvailable' => 'No videos are available in this category.',
+    'readMore' => 'Read More',
+    'videoCategory' => 'Video Category:',
+    'titleDesc' => 'Description',
+    'titleOther' => 'Other Videos',
+
 
     //halaman data member
     'dataMemberTitle' => 'Member Data',

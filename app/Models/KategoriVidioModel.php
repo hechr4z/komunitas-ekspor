@@ -12,7 +12,7 @@ class KategoriVidioModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama_kategori_video', 'slug'];
+    protected $allowedFields    = ['nama_kategori_video', 'slug', 'nama_kategori_video_en', 'slug_en'];
 
     // Method untuk mengambil semua kategori video
     public function getAllKategori()

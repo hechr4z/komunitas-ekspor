@@ -163,7 +163,7 @@ class KomunitasEkspor extends BaseController
         $kategoriBelajarEksporModel = new KategoriBelajarEksporModel();
 
         // Mengambil kategori berdasarkan slug
-        $kategori = $kategoriBelajarEksporModel->where('slug', $slug)->first();
+        $kategori = $kategoriBelajarEksporModel->where('slug', $slug)->orWhere('slug_en', $slug)->first();
         if (!$kategori) {
             // Jika kategori tidak ditemukan, redirect atau tampilkan error
             return redirect()->to('/')->with('error', 'Kategori tidak ditemukan');
@@ -278,6 +278,8 @@ class KomunitasEkspor extends BaseController
 
     public function video_selengkapnya($slug)
     {
+        $lang = session()->get('lang') ?? 'id';
+
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();
@@ -286,7 +288,9 @@ class KomunitasEkspor extends BaseController
         $kategoriModel = new KategoriVidioModel();
 
         // Ambil data kategori berdasarkan slug
-        $kategori = $kategoriModel->where('slug', $slug)->first();
+        $kategori = $kategoriModel->where('slug', $slug)
+            ->orWhere('slug_en', $slug)->first();
+
 
         // Jika kategori ditemukan, ambil video yang sesuai
         if ($kategori) {
@@ -300,6 +304,7 @@ class KomunitasEkspor extends BaseController
             'kategori' => $kategori,
             'video_tutorial' => $videos,
             'webprofile' => $webprofile,
+            'lang' => $lang
         ];
 
         return view('video-tutorial/video_selengkapnya', $data);
@@ -307,6 +312,8 @@ class KomunitasEkspor extends BaseController
 
     public function video_tutorial_detail($slug)
     {
+        $lang = session()->get('lang') ?? 'id';
+
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();
@@ -315,8 +322,17 @@ class KomunitasEkspor extends BaseController
         $vidioModel = new VidioTutorialModel();
         $kategoriModel = new KategoriVidioModel();
 
+
         // Mengambil data video berdasarkan slug
         $video = $vidioModel->getVideoBySlug($slug);
+
+        // Cek apakah slug sesuai dengan bahasa yang sedang aktif
+        if (($lang === 'id' && $slug !== $video['slug']) || ($lang === 'en' && $slug !== $video['slug_en'])) {
+            // Redirect ke URL slug yang benar sesuai bahasa
+            $correctSlug = $lang === 'id' ? $video['slug'] : $video['slug_en'];
+            $correctulr = $lang === 'id' ? 'tutorial-video' : 'video-tutorial';
+            return redirect()->to("$lang/$correctulr/$correctSlug");
+        }
 
         // Memastikan bahwa video ditemukan, jika tidak redirect atau tampilkan error
         if (!$video) {
@@ -335,6 +351,7 @@ class KomunitasEkspor extends BaseController
             'related_videos' => $related_videos,
             'kategori' => $kategori,
             'webprofile' => $webprofile,
+            'lang' => $lang
         ];
 
         // Mengembalikan view dengan data yang telah disiapkan

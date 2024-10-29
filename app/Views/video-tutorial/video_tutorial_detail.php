@@ -78,12 +78,14 @@
                         <!-- Tags Badges -->
                         <div style="display: flex;">
                             <div class="badge py-2">
-                                <?= $kategori['nama_kategori_video']; ?>
+                                <?= ($lang === 'en') ? $kategori['nama_kategori_video_en'] : $kategori['nama_kategori_video']; ?>
                             </div>
                         </div>
 
                         <!-- Video Title -->
-                        <h4 class="py-3 text-uppercase font-weight-bold"><?= $video['judul_video']; ?></h4>
+                        <h4 class="py-3 text-uppercase font-weight-bold">
+                            <?= ($lang === 'en') ? $video['judul_video_en'] : $video['judul_video']; ?>
+                        </h4>
 
                         <!-- Video Player Start -->
                         <div class="ratio ratio-16x9 mb-3 position-relative" style="width: 100%; height: auto; cursor: pointer;" onclick="showSweetAlert()">
@@ -101,13 +103,14 @@
                         </div>
                         <!-- Video Player End -->
 
-
-
                         <!-- Description -->
                         <div class="mb-3">
-                            <h5 class="font-weight-bold py-2">Deskripsi</h5>
-                            <p><?= $video['deskripsi_video']; ?></p>
+                            <h5 class="font-weight-bold py-2">   <?= lang('Blog.titleDesc')?></h5>
+                            <p>
+                                <?= ($lang === 'en') ? $video['deskripsi_video_en'] : $video['deskripsi_video']; ?>
+                            </p>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -117,7 +120,7 @@
                 <div class="mb-3">
                     <div class="section-title mb-0">
                         <h4 class="m-0 py-4 font-weight-bold">
-                            Video Lainnya
+                            <?= lang('Blog.titleOther')?>
                         </h4>
                     </div>
 

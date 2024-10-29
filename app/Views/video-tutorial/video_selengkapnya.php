@@ -60,7 +60,7 @@
 
 <!-- Halaman untuk kategori video -->
 <div class="pendaftaran-section pt-5 pb-2 text-center">
-    <h2 class="text-custom-title">Kategori Video: <?= $kategori['nama_kategori_video']; ?></h2>
+    <h2 class="text-custom-title">Kategori Video: <?= ($lang === 'en') ? $kategori['nama_kategori_video_en'] : $kategori['nama_kategori_video']; ?> </h2>
 </div>
 
 <div class="container">

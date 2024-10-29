@@ -12,7 +12,7 @@ class VidioTutorialModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['judul_video', 'video_url', 'thumbnail', 'deskripsi_video', 'id_kategori_video', 'slug'];
+    protected $allowedFields    = ['judul_video', 'video_url', 'thumbnail', 'deskripsi_video', 'id_kategori_video', 'slug', 'slug_en'];
 
     // Method untuk mengambil semua video tutorial dan join dengan kategori video
     public function getAllVideos()
@@ -25,9 +25,10 @@ class VidioTutorialModel extends Model
     // Method untuk mengambil video berdasarkan slug
     public function getVideoBySlug($slug)
     {
-        return $this->select('video_tutorial.*, kategori_video.nama_kategori_video')
+        return $this->select('video_tutorial.*, kategori_video.nama_kategori_video, kategori_video.nama_kategori_video_en')
             ->join('kategori_video', 'video_tutorial.id_kategori_video = kategori_video.id_kategori_video')
             ->where('video_tutorial.slug', $slug)
+            ->orwhere('video_tutorial.slug_en', $slug)
             ->first();
     }
 
@@ -37,6 +38,7 @@ class VidioTutorialModel extends Model
         return $this->select('video_tutorial.*, kategori_video.nama_kategori_video')
             ->join('kategori_video', 'video_tutorial.id_kategori_video = kategori_video.id_kategori_video')
             ->where('kategori_video.slug', $kategoriSlug)
+            ->orwhere('kategori_video.slug_en', $kategoriSlug)
             ->findAll();
     }
 
@@ -54,6 +56,7 @@ class VidioTutorialModel extends Model
         return $this->select('video_tutorial.*, kategori_video.nama_kategori_video')
             ->join('kategori_video', 'video_tutorial.id_kategori_video = kategori_video.id_kategori_video')
             ->where('kategori_video.slug', $kategoriSlug)
+            ->orwhere('kategori_video.slug_en   ', $kategoriSlug)
             ->limit($limit) // Membatasi jumlah data yang diambil
             ->findAll();
     }
