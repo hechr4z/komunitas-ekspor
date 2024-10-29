@@ -75,6 +75,7 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     // Member - Edit Member
     $routes->get('/edit-profile', 'KomunitasEkspor::edit_profile');
     $routes->post('/ubah-informasi-akun', 'KomunitasEkspor::ubah_informasi_akun');
+    $routes->post('/ubah-profil-perusahaan', 'KomunitasEkspor::ubah_profil_perusahaan');
 
     // Visitor - Aplikasi Kalkulator Ekspor
     $routes->get('/kalkulator-ekspor', 'KomunitasEkspor::index_kalkulator');
