@@ -24,25 +24,26 @@
     </div>
 
     <div class="row mt-5">
-        <!-- Card Pengumuman 1 -->
-        <div class="col-md-4 mb-4 animate__animated animate__zoomIn">
-            <div class="card h-100 shadow-sm">
-                <img src="/img/navbar1.jpg" class="card-img-top" alt="Pengumuman 1">
-                <div class="card-body">
-                    <h5 class="card-title">Judul Pengumuman 1</h5>
-                    <p class="card-text">Ini adalah deskripsi singkat untuk pengumuman pertama. Deskripsi ini memberikan
-                        gambaran mengenai isi pengumuman.</p>
-                    <p class="text-muted"><small><i class="far fa-calendar-alt"></i> 21 Oktober 2024</small></p>
-                </div>
-                <div class="card-footer text-center">
-                    <a href="detail-pengumuman" class="btn btn-custom" style="background-color: #03AADE;">Baca
-                        Selengkapnya</a>
+        <?php foreach ($pengumuman as $item): ?>
+            <!-- Card Pengumuman 1 -->
+            <div class="col-md-4 mb-4 animate__animated animate__zoomIn">
+                <div class="card h-100 shadow-sm">
+                    <img src="<?= base_url('/img/' . $item['poster_pengumuman']); ?>" class="card-img-top" alt="<?= $item['judul_pengumuman']; ?>">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $item['judul_pengumuman']; ?></h5>
+                        <p class="card-text"><?= $item['deskripsi_pengumuman']; ?></p>
+                        <p class="text-muted"><small><i class="far fa-calendar-alt"> </i> <?= date('d F Y', strtotime($item['created_at'])); ?></small></p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="detail-pengumuman" class="btn btn-custom" style="background-color: #03AADE;">Baca
+                            Selengkapnya</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php endforeach ?>
 
         <!-- Card Pengumuman 2 -->
-        <div class="col-md-4 mb-4 animate__animated animate__zoomIn animate__delay-1s">
+        <!-- <div class="col-md-4 mb-4 animate__animated animate__zoomIn animate__delay-1s">
             <div class="card h-100 shadow-sm">
                 <img src="/img/navbar1.jpg" class="card-img-top" alt="Pengumuman 2">
                 <div class="card-body">
@@ -56,10 +57,10 @@
                         Selengkapnya</a>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Card Pengumuman 3 -->
-        <div class="col-md-4 mb-4 animate__animated animate__zoomIn animate__delay-2s">
+        <!-- <div class="col-md-4 mb-4 animate__animated animate__zoomIn animate__delay-2s">
             <div class="card h-100 shadow-sm">
                 <img src="/img/navbar1.jpg" class="card-img-top" alt="Pengumuman 3">
                 <div class="card-body">
@@ -73,7 +74,7 @@
                         Selengkapnya</a>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </section>
 
