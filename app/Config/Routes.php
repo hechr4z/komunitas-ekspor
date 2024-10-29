@@ -123,4 +123,7 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->get('/member-video-tutorial', 'KomunitasEkspor::member_video_tutorial');
     $routes->get('/member-video-tutorial-selengkapnya/(:segment)', 'KomunitasEkspor::member_video_selengkapnya/$1');
     $routes->get('/member-video-tutorial-detail/(:segment)', 'KomunitasEkspor::member_video_tutorial_detail/$1');
+
+    // Member - Website Audit
+    $routes->get('website-audit', 'KomunitasEkspor::website_audit');
 });
