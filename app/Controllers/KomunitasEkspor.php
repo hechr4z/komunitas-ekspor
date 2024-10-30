@@ -1028,7 +1028,7 @@ class KomunitasEkspor extends BaseController
         $data['cif'] = $cif;
         $data['satuan'] = $satuan;
 
-        return view('kalkulator-ekspor/kalkulator_ekspor', $data);
+        return view('member/kalkulator-ekspor/kalkulator_ekspor', $data);
     }
 
     public function ganti_satuan($id)
@@ -1313,7 +1313,7 @@ class KomunitasEkspor extends BaseController
         $data['years'] = $years; // Semua tahun dari yang terlama sampai sekarang, dengan urutan terbaru di atas
         // $data['mpm_year'] = $mpm_year; // Data dari database
 
-        return view('mpm/mpm', $data);
+        return view('member/mpm/mpm', $data);
     }
 
     public function add_mpm()
