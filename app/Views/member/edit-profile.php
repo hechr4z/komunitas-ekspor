@@ -273,16 +273,15 @@
             <!-- Sertifikat -->
             <div class="tab-pane fade" id="sertifikatTab" role="tabpanel" aria-labelledby="produk-tab">
                 <h5 class="mb-4">Masukan Sertifikat</h5>
-                <div class="row">
-                    <label for="sertifikat" class="form-label">Masukkan Sertifikat</label>
-                    <div class="input-group">
-                        <input type="file" class="form-control" id="sertifikat">
-                        <button type="submit" class="btn btn-danger" id="hapusGambar">
-                            <i class="fas fa-trash-alt"></i> Hapus
-                        </button>
+                <form action="<?= base_url('/add-sertifikat'); ?>" method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <label for="sertifikat" class="form-label">Masukkan Sertifikat</label>
+                        <div class="input-group">
+                            <input type="file" class="form-control" id="sertifikat" name="sertifikat">
+                        </div>
+                        <button type="submit" class="btn btn-warning mt-3">Submit</button>
                     </div>
-                    <button type="button" class="btn btn-warning mt-3">Submit</button>
-                </div>
+                </form>
                 <div class="container mt-4">
                     <div class="p-4 mt-5">
                         <div class="text-center">
@@ -291,97 +290,54 @@
                         </div>
 
                         <div class="row mt-4">
-                            <!-- Card 1 -->
-                            <div class="col-md-4 mb-5 animate__animated animate__zoomIn">
-                                <a href="#" class="text-decoration-none" style="color: inherit;" data-bs-toggle="modal"
-                                    data-bs-target="#productModal1">
-                                    <div class="card hover-card mx-4 shadow-sm"
-                                        style="cursor: pointer; transition: transform 0.2s; height: 100%;">
-                                        <img src="img/p5.jpg" class="card-img-top img-fluid product-img" alt="Product Photo"
-                                            style="height: 220px;">
-                                        <div class="card-body d-flex flex-column">
-                                            <h5 class="card-title text-center mt-2">Sertifikat A</h5>
-                                        </div>
-                                        <button type="button" class="btn btn-danger position-absolute top-0 end-0 m-3" style="border-radius: 50%;">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
+                            <?php if (empty($sertifikat)): ?>
+                                <div class="col-12 mb-5">
+                                    <div class="alert alert-info text-center" role="alert">
+                                        Masih belum ada Sertifikat.
                                     </div>
-                                </a>
-                            </div>
-
-                            <!-- Card 2 -->
-                            <div class="col-md-4 mb-5 animate__animated animate__zoomIn">
-                                <a href="#" class="text-decoration-none" style="color: inherit;" data-bs-toggle="modal"
-                                    data-bs-target="#productModal2">
-                                    <div class="card hover-card mx-4 shadow-sm"
-                                        style="cursor: pointer; transition: transform 0.2s; height: 100%;">
-                                        <img src="img/p5.jpg" class="card-img-top img-fluid product-img" alt="Product Photo"
-                                            style="height: 220px;">
-                                        <div class="card-body d-flex flex-column">
-                                            <h5 class="card-title text-center mt-2">Sertifikat B</h5>
+                                </div>
+                            <?php else: ?>
+                                <!-- Card 1 -->
+                                <?php foreach ($sertifikat as $item): ?>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card p-3 shadow-sm bg-light">
+                                            <i class="fas fa-trash text-danger position-absolute"
+                                                style="top: 10px; right: 10px; cursor: pointer;"></i>
+                                            <i class="fas fa-file-pdf fa-lg mb-2"></i>
+                                            <p>
+                                                <strong>
+                                                    Nama File:
+                                                </strong>
+                                                <span class="certificate-name">
+                                                    <?= $item['sertifikat'] ?>
+                                                </span>
+                                            </p>
+                                            <button class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#certificateModal" data-filename="<?= base_url('certificate/' . $item['sertifikat']) ?>">
+                                                Lihat
+                                            </button>
                                         </div>
-                                        <button type="button" class="btn btn-danger position-absolute top-0 end-0 m-3" style="border-radius: 50%;">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
                                     </div>
-                                </a>
-                            </div>
-
-                            <!-- Card 3 -->
-                            <div class="col-md-4 mb-5 animate__animated animate__zoomIn">
-                                <a href="#" class="text-decoration-none" style="color: inherit;" data-bs-toggle="modal"
-                                    data-bs-target="#productModal3">
-                                    <div class="card hover-card mx-4 shadow-sm"
-                                        style="cursor: pointer; transition: transform 0.2s; height: 100%;">
-                                        <img src="img/p5.jpg" class="card-img-top img-fluid product-img" alt="Product Photo"
-                                            style="height: 220px;">
-                                        <div class="card-body d-flex flex-column">
-                                            <h5 class="card-title text-center mt-2">Sertifikat C</h5>
-                                        </div>
-                                        <button type="button" class="btn btn-danger position-absolute top-0 end-0 m-3" style="border-radius: 50%;">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </div>
-                                </a>
-                            </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Modal 2 -->
-                <div class="modal fade" id="productModal2" tabindex="-1" aria-labelledby="productModalLabel2" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="productModalLabel2">Produk B</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <img src="img/product2.jpg" class="img-fluid mb-3" alt="Product B">
-                                <p>Deskripsi lengkap produk B.</p>
-                                <p>HS Code: 654321</p>
-                                <p>Min. Order: 200 pcs</p>
-                                <p>Kapasitas Produksi: 2000 pcs/bulan</p>
-                            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="certificateModal" tabindex="-1" aria-labelledby="certificateModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="certificateModalLabel">Sertifikat</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Modal 3 -->
-                <div class="modal fade" id="productModal3" tabindex="-1" aria-labelledby="productModalLabel3" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="productModalLabel3">Produk C</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <img src="img/product3.jpg" class="img-fluid mb-3" alt="Product C">
-                                <p>Deskripsi lengkap produk C.</p>
-                                <p>HS Code: 987654</p>
-                                <p>Min. Order: 300 pcs</p>
-                                <p>Kapasitas Produksi: 3000 pcs/bulan</p>
-                            </div>
+                        <div class="modal-body">
+                            <iframe id="certificateFrame" src="" style="width: 100%; height: 500px;"
+                                frameborder="0"></iframe>
                         </div>
                     </div>
                 </div>
@@ -536,6 +492,14 @@
 </div>
 
 <script>
+    const certificateModal = document.getElementById('certificateModal');
+    certificateModal.addEventListener('show.bs.modal', function(event) {
+        const button = event.relatedTarget;
+        const filename = button.getAttribute('data-filename');
+        const iframe = document.getElementById('certificateFrame');
+        iframe.src = filename; // Menetapkan src iframe ke file sertifikat
+    });
+
     const productModal = document.getElementById('productModal1');
     productModal.addEventListener('show.bs.modal', function(event) {
         const button = event.relatedTarget;
