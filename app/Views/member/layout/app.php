@@ -394,7 +394,7 @@
                                             href="<?= base_url('kalkulator-ekspor') ?>">Kalkulator Harga Ekspor</a></li>
                                     <li><a class="dropdown-item nav-link" href="<?= base_url('mpm') ?>">Marketing
                                             Progress Monitoring</a></li>
-                                    <li><a class="dropdown-item nav-link" href="#">Website Audit</a></li>
+                                    <li><a class="dropdown-item nav-link" href="<?= base_url('/website-audit') ?>">Website Audit</a></li>
                                 </ul>
                             </li>
                         </ul>
