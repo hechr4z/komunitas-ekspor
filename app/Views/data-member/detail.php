@@ -243,8 +243,6 @@
                             <?php foreach ($sertifikat as $item): ?>
                                 <div class="col-md-6 mb-3">
                                     <div class="card p-3 shadow-sm bg-light">
-                                        <i class="fas fa-trash text-danger position-absolute"
-                                            style="top: 10px; right: 10px; cursor: pointer;"></i>
                                         <i class="fas fa-file-pdf fa-lg mb-2"></i>
                                         <p><strong>Nama File:</strong>
                                             <span class="certificate-name">
@@ -252,8 +250,9 @@
                                             </span>
                                         </p>
                                         <button class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#certificateModal"
-                                            data-filename="<?= base_url('certificate/' . $item['sertifikat']) ?>">Lihat</button>
+                                            data-bs-target="#certificateModal" data-filename="<?= base_url('certificate/' . $item['sertifikat']) ?>">
+                                            Lihat
+                                        </button>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -418,14 +417,14 @@
                     </a>
                 <?php endforeach; ?>
             </div>
-        </div>
-    <?php endif; ?>
+    </div>
+<?php endif; ?>
 </div>
 </div>
 
 <script>
     const certificateModal = document.getElementById('certificateModal');
-    certificateModal.addEventListener('show.bs.modal', function (event) {
+    certificateModal.addEventListener('show.bs.modal', function(event) {
         const button = event.relatedTarget;
         const filename = button.getAttribute('data-filename');
         const iframe = document.getElementById('certificateFrame');
@@ -433,7 +432,7 @@
     });
 
     const productModal = document.getElementById('productModal1');
-    productModal.addEventListener('show.bs.modal', function (event) {
+    productModal.addEventListener('show.bs.modal', function(event) {
         const button = event.relatedTarget;
         const productName = button.getAttribute('data-nama');
         const productDescription = button.getAttribute('data-deskripsi');
