@@ -925,17 +925,27 @@ class KomunitasEkspor extends BaseController
 
     public function delete_produk($id)
     {
-        $model_produk = new Produk();
+        $session = session();
+        $user_id = $session->get('user_id'); // Ambil user_id dari sesi
 
+        $model_produk = new Produk();
         $produk = $model_produk->find($id);
 
-        if ($produk['foto_produk'] && file_exists(ROOTPATH . 'public/img/' . $produk['foto_produk'])) {
-            unlink(ROOTPATH . 'public/img/' . $produk['foto_produk']);
+        // Cek apakah produk ada dan apakah produk milik user yang sedang login
+        if ($produk && $produk['id_member'] == $user_id) {
+            // Hapus file foto produk jika ada
+            if ($produk['foto_produk'] && file_exists(ROOTPATH . 'public/img/' . $produk['foto_produk'])) {
+                unlink(ROOTPATH . 'public/img/' . $produk['foto_produk']);
+            }
+
+            // Hapus produk dari database
+            $model_produk->delete($id);
+
+            return redirect()->to('/edit-profile')->with('success', 'Produk berhasil dihapus');
+        } else {
+            // Redirect dengan pesan error jika produk tidak ditemukan atau tidak dimiliki user yang sedang login
+            return redirect()->to('/edit-profile')->withInput()->with('errors', ['Anda tidak memiliki izin untuk menghapus produk ini']);
         }
-
-        $model_produk->delete($id);
-
-        return redirect()->to('/edit-profile');
     }
 
     public function index_kalkulator()
