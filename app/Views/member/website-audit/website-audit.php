@@ -85,8 +85,13 @@
             <form action="<?= base_url('audit/submit'); ?>" method="POST">
                 <div class="form-group">
                     <label for="websiteLink" class="form-label">Masukkan Link Website:</label>
-                    <input type="url" class="form-control" id="websiteLink" name="websiteLink"
-                        placeholder="https://contoh.com" required>
+                    <div class="input-group">
+                        <input type="url" class="form-control" id="websiteLink" name="websiteLink"
+                            placeholder="https://contoh.com" required>
+                        <span class="input-group-text bg-danger" style="cursor: pointer;">
+                            <i class="fas fa-times text-white"></i>
+                        </span>
+                    </div>
                 </div>
                 <div class="text-center mt-3">
                     <button type="submit" class="btn btn-custom" style="background-color: #03AADE;">Submit</button>
@@ -94,6 +99,7 @@
             </form>
         </div>
     </div>
+
 
     <!-- Garis Pemisah -->
     <hr class="my-4 mt-5">
