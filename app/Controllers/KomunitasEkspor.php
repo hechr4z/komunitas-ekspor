@@ -742,12 +742,15 @@ class KomunitasEkspor extends BaseController
         $data['webprofile'] = $webprofile;
 
         $model_member = new Member();
+        $model_sertifikat = new Sertifikat();
         $model_produk = new Produk();
 
         $member = $model_member->where('id_member', $user_id)->first();
+        $sertifikat = $model_sertifikat->where('id_member', $user_id)->findAll();
         $produk = $model_produk->where('id_member', $user_id)->findAll();
 
         $data['member'] = $member;
+        $data['sertifikat'] = $sertifikat;
         $data['produk'] = $produk;
 
         return view('member/edit-profile', $data);
@@ -851,6 +854,32 @@ class KomunitasEkspor extends BaseController
 
         $model_member->update($user_id, $data);
 
+        return redirect()->to('/edit-profile');
+    }
+
+    public function add_sertifikat()
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_sertifikat = new Sertifikat();
+
+        $fileSertifikat = $this->request->getFile('sertifikat');
+        $namaFile = null;
+        if ($fileSertifikat && $fileSertifikat->isValid() && !$fileSertifikat->hasMoved()) {
+            $namaFile = uniqid() . '.' . $fileSertifikat->getClientExtension();
+            $fileSertifikat->move(ROOTPATH . 'public/certificate', $namaFile);
+        }
+
+        $data = [
+            'id_member' => $user_id,
+            'sertifikat' => $namaFile,
+        ];
+
+        // Insert data into the database
+        $model_sertifikat->insert($data);
+
+        // Redirect after successful insert
         return redirect()->to('/edit-profile');
     }
 
