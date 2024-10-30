@@ -143,43 +143,43 @@
 
     /* end search css */
 
-    /* Responsiveness for smaller screens */
-    @media (max-width: 576px) {
-        .btn {
-            width: 100%;
-            margin-bottom: 15px;
-        }
-
-        .nav-tabs {
-            flex-direction: column;
+    /*responsive mobile*/
+    @media (max-width: 768px) {
+        .form {
+            --width-of-input: 250px;
+            --height-of-input: 45px;
         }
     }
 </style>
 
-<!-- judul -->
-<div class="py-4" style="text-align: center;">
-    <h2 class="text-custom-title"><?= lang('Blog.buyersDataTitle') ?></h2>
-    <p class="text-custom-paragraph mt-2"><?= lang('Blog.buyersDataDescription') ?></p>
-</div>
+<div class="container">
+    <!-- judul -->
+    <div class="py-5" style="text-align: center;">
+        <h2 class="text-custom-title"><?= lang('Blog.buyersDataTitle') ?></h2>
+        <p class="text-custom-paragraph mt-2"><?= lang('Blog.buyersDataDescription') ?></p>
+    </div>
 
-<!-- Search Bar Start -->
-<form class="form" action="<?= base_url($lang . '/data-buyers/search') ?>" method="GET">
-    <button>
-        <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
-            <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
-                stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-    </button>
-    <input class="input" autocomplete="off" placeholder="<?= lang('Blog.searchArticlePlaceholder') ?>" name="keyword"
-        required="" type="text" value="<?= isset($keyword) ? esc($keyword) : '' ?>">
-    <button class="reset" type="reset">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-            stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-    </button>
-</form>
-<!-- Search Bar End -->
+    <!-- Search Bar Start -->
+    <form class="form" action="<?= base_url($lang . '/data-buyers/search') ?>" method="GET">
+        <button>
+            <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img"
+                aria-labelledby="search">
+                <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
+                    stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+        </button>
+        <input class="input" autocomplete="off" placeholder="<?= lang('Blog.searchArticlePlaceholder') ?>"
+            name="keyword" required="" type="text" value="<?= isset($keyword) ? esc($keyword) : '' ?>">
+        <button class="reset" type="reset">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    </form>
+    <!-- Search Bar End -->
+
+</div>
 
 <div class="container mt-5 mb-5">
     <!-- Table Content -->
@@ -218,21 +218,22 @@
                             </td>
                         </tr>
                     <?php endforeach; ?>
-            </tbody>
-        </table>
-        <div class="mt-2">
-            <?= $pager->links('default', 'bootstrap_pagination') ?>
+                </tbody>
+            </table>
+            <div class="mt-2">
+                <?= $pager->links('default', 'bootstrap_pagination') ?>
+            </div>
+        <?php endif; ?>
+        <!-- Tombol Hilangi Blur -->
+        <div class="badgepanjang p-3 mt-3">
+            <div class="d-flex justify-content-between align-items-center mt-3 mb-3 flex-md-row flex-column">
+                <h5 class="kategori font-weight-bold mb-0 text-left text-md-left">
+                    <?= lang('Blog.joinMemberTitle') ?>
+                </h5>
+                <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>"
+                    class="btn btn-custom mt-md-0"><?= lang('Blog.memberRegistration') ?></a>
+            </div>
         </div>
-    <?php endif; ?>
-    <!-- Tombol Hilangi Blur -->
-    <div class="badgepanjang p-3 mt-3">
-        <div class="d-flex justify-content-between align-items-center mt-3 mb-3 flex-md-row flex-column">
-            <h5 class="kategori font-weight-bold mb-0 text-left text-md-left">
-                <?= lang('Blog.joinMemberTitle') ?>
-            </h5>
-            <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>" class="btn btn-custom mt-md-0"><?= lang('Blog.memberRegistration') ?></a>
-        </div>
-    </div>
     </div>
 </div>
 
