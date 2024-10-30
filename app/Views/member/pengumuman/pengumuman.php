@@ -31,11 +31,11 @@
                     <img src="<?= base_url('/img/' . $item['poster_pengumuman']); ?>" class="card-img-top" alt="<?= $item['judul_pengumuman']; ?>">
                     <div class="card-body">
                         <h5 class="card-title"><?= $item['judul_pengumuman']; ?></h5>
-                        <p class="card-text"><?= $item['deskripsi_pengumuman']; ?></p>
+                        <p class="card-text"><?= substr($item['deskripsi_pengumuman'], 0, 180) . '...'; ?></p>
                         <p class="text-muted"><small><i class="far fa-calendar-alt"> </i> <?= date('d F Y', strtotime($item['created_at'])); ?></small></p>
                     </div>
                     <div class="card-footer text-center">
-                        <a href="detail-pengumuman" class="btn btn-custom" style="background-color: #03AADE;">Baca
+                        <a href="<?= base_url('/detail-pengumuman/' . $item['slug']); ?>" class="btn btn-custom" style="background-color: #03AADE;">Baca
                             Selengkapnya</a>
                     </div>
                 </div>

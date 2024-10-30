@@ -29,15 +29,13 @@
         <div class="col-md-8">
             <div class="card shadow-sm animate__animated animate__fadeIn">
                 <!-- Gambar Pengumuman -->
-                <img src="/img/navbar1.jpg" class="card-img-top rounded-top" alt="Judul Pengumuman">
-
+                <img src="<?= base_url('/img/' . $pengumuman['poster_pengumuman']); ?>" class="card-img-top rounded-top" alt="Judul Pengumuman">
                 <!-- Isi Pengumuman -->
                 <div class="card-body">
-                    <h5 class="card-title">Judul Pengumuman</h5>
-                    <p class="text-muted"><small><i class="far fa-calendar-alt"></i> 21 Oktober 2024</small></p>
+                    <h5 class="card-title"><?= $pengumuman['judul_pengumuman']; ?></h5>
+                    <p class="text-muted"><small><i class="far fa-calendar-alt"></i> <?= date('d F Y', strtotime($pengumuman['created_at'])); ?></small></p>
                     <div class="card-text">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor urna sit amet urna
-                            malesuada, id pharetra ex tincidunt.</p>
+                        <p><?= $pengumuman['deskripsi_pengumuman']; ?></p>
                     </div>
                 </div>
             </div>

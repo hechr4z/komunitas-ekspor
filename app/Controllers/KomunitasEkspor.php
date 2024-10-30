@@ -1222,13 +1222,15 @@ class KomunitasEkspor extends BaseController
         return view('member/pengumuman/pengumuman', $data);
     }
 
-    public function detail_pengumuman()
+    public function detail_pengumuman($slug = null)
     {
         $model_webprofile = new WebProfile();
+        $model_pengumuman = new Pengumuman();
 
         $webprofile = $model_webprofile->findAll();
 
         $data['webprofile'] = $webprofile;
+        $data['pengumuman'] = $model_pengumuman->where('slug', $slug)->first();
 
         return view('member/pengumuman/detail-pengumuman', $data);
     }

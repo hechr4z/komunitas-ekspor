@@ -100,7 +100,7 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
 
     // Member - Pengumuman
     $routes->get('/pengumuman', 'KomunitasEkspor::pengumuman');
-    $routes->get('/detail-pengumuman', 'KomunitasEkspor::detail_pengumuman');
+    $routes->get('/detail-pengumuman/(:segment)', 'KomunitasEkspor::detail_pengumuman/$1');
 
     // MPM
     $routes->get('/mpm', 'KomunitasEkspor::mpm');
