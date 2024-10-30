@@ -883,6 +883,31 @@ class KomunitasEkspor extends BaseController
         return redirect()->to('/edit-profile');
     }
 
+    public function delete_sertifikat($id)
+    {
+        $session = session();
+        $user_id = $session->get('user_id'); // Ambil user_id dari sesi
+
+        $model_sertifikat = new Sertifikat();
+        $sertifikat = $model_sertifikat->find($id);
+
+        // Cek apakah sertifikat ada dan apakah sertifikat milik user yang sedang login
+        if ($sertifikat && $sertifikat['id_member'] == $user_id) {
+            // Hapus file foto sertifikat jika ada
+            if ($sertifikat['sertifikat'] && file_exists(ROOTPATH . 'public/certificate/' . $sertifikat['sertifikat'])) {
+                unlink(ROOTPATH . 'public/certificate/' . $sertifikat['sertifikat']);
+            }
+
+            // Hapus sertifikat dari database
+            $model_sertifikat->delete($id);
+
+            return redirect()->to('/edit-profile')->with('success', 'Sertifikat berhasil dihapus');
+        } else {
+            // Redirect dengan pesan error jika sertifikat tidak ditemukan atau tidak dimiliki user yang sedang login
+            return redirect()->to('/edit-profile')->withInput()->with('errors', ['Anda tidak memiliki izin untuk menghapus sertifikat ini']);
+        }
+    }
+
     public function add_produk()
     {
         $session = session();
