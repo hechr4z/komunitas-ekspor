@@ -301,8 +301,10 @@
                                 <?php foreach ($sertifikat as $item): ?>
                                     <div class="col-md-6 mb-3">
                                         <div class="card p-3 shadow-sm bg-light">
-                                            <i class="fas fa-trash text-danger position-absolute"
-                                                style="top: 10px; right: 10px; cursor: pointer;"></i>
+                                            <a href="<?= base_url('/delete-sertifikat/' . $item['id_sertifikat']) ?>">
+                                                <i class="fas fa-trash text-danger position-absolute"
+                                                    style="top: 10px; right: 10px; cursor: pointer;"></i>
+                                            </a>
                                             <i class="fas fa-file-pdf fa-lg mb-2"></i>
                                             <p>
                                                 <strong>
