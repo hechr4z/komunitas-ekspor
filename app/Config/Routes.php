@@ -76,6 +76,7 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->get('/edit-profile', 'KomunitasEkspor::edit_profile');
     $routes->post('/ubah-informasi-akun', 'KomunitasEkspor::ubah_informasi_akun');
     $routes->post('/ubah-profil-perusahaan', 'KomunitasEkspor::ubah_profil_perusahaan');
+    $routes->post('/add-sertifikat', 'KomunitasEkspor::add_sertifikat');
     $routes->post('/add-produk', 'KomunitasEkspor::add_produk');
     $routes->get('/delete-produk/(:num)', 'KomunitasEkspor::delete_produk/$1');
 
