@@ -178,7 +178,6 @@
         </button>
     </form>
     <!-- Search Bar End -->
-
 </div>
 
 <div class="container mt-5 mb-5">
