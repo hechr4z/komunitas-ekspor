@@ -111,7 +111,7 @@
     <div class="col-lg-12">
         <div class="card p-4 shadow-sm">
             <!-- Image at the top -->
-            <div class="text-center mb-2"
+            <div class="text-center mb-3 shadow"
                 style="width: 250px; height: 250px; margin: auto; overflow: hidden; border-radius: 50%; position: relative;">
                 <img src="<?= base_url('img/' . $member['foto_profil']); ?>" class="img-fluid" alt=""
                     style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
@@ -158,7 +158,8 @@
                         <div class="col-md-6 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
                                 <i class="fas fa-building fa-lg mb-2"></i>
-                                <p><strong><?php echo lang('Blog.companyName') ?></strong> <?= $member['nama_perusahaan'] ?></p>
+                                <p><strong><?php echo lang('Blog.companyName') ?></strong>
+                                    <?= $member['nama_perusahaan'] ?></p>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
@@ -172,7 +173,8 @@
                         <div class="col-12 mb-3">
                             <div class="card p-3 shadow-sm bg-light d-flex flex-column">
                                 <i class="fas fa-file-alt fa-lg mb-2"></i>
-                                <label class="form-label"><strong><?php echo lang('Blog.companyDesc') ?></strong></label>
+                                <label
+                                    class="form-label"><strong><?php echo lang('Blog.companyDesc') ?></strong></label>
                                 <p class="mb-0">
                                     <?= nl2br(htmlspecialchars(($lang == 'en') ? $member['deskripsi_perusahaan_en'] : $member['deskripsi_perusahaan'])) ?>
                                 </p>
@@ -191,7 +193,8 @@
                         <div class="col-md-6 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
                                 <i class="fas fa-calendar-alt fa-lg mb-2"></i>
-                                <p><strong><?php echo lang('Blog.yearEstablished') ?></strong> <?= $member['tahun_dibentuk'] ?></p>
+                                <p><strong><?php echo lang('Blog.yearEstablished') ?></strong>
+                                    <?= $member['tahun_dibentuk'] ?></p>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
@@ -240,6 +243,8 @@
                             <?php foreach ($sertifikat as $item): ?>
                                 <div class="col-md-6 mb-3">
                                     <div class="card p-3 shadow-sm bg-light">
+                                        <i class="fas fa-trash text-danger position-absolute"
+                                            style="top: 10px; right: 10px; cursor: pointer;"></i>
                                         <i class="fas fa-file-pdf fa-lg mb-2"></i>
                                         <p><strong>Nama File:</strong>
                                             <span class="certificate-name">
@@ -406,20 +411,21 @@
                             <div class="card-body text-center">
                                 <h5 class="card-title"><?= $item['username'] ?></h5>
                                 <p class="card-text"><?= $item['nama_perusahaan'] ?></p>
-                                <span class="btn btn-primary mt-auto" style="border-radius: 8px;"><?php echo lang('Blog.btndataMember') ?></span>
+                                <span class="btn btn-primary mt-auto"
+                                    style="border-radius: 8px;"><?php echo lang('Blog.btndataMember') ?></span>
                             </div>
                         </div>
                     </a>
                 <?php endforeach; ?>
             </div>
-    </div>
-<?php endif; ?>
+        </div>
+    <?php endif; ?>
 </div>
 </div>
 
 <script>
     const certificateModal = document.getElementById('certificateModal');
-    certificateModal.addEventListener('show.bs.modal', function(event) {
+    certificateModal.addEventListener('show.bs.modal', function (event) {
         const button = event.relatedTarget;
         const filename = button.getAttribute('data-filename');
         const iframe = document.getElementById('certificateFrame');
@@ -427,7 +433,7 @@
     });
 
     const productModal = document.getElementById('productModal1');
-    productModal.addEventListener('show.bs.modal', function(event) {
+    productModal.addEventListener('show.bs.modal', function (event) {
         const button = event.relatedTarget;
         const productName = button.getAttribute('data-nama');
         const productDescription = button.getAttribute('data-deskripsi');

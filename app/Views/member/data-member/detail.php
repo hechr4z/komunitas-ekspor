@@ -111,7 +111,7 @@
     <div class="col-lg-12">
         <div class="card p-4 shadow-sm">
             <!-- Image at the top -->
-            <div class="text-center mb-2"
+            <div class="text-center mb-3 shadow"
                 style="width: 250px; height: 250px; margin: auto; overflow: hidden; border-radius: 50%; position: relative;">
                 <img src="<?= base_url('img/' . $member['foto_profil']); ?>" class="img-fluid" alt=""
                     style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
