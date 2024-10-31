@@ -1231,6 +1231,8 @@ class KomunitasEkspor extends BaseController
 
         $data['webprofile'] = $webprofile;
         $data['pengumuman'] = $model_pengumuman->where('slug', $slug)->first();
+        // Mendapatkan pengumuman lainnya, selain yang sedang dibuka
+        $data['pengumuman_lainnya'] = $model_pengumuman->where('slug !=', $slug)->findAll(3); // Limit untuk 3 pengumuman lainnya
 
         return view('member/pengumuman/detail-pengumuman', $data);
     }

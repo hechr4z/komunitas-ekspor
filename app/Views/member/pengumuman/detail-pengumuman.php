@@ -45,55 +45,21 @@
     <!-- Pengumuman Lainnya -->
     <div class="row mt-5">
         <h3>Pengumuman Lainnya</h3>
-
-        <!-- Card Pengumuman 1 -->
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm animate__animated animate__zoomIn">
-                <img src="/img/navbar1.jpg" class="card-img-top" alt="Pengumuman 1">
-                <div class="card-body">
-                    <h5 class="card-title">Judul Pengumuman 1</h5>
-                    <p class="card-text">Deskripsi singkat untuk pengumuman pertama. Gambaran singkat isi pengumuman.
-                    </p>
-                    <p class="text-muted"><small><i class="far fa-calendar-alt"></i> 21 Oktober 2024</small></p>
-                </div>
-                <div class="card-footer text-center">
-                    <a href="detail-pengumuman" class="btn btn-custom" style="background-color: #03AADE;">Baca
-                        Selengkapnya</a>
+        <?php foreach ($pengumuman_lainnya as $item): ?>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm animate__animated animate__zoomIn">
+                    <img src="<?= base_url('/img/' . $item['poster_pengumuman']); ?>" class="card-img-top" alt="<?= $item['judul_pengumuman']; ?>">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $item['judul_pengumuman']; ?></h5>
+                        <p class="card-text"><?= substr($item['deskripsi_pengumuman'], 0, 100) . '...'; ?></p>
+                        <p class="text-muted"><small><i class="far fa-calendar-alt"></i> <?= date('d F Y', strtotime($item['created_at'])); ?></small></p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="<?= base_url('/detail-pengumuman/' . $item['slug']); ?>" class="btn btn-custom" style="background-color: #03AADE;">Baca Selengkapnya</a>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Card Pengumuman 2 -->
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm animate__animated animate__zoomIn">
-                <img src="/img/navbar1.jpg" class="card-img-top" alt="Pengumuman 2">
-                <div class="card-body">
-                    <h5 class="card-title">Judul Pengumuman 2</h5>
-                    <p class="card-text">Deskripsi singkat untuk pengumuman kedua. Gambaran singkat isi pengumuman.</p>
-                    <p class="text-muted"><small><i class="far fa-calendar-alt"></i> 19 Oktober 2024</small></p>
-                </div>
-                <div class="card-footer text-center">
-                    <a href="detail-pengumuman" class="btn btn-custom" style="background-color: #03AADE;">Baca
-                        Selengkapnya</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card Pengumuman 3 -->
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm animate__animated animate__zoomIn">
-                <img src="/img/navbar1.jpg" class="card-img-top" alt="Pengumuman 3">
-                <div class="card-body">
-                    <h5 class="card-title">Judul Pengumuman 3</h5>
-                    <p class="card-text">Deskripsi singkat untuk pengumuman ketiga. Gambaran singkat isi pengumuman.</p>
-                    <p class="text-muted"><small><i class="far fa-calendar-alt"></i> 18 Oktober 2024</small></p>
-                </div>
-                <div class="card-footer text-center">
-                    <a href="detail-pengumuman" class="btn btn-custom" style="background-color: #03AADE;">Baca
-                        Selengkapnya</a>
-                </div>
-            </div>
-        </div>
+        <?php endforeach; ?>
     </div>
 </section>
 
