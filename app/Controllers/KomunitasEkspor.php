@@ -18,6 +18,7 @@ use App\Models\CFR;
 use App\Models\CIF;
 use App\Models\Satuan;
 use App\Models\MPM;
+use App\Models\WebsiteAudit;
 use App\Models\Slider;
 use App\Models\WebProfile;
 use App\Models\ManfaatJoin;
@@ -1710,7 +1711,6 @@ class KomunitasEkspor extends BaseController
 
     public function website_audit()
     {
-
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();
@@ -1718,5 +1718,22 @@ class KomunitasEkspor extends BaseController
         $data['webprofile'] = $webprofile;
 
         return view('member/website-audit/website-audit', $data);
+    }
+
+    public function add_website_audit()
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_webaudit = new WebsiteAudit();
+
+        $data = [
+            'id_member' => $user_id,
+            'link_website' => $this->request->getPost('link_website'),
+        ];
+
+        $model_webaudit->insert($data);
+
+        return redirect()->to('/website-audit');
     }
 }
