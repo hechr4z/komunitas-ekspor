@@ -1745,4 +1745,20 @@ class KomunitasEkspor extends BaseController
 
         return redirect()->to('/website-audit');
     }
+
+    public function delete_website_audit($id)
+    {
+        $session = session();
+        $user_id = $session->get('user_id'); // Ambil user_id dari sesi
+
+        $model_webaudit = new WebsiteAudit();
+        $webaudit = $model_webaudit->find($id);
+
+        if ($webaudit && $webaudit['id_member'] == $user_id) {
+            $model_webaudit->delete($id);
+            return redirect()->to('/website-audit')->with('success', 'Website Audit berhasil dihapus');
+        } else {
+            return redirect()->to('/website-audit')->withInput()->with('errors', ['Anda tidak memiliki izin untuk menghapus website audit ini']);
+        }
+    }
 }
