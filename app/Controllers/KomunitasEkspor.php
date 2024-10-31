@@ -1717,6 +1717,15 @@ class KomunitasEkspor extends BaseController
 
         $data['webprofile'] = $webprofile;
 
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_webaudit = new WebsiteAudit();
+
+        $webaudit = $model_webaudit->where('id_member', $user_id)->first();
+
+        $data['webaudit'] = $webaudit;
+
         return view('member/website-audit/website-audit', $data);
     }
 
