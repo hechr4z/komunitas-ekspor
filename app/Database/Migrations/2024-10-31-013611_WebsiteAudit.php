@@ -26,8 +26,8 @@ class WebsiteAudit extends Migration
             ],
             'status_verifikasi' => [
                 'type' => 'ENUM',
-                'constraint' => ['Terkirim', 'Gagal'],
-                'default' => 'Terkirim',
+                'constraint' => ['true', 'false', 'waiting'],
+                'default' => 'waiting',
             ],
             'catatan_fitur' => [
                 'type'       => 'TEXT',
