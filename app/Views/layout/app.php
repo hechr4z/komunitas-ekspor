@@ -482,7 +482,7 @@
                         </a>
                     <?php else: ?>
                         <!-- Jika belum login, tampilkan tombol Login dengan kondisi bahasa -->
-                        <a href="<?= ($lang == 'en') ? base_url('/en/login') : base_url('/id/login') ?>">
+                        <a href="<?= base_url('/login') ?>">
                             <button type="button" class="btn btn-outline-light">Login</button>
                         </a>
                     <?php endif; ?>
