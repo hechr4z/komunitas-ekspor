@@ -80,6 +80,13 @@
 
 <div class="container">
     <!-- Input Link Website -->
+    <?php if (session()->get('errors')) : ?>
+        <div class="alert alert-danger">
+            <?php foreach (session()->get('errors') as $error) : ?>
+                <p><?= esc($error) ?></p>
+            <?php endforeach ?>
+        </div>
+    <?php endif ?>
     <div class="card shadow-sm mb-4">
         <div class="card-body">
             <form action="<?= base_url('/add-website-audit'); ?>" method="POST" enctype="multipart/form-data">
@@ -89,9 +96,11 @@
                         <input type="url" class="form-control" id="link_website" name="link_website"
                             placeholder="https://contoh.com" value="<?= ($webaudit) ? $webaudit['link_website'] : '' ?>" required>
                         <?php if ($webaudit): ?>
-                            <span class="input-group-text bg-danger" style="cursor: pointer;">
-                                <i class="fas fa-times text-white"></i>
-                            </span>
+                            <a class="input-group-text bg-danger" href="<?= base_url('/delete-website-audit/' . $webaudit['id_webaudit']) ?>">
+                                <span style="cursor: pointer;">
+                                    <i class="fas fa-times text-white"></i>
+                                </span>
+                            </a>
                         <?php endif; ?>
                     </div>
                 </div>
