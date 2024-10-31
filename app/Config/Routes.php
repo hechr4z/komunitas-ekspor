@@ -124,4 +124,5 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     // Member - Website Audit
     $routes->get('website-audit', 'KomunitasEkspor::website_audit');
     $routes->post('add-website-audit', 'KomunitasEkspor::add_website_audit');
+    $routes->get('delete-website-audit/(:num)', 'KomunitasEkspor::delete_website_audit/$1');
 });
