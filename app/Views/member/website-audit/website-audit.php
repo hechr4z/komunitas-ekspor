@@ -80,22 +80,35 @@
 
 <div class="container">
     <!-- Input Link Website -->
+    <?php if (session()->get('errors')) : ?>
+        <div class="alert alert-danger">
+            <?php foreach (session()->get('errors') as $error) : ?>
+                <p><?= esc($error) ?></p>
+            <?php endforeach ?>
+        </div>
+    <?php endif ?>
     <div class="card shadow-sm mb-4">
         <div class="card-body">
-            <form action="<?= base_url('audit/submit'); ?>" method="POST">
+            <form action="<?= base_url('/add-website-audit'); ?>" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="websiteLink" class="form-label">Masukkan Link Website:</label>
+                    <label for="link_website" class="form-label">Masukkan Link Website:</label>
                     <div class="input-group">
-                        <input type="url" class="form-control" id="websiteLink" name="websiteLink"
-                            placeholder="https://contoh.com" required>
-                        <span class="input-group-text bg-danger" style="cursor: pointer;">
-                            <i class="fas fa-times text-white"></i>
-                        </span>
+                        <input type="url" class="form-control" id="link_website" name="link_website"
+                            placeholder="https://contoh.com" value="<?= ($webaudit) ? $webaudit['link_website'] : '' ?>" required>
+                        <?php if ($webaudit): ?>
+                            <a class="input-group-text bg-danger" href="<?= base_url('/delete-website-audit/' . $webaudit['id_webaudit']) ?>">
+                                <span style="cursor: pointer;">
+                                    <i class="fas fa-times text-white"></i>
+                                </span>
+                            </a>
+                        <?php endif; ?>
                     </div>
                 </div>
-                <div class="text-center mt-3">
-                    <button type="submit" class="btn btn-custom" style="background-color: #03AADE;">Submit</button>
-                </div>
+                <?php if (!$webaudit): ?>
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-custom" style="background-color: #03AADE;">Submit</button>
+                    </div>
+                <?php endif; ?>
             </form>
         </div>
     </div>
@@ -104,32 +117,53 @@
     <!-- Garis Pemisah -->
     <hr class="my-4 mt-5">
 
-    <!-- Informasi Verifikasi -->
-    <div class="text-center">
-        <h5 class="text-info">Website Sedang Diverifikasi...</h5>
-        <p class="text-muted">Silakan tunggu beberapa saat sambil kami memproses permintaan Anda.</p>
-    </div>
-
-    <!-- Hasil Verifikasi -->
-    <!-- <div class="text-center audit-result">
-        <?php
-        $isVerified = false;
-        if ($isVerified) {
-            echo '<div class="icon-circle icon-check"><i class="icon fas fa-check-circle"></i></div>';
-            echo '<h5 class="text-success">Website Sudah Sesuai</h5>';
-            echo '<p class="text-muted">Selamat! Website Anda telah memenuhi semua kriteria yang diperlukan.</p>';
-        } else {
-            echo '<div class="icon-circle icon-times"><i class="icon fas fa-times-circle"></i></div>';
-            echo '<h5 class="text-danger">Website Tidak Sesuai</h5>';
-            echo '<h6>Catatan:</h6>';
-            echo '<ul class="note-list list-unstyled">';
-            echo '<li class="note-item"><i class="fas fa-exclamation-circle note-icon"></i><span class="note-text">Pastikan semua link berfungsi dengan baik dan diperiksa secara berkala untuk menghindari link yang rusak atau mengarah ke halaman yang tidak ditemukan. Pastikan juga link memiliki teks yang jelas dan deskriptif untuk meningkatkan pengalaman pengguna.</span></li>';
-            echo '<li class="note-item"><i class="fas fa-exclamation-circle note-icon"></i><span class="note-text">Periksa kecepatan loading halaman. Halaman yang lambat dapat memengaruhi peringkat SEO dan pengalaman pengguna, terutama di perangkat mobile. Pastikan untuk mengoptimalkan gambar, menggunakan caching, dan meminimalkan file JavaScript dan CSS yang tidak diperlukan.</span></li>';
-            echo '<li class="note-item"><i class="fas fa-exclamation-circle note-icon"></i><span class="note-text">Pastikan tidak ada konten duplikat di berbagai halaman. Konten yang duplikat dapat memengaruhi peringkat di mesin pencari dan mengurangi kualitas informasi di website.</span></li>';
-            echo '</ul>';
-        }
-        ?>
-    </div> -->
+    <?php if (isset($webaudit) && $webaudit['status_verifikasi'] == 'waiting'): ?>
+        <!-- Informasi Verifikasi -->
+        <div class="text-center">
+            <h5 class="text-info">Website Sedang Diverifikasi...</h5>
+            <p class="text-muted">Silakan tunggu beberapa saat sambil kami memproses permintaan Anda.</p>
+        </div>
+    <?php elseif (isset($webaudit) && $webaudit['status_verifikasi'] == 'true'): ?>
+        <div class="text-center audit-result">
+            <div class="icon-circle icon-check"><i class="icon fas fa-check-circle"></i></div>
+            <h5 class="text-success">Website Sudah Sesuai</h5>
+            <p class="text-muted">Selamat! Website Anda telah memenuhi semua kriteria yang diperlukan.</p>
+        </div>
+    <?php elseif (isset($webaudit) && $webaudit['status_verifikasi'] == 'false'): ?>
+        <div class="text-center audit-result">
+            <div class="icon-circle icon-times"><i class="icon fas fa-times-circle"></i></div>
+            <h5 class="text-danger">Website Tidak Sesuai</h5>
+            <h6>Catatan:</h6>
+            <ul class="note-list list-unstyled">
+                <?php if (!empty($webaudit['catatan_fitur'])): ?>
+                    <li class="note-item">
+                        <i class="fas fa-exclamation-circle note-icon"></i>
+                        <span class="note-text">
+                            <?= $webaudit['catatan_fitur'] ?>
+                        </span>
+                    </li>
+                <?php endif; ?>
+                <?php if (!empty($webaudit['catatan_bahasa'])): ?>
+                    <li class="note-item">
+                        <i class="fas fa-exclamation-circle note-icon"></i>
+                        <span class="note-text">
+                            <?= $webaudit['catatan_bahasa'] ?>
+                        </span>
+                    </li>
+                <?php endif; ?>
+                <?php if (!empty($webaudit['catatan_seo'])): ?>
+                    <li class="note-item">
+                        <i class="fas fa-exclamation-circle note-icon"></i>
+                        <span class="note-text">
+                            <?= $webaudit['catatan_seo'] ?>
+                        </span>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </div>
+    <?php else: ?>
+        <!-- Nothing -->
+    <?php endif; ?>
 </div>
 
 <?= $this->endSection(); ?>

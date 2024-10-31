@@ -9,9 +9,6 @@ $routes->group('id', function ($routes) {
     // Visitor - Beranda
     $routes->get('/', 'KomunitasEkspor::index');
 
-    // Visitor - Login
-    $routes->get('login', 'KomunitasEkspor::login');
-
     // Visitor - Belajar Ekspor
     $routes->get('belajar-ekspor', 'KomunitasEkspor::belajar_ekspor');
     $routes->get('belajar-ekspor/search', 'KomunitasEkspor::search_belajar_ekspor');
@@ -36,9 +33,6 @@ $routes->group('id', function ($routes) {
 
 $routes->group('en', function ($routes) {
     $routes->get('/', 'KomunitasEkspor::index');
-
-    // Visitor - Login
-    $routes->get('login', 'KomunitasEkspor::login');
 
     // Visitor - Belajar Ekspor
     $routes->get('export-learning', 'KomunitasEkspor::belajar_ekspor');
@@ -65,6 +59,7 @@ $routes->group('en', function ($routes) {
 $routes->post('/user/checkAvailability', 'KomunitasEkspor::checkAvailability');
 
 // login
+$routes->get('login', 'KomunitasEkspor::login');
 $routes->post('/auth/authenticate', 'KomunitasEkspor::authenticate');
 $routes->get('/logout', 'KomunitasEkspor::logout');
 
@@ -128,4 +123,6 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
 
     // Member - Website Audit
     $routes->get('website-audit', 'KomunitasEkspor::website_audit');
+    $routes->post('add-website-audit', 'KomunitasEkspor::add_website_audit');
+    $routes->get('delete-website-audit/(:num)', 'KomunitasEkspor::delete_website_audit/$1');
 });

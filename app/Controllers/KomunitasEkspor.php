@@ -18,6 +18,7 @@ use App\Models\CFR;
 use App\Models\CIF;
 use App\Models\Satuan;
 use App\Models\MPM;
+use App\Models\WebsiteAudit;
 use App\Models\Slider;
 use App\Models\WebProfile;
 use App\Models\ManfaatJoin;
@@ -1712,13 +1713,54 @@ class KomunitasEkspor extends BaseController
 
     public function website_audit()
     {
-
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();
 
         $data['webprofile'] = $webprofile;
 
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_webaudit = new WebsiteAudit();
+
+        $webaudit = $model_webaudit->where('id_member', $user_id)->first();
+
+        $data['webaudit'] = $webaudit;
+
         return view('member/website-audit/website-audit', $data);
+    }
+
+    public function add_website_audit()
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_webaudit = new WebsiteAudit();
+
+        $data = [
+            'id_member' => $user_id,
+            'link_website' => $this->request->getPost('link_website'),
+        ];
+
+        $model_webaudit->insert($data);
+
+        return redirect()->to('/website-audit');
+    }
+
+    public function delete_website_audit($id)
+    {
+        $session = session();
+        $user_id = $session->get('user_id'); // Ambil user_id dari sesi
+
+        $model_webaudit = new WebsiteAudit();
+        $webaudit = $model_webaudit->find($id);
+
+        if ($webaudit && $webaudit['id_member'] == $user_id) {
+            $model_webaudit->delete($id);
+            return redirect()->to('/website-audit')->with('success', 'Website Audit berhasil dihapus');
+        } else {
+            return redirect()->to('/website-audit')->withInput()->with('errors', ['Anda tidak memiliki izin untuk menghapus website audit ini']);
+        }
     }
 }
