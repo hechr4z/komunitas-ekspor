@@ -82,11 +82,11 @@
     <!-- Input Link Website -->
     <div class="card shadow-sm mb-4">
         <div class="card-body">
-            <form action="<?= base_url('audit/submit'); ?>" method="POST">
+            <form action="<?= base_url('/add-website-audit'); ?>" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="websiteLink" class="form-label">Masukkan Link Website:</label>
+                    <label for="link_website" class="form-label">Masukkan Link Website:</label>
                     <div class="input-group">
-                        <input type="url" class="form-control" id="websiteLink" name="websiteLink"
+                        <input type="url" class="form-control" id="link_website" name="link_website"
                             placeholder="https://contoh.com" required>
                         <span class="input-group-text bg-danger" style="cursor: pointer;">
                             <i class="fas fa-times text-white"></i>
