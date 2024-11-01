@@ -1771,4 +1771,29 @@ class KomunitasEkspor extends BaseController
             return redirect()->to('/website-audit')->withInput()->with('errors', ['Anda tidak memiliki izin untuk menghapus website audit ini']);
         }
     }
+
+    public function admin_dashboard()
+    {
+        $model_belajarekspor = new BelajarEksporModel();
+        $model_buyers = new Buyers();
+        $model_cfr = new CFR();
+        $model_cif = new CIF();
+        $model_exwork = new Exwork();
+        $model_fob = new FOB();
+        $model_kategoribelajarekspor = new KategoriBelajarEksporModel;
+        $model_kategorivideo = new KategoriVidioModel();
+        $model_manfaatjoin = new ManfaatJoin();
+        $model_member = new Member();
+        $model_mpm = new MPM();
+        $model_pengumuman = new Pengumuman();
+        $model_produk = new Produk();
+        $model_satuan = new Satuan();
+        $model_sertifikat = new Sertifikat();
+        $model_slider = new Slider();
+        $model_videotutorial = new VidioTutorialModel();
+        $model_webprofile = new WebProfile();
+        $model_websiteaudit = new WebsiteAudit();
+
+        return view('admin/dashboard/index');
+    }
 }
