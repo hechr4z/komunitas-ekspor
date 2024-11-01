@@ -302,6 +302,23 @@
     }
 
     /* end */
+
+    @media (max-width: 768px) {
+        .icon {
+            font-size: 10px;
+        }
+        .line {
+            width: 40px;
+            height: 1.5px;
+            margin: 23px 0;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .icon {
+            font-size: 8px;
+        }
+    }
 </style>
 
 <body>
@@ -372,19 +389,19 @@
         <div class="container">
             <div class="head d-flex justify-content-between align-items-center" style="width: 100%; height: 40px;">
                 <!-- Alamat dan Email -->
-                <div class="d-flex justify-content-start gap-3">
-                    <div class="d-flex align-items-center gap-2 icon-text text-light" style="white-space: nowrap;">
-                        <i class="fas fa-map-marker-alt m-0" style="font-size: 12px; color: white;"></i>
-                        <p class="mb-0" style="color: white; font-size: 12px;"><?= $webprofile[0]['lokasi_web'] ?></p>
+                <div class="icon d-flex justify-content-start gap-3">
+                    <div class=" d-flex align-items-center gap-2 icon-text text-light" style="white-space: nowrap;">
+                        <i class="fas fa-map-marker-alt m-0" style=" color: white;"></i>
+                        <p class="mb-0" style="color: white;"><?= $webprofile[0]['lokasi_web'] ?></p>
                     </div>
-                    <div class="d-flex align-items-center gap-2 icon-text text-light" style="white-space: nowrap;">
-                        <i class="fas fa-envelope m-0" style="font-size: 12px; color: white;"></i>
-                        <p class="mb-0" style="color: white; font-size: 12px;"><?= $webprofile[0]['email_web'] ?></p>
+                    <div class=" d-flex align-items-center gap-2 icon-text text-light" style="white-space: nowrap;">
+                        <i class="fas fa-envelope m-0" style=" color: white;"></i>
+                        <p class="mb-0" style="color: white; "><?= $webprofile[0]['email_web'] ?></p>
                     </div>
                 </div>
                 <!-- Ikon Sosial Media dan Garis -->
-                <div class="d-flex align-items-center" style="margin-left: 500px;">
-                    <div class="d-flex gap-3 me-4" style="margin-left: 190px;">
+                <div class="d-flex align-items-center">
+                    <div class="d-flex gap-3 me-4">
                         <a href="<?= 'https://' . $webprofile[0]['link_ig_web'] ?>" target="_blank" class="social-link">
                             <i class="fab fa-instagram"></i>
                         </a>
@@ -396,26 +413,27 @@
                         </a>
                     </div>
                     <div class="border-top" style="width: 1.5px; height: 20px; background-color: white;"></div>
+                    <div class="dropdown">
+                        <button class="btn text-light language-btn" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/img/flag-<?= $lang === 'id' ? 'id' : 'en'; ?>.png" alt="<?= $lang === 'id' ? 'Indonesian' : 'English'; ?>" class="flag-icon mb-1">
+                            <i class="bi bi-chevron-down ms-1"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                            <li>
+                                <a class="dropdown-item <?= $lang == 'id' ? 'disabled' : '' ?>" href="<?= $english_url ?>" <?= $lang == 'id' ? 'style="pointer-events: none; opacity: 0.5;"' : '' ?>>
+                                    <img src="/img/flag-id.png" alt="Indonesian" class="flag-icon" <?= $lang == 'id' ? 'style="filter: grayscale(100%);"' : '' ?>> Indonesian
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item <?= $lang == 'en' ? 'disabled' : '' ?>" href="<?= $indonesia_url ?>" <?= $lang == 'en' ? 'style="pointer-events: none; opacity: 0.5;"' : '' ?>>
+                                    <img src="/img/flag-en.png" alt="English" class="flag-icon" <?= $lang == 'en' ? 'style="filter: grayscale(100%);"' : '' ?>> English
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <!-- Language Dropdown -->
-                <div class="dropdown">
-                    <button class="btn text-light language-btn" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="/img/flag-<?= $lang === 'id' ? 'id' : 'en'; ?>.png" alt="<?= $lang === 'id' ? 'Indonesian' : 'English'; ?>" class="flag-icon mb-1">
-                        <i class="bi bi-chevron-down ms-1"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-                        <li>
-                            <a class="dropdown-item <?= $lang == 'id' ? 'disabled' : '' ?>" href="<?= $english_url ?>" <?= $lang == 'id' ? 'style="pointer-events: none; opacity: 0.5;"' : '' ?>>
-                                <img src="/img/flag-id.png" alt="Indonesian" class="flag-icon" <?= $lang == 'id' ? 'style="filter: grayscale(100%);"' : '' ?>> Indonesian
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item <?= $lang == 'en' ? 'disabled' : '' ?>" href="<?= $indonesia_url ?>" <?= $lang == 'en' ? 'style="pointer-events: none; opacity: 0.5;"' : '' ?>>
-                                <img src="/img/flag-en.png" alt="English" class="flag-icon" <?= $lang == 'en' ? 'style="filter: grayscale(100%);"' : '' ?>> English
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+
             </div>
         </div>
     </header>
@@ -435,7 +453,7 @@
                         <a class="nav-link" href="<?= base_url('/') ?>"> <?php echo lang('Blog.headerBeranda'); ?>
                         </a>
                     </li>
-                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                    <div id="navbarNavDarkDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <button class="btn dropdown-toggle text-light nav-link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -456,7 +474,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url($lang .  '/' . $memberLink) ?>"><?php echo lang('Blog.headerMember'); ?></a>
                     </li>
-                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                    <div id="navbarNavDarkDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <button class="btn dropdown-toggle text-light nav-link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -474,7 +492,7 @@
                         <a class="nav-link" href="<?= base_url($lang . '/' . $buyersLink) ?>"><?php echo lang('Blog.headerBuyers'); ?>
                         </a>
                     </li>
-                    <div class="border-top" style="width: 1.5px; height: 40px; background-color: white; margin: 0 23px;"></div>
+                    <div class="border-top line " style="width: 1.5px; height: 40px; background-color: white; margin: 0 23px;"></div>
                     <?php if (session()->get('logged_in')): ?>
                         <!-- Jika sudah login, tampilkan tombol Logout -->
                         <a href="<?= base_url('/logout') ?>">
