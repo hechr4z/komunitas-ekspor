@@ -105,7 +105,7 @@
 
                         <!-- Description -->
                         <div class="mb-3">
-                            <h5 class="font-weight-bold py-2">   <?= lang('Blog.titleDesc')?></h5>
+                            <h5 class="font-weight-bold py-2"> <?= lang('Blog.titleDesc') ?></h5>
                             <p>
                                 <?= ($lang === 'en') ? $video['deskripsi_video_en'] : $video['deskripsi_video']; ?>
                             </p>
@@ -120,30 +120,32 @@
                 <div class="mb-3">
                     <div class="section-title mb-0">
                         <h4 class="m-0 py-4 font-weight-bold">
-                            <?= lang('Blog.titleOther')?>
+                            <?= lang('Blog.titleOther') ?>
                         </h4>
                     </div>
 
                     <?php foreach ($related_videos as $related_video): ?>
                         <!-- card lainnya -->
                         <div class="card bg-white border border-top-0 p-3 rounded shadow-sm mb-3">
-                            <a href="<?= base_url('/video-tutorial-detail/' . $related_video['slug']); ?>" class="text-decoration-none">
+                            <a href="<?= base_url(($lang === 'en' ? 'en/video-tutorial' : 'id/tutorial-video') . '/' . ($lang === 'en' ? $related_video['slug_en'] : $related_video['slug'])); ?>" class="text-decoration-none">
+
                                 <div class="d-flex align-items-center bg-white rounded border border-light overflow-hidden shadow-sm">
                                     <img class="img-fluid" style="object-fit: cover; width: 100px; height: 100px;" src="<?= base_url('/img/' . $related_video['thumbnail']); ?>" alt="Thumbnail Video">
                                     <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center">
                                         <!-- Judul Video -->
                                         <h3 class="text-uppercase font-weight-bold text-dark" style="font-size: 18px; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                            <?= $related_video['judul_video']; ?>
+                                            <?= $lang === 'en' ? $related_video['judul_video_en'] : $related_video['judul_video']; ?>
                                         </h3>
                                         <!-- Deskripsi Video -->
                                         <p class="text-dark" style="font-size: 14px; margin-bottom: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                            <?= $related_video['deskripsi_video']; ?>
+                                            <?= $lang === 'en' ? $related_video['deskripsi_video_en'] : $related_video['deskripsi_video']; ?>
                                         </p>
                                     </div>
                                 </div>
                             </a>
                         </div>
                     <?php endforeach; ?>
+
                 </div>
                 <!-- video lainnya End -->
             </div>
@@ -156,22 +158,31 @@
 
 <script>
     function showSweetAlert() {
+        let title = "<?= $lang === 'en' ? 'Want to Watch the Video?' : 'Mau Lihat Videonya?'; ?>";
+        let text = "<?= $lang === 'en' ? 'Sign up as a member first!' : 'Yuk Daftar Member Dulu!'; ?>";
+        let confirmButtonText = "<?= $lang === 'en' ? 'Sign Up' : 'Daftar'; ?>";
+        let cancelButtonText = "<?= $lang === 'en' ? 'Later' : 'Nanti'; ?>";
+        let reminderText = "<?= $lang === 'en' ? 'Okay, don\'t forget to sign up!' : 'Oke, Jangan Lupa Daftar!'; ?>";
+        let registrationUrl = "<?= base_url($lang === 'en' ? 'en/registration' : 'id/pendaftaran'); ?>";
+
+
         Swal.fire({
-            title: "Mau Lihat Videonya?",
-            text: "Yuk Daftar Member Dulu!",
+            title: title,
+            text: text,
             icon: "warning",
             showCancelButton: true,
-            confirmButtonText: "Daftar",
-            cancelButtonText: "Nanti"
+            confirmButtonText: confirmButtonText,
+            cancelButtonText: cancelButtonText
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "/pendaftaran"; // Redirect to the registration page
+                window.location.href = registrationUrl; // Redirect to the language-specific registration page
             } else {
-                Swal.fire("Oke, Jangan Lupa Daftar!"); // Optional message if "Nanti" is clicked
+                Swal.fire(reminderText); // Optional message if "Later" is clicked
             }
         });
     }
 </script>
+
 
 
 <?= $this->endSection(); ?>

@@ -17,7 +17,7 @@ $routes->group('id', function ($routes) {
 
     // Visitior - Video Tutorial
     $routes->get('tutorial-video', 'KomunitasEkspor::video_tutorial');
-    // $routes->get('tutorial-video/kategori/(:segment)');
+    $routes->get('tutorial-video/kategori/(:segment)', 'KomunitasEkspor::video_selengkapnya/$1');
     $routes->get('tutorial-video/(:segment)', 'KomunitasEkspor::video_tutorial_detail/$1');
 
     $routes->get('pendaftaran', 'KomunitasEkspor::pendaftaran');
