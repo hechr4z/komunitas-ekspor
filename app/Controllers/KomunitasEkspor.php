@@ -1891,4 +1891,34 @@ class KomunitasEkspor extends BaseController
 
         return view('admin/dashboard/index', $data);
     }
+
+    public function admin_belajar_ekspor()
+    {
+        return view('admin/belajar-ekspor/index');
+    }
+
+    public function admin_belajar_ekspor_tambah()
+    {
+        return view('admin/belajar-ekspor/tambah');
+    }
+
+    public function admin_belajar_ekspor_ubah()
+    {
+        return view('admin/belajar-ekspor/edit');
+    }
+
+    public function admin_kategori_belajar_ekspor()
+    {
+        return view('admin/kategori-belajar/index');
+    }
+
+    public function admin_kategori_belajar_ekspor_tambah()
+    {
+        return view('admin/kategori-belajar/tambah');
+    }
+
+    public function admin_kategori_belajar_ekspor_ubah()
+    {
+        return view('admin/kategori-belajar/edit');
+    }
 }

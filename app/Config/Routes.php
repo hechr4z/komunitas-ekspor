@@ -128,3 +128,13 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
 });
 
 $routes->get('/admin-dashboard', 'KomunitasEkspor::admin_dashboard');
+
+// Admin - Belajar Ekspor
+$routes->get('/admin-belajar-ekspor', 'KomunitasEkspor::admin_belajar_ekspor');
+$routes->get('/admin-belajar-ekspor-tambah', 'KomunitasEkspor::admin_belajar_ekspor_tambah');
+$routes->get('/admin-belajar-ekspor-ubah', 'KomunitasEkspor::admin_belajar_ekspor_ubah');
+
+// Admin - Kategori Belajar Ekspor
+$routes->get('/admin-kategori-belajar-ekspor', 'KomunitasEkspor::admin_kategori_belajar_ekspor');
+$routes->get('/admin-kategori-belajar-ekspor-tambah', 'KomunitasEkspor::admin_kategori_belajar_ekspor_tambah');
+$routes->get('/admin-kategori-belajar-ekspor-ubah', 'KomunitasEkspor::admin_kategori_belajar_ekspor_ubah');
