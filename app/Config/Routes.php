@@ -127,7 +127,11 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->get('delete-website-audit/(:num)', 'KomunitasEkspor::delete_website_audit/$1');
 });
 
+// Admin - Dashboard
 $routes->get('/admin-dashboard', 'KomunitasEkspor::admin_dashboard');
+
+// Admin - Buyers
+$routes->get('/admin-buyers', 'KomunitasEkspor::admin_buyers');
 
 // Admin - Belajar Ekspor
 $routes->get('/admin-belajar-ekspor', 'KomunitasEkspor::admin_belajar_ekspor');
