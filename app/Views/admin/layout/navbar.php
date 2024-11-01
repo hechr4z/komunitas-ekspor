@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 <div id="app-sidepanel" class="app-sidepanel">
     <div id="sidepanel-drop" class="sidepanel-drop"></div>
     <div class="sidepanel-inner d-flex flex-column">
@@ -5,7 +7,7 @@
         <div class="app-branding">
             <a class="app-logo" href="<?= base_url('/') ?>"></a>
             <h1 class="m-0 display-6 text-uppercase text-primary1 font-weight-bold" style="font-size: 30px;">
-                Jago<span class="text-white font-weight-normal">-Admin</span>
+                KEI<span class="text-white font-weight-normal">-Admin</span>
             </h1>
             </a>
         </div><!--//app-branding-->
@@ -25,6 +27,15 @@
                         <span class="nav-link-text">Dashboard</span>
                     </a><!--//nav-link-->
                 </li><!--//nav-item-->
+
+                <li class="nav-item">
+                    <a class="nav-link <?= (current_url() == base_url('admin-buyers')) ? 'active' : '' ?>" href="<?= base_url('admin-buyers') ?>">
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </span>
+                        <span class="nav-link-text">Buyers</span>
+                    </a>
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link <?= (current_url() == base_url('admin/user/index')) ? 'active' : '' ?>" href="<?= base_url('admin/user/index') ?>">
