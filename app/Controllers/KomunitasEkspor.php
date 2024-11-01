@@ -1013,6 +1013,9 @@ class KomunitasEkspor extends BaseController
 
     public function index_kalkulator()
     {
+        $session = session();
+        $user_id = $session->get('user_id');
+
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();
@@ -1025,11 +1028,11 @@ class KomunitasEkspor extends BaseController
         $model_cif = new CIF();
         $model_satuan = new Satuan();
 
-        $exwork = $model_exwork->findAll();
-        $fob = $model_fob->findAll();
-        $cfr = $model_cfr->findAll();
-        $cif = $model_cif->findAll();
-        $satuan = $model_satuan->findAll();
+        $exwork = $model_exwork->where('id_member', $user_id)->findAll();
+        $fob = $model_fob->where('id_member', $user_id)->findAll();
+        $cfr = $model_cfr->where('id_member', $user_id)->findAll();
+        $cif = $model_cif->where('id_member', $user_id)->findAll();
+        $satuan = $model_satuan->where('id_member', $user_id)->findAll();
 
         $data['exwork'] = $exwork;
         $data['fob'] = $fob;
@@ -1042,6 +1045,9 @@ class KomunitasEkspor extends BaseController
 
     public function ganti_satuan($id)
     {
+        $session = session();
+        $user_id = $session->get('user_id');
+
         $model_satuan = new Satuan();
 
         // Mencari satuan berdasarkan ID
@@ -1051,6 +1057,7 @@ class KomunitasEkspor extends BaseController
         if ($satuan) {
             // Mengambil input dari form
             $data = [
+                'id_member' => $user_id,
                 'satuan' => $this->request->getPost('satuan'),
             ];
 
@@ -1058,15 +1065,18 @@ class KomunitasEkspor extends BaseController
             $model_satuan->update($id, $data);
 
             // Redirect setelah update berhasil
-            return redirect()->to('/');
+            return redirect()->to('/kalkulator-ekspor');
         } else {
             // Jika data tidak ditemukan, bisa diarahkan ke halaman error
-            return redirect()->to('/')->with('error', 'Data satuan tidak ditemukan.');
+            return redirect()->to('/kalkulator-ekspor')->with('error', 'Data satuan tidak ditemukan.');
         }
     }
 
     public function add_exwork()
     {
+        $session = session();
+        $user_id = $session->get('user_id');
+
         // Validate input
         $validation = \Config\Services::validation();
         $validation->setRules([
@@ -1086,25 +1096,37 @@ class KomunitasEkspor extends BaseController
         // Loop through the array and insert each komponenExwork into the database
         foreach ($komponenExworkArray as $komponenExwork) {
             $data = [
+                'id_member' => $user_id,
                 'komponen_exwork' => esc($komponenExwork),  // Sanitize the input
             ];
             $model_exwork->insert($data);
         }
 
-        return redirect()->to('/')->with('success', 'Komponen Exwork berhasil ditambahkan!');
+        return redirect()->to('/kalkulator-ekspor')->with('success', 'Komponen Exwork berhasil ditambahkan!');
     }
 
     public function delete_exwork($id)
     {
+        $session = session();
+        $user_id = $session->get('user_id');
+
         $model_exwork = new Exwork();
 
-        $model_exwork->delete($id);
+        $exwork = $model_exwork->find($id);
 
-        return redirect()->to('/');
+        if ($exwork && $exwork['id_member'] == $user_id) {
+            $model_exwork->delete($id);
+            return redirect()->to('/kalkulator-ekspor')->with('success', 'Produk berhasil dihapus');
+        } else {
+            return redirect()->to('/kalkulator-ekspor')->withInput()->with('errors', ['Anda tidak memiliki izin untuk menghapus produk ini']);
+        }
     }
 
     public function add_fob()
     {
+        $session = session();
+        $user_id = $session->get('user_id');
+
         // Validate input
         $validation = \Config\Services::validation();
         $validation->setRules([
@@ -1124,25 +1146,37 @@ class KomunitasEkspor extends BaseController
         // Loop through the array and insert each komponenFOB into the database
         foreach ($komponenFOBArray as $komponenFOB) {
             $data = [
+                'id_member' => $user_id,
                 'komponen_fob' => esc($komponenFOB),  // Sanitize the input
             ];
             $model_fob->insert($data);
         }
 
-        return redirect()->to('/')->with('success', 'Komponen FOB berhasil ditambahkan!');
+        return redirect()->to('/kalkulator-ekspor')->with('success', 'Komponen FOB berhasil ditambahkan!');
     }
 
     public function delete_fob($id)
     {
+        $session = session();
+        $user_id = $session->get('user_id');
+
         $model_fob = new FOB();
 
-        $model_fob->delete($id);
+        $fob = $model_fob->find($id);
 
-        return redirect()->to('/');
+        if ($fob && $fob['id_member'] == $user_id) {
+            $model_fob->delete($id);
+            return redirect()->to('/kalkulator-ekspor')->with('success', 'Produk berhasil dihapus');
+        } else {
+            return redirect()->to('/kalkulator-ekspor')->withInput()->with('errors', ['Anda tidak memiliki izin untuk menghapus produk ini']);
+        }
     }
 
     public function add_cfr()
     {
+        $session = session();
+        $user_id = $session->get('user_id');
+
         // Validate input
         $validation = \Config\Services::validation();
         $validation->setRules([
@@ -1162,25 +1196,37 @@ class KomunitasEkspor extends BaseController
         // Loop through the array and insert each komponenCFR into the database
         foreach ($komponenCFRArray as $komponenCFR) {
             $data = [
+                'id_member' => $user_id,
                 'komponen_cfr' => esc($komponenCFR),  // Sanitize the input
             ];
             $model_cfr->insert($data);
         }
 
-        return redirect()->to('/')->with('success', 'Komponen CFR berhasil ditambahkan!');
+        return redirect()->to('/kalkulator-ekspor')->with('success', 'Komponen CFR berhasil ditambahkan!');
     }
 
     public function delete_cfr($id)
     {
+        $session = session();
+        $user_id = $session->get('user_id');
+
         $model_cfr = new CFR();
 
-        $model_cfr->delete($id);
+        $cfr = $model_cfr->find($id);
 
-        return redirect()->to('/');
+        if ($cfr && $cfr['id_member'] == $user_id) {
+            $model_cfr->delete($id);
+            return redirect()->to('/kalkulator-ekspor')->with('success', 'Produk berhasil dihapus');
+        } else {
+            return redirect()->to('/kalkulator-ekspor')->withInput()->with('errors', ['Anda tidak memiliki izin untuk menghapus produk ini']);
+        }
     }
 
     public function add_cif()
     {
+        $session = session();
+        $user_id = $session->get('user_id');
+
         // Validate input
         $validation = \Config\Services::validation();
         $validation->setRules([
@@ -1200,6 +1246,7 @@ class KomunitasEkspor extends BaseController
         // Loop through the array and insert each komponenCIF into the database
         foreach ($komponenCIFArray as $komponenCIF) {
             $data = [
+                'id_member' => $user_id,
                 'komponen_cif' => esc($komponenCIF),  // Sanitize the input
             ];
             $model_cif->insert($data);
@@ -1210,11 +1257,19 @@ class KomunitasEkspor extends BaseController
 
     public function delete_cif($id)
     {
+        $session = session();
+        $user_id = $session->get('user_id');
+
         $model_cif = new CIF();
 
-        $model_cif->delete($id);
+        $cif = $model_cif->find($id);
 
-        return redirect()->to('/');
+        if ($cif && $cif['id_member'] == $user_id) {
+            $model_cif->delete($id);
+            return redirect()->to('/kalkulator-ekspor')->with('success', 'Produk berhasil dihapus');
+        } else {
+            return redirect()->to('/kalkulator-ekspor')->withInput()->with('errors', ['Anda tidak memiliki izin untuk menghapus produk ini']);
+        }
     }
 
     public function pengumuman()
