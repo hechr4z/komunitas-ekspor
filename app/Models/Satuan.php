@@ -12,7 +12,7 @@ class Satuan extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['satuan'];
+    protected $allowedFields    = ['id_member', 'satuan'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
