@@ -56,6 +56,8 @@ $routes->group('en', function ($routes) {
     $routes->get('data-buyers/search', 'KomunitasEkspor::search_buyers');
 });
 
+$routes->get('/admin-dashboard', 'KomunitasEkspor::admin_dashboard');
+
 $routes->post('/user/checkAvailability', 'KomunitasEkspor::checkAvailability');
 
 // login
