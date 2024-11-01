@@ -12,7 +12,7 @@ class FOB extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['komponen_fob'];
+    protected $allowedFields    = ['id_member', 'komponen_fob'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
