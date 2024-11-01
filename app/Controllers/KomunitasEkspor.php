@@ -693,6 +693,8 @@ class KomunitasEkspor extends BaseController
 
         $data['buyers'] = $buyers;
         $data['pager'] = $model_buyers->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
 
         return view('data-buyers/index', $data);
     }
@@ -1377,7 +1379,15 @@ class KomunitasEkspor extends BaseController
         //     $mpm_year[$data['tahun_kirim']] = $data['jumlah']; // Simpan jumlah data per tahun
         // }
 
+        // Set pagination
+        $perPage = 10; // Number of members per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
+        $mpmtable = $model_mpm->paginate($perPage);
+
         $data['mpm'] = $mpm;
+        $data['mpmtable'] = $mpmtable;
+        $data['pager'] = $model_mpm->pager;
         $data['years'] = $years; // Semua tahun dari yang terlama sampai sekarang, dengan urutan terbaru di atas
         // $data['mpm_year'] = $mpm_year; // Data dari database
 
@@ -1890,6 +1900,21 @@ class KomunitasEkspor extends BaseController
         $data['websiteaudit'] = $websiteaudit;
 
         return view('admin/dashboard/index', $data);
+    }
+
+    public function admin_buyers()
+    {
+        $model_buyers = new Buyers();
+
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
+        $buyers = $model_buyers->paginate($perPage);
+
+        $data['buyers'] = $buyers;
+        $data['pager'] = $model_buyers->pager;
+
+        return view('admin/buyers/index', $data);
     }
 
     public function admin_belajar_ekspor()
