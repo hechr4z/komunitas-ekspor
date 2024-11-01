@@ -172,6 +172,12 @@
         <div class="text-center mb-3 shadow" style="width: 250px; height: 250px; margin: auto; overflow: hidden; border-radius: 50%; position: relative;">
             <img src="<?= base_url('img/' . $member['foto_profil']); ?>" class="img-fluid" alt="" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
         </div>
+        <div class="text-center" style="position: relative; top: -40px;">
+            <button class="btn btn-warning btn-sm rounded-circle" onclick="document.getElementById('fileInput').click()" style="width: 45px; height: 45px; display: inline-flex; align-items: center; justify-content: center;">
+                <i class="fas fa-edit" style="font-size: 17px;"></i>
+            </button>
+        </div>
+        <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="previewImage(event)">
         <h4 class="text-center mt-1"><?= $member['username'] ?></h4>
         <?php if (session()->get('errors')) : ?>
             <div class="alert alert-danger">
@@ -520,6 +526,19 @@
         document.getElementById('kapasitasProduksi').value = productCapacity;
         document.getElementById('productImage').src = productImage;
     });
+
+    function previewImage(event) {
+        const image = document.getElementById('profileImage');
+        const file = event.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                image.src = e.target.result; // Update pratinjau gambar
+            };
+            reader.readAsDataURL(file);
+        }
+    }
 </script>
 
 <?= $this->endSection(); ?>
