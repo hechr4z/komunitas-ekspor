@@ -12,7 +12,7 @@ class Exwork extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['komponen_exwork'];
+    protected $allowedFields    = ['id_member', 'komponen_exwork'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
