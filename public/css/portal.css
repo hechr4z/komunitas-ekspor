@@ -9493,7 +9493,7 @@ fieldset:disabled .btn {
 }
 
 .text-primary1 {
-  color: #D20000 !important;
+  color: #F2BF02 !important;
 }
 
 a.text-primary1:hover,
@@ -14098,7 +14098,7 @@ button.close:focus {
 .app-btn-primary:hover,
 .app-btn-primary:active {
   color: #fff;
-  background: #B20000;
+  background: #F2BF02;
   border-color: #ffd118;
 }
 
@@ -14444,7 +14444,7 @@ button.close:focus {
 .app-sidepanel .sidepanel-inner {
   position: relative;
   z-index: 10;
-  background: #1E2024;
+  background: #03AADE;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 8px 15px;
   width: 250px;
   height: 100%;
@@ -14470,18 +14470,21 @@ button.close:focus {
 
 .app-sidepanel .app-nav-main {
   overflow-y: auto;
-  scrollbar-color: rgba(0, 0, 0, 0.1) #e7e9ed;
   scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
 }
 
 .app-sidepanel .app-nav-main::-webkit-scrollbar {
-  width: 6px;
-  background-color: #e7e9ed;
+  width: 4px;
 }
 
 .app-sidepanel .app-nav-main::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.app-sidepanel .app-nav-main::-webkit-scrollbar-track {
+  background-color: transparent;
 }
 
 .app-branding {
@@ -14517,7 +14520,7 @@ button.close:focus {
 .app-nav .nav-item {
   display: block;
   color: #5d6778;
-  background: #1E2024;
+  background: #03AADE;
 }
 
 .app-nav .nav-link {
@@ -14532,8 +14535,8 @@ button.close:focus {
 
 .app-nav .nav-link.active {
   color: #FFF;
-  background: #D20000;
-  border-left: 3px solid #B20000;
+  background: #F2BF02;
+  border-left: 3px solid #F2BF02;
   font-weight: 500;
 }
 
@@ -14544,7 +14547,7 @@ button.close:focus {
 
 .app-nav .nav-link:hover {
   color: #FFF;
-  background: #B20000;
+  background: #F2BF02;
 }
 
 .app-nav .nav-icon {
