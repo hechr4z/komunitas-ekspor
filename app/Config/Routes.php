@@ -56,8 +56,6 @@ $routes->group('en', function ($routes) {
     $routes->get('data-buyers/search', 'KomunitasEkspor::search_buyers');
 });
 
-$routes->get('/admin-dashboard', 'KomunitasEkspor::admin_dashboard');
-
 $routes->post('/user/checkAvailability', 'KomunitasEkspor::checkAvailability');
 
 // login
@@ -128,3 +126,5 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->post('add-website-audit', 'KomunitasEkspor::add_website_audit');
     $routes->get('delete-website-audit/(:num)', 'KomunitasEkspor::delete_website_audit/$1');
 });
+
+$routes->get('/admin-dashboard', 'KomunitasEkspor::admin_dashboard');
