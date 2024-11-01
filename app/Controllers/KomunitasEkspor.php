@@ -293,6 +293,14 @@ class KomunitasEkspor extends BaseController
         $kategori = $kategoriModel->where('slug', $slug)
             ->orWhere('slug_en', $slug)->first();
 
+        // Cek apakah slug sesuai dengan bahasa yang sedang aktif
+        if (($lang === 'id' && $slug !== $kategori['slug']) || ($lang === 'en' && $slug !== $kategori['slug_en'])) {
+            // Redirect ke URL slug yang benar sesuai bahasa
+            $correctSlug = $lang === 'id' ? $kategori['slug'] : $kategori['slug_en'];
+            $correctulr = $lang === 'id' ? 'tutorial-video' : 'video-tutorial';
+            $correctulr2 = $lang === 'id' ? 'kategori' : 'category';
+            return redirect()->to("$lang/$correctulr/$correctulr2/$correctSlug");
+        }
 
         // Jika kategori ditemukan, ambil video yang sesuai
         if ($kategori) {
