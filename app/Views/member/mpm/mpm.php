@@ -186,39 +186,45 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if (empty($mpm)): ?>
-                                    <tr>
-                                        <td colspan="8" class="text-center">Masih belum ada Progres.</td>
-                                    </tr>
-                                <?php else: ?>
-                                    <?php $i = 1; ?>
-                                    <?php foreach ($mpm as $item): ?>
-                                        <tr class="text-center">
-                                            <td><?= $i++ ?></td>
-                                            <td><?= $item['tgl_kirim_email'] ?></td>
-                                            <td><?= $item['update_terakhir'] ?></td>
-                                            <td><?= $item['nama_perusahaan'] ?></td>
-                                            <td><?= $item['negara_perusahaan'] ?></td>
-                                            <td>
-                                                <span style="color: <?= $item['status_progres'] === 'Terkirim' ? 'green' : 'red' ?>;">
-                                                    <?= $item['status_progres'] ?>
-                                                </span>
-                                            </td>
-                                            <td><?= $item['progres'] ?></td>
-                                            <td>
-                                                <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#editModal" style="background-color:#FFA500"
-                                                    data-kirim="<?= $item['tgl_kirim_email'] ?>" data-perusahaan="<?= $item['nama_perusahaan'] ?>"
-                                                    data-negara="<?= $item['negara_perusahaan'] ?>" data-status="<?= $item['status_progres'] ?>"
-                                                    data-progres="<?= $item['progres'] ?>" data-id="<?= $item['id_mpm'] ?>">
-                                                    Edit
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
-                                <!-- Tambahkan data lainnya di sini -->
+                                <?php if (empty($mpmtable)): ?>
+                            <tbody>
+                                <tr>
+                                    <td colspan="8" class="text-center">Masih belum ada Progres.</td>
+                                </tr>
                             </tbody>
                         </table>
+                    <?php else: ?>
+                        <tbody>
+                            <?php $i = 1; ?>
+                            <?php foreach ($mpmtable as $item): ?>
+                                <tr class="text-center">
+                                    <td><?= $i++ ?></td>
+                                    <td><?= $item['tgl_kirim_email'] ?></td>
+                                    <td><?= $item['update_terakhir'] ?></td>
+                                    <td><?= $item['nama_perusahaan'] ?></td>
+                                    <td><?= $item['negara_perusahaan'] ?></td>
+                                    <td>
+                                        <span style="color: <?= $item['status_progres'] === 'Terkirim' ? 'green' : 'red' ?>;">
+                                            <?= $item['status_progres'] ?>
+                                        </span>
+                                    </td>
+                                    <td><?= $item['progres'] ?></td>
+                                    <td>
+                                        <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#editModal" style="background-color:#FFA500"
+                                            data-kirim="<?= $item['tgl_kirim_email'] ?>" data-perusahaan="<?= $item['nama_perusahaan'] ?>"
+                                            data-negara="<?= $item['negara_perusahaan'] ?>" data-status="<?= $item['status_progres'] ?>"
+                                            data-progres="<?= $item['progres'] ?>" data-id="<?= $item['id_mpm'] ?>">
+                                            Edit
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                        </table>
+                        <div class="mt-2">
+                            <?= $pager->links('default', 'bootstrap_pagination') ?>
+                        </div>
+                    <?php endif; ?>
                     </div>
                 </div>
 
