@@ -15,17 +15,19 @@ class CreateFOBTable extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            // maybe id member?
+            'id_member' => [
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => true,
+            ],
             'komponen_fob' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
             ],
         ]);
 
-        // Set primary key
         $this->forge->addKey('id_fob', true);
-
-        // Create the table
+        $this->forge->addForeignKey('id_member', 'member', 'id_member', 'CASCADE', 'CASCADE');
         $this->forge->createTable('fob');
     }
 
