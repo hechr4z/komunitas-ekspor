@@ -1849,6 +1849,46 @@ class KomunitasEkspor extends BaseController
         $model_webprofile = new WebProfile();
         $model_websiteaudit = new WebsiteAudit();
 
-        return view('admin/dashboard/index');
+        $belajarekspor = $model_belajarekspor->countAll();
+        $buyers = $model_buyers->countAll();
+        $cfr = $model_cfr->countAll();
+        $cif = $model_cif->countAll();
+        $exwork = $model_exwork->countAll();
+        $fob = $model_fob->countAll();
+        $kategoribelajarekspor = $model_kategoribelajarekspor->countAll();
+        $kategorivideo = $model_kategorivideo->countAll();
+        $manfaatjoin = $model_manfaatjoin->countAll();
+        $member = $model_member->countAll();
+        $mpm = $model_mpm->countAll();
+        $pengumuman = $model_pengumuman->countAll();
+        $produk = $model_produk->countAll();
+        $satuan = $model_satuan->countAll();
+        $sertifikat = $model_sertifikat->countAll();
+        $slider = $model_slider->countAll();
+        $videotutorial = $model_videotutorial->countAll();
+        $webprofile = $model_webprofile->countAll();
+        $websiteaudit = $model_websiteaudit->countAll();
+
+        $data['belajarekspor'] = $belajarekspor;
+        $data['buyers'] = $buyers;
+        $data['cfr'] = $cfr;
+        $data['cif'] = $cif;
+        $data['exwork'] = $exwork;
+        $data['fob'] = $fob;
+        $data['kategoribelajarekspor'] = $kategoribelajarekspor;
+        $data['kategorivideo'] = $kategorivideo;
+        $data['manfaatjoin'] = $manfaatjoin;
+        $data['member'] = $member;
+        $data['mpm'] = $mpm;
+        $data['pengumuman'] = $pengumuman;
+        $data['produk'] = $produk;
+        $data['satuan'] = $satuan;
+        $data['sertifikat'] = $sertifikat;
+        $data['slider'] = $slider;
+        $data['videotutorial'] = $videotutorial;
+        $data['webprofile'] = $webprofile;
+        $data['websiteaudit'] = $websiteaudit;
+
+        return view('admin/dashboard/index', $data);
     }
 }
