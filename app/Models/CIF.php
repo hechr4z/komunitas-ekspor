@@ -12,7 +12,7 @@ class CIF extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['komponen_cif'];
+    protected $allowedFields    = ['id_member', 'komponen_cif'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
