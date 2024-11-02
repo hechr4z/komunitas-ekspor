@@ -8,7 +8,7 @@
                 <h1 class="app-page-title mb-0">Daftar Buyers</h1>
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <a href="<?= base_url('admin/provinsi/tambah') ?>" class="btn btn-primary me-md-2"> + Tambah Data Buyers</a>
+                <a href="<?= base_url('admin-add-buyers') ?>" class="btn btn-primary me-md-2"> + Tambah Data Buyers</a>
             </div>
         </div>
         <div class="tab-content" id="orders-table-tab-content">
@@ -49,8 +49,8 @@
                                         <td class="text-center" valign="middle"><?= $item['negara_perusahaan'] ?></td>
                                         <td valign="middle">
                                             <div class="text-center">
-                                                <a href="<?= base_url('admin/provinsi/delete') . '/' . $item['nama_perusahaan'] ?>" class="btn btn-danger">Hapus</a>
-                                                <a href="<?= base_url('admin/provinsi/edit') . '/' . $item['nama_perusahaan'] ?>" class="btn btn-primary">Ubah</a>
+                                                <a href="<?= base_url('admin') ?>" class="btn btn-danger">Hapus</a>
+                                                <a href="<?= base_url('admin-edit-buyers') ?>" class="btn btn-primary">Ubah</a>
                                             </div>
                                         </td>
                                     </tr>
