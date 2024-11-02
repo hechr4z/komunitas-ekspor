@@ -218,11 +218,10 @@
                         </td>
                     </tr>
                 <?php else: ?>
-                    <?php $i = 1; ?>
-                    <!-- Menampilkan data yang tidak di-blur -->
+                    <?php $start = ($page - 1) * $perPage + 1; ?>
                     <?php foreach ($hasilPencarian as $item): ?>
                         <tr class="text-center">
-                            <td><?= $i++ ?></td>
+                            <td><?= $start++ ?></td>
                             <td><?= $item['nama_perusahaan'] ?></td>
                             <td><?= $item['negara_perusahaan'] ?></td>
                             <td><?= $item['hs_code'] ?></td>
