@@ -19,6 +19,48 @@ $this->setData([
 <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 
 <style>
+
+.card-body {
+    border-radius: 20px; /* Rounded corners for the rectangle */
+    border: 2px solid #03AADE; /* Border color */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    transition: transform 0.3s; /* Smooth transform effect */
+}
+
+.card-body:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+}
+
+/* Customize image container (if needed) */
+.daftar-img {
+    border-radius: 20px; /* Rounded corners for images */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+.daftar-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.daftar-btn {
+    width: 150px; /* Default width for larger screens */
+    font-size: 18px; /* Button font size */
+    padding: 10px 20px; /* Button padding */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+.daftar-btn:hover {
+    background-color: #fff; /* Button background on hover */
+    color: #03AADE; /* Button text color on hover */
+}
+
+.daftar-img {
+    width: 70%; /* Default image width */
+    height: auto; /* Maintain aspect ratio */
+    margin-top: 60px; /* Space above the image */
+}
+
     .carousel-item img {
         width: 100%;
         height: 500px;
@@ -130,6 +172,88 @@ $this->setData([
         .carousel-item img {
             max-height: 400px;
         }
+
+        .carousel-caption h5 {
+            font-size: 17px;
+        }
+
+        .carousel-caption p {
+            font-size: 12px;
+        }
+
+        .daftar p {
+            font-size: 10px;
+        }
+
+        .huruf p {
+            font-size: 7px !important;
+            margin-top: 10px;
+        }
+
+        .member h1 {
+            font-size: 25px;
+        }
+
+        .popular h5 {
+            font-size: 15px;
+        }
+
+        .popular h1 {
+            font-size: 27px !important;
+        }
+
+        .benefit p {
+            font-size: 10px;
+        }
+
+        .peta h1 {
+            font-size: 25px;
+        }
+
+        .benefit p {
+            font-size: 10px;
+        }
+
+        .manfaat p {
+            font-size: 10px;
+            margin-top: 15px;
+        }
+
+        .daftar-section {
+        height: auto; /* Adjust height */
+        padding: 20px 0; /* Space around section */
+    }
+
+    .daftar-section .row {
+        flex-direction: column; /* Stack content vertically */
+    }
+
+    .daftar-btn {
+        width: 100%; /* Full-width button on smaller screens */
+        margin-top: 20px; /* Space above the button */
+    }
+
+    .daftar-img {
+        width: 100%; /* Full-width image */
+        margin-top: 20px; /* Reduce margin */
+    }
+
+    .card-body p {
+        font-size: 18px; /* Adjust font sizes */
+    }
+
+    .card-body h2 {
+        font-size: 40px; /* Adjust heading size */
+    }
+    .card-body {
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+
+    .daftar-img {
+        width: 100%; /* Full-width on mobile */
+        margin-top: 20px; /* Space above the image */
+        border-radius: 15px; /* Adjust rounding on smaller screens */
+    }
     }
 </style>
 
@@ -199,29 +323,29 @@ $this->setData([
 
 <!-- populer member -->
 <section>
-    <div class="container mt-5">
+    <div class="member container mt-5">
         <div class="d-flex justify-content-center">
             <div class="d-flex justify-content-center align-items-center mb-2">
-                <div class="border-top mx-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
+                <div class="border-top1 mx-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
             </div>
             <h5 class="fw-lighter" data-en="ABOUT US" data-id="TENTANG KAMI"><?= lang('Blog.populerMemberTitle'); ?></h5>
             <div class="d-flex justify-content-center align-items-center mb-2">
-                <div class="border-top ms-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
+                <div class="border-top1 ms-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
             </div>
         </div>
         <h1 class="text-center" data-en="WHO WE ARE" data-id="SIAPA KAMI"><b><?= lang('Blog.topMemberSpotlightTitle'); ?><span style="color: #03AADE;"> SPOTLIGHT</span></b></h1>
     </div>
-    <div class="container">
-        <div class="row">
+    <div class="container popular">
+        <div class="kata row">
             <div class="d-flex mt-3">
                 <div class="d-flex justify-content-center align-items-center mb-2">
-                    <div class="border-top" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
+                    <div class="border-top2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
                 </div>
-                <p class="fw-lighter ms-3 mt-1"><?= lang('Blog.populerMemberSubtitle'); ?></p>
+                <h5 class="fw-lighter ms-3 mt-1"><?= lang('Blog.populerMemberSubtitle'); ?></h5>
             </div>
             <h1 class="fw-lighter"><?= ($lang == 'en') ? $webprofile[0]['nama_web_en'] : $webprofile[0]['nama_web'] ?></h1>
             <h1 class="fw-bold" style="color: #03AADE;"><?= lang('Blog.populerMemberDescription'); ?></h1>
-            <div class="d-flex justify-content-between">
+            <div class="huruf d-flex justify-content-between">
                 <p><?= lang('Blog.populerMemberContent'); ?></p>
                 <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
                     <button type="button" class="button-find btn text-light mt-3" style="height: 40px; background-color: #03AADE;"><?= lang('Blog.btnCarousel'); ?></button>
@@ -237,14 +361,14 @@ $this->setData([
                 </div>
             </div>
         <?php else: ?>
-            <div class="d-flex justify-content-center gap-5">
+            <div class="row justify-content-center g-4"> <!-- Use Bootstrap's grid system -->
                 <?php foreach ($top4_member as $item): ?>
-                    <div class="card-container">
+                    <div class="col-12 col-md-6 col-lg-3 rounded"> <!-- Responsive column sizes -->
                         <div class="card">
                             <div class="img-content" style="display: flex; justify-content: center;">
-                                <img src="<?= base_url('img/' . $item['foto_profil']); ?>" style="width: 90%; height: 90%; object-fit: cover; border-radius: 10px;" alt="...">
+                                <img src="<?= base_url('img/' . $item['foto_profil']); ?>" class="card-img-top" style="width: 90%; height: 90%; object-fit: cover; border-radius: 10px;" alt="...">
                             </div>
-                            <div class="content" style="text-align: center; padding: 10px 0; color: #03AADE;">
+                            <div class="content text-center" style="padding: 10px 0; color: #03AADE;">
                                 <p class="heading" style="margin-bottom: 5px; font-weight: bold; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;"><?= $item['username'] ?></p>
                                 <p class="heading" style="margin-bottom: 5px; font-size: 15px; text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;"><?= $item['nama_perusahaan'] ?></p>
                             </div>
@@ -254,52 +378,51 @@ $this->setData([
             </div>
         <?php endif; ?>
     </div>
+
 </section>
 <!-- end -->
 
 <!-- tombol daftar -->
-<section class="container-fluid text-dark rounded-5" style="background-color: #03AADE; width: 87%; height: 600px; margin-top: 80px;">
-    <div class="row d-flex justify-content-around ms-3">
-        <div class="col-md-6">
-            <div class="bg-transparent py-5 ms-5">
-                <div class="bg-transparent py-5 ms-5">
-                    <div class="card-body py-5 mb-5">
-                        <p class="text-light fw-lighter h6" style="font-size: 20px"><?= lang('Blog.joinUsTitle'); ?></p>
-                        <p class="text-light" style="font-size: 57px; font-family: Poetsen One, sans-serif;">
-                            <?= lang('Blog.communityExporterTitle'); ?>
-                        </p>
-                        <p class="text-light fw-lighter" style="font-size: 18px"><?= lang('Blog.joinUsDescription'); ?>
-                        </p>
-                        <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
-                            <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
-                        </a>
-                    </div>
+<section class="container-fluid text-dark rounded-5 daftar-section" style="background-color: #03AADE; width: 87%; margin-top: 80px;">
+    <div class="row d-flex justify-content-center align-items-center text-center">
+        <div class="col-md-6 py-5 d-flex flex-column align-items-center">
+            <div class="card-body rounded-3 border border-light shadow-sm p-4" style="background-color: rgba(255, 255, 255, 0.8);"> <!-- Custom rectangle -->
+                <p class="text-dark fw-lighter h6" style="font-size: 20px"><?= lang('Blog.joinUsTitle'); ?></p>
+                <p class="text-dark" style="font-size: 57px; font-family: Poetsen One, sans-serif;">
+                    <?= lang('Blog.communityExporterTitle'); ?>
+                </p>
+                <p class="text-dark fw-lighter" style="font-size: 18px"><?= lang('Blog.joinUsDescription'); ?></p>
+                <div class="d-flex justify-content-center mt-3"> <!-- Center button here -->
+                    <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
+                        <button type="button" class="btn btn-warning btn-lg rounded-pill daftar-btn"><?= lang('Blog.btnCarousel'); ?></button>
+                    </a>
                 </div>
             </div>
         </div>
         <div class="col-md-6 d-flex justify-content-center">
-            <img src="/img/slider-2.jpg" class="rounded" style="width: 70%; height: 70%; margin-top: 60px;" alt="">
+            <img src="/img/slider-2.jpg" class="rounded daftar-img" alt="Join us image">
         </div>
     </div>
 </section>
 <!-- end -->
 
+
 <!-- keuntungan -->
 <section>
-    <div class="container text-center py-5 mt-2">
+    <div class="benefit container text-center py-5 mt-2">
         <h2 class="fw-bold mb-3" style="color: #03AADE;"><?= lang('Blog.benefitsJoinTitle'); ?></h2>
         <div class="d-flex justify-content-center align-items-center mb-2">
-            <div class="border-top" style="width: 60px; height: 3px; background-color: #03AADE;"></div>
+            <div class="border-top5" style="width: 60px; height: 3px; background-color: #03AADE;"></div>
         </div>
         <div class="d-flex justify-content-center align-items-center">
-            <div class="border-top" style="width: 30px; height: 2px; background-color: #03AADE;"></div>
+            <div class="border-top6" style="width: 30px; height: 2px; background-color: #03AADE;"></div>
         </div>
         <p class="text-muted mt-3">
             <?= lang('Blog.benefitsJoinDescription'); ?>
         </p>
     </div>
     <div class="container">
-        <div class="d-flex justify-content-between">
+        <div class="manfaat d-flex justify-content-between">
             <div class="d-flex">
                 <div class="rounded-3" style="background-color: #03AADE; width: 100px; height: 100px;">
                     <svg class="text-light" style="margin-left: 10px;" xmlns="http://www.w3.org/2000/svg" width="80px" height="100px" viewBox="0 0 32 32">
@@ -309,8 +432,8 @@ $this->setData([
                             d="<?= $manfaatjoin[0]['path_d'] ?>" />
                     </svg>
                 </div>
-                <div class="ms-4 mt-1">
-                    <p style="font-size: 20px;"><b><?= ($lang == 'en') ? $manfaatjoin[0]['judul_manfaat_en'] : $manfaatjoin[0]['judul_manfaat'] ?></b></p>
+                <div class="ms-3 mt-4">
+                    <h6><b><?= ($lang == 'en') ? $manfaatjoin[0]['judul_manfaat_en'] : $manfaatjoin[0]['judul_manfaat'] ?></b></h6>
                     <p><?= ($lang == 'en') ? $manfaatjoin[0]['deskripsi_manfaat_en'] : $manfaatjoin[0]['deskripsi_manfaat'] ?></p>
                 </div>
             </div>
@@ -323,8 +446,8 @@ $this->setData([
                             d="<?= $manfaatjoin[1]['path_d'] ?>" />
                     </svg>
                 </div>
-                <div class="ms-4 mt-1">
-                    <p style="font-size: 20px;"><b><?= ($lang == 'en') ? $manfaatjoin[1]['judul_manfaat_en'] : $manfaatjoin[1]['judul_manfaat'] ?></b></p>
+                <div class="ms-3 mt-4">
+                    <h6><b><?= ($lang == 'en') ? $manfaatjoin[1]['judul_manfaat_en'] : $manfaatjoin[1]['judul_manfaat'] ?></b></h6>
                     <p><?= ($lang == 'en') ? $manfaatjoin[1]['deskripsi_manfaat_en'] : $manfaatjoin[1]['deskripsi_manfaat'] ?></p>
                 </div>
             </div>
@@ -337,8 +460,8 @@ $this->setData([
                             d="<?= $manfaatjoin[2]['path_d'] ?>" />
                     </svg>
                 </div>
-                <div class="ms-4 mt-1">
-                    <p style="font-size: 20px;"><b><?= ($lang == 'en') ? $manfaatjoin[2]['judul_manfaat_en'] : $manfaatjoin[2]['judul_manfaat'] ?></b></p>
+                <div class="ms-3 mt-4">
+                    <h6><b><?= ($lang == 'en') ? $manfaatjoin[2]['judul_manfaat_en'] : $manfaatjoin[2]['judul_manfaat'] ?></b></h6>
                     <p><?= ($lang == 'en') ? $manfaatjoin[2]['deskripsi_manfaat_en'] : $manfaatjoin[2]['deskripsi_manfaat'] ?></p>
                 </div>
             </div>
@@ -365,14 +488,14 @@ $this->setData([
 
 <!-- peta -->
 <section class="container mt-5">
-    <div class="mt-5">
+    <div class="peta mt-5">
         <div class="d-flex justify-content-center">
             <div class="d-flex justify-content-center align-items-center mb-2">
-                <div class="border-top mx-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
+                <div class="border-top6 mx-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
             </div>
             <h5 class="fw-lighter" data-en="MEMBER MAP" data-id="PETA MEMBER"><?= lang('Blog.memberMapTitle'); ?></h5>
             <div class="d-flex justify-content-center align-items-center mb-2">
-                <div class="border-top ms-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
+                <div class="border-top7 ms-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
             </div>
         </div>
         <h1 class="text-center" data-en="TOP MEMBERS SPOTLIGHT" data-id="SOROTAN MEMBER UNGGUL"><b><?= lang('Blog.communityMemberSpotlightTitle'); ?><span style="color: #03AADE;"> <?= lang('Blog.communityMemberSpotlightTitle2'); ?></span></b></h1>
