@@ -1531,14 +1531,20 @@ class KomunitasEkspor extends BaseController
 
         $produk = $model_produk->where('id_member', $user_id)->findColumn('hs_code');
 
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
         // If there are hs_codes, find buyers with matching hs_codes
         $buyers = [];
         if ($produk) {
-            $buyers = $model_buyers->whereIn('hs_code', $produk)->findAll();
+            $buyers = $model_buyers->whereIn('hs_code', $produk)->paginate($perPage);
         }
 
         // Prepare data to pass to the view
         $data['buyers'] = $buyers;
+        $data['pager'] = $model_buyers->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
 
         return view('member/data-buyers/index', $data);
     }
