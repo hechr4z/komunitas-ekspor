@@ -178,6 +178,9 @@
             </button>
         </div>
         <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="previewImage(event)">
+        <div class="text-center mb-3">
+            <button type="submit" class="btn btn-warning" style="width: 100px;">Submit</button>
+        </div>
         <h4 class="text-center mt-1"><?= $member['username'] ?></h4>
         <?php if (session()->get('errors')) : ?>
             <div class="alert alert-danger">

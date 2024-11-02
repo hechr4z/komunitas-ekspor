@@ -304,6 +304,13 @@
     }
 
     /* end */
+    @media (max-width: 768px) {
+        .border-top {
+            width: 90px !important;
+            height: 1.5px !important;
+            margin: 10px 0 !important;
+        }
+    }
 </style>
 
 <body>
@@ -351,14 +358,14 @@
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <div class="collapse navbar-collapse line" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto d-flex align-items-center">
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('/pengumuman') ?>">
                             Pengumuman
                         </a>
                     </li>
-                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                    <div id="navbarNavDarkDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <button class="btn dropdown-toggle text-light nav-link" data-bs-toggle="dropdown"
@@ -382,7 +389,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                    <div id="navbarNavDarkDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <button class="btn dropdown-toggle text-light nav-link" data-bs-toggle="dropdown"
@@ -526,7 +533,7 @@
     </div>
 
     <script>
-        window.addEventListener('scroll', function () {
+        window.addEventListener('scroll', function() {
             var navbar = document.querySelector('.navbar-custom');
             if (window.scrollY > 100) {
                 navbar.classList.add('scrolled');
