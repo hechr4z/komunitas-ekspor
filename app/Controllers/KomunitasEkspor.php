@@ -1910,6 +1910,21 @@ class KomunitasEkspor extends BaseController
         return view('admin/dashboard/index', $data);
     }
 
+    public function admin_member()
+    {
+        return view('admin/member/index');
+    }
+
+    public function admin_edit_member()
+    {
+        return view('admin/member/edit');
+    }
+
+    public function admin_add_member()
+    {
+        return view('admin/member/add');
+    }
+
     public function admin_buyers()
     {
         $model_buyers = new Buyers();
@@ -1923,6 +1938,16 @@ class KomunitasEkspor extends BaseController
         $data['pager'] = $model_buyers->pager;
 
         return view('admin/buyers/index', $data);
+    }
+
+    public function admin_edit_buyers()
+    {
+        return view('admin/buyers/edit');
+    }
+
+    public function admin_add_buyers()
+    {
+        return view('admin/buyers/add');
     }
 
     public function admin_belajar_ekspor()
