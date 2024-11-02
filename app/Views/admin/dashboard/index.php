@@ -11,7 +11,7 @@
                         <h4 class="stats-type mb-1">Member</h4>
                         <div class="stats-figure"><?= $member; ?></div>
                     </div>
-                    <a class="app-card-link-mask" href="<?= base_url('admin/kategori/index') ?>"></a>
+                    <a class="app-card-link-mask" href="<?= base_url('admin-member') ?>"></a>
                 </div>
             </div>
 
