@@ -89,7 +89,7 @@
 
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-primary">Simpan</button>
-                                <a href="/admin-data-member" class="btn btn-secondary">Kembali</a>
+                                <a href="<?= base_url('admin-member') ?>" class="btn btn-secondary">Kembali</a>
                             </div>
                         </form>
                     </div>
