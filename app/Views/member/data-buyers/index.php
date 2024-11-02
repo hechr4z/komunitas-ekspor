@@ -176,27 +176,32 @@
                     <th>Website</th>
                 </tr>
             </thead>
-            <tbody>
-                <?php if (empty($buyers)): ?>
+            <?php if (empty($buyers)): ?>
+                <tbody>
                     <tr>
                         <td colspan="6" class="text-center">Tidak ada Data Buyers yang cocok dengan Kode HS produk Anda.</td>
                     </tr>
-                <?php else: ?>
-                    <?php $i = 1; ?>
-                    <!-- Menampilkan data yang tidak di-blur -->
-                    <?php foreach ($buyers as $item): ?>
-                        <tr class="text-center">
-                            <td><?= $i++ ?></td>
-                            <td><?= $item['nama_perusahaan'] ?></td>
-                            <td><?= $item['negara_perusahaan'] ?></td>
-                            <td><?= $item['hs_code'] ?></td>
-                            <td><?= $item['email_perusahaan'] ?></td>
-                            <td><?= $item['website_perusahaan'] ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </tbody>
+                </tbody>
         </table>
+    <?php else: ?>
+        </tbody>
+        <?php $start = ($page - 1) * $perPage + 1; ?>
+        <?php foreach ($buyers as $item): ?>
+            <tr class="text-center">
+                <td><?= $start++ ?></td>
+                <td><?= $item['nama_perusahaan'] ?></td>
+                <td><?= $item['negara_perusahaan'] ?></td>
+                <td><?= $item['hs_code'] ?></td>
+                <td><?= $item['email_perusahaan'] ?></td>
+                <td><?= $item['website_perusahaan'] ?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+        </table>
+        <div class="mt-2">
+            <?= $pager->links('default', 'bootstrap_pagination') ?>
+        </div>
+    <?php endif; ?>
     </div>
 </div>
 
