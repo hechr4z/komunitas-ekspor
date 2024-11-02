@@ -737,6 +737,8 @@ class KomunitasEkspor extends BaseController
         // Kirimkan keyword pencarian untuk ditampilkan di view
         $data['keyword'] = $keyword;
         $data['pager'] = $model_buyers->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
 
         return view('data-buyers/search', $data);
     }
