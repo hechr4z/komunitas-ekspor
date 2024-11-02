@@ -130,8 +130,15 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
 // Admin - Dashboard
 $routes->get('/admin-dashboard', 'KomunitasEkspor::admin_dashboard');
 
+// Admin - Member
+$routes->get('/admin-member', 'KomunitasEkspor::admin_member');
+$routes->get('/admin-edit-member', 'KomunitasEkspor::admin_edit_member');
+$routes->get('/admin-add-member', 'KomunitasEkspor::admin_add_member');
+
 // Admin - Buyers
 $routes->get('/admin-buyers', 'KomunitasEkspor::admin_buyers');
+$routes->get('/admin-edit-buyers', 'KomunitasEkspor::admin_edit_buyers');
+$routes->get('/admin-add-buyers', 'KomunitasEkspor::admin_add_buyers');
 
 // Admin - Belajar Ekspor
 $routes->get('/admin-belajar-ekspor', 'KomunitasEkspor::admin_belajar_ekspor');
