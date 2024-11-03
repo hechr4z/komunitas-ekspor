@@ -17,7 +17,9 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Negara</label>
-                                <input type="text" class="form-control" name="negara_perusahaan" value="<?= $buyers['negara_perusahaan'] ?>" required>
+                                <select class="form-select" id="negara_perusahaan" name="negara_perusahaan" required>
+                                    <option value="" selected disabled>Pilih Negara Perusahaan</option>
+                                </select>
                             </div>
 
                             <div class="mb-3">
@@ -36,7 +38,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <button type="submit" class="btn text-white" style="background-color: #03AADE;">Simpan</button>
                                 <a href="<?= base_url('admin-buyers') ?>" class="btn btn-secondary">Kembali</a>
                             </div>
                         </form>
@@ -47,5 +49,42 @@
         <hr class="my-4">
     </div><!--//container-fluid-->
 </div><!--//app-content-->
+
+<script>
+    // Set the country from PHP as a JavaScript variable
+    const selectedCountry = "<?php echo $buyers['negara_perusahaan']; ?>";
+
+    // Function to fetch and populate country dropdown
+    function populateCountryDropdown(selectElementId) {
+        fetch('https://restcountries.com/v3.1/all')
+            .then(response => response.json())
+            .then(data => {
+                const selectElement = document.getElementById(selectElementId);
+
+                // Clear existing options and add the default option
+                selectElement.innerHTML = '<option value="" selected disabled>Pilih Negara Perusahaan</option>';
+
+                // Sort countries alphabetically
+                data.sort((a, b) => a.name.common.localeCompare(b.name.common));
+
+                // Add countries to dropdown and set selected if it matches
+                data.forEach(country => {
+                    const option = document.createElement('option');
+                    option.value = country.name.common;
+                    option.textContent = country.name.common;
+                    if (country.name.common === selectedCountry) {
+                        option.selected = true;
+                    }
+                    selectElement.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching country data:', error));
+    }
+
+    // Call function on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        populateCountryDropdown('negara_perusahaan');
+    });
+</script>
 
 <?= $this->endSection('content') ?>
