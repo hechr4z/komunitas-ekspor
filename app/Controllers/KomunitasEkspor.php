@@ -1938,8 +1938,47 @@ class KomunitasEkspor extends BaseController
 
         $data['buyers'] = $buyers;
         $data['pager'] = $model_buyers->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
 
         return view('admin/buyers/index', $data);
+    }
+
+    public function admin_search_buyers()
+    {
+        helper('text');
+
+        // Ambil keyword dari query string
+        $keyword = $this->request->getGet('keyword');
+
+        $model_buyers = new Buyers();
+
+        // Set pagination
+        $perPage = 10; // Number of members per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
+        // Query pencarian: mencari berdasarkan judul, tags, atau deskripsi
+        $hasilPencarian = $model_buyers->like('nama_perusahaan', $keyword)
+            ->orLike('email_perusahaan', $keyword)
+            ->orLike('website_perusahaan', $keyword)
+            ->orLike('hs_code', $keyword)
+            ->orLike('negara_perusahaan', $keyword)
+            ->paginate($perPage); // Pastikan method ini mengembalikan data dengan kategori
+
+        // Jika ada hasil pencarian
+        if (count($hasilPencarian) > 0) {
+            $data['hasilPencarian'] = $hasilPencarian;
+        } else {
+            $data['hasilPencarian'] = [];
+        }
+
+        // Kirimkan keyword pencarian untuk ditampilkan di view
+        $data['keyword'] = $keyword;
+        $data['pager'] = $model_buyers->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/buyers/search', $data);
     }
 
     public function admin_add_buyers()

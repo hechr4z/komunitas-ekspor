@@ -159,6 +159,15 @@
             </div>
         </div>
 
+        <!-- Row for search result message, centered under the search form -->
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <?php if (!empty($keyword)): ?>
+                    <p>Menampilkan hasil pencarian untuk: <strong><?= esc($keyword) ?></strong></p>
+                <?php endif; ?>
+            </div>
+        </div>
+
         <div class="tab-content" id="orders-table-tab-content">
             <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
                 <div class="app-card app-card-orders-table shadow-sm mb-5">
@@ -177,17 +186,17 @@
                                     </tr>
                                 </thead>
 
-                                <?php if (empty($buyers)): ?>
+                                <?php if (empty($hasilPencarian)): ?>
                                     <tbody>
                                         <tr>
-                                            <td colspan="7" class="text-center">Masih belum ada Data Buyers.</td>
+                                            <td colspan="7" class="text-center">Tidak ada buyers yang ditemukan.</td>
                                         </tr>
                                     </tbody>
                             </table>
                         <?php else: ?>
                             <tbody>
                                 <?php $start = ($page - 1) * $perPage + 1; ?>
-                                <?php foreach ($buyers as $item) : ?>
+                                <?php foreach ($hasilPencarian as $item) : ?>
                                     <tr>
                                         <td class="text-center" valign="middle"><?= $start++ ?></td>
                                         <td class="text-center" valign="middle"><?= $item['nama_perusahaan'] ?></td>

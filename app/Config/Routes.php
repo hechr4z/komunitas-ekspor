@@ -137,7 +137,9 @@ $routes->get('/admin-add-member', 'KomunitasEkspor::admin_add_member');
 
 // Admin - Buyers
 $routes->get('/admin-buyers', 'KomunitasEkspor::admin_buyers');
+
 $routes->get('/admin-add-buyers', 'KomunitasEkspor::admin_add_buyers');
+$routes->get('/admin-search-buyers', 'KomunitasEkspor::admin_search_buyers');
 $routes->post('/admin-create-buyers', 'KomunitasEkspor::admin_create_buyers');
 $routes->get('/admin-edit-buyers/(:num)', 'KomunitasEkspor::admin_edit_buyers/$1');
 $routes->post('/admin-update-buyers/(:num)', 'KomunitasEkspor::admin_update_buyers/$1');
