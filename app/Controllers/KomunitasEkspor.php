@@ -1942,6 +1942,31 @@ class KomunitasEkspor extends BaseController
         return view('admin/buyers/index', $data);
     }
 
+    public function admin_add_buyers()
+    {
+        return view('admin/buyers/add');
+    }
+
+    public function admin_create_buyers()
+    {
+        $model_buyers = new Buyers();
+
+        $now = Time::now();
+
+        $data = [
+            'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
+            'email_perusahaan' => $this->request->getPost('email_perusahaan'),
+            'website_perusahaan' => $this->request->getPost('website_perusahaan'),
+            'hs_code' => $this->request->getPost('hs_code'),
+            'negara_perusahaan' => $this->request->getPost('negara_perusahaan'),
+            'verif_date' => $now,
+        ];
+
+        $model_buyers->insert($data);
+
+        return redirect()->to('/admin-buyers');
+    }
+
     public function admin_edit_buyers($id)
     {
         $model_buyers = new Buyers();
@@ -1970,27 +1995,11 @@ class KomunitasEkspor extends BaseController
         return redirect()->to('/admin-buyers');
     }
 
-    public function admin_add_buyers()
-    {
-        return view('admin/buyers/add');
-    }
-
-    public function admin_create_buyers()
+    public function admin_delete_buyers($id)
     {
         $model_buyers = new Buyers();
 
-        $now = Time::now();
-
-        $data = [
-            'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
-            'email_perusahaan' => $this->request->getPost('email_perusahaan'),
-            'website_perusahaan' => $this->request->getPost('website_perusahaan'),
-            'hs_code' => $this->request->getPost('hs_code'),
-            'negara_perusahaan' => $this->request->getPost('negara_perusahaan'),
-            'verif_date' => $now,
-        ];
-
-        $model_buyers->insert($data);
+        $model_buyers->delete($id);
 
         return redirect()->to('/admin-buyers');
     }
