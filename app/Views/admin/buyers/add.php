@@ -38,7 +38,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <button type="submit" class="btn text-white" style="background-color: #03AADE;">Simpan</button>
                                 <a href="<?= base_url('admin-buyers') ?>" class="btn btn-secondary">Kembali</a>
                             </div>
                         </form>
