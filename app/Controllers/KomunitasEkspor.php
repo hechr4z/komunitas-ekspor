@@ -1932,7 +1932,9 @@ class KomunitasEkspor extends BaseController
         $perPage = 10;
         $page = $this->request->getVar('page') ?? 1;
 
-        $buyers = $model_buyers->paginate($perPage);
+        $buyers = $model_buyers
+            ->orderBy('verif_date', 'DESC')
+            ->paginate($perPage);
 
         $data['buyers'] = $buyers;
         $data['pager'] = $model_buyers->pager;
@@ -1940,14 +1942,57 @@ class KomunitasEkspor extends BaseController
         return view('admin/buyers/index', $data);
     }
 
-    public function admin_edit_buyers()
+    public function admin_edit_buyers($id)
     {
-        return view('admin/buyers/edit');
+        $model_buyers = new Buyers();
+
+        $buyers = $model_buyers->find($id);
+
+        $data['buyers'] = $buyers;
+
+        return view('admin/buyers/edit', $data);
+    }
+
+    public function admin_update_buyers($id)
+    {
+        $model_buyers = new Buyers();
+
+        $data = [
+            'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
+            'email_perusahaan' => $this->request->getPost('email_perusahaan'),
+            'website_perusahaan' => $this->request->getPost('website_perusahaan'),
+            'hs_code' => $this->request->getPost('hs_code'),
+            'negara_perusahaan' => $this->request->getPost('negara_perusahaan'),
+        ];
+
+        $model_buyers->update($id, $data);
+
+        return redirect()->to('/admin-buyers');
     }
 
     public function admin_add_buyers()
     {
         return view('admin/buyers/add');
+    }
+
+    public function admin_create_buyers()
+    {
+        $model_buyers = new Buyers();
+
+        $now = Time::now();
+
+        $data = [
+            'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
+            'email_perusahaan' => $this->request->getPost('email_perusahaan'),
+            'website_perusahaan' => $this->request->getPost('website_perusahaan'),
+            'hs_code' => $this->request->getPost('hs_code'),
+            'negara_perusahaan' => $this->request->getPost('negara_perusahaan'),
+            'verif_date' => $now,
+        ];
+
+        $model_buyers->insert($data);
+
+        return redirect()->to('/admin-buyers');
     }
 
     public function admin_belajar_ekspor()
