@@ -129,7 +129,7 @@
     <div class="container-xl">
         <div class="row g-3 mb-4 align-items-center justify-content-between">
             <div class="col-auto">
-                <h1 class="app-page-title mb-0">Daftar Buyers</h1>
+                <h1 class="app-page-title mb-0" style="color: #03AADE;">Daftar Buyers</h1>
             </div>
 
             <!-- Tengahkan form search -->
@@ -155,7 +155,7 @@
             </div>
 
             <div class="col-auto">
-                <a href="<?= base_url('admin-add-buyers') ?>" class="btn btn-primary"> + Tambah Data Buyers</a>
+                <a href="<?= base_url('admin-add-buyers') ?>" class="btn text-white" style="background-color: #03AADE;"> + Tambah Data Buyers</a>
             </div>
         </div>
 
@@ -197,8 +197,8 @@
                                         <td class="text-center" valign="middle"><?= $item['negara_perusahaan'] ?></td>
                                         <td valign="middle">
                                             <div class="text-center">
-                                                <a href="<?= base_url('admin') ?>" class="btn btn-danger">Hapus</a>
-                                                <a href="<?= base_url('admin-edit-buyers/' . $item['id_buyers']) ?>" class="btn btn-primary">Ubah</a>
+                                                <a href="<?= base_url('admin-delete-buyers/' . $item['id_buyers']) ?>" class="btn text-white" style="background-color: #F2BF02;">Hapus</a>
+                                                <a href="<?= base_url('admin-edit-buyers/' . $item['id_buyers']) ?>" class="btn text-white" style="background-color: #03AADE;">Ubah</a>
                                             </div>
                                         </td>
                                     </tr>
