@@ -137,8 +137,10 @@ $routes->get('/admin-add-member', 'KomunitasEkspor::admin_add_member');
 
 // Admin - Buyers
 $routes->get('/admin-buyers', 'KomunitasEkspor::admin_buyers');
-$routes->get('/admin-edit-buyers', 'KomunitasEkspor::admin_edit_buyers');
+$routes->get('/admin-edit-buyers/(:num)', 'KomunitasEkspor::admin_edit_buyers/$1');
+$routes->post('/admin-update-buyers/(:num)', 'KomunitasEkspor::admin_update_buyers/$1');
 $routes->get('/admin-add-buyers', 'KomunitasEkspor::admin_add_buyers');
+$routes->post('/admin-create-buyers', 'KomunitasEkspor::admin_create_buyers');
 
 // Admin - Belajar Ekspor
 $routes->get('/admin-belajar-ekspor', 'KomunitasEkspor::admin_belajar_ekspor');
