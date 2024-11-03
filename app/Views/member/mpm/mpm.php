@@ -148,7 +148,7 @@
                         <div class="mb-3">
                             <label for="negara_perusahaan" class="form-label">Negara Perusahaan</label>
                             <select class="form-select" id="negara_perusahaan" name="negara_perusahaan" required>
-                                <option value="" selected disabled>Pilih Negara</option>
+                                <option value="" selected disabled>Pilih Negara Perusahaan</option>
                             </select>
                         </div>
 
@@ -259,7 +259,7 @@
                                     <div class="mb-3">
                                         <label for="negara_perusahaan_edit" class="form-label">Negara Perusahaan</label>
                                         <select class="form-select" id="negara_perusahaan_edit" name="negara_perusahaan" disabled>
-                                            <option value="" selected disabled>Pilih Negara</option>
+                                            <option value="" selected disabled>Pilih Negara Perusahaan</option>
                                         </select>
                                     </div>
 
@@ -368,7 +368,7 @@
                 const selectElement = document.getElementById(selectElementId);
 
                 // Kosongkan dropdown sebelum mengisi
-                selectElement.innerHTML = '<option value="" selected disabled>Pilih Negara</option>';
+                selectElement.innerHTML = '<option value="" selected disabled>Pilih Negara Perusahaan</option>';
 
                 // Urutkan nama negara secara alfabetis
                 data.sort((a, b) => a.name.common.localeCompare(b.name.common));
