@@ -1929,14 +1929,64 @@ class KomunitasEkspor extends BaseController
         return view('admin/member/index', $data);
     }
 
-    public function admin_edit_member()
-    {
-        return view('admin/member/edit');
-    }
-
     public function admin_add_member()
     {
         return view('admin/member/add');
+    }
+
+    public function admin_create_member()
+    {
+        $model_member = new Member();
+
+        $tr = new GoogleTranslate('en');
+
+        $now = Time::now();
+
+        $password = $this->request->getPost('password');
+
+        $fotoProfil = $this->request->getFile('foto_profil');
+
+        $namaFile = null;
+        if ($fotoProfil && $fotoProfil->isValid() && !$fotoProfil->hasMoved()) {
+            $namaFile = uniqid() . '.' . $fotoProfil->getClientExtension();
+            $fotoProfil->move(ROOTPATH . 'public/img', $namaFile);
+        }
+
+        $data = [
+            'role' => 'member',
+            'username' => $this->request->getPost('username_referral'),
+            'password' => password_hash($password, PASSWORD_DEFAULT),
+            'foto_profil' => $namaFile,
+            'kode_referral' => $this->request->getPost('username_referral'),
+            'popular_point' => $this->request->getPost('popular_point'),
+            'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
+            'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
+            'deskripsi_perusahaan_en' => $tr->translate($this->request->getPost('deskripsi_perusahaan')),
+            'tipe_bisnis' => $this->request->getPost('tipe_bisnis'),
+            'tipe_bisnis_en' => $tr->translate($this->request->getPost('tipe_bisnis')),
+            'produk_utama' => $this->request->getPost('produk_utama'),
+            'produk_utama_en' => $tr->translate($this->request->getPost('produk_utama')),
+            'tahun_dibentuk' => $this->request->getPost('tahun_dibentuk'),
+            'skala_bisnis' => $this->request->getPost('skala_bisnis'),
+            'skala_bisnis_en' => $tr->translate($this->request->getPost('skala_bisnis')),
+            'email' => $this->request->getPost('email'),
+            'pic' => $this->request->getPost('pic'),
+            'pic_phone' => $this->request->getPost('pic_phone'),
+            'tanggal_verifikasi' => $now,
+            'kategori_produk' => $this->request->getPost('kategori_produk'),
+            'kategori_produk_en' => $tr->translate($this->request->getPost('kategori_produk')),
+            'latitude' => $this->request->getPost('latitude'),
+            'longitude' => $this->request->getPost('longitude'),
+        ];
+
+        $model_member->insert($data);
+
+        return redirect()->to('/admin-member');
+    }
+
+    public function admin_edit_member()
+    {
+        return view('admin/member/edit');
     }
 
     public function admin_buyers()
