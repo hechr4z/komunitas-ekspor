@@ -132,15 +132,15 @@ $routes->get('/admin-dashboard', 'KomunitasEkspor::admin_dashboard');
 
 // Admin - Member
 $routes->get('/admin-member', 'KomunitasEkspor::admin_member');
+$routes->get('/admin-search-member', 'KomunitasEkspor::admin_search_member');
 $routes->get('/admin-add-member', 'KomunitasEkspor::admin_add_member');
 $routes->post('/admin-create-member', 'KomunitasEkspor::admin_create_member');
 $routes->get('/admin-edit-member', 'KomunitasEkspor::admin_edit_member');
 
 // Admin - Buyers
 $routes->get('/admin-buyers', 'KomunitasEkspor::admin_buyers');
-
-$routes->get('/admin-add-buyers', 'KomunitasEkspor::admin_add_buyers');
 $routes->get('/admin-search-buyers', 'KomunitasEkspor::admin_search_buyers');
+$routes->get('/admin-add-buyers', 'KomunitasEkspor::admin_add_buyers');
 $routes->post('/admin-create-buyers', 'KomunitasEkspor::admin_create_buyers');
 $routes->get('/admin-edit-buyers/(:num)', 'KomunitasEkspor::admin_edit_buyers/$1');
 $routes->post('/admin-update-buyers/(:num)', 'KomunitasEkspor::admin_update_buyers/$1');
