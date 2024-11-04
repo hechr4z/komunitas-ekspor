@@ -145,12 +145,22 @@
 
     /* Adding fixed width for certain columns */
     .col-fixed {
-        width: 150px;
+        width: 300px;
     }
 
     .btn-sm {
         font-size: 0.8rem;
         padding: 4px 8px;
+    }
+
+    .text-truncate-multiline {
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.2;
+        /* Sesuaikan jarak antar-baris */
     }
 </style>
 
@@ -214,32 +224,50 @@
                                         <th class="text-center align-middle">Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <?php if (empty($member)): ?>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="17" class="text-center">Masih belum ada Data Member.</td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                        <?php else: ?>
+                            <tbody>
+                                <?php $start = ($page - 1) * $perPage + 1; ?>
+                                <?php foreach ($member as $item) : ?>
                                     <tr>
-                                        <td class="text-center align-middle">1</td>
-                                        <td class="text-center align-middle">rafqiputra</td>
-                                        <td class="align-middle"><img src="<?= base_url('/img/p1.jpg') ?>" class="img-thumbnail"></td>
-                                        <td class="text-center align-middle">1000</td>
-                                        <td class="text-center align-middle col-fixed" data-bs-toggle="tooltip" title="a">
-                                            Lorem
+                                        <td class="text-center align-middle"><?= $start++ ?></td>
+                                        <td class="text-center align-middle"><?= $item['username'] ?></td>
+                                        <td class="align-middle"><img src="<?= base_url('/img/' . $item['foto_profil']) ?>" class="img-thumbnail"></td>
+                                        <td class="text-center align-middle"><?= $item['popular_point'] ?></td>
+                                        <td class="text-center align-middle col-fixed">
+                                            <div class="text-truncate-multiline" data-bs-toggle="tooltip" title="<?= $item['nama_perusahaan'] ?>">
+                                                <?= $item['nama_perusahaan'] ?>
+                                            </div>
                                         </td>
-                                        <td class="text-center align-middle col-fixed" data-bs-toggle="tooltip" title="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam cumque perferendis in delectus animi, odio suscipit minima unde laborum repudiandae.">
-                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam cumque perferendis in delectus animi...
+                                        <td class="text-center align-middle col-fixed">
+                                            <div class="text-truncate-multiline" data-bs-toggle="tooltip" title="<?= $item['deskripsi_perusahaan'] ?>">
+                                                <?= $item['deskripsi_perusahaan'] ?>
+                                            </div>
                                         </td>
-                                        <td class="text-center align-middle col-fixed" data-bs-toggle="tooltip" title="a">
-                                            Lorem
+                                        <td class="text-center align-middle col-fixed">
+                                            <div class="text-truncate-multiline" data-bs-toggle="tooltip" title="<?= $item['tipe_bisnis'] ?>">
+                                                <?= $item['tipe_bisnis'] ?>
+                                            </div>
                                         </td>
-                                        <td class="text-center align-middle col-fixed" data-bs-toggle="tooltip" title="a">
-                                            Lorem
+                                        <td class="text-center align-middle col-fixed">
+                                            <div class="text-truncate-multiline" data-bs-toggle="tooltip" title="<?= $item['produk_utama'] ?>">
+                                                <?= $item['produk_utama'] ?>
+                                            </div>
                                         </td>
-                                        <td class="text-center align-middle">1999</td>
-                                        <td class="text-center align-middle">Lorem</td>
-                                        <td class="text-center align-middle">example@example.com</td>
-                                        <td class="text-center align-middle">John Doe</td>
-                                        <td class="text-center align-middle">+123456789</td>
-                                        <td class="text-center align-middle">Electronics</td>
-                                        <td class="text-center align-middle">-6.21462</td>
-                                        <td class="text-center align-middle">106.84513</td>
+                                        <td class="text-center align-middle"><?= $item['tahun_dibentuk'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['skala_bisnis'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['email'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['pic'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['pic_phone'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['kategori_produk'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['latitude'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['longitude'] ?></td>
                                         <td class="text-center align-middle">
                                             <div class="d-flex justify-content-center align-items-center">
                                                 <a href="" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
@@ -247,8 +275,13 @@
                                             </div>
                                         </td>
                                     </tr>
-                                </tbody>
+                                <?php endforeach; ?>
+                            </tbody>
                             </table>
+                            <div class="mt-2">
+                                <?= $pager->links('default', 'bootstrap_pagination') ?>
+                            </div>
+                        <?php endif; ?>
                         </div>
                     </div>
                 </div><!--//app-card-->
