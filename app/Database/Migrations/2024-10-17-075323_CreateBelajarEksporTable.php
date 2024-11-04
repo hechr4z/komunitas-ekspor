@@ -36,17 +36,21 @@ class CreateBelajarEksporTable extends Migration
             'deskripsi_belajar_ekspor_en' => [
                 'type' => 'TEXT',
             ],
-            'tags' => [
+            'meta_title' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
-            'tags_en' => [
+            'meta_title_en' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
-            'views' => [
-                'type'    => 'INT',
-                'default' => 0,
+            'meta_deskripsi' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'meta_deskripsi_en' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
             ],
             'created_at' => [
                 'type'    => 'DATETIME',

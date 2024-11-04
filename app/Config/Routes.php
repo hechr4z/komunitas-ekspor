@@ -132,7 +132,8 @@ $routes->get('/admin-dashboard', 'KomunitasEkspor::admin_dashboard');
 // Admin - Belajar Ekspor
 $routes->get('/admin-belajar-ekspor', 'KomunitasEkspor::admin_belajar_ekspor');
 $routes->get('/admin-belajar-ekspor-tambah', 'KomunitasEkspor::admin_belajar_ekspor_tambah');
-$routes->get('/admin-belajar-ekspor-ubah', 'KomunitasEkspor::admin_belajar_ekspor_ubah');
+$routes->get('/admin-belajar-ekspor-edit/(:num)', 'KomunitasEkspor::admin_belajar_ekspor_edit/$1');
+$routes->post('/admin-belajar-ekspor-ubah/(:num)', 'KomunitasEkspor::admin_belajar_ekspor_ubah/$1');
 
 // Admin - Kategori Belajar Ekspor
 $routes->get('/admin-kategori-belajar-ekspor', 'KomunitasEkspor::admin_kategori_belajar_ekspor');
