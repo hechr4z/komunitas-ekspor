@@ -1929,6 +1929,54 @@ class KomunitasEkspor extends BaseController
         return view('admin/member/index', $data);
     }
 
+    public function admin_search_member()
+    {
+        helper('text');
+
+        // Ambil keyword dari query string
+        $keyword = $this->request->getGet('keyword');
+
+        $model_member = new Member();
+
+        // Set pagination
+        $perPage = 10; // Number of members per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
+        // Query pencarian: mencari berdasarkan judul, tags, atau deskripsi
+        $hasilPencarian = $model_member->like('username', $keyword)
+            ->orLike('kode_referral', $keyword)
+            ->orLike('popular_point', $keyword)
+            ->orLike('nama_perusahaan', $keyword)
+            ->orLike('deskripsi_perusahaan', $keyword)
+            ->orLike('tipe_bisnis', $keyword)
+            ->orLike('produk_utama', $keyword)
+            ->orLike('tahun_dibentuk', $keyword)
+            ->orLike('skala_bisnis', $keyword)
+            ->orLike('email', $keyword)
+            ->orLike('pic', $keyword)
+            ->orLike('pic_phone', $keyword)
+            ->orLike('kategori_produk', $keyword)
+            ->orLike('latitude', $keyword)
+            ->orLike('longitude', $keyword)
+            ->orderBy('tanggal_verifikasi', 'DESC')
+            ->paginate($perPage); // Pastikan method ini mengembalikan data dengan kategori
+
+        // Jika ada hasil pencarian
+        if (count($hasilPencarian) > 0) {
+            $data['hasilPencarian'] = $hasilPencarian;
+        } else {
+            $data['hasilPencarian'] = [];
+        }
+
+        // Kirimkan keyword pencarian untuk ditampilkan di view
+        $data['keyword'] = $keyword;
+        $data['pager'] = $model_member->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/member/search', $data);
+    }
+
     public function admin_add_member()
     {
         return view('admin/member/add');
