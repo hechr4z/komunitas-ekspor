@@ -173,7 +173,7 @@
 
             <!-- Tengahkan form search -->
             <div class="col d-flex justify-content-center">
-                <form class="form" action="<?= base_url('admin-search-buyers') ?>" method="GET">
+                <form class="form" action="<?= base_url('admin-search-member') ?>" method="GET">
                     <label for="search">
                         <input required="" autocomplete="off" placeholder="cari member" name="keyword" id="keyword" type="text">
                         <div class="icon">
@@ -194,7 +194,7 @@
             </div>
 
             <div class="col-auto">
-                <a href="<?= base_url('admin-add-buyers') ?>" class="btn text-white" style="background-color: #03AADE;"> + Tambah Data Member</a>
+                <a href="<?= base_url('admin-add-member') ?>" class="btn text-white" style="background-color: #03AADE;"> + Tambah Data Member</a>
             </div>
         </div>
         <div class="tab-content" id="orders-table-tab-content">
@@ -270,8 +270,8 @@
                                         <td class="text-center align-middle"><?= $item['longitude'] ?></td>
                                         <td class="text-center align-middle">
                                             <div class="d-flex justify-content-center align-items-center">
-                                                <a href="" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
-                                                <a href="" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
+                                                <a href="<?= base_url('admin-delete-member') ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
+                                                <a href="<?= base_url('admin-edit-member') ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
                                             </div>
                                         </td>
                                     </tr>
