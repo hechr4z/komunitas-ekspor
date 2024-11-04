@@ -132,8 +132,9 @@ $routes->get('/admin-dashboard', 'KomunitasEkspor::admin_dashboard');
 
 // Admin - Member
 $routes->get('/admin-member', 'KomunitasEkspor::admin_member');
-$routes->get('/admin-edit-member', 'KomunitasEkspor::admin_edit_member');
 $routes->get('/admin-add-member', 'KomunitasEkspor::admin_add_member');
+$routes->post('/admin-create-member', 'KomunitasEkspor::admin_create_member');
+$routes->get('/admin-edit-member', 'KomunitasEkspor::admin_edit_member');
 
 // Admin - Buyers
 $routes->get('/admin-buyers', 'KomunitasEkspor::admin_buyers');
