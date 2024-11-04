@@ -19,48 +19,6 @@ $this->setData([
 <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 
 <style>
-
-.card-body {
-    border-radius: 20px; /* Rounded corners for the rectangle */
-    border: 2px solid #03AADE; /* Border color */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-    transition: transform 0.3s; /* Smooth transform effect */
-}
-
-.card-body:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
-}
-
-/* Customize image container (if needed) */
-.daftar-img {
-    border-radius: 20px; /* Rounded corners for images */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-}
-
-.daftar-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.daftar-btn {
-    width: 150px; /* Default width for larger screens */
-    font-size: 18px; /* Button font size */
-    padding: 10px 20px; /* Button padding */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
-}
-
-.daftar-btn:hover {
-    background-color: #fff; /* Button background on hover */
-    color: #03AADE; /* Button text color on hover */
-}
-
-.daftar-img {
-    width: 70%; /* Default image width */
-    height: auto; /* Maintain aspect ratio */
-    margin-top: 60px; /* Space above the image */
-}
-
     .carousel-item img {
         width: 100%;
         height: 500px;
@@ -168,7 +126,7 @@ $this->setData([
 
     /* end */
 
-    @media (min-width: 768px) {
+    @media (max-width: 768px) {
         .carousel-item img {
             max-height: 400px;
         }
@@ -187,7 +145,7 @@ $this->setData([
 
         .huruf p {
             font-size: 7px !important;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .member h1 {
@@ -210,50 +168,185 @@ $this->setData([
             font-size: 25px;
         }
 
-        .benefit p {
-            font-size: 10px;
-        }
-
         .manfaat p {
             font-size: 10px;
             margin-top: 15px;
         }
 
         .daftar-section {
-        height: auto; /* Adjust height */
-        padding: 20px 0; /* Space around section */
+            height: auto;
+            /* Adjust height */
+            padding: 20px 0;
+            /* Space around section */
+        }
+
+        .daftar-section .row {
+            flex-direction: column;
+            /* Stack content vertically */
+        }
+
+        .daftar-btn {
+            width: 100%;
+            /* Full-width button on smaller screens */
+            margin-top: 20px;
+            /* Space above the button */
+        }
+
+        .daftar-img {
+            width: 100%;
+            /* Full-width image */
+            margin-top: 20px;
+            /* Reduce margin */
+        }
+
+        .card-body p {
+            font-size: 18px;
+            /* Adjust font sizes */
+        }
+
+        .card-body h2 {
+            font-size: 40px;
+            /* Adjust heading size */
+        }
+
+        .card-body {
+            padding: 20px;
+            /* Adjust padding for smaller screens */
+        }
+
+        .daftar-img {
+            width: 100%;
+            /* Full-width on mobile */
+            margin-top: 20px;
+            /* Space above the image */
+            border-radius: 15px;
+            /* Adjust rounding on smaller screens */
+        }
+
+        /* Section container */
+        /* Adjust container size and padding for smaller screens */
+        .container-fluid {
+            width: 95% !important;
+            height: auto !important;
+            margin-top: 40px !important;
+            padding: 20px;
+        }
+
+        /* Keep text and image side-by-side on smaller screens */
+        .container-fluid .row {
+            flex-direction: row !important;
+        }
+
+        /* Text section styling */
+        .container-fluid .col-md-6:first-child {
+            padding: 10px 20px;
+            text-align: left;
+        }
+
+        .container-fluid .card-body p.h6 {
+            font-size: 16px !important;
+        }
+
+        .container-fluid .card-body p:nth-of-type(2) {
+            font-size: 32px !important;
+        }
+
+        .container-fluid .card-body p:nth-of-type(3) {
+            font-size: 14px !important;
+        }
+
+        /* Button styling */
+        .container-fluid .btn-outline-light {
+            font-size: 14px !important;
+            padding: 8px 16px !important;
+        }
+
+        /* Image styling */
+        .container-fluid .col-md-6 img {
+            width: 100% !important;
+            height: auto !important;
+            margin-top: 0;
+        }
     }
 
-    .daftar-section .row {
-        flex-direction: column; /* Stack content vertically */
+    @media (max-width: 576px) {
+        .benefit p {
+            font-size: 8px;
+        }
+
+        .peta h1 {
+            font-size: 18px;
+        }
     }
 
-    .daftar-btn {
-        width: 100%; /* Full-width button on smaller screens */
-        margin-top: 20px; /* Space above the button */
-    }
+    @media (max-width: 320px) {
+        .carousel-caption h5 {
+            font-size: 10px;
+        }
 
-    .daftar-img {
-        width: 100%; /* Full-width image */
-        margin-top: 20px; /* Reduce margin */
-    }
+        .carousel-caption p {
+            font-size: 5px;
+        }
 
-    .card-body p {
-        font-size: 18px; /* Adjust font sizes */
-    }
+        .btn-outline-light {
+            font-size: 5px;
+        }
 
-    .card-body h2 {
-        font-size: 40px; /* Adjust heading size */
-    }
-    .card-body {
-        padding: 20px; /* Adjust padding for smaller screens */
-    }
+        .member h5 {
+            font-size: 10px;
+        }
 
-    .daftar-img {
-        width: 100%; /* Full-width on mobile */
-        margin-top: 20px; /* Space above the image */
-        border-radius: 15px; /* Adjust rounding on smaller screens */
-    }
+        .garis {
+            width: 35px;
+        }
+
+        .member h1 {
+            font-size: 13px;
+        }
+
+        .border-top2 {
+            margin-left: 10px;
+        }
+
+        .kata h1 {
+            margin-left: 10px;
+        }
+
+        .huruf p {
+            margin-left: 10px;
+            font-size: 5px;
+        }
+
+        .card-member .card {
+            width: 90%;
+            margin: 0 auto;
+
+            .card-member .img-content img {
+                width: 100%;
+                height: auto;
+            }
+        }
+        .benefit h2 {
+            font-size: 20px;
+        }
+        .benefit p {
+            font-size: 5px;
+        }
+        .background-image  {
+            padding-top: 30px;
+        }
+        .background-image h2 {
+            font-size: 13px;
+        }
+        .background-image p {
+            font-size: 8px;
+        }
+        .peta h5 {
+            font-size: 10px;
+        }
+        .peta h1 {
+            font-size: 10px;
+        }
     }
 </style>
 
@@ -277,7 +370,7 @@ $this->setData([
             <!-- Slide 1 -->
             <div class="carousel-item active" data-bs-interval="10000">
                 <img src="<?= base_url('img/' . $slider[0]['img_slider']); ?>" class="d-block w-100" alt="Slide 1">
-                <div class="carousel-caption d-none d-md-block text-light mb-3">
+                <div class="carousel-caption d-block text-light mb-3">
                     <h5><?= ($lang == 'en') ? $slider[0]['judul_slider_en'] : $slider[0]['judul_slider'] ?></h5>
                     <p><?= ($lang == 'en') ? $slider[0]['deskripsi_slider_en'] : $slider[0]['deskripsi_slider'] ?></p>
                     <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
@@ -288,7 +381,7 @@ $this->setData([
             <!-- Slide 2 -->
             <div class="carousel-item" data-bs-interval="2000">
                 <img src="<?= base_url('img/' . $slider[1]['img_slider']); ?>" class="d-block w-100" alt="Slide 2">
-                <div class="carousel-caption d-none d-md-block text-light mb-3">
+                <div class="carousel-caption d-block text-light mb-3">
                     <h5><?= ($lang == 'en') ? $slider[1]['judul_slider_en'] : $slider[1]['judul_slider'] ?></h5>
                     <p><?= ($lang == 'en') ? $slider[1]['deskripsi_slider_en'] : $slider[1]['deskripsi_slider'] ?></p>
                     <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
@@ -299,7 +392,7 @@ $this->setData([
             <!-- Slide 3 -->
             <div class="carousel-item">
                 <img src="<?= base_url('img/' . $slider[2]['img_slider']); ?>" class="d-block w-100" alt="Slide 3">
-                <div class="carousel-caption d-none d-md-block text-light mb-3">
+                <div class="carousel-caption d-block text-light mb-3">
                     <h5><?= ($lang == 'en') ? $slider[2]['judul_slider_en'] : $slider[2]['judul_slider'] ?></h5>
                     <p><?= ($lang == 'en') ? $slider[2]['deskripsi_slider_en'] : $slider[2]['deskripsi_slider'] ?></p>
                     <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
@@ -325,11 +418,11 @@ $this->setData([
 <section>
     <div class="member container mt-5">
         <div class="d-flex justify-content-center">
-            <div class="d-flex justify-content-center align-items-center mb-2">
+            <div class="garis d-flex justify-content-center align-items-center mb-2">
                 <div class="border-top1 mx-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
             </div>
             <h5 class="fw-lighter" data-en="ABOUT US" data-id="TENTANG KAMI"><?= lang('Blog.populerMemberTitle'); ?></h5>
-            <div class="d-flex justify-content-center align-items-center mb-2">
+            <div class="garis d-flex justify-content-center align-items-center mb-2">
                 <div class="border-top1 ms-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
             </div>
         </div>
@@ -353,7 +446,7 @@ $this->setData([
             </div>
         </div>
     </div>
-    <div class="container mt-5">
+    <div class="card-member container mt-5">
         <?php if (empty($top4_member)): ?>
             <div class="col-12 mt-2">
                 <div class="alert alert-info text-center" role="alert">
@@ -378,34 +471,38 @@ $this->setData([
             </div>
         <?php endif; ?>
     </div>
-
 </section>
 <!-- end -->
 
 <!-- tombol daftar -->
-<section class="container-fluid text-dark rounded-5 daftar-section" style="background-color: #03AADE; width: 87%; margin-top: 80px;">
-    <div class="row d-flex justify-content-center align-items-center text-center">
-        <div class="col-md-6 py-5 d-flex flex-column align-items-center">
-            <div class="card-body rounded-3 border border-light shadow-sm p-4" style="background-color: rgba(255, 255, 255, 0.8);"> <!-- Custom rectangle -->
-                <p class="text-dark fw-lighter h6" style="font-size: 20px"><?= lang('Blog.joinUsTitle'); ?></p>
-                <p class="text-dark" style="font-size: 57px; font-family: Poetsen One, sans-serif;">
+<section class="container-fluid text-dark rounded-5 daftar-section" style="background-color: #03AADE; max-width: 1100px; margin-top: 80px; padding: 40px;">
+    <div class="row align-items-center text-center text-md-start">
+        <!-- Teks Section -->
+        <div class="col-md-6 mb-4 mb-md-0 d-flex flex-column align-items-center align-items-md-start">
+            <div class="card-body p-3 p-md-5">
+                <p class="text-light fw-lighter h6 mb-2" style="font-size: 18px;">
+                    <?= lang('Blog.joinUsTitle'); ?>
+                </p>
+                <p class="text-light fw-bold" style="font-size: 48px; font-family: Poetsen One, sans-serif;">
                     <?= lang('Blog.communityExporterTitle'); ?>
                 </p>
-                <p class="text-dark fw-lighter" style="font-size: 18px"><?= lang('Blog.joinUsDescription'); ?></p>
-                <div class="d-flex justify-content-center mt-3"> <!-- Center button here -->
-                    <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
-                        <button type="button" class="btn btn-warning btn-lg rounded-pill daftar-btn"><?= lang('Blog.btnCarousel'); ?></button>
-                    </a>
-                </div>
+                <p class="text-light fw-lighter mb-4" style="font-size: 16px;">
+                    <?= lang('Blog.joinUsDescription'); ?>
+                </p>
+                <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
+                    <button type="button" class="btn btn-outline-light btn-lg px-4 py-2" style="font-size: 16px;">
+                        <?= lang('Blog.btnCarousel'); ?>
+                    </button>
+                </a>
             </div>
         </div>
+
+        <!-- Gambar Section -->
         <div class="col-md-6 d-flex justify-content-center">
-            <img src="/img/slider-2.jpg" class="rounded daftar-img" alt="Join us image">
+            <img src="/img/slider-2.jpg" class="rounded shadow" style="width: 90%; max-width: 400px; height: auto;" alt="Image Description">
         </div>
     </div>
 </section>
-<!-- end -->
-
 
 <!-- keuntungan -->
 <section>
@@ -422,45 +519,44 @@ $this->setData([
         </p>
     </div>
     <div class="container">
-        <div class="manfaat d-flex justify-content-between">
-            <div class="d-flex">
-                <div class="rounded-3" style="background-color: #03AADE; width: 100px; height: 100px;">
-                    <svg class="text-light" style="margin-left: 10px;" xmlns="http://www.w3.org/2000/svg" width="80px" height="100px" viewBox="0 0 32 32">
-                        <path fill="currentColor"
-                            d="M16 1c-8.84 0-16 7.16-16 16s7.16 16 16 16 16-7.16 16-16S24.84 1 16 1zm0 28c-6.61 0-12-5.39-12-12S9.39 5 16 5s12 5.39 12 12-5.39 12-12 12z" />
-                        <path fill="currentColor"
-                            d="<?= $manfaatjoin[0]['path_d'] ?>" />
+        <div class="manfaat row g-4 justify-content-center">
+            <!-- Item 1 -->
+            <div class="col-12 col-md-4 d-flex flex-column align-items-center text-center">
+                <div class="rounded-circle d-flex justify-content-center align-items-center" style="background-color: #03AADE; width: 100px; height: 100px;">
+                    <svg class="logo text-light" xmlns="http://www.w3.org/2000/svg" width="60px" height="60px" viewBox="0 0 32 32">
+                        <path fill="currentColor" d="M16 1c-8.84 0-16 7.16-16 16s7.16 16 16 16 16-7.16 16-16S24.84 1 16 1zm0 28c-6.61 0-12-5.39-12-12S9.39 5 16 5s12 5.39 12 12-5.39 12-12 12z" />
+                        <path fill="currentColor" d="<?= $manfaatjoin[0]['path_d'] ?>" />
                     </svg>
                 </div>
-                <div class="ms-3 mt-4">
+                <div class="mt-3">
                     <h6><b><?= ($lang == 'en') ? $manfaatjoin[0]['judul_manfaat_en'] : $manfaatjoin[0]['judul_manfaat'] ?></b></h6>
                     <p><?= ($lang == 'en') ? $manfaatjoin[0]['deskripsi_manfaat_en'] : $manfaatjoin[0]['deskripsi_manfaat'] ?></p>
                 </div>
             </div>
-            <div class="d-flex">
-                <div class="rounded-3" style="background-color: #03AADE; width: 100px; height: 100px;">
-                    <svg class="text-light" style="margin-left: 10px;" xmlns="http://www.w3.org/2000/svg" width="80px" height="100px" viewBox="0 0 32 32">
-                        <path fill="currentColor"
-                            d="M16 1c-8.84 0-16 7.16-16 16s7.16 16 16 16 16-7.16 16-16S24.84 1 16 1zm0 28c-6.61 0-12-5.39-12-12S9.39 5 16 5s12 5.39 12 12-5.39 12-12 12z" />
-                        <path fill="currentColor"
-                            d="<?= $manfaatjoin[1]['path_d'] ?>" />
+
+            <!-- Item 2 -->
+            <div class="col-12 col-md-4 d-flex flex-column align-items-center text-center">
+                <div class="rounded-circle d-flex justify-content-center align-items-center" style="background-color: #03AADE; width: 100px; height: 100px;">
+                    <svg class="logo text-light" xmlns="http://www.w3.org/2000/svg" width="60px" height="60px" viewBox="0 0 32 32">
+                        <path fill="currentColor" d="M16 1c-8.84 0-16 7.16-16 16s7.16 16 16 16 16-7.16 16-16S24.84 1 16 1zm0 28c-6.61 0-12-5.39-12-12S9.39 5 16 5s12 5.39 12 12-5.39 12-12 12z" />
+                        <path fill="currentColor" d="<?= $manfaatjoin[1]['path_d'] ?>" />
                     </svg>
                 </div>
-                <div class="ms-3 mt-4">
+                <div class="mt-3">
                     <h6><b><?= ($lang == 'en') ? $manfaatjoin[1]['judul_manfaat_en'] : $manfaatjoin[1]['judul_manfaat'] ?></b></h6>
                     <p><?= ($lang == 'en') ? $manfaatjoin[1]['deskripsi_manfaat_en'] : $manfaatjoin[1]['deskripsi_manfaat'] ?></p>
                 </div>
             </div>
-            <div class="d-flex">
-                <div class="rounded-3" style="background-color: #03AADE; width: 100px; height: 100px;">
-                    <svg class="text-light" style="margin-left: 10px;" xmlns="http://www.w3.org/2000/svg" width="80px" height="100px" viewBox="0 0 32 32">
-                        <path fill="currentColor"
-                            d="M16 1c-8.84 0-16 7.16-16 16s7.16 16 16 16 16-7.16 16-16S24.84 1 16 1zm0 28c-6.61 0-12-5.39-12-12S9.39 5 16 5s12 5.39 12 12-5.39 12-12 12z" />
-                        <path fill="currentColor"
-                            d="<?= $manfaatjoin[2]['path_d'] ?>" />
+
+            <!-- Item 3 -->
+            <div class="col-12 col-md-4 d-flex flex-column align-items-center text-center">
+                <div class="rounded-circle d-flex justify-content-center align-items-center" style="background-color: #03AADE; width: 100px; height: 100px;">
+                    <svg class="logo text-light" xmlns="http://www.w3.org/2000/svg" width="60px" height="60px" viewBox="0 0 32 32">
+                        <path fill="currentColor" d="M16 1c-8.84 0-16 7.16-16 16s7.16 16 16 16 16-7.16 16-16S24.84 1 16 1zm0 28c-6.61 0-12-5.39-12-12S9.39 5 16 5s12 5.39 12 12-5.39 12-12 12z" />
+                        <path fill="currentColor" d="<?= $manfaatjoin[2]['path_d'] ?>" />
                     </svg>
                 </div>
-                <div class="ms-3 mt-4">
+                <div class="mt-3">
                     <h6><b><?= ($lang == 'en') ? $manfaatjoin[2]['judul_manfaat_en'] : $manfaatjoin[2]['judul_manfaat'] ?></b></h6>
                     <p><?= ($lang == 'en') ? $manfaatjoin[2]['deskripsi_manfaat_en'] : $manfaatjoin[2]['deskripsi_manfaat'] ?></p>
                 </div>
@@ -470,8 +566,10 @@ $this->setData([
 </section>
 <!-- end -->
 
+
+
 <!-- ajakan -->
-<section class="animasi container-fluid mt-5 footer-custom" style="background-color: #03AADE; width: 100%; height: 350px;">
+<section class="animasi mt-5 footer-custom" style="background-color: #03AADE; width: 100%; height: 350px;">
     <div class="background-image animated-element">
         <div class="centered-text">
             <h2 class="text-center text-light" style="padding-top: 100px; font-family: Lato, sans-serif;"><b><?= lang('Blog.joinExporterCommunityTitle'); ?></b></h2>
@@ -487,7 +585,7 @@ $this->setData([
 <!-- ajakan end -->
 
 <!-- peta -->
-<section class="container mt-5">
+<section class="container peta2 mt-5">
     <div class="peta mt-5">
         <div class="d-flex justify-content-center">
             <div class="d-flex justify-content-center align-items-center mb-2">
