@@ -123,6 +123,25 @@
             --height: 45px;
         }
     }
+
+    .table-hover tbody tr:hover {
+        background-color: #f2f2f2;
+    }
+
+    .table thead th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+        border-bottom: 2px solid #dee2e6;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .table tbody td {
+        padding: 12px;
+        vertical-align: middle;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 </style>
 
 <div class="app-content pt-3 p-md-3 p-lg-4">
