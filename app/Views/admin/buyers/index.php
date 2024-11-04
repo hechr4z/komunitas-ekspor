@@ -123,13 +123,55 @@
             --height: 45px;
         }
     }
+
+    .table-hover tbody tr:hover {
+        background-color: #f2f2f2;
+    }
+
+    .table thead th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+        border-bottom: 2px solid #dee2e6;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .table tbody td {
+        padding: 12px;
+        vertical-align: middle;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Tooltip for long content */
+    .tooltip-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* Adding fixed width for certain columns */
+    .col-fixed {
+        width: 150px;
+    }
+
+    .text-wrap {
+        white-space: normal;
+        max-height: 100px;
+        overflow-y: auto;
+    }
+
+    .btn-sm {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }
 </style>
 
 <div class="app-content pt-3 p-md-3 p-lg-4">
     <div class="container-xl">
         <div class="row g-3 mb-4 align-items-center justify-content-between">
             <div class="col-auto">
-                <h1 class="app-page-title mb-0" style="color: #03AADE;">Daftar Buyers</h1>
+                <h1 class="app-page-title mb-0" style="color: #03AADE;">List Buyers</h1>
             </div>
 
             <!-- Tengahkan form search -->
@@ -195,10 +237,10 @@
                                         <td class="text-center" valign="middle"><?= $item['website_perusahaan'] ?></td>
                                         <td class="text-center" valign="middle"><?= $item['hs_code'] ?></td>
                                         <td class="text-center" valign="middle"><?= $item['negara_perusahaan'] ?></td>
-                                        <td valign="middle">
-                                            <div class="text-center">
-                                                <a href="<?= base_url('admin-delete-buyers/' . $item['id_buyers']) ?>" class="btn text-white" style="background-color: #F2BF02;">Hapus</a>
-                                                <a href="<?= base_url('admin-edit-buyers/' . $item['id_buyers']) ?>" class="btn text-white" style="background-color: #03AADE;">Ubah</a>
+                                        <td class="text-center align-middle">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <a href="<?= base_url('admin-delete-buyers/' . $item['id_buyers']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
+                                                <a href="<?= base_url('admin-edit-buyers/' . $item['id_buyers']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
                                             </div>
                                         </td>
                                     </tr>
