@@ -1912,7 +1912,21 @@ class KomunitasEkspor extends BaseController
 
     public function admin_member()
     {
-        return view('admin/member/index');
+        $model_member = new Member();
+
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
+        $member = $model_member
+            ->orderBy('tanggal_verifikasi', 'DESC')
+            ->paginate($perPage);
+
+        $data['member'] = $member;
+        $data['pager'] = $model_member->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/member/index', $data);
     }
 
     public function admin_edit_member()
