@@ -20,19 +20,13 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center align-middle">No</th>
-                                        <th class="text-center align-middle">Judul In</th>
-                                        <th class="text-center align-middle">Judul En</th>
+                                        <th class="text-center align-middle">Judul</th>
                                         <th class="text-center align-middle">Foto</th>
-                                        <th class="text-center align-middle">Kategori In</th>
-                                        <th class="text-center align-middle">Kategori En</th>
-                                        <th class="text-center align-middle" style="width: 150px;">Deskripsi In</th>
-                                        <th class="text-center align-middle" style="width: 150px;">Deskripsi En</th>
-                                        <th class="text-center align-middle" style="width: 60px;">Slug In</th>
-                                        <th class="text-center align-middle" style="width: 60px;">Slug En</th>
-                                        <th class="text-center align-middle" style="width: 60px;">Meta Title In</th>
-                                        <th class="text-center align-middle" style="width: 60px;">Meta Title En</th>
-                                        <th class="text-center align-middle" style="width: 60px;">Meta Description In</th>
-                                        <th class="text-center align-middle" style="width: 60px;">Meta Description En</th>
+                                        <th class="text-center align-middle">Kategori</th>
+                                        <th class="text-center align-middle" style="width: 150px;">Deskripsi</th>
+                                        <th class="text-center align-middle" style="width: 60px;">Slug</th>
+                                        <th class="text-center align-middle" style="width: 60px;">Meta Title</th>
+                                        <th class="text-center align-middle" style="width: 60px;">Meta Description</th>
                                         <th class="text-center align-middle">Aksi</th>
                                     </tr>
                                 </thead>
@@ -42,33 +36,23 @@
                                         <tr>
                                             <td class="text-center align-middle"><?= $no++; ?></td>
                                             <td class="text-center align-middle"><?= $item['judul_belajar_ekspor']; ?></td>
-                                            <td class="text-center align-middle"><?= $item['judul_belajar_ekspor_en']; ?></td>
                                             <td class="text-center align-middle">
                                                 <img src="<?= base_url('/img/' . $item['foto_belajar_ekspor']) ?>" alt="<?= $item['judul_belajar_ekspor']; ?>" class="img-fluid" style="max-width: 80px;">
                                             </td>
                                             <td class="text-center align-middle"><?= $item['nama_kategori']; ?></td>
-                                            <td class="text-center align-middle"><?= $item['nama_kategori_en']; ?></td>
                                             <td class="text-center align-middle" style="width: 120px;">
                                                 <div style="max-height: 100px; overflow-y: auto;">
                                                     <?= $item['deskripsi_belajar_ekspor']; ?>
                                                 </div>
                                             </td>
-                                            <td class="text-center align-middle" style="width: 120px;">
-                                                <div style="max-height: 100px; overflow-y: auto;">
-                                                    <?= $item['deskripsi_belajar_ekspor_en']; ?>
-                                                </div>
-                                            </td>
                                             <td class="text-center align-middle"><?= $item['slug']; ?></td>
-                                            <td class="text-center align-middle"><?= $item['slug_en']; ?></td>
                                             <td class="text-center align-middle"><?= $item['meta_title']; ?></td>
-                                            <td class="text-center align-middle"><?= $item['meta_title_en']; ?></td>
                                             <td class="text-center align-middle"><?= $item['meta_deskripsi']; ?></td>
-                                            <td class="text-center align-middle"><?= $item['meta_deskripsi_en']; ?></td>
 
                                             <td class="text-center align-middle">
                                                 <div class="d-grid gap-2">
-                                                    <a class="btn btn-primary" href="<?= base_url('/admin-belajar-ekspor-edit/' . $item['id_belajar_ekspor']) ?>">Ubah</a>
-                                                    <a class="btn btn-danger" href="#">Hapus</a>
+                                                    <a class="btn btn-primary" href="<?= base_url('/admin-belajar-ekspor-ubah/' . $item['id_belajar_ekspor']) ?>">Ubah</a>
+                                                    <a class="btn btn-danger" href="<?= base_url('/admin-belajar-ekspor-delete/' . $item['id_belajar_ekspor']); ?>">Hapus</a>
                                                 </div>
                                             </td>
                                         </tr>

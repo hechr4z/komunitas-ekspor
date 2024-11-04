@@ -138,7 +138,7 @@ Pada akhirnya, kunci sukses digital marketing adalah konsistensi dan kemauan unt
                 'id_kategori_belajar_ekspor' => 2,
                 'judul_belajar_ekspor' => 'Cara Hitung Harga Jual Ekspor',
                 'judul_belajar_ekspor_en' => 'How to Calculate Export Selling Price',
-                'foto_belajar_ekspor' => 'be5.jpg',
+                'foto_belajar_ekspor' => 'be5.jpeg',
                 'deskripsi_belajar_ekspor' => 'Langkah-langkah praktis dalam menentukan harga jual...',
                 'deskripsi_belajar_ekspor_en' => 'Practical steps in determining export selling prices...',
                 'meta_title' => 'harga jual, ekspor',
