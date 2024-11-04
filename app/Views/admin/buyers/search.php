@@ -129,7 +129,7 @@
     <div class="container-xl">
         <div class="row g-3 mb-4 align-items-center justify-content-between">
             <div class="col-auto">
-                <h1 class="app-page-title mb-0" style="color: #03AADE;">Daftar Buyers</h1>
+                <h1 class="app-page-title mb-0" style="color: #03AADE;">List Buyers</h1>
             </div>
 
             <!-- Tengahkan form search -->
