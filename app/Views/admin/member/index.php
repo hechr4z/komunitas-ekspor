@@ -1,106 +1,252 @@
 <?= $this->extend('admin/template/template'); ?>
 <?= $this->Section('content'); ?>
 
+<style>
+    /* Styling untuk search tampilan B */
+    .form {
+        --input-bg: #FFF;
+        --padding: 1.5em;
+        --rotate: 80deg;
+        --gap: 2em;
+        --icon-change-color: #F2BF02;
+        --height: 50px;
+        width: 600px;
+        /* Sesuaikan dengan tampilan A */
+        padding-inline-end: 1em;
+        background: var(--input-bg);
+        position: relative;
+        border-radius: 30px;
+        /* Sesuaikan border-radius dari tampilan A */
+        margin: 0 auto;
+    }
+
+    .form label {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: var(--height);
+    }
+
+    .form input {
+        width: 100%;
+        padding-inline-start: calc(var(--padding) + var(--gap));
+        outline: none;
+        background: none;
+        border: 0;
+        font-size: 0.9rem;
+    }
+
+    .form svg {
+        color: #111;
+        transition: 0.3s cubic-bezier(.4, 0, .2, 1);
+        position: absolute;
+        height: 17px;
+        /* Sesuaikan ukuran icon */
+    }
+
+    .icon {
+        position: absolute;
+        left: var(--padding);
+        transition: 0.3s cubic-bezier(.4, 0, .2, 1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .swap-off {
+        transform: rotate(-80deg);
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .close-btn {
+        background: none;
+        border: none;
+        right: calc(var(--padding) - var(--gap));
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #111;
+        padding: 0.1em;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        transition: 0.3s;
+        opacity: 0;
+        transform: scale(0);
+        visibility: hidden;
+    }
+
+    .form input:focus~.icon {
+        transform: rotate(var(--rotate)) scale(1.3);
+    }
+
+    .form input:focus~.icon .swap-off {
+        opacity: 1;
+        transform: rotate(-80deg);
+        visibility: visible;
+        color: var(--icon-change-color);
+    }
+
+    .form input:focus~.icon .swap-on {
+        opacity: 0;
+        visibility: visible;
+    }
+
+    .form input:valid~.icon {
+        transform: scale(1.3) rotate(var(--rotate))
+    }
+
+    .form input:valid~.icon .swap-off {
+        opacity: 1;
+        visibility: visible;
+        color: var(--icon-change-color);
+    }
+
+    .form input:valid~.icon .swap-on {
+        opacity: 0;
+        visibility: visible;
+    }
+
+    .form input:valid~.close-btn {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+        transition: 0s;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .form {
+            width: 250px;
+            --height: 45px;
+        }
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f2f2f2;
+    }
+
+    .table thead th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+        border-bottom: 2px solid #dee2e6;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .table tbody td {
+        padding: 12px;
+        vertical-align: middle;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Adding fixed width for certain columns */
+    .col-fixed {
+        width: 150px;
+    }
+
+    .btn-sm {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }
+</style>
+
 <div class="app-content pt-3 p-md-3 p-lg-4">
     <div class="container-xl">
-        <h1 class="app-page-title">Daftar Member</h1>
-        <?= session()->getFlashdata('success') ? '<div class="alert alert-success">' . session()->getFlashdata('success') . '</div>' : '' ?>
-        <hr class="mb-4">
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
-            <a href="<?= base_url('admin-add-member') ?>" class="btn btn-primary me-md-2"> + Tambah Member</a>
+        <div class="row g-3 mb-4 align-items-center justify-content-between">
+            <div class="col-auto">
+                <h1 class="app-page-title mb-0" style="color: #03AADE;">List Member</h1>
+            </div>
+
+            <!-- Tengahkan form search -->
+            <div class="col d-flex justify-content-center">
+                <form class="form" action="<?= base_url('admin-search-buyers') ?>" method="GET">
+                    <label for="search">
+                        <input required="" autocomplete="off" placeholder="cari member" name="keyword" id="keyword" type="text">
+                        <div class="icon">
+                            <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="swap-on">
+                                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linejoin="round" stroke-linecap="round"></path>
+                            </svg>
+                            <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="swap-off">
+                                <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linejoin="round" stroke-linecap="round"></path>
+                            </svg>
+                        </div>
+                        <button type="reset" class="close-btn">
+                            <svg viewBox="0 0 20 20" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" fill-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </label>
+                </form>
+            </div>
+
+            <div class="col-auto">
+                <a href="<?= base_url('admin-add-buyers') ?>" class="btn text-white" style="background-color: #03AADE;"> + Tambah Data Member</a>
+            </div>
         </div>
-        <div class="row g-4 settings-section">
-            <div class="col-12">
-                <div class="app-card app-card-settings shadow-sm p-4">
-                    <div class="card-body">
+        <div class="tab-content" id="orders-table-tab-content">
+            <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
+                <div class="app-card app-card-orders-table shadow-sm mb-5">
+                    <div class="app-card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                            <table class="table table-hover table-bordered mb-0">
                                 <thead>
                                     <tr>
                                         <th class="text-center align-middle">No</th>
-                                        <th class="text-center align-middle">Username & Kode Referal</th>
-                                        <th class="text-center align-middle">Email</th>
+                                        <th class="text-center align-middle">Username & Kode Referral</th>
+                                        <th class="text-center align-middle">Foto Profil</th>
                                         <th class="text-center align-middle">Popular Point</th>
-                                        <th class="text-center align-middle">Nama Perusahaan</th>
-                                        <th class="text-center align-middle" style="width: 300px;">Deskripsi Perusahaan
-                                        </th>
-                                        <th class="text-center align-middle">Tipe Bisnis</th>
-                                        <th class="text-center align-middle">Produk Utama</th>
-                                        <th class="text-center align-middle">Tahun Didirikan</th>
+                                        <th class="text-center align-middle col-fixed">Nama Perusahaan</th>
+                                        <th class="text-center align-middle col-fixed">Deskripsi Perusahaan</th>
+                                        <th class="text-center align-middle col-fixed">Tipe Bisnis</th>
+                                        <th class="text-center align-middle col-fixed">Produk Utama</th>
+                                        <th class="text-center align-middle">Tahun Dibentuk</th>
                                         <th class="text-center align-middle">Skala Bisnis</th>
+                                        <th class="text-center align-middle">Email</th>
                                         <th class="text-center align-middle">PIC</th>
-                                        <th class="text-center align-middle">No. Telepon PIC</th>
-                                        <th class="text-center align-middle">Foto Member</th>
+                                        <th class="text-center align-middle">PIC Phone</th>
+                                        <th class="text-center align-middle">Kategori Produk</th>
+                                        <th class="text-center align-middle">Latitude</th>
+                                        <th class="text-center align-middle">Longitude</th>
                                         <th class="text-center align-middle">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td class="text-center align-middle">1</td>
-                                        <td class="text-center align-middle">johnsmith</td>
-                                        <td class="text-center align-middle">johnsmith@example.com</td>
-                                        <td class="text-center align-middle">150</td>
-                                        <td class="text-center align-middle">PT. Contoh Perusahaan</td>
-                                        <td class="text-center align-middle" style="width: 300px;">
-                                            <div style="max-height: 100px; overflow-y: auto;">
-                                                Penjelasan lebih panjang mengenai perusahaan dapat ditampilkan di sini.
-                                                Anda bisa menyesuaikan lebar kolom sesuai kebutuhan agar seluruh teks
-                                                dapat ditampilkan dengan lebih nyaman.
-                                            </div>
+                                        <td class="text-center align-middle">rafqiputra</td>
+                                        <td class="align-middle"><img src="<?= base_url('/img/p1.jpg') ?>" class="img-thumbnail"></td>
+                                        <td class="text-center align-middle">1000</td>
+                                        <td class="text-center align-middle col-fixed" data-bs-toggle="tooltip" title="a">
+                                            Lorem
                                         </td>
-                                        <td class="text-center align-middle">Teknologi</td>
-                                        <td class="text-center align-middle">Software A</td>
-                                        <td class="text-center align-middle">2015</td>
-                                        <td class="text-center align-middle">Besar</td>
-                                        <td class="text-center align-middle">John Smith</td>
-                                        <td class="text-center align-middle">081234567890</td>
-                                        <td>
-                                            <img src="/img/acumalaka.png" alt="Foto John" class="img-thumbnail"
-                                                style="max-width: 50px;">
+                                        <td class="text-center align-middle col-fixed" data-bs-toggle="tooltip" title="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam cumque perferendis in delectus animi, odio suscipit minima unde laborum repudiandae.">
+                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam cumque perferendis in delectus animi...
                                         </td>
+                                        <td class="text-center align-middle col-fixed" data-bs-toggle="tooltip" title="a">
+                                            Lorem
+                                        </td>
+                                        <td class="text-center align-middle col-fixed" data-bs-toggle="tooltip" title="a">
+                                            Lorem
+                                        </td>
+                                        <td class="text-center align-middle">1999</td>
+                                        <td class="text-center align-middle">Lorem</td>
+                                        <td class="text-center align-middle">example@example.com</td>
+                                        <td class="text-center align-middle">John Doe</td>
+                                        <td class="text-center align-middle">+123456789</td>
+                                        <td class="text-center align-middle">Electronics</td>
+                                        <td class="text-center align-middle">-6.21462</td>
+                                        <td class="text-center align-middle">106.84513</td>
                                         <td class="text-center align-middle">
-                                            <div class="d-flex justify-content-center">
-                                                <a href="<?= base_url('admin-edit-member') ?>"
-                                                    class="btn btn-warning btn-sm me-1">Edit</a>
-                                                <a href="#" class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">Hapus</a>
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <a href="" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
+                                                <a href="" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
                                             </div>
                                         </td>
                                     </tr>
-
-                                    <tr>
-                                        <td class="text-center align-middle">1</td>
-                                        <td class="text-center align-middle">johnsmith</td>
-                                        <td class="text-center align-middle">johnsmith@example.com</td>
-                                        <td class="text-center align-middle">150</td>
-                                        <td class="text-center align-middle">PT. Contoh Perusahaan</td>
-                                        <td class="text-center align-middle" style="width: 300px;">
-                                            <div style="max-height: 100px; overflow-y: auto;">
-                                                Penjelasan lebih panjang mengenai perusahaan dapat ditampilkan di sini.
-                                                Anda bisa menyesuaikan lebar kolom sesuai kebutuhan agar seluruh teks
-                                                dapat ditampilkan dengan lebih nyaman.
-                                            </div>
-                                        </td>
-                                        <td class="text-center align-middle">Teknologi</td>
-                                        <td class="text-center align-middle">Software A</td>
-                                        <td class="text-center align-middle">2015</td>
-                                        <td class="text-center align-middle">Besar</td>
-                                        <td class="text-center align-middle">John Smith</td>
-                                        <td class="text-center align-middle">081234567890</td>
-                                        <td>
-                                            <img src="/img/acumalaka.png" alt="Foto John" class="img-thumbnail"
-                                                style="max-width: 50px;">
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            <div class="d-flex justify-content-center">
-                                                <a href="<?= base_url('admin-edit-member') ?>"
-                                                    class="btn btn-warning btn-sm me-1">Edit</a>
-                                                <a href="#" class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">Hapus</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-
                                 </tbody>
                             </table>
                         </div>
@@ -110,5 +256,15 @@
         </div><!--//row-->
     </div><!--//container-fluid-->
 </div><!--//app-content-->
+
+<script>
+    // Initialize tooltips
+    document.addEventListener("DOMContentLoaded", function() {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.forEach(function(tooltipTriggerEl) {
+            new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
+</script>
 
 <?= $this->endSection('content') ?>
