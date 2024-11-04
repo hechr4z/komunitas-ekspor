@@ -13,8 +13,10 @@ class Member extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields = [
+        'role',
         'username',
         'password',
+        'foto_profil',
         'kode_referral',
         'popular_point',
         'nama_perusahaan',

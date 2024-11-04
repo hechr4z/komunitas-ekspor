@@ -210,47 +210,49 @@
                     <th><?= lang('Blog.tableWebsite') ?></th>
                 </tr>
             </thead>
-            <tbody>
-                <?php if (empty($hasilPencarian)): ?>
+            <?php if (empty($hasilPencarian)): ?>
+                <tbody>
                     <tr>
                         <td colspan="6" class="text-center">
                             <?= lang('Blog.noBuyersDataFound') ?>
                         </td>
                     </tr>
-                <?php else: ?>
-                    <?php $i = 1; ?>
-                    <!-- Menampilkan data yang tidak di-blur -->
-                    <?php foreach ($hasilPencarian as $item): ?>
-                        <tr class="text-center">
-                            <td><?= $i++ ?></td>
-                            <td><?= $item['nama_perusahaan'] ?></td>
-                            <td><?= $item['negara_perusahaan'] ?></td>
-                            <td><?= $item['hs_code'] ?></td>
-                            <td>
-                                <span style="filter: blur(5px); user-select: none;">perusahaan@email.com</span>
-                            </td>
-                            <td>
-                                <span
-                                    style="text-decoration: none; color:#03AADE; filter: blur(5px); user-select: none;">perusahaan.com</span>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
                 </tbody>
-            </table>
-            <div class="mt-2">
-                <?= $pager->links('default', 'bootstrap_pagination') ?>
-            </div>
-        <?php endif; ?>
-        <!-- Tombol Hilangi Blur -->
-        <div class="badgepanjang p-3 mt-3">
-            <div class="d-flex justify-content-between align-items-center mt-3 mb-3 flex-md-row flex-column">
-                <h5 class="kategori font-weight-bold mb-0 text-left text-md-left">
-                    <?= lang('Blog.joinMemberTitle') ?>
-                </h5>
-                <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>"
-                    class="btn btn-custom mt-md-0"><?= lang('Blog.memberRegistration') ?></a>
-            </div>
+        </table>
+    <?php else: ?>
+        <tbody>
+            <?php $start = ($page - 1) * $perPage + 1; ?>
+            <?php foreach ($hasilPencarian as $item): ?>
+                <tr class="text-center">
+                    <td><?= $start++ ?></td>
+                    <td><?= $item['nama_perusahaan'] ?></td>
+                    <td><?= $item['negara_perusahaan'] ?></td>
+                    <td><?= $item['hs_code'] ?></td>
+                    <td>
+                        <span style="filter: blur(5px); user-select: none;">perusahaan@email.com</span>
+                    </td>
+                    <td>
+                        <span
+                            style="text-decoration: none; color:#03AADE; filter: blur(5px); user-select: none;">perusahaan.com</span>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+        </table>
+        <div class="mt-2">
+            <?= $pager->links('default', 'bootstrap_pagination') ?>
         </div>
+    <?php endif; ?>
+    <!-- Tombol Hilangi Blur -->
+    <div class="badgepanjang p-3 mt-3">
+        <div class="d-flex justify-content-between align-items-center mt-3 mb-3 flex-md-row flex-column">
+            <h5 class="kategori font-weight-bold mb-0 text-left text-md-left">
+                <?= lang('Blog.joinMemberTitle') ?>
+            </h5>
+            <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>"
+                class="btn btn-custom mt-md-0"><?= lang('Blog.memberRegistration') ?></a>
+        </div>
+    </div>
     </div>
 </div>
 

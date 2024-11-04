@@ -307,10 +307,15 @@
         .icon {
             font-size: 10px;
         }
-        .line {
-            width: 40px;
-            height: 1.5px;
-            margin: 23px 0;
+
+        .border-top {
+            width: 90px !important;
+            height: 1.5px !important;
+            margin: 15px 0 !important;
+        }
+
+        .border-top2 {
+            margin-right: 20px;
         }
     }
 
@@ -318,7 +323,27 @@
         .icon {
             font-size: 8px;
         }
+
+        .header,
+        .container,
+        .head {
+            padding: 0;
+            margin: 0 auto;
+            overflow-x: hidden;
+            width: 100%;
+        }
     }
+
+    @media (max-width: 320px) {
+    .header, .container, .head, .icon, .icon-text {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+}
+
 </style>
 
 <body>
@@ -412,7 +437,7 @@
                             <i class="fab fa-facebook"></i>
                         </a>
                     </div>
-                    <div class="border-top" style="width: 1.5px; height: 20px; background-color: white;"></div>
+                    <div class="border-top2" style="width: 1.5px; height: 20px; background-color: white; margin-right: 20px;"></div>
                     <div class="dropdown">
                         <button class="btn text-light language-btn" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="/img/flag-<?= $lang === 'id' ? 'id' : 'en'; ?>.png" alt="<?= $lang === 'id' ? 'Indonesian' : 'English'; ?>" class="flag-icon mb-1">

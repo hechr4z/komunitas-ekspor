@@ -693,6 +693,8 @@ class KomunitasEkspor extends BaseController
 
         $data['buyers'] = $buyers;
         $data['pager'] = $model_buyers->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
 
         return view('data-buyers/index', $data);
     }
@@ -735,6 +737,8 @@ class KomunitasEkspor extends BaseController
         // Kirimkan keyword pencarian untuk ditampilkan di view
         $data['keyword'] = $keyword;
         $data['pager'] = $model_buyers->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
 
         return view('data-buyers/search', $data);
     }
@@ -1377,7 +1381,15 @@ class KomunitasEkspor extends BaseController
         //     $mpm_year[$data['tahun_kirim']] = $data['jumlah']; // Simpan jumlah data per tahun
         // }
 
+        // Set pagination
+        $perPage = 10; // Number of members per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
+        $mpmtable = $model_mpm->paginate($perPage);
+
         $data['mpm'] = $mpm;
+        $data['mpmtable'] = $mpmtable;
+        $data['pager'] = $model_mpm->pager;
         $data['years'] = $years; // Semua tahun dari yang terlama sampai sekarang, dengan urutan terbaru di atas
         // $data['mpm_year'] = $mpm_year; // Data dari database
 
@@ -1519,14 +1531,20 @@ class KomunitasEkspor extends BaseController
 
         $produk = $model_produk->where('id_member', $user_id)->findColumn('hs_code');
 
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
         // If there are hs_codes, find buyers with matching hs_codes
         $buyers = [];
         if ($produk) {
-            $buyers = $model_buyers->whereIn('hs_code', $produk)->findAll();
+            $buyers = $model_buyers->whereIn('hs_code', $produk)->paginate($perPage);
         }
 
         // Prepare data to pass to the view
         $data['buyers'] = $buyers;
+        $data['pager'] = $model_buyers->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
 
         return view('member/data-buyers/index', $data);
     }
@@ -1890,6 +1908,203 @@ class KomunitasEkspor extends BaseController
         $data['websiteaudit'] = $websiteaudit;
 
         return view('admin/dashboard/index', $data);
+    }
+
+    public function admin_member()
+    {
+        $model_member = new Member();
+
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
+        $member = $model_member
+            ->orderBy('tanggal_verifikasi', 'DESC')
+            ->paginate($perPage);
+
+        $data['member'] = $member;
+        $data['pager'] = $model_member->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/member/index', $data);
+    }
+
+    public function admin_add_member()
+    {
+        return view('admin/member/add');
+    }
+
+    public function admin_create_member()
+    {
+        $model_member = new Member();
+
+        $tr = new GoogleTranslate('en');
+
+        $now = Time::now();
+
+        $password = $this->request->getPost('password');
+
+        $fotoProfil = $this->request->getFile('foto_profil');
+
+        $namaFile = null;
+        if ($fotoProfil && $fotoProfil->isValid() && !$fotoProfil->hasMoved()) {
+            $namaFile = uniqid() . '.' . $fotoProfil->getClientExtension();
+            $fotoProfil->move(ROOTPATH . 'public/img', $namaFile);
+        }
+
+        $data = [
+            'role' => 'member',
+            'username' => $this->request->getPost('username_referral'),
+            'password' => password_hash($password, PASSWORD_DEFAULT),
+            'foto_profil' => $namaFile,
+            'kode_referral' => $this->request->getPost('username_referral'),
+            'popular_point' => $this->request->getPost('popular_point'),
+            'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
+            'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
+            'deskripsi_perusahaan_en' => $tr->translate($this->request->getPost('deskripsi_perusahaan')),
+            'tipe_bisnis' => $this->request->getPost('tipe_bisnis'),
+            'tipe_bisnis_en' => $tr->translate($this->request->getPost('tipe_bisnis')),
+            'produk_utama' => $this->request->getPost('produk_utama'),
+            'produk_utama_en' => $tr->translate($this->request->getPost('produk_utama')),
+            'tahun_dibentuk' => $this->request->getPost('tahun_dibentuk'),
+            'skala_bisnis' => $this->request->getPost('skala_bisnis'),
+            'skala_bisnis_en' => $tr->translate($this->request->getPost('skala_bisnis')),
+            'email' => $this->request->getPost('email'),
+            'pic' => $this->request->getPost('pic'),
+            'pic_phone' => $this->request->getPost('pic_phone'),
+            'tanggal_verifikasi' => $now,
+            'kategori_produk' => $this->request->getPost('kategori_produk'),
+            'kategori_produk_en' => $tr->translate($this->request->getPost('kategori_produk')),
+            'latitude' => $this->request->getPost('latitude'),
+            'longitude' => $this->request->getPost('longitude'),
+        ];
+
+        $model_member->insert($data);
+
+        return redirect()->to('/admin-member');
+    }
+
+    public function admin_edit_member()
+    {
+        return view('admin/member/edit');
+    }
+
+    public function admin_buyers()
+    {
+        $model_buyers = new Buyers();
+
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
+        $buyers = $model_buyers
+            ->orderBy('verif_date', 'DESC')
+            ->paginate($perPage);
+
+        $data['buyers'] = $buyers;
+        $data['pager'] = $model_buyers->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/buyers/index', $data);
+    }
+
+    public function admin_search_buyers()
+    {
+        helper('text');
+
+        // Ambil keyword dari query string
+        $keyword = $this->request->getGet('keyword');
+
+        $model_buyers = new Buyers();
+
+        // Set pagination
+        $perPage = 10; // Number of members per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
+        // Query pencarian: mencari berdasarkan judul, tags, atau deskripsi
+        $hasilPencarian = $model_buyers->like('nama_perusahaan', $keyword)
+            ->orLike('email_perusahaan', $keyword)
+            ->orLike('website_perusahaan', $keyword)
+            ->orLike('hs_code', $keyword)
+            ->orLike('negara_perusahaan', $keyword)
+            ->paginate($perPage); // Pastikan method ini mengembalikan data dengan kategori
+
+        // Jika ada hasil pencarian
+        if (count($hasilPencarian) > 0) {
+            $data['hasilPencarian'] = $hasilPencarian;
+        } else {
+            $data['hasilPencarian'] = [];
+        }
+
+        // Kirimkan keyword pencarian untuk ditampilkan di view
+        $data['keyword'] = $keyword;
+        $data['pager'] = $model_buyers->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/buyers/search', $data);
+    }
+
+    public function admin_add_buyers()
+    {
+        return view('admin/buyers/add');
+    }
+
+    public function admin_create_buyers()
+    {
+        $model_buyers = new Buyers();
+
+        $now = Time::now();
+
+        $data = [
+            'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
+            'email_perusahaan' => $this->request->getPost('email_perusahaan'),
+            'website_perusahaan' => $this->request->getPost('website_perusahaan'),
+            'hs_code' => $this->request->getPost('hs_code'),
+            'negara_perusahaan' => $this->request->getPost('negara_perusahaan'),
+            'verif_date' => $now,
+        ];
+
+        $model_buyers->insert($data);
+
+        return redirect()->to('/admin-buyers');
+    }
+
+    public function admin_edit_buyers($id)
+    {
+        $model_buyers = new Buyers();
+
+        $buyers = $model_buyers->find($id);
+
+        $data['buyers'] = $buyers;
+
+        return view('admin/buyers/edit', $data);
+    }
+
+    public function admin_update_buyers($id)
+    {
+        $model_buyers = new Buyers();
+
+        $data = [
+            'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
+            'email_perusahaan' => $this->request->getPost('email_perusahaan'),
+            'website_perusahaan' => $this->request->getPost('website_perusahaan'),
+            'hs_code' => $this->request->getPost('hs_code'),
+            'negara_perusahaan' => $this->request->getPost('negara_perusahaan'),
+        ];
+
+        $model_buyers->update($id, $data);
+
+        return redirect()->to('/admin-buyers');
+    }
+
+    public function admin_delete_buyers($id)
+    {
+        $model_buyers = new Buyers();
+
+        $model_buyers->delete($id);
+
+        return redirect()->to('/admin-buyers');
     }
 
     public function admin_belajar_ekspor()
