@@ -2532,4 +2532,20 @@ class KomunitasEkspor extends BaseController
     {
         return view('admin/kalkulator-ekspor/satuan/edit');
     }
+
+    // Admin MPM
+    public function admin_mpm()
+    {
+        return view('admin/mpm/index');
+    }
+
+    public function admin_add_mpm()
+    {
+        return view('admin/mpm/add');
+    }
+
+    public function admin_edit_mpm()
+    {
+        return view('admin/mpm/edit');
+    }
 }

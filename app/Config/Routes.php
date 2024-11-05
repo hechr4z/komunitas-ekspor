@@ -193,3 +193,8 @@ $routes->get('/admin-edit-cif', 'KomunitasEkspor::admin_edit_cif');
 $routes->get('/admin-satuan', 'KomunitasEkspor::admin_satuan');
 $routes->get('/admin-add-satuan', 'KomunitasEkspor::admin_add_satuan');
 $routes->get('/admin-edit-satuan', 'KomunitasEkspor::admin_edit_satuan');
+
+// Admin - MPM
+$routes->get('/admin-mpm', 'KomunitasEkspor::admin_mpm');
+$routes->get('/admin-add-mpm', 'KomunitasEkspor::admin_add_mpm');
+$routes->get('/admin-edit-mpm', 'KomunitasEkspor::admin_edit_mpm');
