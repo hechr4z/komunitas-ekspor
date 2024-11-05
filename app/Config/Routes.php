@@ -181,7 +181,8 @@ $routes->get('/admin-exwork', 'KomunitasEkspor::admin_exwork');
 $routes->get('/admin-search-exwork', 'KomunitasEkspor::admin_search_exwork');
 $routes->get('/admin-add-exwork', 'KomunitasEkspor::admin_add_exwork');
 $routes->post('/admin-create-exwork', 'KomunitasEkspor::admin_create_exwork');
-$routes->get('/admin-edit-exwork', 'KomunitasEkspor::admin_edit_exwork');
+$routes->get('/admin-edit-exwork/(:num)', 'KomunitasEkspor::admin_edit_exwork/$1');
+$routes->post('/admin-update-exwork/(:num)', 'KomunitasEkspor::admin_update_exwork/$1');
 // FOB
 $routes->get('/admin-fob', 'KomunitasEkspor::admin_fob');
 $routes->get('/admin-add-fob', 'KomunitasEkspor::admin_add_fob');
