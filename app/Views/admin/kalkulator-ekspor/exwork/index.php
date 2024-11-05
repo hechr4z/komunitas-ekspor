@@ -171,13 +171,12 @@
     <div class="container-xl">
         <div class="row g-3 mb-4 align-items-center justify-content-between">
             <div class="col-auto">
-                <h1 class="app-page-title mb-0" style="color: #03AADE;">Exwork</h1>
+                <h1 class="app-page-title mb-0" style="color: #03AADE;">List Exwork</h1>
             </div>
 
             <div class="col-auto">
                 <a href="/admin-add-exwork" class="btn text-white" style="background-color: #03AADE;">
-                    + Tambah Komponen Exwork
-
+                    + Tambah Data Exwork
                 </a>
             </div>
         </div>
@@ -191,32 +190,44 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" valign="middle">No</th>
-                                        <th class="text-center" valign="middle">Nama Member</th>
+                                        <th class="text-center" valign="middle">Username Member</th>
                                         <th class="text-center" valign="middle">Komponen Exwork</th>
                                         <th class="text-center" valign="middle">Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <?php if (empty($exwork)): ?>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="7" class="text-center">Masih belum ada Data Exwork.</td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                        <?php else: ?>
+                            <tbody>
+                                <?php $start = ($page - 1) * $perPage + 1; ?>
+                                <?php foreach ($exwork as $item) : ?>
                                     <tr>
-                                        <td class="text-center" valign="middle">1</td>
-                                        <td class="text-center" valign="middle">Tio Rahmadani</td>
-                                        <td class="text-center" valign="middle">Contoh Komponen Exwork</td>
+                                        <td class="text-center" valign="middle"><?= $start++ ?></td>
+                                        <td class="text-center" valign="middle"><?= $item['username_member'] ?></td>
+                                        <td class="text-center" valign="middle"><?= $item['komponen_exwork'] ?></td>
                                         <td class="text-center align-middle">
                                             <div class="d-flex justify-content-center align-items-center">
-                                                <a href="#" class="btn btn-sm text-white me-2"
-                                                    style="background-color: #F2BF02;">
+                                                <a href="#" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">
                                                     Hapus
                                                 </a>
-                                                <a href="/admin-edit-exwork" class="btn btn-sm text-white"
-                                                    style="background-color: #03AADE;">
+                                                <a href="/admin-edit-exwork" class="btn btn-sm text-white" style="background-color: #03AADE;">
                                                     Ubah
                                                 </a>
                                             </div>
                                         </td>
                                     </tr>
-                                    <!-- Tambahkan baris lainnya sesuai kebutuhan -->
-                                </tbody>
+                                <?php endforeach; ?>
+                            </tbody>
                             </table>
+                            <div class="mt-2">
+                                <?= $pager->links('default', 'bootstrap_pagination') ?>
+                            </div>
+                        <?php endif; ?>
                         </div><!--//table-responsive-->
                     </div><!--//app-card-body-->
                 </div><!--//app-card-->
