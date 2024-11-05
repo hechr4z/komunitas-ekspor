@@ -160,7 +160,10 @@ $routes->get('/admin-belajar-ekspor-delete/(:num)', 'KomunitasEkspor::admin_bela
 // Admin - Kategori Belajar Ekspor
 $routes->get('/admin-kategori-belajar-ekspor', 'KomunitasEkspor::admin_kategori_belajar_ekspor');
 $routes->get('/admin-kategori-belajar-ekspor-tambah', 'KomunitasEkspor::admin_kategori_belajar_ekspor_tambah');
-$routes->get('/admin-kategori-belajar-ekspor-ubah', 'KomunitasEkspor::admin_kategori_belajar_ekspor_ubah');
+$routes->get('/admin-kategori-belajar-ekspor-ubah/(:num)', 'KomunitasEkspor::admin_kategori_belajar_ekspor_ubah/$1');
+$routes->post('/admin-kategori-belajar-ekspor-create', 'KomunitasEkspor::admin_kategori_belajar_ekspor_store/$1');
+$routes->post('/admin-kategori-belajar-ekspor-update/(:num)', 'KomunitasEkspor::admin_kategori_belajar_ekspor_update/$1');
+$routes->get('/admin-kategori-belajar-ekspor-delete/(:num)', 'KomunitasEkspor::admin_kategori_belajar_ekspor_delete/$1');
 
 // Admin - Video Tutorial
 $routes->get('/admin-video-tutorial', 'KomunitasEkspor::admin_video_tutorial');

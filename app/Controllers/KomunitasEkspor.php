@@ -2410,7 +2410,13 @@ class KomunitasEkspor extends BaseController
 
     public function admin_kategori_belajar_ekspor()
     {
-        return view('admin/kategori-belajar/index');
+        $kategori_model = new KategoriBelajarEksporModel();
+
+        $kategori = $kategori_model->findAll();
+
+        $data['kategori_belajar_ekspor'] = $kategori;
+
+        return view('admin/kategori-belajar/index', $data);
     }
 
     public function admin_kategori_belajar_ekspor_tambah()
@@ -2418,9 +2424,60 @@ class KomunitasEkspor extends BaseController
         return view('admin/kategori-belajar/tambah');
     }
 
-    public function admin_kategori_belajar_ekspor_ubah()
+    public function admin_kategori_belajar_ekspor_store()
     {
-        return view('admin/kategori-belajar/edit');
+        $tr = new GoogleTranslate('en');
+
+        $kategori_model = new KategoriBelajarEksporModel();
+
+        $data = [
+            'nama_kategori' => $this->request->getPost('nama_kategori'),
+            'nama_kategori_en' => $tr->translate($this->request->getPost('nama_kategori')),
+            'slug' => $this->request->getPost('slug'),
+            'slug_en' => $tr->translate($this->request->getPost('slug')),
+        ];
+
+        $kategori_model->insert($data);
+
+        return redirect()->to('/admin-kategori-belajar-ekspor');
+    }
+
+    public function admin_kategori_belajar_ekspor_ubah($id)
+    {
+        $kategori_model = new KategoriBelajarEksporModel();
+
+        $kategori = $kategori_model->find($id);
+
+        $data['kategori_belajar_ekspor'] = $kategori;
+
+        return view('admin/kategori-belajar/edit', $data);
+    }
+
+    public function admin_kategori_belajar_ekspor_update($id)
+    {
+        $tr = new GoogleTranslate('en');
+
+        $kategori_model = new KategoriBelajarEksporModel();
+
+        $data = [
+            'nama_kategori' => $this->request->getPost('nama_kategori'),
+            'nama_kategori_en' => $tr->translate($this->request->getPost('nama_kategori')),
+            'slug' => $this->request->getPost('slug'),
+            'slug_en' => $tr->translate($this->request->getPost('slug')),
+        ];
+
+        $kategori_model->update($id, $data);
+
+        return redirect()->to('/admin-kategori-belajar-ekspor');
+    }
+
+    public function admin_kategori_belajar_ekspor_delete($id)
+    {
+        $kategori_model = new KategoriBelajarEksporModel();
+
+        $kategori_model->delete($id);
+
+        return redirect()->to('/admin-kategori-belajar-ekspor');
     }
 
     public function admin_video_tutorial()
