@@ -2309,4 +2309,34 @@ class KomunitasEkspor extends BaseController
     {
         return view('admin/kategori-belajar/edit');
     }
+
+    public function admin_video_tutorial()
+    {
+        return view('admin/video-tutorial/index');
+    }
+
+    public function admin_video_tutorial_tambah()
+    {
+        return view('admin/video-tutorial/tambah');
+    }
+
+    public function admin_video_tutorial_ubah()
+    {
+        return view('admin/video-tutorial/edit');
+    }
+
+    public function admin_kategori_video_tutorial()
+    {
+        return view('admin/Kategori-video/index');
+    }
+
+    public function admin_kategori_video_tutorial_tambah()
+    {
+        return view('admin/Kategori-video/tambah');
+    }
+
+    public function admin_kategori_video_tutorial_ubah()
+    {
+        return view('admin/Kategori-video/edit');
+    }
 }
