@@ -43,14 +43,74 @@
                 </li>
 
                 <li class="nav-item">
-                    <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link <?= (current_url() == base_url('/admin/provinsi/index')) ? 'active' : '' ?>" href="<?= base_url('/admin/provinsi/index') ?>">
+                    <a class="nav-link <?= (current_url() == base_url('admin-belajar-ekspor')) ? 'active' : '' ?>" href="<?= base_url('admin-belajar-ekspor') ?>">
                         <span class="nav-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-seam" viewBox="0 0 16 16">
-                                <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z" />
-                            </svg>
+                            <i class="fa-solid fa-book"></i>
                         </span>
-                        <span class="nav-link-text">Data Provinsi</span>
+                        <span class="nav-link-text">Belajar Ekspor</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <?= (current_url() == base_url('admin-kategori-belajar-ekspor')) ? 'active' : '' ?>" href="<?= base_url('admin-kategori-belajar-ekspor') ?>">
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-list"></i>
+                        </span>
+                        <span class="nav-link-text">Kategori Belajar Ekspor</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <?= (current_url() == base_url('admin-video-tutorial')) ? 'active' : '' ?>" href="<?= base_url('admin-video-tutorial') ?>">
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-video"></i>
+                        </span>
+                        <span class="nav-link-text">Video Tutorial</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <?= (current_url() == base_url('admin-kategori-video-tutorial')) ? 'active' : '' ?>" href="<?= base_url('admin-kategori-video-tutorial') ?>">
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-list"></i>
+                        </span>
+                        <span class="nav-link-text">Kategori Video Tutorial</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <?= (current_url() == base_url('/admin-exwork')) ? 'active' : '' ?>" href="<?= base_url('/admin-exwork') ?>">
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-calculator"></i>
+                        </span>
+                        <span class="nav-link-text">Exwork</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <?= (current_url() == base_url('/admin-fob')) ? 'active' : '' ?>" href="<?= base_url('/admin-fob') ?>">
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-calculator"></i>
+                        </span>
+                        <span class="nav-link-text">FOB</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <?= (current_url() == base_url('/admin-cfr')) ? 'active' : '' ?>" href="<?= base_url('/admin-cfr') ?>">
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-calculator"></i>
+                        </span>
+                        <span class="nav-link-text">CFR</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <?= (current_url() == base_url('/admin-cif')) ? 'active' : '' ?>" href="<?= base_url('/admin-cif') ?>">
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-calculator"></i>
+                        </span>
+                        <span class="nav-link-text">CIF</span>
                     </a>
                 </li>
 
@@ -76,30 +136,6 @@
                             </svg>
                         </span>
                         <span class="nav-link-text">Data Member</span>
-                    </a><!--//nav-link-->
-                </li><!--//nav-item-->
-
-                <li class="nav-item">
-                    <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link <?= (current_url() == base_url('admin/video_pembelajaran/index')) ? 'active' : '' ?>" href="<?= base_url('admin/video_pembelajaran/index') ?>">
-                        <span class="nav-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="fas fa-video bi bi-activity" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M0 1a1 1 0 0 0 1 1v12a1 1 0 0 0 1-1H1a1 1 0 0 0-1-1V2zm3 1h6v2H6V3zm6 3H2v2h12V6zm0-3H2V3h12v2zm-6 3H2v2h12V9zm0-3H2V6h12v2z" />
-                            </svg>
-                        </span>
-                        <span class="nav-link-text">Video Tutorial</span>
-                    </a><!--//nav-link-->
-                </li><!--//nav-item-->
-
-                <li class="nav-item">
-                    <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link <?= (current_url() == base_url('admin/kategori_videos/index')) ? 'active' : '' ?>" href="<?= base_url('admin/kategori_videos/index') ?>">
-                        <span class="nav-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="fas fa-folder bi bi-activity" viewBox="0 0 16 16">
-                                <path d="M.5 3.5a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1H.5a.5.5 0 0 0 0-1zm2-2h3.5a.5.5 0 0 0 0 1H3a.5.5 0 1 0 0-1zm0 7a.5.5 0 0 0 0 1h12a.5.5 0 0 0 0-1H3a.5.5 0 0 0 0 1zm0 7a.5.5 0 0 0 0 1h12a.5.5 0 0 0 0-1H3a.5.5 0 0 0 0 1z" />
-                            </svg>
-                        </span>
-                        <span class="nav-link-text">Kategori Video Tutorial</span>
                     </a><!--//nav-link-->
                 </li><!--//nav-item-->
 
@@ -172,28 +208,6 @@
                             </svg>
                         </span>
                         <span class="nav-link-text">Tentang Kami</span>
-                    </a><!--//nav-link-->
-                </li><!--//nav-item-->
-                <li class="nav-item">
-                    <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link <?= (current_url() == base_url('admin-belajar-ekspor')) ? 'active' : '' ?>" href="<?= base_url('admin-belajar-ekspor') ?>">
-                        <span class="nav-icon">
-                            <svg width="16" height="16" fill="currentColor" class="fas fa-bullhorn bi bi-activity" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z" />
-                            </svg>
-                        </span>
-                        <span class="nav-link-text">Belajar Ekspor</span>
-                    </a><!--//nav-link-->
-                </li><!--//nav-item-->
-
-                <li class="nav-item">
-                    <a class="nav-link <?= (current_url() == base_url('admin-kategori-belajar-ekspor')) ? 'active' : '' ?>" href="<?= base_url('admin-kategori-belajar-ekspor') ?>">
-                        <span class="nav-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-folder-fill" viewBox="0 0 16 16">
-                                <path d="M9.828 1.5A.5.5 0 0 1 10.5 2h3a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .354.146l1.414 1.414a.5.5 0 0 0 .354.146h2.5z" />
-                            </svg>
-                        </span>
-                        <span class="nav-link-text">Kategori Belajar Ekspor</span>
                     </a><!--//nav-link-->
                 </li><!--//nav-item-->
 
