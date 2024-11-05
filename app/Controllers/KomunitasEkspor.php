@@ -2339,4 +2339,84 @@ class KomunitasEkspor extends BaseController
     {
         return view('admin/Kategori-video/edit');
     }
+
+    // Admin Exwork
+    public function admin_exwork()
+    {
+        return view('admin/kalkulator-ekspor/exwork/index');
+    }
+
+    public function admin_add_exwork()
+    {
+        return view('admin/kalkulator-ekspor/exwork/add');
+    }
+
+    public function admin_edit_exwork()
+    {
+        return view('admin/kalkulator-ekspor/exwork/edit');
+    }
+
+    // Admin FOB
+    public function admin_fob()
+    {
+        return view('admin/kalkulator-ekspor/fob/index');
+    }
+
+    public function admin_add_fob()
+    {
+        return view('admin/kalkulator-ekspor/fob/add');
+    }
+
+    public function admin_edit_fob()
+    {
+        return view('admin/kalkulator-ekspor/fob/edit');
+    }
+
+    // Admin CFR
+    public function admin_cfr()
+    {
+        return view('admin/kalkulator-ekspor/cfr/index');
+    }
+
+    public function admin_add_cfr()
+    {
+        return view('admin/kalkulator-ekspor/cfr/add');
+    }
+
+    public function admin_edit_cfr()
+    {
+        return view('admin/kalkulator-ekspor/cfr/edit');
+    }
+
+    // Admin CIF
+    public function admin_cif()
+    {
+        return view('admin/kalkulator-ekspor/cif/index');
+    }
+
+    public function admin_add_cif()
+    {
+        return view('admin/kalkulator-ekspor/cif/add');
+    }
+
+    public function admin_edit_cif()
+    {
+        return view('admin/kalkulator-ekspor/cif/edit');
+    }
+
+    // Admin Satuan
+    public function admin_satuan()
+    {
+        return view('admin/kalkulator-ekspor/satuan/index');
+    }
+
+    public function admin_add_satuan()
+    {
+        return view('admin/kalkulator-ekspor/satuan/add');
+    }
+
+    public function admin_edit_satuan()
+    {
+        return view('admin/kalkulator-ekspor/satuan/edit');
+    }
 }
