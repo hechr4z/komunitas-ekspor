@@ -2106,6 +2106,21 @@ class KomunitasEkspor extends BaseController
         return redirect()->to('/admin-member');
     }
 
+    public function admin_delete_member($id)
+    {
+        $model_member = new Member();
+
+        $member = $model_member->find($id);
+
+        if ($member['foto_profil'] && file_exists(ROOTPATH . 'public/img/' . $member['foto_profil'])) {
+            unlink(ROOTPATH . 'public/img/' . $member['foto_profil']);
+        }
+
+        $model_member->delete($id);
+
+        return redirect()->to('/admin-member');
+    }
+
     public function admin_buyers()
     {
         $model_buyers = new Buyers();
