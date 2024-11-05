@@ -12,7 +12,7 @@ class KategoriBelajarEksporModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama_kategori', 'slug'];
+    protected $allowedFields    = ['id_kategori_belajar_ekspor', 'nama_kategori', 'nama_kategori_en', 'slug', 'slug_en'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
