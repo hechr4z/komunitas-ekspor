@@ -232,7 +232,7 @@
                                         <td class="text-center" valign="middle"><?= $item['komponen_exwork'] ?></td>
                                         <td class="text-center align-middle">
                                             <div class="d-flex justify-content-center align-items-center">
-                                                <a href="<?= base_url('admin-edit-exwork/' . $item['id_exwork']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">
+                                                <a href="<?= base_url('admin-delete-exwork/' . $item['id_exwork']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">
                                                     Hapus
                                                 </a>
                                                 <a href="<?= base_url('admin-edit-exwork/' . $item['id_exwork']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">
