@@ -2567,7 +2567,37 @@ class KomunitasEkspor extends BaseController
 
     public function admin_add_exwork()
     {
-        return view('admin/kalkulator-ekspor/exwork/add');
+        $model_exwork = new Exwork();
+
+        // Mengambil data exwork dengan join ke tabel member untuk mendapatkan username
+        $exwork = $model_exwork
+            ->select('exwork.*, member.username AS username_member')
+            ->join('member', 'member.id_member = exwork.id_member', 'left')
+            ->findAll();
+
+        // Mengambil array hanya dengan `username_member` dan `id_member`
+        $usernames = [];
+        foreach ($exwork as $item) {
+            $usernames[$item['id_member']] = $item['username_member'];
+        }
+
+        $data['usernames'] = $usernames;
+
+        return view('admin/kalkulator-ekspor/exwork/add', $data);
+    }
+
+    public function admin_create_exwork()
+    {
+        $model_exwork = new Exwork();
+
+        $data = [
+            'id_member' => $this->request->getPost('id_member'),
+            'komponen_exwork' => $this->request->getPost('komponen_exwork'),
+        ];
+
+        $model_exwork->insert($data);
+
+        return redirect()->to('/admin-exwork');
     }
 
     public function admin_edit_exwork()
