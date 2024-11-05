@@ -201,6 +201,15 @@
             </div>
         </div>
 
+        <!-- Row for search result message, centered under the search form -->
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <?php if (!empty($keyword)): ?>
+                    <p>Menampilkan hasil pencarian untuk: <strong><?= esc($keyword) ?></strong></p>
+                <?php endif; ?>
+            </div>
+        </div>
+
         <div class="tab-content" id="orders-table-tab-content">
             <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
                 <div class="app-card app-card-orders-table shadow-sm mb-5">
@@ -220,35 +229,45 @@
                                         <th class="text-center align-middle">Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php $no = 1; ?>
-                                    <?php foreach ($belajar_ekspor as $item): ?>
-                                        <tr>
-                                            <td class="text-center align-middle"><?= $no++; ?></td>
-                                            <td class="text-center align-middle"><?= $item['judul_belajar_ekspor']; ?></td>
-                                            <td class="text-center align-middle">
-                                                <img src="<?= base_url('/img/' . $item['foto_belajar_ekspor']) ?>" alt="<?= $item['judul_belajar_ekspor']; ?>" class="img-fluid" style="max-width: 80px;">
-                                            </td>
-                                            <td class="text-center align-middle"><?= $item['nama_kategori']; ?></td>
-                                            <td class="text-center align-middle" style="width: 120px;">
-                                                <div style="max-height: 100px; overflow-y: auto;">
-                                                    <?= $item['deskripsi_belajar_ekspor']; ?>
-                                                </div>
-                                            </td>
-                                            <td class="text-center align-middle"><?= $item['slug']; ?></td>
-                                            <td class="text-center align-middle"><?= $item['meta_title']; ?></td>
-                                            <td class="text-center align-middle"><?= $item['meta_deskripsi']; ?></td>
 
-                                            <td class="text-center align-middle">
-                                                <div class="d-flex justify-content-center align-items-center">
-                                                    <a href="<?= base_url('/admin-belajar-ekspor-delete/' . $item['id_belajar_ekspor']); ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
-                                                    <a href="<?= base_url('/admin-belajar-ekspor-ubah/' . $item['id_belajar_ekspor']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
-                                                </div>
-                                            </td>
+                                <?php if (empty($hasilPencarian)): ?>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="7" class="text-center">Tidak ada buyers yang ditemukan.</td>
                                         </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
+                                    </tbody>
                             </table>
+                        <?php else: ?>
+                            <tbody>
+                                <?php $no = 1; ?>
+                                <?php foreach ($hasilPencarian as $item): ?>
+                                    <tr>
+                                        <td class="text-center align-middle"><?= $no++; ?></td>
+                                        <td class="text-center align-middle"><?= $item['judul_belajar_ekspor']; ?></td>
+                                        <td class="text-center align-middle">
+                                            <img src="<?= base_url('/img/' . $item['foto_belajar_ekspor']) ?>" alt="<?= $item['judul_belajar_ekspor']; ?>" class="img-fluid" style="max-width: 80px;">
+                                        </td>
+                                        <td class="text-center align-middle"><?= $item['nama_kategori']; ?></td>
+                                        <td class="text-center align-middle" style="width: 120px;">
+                                            <div style="max-height: 100px; overflow-y: auto;">
+                                                <?= $item['deskripsi_belajar_ekspor']; ?>
+                                            </div>
+                                        </td>
+                                        <td class="text-center align-middle"><?= $item['slug']; ?></td>
+                                        <td class="text-center align-middle"><?= $item['meta_title']; ?></td>
+                                        <td class="text-center align-middle"><?= $item['meta_deskripsi']; ?></td>
+
+                                        <td class="text-center align-middle">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <a href="<?= base_url('/admin-belajar-ekspor-delete/' . $item['id_belajar_ekspor']); ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
+                                                <a href="<?= base_url('/admin-belajar-ekspor-ubah/' . $item['id_belajar_ekspor']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                            </table>
+                        <?php endif; ?>
                         </div><!--//table-responsive-->
                     </div><!--//app-card-body-->
                 </div><!--//app-card-->
@@ -257,4 +276,4 @@
     </div><!--//app-content-->
 </div><!--//app-wrapper-->
 
-<?= $this->endSection('content'); ?>
+<?= $this->endSection('content') ?>

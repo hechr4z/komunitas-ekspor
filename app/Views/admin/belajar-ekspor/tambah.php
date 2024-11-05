@@ -3,7 +3,7 @@
 
 <div class="app-content pt-3 p-md-3 p-lg-4">
     <div class="container-xl">
-        <h1 class="app-page-title">Tambahkan Materi</h1>
+        <h1 class="app-page-title" style="color: #03AADE;">Tambahkan Materi</h1>
         <hr class="mb-4">
 
         <!-- Menampilkan pesan sukses -->
@@ -29,7 +29,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Judul</label>
-                                <input type="text" class="form-control" name="judul_belajar_ekspor" value="<?= old('judul_artikel') ?>" required>
+                                <input type="text" class="form-control" name="judul_belajar_ekspor" placeholder="Masukkan Judul Video" required>
                             </div>
 
 
@@ -52,25 +52,25 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Deskripsi</label>
-                                <textarea class="form-control tiny" id="deskripsi_artikel" name="deskripsi_belajar_ekspor" row="5"><?= old('deskripsi_artikel') ?></textarea>
+                                <textarea class="form-control tiny" id="deskripsi_artikel" name="deskripsi_belajar_ekspor" row="5" placeholder="Masukkan Deskripsi Video"></textarea>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Slug</label>
-                                <input type="text" class="form-control" name="slug" value="<?= old('slug') ?>" required>
+                                <input type="text" class="form-control" name="slug" placeholder="ex. cara-ekspor-barang" required>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Meta Title</label>
-                                <input type="text" class="form-control" name="meta_title" value="<?= old('meta_title') ?>" required>
+                                <input type="text" class="form-control" name="meta_title" placeholder="Masukkan Meta Title Video" required>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Meta Description</label>
-                                <input type="text" class="form-control" name="meta_deskripsi" value="<?= old('meta_description') ?>" required>
+                                <input type="text" class="form-control" name="meta_deskripsi" placeholder="Masukkan Meta Deskripsi Video" required>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="submit" class="btn text-white" style="background-color: #03AADE;">Simpan</button>
                             <a href="<?= base_url('admin-belajar-ekspor') ?>" class="btn btn-secondary">Kembali</a>
                         </form>
                     </div>

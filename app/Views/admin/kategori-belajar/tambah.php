@@ -3,7 +3,7 @@
 
 <div class="app-content pt-3 p-md-3 p-lg-4">
     <div class="container-xl">
-        <h1 class="app-page-title">Tambah Kategori Belajar Ekspor</h1>
+        <h1 class="app-page-title" style="color: #03AADE;">Tambah Kategori Belajar Ekspor</h1>
         <form action="<?= base_url('admin/kategori/proses_tambah') ?>" method="POST">
             <?= csrf_field(); ?>
             <div class="mb-3">
