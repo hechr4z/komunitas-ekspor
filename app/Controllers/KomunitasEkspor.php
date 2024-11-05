@@ -2532,6 +2532,39 @@ class KomunitasEkspor extends BaseController
         return view('admin/kalkulator-ekspor/exwork/index', $data);
     }
 
+    public function admin_search_exwork()
+    {
+        helper('text');
+
+        // Ambil keyword dari query string
+        $keyword = $this->request->getGet('keyword');
+
+        $model_exwork = new Exwork();
+
+        // Set pagination
+        $perPage = 10; // Jumlah item per halaman
+        $page = $this->request->getVar('page') ?? 1; // Mendapatkan halaman saat ini
+
+        // Query pencarian dengan join ke tabel `member` untuk mendapatkan `username`
+        $hasilPencarian = $model_exwork
+            ->select('exwork.*, member.username AS username_member')
+            ->join('member', 'member.id_member = exwork.id_member', 'left')
+            ->groupStart() // Memulai grup kondisi
+            ->like('exwork.komponen_exwork', $keyword) // Pencarian di `komponen_exwork`
+            ->orLike('member.username', $keyword) // Pencarian di `username` dari `member`
+            ->groupEnd() // Mengakhiri grup kondisi
+            ->paginate($perPage);
+
+        // Jika ada hasil pencarian
+        $data['hasilPencarian'] = $hasilPencarian;
+        $data['keyword'] = $keyword;
+        $data['pager'] = $model_exwork->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/kalkulator-ekspor/exwork/search', $data);
+    }
+
     public function admin_add_exwork()
     {
         return view('admin/kalkulator-ekspor/exwork/add');
