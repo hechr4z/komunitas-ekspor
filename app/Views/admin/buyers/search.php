@@ -223,10 +223,10 @@
                                         <td class="text-center" valign="middle"><?= $item['website_perusahaan'] ?></td>
                                         <td class="text-center" valign="middle"><?= $item['hs_code'] ?></td>
                                         <td class="text-center" valign="middle"><?= $item['negara_perusahaan'] ?></td>
-                                        <td valign="middle">
-                                            <div class="text-center">
-                                                <a href="<?= base_url('admin-delete-buyers/' . $item['id_buyers']) ?>" class="btn text-white" style="background-color: #F2BF02;">Hapus</a>
-                                                <a href="<?= base_url('admin-edit-buyers/' . $item['id_buyers']) ?>" class="btn text-white" style="background-color: #03AADE;">Ubah</a>
+                                        <td class="text-center align-middle">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <a href="<?= base_url('admin-delete-buyers/' . $item['id_buyers']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
+                                                <a href="<?= base_url('admin-edit-buyers/' . $item['id_buyers']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
                                             </div>
                                         </td>
                                     </tr>
