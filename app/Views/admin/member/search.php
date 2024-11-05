@@ -236,7 +236,7 @@
                                 <?php if (empty($hasilPencarian)): ?>
                                     <tbody>
                                         <tr>
-                                            <td colspan="17" class="text-center">Masih belum ada Data Member.</td>
+                                            <td colspan="17" class="text-center">Tidak ada member yang ditemukan.</td>
                                         </tr>
                                     </tbody>
                             </table>
