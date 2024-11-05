@@ -2513,7 +2513,23 @@ class KomunitasEkspor extends BaseController
     // Admin Exwork
     public function admin_exwork()
     {
-        return view('admin/kalkulator-ekspor/exwork/index');
+        $model_exwork = new Exwork();
+
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
+        // Query with join to get `username` from `member` table
+        $exwork = $model_exwork
+            ->select('exwork.*, member.username AS username_member')
+            ->join('member', 'member.id_member = exwork.id_member', 'left')
+            ->paginate($perPage);
+
+        $data['exwork'] = $exwork;
+        $data['pager'] = $model_exwork->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/kalkulator-ekspor/exwork/index', $data);
     }
 
     public function admin_add_exwork()
