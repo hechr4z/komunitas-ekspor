@@ -2619,6 +2619,15 @@ class KomunitasEkspor extends BaseController
         return redirect()->to('/admin-exwork');
     }
 
+    public function admin_delete_exwork($id)
+    {
+        $model_exwork = new Exwork();
+
+        $model_exwork->delete($id);
+
+        return redirect()->to('/admin-exwork');
+    }
+
     // Admin FOB
     public function admin_fob()
     {
