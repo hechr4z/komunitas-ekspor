@@ -98,7 +98,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <button type="submit" class="btn text-white" style="background-color: #03AADE;">Simpan</button>
+                                <button type="submit" class="btn text-white" style="background-color: #03AADE;">Tambah</button>
                                 <a href="<?= base_url('admin-member') ?>" class="btn btn-secondary">Kembali</a>
                             </div>
                         </form>
