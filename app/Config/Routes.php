@@ -169,3 +169,25 @@ $routes->get('/admin-video-tutorial-ubah', 'KomunitasEkspor::admin_video_tutoria
 $routes->get('/admin-kategori-video-tutorial', 'KomunitasEkspor::admin_kategori_video_tutorial');
 $routes->get('/admin-kategori-video-tutorial-tambah', 'KomunitasEkspor::admin_kategori_video_tutorial_tambah');
 $routes->get('/admin-kategori-video-tutorial-ubah', 'KomunitasEkspor::admin_kategori_video_tutorial_ubah');
+
+// Admin - Kalkulator Ekspor
+// EXWORK
+$routes->get('/admin-exwork', 'KomunitasEkspor::admin_exwork');
+$routes->get('/admin-add-exwork', 'KomunitasEkspor::admin_add_exwork');
+$routes->get('/admin-edit-exwork', 'KomunitasEkspor::admin_edit_exwork');
+// FOB
+$routes->get('/admin-fob', 'KomunitasEkspor::admin_fob');
+$routes->get('/admin-add-fob', 'KomunitasEkspor::admin_add_fob');
+$routes->get('/admin-edit-fob', 'KomunitasEkspor::admin_edit_fob');
+// CFR
+$routes->get('/admin-cfr', 'KomunitasEkspor::admin_cfr');
+$routes->get('/admin-add-cfr', 'KomunitasEkspor::admin_add_cfr');
+$routes->get('/admin-edit-cfr', 'KomunitasEkspor::admin_edit_cfr');
+// CIF
+$routes->get('/admin-cif', 'KomunitasEkspor::admin_cif');
+$routes->get('/admin-add-cif', 'KomunitasEkspor::admin_add_cif');
+$routes->get('/admin-edit-cif', 'KomunitasEkspor::admin_edit_cif');
+// Satuan
+$routes->get('/admin-satuan', 'KomunitasEkspor::admin_satuan');
+$routes->get('/admin-add-satuan', 'KomunitasEkspor::admin_add_satuan');
+$routes->get('/admin-edit-satuan', 'KomunitasEkspor::admin_edit_satuan');
