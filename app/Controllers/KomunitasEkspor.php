@@ -2161,12 +2161,42 @@ class KomunitasEkspor extends BaseController
         $model_belajarekspor = new BelajarEksporModel();
         $model_kategori = new KategoriBelajarEksporModel();
 
-        $belakar_ekspor = $model_belajarekspor->getAllWithCategory();
+        $belajar_ekspor = $model_belajarekspor->getAllWithCategory();
 
-        $data['belajar_ekspor'] = $belakar_ekspor;
+        $data['belajar_ekspor'] = $belajar_ekspor;
 
         return view('admin/belajar-ekspor/index', $data);
     }
+
+    public function admin_search_belajar()
+    {
+        helper('text');
+
+        $keyword = $this->request->getGet('keyword');
+        $model_belajarekspor = new BelajarEksporModel();
+
+        // Set pagination
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
+        // Query pencarian dengan join
+        $hasilPencarian = $model_belajarekspor
+            ->select('belajar_ekspor.*, kategori_belajar_ekspor.nama_kategori')
+            ->join('kategori_belajar_ekspor', 'kategori_belajar_ekspor.id_kategori_belajar_ekspor = belajar_ekspor.id_kategori_belajar_ekspor')
+            ->groupStart()
+            ->like('judul_belajar_ekspor', $keyword)
+            ->orLike('kategori_belajar_ekspor.nama_kategori', $keyword)
+            ->orLike('deskripsi_belajar_ekspor', $keyword)
+            ->orLike('belajar_ekspor.slug', $keyword) // Menyebutkan tabel untuk slug
+            ->groupEnd()
+            ->paginate($perPage, 'group1');
+
+        $data['hasilPencarian'] = $hasilPencarian;
+        $data['keyword'] = $keyword;
+
+        return view('admin/belajar-ekspor/search', $data);
+    }
+
 
     public function admin_belajar_ekspor_tambah()
     {

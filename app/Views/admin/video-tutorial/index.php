@@ -1,5 +1,5 @@
 <?= $this->extend('admin/template/template'); ?>
-<?= $this->section('content'); ?>
+<?= $this->Section('content'); ?>
 
 <style>
     /* Styling untuk search tampilan B */
@@ -171,14 +171,14 @@
     <div class="container-xl">
         <div class="row g-3 mb-4 align-items-center justify-content-between">
             <div class="col-auto">
-                <h1 class="app-page-title mb-0" style="color: #03AADE;">Belajar Ekspor</h1>
+                <h1 class="app-page-title mb-0" style="color: #03AADE;">List Video Tutorial</h1>
             </div>
 
             <!-- Tengahkan form search -->
             <div class="col d-flex justify-content-center">
-                <form class="form" action="<?= base_url('admin-belajar-ekspor-search') ?>" method="GET">
+                <form class="form" action="#" method="GET">
                     <label for="search">
-                        <input required="" autocomplete="off" placeholder="cari materi" name="keyword" id="keyword" type="text">
+                        <input required="" autocomplete="off" placeholder="cari video" name="keyword" id="keyword" type="text">
                         <div class="icon">
                             <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="swap-on">
                                 <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linejoin="round" stroke-linecap="round"></path>
@@ -197,7 +197,7 @@
             </div>
 
             <div class="col-auto">
-                <a href="<?= base_url('admin-belajar-ekspor-tambah') ?>" class="btn text-white" style="background-color: #03AADE;"> + Tambah Materi</a>
+                <a href="<?= base_url('admin-video-tutorial-tambah') ?>" class="btn text-white" style="background-color: #03AADE;"> + Tambah Video</a>
             </div>
         </div>
 
@@ -206,49 +206,41 @@
                 <div class="app-card app-card-orders-table shadow-sm mb-5">
                     <div class="app-card-body">
                         <div class="table-responsive">
-                            <table class="table app-table-hover mb-0 text-left">
+                            <table class="table app-table-hover table-bordered mb-0 text-left">
                                 <thead>
                                     <tr>
-                                        <th class="text-center align-middle">No</th>
-                                        <th class="text-center align-middle">Judul</th>
-                                        <th class="text-center align-middle">Foto</th>
-                                        <th class="text-center align-middle">Kategori</th>
-                                        <th class="text-center align-middle" style="width: 150px;">Deskripsi</th>
-                                        <th class="text-center align-middle" style="width: 60px;">Slug</th>
-                                        <th class="text-center align-middle" style="width: 60px;">Meta Title</th>
-                                        <th class="text-center align-middle" style="width: 60px;">Meta Description</th>
-                                        <th class="text-center align-middle">Aksi</th>
+                                        <th class="text-center" valign="middle">No</th>
+                                        <th class="text-center" valign="middle">Judul Video</th>
+                                        <th class="text-center" valign="middle">Kategori Video</th>
+                                        <th class="text-center" valign="middle">Thumbnail</th>
+                                        <th class="text-center" valign="middle">URL Video</th>
+                                        <th class="text-center" valign="middle">Deskripsi Video</th>
+                                        <th class="text-center" valign="middle">Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php $no = 1; ?>
-                                    <?php foreach ($belajar_ekspor as $item): ?>
-                                        <tr>
-                                            <td class="text-center align-middle"><?= $no++; ?></td>
-                                            <td class="text-center align-middle"><?= $item['judul_belajar_ekspor']; ?></td>
-                                            <td class="text-center align-middle">
-                                                <img src="<?= base_url('/img/' . $item['foto_belajar_ekspor']) ?>" alt="<?= $item['judul_belajar_ekspor']; ?>" class="img-fluid" style="max-width: 80px;">
-                                            </td>
-                                            <td class="text-center align-middle"><?= $item['nama_kategori']; ?></td>
-                                            <td class="text-center align-middle" style="width: 120px;">
-                                                <div style="max-height: 100px; overflow-y: auto;">
-                                                    <?= $item['deskripsi_belajar_ekspor']; ?>
-                                                </div>
-                                            </td>
-                                            <td class="text-center align-middle"><?= $item['slug']; ?></td>
-                                            <td class="text-center align-middle"><?= $item['meta_title']; ?></td>
-                                            <td class="text-center align-middle"><?= $item['meta_deskripsi']; ?></td>
 
-                                            <td class="text-center align-middle">
-                                                <div class="d-flex justify-content-center align-items-center">
-                                                    <a href="<?= base_url('/admin-belajar-ekspor-delete/' . $item['id_belajar_ekspor']); ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
-                                                    <a href="<?= base_url('/admin-belajar-ekspor-ubah/' . $item['id_belajar_ekspor']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
+
+
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center" valign="middle">1</td>
+                                        <td class="text-center" valign="middle">Membeli Mangga di Kapal</td>
+                                        <td class="text-center" valign="middle">Vlog</td>
+                                        <td class="text-center" valign="middle">
+                                            <img src="<?= base_url('img/acumalaka.png') ?>" alt="Thumbnail" class="img-thumbnail" style="max-width: 100px;">
+                                        </td>
+                                        <td class="text-center" valign="middle">https://youtube.com/dksmaidq9e8q8yeqgequ</td>
+                                        <td class="text-center" valign="middle">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident debitis modi quia odit non, dolorum aliquid laboriosam sequi unde, veniam officia sit atque explicabo maiores quis eveniet nemo aliquam voluptate.</td>
+                                        <td class="text-center align-middle">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <a href="<?= base_url('#') ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
+                                                <a href="<?= base_url('admin-video-tutorial-ubah') ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
+
                         </div><!--//table-responsive-->
                     </div><!--//app-card-body-->
                 </div><!--//app-card-->
@@ -257,4 +249,4 @@
     </div><!--//app-content-->
 </div><!--//app-wrapper-->
 
-<?= $this->endSection('content'); ?>
+<?= $this->endSection(); ?>
