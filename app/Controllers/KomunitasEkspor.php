@@ -2033,9 +2033,77 @@ class KomunitasEkspor extends BaseController
         return redirect()->to('/admin-member');
     }
 
-    public function admin_edit_member()
+    public function admin_edit_member($id)
     {
-        return view('admin/member/edit');
+        $model_member = new Member();
+
+        $member = $model_member->find($id);
+
+        $data['member'] = $member;
+
+        return view('admin/member/edit', $data);
+    }
+
+    public function admin_update_member($id)
+    {
+        $model_member = new Member();
+        $member = $model_member->find($id);
+        $tr = new GoogleTranslate('en');
+        $password = $this->request->getPost('password');
+        $fotoProfil = $this->request->getFile('foto_profil');
+        $data = []; // Initialize data array
+
+        // Check if the password is null or provided
+        if ($password == null) {
+            if ($fotoProfil->isValid() && !$fotoProfil->hasMoved()) {
+                // Set new file name
+                $namaFile = uniqid() . '.' . $fotoProfil->getClientExtension();
+
+                // Remove old file if exists
+                if ($member['foto_profil'] && file_exists(ROOTPATH . 'public/img/' . $member['foto_profil'])) {
+                    unlink(ROOTPATH . 'public/img/' . $member['foto_profil']);
+                }
+
+                // Move new file and update data array
+                $fotoProfil->move(ROOTPATH . 'public/img/', $namaFile);
+                $data['foto_profil'] = $namaFile;
+            } else {
+                // Keep existing file if new file is invalid
+                $data['foto_profil'] = $member['foto_profil'];
+            }
+        } else {
+            // Update password if provided
+            $data['password'] = password_hash($password, PASSWORD_DEFAULT);
+        }
+
+        // Populate the remaining fields for data array
+        $data = array_merge($data, [
+            'username' => $this->request->getPost('username_referral'),
+            'kode_referral' => $this->request->getPost('username_referral'),
+            'popular_point' => $this->request->getPost('popular_point'),
+            'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
+            'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
+            'deskripsi_perusahaan_en' => $tr->translate($this->request->getPost('deskripsi_perusahaan')),
+            'tipe_bisnis' => $this->request->getPost('tipe_bisnis'),
+            'tipe_bisnis_en' => $tr->translate($this->request->getPost('tipe_bisnis')),
+            'produk_utama' => $this->request->getPost('produk_utama'),
+            'produk_utama_en' => $tr->translate($this->request->getPost('produk_utama')),
+            'tahun_dibentuk' => $this->request->getPost('tahun_dibentuk'),
+            'skala_bisnis' => $this->request->getPost('skala_bisnis'),
+            'skala_bisnis_en' => $tr->translate($this->request->getPost('skala_bisnis')),
+            'email' => $this->request->getPost('email'),
+            'pic' => $this->request->getPost('pic'),
+            'pic_phone' => $this->request->getPost('pic_phone'),
+            'kategori_produk' => $this->request->getPost('kategori_produk'),
+            'kategori_produk_en' => $tr->translate($this->request->getPost('kategori_produk')),
+            'latitude' => $this->request->getPost('latitude'),
+            'longitude' => $this->request->getPost('longitude'),
+        ]);
+
+        // Perform update operation
+        $model_member->update($id, $data);
+
+        return redirect()->to('/admin-member');
     }
 
     public function admin_buyers()
