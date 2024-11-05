@@ -197,6 +197,15 @@
                 <a href="<?= base_url('admin-add-member') ?>" class="btn text-white" style="background-color: #03AADE;"> + Tambah Data Member</a>
             </div>
         </div>
+
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <?php if (!empty($keyword)): ?>
+                    <p>Menampilkan hasil pencarian untuk: <strong><?= esc($keyword) ?></strong></p>
+                <?php endif; ?>
+            </div>
+        </div>
+
         <div class="tab-content" id="orders-table-tab-content">
             <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
                 <div class="app-card app-card-orders-table shadow-sm mb-5">
