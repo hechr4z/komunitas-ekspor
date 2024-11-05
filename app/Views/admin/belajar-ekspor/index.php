@@ -20,57 +20,43 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center align-middle">No</th>
-                                        <th class="text-center align-middle">Judul In</th>
-                                        <th class="text-center align-middle">Judul En</th>
+                                        <th class="text-center align-middle">Judul</th>
                                         <th class="text-center align-middle">Foto</th>
-                                        <th class="text-center align-middle">Kategori In</th>
-                                        <th class="text-center align-middle">Kategori En</th>
-                                        <th class="text-center align-middle" style="width: 150px;">Deskripsi In</th>
-                                        <th class="text-center align-middle" style="width: 150px;">Deskripsi En</th>
-                                        <th class="text-center align-middle" style="width: 60px;">Slug In</th>
-                                        <th class="text-center align-middle" style="width: 60px;">Slug En</th>
-                                        <th class="text-center align-middle" style="width: 60px;">Meta Title In</th>
-                                        <th class="text-center align-middle" style="width: 60px;">Meta Title En</th>
-                                        <th class="text-center align-middle" style="width: 60px;">Meta Description In</th>
-                                        <th class="text-center align-middle" style="width: 60px;">Meta Description En</th>
+                                        <th class="text-center align-middle">Kategori</th>
+                                        <th class="text-center align-middle" style="width: 150px;">Deskripsi</th>
+                                        <th class="text-center align-middle" style="width: 60px;">Slug</th>
+                                        <th class="text-center align-middle" style="width: 60px;">Meta Title</th>
+                                        <th class="text-center align-middle" style="width: 60px;">Meta Description</th>
                                         <th class="text-center align-middle">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-center align-middle">1</td>
-                                        <td class="text-center align-middle">Tio Membeli Bakso</td>
-                                        <td class="text-center align-middle">Tio Buy Bakso</td>
-                                        <td class="text-center align-middle">
-                                            <img src="<?= base_url('img/acumalaka.png') ?>" alt="Foto Artikel" class="img-fluid" style="max-width: 80px;">
-                                        </td>
-                                        <td class="text-center align-middle">Cara Membeli</td>
-                                        <td class="text-center align-middle">Buy Tutorial</td>
-                                        <td class="text-center align-middle" style="width: 120px;">
-                                            <div style="max-height: 100px; overflow-y: auto;">
-                                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos eaque, sunt dolores exercitationem enim dolore tempora, veritatis tenetur ipsum asperiores distinctio repellendus quae cupiditate, hic nostrum cumque quisquam soluta vero.
-                                            </div>
-                                        </td>
-                                        <td class="text-center align-middle" style="width: 120px;">
-                                            <div style="max-height: 100px; overflow-y: auto;">
-                                                adipisicing elit. Dignissimos eaque, sunt dolores exercitationem enim dolore tempora, veritatis tenetur ipsum asperiores distinctio repellendus quae cupiditate, hic nostrum cumque quisquam soluta vero. Lorem ipsum dolor sit amet consectetur,
-                                            </div>
-                                        </td>
-                                        <td class="text-center align-middle">tio-membeli-bakso-091024</td>
-                                        <td class="text-center align-middle">tio-buy-bakso-091024</td>
-                                        <td class="text-center align-middle">Tio Membeli Bakso | KEI</td>
-                                        <td class="text-center align-middle">Tio Buy Bakso | KEI</td>
-                                        <td class="text-center align-middle">Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                                        <td class="text-center align-middle">dolor sit amet consectetur adipisicing elit Lorem ipsum .</td>
+                                    <?php $no = 1; ?>
+                                    <?php foreach ($belajar_ekspor as $item): ?>
+                                        <tr>
+                                            <td class="text-center align-middle"><?= $no++; ?></td>
+                                            <td class="text-center align-middle"><?= $item['judul_belajar_ekspor']; ?></td>
+                                            <td class="text-center align-middle">
+                                                <img src="<?= base_url('/img/' . $item['foto_belajar_ekspor']) ?>" alt="<?= $item['judul_belajar_ekspor']; ?>" class="img-fluid" style="max-width: 80px;">
+                                            </td>
+                                            <td class="text-center align-middle"><?= $item['nama_kategori']; ?></td>
+                                            <td class="text-center align-middle" style="width: 120px;">
+                                                <div style="max-height: 100px; overflow-y: auto;">
+                                                    <?= $item['deskripsi_belajar_ekspor']; ?>
+                                                </div>
+                                            </td>
+                                            <td class="text-center align-middle"><?= $item['slug']; ?></td>
+                                            <td class="text-center align-middle"><?= $item['meta_title']; ?></td>
+                                            <td class="text-center align-middle"><?= $item['meta_deskripsi']; ?></td>
 
-                                        <td class="text-center align-middle">
-                                            <div class="d-grid gap-2">
-
-                                                <a class="btn btn-primary" href="<?= base_url('admin-belajar-ekspor-ubah') ?>">Ubah</a>
-                                                <a class="btn btn-danger" href="#">Hapus</a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            <td class="text-center align-middle">
+                                                <div class="d-grid gap-2">
+                                                    <a class="btn btn-primary" href="<?= base_url('/admin-belajar-ekspor-ubah/' . $item['id_belajar_ekspor']) ?>">Ubah</a>
+                                                    <a class="btn btn-danger" href="<?= base_url('/admin-belajar-ekspor-delete/' . $item['id_belajar_ekspor']); ?>">Hapus</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div><!--//table-responsive-->

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Database\Seeds\KategoriBelajarEkspor;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 use App\Models\BelajarEksporModel;
 use App\Models\KategoriBelajarEksporModel;
@@ -2157,17 +2158,141 @@ class KomunitasEkspor extends BaseController
 
     public function admin_belajar_ekspor()
     {
-        return view('admin/belajar-ekspor/index');
+        $model_belajarekspor = new BelajarEksporModel();
+        $model_kategori = new KategoriBelajarEksporModel();
+
+        $belakar_ekspor = $model_belajarekspor->getAllWithCategory();
+
+        $data['belajar_ekspor'] = $belakar_ekspor;
+
+        return view('admin/belajar-ekspor/index', $data);
     }
 
     public function admin_belajar_ekspor_tambah()
     {
-        return view('admin/belajar-ekspor/tambah');
+        $model_kategori = new KategoriBelajarEksporModel();
+
+        $kategori_ekspor = $model_kategori->findAll();
+
+        $data['nama_kategori'] = $kategori_ekspor;
+
+        return view('admin/belajar-ekspor/tambah', $data);
     }
 
-    public function admin_belajar_ekspor_ubah()
+    public function admin_belajar_ekspor_store()
     {
-        return view('admin/belajar-ekspor/edit');
+        $tr = new GoogleTranslate('en');
+
+        $model_belajarekspor = new BelajarEksporModel();
+
+        $data = [
+            'judul_belajar_ekspor' => $this->request->getPost('judul_belajar_ekspor'),
+            'judul_belajar_ekspor_en' => $tr->translate($this->request->getPost('judul_belajar_ekspor')),
+            'id_kategori_belajar_ekspor' => $this->request->getPost('id_kategori'),
+            'id_kategori_en' => $tr->translate($this->request->getPost('id_kategori')),
+            'deskripsi_belajar_ekspor' => $this->request->getPost('deskripsi_belajar_ekspor'),
+            'deskripsi_belajar_ekspor_en' => $tr->translate($this->request->getPost('deskripsi_belajar_ekspor')),
+            'slug' => $this->request->getPost('slug'),
+            'slug_en' => $tr->translate($this->request->getPost('slug')),
+            'meta_title' => $this->request->getPost('meta_title'),
+            'meta_title_en' => $tr->translate($this->request->getPost('meta_title')),
+            'meta_deskripsi' => $this->request->getPost('meta_deskripsi'),
+            'meta_deskripsi_en' => $tr->translate($this->request->getPost('meta_deskripsi')),
+        ];
+
+        // Mengambil file gambar
+        $file = $this->request->getFile('foto_belajar_ekspor');
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            // Beri nama acak pada file gambar untuk menghindari konflik nama
+            $newName = $file->getRandomName();
+
+            // Pindahkan file ke folder 'img' dengan nama baru
+            $file->move('img/', $newName);
+
+            // Simpan nama file gambar ke dalam array data untuk disimpan ke database
+            $data['foto_belajar_ekspor'] = $newName;
+        }
+
+        $model_belajarekspor->insert($data);
+
+        return redirect()->to('/admin-belajar-ekspor');
+    }
+
+    public function admin_belajar_ekspor_ubah($id)
+    {
+        $model_belajarekspor = new BelajarEksporModel();
+        $model_kategori = new KategoriBelajarEksporModel();
+
+        $belajar_ekspor = $model_belajarekspor->find($id);
+        $kategori_ekspor = $model_kategori->findAll();
+
+        $data['belajar_ekspor'] = $belajar_ekspor;
+        $data['kategori_belajar_ekspor'] = $kategori_ekspor;
+
+        return view('admin/belajar-ekspor/edit', $data);
+    }
+
+    public function admin_belajar_ekspor_update($id)
+    {
+        $tr = new GoogleTranslate('en');
+
+        $model_belajarekspor = new BelajarEksporModel();
+        $model_kategori = new KategoriBelajarEksporModel();
+
+        // Ambil data lama dari database
+        $existingData = $model_belajarekspor->find($id);
+        if (!$existingData) {
+            return redirect()->to('/admin-belajar-ekspor')->with('error', 'Data tidak ditemukan.');
+        }
+
+        // Menyiapkan data yang akan diperbarui
+        $data = [
+            'judul_belajar_ekspor' => $this->request->getPost('judul_belajar_ekspor'),
+            'judul_belajar_ekspor_en' => $tr->translate($this->request->getPost('judul_belajar_ekspor')),
+            'id_kategori_belajar_ekspor' => $this->request->getPost('id_kategori'),
+            'id_kategori_en' => $tr->translate($this->request->getPost('id_kategori')),
+            'deskripsi_belajar_ekspor' => $this->request->getPost('deskripsi_belajar_ekspor'),
+            'deskripsi_belajar_ekspor_en' => $tr->translate($this->request->getPost('deskripsi_belajar_ekspor')),
+            'slug' => $this->request->getPost('slug'),
+            'slug_en' => $tr->translate($this->request->getPost('slug')),
+            'meta_title' => $this->request->getPost('meta_title'),
+            'meta_title_en' => $tr->translate($this->request->getPost('meta_title')),
+            'meta_deskripsi' => $this->request->getPost('meta_deskripsi'),
+            'meta_deskripsi_en' => $tr->translate($this->request->getPost('meta_deskripsi')),
+        ];
+
+        // Menangani upload gambar jika ada file baru
+        $file = $this->request->getFile('foto_belajar_ekspor');
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            // Menghapus gambar lama jika ada dan file baru berhasil diunggah
+            if (file_exists(FCPATH . 'img/' . $existingData['foto_belajar_ekspor'])) {
+                unlink(FCPATH . 'img/' . $existingData['foto_belajar_ekspor']);
+            }
+
+            // Simpan gambar baru dan tambahkan ke data
+            $newName = $file->getRandomName();
+            $file->move('img/', $newName);
+            $data['foto_belajar_ekspor'] = $newName;
+        } else {
+            // Jika tidak ada gambar baru, tetap gunakan gambar lama
+            $data['foto_belajar_ekspor'] = $existingData['foto_belajar_ekspor'];
+        }
+
+        // Update data di database
+        $model_belajarekspor->update($id, $data);
+
+        // Redirect ke halaman dengan pesan sukses
+        return redirect()->to('/admin-belajar-ekspor')->with('message', 'Data berhasil diperbarui.');
+    }
+
+
+    public function admin_belajar_ekspor_delete($id)
+    {
+        $model_belajarekspor = new BelajarEksporModel();
+
+        $model_belajarekspor->delete($id);
+
+        return redirect()->to('/admin-belajar-ekspor');
     }
 
     public function admin_kategori_belajar_ekspor()

@@ -12,11 +12,29 @@ class BelajarEksporModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_kategori_belajar_ekspor', 'judul_belajar_ekspor', 'foto_belajar_ekspor', 'deskripsi_belajar_ekspor', 'tags', 'views', 'created_at', 'slug'];
+    protected $allowedFields = [
+        'id_kategori_belajar_ekspor',
+        'judul_belajar_ekspor',
+        'judul_belajar_ekspor_en',
+        'foto_belajar_ekspor',
+        'deskripsi_belajar_ekspor',
+        'deskripsi_belajar_ekspor_en',
+        'meta_title',
+        'meta_title_en',
+        'meta_deskripsi',
+        'meta_deskripsi_en',
+        'views',
+        'created_at',
+        'updated_at',
+        'slug',
+        'slug_en',
+        'tags'
+    ];
+
 
     public function getAllWithCategory()
     {
-        return $this->select('belajar_ekspor.*, kategori_belajar_ekspor.nama_kategori')
+        return $this->select('belajar_ekspor.*, kategori_belajar_ekspor.nama_kategori, kategori_belajar_ekspor.nama_kategori_en')
             ->join('kategori_belajar_ekspor', 'kategori_belajar_ekspor.id_kategori_belajar_ekspor = belajar_ekspor.id_kategori_belajar_ekspor')
             ->findAll();
     }
@@ -36,7 +54,7 @@ class BelajarEksporModel extends Model
     protected array $castHandlers = [];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

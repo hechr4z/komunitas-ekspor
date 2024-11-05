@@ -3,7 +3,7 @@
 namespace App\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
-use \CodeIgniter\I18n\Time;
+use CodeIgniter\I18n\Time;
 
 class BelajarEkspor extends Seeder
 {
@@ -13,6 +13,7 @@ class BelajarEkspor extends Seeder
             [
                 'id_kategori_belajar_ekspor' => 1,
                 'judul_belajar_ekspor' => 'Panduan Lengkap Ekspor Dari Nol',
+                'judul_belajar_ekspor_en' => 'Complete Guide to Exporting from Scratch',
                 'foto_belajar_ekspor' => 'be1.jpg',
                 'deskripsi_belajar_ekspor' => 'Kenapa Digital Marketing Penting?
 Dalam dunia yang serba cepat dan terkoneksi seperti sekarang, digital marketing bukan lagi pilihan, tapi kebutuhan! Millennials dan Gen Z sekarang lebih suka berbelanja online dan mencari brand yang terhubung secara digital. Nah, inilah kenapa contoh digital marketing yang tepat bisa membantu bisnis kamu berkembang.
@@ -75,64 +76,83 @@ Teman Jago, dari 7 Contoh Digital Marketing yang kita bahas tadi, kamu udah puny
 Tapi, jangan lupa, digital marketing juga punya beberapa kekurangan. Persaingan yang ketat dan perubahan algoritma yang cepat adalah hal yang perlu kamu perhatikan. Pastikan kamu selalu update dan siap beradaptasi agar bisnismu tetap berada di depan.
 
 Pada akhirnya, kunci sukses digital marketing adalah konsistensi dan kemauan untuk terus belajar. Jangan ragu buat mencoba strategi yang berbeda dan melihat mana yang paling cocok untuk bisnis kamu.',
-                'tags' => 'ekspor,internasional',
-                'views' => 1200,
+                'deskripsi_belajar_ekspor_en' => 'Why is Digital Marketing Important? In today’s fast-paced world...',
+                'meta_title' => 'panduan ekspor, digital marketing',
+                'meta_title_en' => 'export guide, digital marketing',
+                'meta_deskripsi' => 'Panduan lengkap tentang ekspor dan pemasaran digital...',
+                'meta_deskripsi_en' => 'A complete guide on exporting and digital marketing...',
                 'created_at' => Time::now(),
-                'slug' => 'panduan-lengkap-ekspor-dari-nol'
+                'updated_at' => Time::now(),
+                'slug' => 'panduan-lengkap-ekspor-dari-nol',
+                'slug_en' => 'complete-guide-exporting-scratch'
             ],
             [
                 'id_kategori_belajar_ekspor' => 1,
                 'judul_belajar_ekspor' => 'Langkah-langkah Membangun Bisnis Ekspor',
+                'judul_belajar_ekspor_en' => 'Steps to Building an Export Business',
                 'foto_belajar_ekspor' => 'be2.jpg',
-                'deskripsi_belajar_ekspor' => 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-                'tags' => 'ekspor,strategi',
-                'views' => 800,
+                'deskripsi_belajar_ekspor' => 'Langkah-langkah penting dalam memulai bisnis ekspor...',
+                'deskripsi_belajar_ekspor_en' => 'Important steps in starting an export business...',
+                'meta_title' => 'langkah bisnis ekspor',
+                'meta_title_en' => 'steps to export business',
+                'meta_deskripsi' => 'Panduan lengkap tentang ekspor dan pemasaran digital...',
+                'meta_deskripsi_en' => 'A complete guide on exporting and digital marketing...',
                 'created_at' => Time::now(),
-                'slug' => 'langkah-langkah-membangun-bisnis-ekspor'
+                'updated_at' => Time::now(),
+                'slug' => 'langkah-membangun-bisnis-ekspor',
+                'slug_en' => 'steps-to-building-export-business'
             ],
             [
                 'id_kategori_belajar_ekspor' => 2,
                 'judul_belajar_ekspor' => 'Cara Mencari Buyers Ekspor',
+                'judul_belajar_ekspor_en' => 'How to Find Export Buyers',
                 'foto_belajar_ekspor' => 'be3.jpg',
-                'deskripsi_belajar_ekspor' => 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-                'tags' => 'ekspor,tips',
-                'views' => 1500,
+                'deskripsi_belajar_ekspor' => 'Cara-cara efektif menemukan calon pembeli luar negeri...',
+                'deskripsi_belajar_ekspor_en' => 'Effective ways to find potential overseas buyers...',
+                'meta_title' => 'mencari buyers, ekspor',
+                'meta_title_en' => 'finding buyers, export',
+                'meta_deskripsi' => 'Panduan lengkap tentang ekspor dan pemasaran digital...',
+                'meta_deskripsi_en' => 'A complete guide on exporting and digital marketing...',
                 'created_at' => Time::now(),
-                'slug' => 'cara-mencari-buyers-ekspor'
+                'updated_at' => Time::now(),
+                'slug' => 'cara-mencari-buyers-ekspor',
+                'slug_en' => 'how-to-find-export-buyers'
             ],
             [
                 'id_kategori_belajar_ekspor' => 2,
                 'judul_belajar_ekspor' => 'Cara Ekspor Barang dan Pengemasannya',
+                'judul_belajar_ekspor_en' => 'How to Export Goods and Packaging',
                 'foto_belajar_ekspor' => 'be4.jpg',
-                'deskripsi_belajar_ekspor' => 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-                'tags' => 'ekspor,peluang',
-                'views' => 1100,
+                'deskripsi_belajar_ekspor' => 'Panduan lengkap tentang pengemasan untuk ekspor...',
+                'deskripsi_belajar_ekspor_en' => 'A comprehensive guide to packaging for export...',
+                'meta_title' => 'ekspor barang, pengemasan',
+                'meta_title_en' => 'export goods, packaging',
+                'meta_deskripsi' => 'Panduan lengkap tentang ekspor dan pemasaran digital...',
+                'meta_deskripsi_en' => 'A complete guide on exporting and digital marketing...',
                 'created_at' => Time::now(),
-                'slug' => 'cara-ekspor-barang-dan-pengemasannya'
+                'updated_at' => Time::now(),
+                'slug' => 'cara-ekspor-barang-pengemasan',
+                'slug_en' => 'how-to-export-goods-packaging'
             ],
             [
                 'id_kategori_belajar_ekspor' => 2,
                 'judul_belajar_ekspor' => 'Cara Hitung Harga Jual Ekspor',
+                'judul_belajar_ekspor_en' => 'How to Calculate Export Selling Price',
                 'foto_belajar_ekspor' => 'be5.jpeg',
-                'deskripsi_belajar_ekspor' => 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-                'tags' => 'ekspor,luar negeri',
-                'views' => 900,
+                'deskripsi_belajar_ekspor' => 'Langkah-langkah praktis dalam menentukan harga jual...',
+                'deskripsi_belajar_ekspor_en' => 'Practical steps in determining export selling prices...',
+                'meta_title' => 'harga jual, ekspor',
+                'meta_title_en' => 'selling price, export',
+                'meta_deskripsi' => 'Panduan lengkap tentang ekspor dan pemasaran digital...',
+                'meta_deskripsi_en' => 'A complete guide on exporting and digital marketing...',
                 'created_at' => Time::now(),
-                'slug' => 'cara-hitung-harga-jual-ekspor'
-            ],
-            [
-                'id_kategori_belajar_ekspor' => 2,
-                'judul_belajar_ekspor' => 'Cara Hitung Harga Ekspor dengan Strategi',
-                'foto_belajar_ekspor' => 'be6.jpg',
-                'deskripsi_belajar_ekspor' => 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-                'tags' => 'ekspor,luar negeri',
-                'views' => 900,
-                'created_at' => Time::now(),
-                'slug' => 'cara-hitung-harga-ekspor-strategi'
-            ],
+                'updated_at' => Time::now(),
+                'slug' => 'cara-hitung-harga-ekspor',
+                'slug_en' => 'how-calculate-export-price'
+            ]
         ];
 
-        // Insert ke database
+        // Insert batch data ke dalam tabel belajar_ekspor
         $this->db->table('belajar_ekspor')->insertBatch($data);
     }
 }
