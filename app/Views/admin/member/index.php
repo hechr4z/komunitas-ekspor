@@ -270,8 +270,8 @@
                                         <td class="text-center align-middle"><?= $item['longitude'] ?></td>
                                         <td class="text-center align-middle">
                                             <div class="d-flex justify-content-center align-items-center">
-                                                <a href="<?= base_url('admin-delete-member') ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
-                                                <a href="<?= base_url('admin-edit-member') ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
+                                                <a href="<?= base_url('admin-delete-member/' . $item['id_member']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
+                                                <a href="<?= base_url('admin-edit-member/' . $item['id_member']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
                                             </div>
                                         </td>
                                     </tr>
