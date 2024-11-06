@@ -2749,17 +2749,119 @@ class KomunitasEkspor extends BaseController
     // Admin CFR
     public function admin_cfr()
     {
-        return view('admin/kalkulator-ekspor/cfr/index');
+        $model_cfr = new CFR();
+
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
+        // Query with join to get `username` from `member` table
+        $cfr = $model_cfr
+            ->select('cfr.*, member.username AS username_member')
+            ->join('member', 'member.id_member = cfr.id_member', 'left')
+            ->paginate($perPage);
+
+        $data['cfr'] = $cfr;
+        $data['pager'] = $model_cfr->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/kalkulator-ekspor/cfr/index', $data);
+    }
+
+    public function admin_search_cfr()
+    {
+        helper('text');
+
+        // Ambil keyword dari query string
+        $keyword = $this->request->getGet('keyword');
+
+        $model_cfr = new CFR();
+
+        // Set pagination
+        $perPage = 10; // Jumlah item per halaman
+        $page = $this->request->getVar('page') ?? 1; // Mendapatkan halaman saat ini
+
+        // Query pencarian dengan join ke tabel `member` untuk mendapatkan `username`
+        $hasilPencarian = $model_cfr
+            ->select('cfr.*, member.username AS username_member')
+            ->join('member', 'member.id_member = cfr.id_member', 'left')
+            ->groupStart() // Memulai grup kondisi
+            ->like('cfr.komponen_cfr', $keyword) // Pencarian di `komponen_cfr`
+            ->orLike('member.username', $keyword) // Pencarian di `username` dari `member`
+            ->groupEnd() // Mengakhiri grup kondisi
+            ->paginate($perPage);
+
+        // Jika ada hasil pencarian
+        $data['hasilPencarian'] = $hasilPencarian;
+        $data['keyword'] = $keyword;
+        $data['pager'] = $model_cfr->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/kalkulator-ekspor/cfr/search', $data);
     }
 
     public function admin_add_cfr()
     {
-        return view('admin/kalkulator-ekspor/cfr/add');
+        $model_member = new Member();
+
+        $member = $model_member->select('id_member, username')->findAll();
+
+        $data['member'] = $member;
+
+        return view('admin/kalkulator-ekspor/cfr/add', $data);
     }
 
-    public function admin_edit_cfr()
+    public function admin_create_cfr()
     {
-        return view('admin/kalkulator-ekspor/cfr/edit');
+        $model_cfr = new CFR();
+
+        $data = [
+            'id_member' => $this->request->getPost('id_member'),
+            'komponen_cfr' => $this->request->getPost('komponen_cfr'),
+        ];
+
+        $model_cfr->insert($data);
+
+        return redirect()->to('/admin-cfr');
+    }
+
+    public function admin_edit_cfr($id)
+    {
+        $model_cfr = new CFR();
+        $model_member = new Member();
+
+        $cfr = $model_cfr->find($id);
+
+        $member = $model_member->select('id_member, username')->findAll();
+
+        $data['cfr'] = $cfr;
+        $data['member'] = $member;
+
+        return view('admin/kalkulator-ekspor/cfr/edit', $data);
+    }
+
+    public function admin_update_cfr($id)
+    {
+        $model_cfr = new CFR();
+
+        $data = [
+            'id_member' => $this->request->getPost('id_member'),
+            'komponen_cfr' => $this->request->getPost('komponen_cfr'),
+        ];
+
+        $model_cfr->update($id, $data);
+
+        return redirect()->to('/admin-cfr');
+    }
+
+    public function admin_delete_cfr($id)
+    {
+        $model_cfr = new CFR();
+
+        $model_cfr->delete($id);
+
+        return redirect()->to('/admin-cfr');
     }
 
     // Admin CIF
