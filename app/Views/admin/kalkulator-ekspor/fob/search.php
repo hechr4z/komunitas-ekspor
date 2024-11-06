@@ -219,7 +219,7 @@
                                     <tr>
                                         <th class="text-center" valign="middle">No</th>
                                         <th class="text-center" valign="middle">Username Member</th>
-                                        <th class="text-center" valign="middle">Komponen Exwork</th>
+                                        <th class="text-center" valign="middle">Komponen FOB</th>
                                         <th class="text-center" valign="middle">Aksi</th>
                                     </tr>
                                 </thead>
