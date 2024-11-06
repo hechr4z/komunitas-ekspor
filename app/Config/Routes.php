@@ -148,6 +148,16 @@ $routes->get('/admin-edit-buyers/(:num)', 'KomunitasEkspor::admin_edit_buyers/$1
 $routes->post('/admin-update-buyers/(:num)', 'KomunitasEkspor::admin_update_buyers/$1');
 $routes->get('/admin-delete-buyers/(:num)', 'KomunitasEkspor::admin_delete_buyers/$1');
 
+// Admin - Produk
+$routes->get('/admin-produk', 'KomunitasEkspor::admin_produk');
+$routes->get('/admin-add-produk', 'KomunitasEkspor::admin_add_produk');
+$routes->get('/admin-edit-produk', 'KomunitasEkspor::admin_edit_produk');
+
+// Admin - Sertifikat
+$routes->get('/admin-sertifikat', 'KomunitasEkspor::admin_sertifikat');
+$routes->get('/admin-add-sertifikat', 'KomunitasEkspor::admin_add_sertifikat');
+$routes->get('/admin-edit-sertifikat', 'KomunitasEkspor::admin_edit_sertifikat');
+
 // Admin - Belajar Ekspor
 $routes->get('/admin-belajar-ekspor', 'KomunitasEkspor::admin_belajar_ekspor');
 $routes->get('/admin-belajar-ekspor-search', 'KomunitasEkspor::admin_search_belajar');
@@ -214,22 +224,12 @@ $routes->get('/admin-mpm', 'KomunitasEkspor::admin_mpm');
 $routes->get('/admin-add-mpm', 'KomunitasEkspor::admin_add_mpm');
 $routes->get('/admin-edit-mpm', 'KomunitasEkspor::admin_edit_mpm');
 
-// Admin - Pengumuman
-$routes->get('/admin-pengumuman', 'KomunitasEkspor::admin_pengumuman');
-$routes->get('/admin-edit', 'KomunitasEkspor::edit_pengumuman');
-$routes->get('/admin-tambah', 'KomunitasEkspor::tambah_pengumuman');
-
-// Admin - Produk
-$routes->get('/admin-produk', 'KomunitasEkspor::admin_produk');
-$routes->get('/admin-add-produk', 'KomunitasEkspor::admin_add_produk');
-$routes->get('/admin-edit-produk', 'KomunitasEkspor::admin_edit_produk');
-
-// Admin - Sertifikat
-$routes->get('/admin-sertifikat', 'KomunitasEkspor::admin_sertifikat');
-$routes->get('/admin-add-sertifikat', 'KomunitasEkspor::admin_add_sertifikat');
-$routes->get('/admin-edit-sertifikat', 'KomunitasEkspor::admin_edit_sertifikat');
-
 // Admin - Website Audit
 $routes->get('/admin-website-audit', 'KomunitasEkspor::admin_website_audit');
 $routes->get('/admin-add-website-audit', 'KomunitasEkspor::admin_add_website_audit');
 $routes->get('/admin-edit-website-audit', 'KomunitasEkspor::admin_edit_website_audit');
+
+// Admin - Pengumuman
+$routes->get('/admin-pengumuman', 'KomunitasEkspor::admin_pengumuman');
+$routes->get('/admin-edit', 'KomunitasEkspor::edit_pengumuman');
+$routes->get('/admin-tambah', 'KomunitasEkspor::tambah_pengumuman');
