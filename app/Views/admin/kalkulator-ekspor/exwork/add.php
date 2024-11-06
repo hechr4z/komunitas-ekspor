@@ -14,8 +14,8 @@
                                 <label class="form-label">Username Member</label>
                                 <select class="form-select" id="id_member" name="id_member" required>
                                     <option value="" selected disabled>Pilih Username Member</option>
-                                    <?php foreach ($members as $member) : ?>
-                                        <option value="<?= $member['id_member'] ?>"><?= $member['username'] ?></option>
+                                    <?php foreach ($member as $item) : ?>
+                                        <option value="<?= $item['id_member'] ?>"><?= $item['username'] ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
