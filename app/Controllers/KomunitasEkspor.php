@@ -2776,4 +2776,17 @@ class KomunitasEkspor extends BaseController
     {
         return view('admin/mpm/edit');
     }
+
+    public function admin_pengumuman()
+    {
+        return view('admin/pengumuman/index');
+    }
+    public function edit_pengumuman()
+    {
+        return view('admin/pengumuman/edit');
+    }
+    public function tambah_pengumuman()
+    {
+        return view('admin/pengumuman/tambah');
+    }
 }

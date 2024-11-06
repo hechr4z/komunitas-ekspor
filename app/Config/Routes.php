@@ -207,3 +207,8 @@ $routes->get('/admin-edit-satuan', 'KomunitasEkspor::admin_edit_satuan');
 $routes->get('/admin-mpm', 'KomunitasEkspor::admin_mpm');
 $routes->get('/admin-add-mpm', 'KomunitasEkspor::admin_add_mpm');
 $routes->get('/admin-edit-mpm', 'KomunitasEkspor::admin_edit_mpm');
+
+    // Admin - Pengumuman
+    $routes->get('/admin-pengumuman', 'KomunitasEkspor::admin_pengumuman');
+    $routes->get('/admin-edit', 'KomunitasEkspor::edit_pengumuman');
+    $routes->get('/admin-tambah', 'KomunitasEkspor::tambah_pengumuman');
