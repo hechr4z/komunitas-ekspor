@@ -188,6 +188,7 @@ $routes->get('/admin-delete-exwork/(:num)', 'KomunitasEkspor::admin_delete_exwor
 $routes->get('/admin-fob', 'KomunitasEkspor::admin_fob');
 $routes->get('/admin-search-fob', 'KomunitasEkspor::admin_search_fob');
 $routes->get('/admin-add-fob', 'KomunitasEkspor::admin_add_fob');
+$routes->post('/admin-create-fob', 'KomunitasEkspor::admin_create_fob');
 $routes->get('/admin-edit-fob', 'KomunitasEkspor::admin_edit_fob');
 // CFR
 $routes->get('/admin-cfr', 'KomunitasEkspor::admin_cfr');
