@@ -2631,7 +2631,23 @@ class KomunitasEkspor extends BaseController
     // Admin FOB
     public function admin_fob()
     {
-        return view('admin/kalkulator-ekspor/fob/index');
+        $model_fob = new FOB();
+
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
+        // Query with join to get `username` from `member` table
+        $fob = $model_fob
+            ->select('fob.*, member.username AS username_member')
+            ->join('member', 'member.id_member = fob.id_member', 'left')
+            ->paginate($perPage);
+
+        $data['fob'] = $fob;
+        $data['pager'] = $model_fob->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/kalkulator-ekspor/fob/index', $data);
     }
 
     public function admin_add_fob()
