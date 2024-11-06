@@ -2650,6 +2650,39 @@ class KomunitasEkspor extends BaseController
         return view('admin/kalkulator-ekspor/fob/index', $data);
     }
 
+    public function admin_search_fob()
+    {
+        helper('text');
+
+        // Ambil keyword dari query string
+        $keyword = $this->request->getGet('keyword');
+
+        $model_fob = new FOB();
+
+        // Set pagination
+        $perPage = 10; // Jumlah item per halaman
+        $page = $this->request->getVar('page') ?? 1; // Mendapatkan halaman saat ini
+
+        // Query pencarian dengan join ke tabel `member` untuk mendapatkan `username`
+        $hasilPencarian = $model_fob
+            ->select('fob.*, member.username AS username_member')
+            ->join('member', 'member.id_member = fob.id_member', 'left')
+            ->groupStart() // Memulai grup kondisi
+            ->like('fob.komponen_fob', $keyword) // Pencarian di `komponen_fob`
+            ->orLike('member.username', $keyword) // Pencarian di `username` dari `member`
+            ->groupEnd() // Mengakhiri grup kondisi
+            ->paginate($perPage);
+
+        // Jika ada hasil pencarian
+        $data['hasilPencarian'] = $hasilPencarian;
+        $data['keyword'] = $keyword;
+        $data['pager'] = $model_fob->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/kalkulator-ekspor/fob/search', $data);
+    }
+
     public function admin_add_fob()
     {
         return view('admin/kalkulator-ekspor/fob/add');
