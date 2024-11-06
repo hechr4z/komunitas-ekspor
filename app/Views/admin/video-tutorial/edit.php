@@ -9,36 +9,46 @@
             <div class="col-12 col-md-8">
                 <div class="app-card app-card-settings shadow-sm p-4">
                     <div class="card-body">
-                        <form action="<?= base_url('#') ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('/admin-video-tutorial-update/' . $video_tutorial['id_video']) ?>" method="post" enctype="multipart/form-data">
+                            <?= csrf_field(); ?>
+
                             <div class="mb-3">
                                 <label class="form-label">Judul Video</label>
-                                <input type="text" class="form-control" name="judul_video" value="#" required>
+                                <input type="text" class="form-control" name="judul_video" value="<?= esc($video_tutorial['judul_video']); ?>" required>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Kategori Video</label>
-                                <select class="form-select" name="id_katvideo" required>
-                                    <option value="#"></option>
-                                    <option value="Tutorial"></option>
-                                    <option value="Z"></option>
+                                <select class="form-select" name="id_kategori" required>
+                                    <option value="" disabled>Pilih Kategori</option>
+                                    <?php foreach ($kategori_video as $item): ?>
+                                        <option value="<?= $item['id_kategori_video']; ?>">
+                                            <?= $item['nama_kategori_video']; ?>
+                                        </option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">URL Video</label>
-                                <input type="url" class="form-control" name="video_url" value="#" required>
+                                <input type="url" class="form-control" name="video_url" value="<?= esc($video_tutorial['video_url']); ?>" required>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Thumbnail</label>
                                 <input type="file" class="form-control" name="thumbnail">
-                                <img src="<?= base_url('img/acumalaka.png') ?>" alt="Thumbnail" class="img-thumbnail mt-2" style="max-width: 100px;">
+                                <img src="<?= base_url('/img/' . $video_tutorial['thumbnail']) ?>" alt="<?= esc($video_tutorial['judul_video']); ?>" class="img-thumbnail mt-2" style="max-width: 100px;">
                                 <input type="hidden" name="old_thumbnail" value="#">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Deskripsi Video</label>
-                                <textarea class="form-control" id="deskripsi_video" name="deskripsi_video">#</textarea>
+                                <textarea class="form-control" id="deskripsi_video" name="deskripsi_video"><?= esc($video_tutorial['deskripsi_video']); ?></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Slug</label>
+                                <input type="text" class="form-control" name="slug" placeholder="ex. cara-ekspor-barang" value="<?= esc($video_tutorial['slug']); ?>" required>
                             </div>
 
                             <div class="mb-3">

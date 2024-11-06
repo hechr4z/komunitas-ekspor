@@ -9,12 +9,17 @@
             <div class="col-12 col-md-8">
                 <div class="app-card app-card-settings shadow-sm p-4">
                     <div class="card-body">
-                        <form action="<?= base_url('#') ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('/admin-kategori-vidio-tutorial-create') ?>" method="post" enctype="multipart/form-data">
+                            <?= csrf_field(); ?>
+
                             <div class="mb-3">
                                 <label class="form-label">Kategori Video</label>
-                                <input type="text" class="form-control" name="judul_video" placeholder="Masukkan Kategori Video" required>
+                                <input type="text" class="form-control" name="kategori_vidio" placeholder="Masukkan Kategori Video" required>
                             </div>
-
+                            <div class="mb-3">
+                                <label class="form-label">Slug</label>
+                                <input type="text" class="form-control" name="slug" placeholder="Masukkan Kategori Video" required>
+                            </div>
                             <div class="mb-3">
                                 <button type="submit" class="btn text-white" style="background-color: #03AADE;">Simpan</button>
                                 <a href="<?= base_url('admin-kategori-video-tutorial') ?>" class="btn btn-secondary">Kembali</a>

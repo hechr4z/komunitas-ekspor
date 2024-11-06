@@ -74,16 +74,19 @@
 
 
                                 <tbody>
-                                    <tr>
-                                        <td class="text-center" valign="middle">1</td>
-                                        <td class="text-center" valign="middle">Vlog</td>
-                                        <td class="text-center align-middle">
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                <a href="<?= base_url('#') ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
-                                                <a href="<?= base_url('admin-kategori-video-tutorial-ubah') ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php $no = 1; ?>
+                                    <?php foreach ($kategori_video as $item): ?>
+                                        <tr>
+                                            <td class="text-center" valign="middle"><?= $no++; ?></td>
+                                            <td class="text-center" valign="middle"><?= $item['nama_kategori_video']; ?></td>
+                                            <td class="text-center align-middle">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <a href="<?= base_url('/admin-kategori-video-tutorial-delete/' . $item['id_kategori_video']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
+                                                    <a href="<?= base_url('/admin-kategori-video-tutorial-ubah/' . $item['id_kategori_video']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
 

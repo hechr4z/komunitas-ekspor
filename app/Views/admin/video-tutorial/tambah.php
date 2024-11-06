@@ -9,7 +9,9 @@
             <div class="col-12 col-md-8">
                 <div class="app-card app-card-settings shadow-sm p-4">
                     <div class="card-body">
-                        <form action="<?= base_url('#') ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('/admin-vidio-tutorial-create') ?>" method="POST" enctype="multipart/form-data">
+                            <?= csrf_field(); ?>
+
                             <div class="mb-3">
                                 <label class="form-label">Judul Video</label>
                                 <input type="text" class="form-control" name="judul_video" placeholder="Masukkan Judul Video" required>
@@ -17,13 +19,14 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Kategori Video</label>
-                                <select class="form-select" id="kategori" name="kategori" required>
-                                    <option value="Pilih Kategori Video" disabled selected>Pilih Kategori Video</option>
-                                    <option value="Vlog">Vlog</option>
-                                    <option value="Gaming">Gaming</option>
+                                <select class="form-select" id="kategori" name="id_kategori" required>
+                                    <option value="" disabled selected>Pilih Kategori Video</option>
+                                    <?php foreach ($nama_kategori_video as $item) : ?>
+                                        <option value="<?= $item['id_kategori_video']; ?>"><?= $item['nama_kategori_video']; ?></option>
+                                    <?php endforeach; ?>
                                 </select>
-                            </div>
 
+                            </div>
 
                             <div class="mb-3">
                                 <label class="form-label">URL Video</label>
@@ -38,6 +41,11 @@
                             <div class="mb-3">
                                 <label class="form-label">Deskripsi Video</label>
                                 <textarea class="form-control tiny" id="deskripsi_video" name="deskripsi_video" row="5" placeholder="Masukkan Deskripsi Video"></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Slug</label>
+                                <input type="text" class="form-control" name="slug" placeholder="ex. cara-ekspor-barang" required>
                             </div>
 
                             <div class="mb-3">
