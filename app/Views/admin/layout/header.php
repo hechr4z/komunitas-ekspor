@@ -18,11 +18,11 @@
                     <div class="app-utilities col-auto">
                         <div class="app-utility-item app-user-dropdown dropdown">
                             <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">
-                                <img src="<?= base_url('/asset-user/images/Favicon_PRIBADI-Indonesia_20012024041928.jpeg') ?>" alt="user profile">
+                                <img src="<?= base_url('img/admin.png') ?>" alt="Gambar Admin">
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-                                <li><a class="dropdown-item" href="/pengumuman?view=member">Tampilan Member</a></li>
-                                <li><a class="dropdown-item" href="/?view=nonmember">Tampilan Non Member</a></li>
+                                <li><a class="dropdown-item" href="<?= base_url('/pengumuman') ?>">Tampilan Member</a></li>
+                                <li><a class="dropdown-item" href="<?= base_url('/') ?>">Tampilan Non Member</a></li>
                                 <li><a class="dropdown-item" href="<?= site_url('logout') ?>">Log Out</a></li>
                             </ul>
                         </div>
