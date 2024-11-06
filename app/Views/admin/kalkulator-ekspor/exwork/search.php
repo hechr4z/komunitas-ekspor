@@ -171,7 +171,7 @@
     <div class="container-xl">
         <div class="row g-3 mb-4 align-items-center justify-content-between">
             <div class="col-auto">
-                <h1 class="app-page-title mb-0" style="color: #03AADE;">List Member</h1>
+                <h1 class="app-page-title mb-0" style="color: #03AADE;">List Exwork</h1>
             </div>
 
             <!-- Tengahkan form search -->
@@ -197,7 +197,7 @@
             </div>
 
             <div class="col-auto">
-                <a href="<?= base_url('admin-add-exwork') ?>" class="btn text-white" style="background-color: #03AADE;"> + Tambah Data Member</a>
+                <a href="<?= base_url('admin-add-exwork') ?>" class="btn text-white" style="background-color: #03AADE;"> + Tambah Data Exwork</a>
             </div>
         </div>
 
