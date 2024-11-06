@@ -9,28 +9,28 @@
             <div class="col-12 col-md-8">
                 <div class="app-card app-card-settings shadow-sm p-4">
                     <div class="card-body">
-                        <form action="#" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('admin-update-fob/' . $fob['id_fob']) ?>" method="post" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label class="form-label">Nama Member</label>
-                                <select class="form-select" id="nama_member" name="nama_member" required>
-                                    <option value="" disabled>Pilih Nama Member</option>
-                                    <option value="1" selected>Member 1</option>
-                                    <option value="2">Member 2</option>
-                                    <option value="3">Member 3</option>
-                                    <!-- Tambahkan opsi lainnya jika diperlukan -->
+                                <label class="form-label">Username Member</label>
+                                <select class="form-select" id="id_member" name="id_member" required>
+                                    <option value="" disabled>Pilih Username Member</option>
+                                    <?php foreach ($member as $item) : ?>
+                                        <option value="<?= $item['id_member'] ?>" <?= ($item['id_member'] == $fob['id_member']) ? 'selected' : '' ?>>
+                                            <?= $item['username'] ?>
+                                        </option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Komponen FOB</label>
-                                <input type="text" class="form-control" name="komponen_fob" value="Komponen FOB 1"
-                                    required>
+                                <input type="text" class="form-control" name="komponen_fob" value="<?= $fob['komponen_fob'] ?>" required>
                             </div>
 
                             <div class="mb-3">
-                                <button type="submit" class="btn text-white"
-                                    style="background-color: #03AADE;">Simpan</button>
-                                <a href="/admin-fob" class="btn btn-secondary">Kembali</a>
+                                <button type="submit" class="btn text-white" style="background-color: #03AADE;">Simpan</button>
+                                <a href="<?= base_url('admin-fob') ?>" class="btn btn-secondary">Kembali</a>
                             </div>
                         </form>
                     </div>
