@@ -2924,4 +2924,49 @@ class KomunitasEkspor extends BaseController
     {
         return view('admin/pengumuman/tambah');
     }
+
+    // Admin Produk
+    public function admin_produk()
+    {
+        return view('admin/produk/index');
+    }
+    public function admin_add_produk()
+    {
+        return view('admin/produk/add');
+    }
+
+    public function admin_edit_produk()
+    {
+        return view('admin/produk/edit');
+    }
+
+    // Admin Sertifikat
+    public function admin_sertifikat()
+    {
+        return view('admin/sertifikat/index');
+    }
+    public function admin_add_sertifikat()
+    {
+        return view('admin/sertifikat/add');
+    }
+
+    public function admin_edit_sertifikat()
+    {
+        return view('admin/sertifikat/edit');
+    }
+
+    // Admin Website Audit
+    public function admin_website_audit()
+    {
+        return view('admin/website-audit/index');
+    }
+    public function admin_add_website_audit()
+    {
+        return view('admin/website-audit/add');
+    }
+
+    public function admin_edit_website_audit()
+    {
+        return view('admin/website-audit/edit');
+    }
 }
