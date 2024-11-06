@@ -191,6 +191,7 @@ $routes->get('/admin-add-fob', 'KomunitasEkspor::admin_add_fob');
 $routes->post('/admin-create-fob', 'KomunitasEkspor::admin_create_fob');
 $routes->get('/admin-edit-fob/(:num)', 'KomunitasEkspor::admin_edit_fob/$1');
 $routes->post('/admin-update-fob/(:num)', 'KomunitasEkspor::admin_update_fob/$1');
+$routes->get('/admin-delete-fob/(:num)', 'KomunitasEkspor::admin_delete_fob/$1');
 // CFR
 $routes->get('/admin-cfr', 'KomunitasEkspor::admin_cfr');
 $routes->get('/admin-add-cfr', 'KomunitasEkspor::admin_add_cfr');
