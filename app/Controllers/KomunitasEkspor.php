@@ -2597,10 +2597,10 @@ class KomunitasEkspor extends BaseController
 
         $exwork = $model_exwork->find($id);
 
-        $members = $model_member->select('id_member, username')->findAll();
+        $member = $model_member->select('id_member, username')->findAll();
 
         $data['exwork'] = $exwork;
-        $data['members'] = $members;
+        $data['member'] = $member;
 
         return view('admin/kalkulator-ekspor/exwork/edit', $data);
     }
@@ -2708,9 +2708,33 @@ class KomunitasEkspor extends BaseController
         return redirect()->to('/admin-fob');
     }
 
-    public function admin_edit_fob()
+    public function admin_edit_fob($id)
     {
-        return view('admin/kalkulator-ekspor/fob/edit');
+        $model_fob = new FOB();
+        $model_member = new Member();
+
+        $fob = $model_fob->find($id);
+
+        $member = $model_member->select('id_member, username')->findAll();
+
+        $data['fob'] = $fob;
+        $data['member'] = $member;
+
+        return view('admin/kalkulator-ekspor/fob/edit', $data);
+    }
+
+    public function admin_update_fob($id)
+    {
+        $model_fob = new FOB();
+
+        $data = [
+            'id_member' => $this->request->getPost('id_member'),
+            'komponen_fob' => $this->request->getPost('komponen_fob'),
+        ];
+
+        $model_fob->update($id, $data);
+
+        return redirect()->to('/admin-fob');
     }
 
     // Admin CFR
