@@ -2737,6 +2737,15 @@ class KomunitasEkspor extends BaseController
         return redirect()->to('/admin-fob');
     }
 
+    public function admin_delete_fob($id)
+    {
+        $model_fob = new FOB();
+
+        $model_fob->delete($id);
+
+        return redirect()->to('/admin-fob');
+    }
+
     // Admin CFR
     public function admin_cfr()
     {
