@@ -2569,9 +2569,9 @@ class KomunitasEkspor extends BaseController
     {
         $model_member = new Member();
 
-        $members = $model_member->select('id_member, username')->findAll();
+        $member = $model_member->select('id_member, username')->findAll();
 
-        $data['members'] = $members;
+        $data['member'] = $member;
 
         return view('admin/kalkulator-ekspor/exwork/add', $data);
     }
@@ -2685,7 +2685,27 @@ class KomunitasEkspor extends BaseController
 
     public function admin_add_fob()
     {
-        return view('admin/kalkulator-ekspor/fob/add');
+        $model_member = new Member();
+
+        $member = $model_member->select('id_member, username')->findAll();
+
+        $data['member'] = $member;
+
+        return view('admin/kalkulator-ekspor/fob/add', $data);
+    }
+
+    public function admin_create_fob()
+    {
+        $model_fob = new FOB();
+
+        $data = [
+            'id_member' => $this->request->getPost('id_member'),
+            'komponen_fob' => $this->request->getPost('komponen_fob'),
+        ];
+
+        $model_fob->insert($data);
+
+        return redirect()->to('/admin-fob');
     }
 
     public function admin_edit_fob()
