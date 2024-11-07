@@ -183,7 +183,7 @@
                         <div class="card-body d-flex flex-column">
                             <div class="mb-3 d-flex justify-content-between align-items-center">
                                 <p class="card-text mb-0" style="font-size: 1rem;"><?= date('d F Y', strtotime($item['created_at'])); ?></p>
-                                <span class="badge">#<?= $item['tags']; ?></span>
+                                <span class="badge">#<?= $item['id_kategori_belajar_ekspor']; ?></span>
                             </div>
                             <h5 class="card-title" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;"><?= $item['judul_belajar_ekspor']; ?></h5>
                             <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;"><?= $item['deskripsi_belajar_ekspor']; ?></p>
