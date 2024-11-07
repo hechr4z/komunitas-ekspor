@@ -165,6 +165,21 @@
         font-size: 0.8rem;
         padding: 4px 8px;
     }
+
+    /* Adding fixed width for certain columns */
+    .col-fixed {
+        width: 300px;
+    }
+
+    .text-truncate-multiline {
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.2;
+        /* Sesuaikan jarak antar-baris */
+    }
 </style>
 
 <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -204,9 +219,9 @@
             </div>
 
             <div class="col-auto">
-                <a href="<?= base_url('admin-add-sertifikat') ?>" class="btn text-white"
-                    style="background-color: #03AADE;">
-                    + Tambah Data Sertifikat</a>
+                <a href="<?= base_url('admin-add-sertifikat') ?>" class="btn text-white" style="background-color: #03AADE;">
+                    + Tambah Data Sertifikat
+                </a>
             </div>
         </div>
 
@@ -219,32 +234,44 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" valign="middle">No</th>
-                                        <th class="text-center" valign="middle">Nama Member</th>
+                                        <th class="text-center" valign="middle">Username Member</th>
                                         <th class="text-center" valign="middle">Sertifikat</th>
                                         <th class="text-center" valign="middle">Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <?php if (empty($sertifikat)): ?>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="4" class="text-center">Masih belum ada Data Sertifikat.</td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                        <?php else: ?>
+                            <tbody>
+                                <?php $start = ($page - 1) * $perPage + 1; ?>
+                                <?php foreach ($sertifikat as $item) : ?>
                                     <tr>
-                                        <td class="text-center" valign="middle">1</td>
-                                        <td class="text-center" valign="middle">Tio Rahmadani</td>
-                                        <td class="text-center" valign="middle">satuduatiga.pdf</td>
+                                        <td class="text-center" valign="middle"><?= $start++ ?></td>
+                                        <td class="text-center" valign="middle"><?= $item['username_member'] ?></td>
+                                        <td class="text-center" valign="middle"><?= $item['sertifikat'] ?></td>
                                         <td class="text-center align-middle">
                                             <div class="d-flex justify-content-center align-items-center">
-                                                <a href="#" class="btn btn-sm text-white me-2"
-                                                    style="background-color: #F2BF02;">
+                                                <a href="<?= base_url('admin-delete-sertifikat/' . $item['id_sertifikat']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">
                                                     Hapus
                                                 </a>
-                                                <a href="/admin-edit-sertifikat" class="btn btn-sm text-white"
-                                                    style="background-color: #03AADE;">
+                                                <a href="<?= base_url('admin-edit-sertifikat/' . $item['id_sertifikat']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">
                                                     Ubah
                                                 </a>
                                             </div>
                                         </td>
                                     </tr>
-                                    <!-- Tambahkan baris lainnya sesuai kebutuhan -->
-                                </tbody>
+                                <?php endforeach; ?>
+                            </tbody>
                             </table>
+                            <div class="mt-2">
+                                <?= $pager->links('default', 'bootstrap_pagination') ?>
+                            </div>
+                        <?php endif; ?>
                         </div><!--//table-responsive-->
                     </div><!--//app-card-body-->
                 </div><!--//app-card-->
