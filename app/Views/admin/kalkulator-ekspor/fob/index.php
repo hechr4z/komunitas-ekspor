@@ -217,7 +217,7 @@
                                     <?php if (empty($fob)): ?>
                                         <tbody>
                                             <tr>
-                                                <td colspan="7" class="text-center">Masih belum ada Data FOB.</td>
+                                                <td colspan="4" class="text-center">Masih belum ada Data FOB.</td>
                                             </tr>
                                         </tbody>
                                 </table>
