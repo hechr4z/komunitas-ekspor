@@ -32,8 +32,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="deskripsi-editor" class="form-label">Deskripsi Produk</label>
-                                <textarea id="deskripsi-editor" name="deskripsi_produk" placeholder="Masukkan Deskripsi Produk"></textarea>
+                                <label for="deskripsi_produk" class="form-label">Deskripsi Produk</label>
+                                <textarea class="form-control" style="height: 200px;" id="deskripsi_produk" name="deskripsi_produk" placeholder="Masukkan Deskripsi Produk"></textarea>
                             </div>
 
                             <div class="mb-3">
@@ -66,22 +66,7 @@
     </div><!--//container-fluid-->
 </div><!--//app-content-->
 
-<!-- CKEditor CDN -->
-<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
-
 <script>
-    let editorInstance;
-
-    // Initialize CKEditor on page load
-    ClassicEditor
-        .create(document.querySelector('#deskripsi-editor'))
-        .then(editor => {
-            editorInstance = editor;
-        })
-        .catch(error => {
-            console.error(error);
-        });
-
     // Preview Image
     function previewImage() {
         const file = document.getElementById('foto_produk').files[0];
