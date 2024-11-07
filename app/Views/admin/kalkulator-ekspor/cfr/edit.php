@@ -11,7 +11,6 @@
                     <div class="card-body">
                         <form action="<?= base_url('admin-update-cfr/' . $cfr['id_cfr']) ?>" method="post" enctype="multipart/form-data">
                             <div class="mb-3">
-                                <label class="form-label">Nama Member</label>
                                 <label class="form-label">Username Member</label>
                                 <select class="form-select" id="id_member" name="id_member" required>
                                     <option value="" disabled>Pilih Username Member</option>
