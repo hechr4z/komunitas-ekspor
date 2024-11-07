@@ -126,6 +126,6 @@ nb-configuration.xml
 /phpunit*.xml
 
 # Files
-/public/img
+/public/img/*
 /public/certificate
 !public/img/admin.png
