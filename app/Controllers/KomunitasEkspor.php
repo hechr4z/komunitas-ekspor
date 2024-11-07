@@ -2239,6 +2239,195 @@ class KomunitasEkspor extends BaseController
         return redirect()->to('/admin-buyers');
     }
 
+    // Admin Produk
+    public function admin_produk()
+    {
+        $model_produk = new Produk();
+
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
+        // Query with join to get `username` from `member` table
+        $produk = $model_produk
+            ->select('produk.*, member.username AS username_member')
+            ->join('member', 'member.id_member = produk.id_member', 'left')
+            ->paginate($perPage);
+
+        $data['produk'] = $produk;
+        $data['pager'] = $model_produk->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/produk/index', $data);
+    }
+
+    public function admin_search_produk()
+    {
+        helper('text');
+
+        // Ambil keyword dari query string
+        $keyword = $this->request->getGet('keyword');
+
+        $model_produk = new Produk();
+
+        // Set pagination
+        $perPage = 10; // Jumlah item per halaman
+        $page = $this->request->getVar('page') ?? 1; // Mendapatkan halaman saat ini
+
+        // Query pencarian dengan join ke tabel `member` untuk mendapatkan `username`
+        $hasilPencarian = $model_produk
+            ->select('produk.*, member.username AS username_member')
+            ->join('member', 'member.id_member = produk.id_member', 'left')
+            ->groupStart() // Memulai grup kondisi
+            ->like('produk.nama_produk', $keyword)
+            ->orLike('produk.deskripsi_produk', $keyword)
+            ->orLike('produk.hs_code', $keyword)
+            ->orLike('produk.minimum_order_qty', $keyword)
+            ->orLike('produk.kapasitas_produksi_bln', $keyword)
+            ->orLike('member.username', $keyword) // Pencarian di `username` dari `member`
+            ->groupEnd() // Mengakhiri grup kondisi
+            ->paginate($perPage);
+
+        // Jika ada hasil pencarian
+        $data['hasilPencarian'] = $hasilPencarian;
+        $data['keyword'] = $keyword;
+        $data['pager'] = $model_produk->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/produk/search', $data);
+    }
+
+    public function admin_add_produk()
+    {
+        $model_member = new Member();
+
+        $member = $model_member->select('id_member, username')->findAll();
+
+        $data['member'] = $member;
+
+        return view('admin/produk/add', $data);
+    }
+
+    public function admin_create_produk()
+    {
+        $model_produk = new Produk();
+
+        $tr = new GoogleTranslate('en');
+
+        $fotoProduk = $this->request->getFile('foto_produk');
+
+        $namaFile = null;
+        if ($fotoProduk && $fotoProduk->isValid() && !$fotoProduk->hasMoved()) {
+            $namaFile = uniqid() . '.' . $fotoProduk->getClientExtension();
+            $fotoProduk->move(ROOTPATH . 'public/img', $namaFile);
+        }
+
+        $data = [
+            'id_member' => $this->request->getPost('id_member'),
+            'foto_produk' => $namaFile,
+            'nama_produk' => $this->request->getPost('nama_produk'),
+            'nama_produk_en' => $tr->translate($this->request->getPost('nama_produk')),
+            'deskripsi_produk' => $this->request->getPost('deskripsi_produk'),
+            'deskripsi_produk_en' => $tr->translate($this->request->getPost('deskripsi_produk')),
+            'hs_code' => $this->request->getPost('hs_code'),
+            'minimum_order_qty' => $this->request->getPost('minimum_order_qty'),
+            'kapasitas_produksi_bln' => $this->request->getPost('kapasitas_produksi_bln'),
+        ];
+
+        $model_produk->insert($data);
+
+        return redirect()->to('/admin-produk');
+    }
+
+    public function admin_edit_produk($id)
+    {
+        $model_produk = new Produk();
+        $model_member = new Member();
+
+        $produk = $model_produk->find($id);
+
+        $member = $model_member->select('id_member, username')->findAll();
+
+        $data['produk'] = $produk;
+        $data['member'] = $member;
+
+        return view('admin/produk/edit', $data);
+    }
+
+    public function admin_update_produk($id)
+    {
+        $model_produk = new Produk();
+
+        $produk = $model_produk->find($id);
+
+        $tr = new GoogleTranslate('en');
+
+        $fotoProduk = $this->request->getFile('foto_produk');
+
+        if ($fotoProduk->isValid() && !$fotoProduk->hasMoved()) {
+            // Set new file name
+            $namaFile = uniqid() . '.' . $fotoProduk->getClientExtension();
+
+            // Remove old file if exists
+            if ($produk['foto_produk'] && file_exists(ROOTPATH . 'public/img/' . $produk['foto_produk'])) {
+                unlink(ROOTPATH . 'public/img/' . $produk['foto_produk']);
+            }
+
+            // Move new file and update data array
+            $fotoProduk->move(ROOTPATH . 'public/img/', $namaFile);
+            $data['foto_produk'] = $namaFile;
+        } else {
+            // Keep existing file if new file is invalid
+            $data['foto_produk'] = $produk['foto_produk'];
+        }
+
+        $data = array_merge($data, [
+            'id_member' => $this->request->getPost('id_member'),
+            'nama_produk' => $this->request->getPost('nama_produk'),
+            'nama_produk_en' => $tr->translate($this->request->getPost('nama_produk')),
+            'deskripsi_produk' => $this->request->getPost('deskripsi_produk'),
+            'deskripsi_produk_en' => $tr->translate($this->request->getPost('deskripsi_produk')),
+            'hs_code' => $this->request->getPost('hs_code'),
+            'minimum_order_qty' => $this->request->getPost('minimum_order_qty'),
+            'kapasitas_produksi_bln' => $this->request->getPost('kapasitas_produksi_bln'),
+        ]);
+
+        $model_produk->update($id, $data);
+
+        return redirect()->to('/admin-produk');
+    }
+
+    public function admin_delete_produk($id)
+    {
+        $model_produk = new Produk();
+
+        $produk = $model_produk->find($id);
+
+        if ($produk['foto_produk'] && file_exists(ROOTPATH . 'public/img/' . $produk['foto_produk'])) {
+            unlink(ROOTPATH . 'public/img/' . $produk['foto_produk']);
+        }
+
+        $model_produk->delete($id);
+
+        return redirect()->to('/admin-produk');
+    }
+
+    // Admin Sertifikat
+    public function admin_sertifikat()
+    {
+        return view('admin/sertifikat/index');
+    }
+    public function admin_add_sertifikat()
+    {
+        return view('admin/sertifikat/add');
+    }
+
+    public function admin_edit_sertifikat()
+    {
+        return view('admin/sertifikat/edit');
+    }
+
     public function admin_belajar_ekspor()
     {
         $model_belajarekspor = new BelajarEksporModel();
@@ -3089,36 +3278,6 @@ class KomunitasEkspor extends BaseController
     public function tambah_pengumuman()
     {
         return view('admin/pengumuman/tambah');
-    }
-
-    // Admin Produk
-    public function admin_produk()
-    {
-        return view('admin/produk/index');
-    }
-    public function admin_add_produk()
-    {
-        return view('admin/produk/add');
-    }
-
-    public function admin_edit_produk()
-    {
-        return view('admin/produk/edit');
-    }
-
-    // Admin Sertifikat
-    public function admin_sertifikat()
-    {
-        return view('admin/sertifikat/index');
-    }
-    public function admin_add_sertifikat()
-    {
-        return view('admin/sertifikat/add');
-    }
-
-    public function admin_edit_sertifikat()
-    {
-        return view('admin/sertifikat/edit');
     }
 
     // Admin Website Audit
