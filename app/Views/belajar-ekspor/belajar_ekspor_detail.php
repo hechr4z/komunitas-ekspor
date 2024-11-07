@@ -197,8 +197,8 @@
                 <!-- Tombol Hilangi Blur -->
                 <div class="badgepanjang p-3">
                     <div class="d-flex justify-content-between align-items-center mt-3 mb-3 flex-md-row flex-column">
-                        <h5 class="kategori font-weight-bold mb-0 text-left text-md-left"><?= lang('Blog.joinMemberTitle')?></h5>
-                        <a href="<?= base_url(($lang == 'en') ? 'en/registration' : 'id/pendaftaran') ?>" class="btn btn-custom mt-md-0"><?= lang('Blog.memberRegistration')?></a>
+                        <h5 class="kategori font-weight-bold mb-0 text-left text-md-left"><?= lang('Blog.joinMemberTitle') ?></h5>
+                        <a href="<?= base_url(($lang == 'en') ? 'en/registration' : 'id/pendaftaran') ?>" class="btn btn-custom mt-md-0"><?= lang('Blog.memberRegistration') ?></a>
                     </div>
                 </div>
             </div>
@@ -206,7 +206,7 @@
 
         <!-- Back Button -->
         <div class="artikel-detail-footer text-center mt-5">
-            <a href="<?= base_url(($lang == 'en') ? 'en/export-learning' : 'id/belajar-ekspor'); ?>" class="btn btn-custom"><?= lang('Blog.backtoArticle')?></a>
+            <a href="<?= base_url(($lang == 'en') ? 'en/export-learning' : 'id/belajar-ekspor'); ?>" class="btn btn-custom"><?= lang('Blog.backtoArticle') ?></a>
         </div>
     </div>
 </section>
@@ -225,7 +225,7 @@
                         <div class="card-body d-flex flex-column">
                             <div class="mb-3 d-flex justify-content-between align-items-center">
                                 <p class="card-text mb-0" style="font-size: 1rem;"><?= date('d F Y', strtotime($item['created_at'])); ?></p>
-                                <span class="badge">#<?= $item['tags']; ?></span>
+                                <span class="badge">#<?= $item['id_kategori_belajar_ekspor']; ?></span>
                             </div>
                             <h5 class="card-title" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
                                 <?= ($lang == 'en') ? $item['judul_belajar_ekspor_en'] : $item['judul_belajar_ekspor']; ?>
