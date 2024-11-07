@@ -2416,16 +2416,154 @@ class KomunitasEkspor extends BaseController
     // Admin Sertifikat
     public function admin_sertifikat()
     {
-        return view('admin/sertifikat/index');
-    }
-    public function admin_add_sertifikat()
-    {
-        return view('admin/sertifikat/add');
+        $model_sertifikat = new Sertifikat();
+
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
+        // Query with join to get `username` from `member` table
+        $sertifikat = $model_sertifikat
+            ->select('sertifikat.*, member.username AS username_member')
+            ->join('member', 'member.id_member = sertifikat.id_member', 'left')
+            ->paginate($perPage);
+
+        $data['sertifikat'] = $sertifikat;
+        $data['pager'] = $model_sertifikat->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/sertifikat/index', $data);
     }
 
-    public function admin_edit_sertifikat()
+    public function admin_search_sertifikat()
     {
-        return view('admin/sertifikat/edit');
+        helper('text');
+
+        // Ambil keyword dari query string
+        $keyword = $this->request->getGet('keyword');
+
+        $model_sertifikat = new Sertifikat();
+
+        // Set pagination
+        $perPage = 10; // Jumlah item per halaman
+        $page = $this->request->getVar('page') ?? 1; // Mendapatkan halaman saat ini
+
+        // Query pencarian dengan join ke tabel `member` untuk mendapatkan `username`
+        $hasilPencarian = $model_sertifikat
+            ->select('sertifikat.*, member.username AS username_member')
+            ->join('member', 'member.id_member = sertifikat.id_member', 'left')
+            ->groupStart() // Memulai grup kondisi
+            ->like('sertifikat.sertifikat', $keyword)
+            ->orLike('member.username', $keyword) // Pencarian di `username` dari `member`
+            ->groupEnd() // Mengakhiri grup kondisi
+            ->paginate($perPage);
+
+        // Jika ada hasil pencarian
+        $data['hasilPencarian'] = $hasilPencarian;
+        $data['keyword'] = $keyword;
+        $data['pager'] = $model_sertifikat->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/sertifikat/search', $data);
+    }
+
+    public function admin_add_sertifikat()
+    {
+        $model_member = new Member();
+
+        $member = $model_member->select('id_member, username')->findAll();
+
+        $data['member'] = $member;
+
+        return view('admin/sertifikat/add', $data);
+    }
+
+    public function admin_create_sertifikat()
+    {
+        $model_sertifikat = new Sertifikat();
+
+        $fileSertifikat = $this->request->getFile('sertifikat');
+
+        $namaFile = null;
+
+        if ($fileSertifikat && $fileSertifikat->isValid() && !$fileSertifikat->hasMoved()) {
+            $namaFile = uniqid() . '.' . $fileSertifikat->getClientExtension();
+            $fileSertifikat->move(ROOTPATH . 'public/certificate', $namaFile);
+        }
+
+        $data = [
+            'id_member' => $this->request->getPost('id_member'),
+            'sertifikat' => $namaFile,
+        ];
+
+        $model_sertifikat->insert($data);
+
+        return redirect()->to('/admin-sertifikat');
+    }
+
+    public function admin_edit_sertifikat($id)
+    {
+        $model_sertifikat = new Sertifikat();
+        $model_member = new Member();
+
+        $sertifikat = $model_sertifikat->find($id);
+
+        $member = $model_member->select('id_member, username')->findAll();
+
+        $data['sertifikat'] = $sertifikat;
+        $data['member'] = $member;
+
+        return view('admin/sertifikat/edit', $data);
+    }
+
+    public function admin_update_sertifikat($id)
+    {
+        $model_sertifikat = new Sertifikat();
+
+        $sertifikat = $model_sertifikat->find($id);
+
+        $fileSertifikat = $this->request->getFile('sertifikat');
+
+        if ($fileSertifikat->isValid() && !$fileSertifikat->hasMoved()) {
+            // Set new file name
+            $namaFile = uniqid() . '.' . $fileSertifikat->getClientExtension();
+
+            // Remove old file if exists
+            if ($sertifikat['sertifikat'] && file_exists(ROOTPATH . 'public/certificate/' . $sertifikat['sertifikat'])) {
+                unlink(ROOTPATH . 'public/certificate/' . $sertifikat['sertifikat']);
+            }
+
+            // Move new file and update data array
+            $fileSertifikat->move(ROOTPATH . 'public/certificate', $namaFile);
+            $data['sertifikat'] = $namaFile;
+        } else {
+            // Keep existing file if new file is invalid
+            $data['sertifikat'] = $sertifikat['sertifikat'];
+        }
+
+        $data = array_merge($data, [
+            'id_member' => $this->request->getPost('id_member'),
+        ]);
+
+        $model_sertifikat->update($id, $data);
+
+        return redirect()->to('/admin-sertifikat');
+    }
+
+    public function admin_delete_sertifikat($id)
+    {
+        $model_sertifikat = new Sertifikat();
+
+        $sertifikat = $model_sertifikat->find($id);
+
+        if ($sertifikat['sertifikat'] && file_exists(ROOTPATH . 'public/certificate/' . $sertifikat['sertifikat'])) {
+            unlink(ROOTPATH . 'public/certificate/' . $sertifikat['sertifikat']);
+        }
+
+        $model_sertifikat->delete($id);
+
+        return redirect()->to('/admin-sertifikat');
     }
 
     public function admin_belajar_ekspor()
