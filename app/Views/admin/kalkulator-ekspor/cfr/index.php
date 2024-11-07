@@ -218,7 +218,7 @@
                                 <?php if (empty($cfr)): ?>
                                     <tbody>
                                         <tr>
-                                            <td colspan="7" class="text-center">Masih belum ada Data CFR.</td>
+                                            <td colspan="4" class="text-center">Masih belum ada Data CFR.</td>
                                         </tr>
                                     </tbody>
                             </table>
