@@ -150,8 +150,12 @@ $routes->get('/admin-delete-buyers/(:num)', 'KomunitasEkspor::admin_delete_buyer
 
 // Admin - Produk
 $routes->get('/admin-produk', 'KomunitasEkspor::admin_produk');
+$routes->get('/admin-search-produk', 'KomunitasEkspor::admin_search_produk');
 $routes->get('/admin-add-produk', 'KomunitasEkspor::admin_add_produk');
-$routes->get('/admin-edit-produk', 'KomunitasEkspor::admin_edit_produk');
+$routes->post('/admin-create-produk', 'KomunitasEkspor::admin_create_produk');
+$routes->get('/admin-edit-produk/(:num)', 'KomunitasEkspor::admin_edit_produk/$1');
+$routes->post('/admin-update-produk/(:num)', 'KomunitasEkspor::admin_update_produk/$1');
+$routes->get('/admin-delete-produk/(:num)', 'KomunitasEkspor::admin_delete_produk/$1');
 
 // Admin - Sertifikat
 $routes->get('/admin-sertifikat', 'KomunitasEkspor::admin_sertifikat');
