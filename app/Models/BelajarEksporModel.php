@@ -28,7 +28,6 @@ class BelajarEksporModel extends Model
         'updated_at',
         'slug',
         'slug_en',
-        'tags'
     ];
 
 
