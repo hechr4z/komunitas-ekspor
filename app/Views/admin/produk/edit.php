@@ -34,8 +34,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="deskripsi-editor" class="form-label">Deskripsi Produk</label>
-                                <textarea id="deskripsi-editor" name="deskripsi_produk" placeholder="Masukkan Deskripsi Produk"><?= $produk['deskripsi_produk'] ?></textarea>
+                                <label for="deskripsi_produk" class="form-label">Deskripsi Produk</label>
+                                <textarea class="form-control" style="height: 200px;" id="deskripsi_produk" name="deskripsi_produk" placeholder="Masukkan Deskripsi Produk"><?= $produk['deskripsi_produk'] ?></textarea>
                             </div>
 
                             <div class="mb-3">
@@ -66,42 +66,7 @@
     </div><!--//container-fluid-->
 </div><!--//app-content-->
 
-<!-- CKEditor CDN -->
-<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
-
 <script>
-    let editorInstance;
-
-    // Initialize CKEditor on page load
-    ClassicEditor
-        .create(document.querySelector('#deskripsi-editor'))
-        .then(editor => {
-            editorInstance = editor;
-        })
-        .catch(error => {
-            console.error(error);
-        });
-
-    // Event listener for modal show
-    const editModal = document.getElementById('editModal');
-    editModal.addEventListener('show.bs.modal', function(event) {
-        const button = event.relatedTarget;
-        const progres = button.getAttribute('data-progres'); // Get progres data from button attribute
-
-        if (editorInstance) {
-            // Remove numbering if it starts with "1. "
-            const contentWithoutNumbering = progres.replace(/^\d+\.\s*/, '');
-            editorInstance.setData(contentWithoutNumbering); // Set data to CKEditor
-        }
-    });
-
-    // Optional: Clear CKEditor content when the modal is closed
-    editModal.addEventListener('hidden.bs.modal', function() {
-        if (editorInstance) {
-            editorInstance.setData(''); // Clear the editor content
-        }
-    });
-
     // Preview Image
     function previewImage() {
         const file = document.getElementById('foto_produk').files[0];
