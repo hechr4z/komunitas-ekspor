@@ -218,7 +218,7 @@
                                 <?php if (empty($exwork)): ?>
                                     <tbody>
                                         <tr>
-                                            <td colspan="7" class="text-center">Masih belum ada Data Exwork.</td>
+                                            <td colspan="4" class="text-center">Masih belum ada Data Exwork.</td>
                                         </tr>
                                     </tbody>
                             </table>
