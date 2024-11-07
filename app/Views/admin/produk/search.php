@@ -165,20 +165,35 @@
         font-size: 0.8rem;
         padding: 4px 8px;
     }
+
+    /* Adding fixed width for certain columns */
+    .col-fixed {
+        width: 300px;
+    }
+
+    .text-truncate-multiline {
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.2;
+        /* Sesuaikan jarak antar-baris */
+    }
 </style>
 
 <div class="app-content pt-3 p-md-3 p-lg-4">
     <div class="container-xl">
         <div class="row g-3 mb-4 align-items-center justify-content-between">
             <div class="col-auto">
-                <h1 class="app-page-title mb-0" style="color: #03AADE;">List Exwork</h1>
+                <h1 class="app-page-title mb-0" style="color: #03AADE;">List Produk</h1>
             </div>
 
             <!-- Tengahkan form search -->
             <div class="col d-flex justify-content-center">
-                <form class="form" action="<?= base_url('admin-search-exwork') ?>" method="GET">
+                <form class="form" action="<?= base_url('admin-search-produk') ?>" method="GET">
                     <label for="search">
-                        <input required="" autocomplete="off" placeholder="cari exwork" name="keyword" id="keyword" type="text">
+                        <input required="" autocomplete="off" placeholder="cari produk" name="keyword" id="keyword" type="text">
                         <div class="icon">
                             <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="swap-on">
                                 <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linejoin="round" stroke-linecap="round"></path>
@@ -197,7 +212,15 @@
             </div>
 
             <div class="col-auto">
-                <a href="<?= base_url('admin-add-exwork') ?>" class="btn text-white" style="background-color: #03AADE;"> + Tambah Data Exwork</a>
+                <a href="<?= base_url('admin-add-produk') ?>" class="btn text-white" style="background-color: #03AADE;"> + Tambah Data Produk</a>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <?php if (!empty($keyword)): ?>
+                    <p>Menampilkan hasil pencarian untuk: <strong><?= esc($keyword) ?></strong></p>
+                <?php endif; ?>
             </div>
         </div>
 
@@ -210,32 +233,48 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" valign="middle">No</th>
-                                        <th class="text-center" valign="middle">Username Member</th>
-                                        <th class="text-center" valign="middle">Komponen Exwork</th>
+                                        <th class="text-center" valign="middle">Nama Member</th>
+                                        <th class="text-center" valign="middle">Foto Produk</th>
+                                        <th class="text-center" valign="middle">Nama Produk</th>
+                                        <th class="text-center valign-middle col-fixed">Deskripsi Produk</th>
+                                        <th class="text-center" valign="middle">HS Code</th>
+                                        <th class="text-center" valign="middle">Minimum Order</th>
+                                        <th class="text-center" valign="middle">Kapasitas Produksi Per Bulan</th>
                                         <th class="text-center" valign="middle">Aksi</th>
                                     </tr>
                                 </thead>
-                                <?php if (empty($exwork)): ?>
+                                <?php if (empty($hasilPencarian)): ?>
                                     <tbody>
                                         <tr>
-                                            <td colspan="4" class="text-center">Masih belum ada Data Exwork.</td>
+                                            <td colspan="9" class="text-center">Tidak ada Produk yang ditemukan.</td>
                                         </tr>
                                     </tbody>
                             </table>
                         <?php else: ?>
                             <tbody>
                                 <?php $start = ($page - 1) * $perPage + 1; ?>
-                                <?php foreach ($exwork as $item) : ?>
+                                <?php foreach ($hasilPencarian as $item) : ?>
                                     <tr>
                                         <td class="text-center" valign="middle"><?= $start++ ?></td>
                                         <td class="text-center" valign="middle"><?= $item['username_member'] ?></td>
-                                        <td class="text-center" valign="middle"><?= $item['komponen_exwork'] ?></td>
+                                        <td class="align-middle">
+                                            <img src="<?= base_url('img/' . $item['foto_produk']) ?>" class="img-thumbnail">
+                                        </td>
+                                        <td class="text-center" valign="middle"><?= $item['nama_produk'] ?></td>
+                                        <td class="text-center align-middle col-fixed">
+                                            <div class="text-truncate-multiline" data-bs-toggle="tooltip" title="<?= $item['deskripsi_produk'] ?>">
+                                                <?= $item['deskripsi_produk'] ?>
+                                            </div>
+                                        </td>
+                                        <td class="text-center" valign="middle"><?= $item['hs_code'] ?></td>
+                                        <td class="text-center" valign="middle"><?= $item['minimum_order_qty'] ?></td>
+                                        <td class="text-center" valign="middle"><?= $item['kapasitas_produksi_bln'] ?></td>
                                         <td class="text-center align-middle">
                                             <div class="d-flex justify-content-center align-items-center">
-                                                <a href="<?= base_url('admin-delete-exwork/' . $item['id_exwork']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">
+                                                <a href="<?= base_url('admin-delete-produk/' . $item['id_produk']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">
                                                     Hapus
                                                 </a>
-                                                <a href="<?= base_url('admin-edit-exwork/' . $item['id_exwork']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">
+                                                <a href="<?= base_url('admin-edit-produk/' . $item['id_produk']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">
                                                     Ubah
                                                 </a>
                                             </div>

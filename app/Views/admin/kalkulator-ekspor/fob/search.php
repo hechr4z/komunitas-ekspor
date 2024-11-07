@@ -226,7 +226,7 @@
                                 <?php if (empty($hasilPencarian)): ?>
                                     <tbody>
                                         <tr>
-                                            <td colspan="7" class="text-center">Tidak ada FOB yang ditemukan.</td>
+                                            <td colspan="4" class="text-center">Tidak ada FOB yang ditemukan.</td>
                                         </tr>
                                     </tbody>
                             </table>
