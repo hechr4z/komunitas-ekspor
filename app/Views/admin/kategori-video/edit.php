@@ -9,12 +9,17 @@
             <div class="col-12 col-md-8">
                 <div class="app-card app-card-settings shadow-sm p-4">
                     <div class="card-body">
-                        <form action="<?= base_url('#') ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('/admin-kategori-video-tutorial-update/' . $kategori_video['id_kategori_video']) ?>" method="post" enctype="multipart/form-data">
+                            <?= csrf_field(); ?>
+
                             <div class="mb-3">
                                 <label class="form-label">Kategori Video</label>
-                                <input type="text" class="form-control" name="judul_video" value="#" required>
+                                <input type="text" class="form-control" name="kategori_video" value="<?= esc($kategori_video['nama_kategori_video']); ?>" required>
                             </div>
-
+                            <div class="mb-3">
+                                <label class="form-label">Kategori Video</label>
+                                <input type="text" class="form-control" name="slug" value="<?= esc($kategori_video['slug']); ?>" required>
+                            </div>
                             <div class="mb-3">
                                 <button type="submit" class="btn text-white" style="background-color: #03AADE;">Simpan</button>
                                 <a href="<?= base_url('admin-kategori-video-tutorial') ?>" class="btn btn-secondary">Kembali</a>

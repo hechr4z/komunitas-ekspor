@@ -218,26 +218,26 @@
                                         <th class="text-center" valign="middle">Aksi</th>
                                     </tr>
                                 </thead>
-
-
-
                                 <tbody>
-                                    <tr>
-                                        <td class="text-center" valign="middle">1</td>
-                                        <td class="text-center" valign="middle">Membeli Mangga di Kapal</td>
-                                        <td class="text-center" valign="middle">Vlog</td>
-                                        <td class="text-center" valign="middle">
-                                            <img src="<?= base_url('img/acumalaka.png') ?>" alt="Thumbnail" class="img-thumbnail" style="max-width: 100px;">
-                                        </td>
-                                        <td class="text-center" valign="middle">https://youtube.com/dksmaidq9e8q8yeqgequ</td>
-                                        <td class="text-center" valign="middle">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident debitis modi quia odit non, dolorum aliquid laboriosam sequi unde, veniam officia sit atque explicabo maiores quis eveniet nemo aliquam voluptate.</td>
-                                        <td class="text-center align-middle">
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                <a href="<?= base_url('#') ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
-                                                <a href="<?= base_url('admin-video-tutorial-ubah') ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php $no = 1; ?>
+                                    <?php foreach ($video_tutorial as $item): ?>
+                                        <tr>
+                                            <td class="text-center" valign="middle"><?= $no++; ?></td>
+                                            <td class="text-center" valign="middle"><?= $item['judul_video']; ?></td>
+                                            <td class="text-center" valign="middle"><?= $item['nama_kategori_video']; ?></td>
+                                            <td class="text-center" valign="middle">
+                                                <img src="<?= base_url('/img/' . $item['thumbnail']) ?>" alt="Thumbnail" class="img-thumbnail" style="max-width: 100px;">
+                                            </td>
+                                            <td class="text-center" valign="middle"><?= $item['video_url']; ?></td>
+                                            <td class="text-center" valign="middle"><?= $item['deskripsi_video']; ?></td>
+                                            <td class="text-center align-middle">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <a href="<?= base_url('/admin-video-tutorial-delete/' . $item['id_video']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
+                                                    <a href="<?= base_url('/admin-video-tutorial-ubah/' . $item['id_video']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
 

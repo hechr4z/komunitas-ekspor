@@ -2482,22 +2482,137 @@ class KomunitasEkspor extends BaseController
 
     public function admin_video_tutorial()
     {
-        return view('admin/video-tutorial/index');
+        $model_video = new VidioTutorialModel();
+
+        $video = $model_video->getAllVideos();
+
+        $data['video_tutorial'] = $video;
+
+        return view('admin/video-tutorial/index', $data);
     }
 
     public function admin_video_tutorial_tambah()
     {
-        return view('admin/video-tutorial/tambah');
+        $model_kategori = new KategoriVidioModel();
+
+        $kategori = $model_kategori->findAll();
+
+        $data['nama_kategori_video'] = $kategori;
+
+        return view('admin/video-tutorial/tambah', $data);
     }
 
-    public function admin_video_tutorial_ubah()
+    public function admin_video_tutorial_store()
     {
-        return view('admin/video-tutorial/edit');
+        $tr = new GoogleTranslate('en');
+
+        $model_video = new VidioTutorialModel();
+
+        $data = [
+            'judul_video' => $this->request->getPost('judul_video'),
+            'judul_video_en' => $tr->translate($this->request->getPost('judul_video')),
+            'id_kategori_video' => $this->request->getPost('id_kategori'), // Menggunakan nilai asli, bukan hasil terjemahan
+            'video_url' => $this->request->getPost('video_url'),
+            'deskripsi_video' => $this->request->getPost('deskripsi_video'),
+            'deskripsi_video_en' => $tr->translate($this->request->getPost('deskripsi_video')),
+            'slug' => $this->request->getPost('slug'),
+            'slug_en' => $tr->translate($this->request->getPost('slug')),
+        ];
+
+        // Mengambil file gambar
+        $file = $this->request->getFile('thumbnail');
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            // Beri nama acak pada file gambar untuk menghindari konflik nama
+            $newName = $file->getRandomName();
+
+            // Pindahkan file ke folder 'img' dengan nama baru
+            $file->move('img/', $newName);
+
+            // Simpan nama file gambar ke dalam array data untuk disimpan ke database
+            $data['thumbnail'] = $newName;
+        }
+
+        $model_video->insert($data);
+
+        return redirect()->to('/admin-video-tutorial');
+    }
+
+    public function admin_video_tutorial_ubah($id)
+    {
+        $model_video = new VidioTutorialModel();
+        $model_kategori = new KategoriVidioModel();
+
+        $video = $model_video->find($id);
+        $kategori = $model_kategori->findAll();
+
+        $data['video_tutorial'] = $video;
+        $data['kategori_video'] = $kategori;
+
+        return view('admin/video-tutorial/edit', $data);
+    }
+
+    public function admin_video_tutorial_update($id)
+    {
+        $tr = new GoogleTranslate('en');
+
+        $model_video = new VidioTutorialModel();
+
+        $existingData = $model_video->find($id);
+        if (!$existingData) {
+            return redirect()->to('/admin-belajar-ekspor')->with('error', 'Data tidak ditemukan.');
+        }
+
+        $data = [
+            'judul_video' => $this->request->getPost('judul_video'),
+            'judul_video_en' => $tr->translate($this->request->getPost('judul_video')),
+            'id_kategori_video' => $this->request->getPost('id_kategori'), // Menggunakan nilai asli, bukan hasil terjemahan
+            'video_url' => $this->request->getPost('video_url'),
+            'deskripsi_video' => $this->request->getPost('deskripsi_video'),
+            'deskripsi_video_en' => $tr->translate($this->request->getPost('deskripsi_video')),
+            'slug' => $this->request->getPost('slug'),
+            'slug_en' => $tr->translate($this->request->getPost('slug')),
+        ];
+
+        // Menangani upload gambar jika ada file baru
+        $file = $this->request->getFile('thumbnail');
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            // Menghapus gambar lama jika ada dan file baru berhasil diunggah
+            if (file_exists(FCPATH . 'img/' . $existingData['thumbnail'])) {
+                unlink(FCPATH . 'img/' . $existingData['thumbnail']);
+            }
+
+            // Simpan gambar baru dan tambahkan ke data
+            $newName = $file->getRandomName();
+            $file->move('img/', $newName);
+            $data['thumbnail'] = $newName;
+        } else {
+            // Jika tidak ada gambar baru, tetap gunakan gambar lama
+            $data['thumbnail'] = $existingData['thumbnail'];
+        }
+
+        $model_video->update($id, $data);
+
+        return redirect()->to('/admin-video-tutorial');
+    }
+
+    public function admin_video_tutorial_delete($id)
+    {
+        $model_video = new VidioTutorialModel();
+
+        $model_video->delete($id);
+
+        return redirect()->to('/admin-video-tutorial');
     }
 
     public function admin_kategori_video_tutorial()
     {
-        return view('admin/Kategori-video/index');
+        $model_video = new KategoriVidioModel();
+
+        $video = $model_video->findAll();
+
+        $data['kategori_video'] = $video;
+
+        return view('admin/Kategori-video/index', $data);
     }
 
     public function admin_kategori_video_tutorial_tambah()
@@ -2505,9 +2620,60 @@ class KomunitasEkspor extends BaseController
         return view('admin/Kategori-video/tambah');
     }
 
-    public function admin_kategori_video_tutorial_ubah()
+    public function admin_kategori_vidio_tutorial_store()
     {
-        return view('admin/Kategori-video/edit');
+        $tr = new GoogleTranslate('en');
+
+        $kategori_video = new KategoriVidioModel();
+
+        $data = [
+            'nama_kategori_video' => $this->request->getPost('kategori_vidio'),
+            'nama_kategori_video_en' => $tr->translate($this->request->getPost('kategori_vidio')),
+            'slug' => $this->request->getPost('slug'),
+            'slug_en' => $tr->translate($this->request->getPost('slug')),
+        ];
+
+        $kategori_video->insert($data);
+
+        return redirect()->to('/admin-kategori-video-tutorial');
+    }
+
+    public function admin_kategori_video_tutorial_ubah($id)
+    {
+        $model_video = new KategoriVidioModel();
+
+        $video = $model_video->find($id);
+
+        $data['kategori_video'] = $video;
+
+        return view('admin/Kategori-video/edit', $data);
+    }
+
+    public function admin_kategori_video_tutorial_update($id)
+    {
+        $tr = new GoogleTranslate('en');
+
+        $kategori_video = new KategoriVidioModel();
+
+        $data = [
+            'nama_kategori_video' => $this->request->getPost('kategori_video'),
+            'kategori_kategori_video_en' => $tr->translate($this->request->getPost('kategori_video')),
+            'slug' => $this->request->getPost('slug'),
+            'slug_en' => $tr->translate($this->request->getPost('slug')),
+        ];
+
+        $kategori_video->update($id, $data);
+
+        return redirect()->to('/admin-kategori-video-tutorial');
+    }
+
+    public function admin_kategori_video_tutorial_delete($id)
+    {
+        $kategori_video_model = new KategoriVidioModel();
+
+        $kategori_video_model->delete($id);
+
+        return redirect()->to('/admin-kategori-video-tutorial');
     }
 
     // Admin Exwork

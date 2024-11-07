@@ -12,7 +12,17 @@ class VidioTutorialModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['judul_video', 'video_url', 'thumbnail', 'deskripsi_video', 'id_kategori_video', 'slug', 'slug_en'];
+    protected $allowedFields    = [
+        'id_kategori_video',
+        'judul_video',
+        'judul_video_en',
+        'video_url',
+        'thumbnail',
+        'deskripsi_video',
+        'deskripsi_video_en',
+        'slug',
+        'slug_en'
+    ];
 
     // Method untuk mengambil semua video tutorial dan join dengan kategori video
     public function getAllVideos()
@@ -60,6 +70,7 @@ class VidioTutorialModel extends Model
             ->limit($limit) // Membatasi jumlah data yang diambil
             ->findAll();
     }
+
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

@@ -178,12 +178,18 @@ $routes->get('/admin-kategori-belajar-ekspor-delete/(:num)', 'KomunitasEkspor::a
 // Admin - Video Tutorial
 $routes->get('/admin-video-tutorial', 'KomunitasEkspor::admin_video_tutorial');
 $routes->get('/admin-video-tutorial-tambah', 'KomunitasEkspor::admin_video_tutorial_tambah');
-$routes->get('/admin-video-tutorial-ubah', 'KomunitasEkspor::admin_video_tutorial_ubah');
+$routes->post('/admin-vidio-tutorial-create', 'KomunitasEkspor::admin_video_tutorial_store/$1');
+$routes->get('/admin-video-tutorial-ubah/(:num)', 'KomunitasEkspor::admin_video_tutorial_ubah/$1');
+$routes->post('/admin-video-tutorial-update/(:num)', 'KomunitasEkspor::admin_video_tutorial_update/$1');
+$routes->get('/admin-video-tutorial-delete/(:num)', 'KomunitasEkspor::admin_video_tutorial_delete/$1');
 
 // Admin - Kategori Video Tutorial
 $routes->get('/admin-kategori-video-tutorial', 'KomunitasEkspor::admin_kategori_video_tutorial');
 $routes->get('/admin-kategori-video-tutorial-tambah', 'KomunitasEkspor::admin_kategori_video_tutorial_tambah');
-$routes->get('/admin-kategori-video-tutorial-ubah', 'KomunitasEkspor::admin_kategori_video_tutorial_ubah');
+$routes->post('/admin-kategori-vidio-tutorial-create', 'KomunitasEkspor::admin_kategori_vidio_tutorial_store/$1');
+$routes->get('/admin-kategori-video-tutorial-ubah/(:num)', 'KomunitasEkspor::admin_kategori_video_tutorial_ubah/$1');
+$routes->post('/admin-kategori-video-tutorial-update/(:num)', 'KomunitasEkspor::admin_kategori_video_tutorial_update/$1');
+$routes->get('/admin-kategori-video-tutorial-delete/(:num)', 'KomunitasEkspor::admin_kategori_video_tutorial_delete/$1');
 
 // Admin - Kalkulator Ekspor
 // EXWORK
