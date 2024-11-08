@@ -159,7 +159,12 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link <?= (current_url() == base_url('admin-cif')) ? 'active' : '' ?>" href="<?= base_url('admin-cif') ?>">
+                    <a class="nav-link <?= 
+                        (current_url() == base_url('admin-cif')) ? 'active' : 
+                        ((current_url() == base_url('admin-search-cif')) ? 'active' : 
+                        ((current_url() == base_url('admin-add-cif')) ? 'active' : 
+                        ((strpos(current_url(), base_url('admin-edit-cif')) === 0) ? 'active' : '')))
+                    ?>" href="<?= base_url('admin-cif') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-calculator"></i>
                         </span>
