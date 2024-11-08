@@ -3405,19 +3405,6 @@ class KomunitasEkspor extends BaseController
         return view('admin/mpm/edit');
     }
 
-    public function admin_pengumuman()
-    {
-        return view('admin/pengumuman/index');
-    }
-    public function edit_pengumuman()
-    {
-        return view('admin/pengumuman/edit');
-    }
-    public function tambah_pengumuman()
-    {
-        return view('admin/pengumuman/tambah');
-    }
-
     // Admin Website Audit
     public function admin_website_audit()
     {
@@ -3433,33 +3420,48 @@ class KomunitasEkspor extends BaseController
         return view('admin/website-audit/edit');
     }
 
-    public function manfaat_dashboard()
+    public function admin_pengumuman()
     {
-        return view('admin/dashboard/manfaat');
+        return view('admin/pengumuman/index');
     }
 
-    public function manfaat_edit_dashboard()
+    public function admin_add_pengumuman()
     {
-        return view('admin/dashboard/manfaat_edit');
+        return view('admin/pengumuman/add');
     }
 
-    public function slider_dashboard()
+    public function admin_edit_pengumuman()
     {
-        return view('admin/dashboard/slider');
+        return view('admin/pengumuman/edit');
     }
 
-    public function slider_edit_dashboard()
+    public function admin_manfaat_join()
     {
-        return view('admin/dashboard/slider_edit');
+        return view('admin/manfaat-join/index');
     }
 
-    public function profile_dashboard()
+    public function admin_edit_manfaat_join()
     {
-        return view('admin/dashboard/profile');
+        return view('admin/manfaat-join/edit');
     }
 
-    public function profile_edit_dashboard()
+    public function admin_slider()
     {
-        return view('admin/dashboard/profile_edit');
+        return view('admin/slider/index');
+    }
+
+    public function admin_edit_slider()
+    {
+        return view('admin/slider/edit');
+    }
+
+    public function admin_web_profile()
+    {
+        return view('admin/web-profile/index');
+    }
+
+    public function admin_edit_web_profile()
+    {
+        return view('admin/web-profile/edit');
     }
 }
