@@ -247,3 +247,15 @@ $routes->get('/admin-edit-website-audit', 'KomunitasEkspor::admin_edit_website_a
 $routes->get('/admin-pengumuman', 'KomunitasEkspor::admin_pengumuman');
 $routes->get('/admin-edit', 'KomunitasEkspor::edit_pengumuman');
 $routes->get('/admin-tambah', 'KomunitasEkspor::tambah_pengumuman');
+
+// Admin - Dashboard Manfaat
+$routes->get('/admin-manfaat', 'KomunitasEkspor::manfaat_dashboard');
+$routes->get('/admin-manfaat-edit', 'KomunitasEkspor::manfaat_edit_dashboard');
+
+// Admin - Dashboard Slider
+$routes->get('/admin-slider', 'KomunitasEkspor::slider_dashboard');
+$routes->get('/admin-slider-edit', 'KomunitasEkspor::slider_edit_dashboard');
+
+// Admin - Dashboard Web Profile
+$routes->get('/admin-profile', 'KomunitasEkspor::profile_dashboard');
+$routes->get('/admin-profile-edit', 'KomunitasEkspor::profile_edit_dashboard');

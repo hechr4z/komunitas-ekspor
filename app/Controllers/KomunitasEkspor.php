@@ -3432,4 +3432,34 @@ class KomunitasEkspor extends BaseController
     {
         return view('admin/website-audit/edit');
     }
+
+    public function manfaat_dashboard()
+    {
+        return view('admin/dashboard/manfaat');
+    }
+
+    public function manfaat_edit_dashboard()
+    {
+        return view('admin/dashboard/manfaat_edit');
+    }
+
+    public function slider_dashboard()
+    {
+        return view('admin/dashboard/slider');
+    }
+
+    public function slider_edit_dashboard()
+    {
+        return view('admin/dashboard/slider_edit');
+    }
+
+    public function profile_dashboard()
+    {
+        return view('admin/dashboard/profile');
+    }
+
+    public function profile_edit_dashboard()
+    {
+        return view('admin/dashboard/profile_edit');
+    }
 }
