@@ -226,8 +226,12 @@ $routes->post('/admin-update-cfr/(:num)', 'KomunitasEkspor::admin_update_cfr/$1'
 $routes->get('/admin-delete-cfr/(:num)', 'KomunitasEkspor::admin_delete_cfr/$1');
 // CIF
 $routes->get('/admin-cif', 'KomunitasEkspor::admin_cif');
+$routes->get('/admin-search-cif', 'KomunitasEkspor::admin_search_cif');
 $routes->get('/admin-add-cif', 'KomunitasEkspor::admin_add_cif');
-$routes->get('/admin-edit-cif', 'KomunitasEkspor::admin_edit_cif');
+$routes->post('/admin-create-cif', 'KomunitasEkspor::admin_create_cif');
+$routes->get('/admin-edit-cif/(:num)', 'KomunitasEkspor::admin_edit_cif/$1');
+$routes->post('/admin-update-cif/(:num)', 'KomunitasEkspor::admin_update_cif/$1');
+$routes->get('/admin-delete-cif/(:num)', 'KomunitasEkspor::admin_delete_cif/$1');
 // Satuan
 $routes->get('/admin-satuan', 'KomunitasEkspor::admin_satuan');
 $routes->get('/admin-add-satuan', 'KomunitasEkspor::admin_add_satuan');
