@@ -234,8 +234,9 @@ $routes->post('/admin-update-cif/(:num)', 'KomunitasEkspor::admin_update_cif/$1'
 $routes->get('/admin-delete-cif/(:num)', 'KomunitasEkspor::admin_delete_cif/$1');
 // Satuan
 $routes->get('/admin-satuan', 'KomunitasEkspor::admin_satuan');
-$routes->get('/admin-add-satuan', 'KomunitasEkspor::admin_add_satuan');
-$routes->get('/admin-edit-satuan', 'KomunitasEkspor::admin_edit_satuan');
+$routes->get('/admin-search-satuan', 'KomunitasEkspor::admin_search_satuan');
+$routes->get('/admin-edit-satuan/(:num)', 'KomunitasEkspor::admin_edit_satuan/$1');
+$routes->post('/admin-update-satuan/(:num)', 'KomunitasEkspor::admin_update_satuan/$1');
 
 // Admin - MPM
 $routes->get('/admin-mpm', 'KomunitasEkspor::admin_mpm');
