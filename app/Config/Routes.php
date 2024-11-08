@@ -264,3 +264,6 @@ $routes->get('/admin-edit-slider', 'KomunitasEkspor::admin_edit_slider');
 // Admin - Web Profile
 $routes->get('/admin-web-profile', 'KomunitasEkspor::admin_web_profile');
 $routes->get('/admin-edit-web-profile', 'KomunitasEkspor::admin_edit_web_profile');
+
+// Member - Invesment
+$routes->get('/member-invesment', 'KomunitasEkspor::member_invesment');

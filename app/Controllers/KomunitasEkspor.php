@@ -3667,4 +3667,16 @@ class KomunitasEkspor extends BaseController
     {
         return view('admin/web-profile/edit');
     }
+
+    // Invesment
+    public function member_invesment()
+    {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
+        return view('member/invesment/invesment', $data);
+    }
 }
