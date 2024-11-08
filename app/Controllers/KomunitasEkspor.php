@@ -3360,17 +3360,119 @@ class KomunitasEkspor extends BaseController
     // Admin CIF
     public function admin_cif()
     {
-        return view('admin/kalkulator-ekspor/cif/index');
+        $model_cif = new CIF();
+
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
+        // Query with join to get `username` from `member` table
+        $cif = $model_cif
+            ->select('cif.*, member.username AS username_member')
+            ->join('member', 'member.id_member = cif.id_member', 'left')
+            ->paginate($perPage);
+
+        $data['cif'] = $cif;
+        $data['pager'] = $model_cif->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/kalkulator-ekspor/cif/index', $data);
+    }
+
+    public function admin_search_cif()
+    {
+        helper('text');
+
+        // Ambil keyword dari query string
+        $keyword = $this->request->getGet('keyword');
+
+        $model_cif = new CIF();
+
+        // Set pagination
+        $perPage = 10; // Jumlah item per halaman
+        $page = $this->request->getVar('page') ?? 1; // Mendapatkan halaman saat ini
+
+        // Query pencarian dengan join ke tabel `member` untuk mendapatkan `username`
+        $hasilPencarian = $model_cif
+            ->select('cif.*, member.username AS username_member')
+            ->join('member', 'member.id_member = cif.id_member', 'left')
+            ->groupStart() // Memulai grup kondisi
+            ->like('cif.komponen_cif', $keyword) // Pencarian di `komponen_cif`
+            ->orLike('member.username', $keyword) // Pencarian di `username` dari `member`
+            ->groupEnd() // Mengakhiri grup kondisi
+            ->paginate($perPage);
+
+        // Jika ada hasil pencarian
+        $data['hasilPencarian'] = $hasilPencarian;
+        $data['keyword'] = $keyword;
+        $data['pager'] = $model_cif->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/kalkulator-ekspor/cif/search', $data);
     }
 
     public function admin_add_cif()
     {
-        return view('admin/kalkulator-ekspor/cif/add');
+        $model_member = new Member();
+
+        $member = $model_member->select('id_member, username')->findAll();
+
+        $data['member'] = $member;
+
+        return view('admin/kalkulator-ekspor/cif/add', $data);
     }
 
-    public function admin_edit_cif()
+    public function admin_create_cif()
     {
-        return view('admin/kalkulator-ekspor/cif/edit');
+        $model_cif = new CIF();
+
+        $data = [
+            'id_member' => $this->request->getPost('id_member'),
+            'komponen_cif' => $this->request->getPost('komponen_cif'),
+        ];
+
+        $model_cif->insert($data);
+
+        return redirect()->to('/admin-cif');
+    }
+
+    public function admin_edit_cif($id)
+    {
+        $model_cif = new CIF();
+        $model_member = new Member();
+
+        $cif = $model_cif->find($id);
+
+        $member = $model_member->select('id_member, username')->findAll();
+
+        $data['cif'] = $cif;
+        $data['member'] = $member;
+
+        return view('admin/kalkulator-ekspor/cif/edit', $data);
+    }
+
+    public function admin_update_cif($id)
+    {
+        $model_cif = new CIF();
+
+        $data = [
+            'id_member' => $this->request->getPost('id_member'),
+            'komponen_cif' => $this->request->getPost('komponen_cif'),
+        ];
+
+        $model_cif->update($id, $data);
+
+        return redirect()->to('/admin-cif');
+    }
+
+    public function admin_delete_cif($id)
+    {
+        $model_cif = new CIF();
+
+        $model_cif->delete($id);
+
+        return redirect()->to('/admin-cif');
     }
 
     // Admin Satuan
