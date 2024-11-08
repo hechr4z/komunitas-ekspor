@@ -5,7 +5,7 @@
     <div class="container-xl">
         <h1 class="app-page-title">Daftar Pengumuman</h1>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
-            <a href="<?= base_url('admin-tambah') ?>" class="btn btn-primary">+ Tambah Pengumuman</a>
+            <a href="<?= base_url('admin-add-pengumuman') ?>" class="btn btn-primary">+ Tambah Pengumuman</a>
         </div>
         <table class="table app-table-hover mb-0 text-left">
             <thead>
@@ -28,7 +28,7 @@
                     <td class="text-center">Deskripsi singkat pengumuman</td>
                     <td class="text-center">pengumuman-baru</td>
                     <td class="text-center">
-                        <a href="<?= base_url('admin-edit') ?>" class="btn btn-primary">Ubah</a>
+                        <a href="<?= base_url('admin-edit-pengumuman') ?>" class="btn btn-primary">Ubah</a>
                         <a href="#" class="btn btn-danger">Hapus</a>
                     </td>
                 </tr>
