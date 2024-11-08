@@ -245,17 +245,17 @@ $routes->get('/admin-edit-website-audit', 'KomunitasEkspor::admin_edit_website_a
 
 // Admin - Pengumuman
 $routes->get('/admin-pengumuman', 'KomunitasEkspor::admin_pengumuman');
-$routes->get('/admin-edit', 'KomunitasEkspor::edit_pengumuman');
-$routes->get('/admin-tambah', 'KomunitasEkspor::tambah_pengumuman');
+$routes->get('/admin-add-pengumuman', 'KomunitasEkspor::admin_add_pengumuman');
+$routes->get('/admin-edit-pengumuman', 'KomunitasEkspor::admin_edit_pengumuman');
 
-// Admin - Dashboard Manfaat
-$routes->get('/admin-manfaat', 'KomunitasEkspor::manfaat_dashboard');
-$routes->get('/admin-manfaat-edit', 'KomunitasEkspor::manfaat_edit_dashboard');
+// Admin - Manfaat Join
+$routes->get('/admin-manfaat-join', 'KomunitasEkspor::admin_manfaat_join');
+$routes->get('/admin-edit-manfaat-join', 'KomunitasEkspor::admin_edit_manfaat_join');
 
-// Admin - Dashboard Slider
-$routes->get('/admin-slider', 'KomunitasEkspor::slider_dashboard');
-$routes->get('/admin-slider-edit', 'KomunitasEkspor::slider_edit_dashboard');
+// Admin - Slider
+$routes->get('/admin-slider', 'KomunitasEkspor::admin_slider');
+$routes->get('/admin-edit-slider', 'KomunitasEkspor::admin_edit_slider');
 
-// Admin - Dashboard Web Profile
-$routes->get('/admin-profile', 'KomunitasEkspor::profile_dashboard');
-$routes->get('/admin-profile-edit', 'KomunitasEkspor::profile_edit_dashboard');
+// Admin - Web Profile
+$routes->get('/admin-web-profile', 'KomunitasEkspor::admin_web_profile');
+$routes->get('/admin-edit-web-profile', 'KomunitasEkspor::admin_edit_web_profile');
