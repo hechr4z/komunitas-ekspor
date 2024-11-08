@@ -173,7 +173,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link <?= (current_url() == base_url('admin-satuan')) ? 'active' : '' ?>" href="<?= base_url('admin-satuan') ?>">
+                    <a class="nav-link <?= 
+                        (current_url() == base_url('admin-satuan')) ? 'active' : 
+                        ((current_url() == base_url('admin-search-satuan')) ? 'active' :
+                        ((strpos(current_url(), base_url('admin-edit-satuan')) === 0) ? 'active' : ''))
+                    ?>" href="<?= base_url('admin-satuan') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-calculator"></i>
                         </span>
