@@ -1986,6 +1986,7 @@ class KomunitasEkspor extends BaseController
     public function admin_create_member()
     {
         $model_member = new Member();
+        $model_satuan = new Satuan();
 
         $tr = new GoogleTranslate('en');
 
@@ -2029,6 +2030,14 @@ class KomunitasEkspor extends BaseController
         ];
 
         $model_member->insert($data);
+        $id_member = $model_member->insertID();
+
+        $data1 = [
+            'id_member' => $id_member,
+            'satuan' => 'pcs',
+        ];
+
+        $model_satuan->insert($data1);
 
         return redirect()->to('/admin-member');
     }
@@ -3478,17 +3487,109 @@ class KomunitasEkspor extends BaseController
     // Admin Satuan
     public function admin_satuan()
     {
-        return view('admin/kalkulator-ekspor/satuan/index');
+        $model_satuan = new Satuan();
+
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
+        // Query with join to get `username` from `member` table
+        $satuan = $model_satuan
+            ->select('satuan.*, member.username AS username_member')
+            ->join('member', 'member.id_member = satuan.id_member', 'left')
+            ->paginate($perPage);
+
+        $data['satuan'] = $satuan;
+        $data['pager'] = $model_satuan->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/kalkulator-ekspor/satuan/index', $data);
+    }
+
+    public function admin_search_satuan()
+    {
+        helper('text');
+
+        // Ambil keyword dari query string
+        $keyword = $this->request->getGet('keyword');
+
+        $model_satuan = new Satuan();
+
+        // Set pagination
+        $perPage = 10; // Jumlah item per halaman
+        $page = $this->request->getVar('page') ?? 1; // Mendapatkan halaman saat ini
+
+        // Query pencarian dengan join ke tabel `member` untuk mendapatkan `username`
+        $hasilPencarian = $model_satuan
+            ->select('satuan.*, member.username AS username_member')
+            ->join('member', 'member.id_member = satuan.id_member', 'left')
+            ->groupStart() // Memulai grup kondisi
+            ->like('satuan.satuan', $keyword) // Pencarian di `satuan`
+            ->orLike('member.username', $keyword) // Pencarian di `username` dari `member`
+            ->groupEnd() // Mengakhiri grup kondisi
+            ->paginate($perPage);
+
+        // Jika ada hasil pencarian
+        $data['hasilPencarian'] = $hasilPencarian;
+        $data['keyword'] = $keyword;
+        $data['pager'] = $model_satuan->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/kalkulator-ekspor/satuan/search', $data);
     }
 
     public function admin_add_satuan()
     {
-        return view('admin/kalkulator-ekspor/satuan/add');
+        $model_member = new Member();
+
+        $member = $model_member->select('id_member, username')->findAll();
+
+        $data['member'] = $member;
+
+        return view('admin/kalkulator-ekspor/satuan/add', $data);
     }
 
-    public function admin_edit_satuan()
+    public function admin_create_satuan()
     {
-        return view('admin/kalkulator-ekspor/satuan/edit');
+        $model_satuan = new Satuan();
+
+        $data = [
+            'id_member' => $this->request->getPost('id_member'),
+            'satuan' => $this->request->getPost('satuan'),
+        ];
+
+        $model_satuan->insert($data);
+
+        return redirect()->to('/admin-satuan');
+    }
+
+    public function admin_edit_satuan($id)
+    {
+        $model_satuan = new Satuan();
+        $model_member = new Member();
+
+        $satuan = $model_satuan->find($id);
+
+        $member = $model_member->select('id_member, username')->findAll();
+
+        $data['satuan'] = $satuan;
+        $data['member'] = $member;
+
+        return view('admin/kalkulator-ekspor/satuan/edit', $data);
+    }
+
+    public function admin_update_satuan($id)
+    {
+        $model_satuan = new Satuan();
+
+        $data = [
+            'satuan' => $this->request->getPost('satuan'),
+        ];
+
+        $model_satuan->update($id, $data);
+
+        return redirect()->to('/admin-satuan');
     }
 
     // Admin MPM
