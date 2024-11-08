@@ -27,7 +27,7 @@
 
                             <div class="mb-3">
                                 <button type="submit" class="btn text-white" style="background-color: #03AADE;">Tambah</button>
-                                <a href="<?= base_url('admin-fob') ?>" class="btn btn-secondary">Kembali</a>
+                                <a href="<?= base_url('admin-cfr') ?>" class="btn btn-secondary">Kembali</a>
                             </div>
                         </form>
                     </div>
