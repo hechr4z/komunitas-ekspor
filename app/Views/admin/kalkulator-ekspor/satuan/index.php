@@ -171,14 +171,29 @@
     <div class="container-xl">
         <div class="row g-3 mb-4 align-items-center justify-content-between">
             <div class="col-auto">
-                <h1 class="app-page-title mb-0" style="color: #03AADE;">Satuan</h1>
+                <h1 class="app-page-title mb-0" style="color: #03AADE;">List Satuan</h1>
             </div>
 
-            <div class="col-auto">
-                <a href="/admin-add-satuan" class="btn text-white" style="background-color: #03AADE;">
-                    + Tambah Satuan
-
-                </a>
+            <!-- Tengahkan form search -->
+            <div class="col d-flex justify-content-center">
+                <form class="form" action="<?= base_url('admin-search-satuan') ?>" method="GET">
+                    <label for="search">
+                        <input required="" autocomplete="off" placeholder="cari satuan" name="keyword" id="keyword" type="text">
+                        <div class="icon">
+                            <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="swap-on">
+                                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linejoin="round" stroke-linecap="round"></path>
+                            </svg>
+                            <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="swap-off">
+                                <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linejoin="round" stroke-linecap="round"></path>
+                            </svg>
+                        </div>
+                        <button type="reset" class="close-btn">
+                            <svg viewBox="0 0 20 20" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" fill-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </label>
+                </form>
             </div>
         </div>
 
@@ -191,32 +206,41 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" valign="middle">No</th>
-                                        <th class="text-center" valign="middle">Nama Member</th>
+                                        <th class="text-center" valign="middle">Username Member</th>
                                         <th class="text-center" valign="middle">Satuan</th>
                                         <th class="text-center" valign="middle">Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <?php if (empty($satuan)): ?>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="4" class="text-center">Masih belum ada Data Satuan.</td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                        <?php else: ?>
+                            <tbody>
+                                <?php $start = ($page - 1) * $perPage + 1; ?>
+                                <?php foreach ($satuan as $item) : ?>
                                     <tr>
-                                        <td class="text-center" valign="middle">1</td>
-                                        <td class="text-center" valign="middle">Tio Rahmadani</td>
-                                        <td class="text-center" valign="middle">PCS</td>
+                                        <td class="text-center" valign="middle"><?= $start++ ?></td>
+                                        <td class="text-center" valign="middle"><?= $item['username_member'] ?></td>
+                                        <td class="text-center" valign="middle"><?= $item['satuan'] ?></td>
                                         <td class="text-center align-middle">
                                             <div class="d-flex justify-content-center align-items-center">
-                                                <a href="#" class="btn btn-sm text-white me-2"
-                                                    style="background-color: #F2BF02;">
-                                                    Hapus
-                                                </a>
-                                                <a href="/admin-edit-satuan" class="btn btn-sm text-white"
-                                                    style="background-color: #03AADE;">
+                                                <a href="<?= base_url('admin-edit-satuan/' . $item['id_satuan']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">
                                                     Ubah
                                                 </a>
                                             </div>
                                         </td>
                                     </tr>
-                                    <!-- Tambahkan baris lainnya sesuai kebutuhan -->
-                                </tbody>
+                                <?php endforeach; ?>
+                            </tbody>
                             </table>
+                            <div class="mt-2">
+                                <?= $pager->links('default', 'bootstrap_pagination') ?>
+                            </div>
+                        <?php endif; ?>
                         </div><!--//table-responsive-->
                     </div><!--//app-card-body-->
                 </div><!--//app-card-->
