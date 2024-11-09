@@ -103,6 +103,13 @@
 </div>
 
 <div class="container mt-4">
+    <?php if (session()->get('errors')) : ?>
+        <div class="alert alert-danger">
+            <?php foreach (session()->get('errors') as $error) : ?>
+                <p><?= esc($error) ?></p>
+            <?php endforeach ?>
+        </div>
+    <?php endif ?>
     <!-- Member Details (Full Width) -->
     <div class="col-lg-12">
         <div class="card p-4 shadow-sm">
@@ -195,10 +202,10 @@
                         </table>
                     <?php else: ?>
                         <tbody>
-                            <?php $i = 1; ?>
-                            <?php foreach ($mpmtable as $item): ?>
+                            <?php $start = ($page - 1) * $perPage + 1; ?>
+                            <?php foreach ($mpmtable as $item) : ?>
                                 <tr class="text-center">
-                                    <td><?= $i++ ?></td>
+                                    <td><?= $start++ ?></td>
                                     <td><?= $item['tgl_kirim_email'] ?></td>
                                     <td><?= $item['update_terakhir'] ?></td>
                                     <td><?= $item['nama_perusahaan'] ?></td>
