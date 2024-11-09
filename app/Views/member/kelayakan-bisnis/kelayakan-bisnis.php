@@ -130,27 +130,18 @@
 
                         <!-- Form Fields -->
                         <div class="mb-3">
-                            <label for="pembelian_aktiva_tetap" class="form-label fw-bold">Pembelian Aktiva
-                                Tetap</label>
-                            <input type="text" class="form-control" id="pembelian_aktiva_tetap"
-                                name="pembelian_aktiva_tetap" placeholder="Masukkan jumlah pembelian aktiva tetap">
+                            <label for="pembelian_aktiva_tetap" class="form-label fw-bold">Pembelian Aktiva Tetap</label>
+                            <input type="text" class="form-control" id="pembelian_aktiva_tetap" name="pembelian_aktiva_tetap" placeholder="Masukkan Jumlah Pembelian Aktiva Tetap" oninput="formatPembelianAktivaTetap(this)">
                         </div>
 
                         <div class="mb-3">
                             <label for="kebutuhan_modal_kerja" class="form-label fw-bold">Kebutuhan Modal Kerja</label>
-                            <input type="text" class="form-control" id="kebutuhan_modal_kerja"
-                                name="kebutuhan_modal_kerja" placeholder="Masukkan kebutuhan modal kerja">
+                            <input type="text" class="form-control" id="kebutuhan_modal_kerja" name="kebutuhan_modal_kerja" placeholder="Masukkan Kebutuhan Modal Kerja" oninput="formatNumber(this)">
                         </div>
 
                         <div class="mb-3">
                             <label for="usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
-                            <select class="form-select" id="usia_ekonomis" name="usia_ekonomis">
-                                <option value="" selected disabled>Pilih Usia Ekonomis</option>
-                                <option value="5 tahun">5 tahun</option>
-                                <option value="10 tahun">10 tahun</option>
-                                <option value="15 tahun">15 tahun</option>
-                                <option value="20 tahun">20 tahun</option>
-                            </select>
+                            <input type="text" class="form-control" id="usia_ekonomis" name="usia_ekonomis" value="5 Tahun" disabled>
                         </div>
                     </div>
 
@@ -172,16 +163,21 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input type="text" class="form-control" name="tahun1[]"
-                                                placeholder="Masukkan prediksi"></td>
-                                        <td><input type="text" class="form-control" name="tahun2[]"
-                                                placeholder="Masukkan prediksi"></td>
-                                        <td><input type="text" class="form-control" name="tahun3[]"
-                                                placeholder="Masukkan prediksi"></td>
-                                        <td><input type="text" class="form-control" name="tahun4[]"
-                                                placeholder="Masukkan prediksi"></td>
-                                        <td><input type="text" class="form-control" name="tahun5[]"
-                                                placeholder="Masukkan prediksi"></td>
+                                        <td>
+                                            <input type="text" class="form-control" name="tahun1[]" placeholder="Masukkan Prediksi" oninput="formatNumber(this)">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" name="tahun2[]" placeholder="Masukkan Prediksi" oninput="formatNumber(this)">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" name="tahun3[]" placeholder="Masukkan Prediksi" oninput="formatNumber(this)">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" name="tahun4[]" placeholder="Masukkan Prediksi" oninput="formatNumber(this)">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" name="tahun5[]" placeholder="Masukkan Prediksi" oninput="formatNumber(this)">
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -205,20 +201,16 @@
                         <div class="col-md-5 mx-auto mt-4 p-4 rounded shadow-sm bg-white">
                             <h4 class="text-center text-primary mb-3">Tingkat Suku Bunga</h4>
                             <div class="mb-3">
-                                <label for="harga_perolehan" class="form-label fw-bold">Harga Perolehan
-                                    (Cost)</label>
-                                <input type="text" class="form-control" id="harga_perolehan" name="harga_perolehan"
-                                    placeholder="Masukkan harga perolehan">
+                                <label for="harga_perolehan" class="form-label fw-bold">Harga Perolehan (Cost)</label>
+                                <input type="text" class="form-control" id="harga_perolehan" name="harga_perolehan" disabled placeholder="Mengikuti Pembelian Aktiva Tetap">
                             </div>
                             <div class="mb-3">
                                 <label for="nilai_sisa" class="form-label fw-bold">Nilai Sisa (Salvage)</label>
-                                <input type="text" class="form-control" id="nilai_sisa" name="nilai_sisa"
-                                    placeholder="Masukkan nilai sisa">
+                                <input type="text" class="form-control" id="nilai_sisa" name="nilai_sisa" placeholder="Masukkan Nilai Sisa" oninput="formatNumber(this)">
                             </div>
                             <div class="mb-3">
                                 <label for="umur_ekonomis" class="form-label fw-bold">Umur Ekonomis (Life)</label>
-                                <input type="text" class="form-control" id="umur_ekonomis" name="umur_ekonomis"
-                                    placeholder="Masukkan umur ekonomis">
+                                <input type="text" class="form-control" id="umur_ekonomis" name="umur_ekonomis" value="5 Tahun" disabled>
                             </div>
                         </div>
 
@@ -236,15 +228,33 @@
                                     <tbody>
                                         <!-- Baris pertama untuk input ARR dan Payback -->
                                         <tr>
-                                            <td><input type="text" class="form-control" name="arr"
-                                                    placeholder="Masukkan ARR"></td>
-                                            <td><input type="text" class="form-control" name="payback"
-                                                    placeholder="Masukkan Payback"></td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="arr" placeholder="Masukkan ARR">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">%</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="payback" placeholder="Masukkan Payback">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">Tahun</span>
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
                                         <!-- Baris kedua untuk input tambahan ARR -->
                                         <tr>
-                                            <td><input type="text" class="form-control" name="arr_2"
-                                                    placeholder="Masukkan ARR (Baris 2)"></td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="arr_2" placeholder="Masukkan ARR (Baris 2)">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">%</span>
+                                                    </div>
+                                                </div>
+                                            </td>
                                             <td></td> <!-- Kosongkan kolom kedua untuk baris kedua -->
                                         </tr>
                                     </tbody>
@@ -337,5 +347,24 @@
         </div>
     </div> <!-- End of Member Details -->
 </div> <!-- End of Container -->
+
+<script>
+    function formatNumber(input) {
+        // Menghilangkan titik yang sudah ada sebelumnya
+        let value = input.value.replace(/\./g, '');
+
+        // Memastikan hanya angka yang dapat diinput
+        value = value.replace(/\D/g, '');
+
+        // Menambahkan titik pada angka setiap ribuan
+        input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
+
+    function formatPembelianAktivaTetap(input) {
+        formatNumber(input); // Format dengan titik ribuan
+        // Set nilai yang sama pada `harga_perolehan`
+        document.getElementById('harga_perolehan').value = input.value;
+    }
+</script>
 
 <?= $this->endSection(); ?>
