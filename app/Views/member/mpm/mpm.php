@@ -99,7 +99,7 @@
 <!-- judul -->
 <div class="py-5" style="text-align: center;">
     <h2 class="text-custom-title">MPM</h2>
-    <p class="text-custom-paragraph mt-2">Berikut Fitur MPM untuk Cek Progres Emial yang Terkirim</p>
+    <p class="text-custom-paragraph mt-2">Berikut Fitur MPM untuk Cek Progres Email yang Terkirim</p>
 </div>
 
 <div class="container mt-4">
