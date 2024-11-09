@@ -270,4 +270,4 @@ $routes->get('/admin-web-profile', 'KomunitasEkspor::admin_web_profile');
 $routes->get('/admin-edit-web-profile', 'KomunitasEkspor::admin_edit_web_profile');
 
 // Member - Invesment
-$routes->get('/member-investment', 'KomunitasEkspor::member_investment');
+$routes->get('/kelayakan-bisnis', 'KomunitasEkspor::kelayakan_bisnis');
