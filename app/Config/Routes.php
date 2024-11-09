@@ -241,11 +241,6 @@ $routes->post('/admin-update-satuan/(:num)', 'KomunitasEkspor::admin_update_satu
 // Admin - MPM
 $routes->get('/admin-mpm', 'KomunitasEkspor::admin_mpm');
 $routes->get('/admin-search-mpm', 'KomunitasEkspor::admin_search_mpm');
-$routes->get('/admin-add-mpm', 'KomunitasEkspor::admin_add_mpm');
-$routes->post('/admin-create-mpm', 'KomunitasEkspor::admin_create_mpm');
-$routes->get('/admin-edit-mpm/(:num)', 'KomunitasEkspor::admin_edit_mpm/$1');
-$routes->post('/admin-update-mpm/(:num)', 'KomunitasEkspor::admin_update_mpm/$1');
-$routes->get('/admin-delete-mpm/(:num)', 'KomunitasEkspor::admin_delete_mpm/$1');
 
 // Admin - Website Audit
 $routes->get('/admin-website-audit', 'KomunitasEkspor::admin_website_audit');
