@@ -199,61 +199,62 @@
             <div class="col-auto">
                 <a href="<?= base_url('admin-add-fob') ?>" class="btn text-white" style="background-color: #03AADE;"> + Tambah Data FOB</a>
             </div>
+        </div>
 
-            <div class="tab-content">
-                <div class="tab-pane fade show active">
-                    <div class="app-card app-card-orders-table shadow-sm mb-5">
-                        <div class="app-card-body">
-                            <div class="table-responsive">
-                                <table class="table app-table-hover table-bordered mb-0 text-left">
-                                    <thead>
+        <div class="tab-content">
+            <div class="tab-pane fade show active">
+                <div class="app-card app-card-orders-table shadow-sm mb-5">
+                    <div class="app-card-body">
+                        <div class="table-responsive">
+                            <table class="table app-table-hover table-bordered mb-0 text-left">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" valign="middle">No</th>
+                                        <th class="text-center" valign="middle">Username Member</th>
+                                        <th class="text-center" valign="middle">Komponen FOB</th>
+                                        <th class="text-center" valign="middle">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <?php if (empty($fob)): ?>
+                                    <tbody>
                                         <tr>
-                                            <th class="text-center" valign="middle">No</th>
-                                            <th class="text-center" valign="middle">Username Member</th>
-                                            <th class="text-center" valign="middle">Komponen FOB</th>
-                                            <th class="text-center" valign="middle">Aksi</th>
+                                            <td colspan="4" class="text-center">Masih belum ada Data FOB.</td>
                                         </tr>
-                                    </thead>
-                                    <?php if (empty($fob)): ?>
-                                        <tbody>
-                                            <tr>
-                                                <td colspan="4" class="text-center">Masih belum ada Data FOB.</td>
-                                            </tr>
-                                        </tbody>
-                                </table>
-                            <?php else: ?>
-                                <tbody>
-                                    <?php $start = ($page - 1) * $perPage + 1; ?>
-                                    <?php foreach ($fob as $item) : ?>
-                                        <tr>
-                                            <td class="text-center" valign="middle"><?= $start++ ?></td>
-                                            <td class="text-center" valign="middle"><?= $item['username_member'] ?></td>
-                                            <td class="text-center" valign="middle"><?= $item['komponen_fob'] ?></td>
-                                            <td class="text-center align-middle">
-                                                <div class="d-flex justify-content-center align-items-center">
-                                                    <a href="<?= base_url('admin-delete-fob/' . $item['id_fob']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">
-                                                        Hapus
-                                                    </a>
-                                                    <a href="<?= base_url('admin-edit-fob/' . $item['id_fob']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">
-                                                        Ubah
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                                </table>
-                                <div class="mt-2">
-                                    <?= $pager->links('default', 'bootstrap_pagination') ?>
-                                </div>
-                            <?php endif; ?>
-                            </div><!--//table-responsive-->
-                        </div><!--//app-card-body-->
-                    </div><!--//app-card-->
-                </div><!--//tab-pane-->
-            </div><!--//tab-content-->
-        </div><!--//container-xl-->
-    </div><!--//app-content-->
+                                    </tbody>
+                            </table>
+                        <?php else: ?>
+                            <tbody>
+                                <?php $start = ($page - 1) * $perPage + 1; ?>
+                                <?php foreach ($fob as $item) : ?>
+                                    <tr>
+                                        <td class="text-center" valign="middle"><?= $start++ ?></td>
+                                        <td class="text-center" valign="middle"><?= $item['username_member'] ?></td>
+                                        <td class="text-center" valign="middle"><?= $item['komponen_fob'] ?></td>
+                                        <td class="text-center align-middle">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <a href="<?= base_url('admin-delete-fob/' . $item['id_fob']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">
+                                                    Hapus
+                                                </a>
+                                                <a href="<?= base_url('admin-edit-fob/' . $item['id_fob']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">
+                                                    Ubah
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                            </table>
+                            <div class="mt-2">
+                                <?= $pager->links('default', 'bootstrap_pagination') ?>
+                            </div>
+                        <?php endif; ?>
+                        </div><!--//table-responsive-->
+                    </div><!--//app-card-body-->
+                </div><!--//app-card-->
+            </div><!--//tab-pane-->
+        </div><!--//tab-content-->
+    </div><!--//container-xl-->
+</div><!--//app-content-->
 
 
-    <?= $this->endSection('content') ?>
+<?= $this->endSection('content') ?>
