@@ -10,6 +10,7 @@ return [
     'headerApp1' => 'Export Price Calculator',
     'headerApp2' => 'Marketing Progress Monitoring',
     'headerApp3' => 'Website Audit',
+    'headerApp4' => 'Business Feasibility',
     'headerBuyers' => 'Buyers Data',
     //en navbar
 
@@ -187,6 +188,7 @@ return [
     'wantToOpenApp1' => 'Want To Open The Export Price Calculator Application?',
     'wantToOpenApp2' => 'Want To Open A Marketing Progress Monitoring Application?',
     'wantToOpenApp3' => 'Want To Open A Website Audit Application?',
+    'wantToOpenApp4' => 'Want To Open A Business Feasibility Application?',
 
     'letsGoRegisterSA' => 'Come On, Register As A Member First!',
     'registerSA' => 'Register',
