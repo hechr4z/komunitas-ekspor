@@ -201,16 +201,16 @@
                         <div class="col-md-5 mx-auto mt-4 p-4 rounded shadow-sm bg-white">
                             <h4 class="text-center text-primary mb-3">Tingkat Suku Bunga</h4>
                             <div class="mb-3">
-                                <label for="harga_perolehan" class="form-label fw-bold">Harga Perolehan (Cost)</label>
-                                <input type="text" class="form-control" id="harga_perolehan" name="harga_perolehan" disabled placeholder="Mengikuti Pembelian Aktiva Tetap">
+                                <label for="dfi_harga_perolehan" class="form-label fw-bold">Harga Perolehan (Cost)</label>
+                                <input type="text" class="form-control" id="dfi_harga_perolehan" name="dfi_harga_perolehan" disabled placeholder="Mengikuti Pembelian Aktiva Tetap">
                             </div>
                             <div class="mb-3">
-                                <label for="nilai_sisa" class="form-label fw-bold">Nilai Sisa (Salvage)</label>
-                                <input type="text" class="form-control" id="nilai_sisa" name="nilai_sisa" placeholder="Masukkan Nilai Sisa" oninput="formatNumber(this)">
+                                <label for="dfi_nilai_sisa" class="form-label fw-bold">Nilai Sisa (Salvage)</label>
+                                <input type="text" class="form-control" id="dfi_nilai_sisa" name="dfi_nilai_sisa" placeholder="Masukkan Nilai Sisa" oninput="formatNilaiSisa(this)">
                             </div>
                             <div class="mb-3">
-                                <label for="umur_ekonomis" class="form-label fw-bold">Umur Ekonomis (Life)</label>
-                                <input type="text" class="form-control" id="umur_ekonomis" name="umur_ekonomis" value="5 Tahun" disabled>
+                                <label for="dfi_umur_ekonomis" class="form-label fw-bold">Umur Ekonomis (Life)</label>
+                                <input type="text" class="form-control" id="dfi_umur_ekonomis" name="dfi_umur_ekonomis" value="5 Tahun" disabled>
                             </div>
                         </div>
 
@@ -274,7 +274,7 @@
                         <div class="mb-3">
                             <label for="metode_penyusutan" class="form-label fw-bold">Pilih salah satu metode
                                 penyusutan:</label>
-                            <select class="form-select" id="metode_penyusutan" name="metode_penyusutan">
+                            <select class="form-select" id="metode_penyusutan" name="metode_penyusutan" onchange="calculateDepreciation()">
                                 <option value="" selected disabled>Pilih Metode Penyusutan</option>
                                 <option value="garis_lurus">1. Garis Lurus</option>
                                 <option value="angka_tahun">2. Angka Tahun</option>
@@ -289,21 +289,18 @@
 
                         <!-- Input Fields for Data Aktiva -->
                         <div class="mb-3">
-                            <label for="harga_perolehan" class="form-label fw-bold">Harga Perolehan (cost)</label>
-                            <input type="text" class="form-control" id="harga_perolehan" name="harga_perolehan"
-                                placeholder="Masukkan Harga Perolehan">
+                            <label for="pat_harga_perolehan" class="form-label fw-bold">Harga Perolehan (Cost)</label>
+                            <input type="text" class="form-control" id="pat_harga_perolehan" name="pat_harga_perolehan" disabled placeholder="Mengikuti Pembelian Aktiva Tetap">
                         </div>
 
                         <div class="mb-3">
-                            <label for="nilai_sisa" class="form-label fw-bold">Nilai Sisa (salvage)</label>
-                            <input type="text" class="form-control" id="nilai_sisa" name="nilai_sisa"
-                                placeholder="Masukkan Nilai Sisa">
+                            <label for="pat_nilai_sisa" class="form-label fw-bold">Nilai Sisa (Salvage)</label>
+                            <input type="text" class="form-control" id="pat_nilai_sisa" name="pat_nilai_sisa" disabled placeholder="Mengikuti Nilai Sisa Di Data Finansial Investasi">
                         </div>
 
                         <div class="mb-3">
-                            <label for="umur_ekonomis" class="form-label fw-bold">Umur Ekonomis (life)</label>
-                            <input type="text" class="form-control" id="umur_ekonomis" name="umur_ekonomis"
-                                placeholder="Masukkan Umur Ekonomis">
+                            <label for="pat_umur_ekonomis" class="form-label fw-bold">Umur Ekonomis (Life)</label>
+                            <input type="text" class="form-control" id="pat_umur_ekonomis" name="pat_umur_ekonomis" value="5 Tahun" disabled>
                         </div>
                     </div>
 
@@ -317,24 +314,52 @@
                                         <th>Akhir Tahun</th>
                                         <th>Debet Penyusutan</th>
                                         <th>Kredit AKM Penyusutan</th>
-                                        <th>Tolak AKM Penyusutan</th>
+                                        <th>Total AKM Penyusutan</th>
                                         <th>Nilai Buku Aktiva</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input type="text" class="form-control" name="akhir_tahun[]"
-                                                placeholder="Masukkan Akhir Tahun"></td>
-                                        <td><input type="text" class="form-control" name="debet_penyusutan[]"
-                                                placeholder="Masukkan Debet Penyusutan"></td>
-                                        <td><input type="text" class="form-control" name="kredit_akm_penyusutan[]"
-                                                placeholder="Masukkan Kredit AKM Penyusutan">
-                                        </td>
-                                        <td><input type="text" class="form-control" name="tolak_akm_penyusutan[]"
-                                                placeholder="Masukkan Tolak AKM Penyusutan">
-                                        </td>
-                                        <td><input type="text" class="form-control" name="nilai_buku_aktiva[]"
-                                                placeholder="Masukkan Nilai Buku Aktiva"></td>
+                                        <td id="0_akhir_tahun">0</td>
+                                        <td id="0_debet_penyusutan">0</td>
+                                        <td id="0_kredit_akm_penyusutan">0</td>
+                                        <td id="0_total_akm_penyusutan">0</td>
+                                        <td id="0_nilai_buku_aktiva"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="1_akhir_tahun">1</td>
+                                        <td id="1_debet_penyusutan"></td>
+                                        <td id="1_kredit_akm_penyusutan"></td>
+                                        <td id="1_total_akm_penyusutan"></td>
+                                        <td id="1_nilai_buku_aktiva"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="2_akhir_tahun">2</td>
+                                        <td id="2_debet_penyusutan"></td>
+                                        <td id="2_kredit_akm_penyusutan"></td>
+                                        <td id="2_total_akm_penyusutan"></td>
+                                        <td id="2_nilai_buku_aktiva"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="3_akhir_tahun">3</td>
+                                        <td id="3_debet_penyusutan"></td>
+                                        <td id="3_kredit_akm_penyusutan"></td>
+                                        <td id="3_total_akm_penyusutan"></td>
+                                        <td id="3_nilai_buku_aktiva"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="4_akhir_tahun">4</td>
+                                        <td id="4_debet_penyusutan"></td>
+                                        <td id="4_kredit_akm_penyusutan"></td>
+                                        <td id="4_total_akm_penyusutan"></td>
+                                        <td id="4_nilai_buku_aktiva"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="5_akhir_tahun">5</td>
+                                        <td id="5_debet_penyusutan"></td>
+                                        <td id="5_kredit_akm_penyusutan"></td>
+                                        <td id="5_total_akm_penyusutan"></td>
+                                        <td id="5_nilai_buku_aktiva"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -350,20 +375,103 @@
 
 <script>
     function formatNumber(input) {
-        // Menghilangkan titik yang sudah ada sebelumnya
         let value = input.value.replace(/\./g, '');
-
-        // Memastikan hanya angka yang dapat diinput
         value = value.replace(/\D/g, '');
-
-        // Menambahkan titik pada angka setiap ribuan
         input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
 
     function formatPembelianAktivaTetap(input) {
-        formatNumber(input); // Format dengan titik ribuan
-        // Set nilai yang sama pada `harga_perolehan`
-        document.getElementById('harga_perolehan').value = input.value;
+        formatNumber(input);
+        document.getElementById('dfi_harga_perolehan').value = input.value;
+        document.getElementById('pat_harga_perolehan').value = input.value;
+        document.getElementById('0_nilai_buku_aktiva').innerText = input.value;
+    }
+
+    function formatNilaiSisa(input) {
+        formatNumber(input);
+        document.getElementById('pat_nilai_sisa').value = input.value;
+    }
+
+    function calculateDepreciation() {
+        const metode = document.getElementById('metode_penyusutan').value;
+        const hargaPerolehan = parseFloat(document.getElementById('pat_harga_perolehan').value.replace(/\./g, ''));
+        const nilaiSisa = parseFloat(document.getElementById('pat_nilai_sisa').value.replace(/\./g, ''));
+
+        if (metode === "garis_lurus" && !isNaN(hargaPerolehan) && !isNaN(nilaiSisa)) {
+            const depreciation = (hargaPerolehan - nilaiSisa) / 5;
+
+            // Menampilkan nilai depresiasi pada kolom terkait
+            document.getElementById('1_debet_penyusutan').innerText = depreciation.toLocaleString("id-ID");
+            document.getElementById('2_debet_penyusutan').innerText = depreciation.toLocaleString("id-ID");
+            document.getElementById('3_debet_penyusutan').innerText = depreciation.toLocaleString("id-ID");
+            document.getElementById('4_debet_penyusutan').innerText = depreciation.toLocaleString("id-ID");
+            document.getElementById('5_debet_penyusutan').innerText = depreciation.toLocaleString("id-ID");
+
+            document.getElementById('1_kredit_akm_penyusutan').innerText = depreciation.toLocaleString("id-ID");
+            document.getElementById('2_kredit_akm_penyusutan').innerText = depreciation.toLocaleString("id-ID");
+            document.getElementById('3_kredit_akm_penyusutan').innerText = depreciation.toLocaleString("id-ID");
+            document.getElementById('4_kredit_akm_penyusutan').innerText = depreciation.toLocaleString("id-ID");
+            document.getElementById('5_kredit_akm_penyusutan').innerText = depreciation.toLocaleString("id-ID");
+
+            document.getElementById('1_total_akm_penyusutan').innerText = depreciation.toLocaleString("id-ID");
+            const depreciation2 = depreciation + depreciation;
+            document.getElementById('2_total_akm_penyusutan').innerText = depreciation2.toLocaleString("id-ID");
+            const depreciation3 = depreciation2 + depreciation;
+            document.getElementById('3_total_akm_penyusutan').innerText = depreciation3.toLocaleString("id-ID");
+            const depreciation4 = depreciation3 + depreciation;
+            document.getElementById('4_total_akm_penyusutan').innerText = depreciation4.toLocaleString("id-ID");
+            const depreciation5 = depreciation4 + depreciation;
+            document.getElementById('5_total_akm_penyusutan').innerText = depreciation5.toLocaleString("id-ID");
+
+            // Menghitung nilai buku aktiva
+            const nilaiBukuAktiva = hargaPerolehan - depreciation;
+            document.getElementById('1_nilai_buku_aktiva').innerText = nilaiBukuAktiva.toLocaleString("id-ID");
+            const nilaiBukuAktiva2 = nilaiBukuAktiva - depreciation;
+            document.getElementById('2_nilai_buku_aktiva').innerText = nilaiBukuAktiva2.toLocaleString("id-ID");
+            const nilaiBukuAktiva3 = nilaiBukuAktiva2 - depreciation;
+            document.getElementById('3_nilai_buku_aktiva').innerText = nilaiBukuAktiva3.toLocaleString("id-ID");
+            const nilaiBukuAktiva4 = nilaiBukuAktiva3 - depreciation;
+            document.getElementById('4_nilai_buku_aktiva').innerText = nilaiBukuAktiva4.toLocaleString("id-ID");
+            const nilaiBukuAktiva5 = nilaiBukuAktiva4 - depreciation;
+            document.getElementById('5_nilai_buku_aktiva').innerText = nilaiBukuAktiva5.toLocaleString("id-ID");
+        } else if (metode === "angka_tahun" && !isNaN(hargaPerolehan) && !isNaN(nilaiSisa)) {
+            const firstYear = (5 / 15) * (hargaPerolehan - nilaiSisa);
+            document.getElementById('1_debet_penyusutan').innerText = firstYear.toLocaleString("id-ID");
+            document.getElementById('1_kredit_akm_penyusutan').innerText = firstYear.toLocaleString("id-ID");
+            document.getElementById('1_total_akm_penyusutan').innerText = firstYear.toLocaleString("id-ID");
+            const secondYear = (4 / 15) * (hargaPerolehan - nilaiSisa);
+            document.getElementById('2_debet_penyusutan').innerText = secondYear.toLocaleString("id-ID");
+            document.getElementById('2_kredit_akm_penyusutan').innerText = secondYear.toLocaleString("id-ID");
+            const thirdYear = (3 / 15) * (hargaPerolehan - nilaiSisa);
+            document.getElementById('3_debet_penyusutan').innerText = thirdYear.toLocaleString("id-ID");
+            document.getElementById('3_kredit_akm_penyusutan').innerText = thirdYear.toLocaleString("id-ID");
+            const fourthYear = (2 / 15) * (hargaPerolehan - nilaiSisa);
+            document.getElementById('4_debet_penyusutan').innerText = fourthYear.toLocaleString("id-ID");
+            document.getElementById('4_kredit_akm_penyusutan').innerText = fourthYear.toLocaleString("id-ID");
+            const fifthYear = (1 / 15) * (hargaPerolehan - nilaiSisa);
+            document.getElementById('5_debet_penyusutan').innerText = fifthYear.toLocaleString("id-ID");
+            document.getElementById('5_kredit_akm_penyusutan').innerText = fifthYear.toLocaleString("id-ID");
+
+            const firstTAP = firstYear + secondYear;
+            document.getElementById('2_total_akm_penyusutan').innerText = firstTAP.toLocaleString("id-ID");
+            const secondTAP = firstTAP + thirdYear;
+            document.getElementById('3_total_akm_penyusutan').innerText = secondTAP.toLocaleString("id-ID");
+            const thirdTAP = secondTAP + fourthYear;
+            document.getElementById('4_total_akm_penyusutan').innerText = thirdTAP.toLocaleString("id-ID");
+            const fourthTAP = thirdTAP + fifthYear;
+            document.getElementById('5_total_akm_penyusutan').innerText = fourthTAP.toLocaleString("id-ID");
+
+            const nilaiBukuAktiva = hargaPerolehan - firstYear;
+            document.getElementById('1_nilai_buku_aktiva').innerText = nilaiBukuAktiva.toLocaleString("id-ID");
+            const nilaiBukuAktiva2 = nilaiBukuAktiva - secondYear;
+            document.getElementById('2_nilai_buku_aktiva').innerText = nilaiBukuAktiva2.toLocaleString("id-ID");
+            const nilaiBukuAktiva3 = nilaiBukuAktiva2 - thirdYear;
+            document.getElementById('3_nilai_buku_aktiva').innerText = nilaiBukuAktiva3.toLocaleString("id-ID");
+            const nilaiBukuAktiva4 = nilaiBukuAktiva3 - fourthYear;
+            document.getElementById('4_nilai_buku_aktiva').innerText = nilaiBukuAktiva4.toLocaleString("id-ID");
+            const nilaiBukuAktiva5 = nilaiBukuAktiva4 - fifthYear;
+            document.getElementById('5_nilai_buku_aktiva').innerText = nilaiBukuAktiva5.toLocaleString("id-ID");
+        }
     }
 </script>
 
