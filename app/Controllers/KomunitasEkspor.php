@@ -25,6 +25,8 @@ use App\Models\WebProfile;
 use App\Models\ManfaatJoin;
 use App\Models\Pengumuman;
 use CodeIgniter\I18n\Time;
+use DateTime;
+use Exception;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class KomunitasEkspor extends BaseController
@@ -1308,6 +1310,9 @@ class KomunitasEkspor extends BaseController
 
     public function mpm()
     {
+        $session = session();
+        $user_id = $session->get('user_id');
+
         $model_webprofile = new WebProfile();
 
         $webprofile = $model_webprofile->findAll();
@@ -1315,39 +1320,6 @@ class KomunitasEkspor extends BaseController
         $data['webprofile'] = $webprofile;
 
         $model_mpm = new MPM();
-        $mpm = $model_mpm->findAll();
-
-        $bulanIndonesia = [
-            'January' => 'Januari',
-            'February' => 'Februari',
-            'March' => 'Maret',
-            'April' => 'April',
-            'May' => 'Mei',
-            'June' => 'Juni',
-            'July' => 'Juli',
-            'August' => 'Agustus',
-            'September' => 'September',
-            'October' => 'Oktober',
-            'November' => 'November',
-            'December' => 'Desember'
-        ];
-
-        foreach ($mpm as &$item) {
-            // Mengubah format tgl_kirim_email
-            $tgl_kirim = date('d F Y', strtotime($item['tgl_kirim_email']));
-            $bulanInggris_kirim = date('F', strtotime($item['tgl_kirim_email']));
-            $item['tgl_kirim_email'] = str_replace($bulanInggris_kirim, $bulanIndonesia[$bulanInggris_kirim], $tgl_kirim);
-
-            // Memeriksa jika update_terakhir bernilai null
-            if (is_null($item['update_terakhir'])) {
-                $item['update_terakhir'] = '';
-            } else {
-                // Mengubah format update_terakhir jika tidak null
-                $tgl_update = date('d F Y', strtotime($item['update_terakhir']));
-                $bulanInggris_update = date('F', strtotime($item['update_terakhir']));
-                $item['update_terakhir'] = str_replace($bulanInggris_update, $bulanIndonesia[$bulanInggris_update], $tgl_update);
-            }
-        }
 
         // Cari tahun paling lama yang ada di database
         $oldest_year = $model_mpm
@@ -1386,11 +1358,44 @@ class KomunitasEkspor extends BaseController
         $perPage = 10; // Number of members per page
         $page = $this->request->getVar('page') ?? 1; // Get the current page number
 
-        $mpmtable = $model_mpm->paginate($perPage);
+        $mpmtable = $model_mpm->where('id_member', $user_id)->paginate($perPage);
 
-        $data['mpm'] = $mpm;
+        $bulanIndonesia = [
+            'January' => 'Januari',
+            'February' => 'Februari',
+            'March' => 'Maret',
+            'April' => 'April',
+            'May' => 'Mei',
+            'June' => 'Juni',
+            'July' => 'Juli',
+            'August' => 'Agustus',
+            'September' => 'September',
+            'October' => 'Oktober',
+            'November' => 'November',
+            'December' => 'Desember'
+        ];
+
+        foreach ($mpmtable as &$item) {
+            // Mengubah format tgl_kirim_email
+            $tgl_kirim = date('d F Y', strtotime($item['tgl_kirim_email']));
+            $bulanInggris_kirim = date('F', strtotime($item['tgl_kirim_email']));
+            $item['tgl_kirim_email'] = str_replace($bulanInggris_kirim, $bulanIndonesia[$bulanInggris_kirim], $tgl_kirim);
+
+            // Memeriksa jika update_terakhir bernilai null
+            if (is_null($item['update_terakhir'])) {
+                $item['update_terakhir'] = '';
+            } else {
+                // Mengubah format update_terakhir jika tidak null
+                $tgl_update = date('d F Y', strtotime($item['update_terakhir']));
+                $bulanInggris_update = date('F', strtotime($item['update_terakhir']));
+                $item['update_terakhir'] = str_replace($bulanInggris_update, $bulanIndonesia[$bulanInggris_update], $tgl_update);
+            }
+        }
+
         $data['mpmtable'] = $mpmtable;
         $data['pager'] = $model_mpm->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
         $data['years'] = $years; // Semua tahun dari yang terlama sampai sekarang, dengan urutan terbaru di atas
         // $data['mpm_year'] = $mpm_year; // Data dari database
 
@@ -1399,6 +1404,9 @@ class KomunitasEkspor extends BaseController
 
     public function add_mpm()
     {
+        $session = session();
+        $user_id = $session->get('user_id');
+
         $tgl_kirim_email = $this->request->getPost('tgl_kirim_email');
 
         $bulanIndonesia = [
@@ -1421,7 +1429,7 @@ class KomunitasEkspor extends BaseController
         $tgl_kirim_email = str_replace($bulanInggris, $bulanIndonesia[$bulanInggris], $tgl);
 
         $data = [
-            'id_member' => 1,
+            'id_member' => $user_id,
             'tgl_kirim_email' => $this->request->getPost('tgl_kirim_email'),
             'update_terakhir' => NULL,
             'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
@@ -1440,10 +1448,29 @@ class KomunitasEkspor extends BaseController
     {
         $model_mpm = new MPM();
 
+        // Ambil ID MPM yang akan diedit
         $id_mpm = $this->request->getPost('id_mpm');
 
-        $now = Time::now();
+        // Ambil ID user yang sedang login
+        $session = session();
+        $user_id = $session->get('user_id');  // Sesuaikan dengan session yang kamu pakai
 
+        // Cari data MPM berdasarkan ID MPM
+        $mpm = $model_mpm->find($id_mpm);
+
+        // Pastikan data ditemukan
+        if (!$mpm) {
+            return redirect()->to('/mpm')->withInput()->with('errors', ['MPM tidak ditemukan.']);
+        }
+
+        // Cek apakah user yang sedang login adalah pemilik MPM tersebut
+        if ($mpm['id_member'] != $user_id) {
+            // Jika ID user yang sedang login tidak sama dengan id_member MPM, larang akses
+            return redirect()->to('/mpm')->withInput()->with('errors', ['Anda tidak memiliki izin untuk mengedit MPM ini.']);
+        }
+
+        // Jika lolos pengecekan, lanjutkan untuk mengupdate MPM
+        $now = Time::now();
         $data = [
             'update_terakhir' => $now,
             'progres' => $this->request->getPost('progres'),
@@ -1451,16 +1478,20 @@ class KomunitasEkspor extends BaseController
 
         $model_mpm->update($id_mpm, $data);
 
-        return redirect()->to('/mpm');
+        return redirect()->to('/mpm')->with('success', 'MPM telah berhasil diperbarui.');
     }
 
     public function getEmailsByDate($month, $year)
     {
+        $session = session();
+        $user_id = $session->get('user_id');
+
         $model_mpm = new MPM();
 
         // Ambil jumlah email yang dikirim per tanggal dalam bulan dan tahun tertentu
         $result = $model_mpm
             ->select('DAY(tgl_kirim_email) as hari, COUNT(*) as jumlah_email')
+            ->where('id_member', $user_id)
             ->where('MONTH(tgl_kirim_email)', $month)
             ->where('YEAR(tgl_kirim_email)', $year)
             ->groupBy('hari')
@@ -3550,20 +3581,6 @@ class KomunitasEkspor extends BaseController
         return view('admin/kalkulator-ekspor/satuan/add', $data);
     }
 
-    public function admin_create_satuan()
-    {
-        $model_satuan = new Satuan();
-
-        $data = [
-            'id_member' => $this->request->getPost('id_member'),
-            'satuan' => $this->request->getPost('satuan'),
-        ];
-
-        $model_satuan->insert($data);
-
-        return redirect()->to('/admin-satuan');
-    }
-
     public function admin_edit_satuan($id)
     {
         $model_satuan = new Satuan();
@@ -3595,17 +3612,222 @@ class KomunitasEkspor extends BaseController
     // Admin MPM
     public function admin_mpm()
     {
-        return view('admin/mpm/index');
+        $model_mpm = new MPM();
+
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
+        // Query with join to get `username` from `member` table
+        $mpm = $model_mpm
+            ->select('mpm.*, member.username AS username_member')
+            ->join('member', 'member.id_member = mpm.id_member', 'left')
+            ->paginate($perPage);
+
+        $bulanIndonesia = [
+            'January' => 'Januari',
+            'February' => 'Februari',
+            'March' => 'Maret',
+            'April' => 'April',
+            'May' => 'Mei',
+            'June' => 'Juni',
+            'July' => 'Juli',
+            'August' => 'Agustus',
+            'September' => 'September',
+            'October' => 'Oktober',
+            'November' => 'November',
+            'December' => 'Desember'
+        ];
+
+        foreach ($mpm as &$item) {
+            // Mengubah format tgl_kirim_email
+            $tgl_kirim = date('d F Y', strtotime($item['tgl_kirim_email']));
+            $bulanInggris_kirim = date('F', strtotime($item['tgl_kirim_email']));
+            $item['tgl_kirim_email'] = str_replace($bulanInggris_kirim, $bulanIndonesia[$bulanInggris_kirim], $tgl_kirim);
+
+            // Memeriksa jika update_terakhir bernilai null
+            if (is_null($item['update_terakhir'])) {
+                $item['update_terakhir'] = '';
+            } else {
+                // Mengubah format update_terakhir jika tidak null
+                $tgl_update = date('d F Y', strtotime($item['update_terakhir']));
+                $bulanInggris_update = date('F', strtotime($item['update_terakhir']));
+                $item['update_terakhir'] = str_replace($bulanInggris_update, $bulanIndonesia[$bulanInggris_update], $tgl_update);
+            }
+        }
+
+        $data['mpm'] = $mpm;
+        $data['pager'] = $model_mpm->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/mpm/index', $data);
+    }
+
+    public function admin_search_mpm()
+    {
+        helper('text');
+
+        $keyword = $this->request->getGet('keyword');
+        $model_mpm = new MPM();
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
+        // Initialize variables for different date parts
+        $isFullDate = false;
+        $isDateAndMonth = false;
+        $isMonthAndYear = false;
+        $dateKeyword = null;
+
+        try {
+            // Full date format (e.g., 15 November 2024)
+            $date = DateTime::createFromFormat('d F Y', $keyword);
+            if ($date) {
+                $isFullDate = true;
+                $dateKeyword = $date->format('Y-m-d');
+            }
+        } catch (Exception $e) {
+        }
+
+        if (!$isFullDate) {
+            // Date and month format (e.g., 15 November)
+            $dateAndMonth = DateTime::createFromFormat('d F', $keyword);
+            if ($dateAndMonth) {
+                $isDateAndMonth = true;
+                $dateKeyword = $dateAndMonth->format('-m-d'); // Matches day and month (e.g., -11-15)
+            } else {
+                // Month and year format (e.g., November 2024)
+                $monthAndYear = DateTime::createFromFormat('F Y', $keyword);
+                if ($monthAndYear) {
+                    $isMonthAndYear = true;
+                    $dateKeyword = $monthAndYear->format('Y-m-'); // Matches month and year (e.g., 2024-11-)
+                }
+            }
+        }
+
+        $hasilPencarian = $model_mpm
+            ->select('mpm.*, member.username AS username_member')
+            ->join('member', 'member.id_member = mpm.id_member', 'left')
+            ->groupStart()
+            ->like('mpm.tgl_kirim_email', $dateKeyword ?: $keyword)
+            ->orLike('mpm.update_terakhir', $dateKeyword ?: $keyword)
+            ->orLike('mpm.nama_perusahaan', $keyword)
+            ->orLike('mpm.negara_perusahaan', $keyword)
+            ->orLike('mpm.status_progres', $keyword)
+            ->orLike('mpm.progres', $keyword)
+            ->orLike('member.username', $keyword)
+            ->groupEnd()
+            ->paginate($perPage);
+
+        // Indonesian months for formatting
+        $bulanIndonesia = [
+            'January' => 'Januari',
+            'February' => 'Februari',
+            'March' => 'Maret',
+            'April' => 'April',
+            'May' => 'Mei',
+            'June' => 'Juni',
+            'July' => 'Juli',
+            'August' => 'Agustus',
+            'September' => 'September',
+            'October' => 'Oktober',
+            'November' => 'November',
+            'December' => 'Desember'
+        ];
+
+        foreach ($hasilPencarian as &$item) {
+            $tgl_kirim = date('d F Y', strtotime($item['tgl_kirim_email']));
+            $bulanInggris_kirim = date('F', strtotime($item['tgl_kirim_email']));
+            $item['tgl_kirim_email'] = str_replace($bulanInggris_kirim, $bulanIndonesia[$bulanInggris_kirim], $tgl_kirim);
+
+            if (is_null($item['update_terakhir'])) {
+                $item['update_terakhir'] = '';
+            } else {
+                $tgl_update = date('d F Y', strtotime($item['update_terakhir']));
+                $bulanInggris_update = date('F', strtotime($item['update_terakhir']));
+                $item['update_terakhir'] = str_replace($bulanInggris_update, $bulanIndonesia[$bulanInggris_update], $tgl_update);
+            }
+        }
+
+        $data['hasilPencarian'] = $hasilPencarian;
+        $data['keyword'] = $keyword;
+        $data['pager'] = $model_mpm->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/mpm/search', $data);
     }
 
     public function admin_add_mpm()
     {
-        return view('admin/mpm/add');
+        $model_member = new Member();
+
+        $member = $model_member->select('id_member, username')->findAll();
+
+        $data['member'] = $member;
+
+        return view('admin/mpm/add', $data);
     }
 
-    public function admin_edit_mpm()
+    public function admin_create_mpm()
     {
-        return view('admin/mpm/edit');
+        $model_mpm = new MPM();
+
+        $data = [
+            'id_member' => $this->request->getPost('id_member'),
+            'tgl_kirim_email' => $this->request->getPost('tgl_kirim_email'),
+            'update_terakhir' => $this->request->getPost('update_terakhir'),
+            'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
+            'negara_perusahaan' => $this->request->getPost('negara_perusahaan'),
+            'status_progres' => $this->request->getPost('status_progres'),
+            'progres' => $this->request->getPost('progres'),
+        ];
+
+        $model_mpm->insert($data);
+
+        return redirect()->to('/admin-mpm');
+    }
+
+    public function admin_edit_mpm($id)
+    {
+        $model_mpm = new MPM();
+        $model_member = new Member();
+
+        $mpm = $model_mpm->find($id);
+
+        $member = $model_member->select('id_member, username')->findAll();
+
+        $data['mpm'] = $mpm;
+        $data['member'] = $member;
+
+        return view('admin/mpm/edit', $data);
+    }
+
+    public function admin_update_mpm($id)
+    {
+        $model_mpm = new MPM();
+
+        $data = [
+            'id_member' => $this->request->getPost('id_member'),
+            'tgl_kirim_email' => $this->request->getPost('tgl_kirim_email'),
+            'update_terakhir' => $this->request->getPost('update_terakhir'),
+            'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
+            'negara_perusahaan' => $this->request->getPost('negara_perusahaan'),
+            'status_progres' => $this->request->getPost('status_progres'),
+            'progres' => $this->request->getPost('progres'),
+        ];
+
+        $model_mpm->update($id, $data);
+
+        return redirect()->to('/admin-mpm');
+    }
+
+    public function admin_delete_mpm($id)
+    {
+        $model_mpm = new MPM();
+
+        $model_mpm->delete($id);
+
+        return redirect()->to('/admin-mpm');
     }
 
     // Admin Website Audit
@@ -3669,7 +3891,7 @@ class KomunitasEkspor extends BaseController
     }
 
     // Invesment
-    public function member_invesment()
+    public function member_investment()
     {
         $model_webprofile = new WebProfile();
 
@@ -3677,6 +3899,6 @@ class KomunitasEkspor extends BaseController
 
         $data['webprofile'] = $webprofile;
 
-        return view('member/invesment/invesment', $data);
+        return view('member/investment/investment', $data);
     }
 }
