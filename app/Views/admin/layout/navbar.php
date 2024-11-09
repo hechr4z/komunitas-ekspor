@@ -25,12 +25,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link <?= 
-                        (current_url() == base_url('admin-member')) ? 'active' : 
-                        ((current_url() == base_url('admin-search-member')) ? 'active' : 
-                        ((current_url() == base_url('admin-add-member')) ? 'active' : 
-                        ((strpos(current_url(), base_url('admin-edit-member')) === 0) ? 'active' : '')))
-                    ?>" href="<?= base_url('admin-member') ?>">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-member')) ? 'active' : ((current_url() == base_url('admin-search-member')) ? 'active' : ((current_url() == base_url('admin-add-member')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-member')) === 0) ? 'active' : '')))
+                                        ?>" href="<?= base_url('admin-member') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-user"></i>
                         </span>
@@ -39,12 +36,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link <?= 
-                        (current_url() == base_url('admin-buyers')) ? 'active' : 
-                        ((current_url() == base_url('admin-search-buyers')) ? 'active' : 
-                        ((current_url() == base_url('admin-add-buyers')) ? 'active' : 
-                        ((strpos(current_url(), base_url('admin-edit-buyers')) === 0) ? 'active' : '')))
-                    ?>" href="<?= base_url('admin-buyers') ?>">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-buyers')) ? 'active' : ((current_url() == base_url('admin-search-buyers')) ? 'active' : ((current_url() == base_url('admin-add-buyers')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-buyers')) === 0) ? 'active' : '')))
+                                        ?>" href="<?= base_url('admin-buyers') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-cart-shopping"></i>
                         </span>
@@ -53,12 +47,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link <?= 
-                        (current_url() == base_url('admin-produk')) ? 'active' : 
-                        ((current_url() == base_url('admin-search-produk')) ? 'active' : 
-                        ((current_url() == base_url('admin-add-produk')) ? 'active' : 
-                        ((strpos(current_url(), base_url('admin-edit-produk')) === 0) ? 'active' : '')))
-                    ?>" href="<?= base_url('admin-produk') ?>">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-produk')) ? 'active' : ((current_url() == base_url('admin-search-produk')) ? 'active' : ((current_url() == base_url('admin-add-produk')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-produk')) === 0) ? 'active' : '')))
+                                        ?>" href="<?= base_url('admin-produk') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-box"></i>
                         </span>
@@ -67,12 +58,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link <?= 
-                        (current_url() == base_url('admin-sertifikat')) ? 'active' : 
-                        ((current_url() == base_url('admin-search-sertifikat')) ? 'active' : 
-                        ((current_url() == base_url('admin-add-sertifikat')) ? 'active' : 
-                        ((strpos(current_url(), base_url('admin-edit-sertifikat')) === 0) ? 'active' : '')))
-                    ?>" href="<?= base_url('admin-sertifikat') ?>">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-sertifikat')) ? 'active' : ((current_url() == base_url('admin-search-sertifikat')) ? 'active' : ((current_url() == base_url('admin-add-sertifikat')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-sertifikat')) === 0) ? 'active' : '')))
+                                        ?>" href="<?= base_url('admin-sertifikat') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-certificate"></i>
                         </span>
@@ -117,12 +105,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link <?= 
-                        (current_url() == base_url('admin-exwork')) ? 'active' : 
-                        ((current_url() == base_url('admin-search-exwork')) ? 'active' : 
-                        ((current_url() == base_url('admin-add-exwork')) ? 'active' : 
-                        ((strpos(current_url(), base_url('admin-edit-exwork')) === 0) ? 'active' : '')))
-                    ?>" href="<?= base_url('admin-exwork') ?>">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-exwork')) ? 'active' : ((current_url() == base_url('admin-search-exwork')) ? 'active' : ((current_url() == base_url('admin-add-exwork')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-exwork')) === 0) ? 'active' : '')))
+                                        ?>" href="<?= base_url('admin-exwork') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-calculator"></i>
                         </span>
@@ -131,12 +116,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link <?= 
-                        (current_url() == base_url('admin-fob')) ? 'active' : 
-                        ((current_url() == base_url('admin-search-fob')) ? 'active' : 
-                        ((current_url() == base_url('admin-add-fob')) ? 'active' : 
-                        ((strpos(current_url(), base_url('admin-edit-fob')) === 0) ? 'active' : '')))
-                    ?>" href="<?= base_url('admin-fob') ?>">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-fob')) ? 'active' : ((current_url() == base_url('admin-search-fob')) ? 'active' : ((current_url() == base_url('admin-add-fob')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-fob')) === 0) ? 'active' : '')))
+                                        ?>" href="<?= base_url('admin-fob') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-calculator"></i>
                         </span>
@@ -145,12 +127,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link <?= 
-                        (current_url() == base_url('admin-cfr')) ? 'active' : 
-                        ((current_url() == base_url('admin-search-cfr')) ? 'active' : 
-                        ((current_url() == base_url('admin-add-cfr')) ? 'active' : 
-                        ((strpos(current_url(), base_url('admin-edit-cfr')) === 0) ? 'active' : '')))
-                    ?>" href="<?= base_url('admin-cfr') ?>">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-cfr')) ? 'active' : ((current_url() == base_url('admin-search-cfr')) ? 'active' : ((current_url() == base_url('admin-add-cfr')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-cfr')) === 0) ? 'active' : '')))
+                                        ?>" href="<?= base_url('admin-cfr') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-calculator"></i>
                         </span>
@@ -159,12 +138,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link <?= 
-                        (current_url() == base_url('admin-cif')) ? 'active' : 
-                        ((current_url() == base_url('admin-search-cif')) ? 'active' : 
-                        ((current_url() == base_url('admin-add-cif')) ? 'active' : 
-                        ((strpos(current_url(), base_url('admin-edit-cif')) === 0) ? 'active' : '')))
-                    ?>" href="<?= base_url('admin-cif') ?>">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-cif')) ? 'active' : ((current_url() == base_url('admin-search-cif')) ? 'active' : ((current_url() == base_url('admin-add-cif')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-cif')) === 0) ? 'active' : '')))
+                                        ?>" href="<?= base_url('admin-cif') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-calculator"></i>
                         </span>
@@ -173,11 +149,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link <?= 
-                        (current_url() == base_url('admin-satuan')) ? 'active' : 
-                        ((current_url() == base_url('admin-search-satuan')) ? 'active' :
-                        ((strpos(current_url(), base_url('admin-edit-satuan')) === 0) ? 'active' : ''))
-                    ?>" href="<?= base_url('admin-satuan') ?>">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-satuan')) ? 'active' : ((current_url() == base_url('admin-search-satuan')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-satuan')) === 0) ? 'active' : ''))
+                                        ?>" href="<?= base_url('admin-satuan') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-calculator"></i>
                         </span>
@@ -186,7 +160,9 @@
                 </li>
 
                 <li class="nav`-item">
-                    <a class="nav-link <?= (current_url() == base_url('admin-mpm')) ? 'active' : '' ?>" href="<?= base_url('admin-mpm') ?>">
+                    <a class="nav-link <?=
+                                        (current_url() == base_url('admin-mpm')) ? 'active' : ((current_url() == base_url('admin-search-mpm')) ? 'active' : ((current_url() == base_url('admin-add-mpm')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-mpm')) === 0) ? 'active' : '')))
+                                        ?>" href="<?= base_url('admin-mpm') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-envelope"></i>
                         </span>
@@ -206,9 +182,7 @@
                 <li class="nav-item">
                     <a class="nav-link <?= (current_url() == base_url('admin-pengumuman')) ? 'active' : '' ?>" href="<?= base_url('admin-pengumuman') ?>">
                         <span class="nav-icon">
-                            <svg width="16" height="16" fill="currentColor" class="fas fa-bullhorn bi bi-activity" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z" />
-                            </svg>
+                            <i class="fa-solid fa-bullhorn"></i>
                         </span>
                         <span class="nav-link-text">Pengumuman</span>
                     </a>
