@@ -210,10 +210,6 @@
                     </label>
                 </form>
             </div>
-
-            <div class="col-auto">
-                <a href="<?= base_url('admin-add-mpm') ?>" class="btn text-white" style="background-color: #03AADE;"> + Tambah Data MPM</a>
-            </div>
         </div>
 
         <div class="row justify-content-center">
@@ -240,7 +236,6 @@
                                         <th class="text-center" valign="middle">Negara Perusahaan</th>
                                         <th class="text-center" valign="middle">Status Progress</th>
                                         <th class="text-center" valign="middle col-fixed">Progress</th>
-                                        <th class="text-center" valign="middle">Aksi</th>
                                     </tr>
                                 </thead>
                                 <?php if (empty($hasilPencarian)): ?>
@@ -273,16 +268,6 @@
                                         <td class="text-center align-middle col-fixed">
                                             <div class="text-truncate-multiline" data-bs-toggle="tooltip" title="<?= $titleText ?>">
                                                 <?= $item['progres'] ?>
-                                            </div>
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                <a href="<?= base_url('admin-delete-mpm/' . $item['id_mpm']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">
-                                                    Hapus
-                                                </a>
-                                                <a href="<?= base_url('admin-edit-mpm/' . $item['id_mpm']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">
-                                                    Ubah
-                                                </a>
                                             </div>
                                         </td>
                                     </tr>
