@@ -397,20 +397,39 @@
                                     Aplikasi
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-light">
-                                    <li><a class="dropdown-item nav-link"
-                                            href="<?= base_url('kalkulator-ekspor') ?>">Kalkulator Harga Ekspor</a></li>
-                                    <li><a class="dropdown-item nav-link" href="<?= base_url('mpm') ?>">Marketing
-                                            Progress Monitoring</a></li>
-                                    <li><a class="dropdown-item nav-link" href="<?= base_url('/website-audit') ?>">Website Audit</a></li>
+                                    <li>
+                                        <a class="dropdown-item nav-link" href="<?= base_url('kalkulator-ekspor') ?>">
+                                            Kalkulator Harga Ekspor
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item nav-link" href="<?= base_url('mpm') ?>">
+                                            Marketing Progress Monitoring
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item nav-link" href="<?= base_url('website-audit') ?>">
+                                            Website Audit
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item nav-link" href="<?= base_url('kelayakan-bisnis') ?>">
+                                            Kelayakan Bisnis
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('member-data-member') ?>">Data Member</a>
+                        <a class="nav-link" href="<?= base_url('member-data-member') ?>">
+                            Data Member
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('member-data-buyers') ?>">Data Buyers</a>
+                        <a class="nav-link" href="<?= base_url('member-data-buyers') ?>">
+                            Data Buyers
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('edit-profile') ?>">
@@ -502,9 +521,9 @@
                         <h5 class="mt-4"><b>Menu</b></h5>
                         <div class="list-unstyled pt-2">
                             <p><a href="<?= base_url('pengumuman') ?>" class="footer-link">Pengumuman</a></p>
-                            <p><a href="<?= base_url('belajar-ekspor') ?>" class="footer-link">Belajar Ekspor</a></p>
-                            <p><a href="<?= base_url('video-tutorial') ?>" class="footer-link">Video Tutorial</a></p>
-                            <p><a href="<?= base_url('data-member') ?>" class="footer-link">Data Member</a></p>
+                            <p><a href="<?= base_url('member-belajar-ekspor') ?>" class="footer-link">Belajar Ekspor</a></p>
+                            <p><a href="<?= base_url('member-video-tutorial') ?>" class="footer-link">Video Tutorial</a></p>
+                            <p><a href="<?= base_url('member-data-member') ?>" class="footer-link">Data Member</a></p>
                             <p><a href="<?= base_url('member-data-buyers') ?>" class="footer-link">Data Buyers</a></p>
                             <p><a href="<?= base_url('edit-profile') ?>" class="footer-link">Edit Profile</a></p>
                         </div>
@@ -512,11 +531,26 @@
                     <div class="col-md-2">
                         <h5 class="mt-4"><b>Aplikasi</b></h5>
                         <div class="list-unstyled pt-2">
-                            <p><a href="<?= base_url('kalkulator-ekspor') ?>" class="footer-link">Kalkulator Harga
-                                    Ekspor</a></p>
-                            <p><a href="<?= base_url('mpm') ?>" class="footer-link">Marketing Progress Monitoring</a>
+                            <p>
+                                <a href="<?= base_url('kalkulator-ekspor') ?>" class="footer-link">
+                                    Kalkulator Harga Ekspor
+                                </a>
                             </p>
-                            <p><a href="#" class="footer-link">Website Audit</a></p>
+                            <p>
+                                <a href="<?= base_url('mpm') ?>" class="footer-link">
+                                    Marketing Progress Monitoring
+                                </a>
+                            </p>
+                            <p>
+                                <a href="<?= base_url('website-audit') ?>" class="footer-link">
+                                    Website Audit
+                                </a>
+                            </p>
+                            <p>
+                                <a href="<?= base_url('kelayakan-bisnis') ?>" class="footer-link">
+                                    Kelayakan Bisnis
+                                </a>
+                            </p>
                         </div>
                     </div>
                 </div>
