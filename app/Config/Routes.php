@@ -125,6 +125,9 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->get('website-audit', 'KomunitasEkspor::website_audit');
     $routes->post('add-website-audit', 'KomunitasEkspor::add_website_audit');
     $routes->get('delete-website-audit/(:num)', 'KomunitasEkspor::delete_website_audit/$1');
+
+    // Member - Kelayakan Bisnis
+    $routes->get('/kelayakan-bisnis', 'KomunitasEkspor::kelayakan_bisnis');
 });
 
 // Admin - Dashboard
@@ -263,6 +266,3 @@ $routes->get('/admin-edit-slider', 'KomunitasEkspor::admin_edit_slider');
 // Admin - Web Profile
 $routes->get('/admin-web-profile', 'KomunitasEkspor::admin_web_profile');
 $routes->get('/admin-edit-web-profile', 'KomunitasEkspor::admin_edit_web_profile');
-
-// Member - Invesment
-$routes->get('/kelayakan-bisnis', 'KomunitasEkspor::kelayakan_bisnis');
