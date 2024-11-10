@@ -160,9 +160,7 @@
                 </li>
 
                 <li class="nav`-item">
-                    <a class="nav-link <?=
-                                        (current_url() == base_url('admin-mpm')) ? 'active' : ((current_url() == base_url('admin-search-mpm')) ? 'active' : ((current_url() == base_url('admin-add-mpm')) ? 'active' : ((strpos(current_url(), base_url('admin-edit-mpm')) === 0) ? 'active' : '')))
-                                        ?>" href="<?= base_url('admin-mpm') ?>">
+                    <a class="nav-link <?= (current_url() == base_url('admin-mpm') || current_url() == base_url('admin-search-mpm')) ? 'active' : '' ?>" href="<?= base_url('admin-mpm') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-envelope"></i>
                         </span>
