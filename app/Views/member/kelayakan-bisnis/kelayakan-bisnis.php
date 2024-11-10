@@ -398,79 +398,75 @@
         const nilaiSisa = parseFloat(document.getElementById('pat_nilai_sisa').value.replace(/\./g, ''));
 
         if (metode === "garis_lurus" && !isNaN(hargaPerolehan) && !isNaN(nilaiSisa)) {
-            const depreciation = (hargaPerolehan - nilaiSisa) / 5;
+            // Menghitung nilai depresiasi tahunan dengan metode garis lurus
+            const depreciationPerYear = (hargaPerolehan - nilaiSisa) / 5;
 
-            // Menampilkan nilai depresiasi pada kolom terkait
-            document.getElementById('1_debet_penyusutan').innerText = depreciation.toLocaleString("id-ID");
-            document.getElementById('2_debet_penyusutan').innerText = depreciation.toLocaleString("id-ID");
-            document.getElementById('3_debet_penyusutan').innerText = depreciation.toLocaleString("id-ID");
-            document.getElementById('4_debet_penyusutan').innerText = depreciation.toLocaleString("id-ID");
-            document.getElementById('5_debet_penyusutan').innerText = depreciation.toLocaleString("id-ID");
+            // Loop untuk menghitung dan menampilkan nilai depresiasi, akumulasi penyusutan, dan nilai buku aktiva tiap tahun
+            for (let year = 1; year <= 5; year++) {
+                // Membulatkan nilai depresiasi tahunan
+                const roundedDepreciation = Math.round(depreciationPerYear);
 
-            document.getElementById('1_kredit_akm_penyusutan').innerText = depreciation.toLocaleString("id-ID");
-            document.getElementById('2_kredit_akm_penyusutan').innerText = depreciation.toLocaleString("id-ID");
-            document.getElementById('3_kredit_akm_penyusutan').innerText = depreciation.toLocaleString("id-ID");
-            document.getElementById('4_kredit_akm_penyusutan').innerText = depreciation.toLocaleString("id-ID");
-            document.getElementById('5_kredit_akm_penyusutan').innerText = depreciation.toLocaleString("id-ID");
+                // Menampilkan nilai depresiasi tahunan
+                document.getElementById(`${year}_debet_penyusutan`).innerText = roundedDepreciation.toLocaleString("id-ID");
+                document.getElementById(`${year}_kredit_akm_penyusutan`).innerText = roundedDepreciation.toLocaleString("id-ID");
 
-            document.getElementById('1_total_akm_penyusutan').innerText = depreciation.toLocaleString("id-ID");
-            const depreciation2 = depreciation + depreciation;
-            document.getElementById('2_total_akm_penyusutan').innerText = depreciation2.toLocaleString("id-ID");
-            const depreciation3 = depreciation2 + depreciation;
-            document.getElementById('3_total_akm_penyusutan').innerText = depreciation3.toLocaleString("id-ID");
-            const depreciation4 = depreciation3 + depreciation;
-            document.getElementById('4_total_akm_penyusutan').innerText = depreciation4.toLocaleString("id-ID");
-            const depreciation5 = depreciation4 + depreciation;
-            document.getElementById('5_total_akm_penyusutan').innerText = depreciation5.toLocaleString("id-ID");
+                // Menghitung dan menampilkan akumulasi penyusutan sampai tahun berjalan
+                const accumulatedDepreciation = Math.round(depreciationPerYear * year);
+                document.getElementById(`${year}_total_akm_penyusutan`).innerText = accumulatedDepreciation.toLocaleString("id-ID");
 
-            // Menghitung nilai buku aktiva
-            const nilaiBukuAktiva = hargaPerolehan - depreciation;
-            document.getElementById('1_nilai_buku_aktiva').innerText = nilaiBukuAktiva.toLocaleString("id-ID");
-            const nilaiBukuAktiva2 = nilaiBukuAktiva - depreciation;
-            document.getElementById('2_nilai_buku_aktiva').innerText = nilaiBukuAktiva2.toLocaleString("id-ID");
-            const nilaiBukuAktiva3 = nilaiBukuAktiva2 - depreciation;
-            document.getElementById('3_nilai_buku_aktiva').innerText = nilaiBukuAktiva3.toLocaleString("id-ID");
-            const nilaiBukuAktiva4 = nilaiBukuAktiva3 - depreciation;
-            document.getElementById('4_nilai_buku_aktiva').innerText = nilaiBukuAktiva4.toLocaleString("id-ID");
-            const nilaiBukuAktiva5 = nilaiBukuAktiva4 - depreciation;
-            document.getElementById('5_nilai_buku_aktiva').innerText = nilaiBukuAktiva5.toLocaleString("id-ID");
+                // Menghitung dan menampilkan nilai buku aktiva setelah penyusutan
+                const bookValue = Math.round(hargaPerolehan - accumulatedDepreciation);
+                document.getElementById(`${year}_nilai_buku_aktiva`).innerText = bookValue.toLocaleString("id-ID");
+            }
         } else if (metode === "angka_tahun" && !isNaN(hargaPerolehan) && !isNaN(nilaiSisa)) {
-            const firstYear = (5 / 15) * (hargaPerolehan - nilaiSisa);
-            document.getElementById('1_debet_penyusutan').innerText = firstYear.toLocaleString("id-ID");
-            document.getElementById('1_kredit_akm_penyusutan').innerText = firstYear.toLocaleString("id-ID");
-            document.getElementById('1_total_akm_penyusutan').innerText = firstYear.toLocaleString("id-ID");
-            const secondYear = (4 / 15) * (hargaPerolehan - nilaiSisa);
-            document.getElementById('2_debet_penyusutan').innerText = secondYear.toLocaleString("id-ID");
-            document.getElementById('2_kredit_akm_penyusutan').innerText = secondYear.toLocaleString("id-ID");
-            const thirdYear = (3 / 15) * (hargaPerolehan - nilaiSisa);
-            document.getElementById('3_debet_penyusutan').innerText = thirdYear.toLocaleString("id-ID");
-            document.getElementById('3_kredit_akm_penyusutan').innerText = thirdYear.toLocaleString("id-ID");
-            const fourthYear = (2 / 15) * (hargaPerolehan - nilaiSisa);
-            document.getElementById('4_debet_penyusutan').innerText = fourthYear.toLocaleString("id-ID");
-            document.getElementById('4_kredit_akm_penyusutan').innerText = fourthYear.toLocaleString("id-ID");
-            const fifthYear = (1 / 15) * (hargaPerolehan - nilaiSisa);
-            document.getElementById('5_debet_penyusutan').innerText = fifthYear.toLocaleString("id-ID");
-            document.getElementById('5_kredit_akm_penyusutan').innerText = fifthYear.toLocaleString("id-ID");
+            // Faktor depresiasi berdasarkan tahun (metode angka tahun)
+            const depreciationFactors = [5, 4, 3, 2, 1];
+            const totalDepreciableValue = hargaPerolehan - nilaiSisa;
 
-            const firstTAP = firstYear + secondYear;
-            document.getElementById('2_total_akm_penyusutan').innerText = firstTAP.toLocaleString("id-ID");
-            const secondTAP = firstTAP + thirdYear;
-            document.getElementById('3_total_akm_penyusutan').innerText = secondTAP.toLocaleString("id-ID");
-            const thirdTAP = secondTAP + fourthYear;
-            document.getElementById('4_total_akm_penyusutan').innerText = thirdTAP.toLocaleString("id-ID");
-            const fourthTAP = thirdTAP + fifthYear;
-            document.getElementById('5_total_akm_penyusutan').innerText = fourthTAP.toLocaleString("id-ID");
+            // Loop untuk menghitung dan menampilkan nilai depresiasi, akumulasi penyusutan, dan nilai buku aktiva tiap tahun
+            let accumulatedDepreciation = 0;
+            let bookValue = hargaPerolehan;
 
-            const nilaiBukuAktiva = hargaPerolehan - firstYear;
-            document.getElementById('1_nilai_buku_aktiva').innerText = nilaiBukuAktiva.toLocaleString("id-ID");
-            const nilaiBukuAktiva2 = nilaiBukuAktiva - secondYear;
-            document.getElementById('2_nilai_buku_aktiva').innerText = nilaiBukuAktiva2.toLocaleString("id-ID");
-            const nilaiBukuAktiva3 = nilaiBukuAktiva2 - thirdYear;
-            document.getElementById('3_nilai_buku_aktiva').innerText = nilaiBukuAktiva3.toLocaleString("id-ID");
-            const nilaiBukuAktiva4 = nilaiBukuAktiva3 - fourthYear;
-            document.getElementById('4_nilai_buku_aktiva').innerText = nilaiBukuAktiva4.toLocaleString("id-ID");
-            const nilaiBukuAktiva5 = nilaiBukuAktiva4 - fifthYear;
-            document.getElementById('5_nilai_buku_aktiva').innerText = nilaiBukuAktiva5.toLocaleString("id-ID");
+            depreciationFactors.forEach((factor, index) => {
+                // Menghitung nilai depresiasi berdasarkan faktor tahun
+                const depreciation = Math.round((factor / 15) * totalDepreciableValue);
+
+                // Menampilkan nilai depresiasi untuk tahun tertentu
+                document.getElementById(`${index + 1}_debet_penyusutan`).innerText = depreciation.toLocaleString("id-ID");
+                document.getElementById(`${index + 1}_kredit_akm_penyusutan`).innerText = depreciation.toLocaleString("id-ID");
+
+                // Mengupdate akumulasi penyusutan
+                accumulatedDepreciation += depreciation;
+                document.getElementById(`${index + 1}_total_akm_penyusutan`).innerText = accumulatedDepreciation.toLocaleString("id-ID");
+
+                // Menghitung dan menampilkan nilai buku aktiva setelah penyusutan
+                bookValue -= depreciation;
+                document.getElementById(`${index + 1}_nilai_buku_aktiva`).innerText = bookValue.toLocaleString("id-ID");
+            });
+        } else if (metode === "saldo_menurun" && !isNaN(hargaPerolehan) && !isNaN(nilaiSisa)) {
+            // Faktor depresiasi per tahun menggunakan metode saldo menurun
+            const depreciationRate = 0.369;
+            const years = 5; // Jumlah tahun depresiasi
+            let accumulatedDepreciation = 0;
+            let bookValue = hargaPerolehan;
+
+            // Loop untuk menghitung dan menampilkan nilai depresiasi, akumulasi penyusutan, dan nilai buku aktiva tiap tahun
+            for (let i = 1; i <= years; i++) {
+                // Menghitung nilai depresiasi untuk tahun ke-i
+                const depreciation = Math.round(bookValue * depreciationRate);
+
+                // Menampilkan nilai depresiasi untuk tahun ke-i
+                document.getElementById(`${i}_debet_penyusutan`).innerText = depreciation.toLocaleString("id-ID");
+                document.getElementById(`${i}_kredit_akm_penyusutan`).innerText = depreciation.toLocaleString("id-ID");
+
+                // Mengupdate akumulasi penyusutan
+                accumulatedDepreciation += depreciation;
+                document.getElementById(`${i}_total_akm_penyusutan`).innerText = accumulatedDepreciation.toLocaleString("id-ID");
+
+                // Menghitung dan menampilkan nilai buku aktiva setelah penyusutan
+                bookValue -= depreciation;
+                document.getElementById(`${i}_nilai_buku_aktiva`).innerText = bookValue.toLocaleString("id-ID");
+            }
         }
     }
 </script>
