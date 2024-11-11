@@ -10,7 +10,7 @@
         --gap: 2em;
         --icon-change-color: #F2BF02;
         --height: 50px;
-        width: 500px;
+        width: 600px;
         /* Sesuaikan dengan tampilan A */
         padding-inline-end: 1em;
         background: var(--input-bg);
@@ -165,6 +165,21 @@
         font-size: 0.8rem;
         padding: 4px 8px;
     }
+
+    /* Adding fixed width for certain columns */
+    .col-fixed {
+        width: 300px;
+    }
+
+    .text-truncate-multiline {
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.2;
+        /* Sesuaikan jarak antar-baris */
+    }
 </style>
 
 <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -202,12 +217,6 @@
                     </label>
                 </form>
             </div>
-
-            <div class="col-auto">
-                <a href="<?= base_url('admin-add-website-audit') ?>" class="btn text-white"
-                    style="background-color: #03AADE;">
-                    + Tambah Data Website Audit</a>
-            </div>
         </div>
 
         <div class="tab-content">
@@ -219,33 +228,62 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" valign="middle">No</th>
-                                        <th class="text-center" valign="middle">Nama Member</th>
-                                        <th class="text-center" valign="middle">Sertifikat</th>
-                                        <th class="text-center" valign="middle">Aksi</th>
+                                        <th class="text-center" valign="middle">Username Member</th>
+                                        <th class="text-center" valign="middle">Link Website</th>
+                                        <th class="text-center" valign="middle">Status Verifikasi</th>
+                                        <th class="text-center" valign="middle">Catatan Fitur</th>
+                                        <th class="text-center" valign="middle">Catatan Bahasa</th>
+                                        <th class="text-center" valign="middle">Catatan SEO</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <?php if (empty($website_audit)): ?>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="7" class="text-center">Masih belum ada Data Website Audit.</td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                        <?php else: ?>
+                            <tbody>
+                                <?php $start = ($page - 1) * $perPage + 1; ?>
+                                <?php foreach ($website_audit as $item) : ?>
                                     <tr>
-                                        <td class="text-center" valign="middle">1</td>
-                                        <td class="text-center" valign="middle">Tio Rahmadani</td>
-                                        <td class="text-center" valign="middle">satuduatiga.pdf</td>
-                                        <td class="text-center align-middle">
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                <a href="#" class="btn btn-sm text-white me-2"
-                                                    style="background-color: #F2BF02;">
-                                                    Hapus
-                                                </a>
-                                                <a href="/admin-edit-sertifikat" class="btn btn-sm text-white"
-                                                    style="background-color: #03AADE;">
-                                                    Ubah
-                                                </a>
+                                        <td class="text-center" valign="middle"><?= $start++ ?></td>
+                                        <td class="text-center" valign="middle"><?= $item['username_member'] ?></td>
+                                        <td class="text-center" valign="middle"><?= $item['link_website'] ?></td>
+                                        <td class="text-center" valign="middle">
+                                            <?php if ($item['status_verifikasi'] === 'waiting'): ?>
+                                                <span style="color: gray;">Waiting</span>
+                                            <?php elseif ($item['status_verifikasi'] === 'true'): ?>
+                                                <span style="color: green;">Sesuai</span>
+                                            <?php elseif ($item['status_verifikasi'] === 'false'): ?>
+                                                <span style="color: red;">Tidak Sesuai</span>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td class="text-center align-middle col-fixed">
+                                            <div class="text-truncate-multiline" data-bs-toggle="tooltip" title="<?= $item['catatan_fitur'] ?>">
+                                                <?= $item['catatan_fitur'] ?>
+                                            </div>
+                                        </td>
+                                        <td class="text-center align-middle col-fixed">
+                                            <div class="text-truncate-multiline" data-bs-toggle="tooltip" title="<?= $item['catatan_bahasa'] ?>">
+                                                <?= $item['catatan_bahasa'] ?>
+                                            </div>
+                                        </td>
+                                        <td class="text-center align-middle col-fixed">
+                                            <div class="text-truncate-multiline" data-bs-toggle="tooltip" title="<?= $item['catatan_seo'] ?>">
+                                                <?= $item['catatan_seo'] ?>
                                             </div>
                                         </td>
                                     </tr>
-                                    <!-- Tambahkan baris lainnya sesuai kebutuhan -->
-                                </tbody>
+                                <?php endforeach; ?>
+                            </tbody>
                             </table>
-                        </div><!--//table-responsive-->
+                            <div class="mt-2">
+                                <?= $pager->links('default', 'bootstrap_pagination') ?>
+                            </div>
+                        <?php endif; ?>
+                        </div>
                     </div><!--//app-card-body-->
                 </div><!--//app-card-->
             </div><!--//tab-pane-->
@@ -253,5 +291,14 @@
     </div><!--//container-xl-->
 </div><!--//app-content-->
 
+<script>
+    // Initialize tooltips
+    document.addEventListener("DOMContentLoaded", function() {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.forEach(function(tooltipTriggerEl) {
+            new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
+</script>
 
 <?= $this->endSection('content') ?>
