@@ -247,6 +247,7 @@ $routes->get('/admin-search-mpm', 'KomunitasEkspor::admin_search_mpm');
 
 // Admin - Website Audit
 $routes->get('/admin-website-audit', 'KomunitasEkspor::admin_website_audit');
+$routes->get('/admin-search-website-audit', 'KomunitasEkspor::admin_search_website_audit');
 $routes->get('/admin-add-website-audit', 'KomunitasEkspor::admin_add_website_audit');
 $routes->get('/admin-edit-website-audit', 'KomunitasEkspor::admin_edit_website_audit');
 
