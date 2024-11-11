@@ -116,6 +116,22 @@
                         type="button" role="tab" aria-controls="average" aria-selected="false">Average Rate of
                         Return</button>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link custom-tab" id="metode-payback-tab" data-bs-toggle="tab"
+                        data-bs-target="#metode-payback" type="button" role="tab" aria-controls="metode-payback"
+                        aria-selected="false">Metode Payback Period</button>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link custom-tab" id="internal-ror-tab" data-bs-toggle="tab"
+                        data-bs-target="#internal-ror" type="button" role="tab" aria-controls="internal-ror"
+                        aria-selected="false">Internal Rate of Return</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link custom-tab" id="modified-irr-tab" data-bs-toggle="tab"
+                        data-bs-target="#modified-irr" type="button" role="tab" aria-controls="modified-irr"
+                        aria-selected="false">Modified Internal Rate of Return</button>
+                </li>
             </ul>
 
             <!-- Tab Contents -->
@@ -130,18 +146,24 @@
 
                         <!-- Form Fields -->
                         <div class="mb-3">
-                            <label for="pembelian_aktiva_tetap" class="form-label fw-bold">Pembelian Aktiva Tetap</label>
-                            <input type="text" class="form-control" id="pembelian_aktiva_tetap" name="pembelian_aktiva_tetap" placeholder="Masukkan Jumlah Pembelian Aktiva Tetap" oninput="formatPembelianAktivaTetap(this)">
+                            <label for="pembelian_aktiva_tetap" class="form-label fw-bold">Pembelian Aktiva
+                                Tetap</label>
+                            <input type="text" class="form-control" id="pembelian_aktiva_tetap"
+                                name="pembelian_aktiva_tetap" placeholder="Masukkan Jumlah Pembelian Aktiva Tetap"
+                                oninput="formatPembelianAktivaTetap(this)">
                         </div>
 
                         <div class="mb-3">
                             <label for="kebutuhan_modal_kerja" class="form-label fw-bold">Kebutuhan Modal Kerja</label>
-                            <input type="text" class="form-control" id="kebutuhan_modal_kerja" name="kebutuhan_modal_kerja" placeholder="Masukkan Kebutuhan Modal Kerja" oninput="formatNumber(this)">
+                            <input type="text" class="form-control" id="kebutuhan_modal_kerja"
+                                name="kebutuhan_modal_kerja" placeholder="Masukkan Kebutuhan Modal Kerja"
+                                oninput="formatNumber(this)">
                         </div>
 
                         <div class="mb-3">
                             <label for="usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
-                            <input type="text" class="form-control" id="usia_ekonomis" name="usia_ekonomis" value="5 Tahun" disabled>
+                            <input type="text" class="form-control" id="usia_ekonomis" name="usia_ekonomis"
+                                value="5 Tahun" disabled>
                         </div>
                     </div>
 
@@ -164,19 +186,24 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <input type="text" class="form-control" name="tahun1[]" placeholder="Masukkan Prediksi" oninput="formatNumber(this)">
+                                            <input type="text" class="form-control" name="tahun1[]"
+                                                placeholder="Masukkan Prediksi" oninput="formatNumber(this)">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" name="tahun2[]" placeholder="Masukkan Prediksi" oninput="formatNumber(this)">
+                                            <input type="text" class="form-control" name="tahun2[]"
+                                                placeholder="Masukkan Prediksi" oninput="formatNumber(this)">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" name="tahun3[]" placeholder="Masukkan Prediksi" oninput="formatNumber(this)">
+                                            <input type="text" class="form-control" name="tahun3[]"
+                                                placeholder="Masukkan Prediksi" oninput="formatNumber(this)">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" name="tahun4[]" placeholder="Masukkan Prediksi" oninput="formatNumber(this)">
+                                            <input type="text" class="form-control" name="tahun4[]"
+                                                placeholder="Masukkan Prediksi" oninput="formatNumber(this)">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" name="tahun5[]" placeholder="Masukkan Prediksi" oninput="formatNumber(this)">
+                                            <input type="text" class="form-control" name="tahun5[]"
+                                                placeholder="Masukkan Prediksi" oninput="formatNumber(this)">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -201,16 +228,20 @@
                         <div class="col-md-5 mx-auto mt-4 p-4 rounded shadow-sm bg-white">
                             <h4 class="text-center text-primary mb-3">Tingkat Suku Bunga</h4>
                             <div class="mb-3">
-                                <label for="dfi_harga_perolehan" class="form-label fw-bold">Harga Perolehan (Cost)</label>
-                                <input type="text" class="form-control" id="dfi_harga_perolehan" name="dfi_harga_perolehan" disabled placeholder="Mengikuti Pembelian Aktiva Tetap">
+                                <label for="dfi_harga_perolehan" class="form-label fw-bold">Harga Perolehan
+                                    (Cost)</label>
+                                <input type="text" class="form-control" id="dfi_harga_perolehan"
+                                    name="dfi_harga_perolehan" disabled placeholder="Mengikuti Pembelian Aktiva Tetap">
                             </div>
                             <div class="mb-3">
                                 <label for="dfi_nilai_sisa" class="form-label fw-bold">Nilai Sisa (Salvage)</label>
-                                <input type="text" class="form-control" id="dfi_nilai_sisa" name="dfi_nilai_sisa" placeholder="Masukkan Nilai Sisa" oninput="formatNilaiSisa(this)">
+                                <input type="text" class="form-control" id="dfi_nilai_sisa" name="dfi_nilai_sisa"
+                                    placeholder="Masukkan Nilai Sisa" oninput="formatNilaiSisa(this)">
                             </div>
                             <div class="mb-3">
                                 <label for="dfi_umur_ekonomis" class="form-label fw-bold">Umur Ekonomis (Life)</label>
-                                <input type="text" class="form-control" id="dfi_umur_ekonomis" name="dfi_umur_ekonomis" value="5 Tahun" disabled>
+                                <input type="text" class="form-control" id="dfi_umur_ekonomis" name="dfi_umur_ekonomis"
+                                    value="5 Tahun" disabled>
                             </div>
                         </div>
 
@@ -230,7 +261,8 @@
                                         <tr>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="arr" placeholder="Masukkan ARR">
+                                                    <input type="text" class="form-control" name="arr"
+                                                        placeholder="Masukkan ARR">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">%</span>
                                                     </div>
@@ -238,7 +270,8 @@
                                             </td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="payback" placeholder="Masukkan Payback">
+                                                    <input type="text" class="form-control" name="payback"
+                                                        placeholder="Masukkan Payback">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">Tahun</span>
                                                     </div>
@@ -249,7 +282,8 @@
                                         <tr>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="arr_2" placeholder="Masukkan ARR (Baris 2)">
+                                                    <input type="text" class="form-control" name="arr_2"
+                                                        placeholder="Masukkan ARR (Baris 2)">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">%</span>
                                                     </div>
@@ -274,7 +308,8 @@
                         <div class="mb-3">
                             <label for="metode_penyusutan" class="form-label fw-bold">Pilih salah satu metode
                                 penyusutan:</label>
-                            <select class="form-select" id="metode_penyusutan" name="metode_penyusutan" onchange="calculateDepreciation()">
+                            <select class="form-select" id="metode_penyusutan" name="metode_penyusutan"
+                                onchange="calculateDepreciation()">
                                 <option value="" selected disabled>Pilih Metode Penyusutan</option>
                                 <option value="garis_lurus">1. Garis Lurus</option>
                                 <option value="angka_tahun">2. Angka Tahun</option>
@@ -290,17 +325,20 @@
                         <!-- Input Fields for Data Aktiva -->
                         <div class="mb-3">
                             <label for="pat_harga_perolehan" class="form-label fw-bold">Harga Perolehan (Cost)</label>
-                            <input type="text" class="form-control" id="pat_harga_perolehan" name="pat_harga_perolehan" disabled placeholder="Mengikuti Pembelian Aktiva Tetap">
+                            <input type="text" class="form-control" id="pat_harga_perolehan" name="pat_harga_perolehan"
+                                disabled placeholder="Mengikuti Pembelian Aktiva Tetap">
                         </div>
 
                         <div class="mb-3">
                             <label for="pat_nilai_sisa" class="form-label fw-bold">Nilai Sisa (Salvage)</label>
-                            <input type="text" class="form-control" id="pat_nilai_sisa" name="pat_nilai_sisa" disabled placeholder="Mengikuti Nilai Sisa Di Data Finansial Investasi">
+                            <input type="text" class="form-control" id="pat_nilai_sisa" name="pat_nilai_sisa" disabled
+                                placeholder="Mengikuti Nilai Sisa Di Data Finansial Investasi">
                         </div>
 
                         <div class="mb-3">
                             <label for="pat_umur_ekonomis" class="form-label fw-bold">Umur Ekonomis (Life)</label>
-                            <input type="text" class="form-control" id="pat_umur_ekonomis" name="pat_umur_ekonomis" value="5 Tahun" disabled>
+                            <input type="text" class="form-control" id="pat_umur_ekonomis" name="pat_umur_ekonomis"
+                                value="5 Tahun" disabled>
                         </div>
                     </div>
 
@@ -365,8 +403,317 @@
                             </table>
                         </div>
                     </div>
-
                 </div>
+
+                <!-- Average Rate of Return -->
+                <div class="tab-pane fade" id="average" role="tabpanel" aria-labelledby="average-tab">
+
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
+                        <h4 class="text-center text-primary mb-4">Average Rate of Return</h4>
+                        <!-- Input Fields -->
+                        <div class="mb-3">
+                            <label for="investasi" class="form-label fw-bold">Investasi</label>
+                            <input type="text" class="form-control" id="investasi" name="investasi"
+                                placeholder="Masukkan Nilai Investasi">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
+                            <input type="text" class="form-control" id="usia_ekonomis" name="usia_ekonomis"
+                                value="5 Tahun" disabled>
+                        </div>
+                    </div>
+
+                    <!-- Tabel Penyusutan Aktiva Tetap -->
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm text-center">
+                        <h4 class="text-center text-primary mb-4">Aliran Kas</h4>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th>Keterangan</th>
+                                        <th>Laba Set. Pajak</th>
+                                        <th>Penyusutan</th>
+                                        <th>Aliran Kas Masuk</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="0_akhir_tahun">0</td>
+                                        <td id="0_debet_penyusutan">0</td>
+                                        <td id="0_kredit_akm_penyusutan">0</td>
+                                        <td id="0_total_akm_penyusutan">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- View Investasi -->
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
+
+                        <div class="mb-3">
+                            <label for="rata_laba_setelah_pajak" class="form-label fw-bold">Rata-rata Laba Setelah Pajak
+                                (EAT)</label>
+                            <input type="text" class="form-control" id="rata_laba_setelah_pajak"
+                                name="rata_laba_setelah_pajak" disabled placeholder="Rp 0,00">
+                        </div>
+                        <div class="mb-3">
+                            <label for="investasi_awal" class="form-label fw-bold">Investasi Awal</label>
+                            <input type="text" class="form-control" id="investasi_awal" name="investasi_awal" disabled
+                                placeholder="Rp 0,00">
+                        </div>
+                        <div class="mb-3">
+                            <label for="rata_investasi" class="form-label fw-bold">Rata-rata Investasi</label>
+                            <input type="text" class="form-control" id="rata_investasi" name="rata_investasi" disabled
+                                placeholder="Rp 0,00">
+                        </div>
+                        <div class="mb-3">
+                            <label for="arr_initial_investment" class="form-label fw-bold">ARR - Initial
+                                Investment</label>
+                            <input type="text" class="form-control" id="arr_initial_investment"
+                                name="arr_initial_investment" disabled placeholder="0%">
+                        </div>
+                        <div class="mb-3">
+                            <label for="arr_average_investment" class="form-label fw-bold">ARR - Average
+                                Investment</label>
+                            <input type="text" class="form-control" id="arr_average_investment"
+                                name="arr_average_investment" disabled placeholder="0%">
+                        </div>
+                    </div>
+
+                    <!-- Kesimpulan -->
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
+                        <h4 class="text-center text-primary mb-4">Kesimpulan Investasi</h4>
+
+                        <div class="mb-3">
+                            <input type="text" class="form-control text-center text-uppercase fw-bold"
+                                id="kesimpulan_investasi" name="kesimpulan_investasi" disabled
+                                placeholder="Investasi Layak / Investasi Tidak Layak">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Metode Payback Period -->
+                <div class="tab-pane fade" id="metode-payback" role="tabpanel" aria-labelledby="metode-payback-tab">
+
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
+                        <h4 class="text-center text-primary mb-4">Metode Payback Period</h4>
+
+                        <div class="mb-3">
+                            <label for="investasi" class="form-label fw-bold">Investasi</label>
+                            <input type="text" class="form-control" id="investasi" name="investasi"
+                                placeholder="Masukkan Nilai Investasi">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
+                            <input type="text" class="form-control" id="usia_ekonomis" name="usia_ekonomis"
+                                value="5 Tahun" disabled>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="suku-bunga" class="form-label fw-bold">Suku Bunga</label>
+                            <input type="text" class="form-control" id="suku-bunga" name="suku-bunga"
+                                placeholder="Masukkan Suku Bunga (%)">
+                        </div>
+                    </div>
+
+                    <!-- Tabel Penyusutan Aktiva Tetap -->
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm text-center">
+                        <h4 class="text-center text-primary mb-4">Aliran Kas</h4>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th>Keterangan</th>
+                                        <th>Laba Set. Pajak</th>
+                                        <th>Penyusutan</th>
+                                        <th>Aliran Kas Masuk</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="0_akhir_tahun">0</td>
+                                        <td id="0_debet_penyusutan">0</td>
+                                        <td id="0_kredit_akm_penyusutan">0</td>
+                                        <td id="0_total_akm_penyusutan">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- View Metode Payback -->
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
+
+                        <div class="mb-3">
+                            <label for="periode-payback" class="form-label fw-bold">Periode Payback</label>
+                            <input type="text" class="form-control" id="periode-payback" name="periode-payback" disabled
+                                placeholder="2 Tahun 10 Bulan">
+                        </div>
+                    </div>
+
+                    <!-- Kesimpulan -->
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
+                        <h4 class="text-center text-primary mb-4">Kesimpulan Investasi</h4>
+
+                        <div class="mb-3">
+                            <input type="text" class="form-control text-center text-uppercase fw-bold"
+                                id="kesimpulan_investasi" name="kesimpulan_investasi" disabled
+                                placeholder="Investasi Layak Dijalankan / Investasi Tidak Layak Dijalankan">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Internal Rate of Return -->
+                <div class="tab-pane fade" id="internal-ror" role="tabpanel" aria-labelledby="internal-ror-tab">
+
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
+                        <h4 class="text-center text-primary mb-4">Internal Rate of Return</h4>
+
+                        <div class="mb-3">
+                            <label for="investasi" class="form-label fw-bold">Investasi</label>
+                            <input type="text" class="form-control" id="investasi" name="investasi"
+                                placeholder="Masukkan Nilai Investasi">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
+                            <input type="text" class="form-control" id="usia_ekonomis" name="usia_ekonomis"
+                                value="5 Tahun" disabled>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="suku-bunga" class="form-label fw-bold">Suku Bunga</label>
+                            <input type="text" class="form-control" id="suku-bunga" name="suku-bunga"
+                                placeholder="Masukkan Suku Bunga (%)">
+                        </div>
+                    </div>
+
+                    <!-- Aliran Kas -->
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm text-center">
+                        <h4 class="text-center text-primary mb-4">Aliran Kas</h4>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th>Keterangan</th>
+                                        <th>Laba Set. Pajak</th>
+                                        <th>Penyusutan</th>
+                                        <th>Aliran Kas Masuk</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="0_akhir_tahun">0</td>
+                                        <td id="0_debet_penyusutan">0</td>
+                                        <td id="0_kredit_akm_penyusutan">0</td>
+                                        <td id="0_total_akm_penyusutan">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- View IRR -->
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
+
+                        <div class="mb-3">
+                            <label for="internal-ror" class="form-label fw-bold">Internal Rate of Return (IRR)</label>
+                            <input type="text" class="form-control" id="internal-ror" name="internal-ror" disabled
+                                placeholder="26.36%">
+                        </div>
+                    </div>
+
+                    <!-- Kesimpulan -->
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
+                        <h4 class="text-center text-primary mb-4">Kesimpulan Investasi</h4>
+
+                        <div class="mb-3">
+                            <input type="text" class="form-control text-center text-uppercase fw-bold"
+                                id="kesimpulan_investasi" name="kesimpulan_investasi" disabled
+                                placeholder="Investasi Layak Dijalankan / Investasi Tidak Layak Dijalankan">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modified Internal Rate of Return -->
+                <div class="tab-pane fade" id="modified-irr" role="tabpanel" aria-labelledby="modified-irr-tab">
+
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
+                        <h4 class="text-center text-primary mb-4">Modified Internal Rate of Return</h4>
+
+                        <div class="mb-3">
+                            <label for="investasi" class="form-label fw-bold">Investasi</label>
+                            <input type="text" class="form-control" id="investasi" name="investasi"
+                                placeholder="Masukkan Nilai Investasi">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
+                            <input type="text" class="form-control" id="usia_ekonomis" name="usia_ekonomis"
+                                value="5 Tahun" disabled>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="suku-bunga" class="form-label fw-bold">Suku Bunga</label>
+                            <input type="text" class="form-control" id="suku-bunga" name="suku-bunga"
+                                placeholder="Masukkan Suku Bunga (%)">
+                        </div>
+                    </div>
+
+                    <!-- Aliran Kas -->
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm text-center">
+                        <h4 class="text-center text-primary mb-4">Aliran Kas</h4>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th>Keterangan</th>
+                                        <th>Laba Set. Pajak</th>
+                                        <th>Penyusutan</th>
+                                        <th>Aliran Kas Masuk</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="0_akhir_tahun">0</td>
+                                        <td id="0_debet_penyusutan">0</td>
+                                        <td id="0_kredit_akm_penyusutan">0</td>
+                                        <td id="0_total_akm_penyusutan">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- View MIRR -->
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
+                        <div class="mb-3">
+                            <label for="reinvest" class="form-label fw-bold">Re-investment Rate</label>
+                            <input type="text" class="form-control" id="reinvest" name="reinvest" disabled
+                                placeholder="12.50%">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="mirr" class="form-label fw-bold">Modified Internal Rate of Return/MIRR</label>
+                            <input type="text" class="form-control" id="mirr" name="mirr" disabled placeholder="19.88%">
+                        </div>
+                    </div>
+
+                    <!-- Kesimpulan -->
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
+                        <h4 class="text-center text-primary mb-4">Kesimpulan Investasi</h4>
+
+                        <div class="mb-3">
+                            <input type="text" class="form-control text-center text-uppercase fw-bold"
+                                id="kesimpulan_investasi" name="kesimpulan_investasi" disabled
+                                placeholder="Investasi Layak / Investasi Tidak Layak">
+                        </div>
+                    </div>
+                </div>
+
 
             </div> <!-- End of Tab Content -->
         </div>
