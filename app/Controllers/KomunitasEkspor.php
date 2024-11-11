@@ -3760,8 +3760,79 @@ class KomunitasEkspor extends BaseController
     // Admin Website Audit
     public function admin_website_audit()
     {
-        return view('admin/website-audit/index');
+        $model_website_audit = new WebsiteAudit();
+
+        $perPage = 10;
+        $page = $this->request->getVar('page') ?? 1;
+
+        // Query with join to get `username` from `member` table
+        $website_audit = $model_website_audit
+            ->select('website_audit.*, member.username AS username_member')
+            ->join('member', 'member.id_member = website_audit.id_member', 'left')
+            ->paginate($perPage);
+
+        $data['website_audit'] = $website_audit;
+        $data['pager'] = $model_website_audit->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/website-audit/index', $data);
     }
+
+    public function admin_search_website_audit()
+    {
+        helper('text');
+
+        // Ambil keyword dari query string
+        $keyword = $this->request->getGet('keyword');
+
+        // Map keywords for status_verifikasi
+        $mappedKeyword = null;
+        switch (strtolower($keyword)) {
+            case 'sesuai':
+                $mappedKeyword = 'true';
+                break;
+            case 'tidak sesuai' || 'tidak':
+                $mappedKeyword = 'false';
+                break;
+            case 'waiting':
+                $mappedKeyword = 'waiting';
+                break;
+            default:
+                $mappedKeyword = $keyword;
+                break;
+        }
+
+        $model_website_audit = new WebsiteAudit();
+
+        // Set pagination
+        $perPage = 10; // Jumlah item per halaman
+        $page = $this->request->getVar('page') ?? 1; // Mendapatkan halaman saat ini
+
+        // Query pencarian dengan join ke tabel `member` untuk mendapatkan `username`
+        $hasilPencarian = $model_website_audit
+            ->select('website_audit.*, member.username AS username_member')
+            ->join('member', 'member.id_member = website_audit.id_member', 'left')
+            ->groupStart() // Memulai grup kondisi
+            ->like('website_audit.link_website', $keyword) // Pencarian di `website_audit`
+            ->orLike('website_audit.catatan_fitur', $keyword)
+            ->orLike('website_audit.catatan_bahasa', $keyword)
+            ->orLike('website_audit.catatan_seo', $keyword)
+            ->orLike('website_audit.status_verifikasi', $mappedKeyword) // Use mappedKeyword here
+            ->orLike('member.username', $keyword) // Pencarian di `username` dari `member`
+            ->groupEnd() // Mengakhiri grup kondisi
+            ->paginate($perPage);
+
+        // Jika ada hasil pencarian
+        $data['hasilPencarian'] = $hasilPencarian;
+        $data['keyword'] = $keyword;
+        $data['pager'] = $model_website_audit->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+
+        return view('admin/website-audit/search', $data);
+    }
+
     public function admin_add_website_audit()
     {
         return view('admin/website-audit/add');
