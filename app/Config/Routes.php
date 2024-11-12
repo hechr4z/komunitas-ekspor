@@ -254,7 +254,11 @@ $routes->get('/admin-edit-website-audit', 'KomunitasEkspor::admin_edit_website_a
 // Admin - Pengumuman
 $routes->get('/admin-pengumuman', 'KomunitasEkspor::admin_pengumuman');
 $routes->get('/admin-add-pengumuman', 'KomunitasEkspor::admin_add_pengumuman');
-$routes->get('/admin-edit-pengumuman', 'KomunitasEkspor::admin_edit_pengumuman');
+$routes->post('/admin-add-pengumuman-create', 'KomunitasEkspor::admin_add_pengumuman_create/$1');
+$routes->get('/admin-edit-pengumuman/(:num)', 'KomunitasEkspor::admin_edit_pengumuman/$1');
+$routes->post('/admin-update-pengumuman/(:num)', 'KomunitasEkspor::admin_update_pengumuman/$1');
+$routes->get('/admin-delete-pengumuman/(:num)', 'KomunitasEkspor::admin_delete_pengumuman/$1');
+
 
 // Admin - Manfaat Join
 $routes->get('/admin-manfaat-join', 'KomunitasEkspor::admin_manfaat_join');
