@@ -3956,13 +3956,68 @@ class KomunitasEkspor extends BaseController
 
     public function admin_slider()
     {
-        return view('admin/slider/index');
+        $model_slider = new Slider();
+
+        $slider = $model_slider->findAll();
+
+        $data['slider'] = $slider;
+
+        return view('admin/slider/index', $data);
     }
 
-    public function admin_edit_slider()
+    public function admin_edit_slider($id)
     {
-        return view('admin/slider/edit');
+        $model_slider = new Slider();
+
+        $slider = $model_slider->find($id);
+
+        $data['slider'] = $slider;
+
+        return view('admin/slider/edit', $data);
     }
+
+    public function admin_update_slider($id)
+    {
+        $model_slider = new Slider();
+
+        $slider = $model_slider->find($id);
+
+        $data = [
+            'judul_slider' => $this->request->getPost('judul_slider'),
+            'deskripsi_slider' => $this->request->getPost('deskripsi_slider'),
+        ];
+
+        // Menangani upload gambar jika ada file baru
+        $file = $this->request->getFile('img_slider');
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            // Menghapus gambar lama jika ada dan file baru berhasil diunggah
+            if (file_exists(FCPATH . 'img/' . $slider['img_slider'])) {
+                unlink(FCPATH . 'img/' . $slider['img_slider']);
+            }
+
+            // Simpan gambar baru dan tambahkan ke data
+            $newName = $file->getRandomName();
+            $file->move('img/', $newName);
+            $data['img_slider'] = $newName;
+        } else {
+            // Jika tidak ada gambar baru, tetap gunakan gambar lama
+            $data['img_slider'] = $slider['img_slider'];
+        }
+
+
+        $model_slider->update($id, $data);
+
+        return redirect()->to('/admin-slider');
+    }
+
+    // public function admin_delete_slider($id)
+    // {
+    //     $model_slider = new Slider();
+
+    //     $model_slider->delete($id);
+
+    //     return redirect()->to('/admin-slider');
+    // }
 
     public function admin_web_profile()
     {

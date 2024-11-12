@@ -266,7 +266,9 @@ $routes->get('/admin-edit-manfaat-join', 'KomunitasEkspor::admin_edit_manfaat_jo
 
 // Admin - Slider
 $routes->get('/admin-slider', 'KomunitasEkspor::admin_slider');
-$routes->get('/admin-edit-slider', 'KomunitasEkspor::admin_edit_slider');
+$routes->get('/admin-edit-slider/(:num)', 'KomunitasEkspor::admin_edit_slider/$1');
+$routes->post('/admin-update-slider/(:num)', 'KomunitasEkspor::admin_update_slider/$1');
+$routes->get('/admin-delete-slider/(:num)', 'KomunitasEkspor::admin_delete_slider/$1');
 
 // Admin - Web Profile
 $routes->get('/admin-web-profile', 'KomunitasEkspor::admin_web_profile');
