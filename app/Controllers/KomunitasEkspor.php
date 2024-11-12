@@ -411,7 +411,7 @@ class KomunitasEkspor extends BaseController
             ($referral ? "Kode Referral: $referral\n" : "");
 
         // Nomor tujuan WA
-        $nomor_wa = '6283153270334'; // Ganti dengan nomor WA yang benar
+        $nomor_wa = '6283153270924'; // Ganti dengan nomor WA yang benar
 
         // Membuat URL WhatsApp dengan pesan
         $whatsapp = "https://wa.me/$nomor_wa?text=" . urlencode($pesan);
@@ -3845,7 +3845,41 @@ class KomunitasEkspor extends BaseController
 
     public function admin_pengumuman()
     {
-        return view('admin/pengumuman/index');
+        $model_pengumuman = new Pengumuman();
+
+        $pengumuman = $model_pengumuman->findAll();
+
+        $data['pengumuman'] = $pengumuman;
+
+        return view('admin/pengumuman/index', $data);
+    }
+
+    public function admin_add_pengumuman_create()
+    {
+        $model_pengumuman = new Pengumuman();
+
+        $data = [
+            'judul_pengumuman' => $this->request->getPost('judul_pengumuman'),
+            'deskripsi_pengumuman' => $this->request->getPost('deskripsi_pengumuman'),
+            'slug' => $this->request->getPost('slug')
+        ];
+
+        // Mengambil file gambar
+        $file = $this->request->getFile('poster_pengumuman');
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            // Beri nama acak pada file gambar untuk menghindari konflik nama
+            $newName = $file->getRandomName();
+
+            // Pindahkan file ke folder 'img' dengan nama baru
+            $file->move('img/', $newName);
+
+            // Simpan nama file gambar ke dalam array data untuk disimpan ke database
+            $data['poster_pengumuman'] = $newName;
+        }
+
+        $model_pengumuman->insert($data);
+
+        return redirect()->to('/admin-pengumuman');
     }
 
     public function admin_add_pengumuman()
@@ -3853,9 +3887,61 @@ class KomunitasEkspor extends BaseController
         return view('admin/pengumuman/add');
     }
 
-    public function admin_edit_pengumuman()
+    public function admin_edit_pengumuman($id)
     {
-        return view('admin/pengumuman/edit');
+        $model_pengumuman = new Pengumuman();
+
+        $pengumuman = $model_pengumuman->find($id);
+
+        $data['pengumuman'] = $pengumuman;
+
+        return view('admin/pengumuman/edit', $data);
+    }
+
+    public function admin_update_pengumuman($id)
+    {
+        $model_pengumuman = new Pengumuman();
+
+        $existingData = $model_pengumuman->find($id);
+        if (!$existingData) {
+            return redirect()->to('/admin-pengumuman')->with('error', 'Data tidak ditemukan.');
+        }
+
+        $data = [
+            'judul_pengumuman' => $this->request->getPost('judul_pengumuman'),
+            'deskripsi_pengumuman' => $this->request->getPost('deskripsi_pengumuman'),
+            'slug' => $this->request->getPost('slug')
+        ];
+
+        // Menangani upload gambar jika ada file baru
+        $file = $this->request->getFile('poster_pengumuman');
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            // Menghapus gambar lama jika ada dan file baru berhasil diunggah
+            if (file_exists(FCPATH . 'img/' . $existingData['poster_pengumuman'])) {
+                unlink(FCPATH . 'img/' . $existingData['poster_pengumuman']);
+            }
+
+            // Simpan gambar baru dan tambahkan ke data
+            $newName = $file->getRandomName();
+            $file->move('img/', $newName);
+            $data['poster_pengumuman'] = $newName;
+        } else {
+            // Jika tidak ada gambar baru, tetap gunakan gambar lama
+            $data['poster_pengumuman'] = $existingData['poster_pengumuman'];
+        }
+
+        $model_pengumuman->update($id, $data);
+
+        return redirect()->to('/admin-pengumuman');
+    }
+
+    public function admin_delete_pengumuman($id)
+    {
+        $model_pengumuman = new Pengumuman();
+
+        $model_pengumuman->delete($id);
+
+        return redirect()->to('/admin-pengumuman');
     }
 
     public function admin_manfaat_join()
@@ -3870,13 +3956,68 @@ class KomunitasEkspor extends BaseController
 
     public function admin_slider()
     {
-        return view('admin/slider/index');
+        $model_slider = new Slider();
+
+        $slider = $model_slider->findAll();
+
+        $data['slider'] = $slider;
+
+        return view('admin/slider/index', $data);
     }
 
-    public function admin_edit_slider()
+    public function admin_edit_slider($id)
     {
-        return view('admin/slider/edit');
+        $model_slider = new Slider();
+
+        $slider = $model_slider->find($id);
+
+        $data['slider'] = $slider;
+
+        return view('admin/slider/edit', $data);
     }
+
+    public function admin_update_slider($id)
+    {
+        $model_slider = new Slider();
+
+        $slider = $model_slider->find($id);
+
+        $data = [
+            'judul_slider' => $this->request->getPost('judul_slider'),
+            'deskripsi_slider' => $this->request->getPost('deskripsi_slider'),
+        ];
+
+        // Menangani upload gambar jika ada file baru
+        $file = $this->request->getFile('img_slider');
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            // Menghapus gambar lama jika ada dan file baru berhasil diunggah
+            if (file_exists(FCPATH . 'img/' . $slider['img_slider'])) {
+                unlink(FCPATH . 'img/' . $slider['img_slider']);
+            }
+
+            // Simpan gambar baru dan tambahkan ke data
+            $newName = $file->getRandomName();
+            $file->move('img/', $newName);
+            $data['img_slider'] = $newName;
+        } else {
+            // Jika tidak ada gambar baru, tetap gunakan gambar lama
+            $data['img_slider'] = $slider['img_slider'];
+        }
+
+
+        $model_slider->update($id, $data);
+
+        return redirect()->to('/admin-slider');
+    }
+
+    // public function admin_delete_slider($id)
+    // {
+    //     $model_slider = new Slider();
+
+    //     $model_slider->delete($id);
+
+    //     return redirect()->to('/admin-slider');
+    // }
 
     public function admin_web_profile()
     {

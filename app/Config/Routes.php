@@ -254,7 +254,11 @@ $routes->get('/admin-edit-website-audit', 'KomunitasEkspor::admin_edit_website_a
 // Admin - Pengumuman
 $routes->get('/admin-pengumuman', 'KomunitasEkspor::admin_pengumuman');
 $routes->get('/admin-add-pengumuman', 'KomunitasEkspor::admin_add_pengumuman');
-$routes->get('/admin-edit-pengumuman', 'KomunitasEkspor::admin_edit_pengumuman');
+$routes->post('/admin-add-pengumuman-create', 'KomunitasEkspor::admin_add_pengumuman_create/$1');
+$routes->get('/admin-edit-pengumuman/(:num)', 'KomunitasEkspor::admin_edit_pengumuman/$1');
+$routes->post('/admin-update-pengumuman/(:num)', 'KomunitasEkspor::admin_update_pengumuman/$1');
+$routes->get('/admin-delete-pengumuman/(:num)', 'KomunitasEkspor::admin_delete_pengumuman/$1');
+
 
 // Admin - Manfaat Join
 $routes->get('/admin-manfaat-join', 'KomunitasEkspor::admin_manfaat_join');
@@ -262,7 +266,9 @@ $routes->get('/admin-edit-manfaat-join', 'KomunitasEkspor::admin_edit_manfaat_jo
 
 // Admin - Slider
 $routes->get('/admin-slider', 'KomunitasEkspor::admin_slider');
-$routes->get('/admin-edit-slider', 'KomunitasEkspor::admin_edit_slider');
+$routes->get('/admin-edit-slider/(:num)', 'KomunitasEkspor::admin_edit_slider/$1');
+$routes->post('/admin-update-slider/(:num)', 'KomunitasEkspor::admin_update_slider/$1');
+$routes->get('/admin-delete-slider/(:num)', 'KomunitasEkspor::admin_delete_slider/$1');
 
 // Admin - Web Profile
 $routes->get('/admin-web-profile', 'KomunitasEkspor::admin_web_profile');
