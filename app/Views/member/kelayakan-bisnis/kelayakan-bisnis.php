@@ -150,14 +150,14 @@
                                 Tetap</label>
                             <input type="text" class="form-control" id="pembelian_aktiva_tetap"
                                 name="pembelian_aktiva_tetap" placeholder="Masukkan Jumlah Pembelian Aktiva Tetap"
-                                oninput="formatPembelianAktivaTetap(this)">
+                                oninput="formatPembelianAktivaTetap(this); updateInvestmentTotal();">
                         </div>
 
                         <div class="mb-3">
                             <label for="kebutuhan_modal_kerja" class="form-label fw-bold">Kebutuhan Modal Kerja</label>
                             <input type="text" class="form-control" id="kebutuhan_modal_kerja"
                                 name="kebutuhan_modal_kerja" placeholder="Masukkan Kebutuhan Modal Kerja"
-                                oninput="formatNumber(this)">
+                                oninput="formatNumber(this); updateInvestmentTotal();">
                         </div>
 
                         <div class="mb-3">
@@ -186,24 +186,19 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <input type="text" class="form-control" name="tahun1[]"
-                                                placeholder="Masukkan Prediksi" oninput="formatNumber(this)">
+                                            <input type="text" class="form-control" id="eat_1" placeholder="Masukkan Prediksi" oninput="eat(this, 1)">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" name="tahun2[]"
-                                                placeholder="Masukkan Prediksi" oninput="formatNumber(this)">
+                                            <input type="text" class="form-control" id="eat_2" placeholder="Masukkan Prediksi" oninput="eat(this, 2)">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" name="tahun3[]"
-                                                placeholder="Masukkan Prediksi" oninput="formatNumber(this)">
+                                            <input type="text" class="form-control" id="eat_3" placeholder="Masukkan Prediksi" oninput="eat(this, 3)">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" name="tahun4[]"
-                                                placeholder="Masukkan Prediksi" oninput="formatNumber(this)">
+                                            <input type="text" class="form-control" id="eat_4" placeholder="Masukkan Prediksi" oninput="eat(this, 4)">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" name="tahun5[]"
-                                                placeholder="Masukkan Prediksi" oninput="formatNumber(this)">
+                                            <input type="text" class="form-control" id="eat_5" placeholder="Masukkan Prediksi" oninput="eat(this, 5)">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -412,14 +407,13 @@
                         <h4 class="text-center text-primary mb-4">Average Rate of Return</h4>
                         <!-- Input Fields -->
                         <div class="mb-3">
-                            <label for="investasi" class="form-label fw-bold">Investasi</label>
-                            <input type="text" class="form-control" id="investasi" name="investasi"
-                                placeholder="Masukkan Nilai Investasi">
+                            <label for="aror_investasi" class="form-label fw-bold">Investasi</label>
+                            <input type="text" class="form-control" id="aror_investasi" name="aror_investasi" placeholder="Hasil Penjumlahan Pembelian Aktiva Tetap Dan Kebutuhan Modal Kerja" disabled>
                         </div>
 
                         <div class="mb-3">
-                            <label for="usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
-                            <input type="text" class="form-control" id="usia_ekonomis" name="usia_ekonomis"
+                            <label for="aror_usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
+                            <input type="text" class="form-control" id="aror_usia_ekonomis" name="aror_usia_ekonomis"
                                 value="5 Tahun" disabled>
                         </div>
                     </div>
@@ -439,10 +433,34 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td id="0_akhir_tahun">0</td>
-                                        <td id="0_debet_penyusutan">0</td>
-                                        <td id="0_kredit_akm_penyusutan">0</td>
-                                        <td id="0_total_akm_penyusutan">0</td>
+                                        <td id="1_aror_keterangan">Tahun ke-1</td>
+                                        <td id="1_aror_laba_set_pajak"></td>
+                                        <td id="1_aror_penyusutan"></td>
+                                        <td id="1_aror_aliran_kas_masuk"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="2_aror_keterangan">Tahun ke-2</td>
+                                        <td id="2_aror_laba_set_pajak"></td>
+                                        <td id="2_aror_penyusutan"></td>
+                                        <td id="2_aror_aliran_kas_masuk"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="3_aror_keterangan">Tahun ke-3</td>
+                                        <td id="3_aror_laba_set_pajak"></td>
+                                        <td id="3_aror_penyusutan"></td>
+                                        <td id="3_aror_aliran_kas_masuk"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="4_aror_keterangan">Tahun ke-4</td>
+                                        <td id="4_aror_laba_set_pajak"></td>
+                                        <td id="4_aror_penyusutan"></td>
+                                        <td id="4_aror_aliran_kas_masuk"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="5_aror_keterangan">Tahun ke-5</td>
+                                        <td id="5_aror_laba_set_pajak"></td>
+                                        <td id="5_aror_penyusutan"></td>
+                                        <td id="5_aror_aliran_kas_masuk"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -453,32 +471,24 @@
                     <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
 
                         <div class="mb-3">
-                            <label for="rata_laba_setelah_pajak" class="form-label fw-bold">Rata-rata Laba Setelah Pajak
-                                (EAT)</label>
-                            <input type="text" class="form-control" id="rata_laba_setelah_pajak"
-                                name="rata_laba_setelah_pajak" disabled placeholder="Rp 0,00">
+                            <label for="rata_laba_setelah_pajak" class="form-label fw-bold">Rata-Rata Laba Setelah Pajak (EAT)</label>
+                            <input type="text" class="form-control" id="rata_laba_setelah_pajak" name="rata_laba_setelah_pajak" disabled placeholder="Belum Ada Nilai">
                         </div>
                         <div class="mb-3">
                             <label for="investasi_awal" class="form-label fw-bold">Investasi Awal</label>
-                            <input type="text" class="form-control" id="investasi_awal" name="investasi_awal" disabled
-                                placeholder="Rp 0,00">
+                            <input type="text" class="form-control" id="investasi_awal" name="investasi_awal" disabled placeholder="Belum Ada Nilai">
                         </div>
                         <div class="mb-3">
-                            <label for="rata_investasi" class="form-label fw-bold">Rata-rata Investasi</label>
-                            <input type="text" class="form-control" id="rata_investasi" name="rata_investasi" disabled
-                                placeholder="Rp 0,00">
+                            <label for="rata_investasi" class="form-label fw-bold">Rata-Rata Investasi</label>
+                            <input type="text" class="form-control" id="rata_investasi" name="rata_investasi" disabled placeholder="Belum Ada Nilai">
                         </div>
                         <div class="mb-3">
-                            <label for="arr_initial_investment" class="form-label fw-bold">ARR - Initial
-                                Investment</label>
-                            <input type="text" class="form-control" id="arr_initial_investment"
-                                name="arr_initial_investment" disabled placeholder="0%">
+                            <label for="arr_initial_investment" class="form-label fw-bold">ARR - Initial Investment</label>
+                            <input type="text" class="form-control" id="arr_initial_investment" name="arr_initial_investment" disabled placeholder="Belum Ada Nilai">
                         </div>
                         <div class="mb-3">
-                            <label for="arr_average_investment" class="form-label fw-bold">ARR - Average
-                                Investment</label>
-                            <input type="text" class="form-control" id="arr_average_investment"
-                                name="arr_average_investment" disabled placeholder="0%">
+                            <label for="arr_average_investment" class="form-label fw-bold">ARR - Average Investment</label>
+                            <input type="text" class="form-control" id="arr_average_investment" name="arr_average_investment" disabled placeholder="Belum Ada Nilai">
                         </div>
                     </div>
 
@@ -488,7 +498,7 @@
 
                         <div class="mb-3">
                             <input type="text" class="form-control text-center text-uppercase fw-bold"
-                                id="kesimpulan_investasi" name="kesimpulan_investasi" disabled
+                                id="aror_kesimpulan_investasi" name="aror_kesimpulan_investasi" disabled
                                 placeholder="Investasi Layak / Investasi Tidak Layak">
                         </div>
                     </div>
@@ -501,20 +511,20 @@
                         <h4 class="text-center text-primary mb-4">Metode Payback Period</h4>
 
                         <div class="mb-3">
-                            <label for="investasi" class="form-label fw-bold">Investasi</label>
-                            <input type="text" class="form-control" id="investasi" name="investasi"
+                            <label for="mpp_investasi" class="form-label fw-bold">Investasi</label>
+                            <input type="text" class="form-control" id="mpp_investasi" name="mpp_investasi"
                                 placeholder="Masukkan Nilai Investasi">
                         </div>
 
                         <div class="mb-3">
-                            <label for="usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
-                            <input type="text" class="form-control" id="usia_ekonomis" name="usia_ekonomis"
+                            <label for="mpp_usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
+                            <input type="text" class="form-control" id="mpp_usia_ekonomis" name="mpp_usia_ekonomis"
                                 value="5 Tahun" disabled>
                         </div>
 
                         <div class="mb-3">
-                            <label for="suku-bunga" class="form-label fw-bold">Suku Bunga</label>
-                            <input type="text" class="form-control" id="suku-bunga" name="suku-bunga"
+                            <label for="mpp_suku_bunga" class="form-label fw-bold">Suku Bunga</label>
+                            <input type="text" class="form-control" id="mpp_suku_bunga" name="mpp_suku_bunga"
                                 placeholder="Masukkan Suku Bunga (%)">
                         </div>
                     </div>
@@ -560,33 +570,33 @@
 
                         <div class="mb-3">
                             <input type="text" class="form-control text-center text-uppercase fw-bold"
-                                id="kesimpulan_investasi" name="kesimpulan_investasi" disabled
+                                id="mpp_kesimpulan_investasi" name="mpp_kesimpulan_investasi" disabled
                                 placeholder="Investasi Layak Dijalankan / Investasi Tidak Layak Dijalankan">
                         </div>
                     </div>
                 </div>
 
                 <!-- Internal Rate of Return -->
-                <div class="tab-pane fade" id="internal-ror" role="tabpanel" aria-labelledby="internal-ror-tab">
+                <div class="tab-pane fade" id="internal-ror-tab" role="tabpanel" aria-labelledby="internal-ror-tab">
 
                     <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
                         <h4 class="text-center text-primary mb-4">Internal Rate of Return</h4>
 
                         <div class="mb-3">
-                            <label for="investasi" class="form-label fw-bold">Investasi</label>
-                            <input type="text" class="form-control" id="investasi" name="investasi"
+                            <label for="iror_investasi" class="form-label fw-bold">Investasi</label>
+                            <input type="text" class="form-control" id="iror_investasi" name="iror_investasi"
                                 placeholder="Masukkan Nilai Investasi">
                         </div>
 
                         <div class="mb-3">
-                            <label for="usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
-                            <input type="text" class="form-control" id="usia_ekonomis" name="usia_ekonomis"
+                            <label for="iror_usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
+                            <input type="text" class="form-control" id="iror_usia_ekonomis" name="iror_usia_ekonomis"
                                 value="5 Tahun" disabled>
                         </div>
 
                         <div class="mb-3">
-                            <label for="suku-bunga" class="form-label fw-bold">Suku Bunga</label>
-                            <input type="text" class="form-control" id="suku-bunga" name="suku-bunga"
+                            <label for="iror_suku_bunga" class="form-label fw-bold">Suku Bunga</label>
+                            <input type="text" class="form-control" id="iror_suku_bunga" name="iror_suku_bunga"
                                 placeholder="Masukkan Suku Bunga (%)">
                         </div>
                     </div>
@@ -620,8 +630,8 @@
                     <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
 
                         <div class="mb-3">
-                            <label for="internal-ror" class="form-label fw-bold">Internal Rate of Return (IRR)</label>
-                            <input type="text" class="form-control" id="internal-ror" name="internal-ror" disabled
+                            <label for="internal_ror" class="form-label fw-bold">Internal Rate of Return (IRR)</label>
+                            <input type="text" class="form-control" id="internal_ror" name="internal_ror" disabled
                                 placeholder="26.36%">
                         </div>
                     </div>
@@ -632,7 +642,7 @@
 
                         <div class="mb-3">
                             <input type="text" class="form-control text-center text-uppercase fw-bold"
-                                id="kesimpulan_investasi" name="kesimpulan_investasi" disabled
+                                id="iror_kesimpulan_investasi" name="iror_kesimpulan_investasi" disabled
                                 placeholder="Investasi Layak Dijalankan / Investasi Tidak Layak Dijalankan">
                         </div>
                     </div>
@@ -645,20 +655,20 @@
                         <h4 class="text-center text-primary mb-4">Modified Internal Rate of Return</h4>
 
                         <div class="mb-3">
-                            <label for="investasi" class="form-label fw-bold">Investasi</label>
-                            <input type="text" class="form-control" id="investasi" name="investasi"
+                            <label for="miror_investasi" class="form-label fw-bold">Investasi</label>
+                            <input type="text" class="form-control" id="miror_investasi" name="miror_investasi"
                                 placeholder="Masukkan Nilai Investasi">
                         </div>
 
                         <div class="mb-3">
-                            <label for="usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
-                            <input type="text" class="form-control" id="usia_ekonomis" name="usia_ekonomis"
+                            <label for="miror_usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
+                            <input type="text" class="form-control" id="miror_usia_ekonomis" name="miror_usia_ekonomis"
                                 value="5 Tahun" disabled>
                         </div>
 
                         <div class="mb-3">
-                            <label for="suku-bunga" class="form-label fw-bold">Suku Bunga</label>
-                            <input type="text" class="form-control" id="suku-bunga" name="suku-bunga"
+                            <label for="miror_suku_bunga" class="form-label fw-bold">Suku Bunga</label>
+                            <input type="text" class="form-control" id="miror_suku_bunga" name="miror_suku_bunga"
                                 placeholder="Masukkan Suku Bunga (%)">
                         </div>
                     </div>
@@ -708,7 +718,7 @@
 
                         <div class="mb-3">
                             <input type="text" class="form-control text-center text-uppercase fw-bold"
-                                id="kesimpulan_investasi" name="kesimpulan_investasi" disabled
+                                id="miror_kesimpulan_investasi" name="miror_kesimpulan_investasi" disabled
                                 placeholder="Investasi Layak / Investasi Tidak Layak">
                         </div>
                     </div>
@@ -739,32 +749,77 @@
         document.getElementById('pat_nilai_sisa').value = input.value;
     }
 
+    function updateInvestmentTotal() {
+        const aktivaTetap = parseFloat(document.getElementById('pembelian_aktiva_tetap').value.replace(/\./g, '')) || 0;
+        const modalKerja = parseFloat(document.getElementById('kebutuhan_modal_kerja').value.replace(/\./g, '')) || 0;
+
+        // Calculate the sum
+        const total = aktivaTetap + modalKerja;
+
+        // Display formatted result in `aror_investasi`
+        document.getElementById('aror_investasi').value = total.toLocaleString("id-ID");
+        document.getElementById('investasi_awal').value = total.toLocaleString("id-ID");
+
+        const totalAverage = total / 2;
+
+        document.getElementById('rata_investasi').value = totalAverage.toLocaleString("id-ID");
+    }
+
+    function eat(input, year) {
+        formatNumber(input);
+        document.getElementById(`${year}_aror_laba_set_pajak`).innerText = input.value;
+    }
+
     function calculateDepreciation() {
         const metode = document.getElementById('metode_penyusutan').value;
         const hargaPerolehan = parseFloat(document.getElementById('pat_harga_perolehan').value.replace(/\./g, ''));
         const nilaiSisa = parseFloat(document.getElementById('pat_nilai_sisa').value.replace(/\./g, ''));
 
         if (metode === "garis_lurus" && !isNaN(hargaPerolehan) && !isNaN(nilaiSisa)) {
-            // Menghitung nilai depresiasi tahunan dengan metode garis lurus
-            const depreciationPerYear = (hargaPerolehan - nilaiSisa) / 5;
+            // Menghitung depresiasi tahunan dengan metode garis lurus
+            const depresiasiTahunan = Math.round((hargaPerolehan - nilaiSisa) / 5);
+            let totalEatValue = 0; // Variabel untuk menyimpan total EAT
 
-            // Loop untuk menghitung dan menampilkan nilai depresiasi, akumulasi penyusutan, dan nilai buku aktiva tiap tahun
-            for (let year = 1; year <= 5; year++) {
-                // Membulatkan nilai depresiasi tahunan
-                const roundedDepreciation = Math.round(depreciationPerYear);
+            // Loop untuk menghitung dan menampilkan depresiasi, akumulasi penyusutan, dan nilai buku aktiva tiap tahun
+            for (let tahun = 1; tahun <= 5; tahun++) {
+                // Mendapatkan nilai EAT (Earnings After Tax) dari input dan menghitung aliran kas masuk
+                const eatValue = parseFloat(document.getElementById(`eat_${tahun}`).value.replace(/\./g, '')) || 0;
+                totalEatValue += eatValue; // Menambahkan eatValue ke total
+
+                const aliranKasMasuk = (tahun === 5) ? eatValue + depresiasiTahunan + nilaiSisa : eatValue + depresiasiTahunan;
+
+                // Menampilkan nilai aliran kas masuk
+                document.getElementById(`${tahun}_aror_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
 
                 // Menampilkan nilai depresiasi tahunan
-                document.getElementById(`${year}_debet_penyusutan`).innerText = roundedDepreciation.toLocaleString("id-ID");
-                document.getElementById(`${year}_kredit_akm_penyusutan`).innerText = roundedDepreciation.toLocaleString("id-ID");
+                document.getElementById(`${tahun}_debet_penyusutan`).innerText = depresiasiTahunan.toLocaleString("id-ID");
+                document.getElementById(`${tahun}_kredit_akm_penyusutan`).innerText = depresiasiTahunan.toLocaleString("id-ID");
+                document.getElementById(`${tahun}_aror_penyusutan`).innerText = depresiasiTahunan.toLocaleString("id-ID");
 
-                // Menghitung dan menampilkan akumulasi penyusutan sampai tahun berjalan
-                const accumulatedDepreciation = Math.round(depreciationPerYear * year);
-                document.getElementById(`${year}_total_akm_penyusutan`).innerText = accumulatedDepreciation.toLocaleString("id-ID");
+                // Menghitung dan menampilkan akumulasi penyusutan
+                const totalAkumulasiPenyusutan = depresiasiTahunan * tahun;
+                document.getElementById(`${tahun}_total_akm_penyusutan`).innerText = totalAkumulasiPenyusutan.toLocaleString("id-ID");
 
-                // Menghitung dan menampilkan nilai buku aktiva setelah penyusutan
-                const bookValue = Math.round(hargaPerolehan - accumulatedDepreciation);
-                document.getElementById(`${year}_nilai_buku_aktiva`).innerText = bookValue.toLocaleString("id-ID");
+                // Menghitung dan menampilkan nilai buku aktiva
+                const nilaiBukuAktiva = hargaPerolehan - totalAkumulasiPenyusutan;
+                document.getElementById(`${tahun}_nilai_buku_aktiva`).innerText = nilaiBukuAktiva.toLocaleString("id-ID");
             }
+            // Menghitung rata-rata EAT
+            const averageEatValue = totalEatValue / 5;
+            // Menampilkan rata-rata EAT di elemen dengan id "rata_laba_setelah_pajak"
+            document.getElementById("rata_laba_setelah_pajak").value = averageEatValue.toLocaleString("id-ID");
+
+            const aktivaTetap = parseFloat(document.getElementById('pembelian_aktiva_tetap').value.replace(/\./g, '')) || 0;
+            const modalKerja = parseFloat(document.getElementById('kebutuhan_modal_kerja').value.replace(/\./g, '')) || 0;
+            const total = aktivaTetap + modalKerja;
+            const initialInvestment = (averageEatValue / total) * 100; // Mengubah ke persentase
+            const roundedInvestment = initialInvestment.toFixed(2); // Membulatkan ke dua desimal
+            document.getElementById("arr_initial_investment").value = parseFloat(roundedInvestment).toLocaleString("id-ID") + "%";
+
+            const totalAverage = total / 2;
+            const averageInvestment = (averageEatValue / totalAverage) * 100;
+            const roundedAverage = averageInvestment.toFixed(2);
+            document.getElementById('arr_average_investment').value = parseFloat(roundedAverage).toLocaleString("id-ID") + "%";
         } else if (metode === "angka_tahun" && !isNaN(hargaPerolehan) && !isNaN(nilaiSisa)) {
             // Faktor depresiasi berdasarkan tahun (metode angka tahun)
             const depreciationFactors = [5, 4, 3, 2, 1];
@@ -773,38 +828,74 @@
             // Loop untuk menghitung dan menampilkan nilai depresiasi, akumulasi penyusutan, dan nilai buku aktiva tiap tahun
             let accumulatedDepreciation = 0;
             let bookValue = hargaPerolehan;
+            let totalEatValue = 0;
 
             depreciationFactors.forEach((factor, index) => {
+                const tahun = index + 1;
+
                 // Menghitung nilai depresiasi berdasarkan faktor tahun
                 const depreciation = Math.round((factor / 15) * totalDepreciableValue);
 
+                // Mendapatkan nilai EAT (Earnings After Tax) dari input dan menghitung aliran kas masuk
+                const eatValue = parseFloat(document.getElementById(`eat_${tahun}`).value.replace(/\./g, '')) || 0;
+                totalEatValue += eatValue;
+                const aliranKasMasuk = (tahun === 5) ? eatValue + depreciation + nilaiSisa : eatValue + depreciation;
+
+                // Menampilkan nilai aliran kas masuk
+                document.getElementById(`${tahun}_aror_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
+
                 // Menampilkan nilai depresiasi untuk tahun tertentu
-                document.getElementById(`${index + 1}_debet_penyusutan`).innerText = depreciation.toLocaleString("id-ID");
-                document.getElementById(`${index + 1}_kredit_akm_penyusutan`).innerText = depreciation.toLocaleString("id-ID");
+                document.getElementById(`${tahun}_debet_penyusutan`).innerText = depreciation.toLocaleString("id-ID");
+                document.getElementById(`${tahun}_kredit_akm_penyusutan`).innerText = depreciation.toLocaleString("id-ID");
+                document.getElementById(`${tahun}_aror_penyusutan`).innerText = depreciation.toLocaleString("id-ID");
 
                 // Mengupdate akumulasi penyusutan
                 accumulatedDepreciation += depreciation;
-                document.getElementById(`${index + 1}_total_akm_penyusutan`).innerText = accumulatedDepreciation.toLocaleString("id-ID");
+                document.getElementById(`${tahun}_total_akm_penyusutan`).innerText = accumulatedDepreciation.toLocaleString("id-ID");
 
                 // Menghitung dan menampilkan nilai buku aktiva setelah penyusutan
                 bookValue -= depreciation;
-                document.getElementById(`${index + 1}_nilai_buku_aktiva`).innerText = bookValue.toLocaleString("id-ID");
+                document.getElementById(`${tahun}_nilai_buku_aktiva`).innerText = bookValue.toLocaleString("id-ID");
             });
+            const averageEatValue = totalEatValue / 5;
+            document.getElementById("rata_laba_setelah_pajak").value = averageEatValue.toLocaleString("id-ID");
+
+            const aktivaTetap = parseFloat(document.getElementById('pembelian_aktiva_tetap').value.replace(/\./g, '')) || 0;
+            const modalKerja = parseFloat(document.getElementById('kebutuhan_modal_kerja').value.replace(/\./g, '')) || 0;
+            const total = aktivaTetap + modalKerja;
+            const initialInvestment = (averageEatValue / total) * 100;
+            const roundedInvestment = initialInvestment.toFixed(2);
+            document.getElementById("arr_initial_investment").value = parseFloat(roundedInvestment).toLocaleString("id-ID") + "%";
+
+            const totalAverage = total / 2;
+            const averageInvestment = (averageEatValue / totalAverage) * 100;
+            const roundedAverage = averageInvestment.toFixed(2);
+            document.getElementById('arr_average_investment').value = parseFloat(roundedAverage).toLocaleString("id-ID") + "%";
         } else if (metode === "saldo_menurun" && !isNaN(hargaPerolehan) && !isNaN(nilaiSisa)) {
             // Faktor depresiasi per tahun menggunakan metode saldo menurun
             const depreciationRate = 0.369;
             const years = 5; // Jumlah tahun depresiasi
             let accumulatedDepreciation = 0;
             let bookValue = hargaPerolehan;
+            let totalEatValue = 0;
 
             // Loop untuk menghitung dan menampilkan nilai depresiasi, akumulasi penyusutan, dan nilai buku aktiva tiap tahun
             for (let i = 1; i <= years; i++) {
                 // Menghitung nilai depresiasi untuk tahun ke-i
                 const depreciation = Math.round(bookValue * depreciationRate);
 
+                // Mendapatkan nilai EAT (Earnings After Tax) dari input dan menghitung aliran kas masuk
+                const eatValue = parseFloat(document.getElementById(`eat_${i}`).value.replace(/\./g, '')) || 0;
+                totalEatValue += eatValue;
+                const aliranKasMasuk = (i === years) ? eatValue + depreciation + nilaiSisa : eatValue + depreciation;
+
+                // Menampilkan nilai aliran kas masuk
+                document.getElementById(`${i}_aror_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
+
                 // Menampilkan nilai depresiasi untuk tahun ke-i
                 document.getElementById(`${i}_debet_penyusutan`).innerText = depreciation.toLocaleString("id-ID");
                 document.getElementById(`${i}_kredit_akm_penyusutan`).innerText = depreciation.toLocaleString("id-ID");
+                document.getElementById(`${i}_aror_penyusutan`).innerText = depreciation.toLocaleString("id-ID");
 
                 // Mengupdate akumulasi penyusutan
                 accumulatedDepreciation += depreciation;
@@ -814,6 +905,20 @@
                 bookValue -= depreciation;
                 document.getElementById(`${i}_nilai_buku_aktiva`).innerText = bookValue.toLocaleString("id-ID");
             }
+            const averageEatValue = totalEatValue / 5;
+            document.getElementById("rata_laba_setelah_pajak").value = averageEatValue.toLocaleString("id-ID");
+
+            const aktivaTetap = parseFloat(document.getElementById('pembelian_aktiva_tetap').value.replace(/\./g, '')) || 0;
+            const modalKerja = parseFloat(document.getElementById('kebutuhan_modal_kerja').value.replace(/\./g, '')) || 0;
+            const total = aktivaTetap + modalKerja;
+            const initialInvestment = (averageEatValue / total) * 100;
+            const roundedInvestment = initialInvestment.toFixed(2);
+            document.getElementById("arr_initial_investment").value = parseFloat(roundedInvestment).toLocaleString("id-ID") + "%";
+
+            const totalAverage = total / 2;
+            const averageInvestment = (averageEatValue / totalAverage) * 100;
+            const roundedAverage = averageInvestment.toFixed(2);
+            document.getElementById('arr_average_investment').value = parseFloat(roundedAverage).toLocaleString("id-ID") + "%";
         }
     }
 </script>
