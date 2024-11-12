@@ -211,8 +211,7 @@
                         <h4 class="text-center text-primary mb-3">Tingkat Suku Bunga</h4>
                         <div class="mb-3">
                             <div class="mb-3 d-flex justify-content-center" style="width: 50%; margin: 0 auto;">
-                                <input type="text" class="form-control-plaintext text-center" id="tingkat_suku_bunga"
-                                    name="tingkat_suku_bunga" placeholder="20%" readonly>
+                                <input type="text" class="form-control-plaintext text-center" id="tingkat_suku_bunga" name="tingkat_suku_bunga" value="20%" disabled>
                             </div>
                         </div>
                     </div>
@@ -264,7 +263,7 @@
                                             </td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="payback" placeholder="Masukkan Payback">
+                                                    <input type="text" class="form-control" id="payback" placeholder="Masukkan Payback">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">Tahun</span>
                                                     </div>
@@ -507,20 +506,17 @@
 
                         <div class="mb-3">
                             <label for="mpp_investasi" class="form-label fw-bold">Investasi</label>
-                            <input type="text" class="form-control" id="mpp_investasi" name="mpp_investasi"
-                                placeholder="Masukkan Nilai Investasi">
+                            <input type="text" class="form-control" id="mpp_investasi" name="mpp_investasi" placeholder="Hasil Penjumlahan Pembelian Aktiva Tetap Dan Kebutuhan Modal Kerja" disabled>
                         </div>
 
                         <div class="mb-3">
                             <label for="mpp_usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
-                            <input type="text" class="form-control" id="mpp_usia_ekonomis" name="mpp_usia_ekonomis"
-                                value="5 Tahun" disabled>
+                            <input type="text" class="form-control" id="mpp_usia_ekonomis" name="mpp_usia_ekonomis" value="5 Tahun" disabled>
                         </div>
 
                         <div class="mb-3">
                             <label for="mpp_suku_bunga" class="form-label fw-bold">Suku Bunga</label>
-                            <input type="text" class="form-control" id="mpp_suku_bunga" name="mpp_suku_bunga"
-                                placeholder="Masukkan Suku Bunga (%)">
+                            <input type="text" class="form-control" id="mpp_suku_bunga" name="mpp_suku_bunga" placeholder="Mengikuti Tingkat Suku Bunga" value="20%" disabled>
                         </div>
                     </div>
 
@@ -539,10 +535,40 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td id="0_akhir_tahun">0</td>
-                                        <td id="0_debet_penyusutan">0</td>
-                                        <td id="0_kredit_akm_penyusutan">0</td>
-                                        <td id="0_total_akm_penyusutan">0</td>
+                                        <td id="0_mpp_keterangan">Tahun Ke-0</td>
+                                        <td id="0_mpp_laba_set_pajak">0</td>
+                                        <td id="0_mpp_penyusutan">0</td>
+                                        <td id="0_mpp_aliran_kas_masuk"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="1_mpp_keterangan">Tahun Ke-1</td>
+                                        <td id="1_mpp_laba_set_pajak"></td>
+                                        <td id="1_mpp_penyusutan"></td>
+                                        <td id="1_mpp_aliran_kas_masuk"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="2_mpp_keterangan">Tahun Ke-2</td>
+                                        <td id="2_mpp_laba_set_pajak"></td>
+                                        <td id="2_mpp_penyusutan"></td>
+                                        <td id="2_mpp_aliran_kas_masuk"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="3_mpp_keterangan">Tahun Ke-3</td>
+                                        <td id="3_mpp_laba_set_pajak"></td>
+                                        <td id="3_mpp_penyusutan"></td>
+                                        <td id="3_mpp_aliran_kas_masuk"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="4_mpp_keterangan">Tahun Ke-4</td>
+                                        <td id="4_mpp_laba_set_pajak"></td>
+                                        <td id="4_mpp_penyusutan"></td>
+                                        <td id="4_mpp_aliran_kas_masuk"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="5_mpp_keterangan">Tahun Ke-5</td>
+                                        <td id="5_mpp_laba_set_pajak"></td>
+                                        <td id="5_mpp_penyusutan"></td>
+                                        <td id="5_mpp_aliran_kas_masuk"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -553,9 +579,8 @@
                     <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
 
                         <div class="mb-3">
-                            <label for="periode-payback" class="form-label fw-bold">Periode Payback</label>
-                            <input type="text" class="form-control" id="periode-payback" name="periode-payback" disabled
-                                placeholder="2 Tahun 10 Bulan">
+                            <label for="periode_payback" class="form-label fw-bold">Periode Payback</label>
+                            <input type="text" class="form-control" id="periode_payback" name="periode_payback" disabled placeholder="Belum Ada Nilai">
                         </div>
                     </div>
 
@@ -564,15 +589,13 @@
                         <h4 class="text-center text-primary mb-4">Kesimpulan Investasi</h4>
 
                         <div class="mb-3">
-                            <input type="text" class="form-control text-center text-uppercase fw-bold"
-                                id="mpp_kesimpulan_investasi" name="mpp_kesimpulan_investasi" disabled
-                                placeholder="Investasi Layak Dijalankan / Investasi Tidak Layak Dijalankan">
+                            <input type="text" class="form-control text-center text-uppercase fw-bold" id="mpp_kesimpulan_investasi" name="mpp_kesimpulan_investasi" disabled placeholder="Belum Ada Kesimpulan">
                         </div>
                     </div>
                 </div>
 
                 <!-- Internal Rate of Return -->
-                <div class="tab-pane fade" id="internal-ror-tab" role="tabpanel" aria-labelledby="internal-ror-tab">
+                <div class="tab-pane fade" id="internal-ror" role="tabpanel" aria-labelledby="internal-ror-tab">
 
                     <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
                         <h4 class="text-center text-primary mb-4">Internal Rate of Return</h4>
@@ -753,6 +776,8 @@
 
         // Display formatted result in `aror_investasi`
         document.getElementById('aror_investasi').value = total.toLocaleString("id-ID");
+        document.getElementById('mpp_investasi').value = total.toLocaleString("id-ID");
+        document.getElementById('0_mpp_aliran_kas_masuk').innerText = total.toLocaleString("id-ID");
         document.getElementById('investasi_awal').value = total.toLocaleString("id-ID");
 
         const totalAverage = total / 2;
@@ -763,6 +788,26 @@
     function eat(input, year) {
         formatNumber(input);
         document.getElementById(`${year}_aror_laba_set_pajak`).innerText = input.value;
+        document.getElementById(`${year}_mpp_laba_set_pajak`).innerText = input.value;
+    }
+
+    function calculatePaybackPeriod(initialInvestment, cashFlows) {
+        let cumulativeCashFlow = 0;
+        let paybackPeriod = {
+            tahun: 0,
+            bulan: 0
+        };
+
+        for (let i = 0; i < cashFlows.length; i++) {
+            cumulativeCashFlow += cashFlows[i];
+            if (cumulativeCashFlow >= initialInvestment) {
+                paybackPeriod.tahun = i;
+                paybackPeriod.bulan = Math.round((initialInvestment - (cumulativeCashFlow - cashFlows[i])) / cashFlows[i] * 12); // Perhitungan bulan
+                break;
+            }
+        }
+
+        return paybackPeriod;
     }
 
     function calculateDepreciation() {
@@ -782,12 +827,13 @@
                 // Aliran kas masuk
                 const aliranKasMasuk = eatValue + depresiasiTahunan + (tahun === 5 ? nilaiSisa : 0);
                 document.getElementById(`${tahun}_aror_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
+                document.getElementById(`${tahun}_mpp_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
 
                 // Penyusutan dan akumulasi penyusutan
                 const totalAkumulasiPenyusutan = depresiasiTahunan * tahun;
                 const nilaiBukuAktiva = hargaPerolehan - totalAkumulasiPenyusutan;
 
-                ["debet_penyusutan", "kredit_akm_penyusutan", "aror_penyusutan"].forEach(id =>
+                ["debet_penyusutan", "kredit_akm_penyusutan", "aror_penyusutan", "mpp_penyusutan"].forEach(id =>
                     document.getElementById(`${tahun}_${id}`).innerText = depresiasiTahunan.toLocaleString("id-ID")
                 );
                 document.getElementById(`${tahun}_total_akm_penyusutan`).innerText = totalAkumulasiPenyusutan.toLocaleString("id-ID");
@@ -810,9 +856,37 @@
             const averageInvestment = calculateInvestment(averageEatValue, total / 2);
             document.getElementById('arr_average_investment').value = parseFloat(averageInvestment).toLocaleString("id-ID") + "%";
 
-            const arr1 = parseFloat(document.getElementById('arr_1').value.replace(/\./g, '')) || 0;
-            document.getElementById('aror_kesimpulan_investasi').value = averageInvestment >= arr1 ?
-                'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
+            const arr1 = parseFloat(document.getElementById('arr_1').value.replace(/\./g, '')) || null;
+            let kesimpulanInvestasi = '';
+
+            if (arr1 !== null && !isNaN(arr1)) {
+                kesimpulanInvestasi = (averageInvestment >= arr1) ?
+                    'Investasi Layak Dijalankan' :
+                    'Investasi Tidak Layak Dijalankan';
+            }
+
+            document.getElementById('aror_kesimpulan_investasi').value = kesimpulanInvestasi;
+
+            // Perhitungan Payback Period
+            const aliranKasMasuk = []; // Aliran kas masuk untuk setiap tahun
+            for (let tahun = 1; tahun <= 5; tahun++) {
+                const eatValue = parseFloat(document.getElementById(`eat_${tahun}`).value.replace(/\./g, '')) || 0;
+                aliranKasMasuk.push(eatValue + depresiasiTahunan + (tahun === 5 ? nilaiSisa : 0));
+            }
+
+            const investasiAwal = aktivaTetap + modalKerja;
+            const paybackPeriod = calculatePaybackPeriod(investasiAwal, aliranKasMasuk);
+            document.getElementById('periode_payback').value = `${paybackPeriod.tahun} Tahun ${paybackPeriod.bulan} Bulan`;
+
+            const payback = parseFloat(document.getElementById('payback').value.replace(/\./g, '')) || null;
+
+            if (payback !== null && !isNaN(payback)) {
+                kesimpulanInvestasi = (paybackPeriod.tahun <= payback) ?
+                    'Investasi Layak Dijalankan' :
+                    'Investasi Tidak Layak Dijalankan';
+            }
+
+            document.getElementById('mpp_kesimpulan_investasi').value = kesimpulanInvestasi;
         } else if (metode === "angka_tahun" && !isNaN(hargaPerolehan) && !isNaN(nilaiSisa)) {
             const depreciationFactors = [5, 4, 3, 2, 1];
             const totalDepreciableValue = hargaPerolehan - nilaiSisa;
@@ -830,9 +904,10 @@
 
                 const aliranKasMasuk = eatValue + depreciation + (tahun === 5 ? nilaiSisa : 0);
                 document.getElementById(`${tahun}_aror_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
+                document.getElementById(`${tahun}_mpp_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
 
                 // Menampilkan nilai depresiasi
-                ["debet_penyusutan", "kredit_akm_penyusutan", "aror_penyusutan"].forEach(id =>
+                ["debet_penyusutan", "kredit_akm_penyusutan", "aror_penyusutan", "mpp_penyusutan"].forEach(id =>
                     document.getElementById(`${tahun}_${id}`).innerText = depreciation.toLocaleString("id-ID")
                 );
 
@@ -859,26 +934,60 @@
             const averageInvestment = calculateInvestment(averageEatValue, total / 2);
             document.getElementById('arr_average_investment').value = parseFloat(averageInvestment).toLocaleString("id-ID") + "%";
 
-            const arr1 = parseFloat(document.getElementById('arr_1').value.replace(/\./g, '')) || 0;
-            document.getElementById('aror_kesimpulan_investasi').value = averageInvestment >= arr1 ?
-                'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
+            const arr1 = parseFloat(document.getElementById('arr_1').value.replace(/\./g, '')) || null;
+            let kesimpulanInvestasi = '';
+
+            if (arr1 !== null && !isNaN(arr1)) {
+                kesimpulanInvestasi = (averageInvestment >= arr1) ?
+                    'Investasi Layak Dijalankan' :
+                    'Investasi Tidak Layak Dijalankan';
+            }
+
+            document.getElementById('aror_kesimpulan_investasi').value = kesimpulanInvestasi;
+
+            // Perhitungan Payback Period
+            const aliranKasMasuk = []; // Aliran kas masuk untuk setiap tahun
+            for (let tahun = 1; tahun <= 5; tahun++) {
+                const eatValue = parseFloat(document.getElementById(`eat_${tahun}`).value.replace(/\./g, '')) || 0;
+                const depreciation = Math.round((depreciationFactors[tahun - 1] / 15) * totalDepreciableValue);
+                aliranKasMasuk.push(eatValue + depreciation + (tahun === 5 ? nilaiSisa : 0));
+            }
+
+            const investasiAwal = aktivaTetap + modalKerja;
+            const paybackPeriod = calculatePaybackPeriod(investasiAwal, aliranKasMasuk);
+            document.getElementById('periode_payback').value = `${paybackPeriod.tahun} Tahun ${paybackPeriod.bulan} Bulan`;
+
+            const payback = parseFloat(document.getElementById('payback').value.replace(/\./g, '')) || null;
+
+            if (payback !== null && !isNaN(payback)) {
+                kesimpulanInvestasi = (paybackPeriod.tahun <= payback) ?
+                    'Investasi Layak Dijalankan' :
+                    'Investasi Tidak Layak Dijalankan';
+            }
+
+            document.getElementById('mpp_kesimpulan_investasi').value = kesimpulanInvestasi;
         } else if (metode === "saldo_menurun" && !isNaN(hargaPerolehan) && !isNaN(nilaiSisa)) {
             const depreciationRate = 0.369;
             const years = 5;
             let accumulatedDepreciation = 0,
                 bookValue = hargaPerolehan,
-                totalEatValue = 0;
+                totalEatValue = 0,
+                totalDepreciableValue = hargaPerolehan - nilaiSisa, // Ensure this is calculated
+                aliranKasMasuk = []; // Declare once for both depreciation and payback period
 
             for (let i = 1; i <= years; i++) {
                 const depreciation = Math.round(bookValue * depreciationRate);
 
                 const eatValue = parseFloat(document.getElementById(`eat_${i}`).value.replace(/\./g, '')) || 0;
                 totalEatValue += eatValue;
-                const aliranKasMasuk = eatValue + depreciation + (i === years ? nilaiSisa : 0);
+                const aliranKasMasukYear = eatValue + depreciation + (i === years ? nilaiSisa : 0);
+                aliranKasMasuk.push(aliranKasMasukYear);
 
-                // Menampilkan nilai aliran kas masuk dan depresiasi
-                document.getElementById(`${i}_aror_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
-                ["debet_penyusutan", "kredit_akm_penyusutan", "aror_penyusutan"].forEach(id =>
+                // Displaying values
+                document.getElementById(`${i}_aror_aliran_kas_masuk`).innerText = aliranKasMasukYear.toLocaleString("id-ID");
+                document.getElementById(`${i}_mpp_aliran_kas_masuk`).innerText = aliranKasMasukYear.toLocaleString("id-ID");
+
+                ["debet_penyusutan", "kredit_akm_penyusutan", "aror_penyusutan", "mpp_penyusutan"].forEach(id =>
                     document.getElementById(`${i}_${id}`).innerText = depreciation.toLocaleString("id-ID")
                 );
 
@@ -889,11 +998,11 @@
                 document.getElementById(`${i}_nilai_buku_aktiva`).innerText = bookValue.toLocaleString("id-ID");
             }
 
-            // Menghitung rata-rata EAT
+            // Calculate average EAT
             const averageEatValue = totalEatValue / years;
             document.getElementById("rata_laba_setelah_pajak").value = averageEatValue.toLocaleString("id-ID");
 
-            // Menghitung investasi awal dan rata-rata
+            // Calculate initial and average investment
             const aktivaTetap = parseFloat(document.getElementById('pembelian_aktiva_tetap').value.replace(/\./g, '')) || 0;
             const modalKerja = parseFloat(document.getElementById('kebutuhan_modal_kerja').value.replace(/\./g, '')) || 0;
             const total = aktivaTetap + modalKerja;
@@ -905,10 +1014,29 @@
             const averageInvestment = calculateInvestment(averageEatValue, total / 2);
             document.getElementById('arr_average_investment').value = parseFloat(averageInvestment).toLocaleString("id-ID") + "%";
 
-            // Menentukan kesimpulan investasi
-            const arr1 = parseFloat(document.getElementById('arr_1').value.replace(/\./g, '')) || 0;
-            document.getElementById('aror_kesimpulan_investasi').value =
-                averageInvestment >= arr1 ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
+            // Investment conclusion
+            const arr1 = parseFloat(document.getElementById('arr_1').value.replace(/\./g, '')) || null;
+            let kesimpulanInvestasi = '';
+
+            if (arr1 !== null && !isNaN(arr1)) {
+                kesimpulanInvestasi = (averageInvestment >= arr1) ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
+            }
+
+            document.getElementById('aror_kesimpulan_investasi').value = kesimpulanInvestasi;
+
+            // Calculate Payback Period
+            const paybackPeriod = calculatePaybackPeriod(aktivaTetap + modalKerja, aliranKasMasuk);
+            document.getElementById('periode_payback').value = `${paybackPeriod.tahun} Tahun ${paybackPeriod.bulan} Bulan`;
+
+            const payback = parseFloat(document.getElementById('payback').value.replace(/\./g, '')) || null;
+
+            if (payback !== null && !isNaN(payback)) {
+                kesimpulanInvestasi = (paybackPeriod.tahun <= payback) ?
+                    'Investasi Layak Dijalankan' :
+                    'Investasi Tidak Layak Dijalankan';
+            }
+
+            document.getElementById('mpp_kesimpulan_investasi').value = kesimpulanInvestasi;
         }
     }
 </script>
