@@ -256,8 +256,7 @@
                                         <tr>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="arr"
-                                                        placeholder="Masukkan ARR">
+                                                    <input type="text" class="form-control" id="arr_1" placeholder="Masukkan ARR 1">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">%</span>
                                                     </div>
@@ -265,8 +264,7 @@
                                             </td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="payback"
-                                                        placeholder="Masukkan Payback">
+                                                    <input type="text" class="form-control" name="payback" placeholder="Masukkan Payback">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">Tahun</span>
                                                     </div>
@@ -277,8 +275,7 @@
                                         <tr>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="arr_2"
-                                                        placeholder="Masukkan ARR (Baris 2)">
+                                                    <input type="text" class="form-control" name="arr_2" placeholder="Masukkan ARR 2">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">%</span>
                                                     </div>
@@ -497,9 +494,7 @@
                         <h4 class="text-center text-primary mb-4">Kesimpulan Investasi</h4>
 
                         <div class="mb-3">
-                            <input type="text" class="form-control text-center text-uppercase fw-bold"
-                                id="aror_kesimpulan_investasi" name="aror_kesimpulan_investasi" disabled
-                                placeholder="Investasi Layak / Investasi Tidak Layak">
+                            <input type="text" class="form-control text-center text-uppercase fw-bold" id="aror_kesimpulan_investasi" name="aror_kesimpulan_investasi" disabled placeholder="Belum Ada Kesimpulan">
                         </div>
                     </div>
                 </div>
@@ -776,149 +771,144 @@
         const nilaiSisa = parseFloat(document.getElementById('pat_nilai_sisa').value.replace(/\./g, ''));
 
         if (metode === "garis_lurus" && !isNaN(hargaPerolehan) && !isNaN(nilaiSisa)) {
-            // Menghitung depresiasi tahunan dengan metode garis lurus
             const depresiasiTahunan = Math.round((hargaPerolehan - nilaiSisa) / 5);
-            let totalEatValue = 0; // Variabel untuk menyimpan total EAT
+            let totalEatValue = 0;
 
-            // Loop untuk menghitung dan menampilkan depresiasi, akumulasi penyusutan, dan nilai buku aktiva tiap tahun
+            // Loop untuk menghitung depresiasi, akumulasi penyusutan, dan nilai buku aktiva tiap tahun
             for (let tahun = 1; tahun <= 5; tahun++) {
-                // Mendapatkan nilai EAT (Earnings After Tax) dari input dan menghitung aliran kas masuk
                 const eatValue = parseFloat(document.getElementById(`eat_${tahun}`).value.replace(/\./g, '')) || 0;
-                totalEatValue += eatValue; // Menambahkan eatValue ke total
+                totalEatValue += eatValue;
 
-                const aliranKasMasuk = (tahun === 5) ? eatValue + depresiasiTahunan + nilaiSisa : eatValue + depresiasiTahunan;
-
-                // Menampilkan nilai aliran kas masuk
+                // Aliran kas masuk
+                const aliranKasMasuk = eatValue + depresiasiTahunan + (tahun === 5 ? nilaiSisa : 0);
                 document.getElementById(`${tahun}_aror_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
 
-                // Menampilkan nilai depresiasi tahunan
-                document.getElementById(`${tahun}_debet_penyusutan`).innerText = depresiasiTahunan.toLocaleString("id-ID");
-                document.getElementById(`${tahun}_kredit_akm_penyusutan`).innerText = depresiasiTahunan.toLocaleString("id-ID");
-                document.getElementById(`${tahun}_aror_penyusutan`).innerText = depresiasiTahunan.toLocaleString("id-ID");
-
-                // Menghitung dan menampilkan akumulasi penyusutan
+                // Penyusutan dan akumulasi penyusutan
                 const totalAkumulasiPenyusutan = depresiasiTahunan * tahun;
-                document.getElementById(`${tahun}_total_akm_penyusutan`).innerText = totalAkumulasiPenyusutan.toLocaleString("id-ID");
-
-                // Menghitung dan menampilkan nilai buku aktiva
                 const nilaiBukuAktiva = hargaPerolehan - totalAkumulasiPenyusutan;
+
+                ["debet_penyusutan", "kredit_akm_penyusutan", "aror_penyusutan"].forEach(id =>
+                    document.getElementById(`${tahun}_${id}`).innerText = depresiasiTahunan.toLocaleString("id-ID")
+                );
+                document.getElementById(`${tahun}_total_akm_penyusutan`).innerText = totalAkumulasiPenyusutan.toLocaleString("id-ID");
                 document.getElementById(`${tahun}_nilai_buku_aktiva`).innerText = nilaiBukuAktiva.toLocaleString("id-ID");
             }
-            // Menghitung rata-rata EAT
+
+            // Rata-rata EAT
             const averageEatValue = totalEatValue / 5;
-            // Menampilkan rata-rata EAT di elemen dengan id "rata_laba_setelah_pajak"
             document.getElementById("rata_laba_setelah_pajak").value = averageEatValue.toLocaleString("id-ID");
 
+            // Investment Calculations
             const aktivaTetap = parseFloat(document.getElementById('pembelian_aktiva_tetap').value.replace(/\./g, '')) || 0;
             const modalKerja = parseFloat(document.getElementById('kebutuhan_modal_kerja').value.replace(/\./g, '')) || 0;
             const total = aktivaTetap + modalKerja;
-            const initialInvestment = (averageEatValue / total) * 100; // Mengubah ke persentase
-            const roundedInvestment = initialInvestment.toFixed(2); // Membulatkan ke dua desimal
-            document.getElementById("arr_initial_investment").value = parseFloat(roundedInvestment).toLocaleString("id-ID") + "%";
 
-            const totalAverage = total / 2;
-            const averageInvestment = (averageEatValue / totalAverage) * 100;
-            const roundedAverage = averageInvestment.toFixed(2);
-            document.getElementById('arr_average_investment').value = parseFloat(roundedAverage).toLocaleString("id-ID") + "%";
+            const calculateInvestment = (base, total) => ((averageEatValue / total) * 100).toFixed(2);
+            const initialInvestment = calculateInvestment(averageEatValue, total);
+            document.getElementById("arr_initial_investment").value = parseFloat(initialInvestment).toLocaleString("id-ID") + "%";
+
+            const averageInvestment = calculateInvestment(averageEatValue, total / 2);
+            document.getElementById('arr_average_investment').value = parseFloat(averageInvestment).toLocaleString("id-ID") + "%";
+
+            const arr1 = parseFloat(document.getElementById('arr_1').value.replace(/\./g, '')) || 0;
+            document.getElementById('aror_kesimpulan_investasi').value = averageInvestment >= arr1 ?
+                'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
         } else if (metode === "angka_tahun" && !isNaN(hargaPerolehan) && !isNaN(nilaiSisa)) {
-            // Faktor depresiasi berdasarkan tahun (metode angka tahun)
             const depreciationFactors = [5, 4, 3, 2, 1];
             const totalDepreciableValue = hargaPerolehan - nilaiSisa;
+            let accumulatedDepreciation = 0,
+                bookValue = hargaPerolehan,
+                totalEatValue = 0;
 
-            // Loop untuk menghitung dan menampilkan nilai depresiasi, akumulasi penyusutan, dan nilai buku aktiva tiap tahun
-            let accumulatedDepreciation = 0;
-            let bookValue = hargaPerolehan;
-            let totalEatValue = 0;
-
+            // Loop untuk menghitung nilai depresiasi, akumulasi penyusutan, dan nilai buku aktiva tiap tahun
             depreciationFactors.forEach((factor, index) => {
                 const tahun = index + 1;
-
-                // Menghitung nilai depresiasi berdasarkan faktor tahun
                 const depreciation = Math.round((factor / 15) * totalDepreciableValue);
 
-                // Mendapatkan nilai EAT (Earnings After Tax) dari input dan menghitung aliran kas masuk
                 const eatValue = parseFloat(document.getElementById(`eat_${tahun}`).value.replace(/\./g, '')) || 0;
                 totalEatValue += eatValue;
-                const aliranKasMasuk = (tahun === 5) ? eatValue + depreciation + nilaiSisa : eatValue + depreciation;
 
-                // Menampilkan nilai aliran kas masuk
+                const aliranKasMasuk = eatValue + depreciation + (tahun === 5 ? nilaiSisa : 0);
                 document.getElementById(`${tahun}_aror_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
 
-                // Menampilkan nilai depresiasi untuk tahun tertentu
-                document.getElementById(`${tahun}_debet_penyusutan`).innerText = depreciation.toLocaleString("id-ID");
-                document.getElementById(`${tahun}_kredit_akm_penyusutan`).innerText = depreciation.toLocaleString("id-ID");
-                document.getElementById(`${tahun}_aror_penyusutan`).innerText = depreciation.toLocaleString("id-ID");
+                // Menampilkan nilai depresiasi
+                ["debet_penyusutan", "kredit_akm_penyusutan", "aror_penyusutan"].forEach(id =>
+                    document.getElementById(`${tahun}_${id}`).innerText = depreciation.toLocaleString("id-ID")
+                );
 
-                // Mengupdate akumulasi penyusutan
                 accumulatedDepreciation += depreciation;
                 document.getElementById(`${tahun}_total_akm_penyusutan`).innerText = accumulatedDepreciation.toLocaleString("id-ID");
 
-                // Menghitung dan menampilkan nilai buku aktiva setelah penyusutan
                 bookValue -= depreciation;
                 document.getElementById(`${tahun}_nilai_buku_aktiva`).innerText = bookValue.toLocaleString("id-ID");
             });
+
+            // Rata-rata EAT
             const averageEatValue = totalEatValue / 5;
             document.getElementById("rata_laba_setelah_pajak").value = averageEatValue.toLocaleString("id-ID");
 
+            // Investment Calculations
             const aktivaTetap = parseFloat(document.getElementById('pembelian_aktiva_tetap').value.replace(/\./g, '')) || 0;
             const modalKerja = parseFloat(document.getElementById('kebutuhan_modal_kerja').value.replace(/\./g, '')) || 0;
             const total = aktivaTetap + modalKerja;
-            const initialInvestment = (averageEatValue / total) * 100;
-            const roundedInvestment = initialInvestment.toFixed(2);
-            document.getElementById("arr_initial_investment").value = parseFloat(roundedInvestment).toLocaleString("id-ID") + "%";
 
-            const totalAverage = total / 2;
-            const averageInvestment = (averageEatValue / totalAverage) * 100;
-            const roundedAverage = averageInvestment.toFixed(2);
-            document.getElementById('arr_average_investment').value = parseFloat(roundedAverage).toLocaleString("id-ID") + "%";
+            const calculateInvestment = (averageEat, base) => ((averageEat / base) * 100).toFixed(2);
+            const initialInvestment = calculateInvestment(averageEatValue, total);
+            document.getElementById("arr_initial_investment").value = parseFloat(initialInvestment).toLocaleString("id-ID") + "%";
+
+            const averageInvestment = calculateInvestment(averageEatValue, total / 2);
+            document.getElementById('arr_average_investment').value = parseFloat(averageInvestment).toLocaleString("id-ID") + "%";
+
+            const arr1 = parseFloat(document.getElementById('arr_1').value.replace(/\./g, '')) || 0;
+            document.getElementById('aror_kesimpulan_investasi').value = averageInvestment >= arr1 ?
+                'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
         } else if (metode === "saldo_menurun" && !isNaN(hargaPerolehan) && !isNaN(nilaiSisa)) {
-            // Faktor depresiasi per tahun menggunakan metode saldo menurun
             const depreciationRate = 0.369;
-            const years = 5; // Jumlah tahun depresiasi
-            let accumulatedDepreciation = 0;
-            let bookValue = hargaPerolehan;
-            let totalEatValue = 0;
+            const years = 5;
+            let accumulatedDepreciation = 0,
+                bookValue = hargaPerolehan,
+                totalEatValue = 0;
 
-            // Loop untuk menghitung dan menampilkan nilai depresiasi, akumulasi penyusutan, dan nilai buku aktiva tiap tahun
             for (let i = 1; i <= years; i++) {
-                // Menghitung nilai depresiasi untuk tahun ke-i
                 const depreciation = Math.round(bookValue * depreciationRate);
 
-                // Mendapatkan nilai EAT (Earnings After Tax) dari input dan menghitung aliran kas masuk
                 const eatValue = parseFloat(document.getElementById(`eat_${i}`).value.replace(/\./g, '')) || 0;
                 totalEatValue += eatValue;
-                const aliranKasMasuk = (i === years) ? eatValue + depreciation + nilaiSisa : eatValue + depreciation;
+                const aliranKasMasuk = eatValue + depreciation + (i === years ? nilaiSisa : 0);
 
-                // Menampilkan nilai aliran kas masuk
+                // Menampilkan nilai aliran kas masuk dan depresiasi
                 document.getElementById(`${i}_aror_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
+                ["debet_penyusutan", "kredit_akm_penyusutan", "aror_penyusutan"].forEach(id =>
+                    document.getElementById(`${i}_${id}`).innerText = depreciation.toLocaleString("id-ID")
+                );
 
-                // Menampilkan nilai depresiasi untuk tahun ke-i
-                document.getElementById(`${i}_debet_penyusutan`).innerText = depreciation.toLocaleString("id-ID");
-                document.getElementById(`${i}_kredit_akm_penyusutan`).innerText = depreciation.toLocaleString("id-ID");
-                document.getElementById(`${i}_aror_penyusutan`).innerText = depreciation.toLocaleString("id-ID");
-
-                // Mengupdate akumulasi penyusutan
                 accumulatedDepreciation += depreciation;
                 document.getElementById(`${i}_total_akm_penyusutan`).innerText = accumulatedDepreciation.toLocaleString("id-ID");
 
-                // Menghitung dan menampilkan nilai buku aktiva setelah penyusutan
                 bookValue -= depreciation;
                 document.getElementById(`${i}_nilai_buku_aktiva`).innerText = bookValue.toLocaleString("id-ID");
             }
-            const averageEatValue = totalEatValue / 5;
+
+            // Menghitung rata-rata EAT
+            const averageEatValue = totalEatValue / years;
             document.getElementById("rata_laba_setelah_pajak").value = averageEatValue.toLocaleString("id-ID");
 
+            // Menghitung investasi awal dan rata-rata
             const aktivaTetap = parseFloat(document.getElementById('pembelian_aktiva_tetap').value.replace(/\./g, '')) || 0;
             const modalKerja = parseFloat(document.getElementById('kebutuhan_modal_kerja').value.replace(/\./g, '')) || 0;
             const total = aktivaTetap + modalKerja;
-            const initialInvestment = (averageEatValue / total) * 100;
-            const roundedInvestment = initialInvestment.toFixed(2);
-            document.getElementById("arr_initial_investment").value = parseFloat(roundedInvestment).toLocaleString("id-ID") + "%";
 
-            const totalAverage = total / 2;
-            const averageInvestment = (averageEatValue / totalAverage) * 100;
-            const roundedAverage = averageInvestment.toFixed(2);
-            document.getElementById('arr_average_investment').value = parseFloat(roundedAverage).toLocaleString("id-ID") + "%";
+            const calculateInvestment = (averageEat, base) => ((averageEat / base) * 100).toFixed(2);
+            const initialInvestment = calculateInvestment(averageEatValue, total);
+            document.getElementById("arr_initial_investment").value = parseFloat(initialInvestment).toLocaleString("id-ID") + "%";
+
+            const averageInvestment = calculateInvestment(averageEatValue, total / 2);
+            document.getElementById('arr_average_investment').value = parseFloat(averageInvestment).toLocaleString("id-ID") + "%";
+
+            // Menentukan kesimpulan investasi
+            const arr1 = parseFloat(document.getElementById('arr_1').value.replace(/\./g, '')) || 0;
+            document.getElementById('aror_kesimpulan_investasi').value =
+                averageInvestment >= arr1 ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
         }
     }
 </script>
