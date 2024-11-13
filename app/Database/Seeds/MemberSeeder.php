@@ -819,7 +819,34 @@ class MemberSeeder extends Seeder
                 'produk_utama_en' => '',
                 'skala_bisnis_en' => '',
                 'kategori_produk_en' => '',
-            ]
+            ],
+            [
+                'id_member' => 31,
+                'role' => 'admin',
+                'username' => 'Admin',
+                'password' => password_hash('admin123', PASSWORD_DEFAULT),
+                'foto_profil' => 'p30.jpg',
+                'kode_referral' => 'scottlang',
+                'popular_point' => rand(500, 1000),
+                'nama_perusahaan' => 'Elecomp',
+                'deskripsi_perusahaan' => 'Perusahaan multinasional yang memproduksi makanan, minuman, makanan hewan, dan permen.',
+                'tipe_bisnis' => 'Makanan dan Minuman',
+                'produk_utama' => 'Permen cokelat, makanan hewan peliharaan, dan makanan ringan',
+                'tahun_dibentuk' => 1911,
+                'skala_bisnis' => 'Multinasional',
+                'email' => 'admin@gmail.com',
+                'pic' => 'Elecomp Indonesia',
+                'pic_phone' => '081234567812',
+                'tanggal_verifikasi' => Time::now()->subMonths(4),
+                'kategori_produk' => 'Makanan dan Minuman',
+                'latitude' => 38.9680, // Coordinates for McLean, Virginia, USA where Mars' headquarters is located
+                'longitude' => -77.1773,
+                'deskripsi_perusahaan_en' => '',
+                'tipe_bisnis_en' => '',
+                'produk_utama_en' => '',
+                'skala_bisnis_en' => '',
+                'kategori_produk_en' => '',
+            ],
         ];
 
         // Insert ke database

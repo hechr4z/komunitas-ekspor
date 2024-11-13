@@ -1519,26 +1519,40 @@ class KomunitasEkspor extends BaseController
         $username = $this->request->getVar('username');
         $password = $this->request->getVar('password');
 
+        // Look for the user by username
         $user = $memberModel->where('username', $username)->first();
 
+        // Check if user exists
         if ($user) {
+            // Verify password
             if (password_verify($password, $user['password'])) {
+                // Prepare session data
                 $sessionData = [
                     'user_id' => $user['id_member'],
                     'username' => $user['username'],
+                    'role' => $user['role'],  // Store role in session
                     'logged_in' => true
                 ];
                 $session->set($sessionData);
-                return redirect()->to('/pengumuman');
+
+                // Check if the user is an admin
+                if ($user['role'] === 'admin') {
+                    return redirect()->to('/admin-dashboard');  // Redirect to admin dashboard
+                } else {
+                    return redirect()->to('/pengumuman');  // Redirect to regular user page
+                }
             } else {
+                // Password incorrect
                 $session->setFlashdata('error', 'Password salah.');
                 return redirect()->back();
             }
         } else {
+            // Username not found
             $session->setFlashdata('error', 'Username tidak ditemukan.');
             return redirect()->back();
         }
     }
+
 
     public function logout()
     {
@@ -3946,12 +3960,48 @@ class KomunitasEkspor extends BaseController
 
     public function admin_manfaat_join()
     {
-        return view('admin/manfaat-join/index');
+        $model_manfaatjoin = new ManfaatJoin();
+
+        $manfaat = $model_manfaatjoin->findAll();
+
+        $data['manfaatjoin'] = $manfaat;
+
+        return view('admin/manfaat-join/index', $data);
     }
 
-    public function admin_edit_manfaat_join()
+    public function admin_edit_manfaat_join($id)
     {
-        return view('admin/manfaat-join/edit');
+
+        $model_manfaatjoin = new ManfaatJoin();
+
+        $manfaat = $model_manfaatjoin->find($id);
+
+        $data['manfaatjoin'] = $manfaat;
+
+        return view('admin/manfaat-join/edit', $data);
+    }
+
+    public function admin_update_manfaat_join($id)
+    {
+        $tr = new GoogleTranslate('en');
+
+        $model_manfaatjoin = new ManfaatJoin();
+
+        $existingData = $model_manfaatjoin->find($id);
+        if (!$existingData) {
+            return redirect()->to('/admin-pengumuman')->with('error', 'Data tidak ditemukan.');
+        }
+
+        $data = [
+            'judul_manfaat' => $this->request->getPost('judul_manfaat'),
+            'judul_manfaat_en' => $tr->translate($this->request->getPost('judul_manfaat')),
+            'deskripsi_manfaat' => $this->request->getPost('deskripsi_manfaat'),
+            'deskripsi_manfaat_en' => $tr->translate($this->request->getPost('deskripsi_manfaat')),
+        ];
+
+        $model_manfaatjoin->update($id, $data);
+
+        return redirect()->to('/admin-manfaat-join');
     }
 
     public function admin_slider()
@@ -4010,14 +4060,6 @@ class KomunitasEkspor extends BaseController
         return redirect()->to('/admin-slider');
     }
 
-    // public function admin_delete_slider($id)
-    // {
-    //     $model_slider = new Slider();
-
-    //     $model_slider->delete($id);
-
-    //     return redirect()->to('/admin-slider');
-    // }
 
     public function admin_web_profile()
     {

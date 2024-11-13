@@ -326,24 +326,31 @@ $this->setData([
                 height: auto;
             }
         }
+
         .benefit h2 {
             font-size: 20px;
         }
+
         .benefit p {
             font-size: 5px;
         }
-        .background-image  {
+
+        .background-image {
             padding-top: 30px;
         }
+
         .background-image h2 {
             font-size: 13px;
         }
+
         .background-image p {
             font-size: 8px;
         }
+
         .peta h5 {
             font-size: 10px;
         }
+
         .peta h1 {
             font-size: 10px;
         }
