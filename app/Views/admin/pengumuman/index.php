@@ -225,7 +225,11 @@
                                             <td class="text-center" valign="middle">
                                                 <img src="<?= base_url('/img/' . $item['poster_pengumuman']) ?>" alt="<?= $item['judul_pengumuman']; ?>" class="img-thumbnail" style="max-width: 100px;">
                                             </td>
-                                            <td class="text-center" valign="middle"><?= $item['deskripsi_pengumuman']; ?></td>
+                                            <td class="text-center" valign="middle">
+                                                <div style="max-height: 150px; overflow-y: auto;">
+                                                    <?= $item['deskripsi_pengumuman']; ?>
+                                                </div>
+                                            </td>
                                             <td class="text-center align-middle">
                                                 <div class="d-flex justify-content-center align-items-center">
                                                     <a href="<?= base_url('/admin-delete-pengumuman/' . $item['id_pengumuman']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>

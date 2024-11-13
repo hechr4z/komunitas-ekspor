@@ -31,7 +31,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label">URL Video</label>
-                                <input type="url" class="form-control" name="video_url" value="<?= esc($video_tutorial['video_url']); ?>" required>
+                                <input type="text" class="form-control" name="video_url" value="<?= esc($video_tutorial['video_url']); ?>" required>
                             </div>
 
                             <div class="mb-3">

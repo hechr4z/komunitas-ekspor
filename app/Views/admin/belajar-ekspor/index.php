@@ -206,14 +206,14 @@
                 <div class="app-card app-card-orders-table shadow-sm mb-5">
                     <div class="app-card-body">
                         <div class="table-responsive">
-                            <table class="table app-table-hover mb-0 text-left">
+                            <table class="table app-table-hover table-bordered mb-0 text-left">
                                 <thead>
                                     <tr>
                                         <th class="text-center align-middle">No</th>
-                                        <th class="text-center align-middle">Judul</th>
+                                        <th class="text-center align-middle" style="width: 150px;">Judul</th>
                                         <th class="text-center align-middle">Foto</th>
                                         <th class="text-center align-middle">Kategori</th>
-                                        <th class="text-center align-middle" style="width: 150px;">Deskripsi</th>
+                                        <th class="text-center align-middle" style="width: 300px;">Deskripsi</th>
                                         <th class="text-center align-middle" style="width: 60px;">Slug</th>
                                         <th class="text-center align-middle" style="width: 60px;">Meta Title</th>
                                         <th class="text-center align-middle" style="width: 60px;">Meta Description</th>
@@ -230,8 +230,8 @@
                                                 <img src="<?= base_url('/img/' . $item['foto_belajar_ekspor']) ?>" alt="<?= $item['judul_belajar_ekspor']; ?>" class="img-fluid" style="max-width: 80px;">
                                             </td>
                                             <td class="text-center align-middle"><?= $item['nama_kategori']; ?></td>
-                                            <td class="text-center align-middle" style="width: 120px;">
-                                                <div style="max-height: 100px; overflow-y: auto;">
+                                            <td class="text-center align-middle">
+                                                <div style="max-height: 150px; overflow-y: auto;">
                                                     <?= $item['deskripsi_belajar_ekspor']; ?>
                                                 </div>
                                             </td>
