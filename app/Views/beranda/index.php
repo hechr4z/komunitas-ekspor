@@ -428,24 +428,6 @@ $this->setData([
         </div>
         <h1 class="text-center" data-en="WHO WE ARE" data-id="SIAPA KAMI"><b><?= lang('Blog.topMemberSpotlightTitle'); ?><span style="color: #03AADE;"> SPOTLIGHT</span></b></h1>
     </div>
-    <div class="container popular">
-        <div class="kata row">
-            <div class="d-flex mt-3">
-                <div class="d-flex justify-content-center align-items-center mb-2">
-                    <div class="border-top2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
-                </div>
-                <h5 class="fw-lighter ms-3 mt-1"><?= lang('Blog.populerMemberSubtitle'); ?></h5>
-            </div>
-            <h1 class="fw-lighter"><?= ($lang == 'en') ? $webprofile[0]['nama_web_en'] : $webprofile[0]['nama_web'] ?></h1>
-            <h1 class="fw-bold" style="color: #03AADE;"><?= lang('Blog.populerMemberDescription'); ?></h1>
-            <div class="huruf d-flex justify-content-between">
-                <p><?= lang('Blog.populerMemberContent'); ?></p>
-                <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
-                    <button type="button" class="button-find btn text-light mt-3" style="height: 40px; background-color: #03AADE;"><?= lang('Blog.btnCarousel'); ?></button>
-                </a>
-            </div>
-        </div>
-    </div>
     <div class="card-member container mt-5">
         <?php if (empty($top4_member)): ?>
             <div class="col-12 mt-2">
@@ -585,7 +567,7 @@ $this->setData([
 <!-- ajakan end -->
 
 <!-- peta -->
-<section class="container peta2 mt-5">
+<section class="container peta2">
     <div class="peta mt-5">
         <div class="d-flex justify-content-center">
             <div class="d-flex justify-content-center align-items-center mb-2">
