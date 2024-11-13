@@ -130,146 +130,149 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->get('/kelayakan-bisnis', 'KomunitasEkspor::kelayakan_bisnis');
 });
 
-// Admin - Dashboard
-$routes->get('/admin-dashboard', 'KomunitasEkspor::admin_dashboard');
+$routes->group('', ['filter' => 'admin'], function ($routes) {
+    // Admin - Dashboard
+    $routes->get('/admin-dashboard', 'KomunitasEkspor::admin_dashboard');
 
-// Admin - Member
-$routes->get('/admin-member', 'KomunitasEkspor::admin_member');
-$routes->get('/admin-search-member', 'KomunitasEkspor::admin_search_member');
-$routes->get('/admin-add-member', 'KomunitasEkspor::admin_add_member');
-$routes->post('/admin-create-member', 'KomunitasEkspor::admin_create_member');
-$routes->get('/admin-edit-member/(:num)', 'KomunitasEkspor::admin_edit_member/$1');
-$routes->post('/admin-update-member/(:num)', 'KomunitasEkspor::admin_update_member/$1');
-$routes->get('/admin-delete-member/(:num)', 'KomunitasEkspor::admin_delete_member/$1');
+    // Admin - Member
+    $routes->get('/admin-member', 'KomunitasEkspor::admin_member');
+    $routes->get('/admin-search-member', 'KomunitasEkspor::admin_search_member');
+    $routes->get('/admin-add-member', 'KomunitasEkspor::admin_add_member');
+    $routes->post('/admin-create-member', 'KomunitasEkspor::admin_create_member');
+    $routes->get('/admin-edit-member/(:num)', 'KomunitasEkspor::admin_edit_member/$1');
+    $routes->post('/admin-update-member/(:num)', 'KomunitasEkspor::admin_update_member/$1');
+    $routes->get('/admin-delete-member/(:num)', 'KomunitasEkspor::admin_delete_member/$1');
 
-// Admin - Buyers
-$routes->get('/admin-buyers', 'KomunitasEkspor::admin_buyers');
-$routes->get('/admin-search-buyers', 'KomunitasEkspor::admin_search_buyers');
-$routes->get('/admin-add-buyers', 'KomunitasEkspor::admin_add_buyers');
-$routes->post('/admin-create-buyers', 'KomunitasEkspor::admin_create_buyers');
-$routes->get('/admin-edit-buyers/(:num)', 'KomunitasEkspor::admin_edit_buyers/$1');
-$routes->post('/admin-update-buyers/(:num)', 'KomunitasEkspor::admin_update_buyers/$1');
-$routes->get('/admin-delete-buyers/(:num)', 'KomunitasEkspor::admin_delete_buyers/$1');
+    // Admin - Buyers
+    $routes->get('/admin-buyers', 'KomunitasEkspor::admin_buyers');
+    $routes->get('/admin-search-buyers', 'KomunitasEkspor::admin_search_buyers');
+    $routes->get('/admin-add-buyers', 'KomunitasEkspor::admin_add_buyers');
+    $routes->post('/admin-create-buyers', 'KomunitasEkspor::admin_create_buyers');
+    $routes->get('/admin-edit-buyers/(:num)', 'KomunitasEkspor::admin_edit_buyers/$1');
+    $routes->post('/admin-update-buyers/(:num)', 'KomunitasEkspor::admin_update_buyers/$1');
+    $routes->get('/admin-delete-buyers/(:num)', 'KomunitasEkspor::admin_delete_buyers/$1');
 
-// Admin - Produk
-$routes->get('/admin-produk', 'KomunitasEkspor::admin_produk');
-$routes->get('/admin-search-produk', 'KomunitasEkspor::admin_search_produk');
-$routes->get('/admin-add-produk', 'KomunitasEkspor::admin_add_produk');
-$routes->post('/admin-create-produk', 'KomunitasEkspor::admin_create_produk');
-$routes->get('/admin-edit-produk/(:num)', 'KomunitasEkspor::admin_edit_produk/$1');
-$routes->post('/admin-update-produk/(:num)', 'KomunitasEkspor::admin_update_produk/$1');
-$routes->get('/admin-delete-produk/(:num)', 'KomunitasEkspor::admin_delete_produk/$1');
+    // Admin - Produk
+    $routes->get('/admin-produk', 'KomunitasEkspor::admin_produk');
+    $routes->get('/admin-search-produk', 'KomunitasEkspor::admin_search_produk');
+    $routes->get('/admin-add-produk', 'KomunitasEkspor::admin_add_produk');
+    $routes->post('/admin-create-produk', 'KomunitasEkspor::admin_create_produk');
+    $routes->get('/admin-edit-produk/(:num)', 'KomunitasEkspor::admin_edit_produk/$1');
+    $routes->post('/admin-update-produk/(:num)', 'KomunitasEkspor::admin_update_produk/$1');
+    $routes->get('/admin-delete-produk/(:num)', 'KomunitasEkspor::admin_delete_produk/$1');
 
-// Admin - Sertifikat
-$routes->get('/admin-sertifikat', 'KomunitasEkspor::admin_sertifikat');
-$routes->get('/admin-search-sertifikat', 'KomunitasEkspor::admin_search_sertifikat');
-$routes->get('/admin-add-sertifikat', 'KomunitasEkspor::admin_add_sertifikat');
-$routes->post('/admin-create-sertifikat', 'KomunitasEkspor::admin_create_sertifikat');
-$routes->get('/admin-edit-sertifikat/(:num)', 'KomunitasEkspor::admin_edit_sertifikat/$1');
-$routes->post('/admin-update-sertifikat/(:num)', 'KomunitasEkspor::admin_update_sertifikat/$1');
-$routes->get('/admin-delete-sertifikat/(:num)', 'KomunitasEkspor::admin_delete_sertifikat/$1');
+    // Admin - Sertifikat
+    $routes->get('/admin-sertifikat', 'KomunitasEkspor::admin_sertifikat');
+    $routes->get('/admin-search-sertifikat', 'KomunitasEkspor::admin_search_sertifikat');
+    $routes->get('/admin-add-sertifikat', 'KomunitasEkspor::admin_add_sertifikat');
+    $routes->post('/admin-create-sertifikat', 'KomunitasEkspor::admin_create_sertifikat');
+    $routes->get('/admin-edit-sertifikat/(:num)', 'KomunitasEkspor::admin_edit_sertifikat/$1');
+    $routes->post('/admin-update-sertifikat/(:num)', 'KomunitasEkspor::admin_update_sertifikat/$1');
+    $routes->get('/admin-delete-sertifikat/(:num)', 'KomunitasEkspor::admin_delete_sertifikat/$1');
 
-// Admin - Belajar Ekspor
-$routes->get('/admin-belajar-ekspor', 'KomunitasEkspor::admin_belajar_ekspor');
-$routes->get('/admin-belajar-ekspor-search', 'KomunitasEkspor::admin_search_belajar');
-$routes->get('/admin-belajar-ekspor-tambah', 'KomunitasEkspor::admin_belajar_ekspor_tambah');
-$routes->post('/admin-belajar-ekspor-create', 'KomunitasEkspor::admin_belajar_ekspor_store');
-$routes->get('/admin-belajar-ekspor-ubah/(:num)', 'KomunitasEkspor::admin_belajar_ekspor_ubah/$1');
-$routes->post('/admin-belajar-ekspor-update/(:num)', 'KomunitasEkspor::admin_belajar_ekspor_update/$1');
-$routes->get('/admin-belajar-ekspor-delete/(:num)', 'KomunitasEkspor::admin_belajar_ekspor_delete/$1');
+    // Admin - Belajar Ekspor
+    $routes->get('/admin-belajar-ekspor', 'KomunitasEkspor::admin_belajar_ekspor');
+    $routes->get('/admin-belajar-ekspor-search', 'KomunitasEkspor::admin_search_belajar');
+    $routes->get('/admin-belajar-ekspor-tambah', 'KomunitasEkspor::admin_belajar_ekspor_tambah');
+    $routes->post('/admin-belajar-ekspor-create', 'KomunitasEkspor::admin_belajar_ekspor_store');
+    $routes->get('/admin-belajar-ekspor-ubah/(:num)', 'KomunitasEkspor::admin_belajar_ekspor_ubah/$1');
+    $routes->post('/admin-belajar-ekspor-update/(:num)', 'KomunitasEkspor::admin_belajar_ekspor_update/$1');
+    $routes->get('/admin-belajar-ekspor-delete/(:num)', 'KomunitasEkspor::admin_belajar_ekspor_delete/$1');
 
-// Admin - Kategori Belajar Ekspor
-$routes->get('/admin-kategori-belajar-ekspor', 'KomunitasEkspor::admin_kategori_belajar_ekspor');
-$routes->get('/admin-kategori-belajar-ekspor-tambah', 'KomunitasEkspor::admin_kategori_belajar_ekspor_tambah');
-$routes->get('/admin-kategori-belajar-ekspor-ubah/(:num)', 'KomunitasEkspor::admin_kategori_belajar_ekspor_ubah/$1');
-$routes->post('/admin-kategori-belajar-ekspor-create', 'KomunitasEkspor::admin_kategori_belajar_ekspor_store/$1');
-$routes->post('/admin-kategori-belajar-ekspor-update/(:num)', 'KomunitasEkspor::admin_kategori_belajar_ekspor_update/$1');
-$routes->get('/admin-kategori-belajar-ekspor-delete/(:num)', 'KomunitasEkspor::admin_kategori_belajar_ekspor_delete/$1');
+    // Admin - Kategori Belajar Ekspor
+    $routes->get('/admin-kategori-belajar-ekspor', 'KomunitasEkspor::admin_kategori_belajar_ekspor');
+    $routes->get('/admin-kategori-belajar-ekspor-tambah', 'KomunitasEkspor::admin_kategori_belajar_ekspor_tambah');
+    $routes->get('/admin-kategori-belajar-ekspor-ubah/(:num)', 'KomunitasEkspor::admin_kategori_belajar_ekspor_ubah/$1');
+    $routes->post('/admin-kategori-belajar-ekspor-create', 'KomunitasEkspor::admin_kategori_belajar_ekspor_store/$1');
+    $routes->post('/admin-kategori-belajar-ekspor-update/(:num)', 'KomunitasEkspor::admin_kategori_belajar_ekspor_update/$1');
+    $routes->get('/admin-kategori-belajar-ekspor-delete/(:num)', 'KomunitasEkspor::admin_kategori_belajar_ekspor_delete/$1');
 
-// Admin - Video Tutorial
-$routes->get('/admin-video-tutorial', 'KomunitasEkspor::admin_video_tutorial');
-$routes->get('/admin-video-tutorial-tambah', 'KomunitasEkspor::admin_video_tutorial_tambah');
-$routes->post('/admin-vidio-tutorial-create', 'KomunitasEkspor::admin_video_tutorial_store/$1');
-$routes->get('/admin-video-tutorial-ubah/(:num)', 'KomunitasEkspor::admin_video_tutorial_ubah/$1');
-$routes->post('/admin-video-tutorial-update/(:num)', 'KomunitasEkspor::admin_video_tutorial_update/$1');
-$routes->get('/admin-video-tutorial-delete/(:num)', 'KomunitasEkspor::admin_video_tutorial_delete/$1');
+    // Admin - Video Tutorial
+    $routes->get('/admin-video-tutorial', 'KomunitasEkspor::admin_video_tutorial');
+    $routes->get('/admin-video-tutorial-tambah', 'KomunitasEkspor::admin_video_tutorial_tambah');
+    $routes->post('/admin-vidio-tutorial-create', 'KomunitasEkspor::admin_video_tutorial_store/$1');
+    $routes->get('/admin-video-tutorial-ubah/(:num)', 'KomunitasEkspor::admin_video_tutorial_ubah/$1');
+    $routes->post('/admin-video-tutorial-update/(:num)', 'KomunitasEkspor::admin_video_tutorial_update/$1');
+    $routes->get('/admin-video-tutorial-delete/(:num)', 'KomunitasEkspor::admin_video_tutorial_delete/$1');
 
-// Admin - Kategori Video Tutorial
-$routes->get('/admin-kategori-video-tutorial', 'KomunitasEkspor::admin_kategori_video_tutorial');
-$routes->get('/admin-kategori-video-tutorial-tambah', 'KomunitasEkspor::admin_kategori_video_tutorial_tambah');
-$routes->post('/admin-kategori-vidio-tutorial-create', 'KomunitasEkspor::admin_kategori_vidio_tutorial_store/$1');
-$routes->get('/admin-kategori-video-tutorial-ubah/(:num)', 'KomunitasEkspor::admin_kategori_video_tutorial_ubah/$1');
-$routes->post('/admin-kategori-video-tutorial-update/(:num)', 'KomunitasEkspor::admin_kategori_video_tutorial_update/$1');
-$routes->get('/admin-kategori-video-tutorial-delete/(:num)', 'KomunitasEkspor::admin_kategori_video_tutorial_delete/$1');
+    // Admin - Kategori Video Tutorial
+    $routes->get('/admin-kategori-video-tutorial', 'KomunitasEkspor::admin_kategori_video_tutorial');
+    $routes->get('/admin-kategori-video-tutorial-tambah', 'KomunitasEkspor::admin_kategori_video_tutorial_tambah');
+    $routes->post('/admin-kategori-vidio-tutorial-create', 'KomunitasEkspor::admin_kategori_vidio_tutorial_store/$1');
+    $routes->get('/admin-kategori-video-tutorial-ubah/(:num)', 'KomunitasEkspor::admin_kategori_video_tutorial_ubah/$1');
+    $routes->post('/admin-kategori-video-tutorial-update/(:num)', 'KomunitasEkspor::admin_kategori_video_tutorial_update/$1');
+    $routes->get('/admin-kategori-video-tutorial-delete/(:num)', 'KomunitasEkspor::admin_kategori_video_tutorial_delete/$1');
 
-// Admin - Kalkulator Ekspor
-// EXWORK
-$routes->get('/admin-exwork', 'KomunitasEkspor::admin_exwork');
-$routes->get('/admin-search-exwork', 'KomunitasEkspor::admin_search_exwork');
-$routes->get('/admin-add-exwork', 'KomunitasEkspor::admin_add_exwork');
-$routes->post('/admin-create-exwork', 'KomunitasEkspor::admin_create_exwork');
-$routes->get('/admin-edit-exwork/(:num)', 'KomunitasEkspor::admin_edit_exwork/$1');
-$routes->post('/admin-update-exwork/(:num)', 'KomunitasEkspor::admin_update_exwork/$1');
-$routes->get('/admin-delete-exwork/(:num)', 'KomunitasEkspor::admin_delete_exwork/$1');
-// FOB
-$routes->get('/admin-fob', 'KomunitasEkspor::admin_fob');
-$routes->get('/admin-search-fob', 'KomunitasEkspor::admin_search_fob');
-$routes->get('/admin-add-fob', 'KomunitasEkspor::admin_add_fob');
-$routes->post('/admin-create-fob', 'KomunitasEkspor::admin_create_fob');
-$routes->get('/admin-edit-fob/(:num)', 'KomunitasEkspor::admin_edit_fob/$1');
-$routes->post('/admin-update-fob/(:num)', 'KomunitasEkspor::admin_update_fob/$1');
-$routes->get('/admin-delete-fob/(:num)', 'KomunitasEkspor::admin_delete_fob/$1');
-// CFR
-$routes->get('/admin-cfr', 'KomunitasEkspor::admin_cfr');
-$routes->get('/admin-search-cfr', 'KomunitasEkspor::admin_search_cfr');
-$routes->get('/admin-add-cfr', 'KomunitasEkspor::admin_add_cfr');
-$routes->post('/admin-create-cfr', 'KomunitasEkspor::admin_create_cfr');
-$routes->get('/admin-edit-cfr/(:num)', 'KomunitasEkspor::admin_edit_cfr/$1');
-$routes->post('/admin-update-cfr/(:num)', 'KomunitasEkspor::admin_update_cfr/$1');
-$routes->get('/admin-delete-cfr/(:num)', 'KomunitasEkspor::admin_delete_cfr/$1');
-// CIF
-$routes->get('/admin-cif', 'KomunitasEkspor::admin_cif');
-$routes->get('/admin-search-cif', 'KomunitasEkspor::admin_search_cif');
-$routes->get('/admin-add-cif', 'KomunitasEkspor::admin_add_cif');
-$routes->post('/admin-create-cif', 'KomunitasEkspor::admin_create_cif');
-$routes->get('/admin-edit-cif/(:num)', 'KomunitasEkspor::admin_edit_cif/$1');
-$routes->post('/admin-update-cif/(:num)', 'KomunitasEkspor::admin_update_cif/$1');
-$routes->get('/admin-delete-cif/(:num)', 'KomunitasEkspor::admin_delete_cif/$1');
-// Satuan
-$routes->get('/admin-satuan', 'KomunitasEkspor::admin_satuan');
-$routes->get('/admin-search-satuan', 'KomunitasEkspor::admin_search_satuan');
-$routes->get('/admin-edit-satuan/(:num)', 'KomunitasEkspor::admin_edit_satuan/$1');
-$routes->post('/admin-update-satuan/(:num)', 'KomunitasEkspor::admin_update_satuan/$1');
+    // Admin - Kalkulator Ekspor
+    // EXWORK
+    $routes->get('/admin-exwork', 'KomunitasEkspor::admin_exwork');
+    $routes->get('/admin-search-exwork', 'KomunitasEkspor::admin_search_exwork');
+    $routes->get('/admin-add-exwork', 'KomunitasEkspor::admin_add_exwork');
+    $routes->post('/admin-create-exwork', 'KomunitasEkspor::admin_create_exwork');
+    $routes->get('/admin-edit-exwork/(:num)', 'KomunitasEkspor::admin_edit_exwork/$1');
+    $routes->post('/admin-update-exwork/(:num)', 'KomunitasEkspor::admin_update_exwork/$1');
+    $routes->get('/admin-delete-exwork/(:num)', 'KomunitasEkspor::admin_delete_exwork/$1');
+    // FOB
+    $routes->get('/admin-fob', 'KomunitasEkspor::admin_fob');
+    $routes->get('/admin-search-fob', 'KomunitasEkspor::admin_search_fob');
+    $routes->get('/admin-add-fob', 'KomunitasEkspor::admin_add_fob');
+    $routes->post('/admin-create-fob', 'KomunitasEkspor::admin_create_fob');
+    $routes->get('/admin-edit-fob/(:num)', 'KomunitasEkspor::admin_edit_fob/$1');
+    $routes->post('/admin-update-fob/(:num)', 'KomunitasEkspor::admin_update_fob/$1');
+    $routes->get('/admin-delete-fob/(:num)', 'KomunitasEkspor::admin_delete_fob/$1');
+    // CFR
+    $routes->get('/admin-cfr', 'KomunitasEkspor::admin_cfr');
+    $routes->get('/admin-search-cfr', 'KomunitasEkspor::admin_search_cfr');
+    $routes->get('/admin-add-cfr', 'KomunitasEkspor::admin_add_cfr');
+    $routes->post('/admin-create-cfr', 'KomunitasEkspor::admin_create_cfr');
+    $routes->get('/admin-edit-cfr/(:num)', 'KomunitasEkspor::admin_edit_cfr/$1');
+    $routes->post('/admin-update-cfr/(:num)', 'KomunitasEkspor::admin_update_cfr/$1');
+    $routes->get('/admin-delete-cfr/(:num)', 'KomunitasEkspor::admin_delete_cfr/$1');
+    // CIF
+    $routes->get('/admin-cif', 'KomunitasEkspor::admin_cif');
+    $routes->get('/admin-search-cif', 'KomunitasEkspor::admin_search_cif');
+    $routes->get('/admin-add-cif', 'KomunitasEkspor::admin_add_cif');
+    $routes->post('/admin-create-cif', 'KomunitasEkspor::admin_create_cif');
+    $routes->get('/admin-edit-cif/(:num)', 'KomunitasEkspor::admin_edit_cif/$1');
+    $routes->post('/admin-update-cif/(:num)', 'KomunitasEkspor::admin_update_cif/$1');
+    $routes->get('/admin-delete-cif/(:num)', 'KomunitasEkspor::admin_delete_cif/$1');
+    // Satuan
+    $routes->get('/admin-satuan', 'KomunitasEkspor::admin_satuan');
+    $routes->get('/admin-search-satuan', 'KomunitasEkspor::admin_search_satuan');
+    $routes->get('/admin-edit-satuan/(:num)', 'KomunitasEkspor::admin_edit_satuan/$1');
+    $routes->post('/admin-update-satuan/(:num)', 'KomunitasEkspor::admin_update_satuan/$1');
 
-// Admin - MPM
-$routes->get('/admin-mpm', 'KomunitasEkspor::admin_mpm');
-$routes->get('/admin-search-mpm', 'KomunitasEkspor::admin_search_mpm');
+    // Admin - MPM
+    $routes->get('/admin-mpm', 'KomunitasEkspor::admin_mpm');
+    $routes->get('/admin-search-mpm', 'KomunitasEkspor::admin_search_mpm');
 
-// Admin - Website Audit
-$routes->get('/admin-website-audit', 'KomunitasEkspor::admin_website_audit');
-$routes->get('/admin-search-website-audit', 'KomunitasEkspor::admin_search_website_audit');
-$routes->get('/admin-add-website-audit', 'KomunitasEkspor::admin_add_website_audit');
-$routes->get('/admin-edit-website-audit', 'KomunitasEkspor::admin_edit_website_audit');
+    // Admin - Website Audit
+    $routes->get('/admin-website-audit', 'KomunitasEkspor::admin_website_audit');
+    $routes->get('/admin-search-website-audit', 'KomunitasEkspor::admin_search_website_audit');
+    $routes->get('/admin-add-website-audit', 'KomunitasEkspor::admin_add_website_audit');
+    $routes->get('/admin-edit-website-audit', 'KomunitasEkspor::admin_edit_website_audit');
 
-// Admin - Pengumuman
-$routes->get('/admin-pengumuman', 'KomunitasEkspor::admin_pengumuman');
-$routes->get('/admin-add-pengumuman', 'KomunitasEkspor::admin_add_pengumuman');
-$routes->post('/admin-add-pengumuman-create', 'KomunitasEkspor::admin_add_pengumuman_create/$1');
-$routes->get('/admin-edit-pengumuman/(:num)', 'KomunitasEkspor::admin_edit_pengumuman/$1');
-$routes->post('/admin-update-pengumuman/(:num)', 'KomunitasEkspor::admin_update_pengumuman/$1');
-$routes->get('/admin-delete-pengumuman/(:num)', 'KomunitasEkspor::admin_delete_pengumuman/$1');
+    // Admin - Pengumuman
+    $routes->get('/admin-pengumuman', 'KomunitasEkspor::admin_pengumuman');
+    $routes->get('/admin-add-pengumuman', 'KomunitasEkspor::admin_add_pengumuman');
+    $routes->post('/admin-add-pengumuman-create', 'KomunitasEkspor::admin_add_pengumuman_create/$1');
+    $routes->get('/admin-edit-pengumuman/(:num)', 'KomunitasEkspor::admin_edit_pengumuman/$1');
+    $routes->post('/admin-update-pengumuman/(:num)', 'KomunitasEkspor::admin_update_pengumuman/$1');
+    $routes->get('/admin-delete-pengumuman/(:num)', 'KomunitasEkspor::admin_delete_pengumuman/$1');
 
 
-// Admin - Manfaat Join
-$routes->get('/admin-manfaat-join', 'KomunitasEkspor::admin_manfaat_join');
-$routes->get('/admin-edit-manfaat-join', 'KomunitasEkspor::admin_edit_manfaat_join');
+    // Admin - Manfaat Join
+    $routes->get('/admin-manfaat-join', 'KomunitasEkspor::admin_manfaat_join');
+    $routes->get('/admin-edit-manfaat-join/(:num)', 'KomunitasEkspor::admin_edit_manfaat_join/$1');
+    $routes->post('/admin-manfaat-join-update/(:num)', 'KomunitasEkspor::admin_update_manfaat_join/$1');
 
-// Admin - Slider
-$routes->get('/admin-slider', 'KomunitasEkspor::admin_slider');
-$routes->get('/admin-edit-slider/(:num)', 'KomunitasEkspor::admin_edit_slider/$1');
-$routes->post('/admin-update-slider/(:num)', 'KomunitasEkspor::admin_update_slider/$1');
-$routes->get('/admin-delete-slider/(:num)', 'KomunitasEkspor::admin_delete_slider/$1');
+    // Admin - Slider
+    $routes->get('/admin-slider', 'KomunitasEkspor::admin_slider');
+    $routes->get('/admin-edit-slider/(:num)', 'KomunitasEkspor::admin_edit_slider/$1');
+    $routes->post('/admin-update-slider/(:num)', 'KomunitasEkspor::admin_update_slider/$1');
+    $routes->get('/admin-delete-slider/(:num)', 'KomunitasEkspor::admin_delete_slider/$1');
 
-// Admin - Web Profile
-$routes->get('/admin-web-profile', 'KomunitasEkspor::admin_web_profile');
-$routes->get('/admin-edit-web-profile', 'KomunitasEkspor::admin_edit_web_profile');
+    // Admin - Web Profile
+    $routes->get('/admin-web-profile', 'KomunitasEkspor::admin_web_profile');
+    $routes->get('/admin-edit-web-profile', 'KomunitasEkspor::admin_edit_web_profile');
+});
