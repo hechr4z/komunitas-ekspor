@@ -83,6 +83,7 @@ return [
     'videoCategory' => 'Video Category:',
     'titleDesc' => 'Description',
     'titleOther' => 'Other Videos',
+    'backtovideos' => 'Back to Videos',
 
 
     //halaman data member
