@@ -69,7 +69,7 @@
         <?php if (!empty($video_tutorial)): ?>
             <?php foreach ($video_tutorial as $video): ?>
                 <div class="col">
-                    <a href="<?= base_url('/video-tutorial-detail/' . $video['slug']); ?>" class="text-decoration-none">
+                    <a href="<?= base_url(($lang === 'en' ? 'en/video-tutorial/' : 'id/tutorial-video/') . ($lang === 'en' ? $video['slug_en'] : $video['slug'])); ?>" class="text-decoration-none">
                         <div class="card h-100">
                             <img src="<?= base_url('/img/' . $video['thumbnail']); ?>" class="card-img-top img-fluid" alt="<?= $video['judul_video']; ?>" style="object-fit: cover; object-position: center; aspect-ratio: 16/9;" loading="lazy">
                             <div class="card-body d-flex flex-column">
