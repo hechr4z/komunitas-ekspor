@@ -18,8 +18,8 @@ class KategoriVidioSeeder extends Seeder
             [
                 'nama_kategori_video' => 'Tutorial',
                 'nama_kategori_video_en' => 'Tutorial',
-                'slug' => 'video-tutorial',
-                'slug_en' => 'video-tutorial',
+                'slug' => 'videos-tutorial',
+                'slug_en' => 'tutorial-videos',
             ],
         ];
 
