@@ -220,6 +220,9 @@ class KomunitasEkspor extends BaseController
         // Mengambil artikel terkait
         $related_artikel = $belajarEksporModel->where('slug !=', $slug)->orderBy('created_at', 'DESC')->limit(3)->findAll();
 
+        foreach ($related_artikel as &$item) {
+            $item['kategori'] = $kategoriModel->find($item['id_kategori_belajar_ekspor']);
+        }
         // Mengirim data artikel, kategori, dan artikel terkait ke view
         $data = [
             'artikel' => $artikel,
@@ -578,11 +581,6 @@ class KomunitasEkspor extends BaseController
         $data['produk'] = $produk;
 
         return view('data-member/detail', $data);
-    }
-
-    public function visitor_landing_page()
-    {
-        return view('landing-page/index');
     }
 
     public function member_data_member()
