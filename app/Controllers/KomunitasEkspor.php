@@ -47,8 +47,9 @@ class KomunitasEkspor extends BaseController
         $model_manfaatjoin = new ManfaatJoin();
 
         $slider = $model_slider->findAll();
-        $member = $model_member->findAll();
+        $member = $model_member->where('role', 'member')->findAll();
         $top4_member = $model_member
+            ->where('role', 'member')
             ->orderBy('popular_point', 'DESC')
             ->limit(4)
             ->findAll();
@@ -480,6 +481,7 @@ class KomunitasEkspor extends BaseController
 
         // Fetch members with pagination
         $members = $model_member
+            ->where('role', 'member')
             ->orderBy('popular_point', 'DESC')
             ->paginate($perPage);
 
@@ -530,7 +532,7 @@ class KomunitasEkspor extends BaseController
         $model_produk = new Produk();
 
         // Cari member berdasarkan username, karena slug dibuat dari username
-        $member = $model_member->where('username', url_title($slug, '-', true))->first();
+        $member = $model_member->where('role', 'member')->where('username', url_title($slug, '-', true))->first();
 
         // Jika member ditemukan
         if ($member) {
@@ -548,6 +550,7 @@ class KomunitasEkspor extends BaseController
 
         // Top 3 popular members
         $members = $model_member
+            ->where('role', 'member')
             ->orderBy('popular_point', 'DESC')
             ->findAll(); // Tambahkan findAll() untuk mengambil data
 
@@ -596,6 +599,7 @@ class KomunitasEkspor extends BaseController
 
         // Fetch members with pagination
         $members = $model_member
+            ->where('role', 'member')
             ->orderBy('popular_point', 'DESC')
             ->paginate($perPage);
 
@@ -626,7 +630,7 @@ class KomunitasEkspor extends BaseController
         $model_produk = new Produk();
 
         // Cari member berdasarkan username, karena slug dibuat dari username
-        $member = $model_member->where('username', url_title($slug, '-', true))->first();
+        $member = $model_member->where('role', 'member')->where('username', url_title($slug, '-', true))->first();
 
         // Jika member ditemukan
         if ($member) {
@@ -644,6 +648,7 @@ class KomunitasEkspor extends BaseController
 
         // Top 3 popular members
         $members = $model_member
+            ->where('role', 'member')
             ->orderBy('popular_point', 'DESC')
             ->findAll(); // Tambahkan findAll() untuk mengambil data
 
@@ -1922,7 +1927,7 @@ class KomunitasEkspor extends BaseController
         $kategoribelajarekspor = $model_kategoribelajarekspor->countAll();
         $kategorivideo = $model_kategorivideo->countAll();
         $manfaatjoin = $model_manfaatjoin->countAll();
-        $member = $model_member->countAll();
+        $member = $model_member->where('role', 'member')->countAllResults();
         $mpm = $model_mpm->countAll();
         $pengumuman = $model_pengumuman->countAll();
         $produk = $model_produk->countAll();
@@ -1964,6 +1969,7 @@ class KomunitasEkspor extends BaseController
         $page = $this->request->getVar('page') ?? 1;
 
         $member = $model_member
+            ->where('role', 'member')
             ->orderBy('tanggal_verifikasi', 'DESC')
             ->paginate($perPage);
 
@@ -1989,7 +1995,9 @@ class KomunitasEkspor extends BaseController
         $page = $this->request->getVar('page') ?? 1; // Get the current page number
 
         // Query pencarian: mencari berdasarkan judul, tags, atau deskripsi
-        $hasilPencarian = $model_member->like('username', $keyword)
+        $hasilPencarian = $model_member
+            ->where('role', 'member')
+            ->like('username', $keyword)
             ->orLike('kode_referral', $keyword)
             ->orLike('popular_point', $keyword)
             ->orLike('nama_perusahaan', $keyword)
@@ -2091,7 +2099,7 @@ class KomunitasEkspor extends BaseController
     {
         $model_member = new Member();
 
-        $member = $model_member->find($id);
+        $member = $model_member->where('role', 'member')->find($id);
 
         $data['member'] = $member;
 
@@ -2164,7 +2172,7 @@ class KomunitasEkspor extends BaseController
     {
         $model_member = new Member();
 
-        $member = $model_member->find($id);
+        $member = $model_member->where('role', 'member')->find($id);
 
         if ($member['foto_profil'] && file_exists(ROOTPATH . 'public/img/' . $member['foto_profil'])) {
             unlink(ROOTPATH . 'public/img/' . $member['foto_profil']);
@@ -2356,7 +2364,7 @@ class KomunitasEkspor extends BaseController
     {
         $model_member = new Member();
 
-        $member = $model_member->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['member'] = $member;
 
@@ -2366,6 +2374,15 @@ class KomunitasEkspor extends BaseController
     public function admin_create_produk()
     {
         $model_produk = new Produk();
+        $model_member = new Member();
+
+        $id_member = $this->request->getPost('id_member');
+
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
+
+        if (!$memberData) {
+            return redirect()->to('/admin-produk')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
+        }
 
         $tr = new GoogleTranslate('en');
 
@@ -2378,7 +2395,7 @@ class KomunitasEkspor extends BaseController
         }
 
         $data = [
-            'id_member' => $this->request->getPost('id_member'),
+            'id_member' => $id_member,
             'foto_produk' => $namaFile,
             'nama_produk' => $this->request->getPost('nama_produk'),
             'nama_produk_en' => $tr->translate($this->request->getPost('nama_produk')),
@@ -2401,7 +2418,7 @@ class KomunitasEkspor extends BaseController
 
         $produk = $model_produk->find($id);
 
-        $member = $model_member->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['produk'] = $produk;
         $data['member'] = $member;
@@ -2412,6 +2429,15 @@ class KomunitasEkspor extends BaseController
     public function admin_update_produk($id)
     {
         $model_produk = new Produk();
+        $model_member = new Member();
+
+        $id_member = $this->request->getPost('id_member');
+
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
+
+        if (!$memberData) {
+            return redirect()->to('/admin-produk')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
+        }
 
         $produk = $model_produk->find($id);
 
@@ -2437,7 +2463,7 @@ class KomunitasEkspor extends BaseController
         }
 
         $data = array_merge($data, [
-            'id_member' => $this->request->getPost('id_member'),
+            'id_member' => $id_member,
             'nama_produk' => $this->request->getPost('nama_produk'),
             'nama_produk_en' => $tr->translate($this->request->getPost('nama_produk')),
             'deskripsi_produk' => $this->request->getPost('deskripsi_produk'),
@@ -2526,7 +2552,7 @@ class KomunitasEkspor extends BaseController
     {
         $model_member = new Member();
 
-        $member = $model_member->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['member'] = $member;
 
@@ -2536,6 +2562,15 @@ class KomunitasEkspor extends BaseController
     public function admin_create_sertifikat()
     {
         $model_sertifikat = new Sertifikat();
+        $model_member = new Member();
+
+        $id_member = $this->request->getPost('id_member');
+
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
+
+        if (!$memberData) {
+            return redirect()->to('/admin-sertifikat')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
+        }
 
         $fileSertifikat = $this->request->getFile('sertifikat');
 
@@ -2547,7 +2582,7 @@ class KomunitasEkspor extends BaseController
         }
 
         $data = [
-            'id_member' => $this->request->getPost('id_member'),
+            'id_member' => $id_member,
             'sertifikat' => $namaFile,
         ];
 
@@ -2563,7 +2598,7 @@ class KomunitasEkspor extends BaseController
 
         $sertifikat = $model_sertifikat->find($id);
 
-        $member = $model_member->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['sertifikat'] = $sertifikat;
         $data['member'] = $member;
@@ -2574,6 +2609,15 @@ class KomunitasEkspor extends BaseController
     public function admin_update_sertifikat($id)
     {
         $model_sertifikat = new Sertifikat();
+        $model_member = new Member();
+
+        $id_member = $this->request->getPost('id_member');
+
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
+
+        if (!$memberData) {
+            return redirect()->to('/admin-sertifikat')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
+        }
 
         $sertifikat = $model_sertifikat->find($id);
 
@@ -2597,7 +2641,7 @@ class KomunitasEkspor extends BaseController
         }
 
         $data = array_merge($data, [
-            'id_member' => $this->request->getPost('id_member'),
+            'id_member' => $id_member,
         ]);
 
         $model_sertifikat->update($id, $data);
@@ -3116,7 +3160,7 @@ class KomunitasEkspor extends BaseController
     {
         $model_member = new Member();
 
-        $member = $model_member->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['member'] = $member;
 
@@ -3126,9 +3170,18 @@ class KomunitasEkspor extends BaseController
     public function admin_create_exwork()
     {
         $model_exwork = new Exwork();
+        $model_member = new Member();
+
+        $id_member = $this->request->getPost('id_member');
+
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
+
+        if (!$memberData) {
+            return redirect()->to('/admin-exwork')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
+        }
 
         $data = [
-            'id_member' => $this->request->getPost('id_member'),
+            'id_member' => $id_member,
             'komponen_exwork' => $this->request->getPost('komponen_exwork'),
         ];
 
@@ -3144,7 +3197,7 @@ class KomunitasEkspor extends BaseController
 
         $exwork = $model_exwork->find($id);
 
-        $member = $model_member->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['exwork'] = $exwork;
         $data['member'] = $member;
@@ -3155,9 +3208,18 @@ class KomunitasEkspor extends BaseController
     public function admin_update_exwork($id)
     {
         $model_exwork = new Exwork();
+        $model_member = new Member();
+
+        $id_member = $this->request->getPost('id_member');
+
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
+
+        if (!$memberData) {
+            return redirect()->to('/admin-exwork')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
+        }
 
         $data = [
-            'id_member' => $this->request->getPost('id_member'),
+            'id_member' => $id_member,
             'komponen_exwork' => $this->request->getPost('komponen_exwork'),
         ];
 
@@ -3234,7 +3296,7 @@ class KomunitasEkspor extends BaseController
     {
         $model_member = new Member();
 
-        $member = $model_member->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['member'] = $member;
 
@@ -3244,9 +3306,18 @@ class KomunitasEkspor extends BaseController
     public function admin_create_fob()
     {
         $model_fob = new FOB();
+        $model_member = new Member();
+
+        $id_member = $this->request->getPost('id_member');
+
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
+
+        if (!$memberData) {
+            return redirect()->to('/admin-fob')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
+        }
 
         $data = [
-            'id_member' => $this->request->getPost('id_member'),
+            'id_member' => $id_member,
             'komponen_fob' => $this->request->getPost('komponen_fob'),
         ];
 
@@ -3262,7 +3333,7 @@ class KomunitasEkspor extends BaseController
 
         $fob = $model_fob->find($id);
 
-        $member = $model_member->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['fob'] = $fob;
         $data['member'] = $member;
@@ -3273,9 +3344,18 @@ class KomunitasEkspor extends BaseController
     public function admin_update_fob($id)
     {
         $model_fob = new FOB();
+        $model_member = new Member();
+
+        $id_member = $this->request->getPost('id_member');
+
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
+
+        if (!$memberData) {
+            return redirect()->to('/admin-fob')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
+        }
 
         $data = [
-            'id_member' => $this->request->getPost('id_member'),
+            'id_member' => $id_member,
             'komponen_fob' => $this->request->getPost('komponen_fob'),
         ];
 
@@ -3352,7 +3432,7 @@ class KomunitasEkspor extends BaseController
     {
         $model_member = new Member();
 
-        $member = $model_member->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['member'] = $member;
 
@@ -3362,9 +3442,18 @@ class KomunitasEkspor extends BaseController
     public function admin_create_cfr()
     {
         $model_cfr = new CFR();
+        $model_member = new Member();
+
+        $id_member = $this->request->getPost('id_member');
+
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
+
+        if (!$memberData) {
+            return redirect()->to('/admin-cfr')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
+        }
 
         $data = [
-            'id_member' => $this->request->getPost('id_member'),
+            'id_member' => $id_member,
             'komponen_cfr' => $this->request->getPost('komponen_cfr'),
         ];
 
@@ -3380,7 +3469,7 @@ class KomunitasEkspor extends BaseController
 
         $cfr = $model_cfr->find($id);
 
-        $member = $model_member->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['cfr'] = $cfr;
         $data['member'] = $member;
@@ -3391,9 +3480,18 @@ class KomunitasEkspor extends BaseController
     public function admin_update_cfr($id)
     {
         $model_cfr = new CFR();
+        $model_member = new Member();
+
+        $id_member = $this->request->getPost('id_member');
+
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
+
+        if (!$memberData) {
+            return redirect()->to('/admin-cfr')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
+        }
 
         $data = [
-            'id_member' => $this->request->getPost('id_member'),
+            'id_member' => $id_member,
             'komponen_cfr' => $this->request->getPost('komponen_cfr'),
         ];
 
@@ -3470,7 +3568,7 @@ class KomunitasEkspor extends BaseController
     {
         $model_member = new Member();
 
-        $member = $model_member->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['member'] = $member;
 
@@ -3480,9 +3578,18 @@ class KomunitasEkspor extends BaseController
     public function admin_create_cif()
     {
         $model_cif = new CIF();
+        $model_member = new Member();
+
+        $id_member = $this->request->getPost('id_member');
+
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
+
+        if (!$memberData) {
+            return redirect()->to('/admin-cif')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
+        }
 
         $data = [
-            'id_member' => $this->request->getPost('id_member'),
+            'id_member' => $id_member,
             'komponen_cif' => $this->request->getPost('komponen_cif'),
         ];
 
@@ -3498,7 +3605,7 @@ class KomunitasEkspor extends BaseController
 
         $cif = $model_cif->find($id);
 
-        $member = $model_member->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['cif'] = $cif;
         $data['member'] = $member;
@@ -3509,9 +3616,18 @@ class KomunitasEkspor extends BaseController
     public function admin_update_cif($id)
     {
         $model_cif = new CIF();
+        $model_member = new Member();
+
+        $id_member = $this->request->getPost('id_member');
+
+        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
+
+        if (!$memberData) {
+            return redirect()->to('/admin-cif')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
+        }
 
         $data = [
-            'id_member' => $this->request->getPost('id_member'),
+            'id_member' => $id_member,
             'komponen_cif' => $this->request->getPost('komponen_cif'),
         ];
 
@@ -3584,17 +3700,6 @@ class KomunitasEkspor extends BaseController
         return view('admin/kalkulator-ekspor/satuan/search', $data);
     }
 
-    public function admin_add_satuan()
-    {
-        $model_member = new Member();
-
-        $member = $model_member->select('id_member, username')->findAll();
-
-        $data['member'] = $member;
-
-        return view('admin/kalkulator-ekspor/satuan/add', $data);
-    }
-
     public function admin_edit_satuan($id)
     {
         $model_satuan = new Satuan();
@@ -3602,7 +3707,7 @@ class KomunitasEkspor extends BaseController
 
         $satuan = $model_satuan->find($id);
 
-        $member = $model_member->select('id_member, username')->findAll();
+        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
 
         $data['satuan'] = $satuan;
         $data['member'] = $member;
