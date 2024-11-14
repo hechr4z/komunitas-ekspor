@@ -160,7 +160,7 @@
             font-size: 32px;
             margin-bottom: 40px;
             background: linear-gradient(to right, #009EF2, #F32323);
-            -webkit-background-clip: text;
+            
             -webkit-text-fill-color: transparent;
             font-weight: 500;
         }
@@ -225,7 +225,7 @@
             font-size: 32px;
             margin-bottom: 60px;
             background: linear-gradient(to right, #009EF2, #F32323);
-            -webkit-background-clip: text;
+            
             -webkit-text-fill-color: transparent;
             font-weight: 500;
         }
@@ -298,7 +298,7 @@
             font-size: 32px;
             margin-bottom: 60px;
             background: linear-gradient(to right, #009EF2, #F32323);
-            -webkit-background-clip: text;
+            
             -webkit-text-fill-color: transparent;
             font-weight: 500;
         }
