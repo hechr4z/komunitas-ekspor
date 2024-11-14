@@ -8,6 +8,9 @@ use CodeIgniter\Router\RouteCollection;
 $routes->group('id', function ($routes) {
     // Visitor - Beranda
     $routes->get('/', 'KomunitasEkspor::index');
+    
+    // Visitor - Landing Page Member
+    $routes->get('landing-page', 'KomunitasEkspor::visitor_landing_page');
 
     // Visitor - Belajar Ekspor
     $routes->get('belajar-ekspor', 'KomunitasEkspor::belajar_ekspor');
