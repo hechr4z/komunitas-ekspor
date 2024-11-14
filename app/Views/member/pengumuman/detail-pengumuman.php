@@ -48,7 +48,7 @@
         <?php foreach ($pengumuman_lainnya as $item): ?>
             <div class="col-md-4 mb-4">
                 <div class="card h-100 shadow-sm animate__animated animate__zoomIn">
-                    <img src="<?= base_url('/img/' . $item['poster_pengumuman']); ?>" class="card-img-top" alt="<?= $item['judul_pengumuman']; ?>">
+                    <img src="<?= base_url('/img/' . $item['poster_pengumuman']); ?>" style="object-fit: cover; width: 100%; height: 200px;" class="card-img-top" alt="<?= $item['judul_pengumuman']; ?>">
                     <div class="card-body">
                         <h5 class="card-title"><?= $item['judul_pengumuman']; ?></h5>
                         <p class="card-text"><?= substr($item['deskripsi_pengumuman'], 0, 100) . '...'; ?></p>

@@ -229,7 +229,11 @@
                                                 <img src="<?= base_url('/img/' . $item['thumbnail']) ?>" alt="Thumbnail" class="img-thumbnail" style="max-width: 100px;">
                                             </td>
                                             <td class="text-center" valign="middle"><?= $item['video_url']; ?></td>
-                                            <td class="text-center" valign="middle"><?= $item['deskripsi_video']; ?></td>
+                                            <td class="text-center" valign="middle">
+                                                <div style="max-height: 150px; overflow-y: auto;">
+                                                    <?= $item['deskripsi_video']; ?>
+                                                </div>
+                                            </td>
                                             <td class="text-center align-middle">
                                                 <div class="d-flex justify-content-center align-items-center">
                                                     <a href="<?= base_url('/admin-video-tutorial-delete/' . $item['id_video']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>

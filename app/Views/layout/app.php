@@ -317,6 +317,9 @@
         .border-top2 {
             margin-right: 20px;
         }
+        .bottom-footer {
+            margin-left: 110px;
+        }
     }
 
     @media (max-width: 576px) {
@@ -331,6 +334,10 @@
             margin: 0 auto;
             overflow-x: hidden;
             width: 100%;
+        }
+
+        .bottom-footer {
+            margin-left: 20px;
         }
     }
 
@@ -358,6 +365,35 @@
     }
     .kei {
         margin-left: 5px;
+    }
+
+    .bottom-footer {
+        font-size: 9px;
+        position: relative;
+        right: 20px;
+        top: 5px;
+    }
+
+    .col-md-6 p {
+        margin-left: 10px;
+        font-size: 15px;
+    }
+
+    .col-md-6 img {
+        margin-left: 15px;
+    }
+
+    .col-md-2 p {
+        margin-left: 15px;
+    }
+
+    .col-md-2 h5 {
+        margin-left: 15px;
+    }
+    
+    .sosmed i {
+        margin-left: 15px;
+        font-size: 15px;
     }
 }
 
@@ -443,7 +479,7 @@
                 </div>
                 <!-- Ikon Sosial Media dan Garis -->
                 <div class="d-flex align-items-center">
-                    <div class="d-flex gap-3 me-4">
+                    <div class="sosmed d-flex gap-3 me-4">
                         <a href="<?= 'https://' . $webprofile[0]['link_ig_web'] ?>" target="_blank" class="social-link">
                             <i class="fab fa-instagram"></i>
                         </a>
@@ -640,7 +676,7 @@
 
     <!-- Bottom Footer -->
     <div class="py-4" style="background-color: #F2BF02; height: 70px;">
-        <div class="container">
+        <div class="container bottom-footer">
             <p class="text-light mb-0 ms-5 ps-1"><?= $webprofile[0]['footer_text'] ?></p>
         </div>
     </div>
