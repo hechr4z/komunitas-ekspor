@@ -125,6 +125,9 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link custom-tab" id="profitability-tab" data-bs-toggle="tab" data-bs-target="#profitability" type="button" role="tab" aria-controls="profitability" aria-selected="false">Profitability Index</button>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link custom-tab" id="penilaian-investasi-tab" data-bs-toggle="tab" data-bs-target="#penilaian-investasi" type="button" role="tab" aria-controls="penilaian-investasi" aria-selected="false">Penilaian Investasi</button>
+                </li>
             </ul>
 
             <!-- Tab Contents -->
@@ -839,6 +842,177 @@
 
                         <div class="mb-3">
                             <input type="text" class="form-control text-center text-uppercase fw-bold" id="miror_kesimpulan_investasi" name="miror_kesimpulan_investasi" disabled placeholder="Investasi Layak Dijalankan / Investasi Tidak Layak Dijalankan">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Penilaian Investasi dengan Berbagai Kriteria -->
+                <div class="tab-pane fade" id="penilaian-investasi" role="tabpanel"
+                    aria-labelledby="penilaian-investasi">
+
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
+                        <h4 class="text-center text-primary mb-4">Penilaian Investasi dengan Berbagai Kriteria</h4>
+
+                        <div class="mb-3">
+                            <label for="miror_investasi" class="form-label fw-bold">Investasi</label>
+                            <input type="text" class="form-control" id="miror_investasi" name="miror_investasi"
+                                value="200000000000" disabled>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="miror_usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
+                            <input type="text" class="form-control" id="miror_usia_ekonomis" name="miror_usia_ekonomis"
+                                value="5 Tahun" disabled>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="miror_suku_bunga" class="form-label fw-bold">Suku Bunga</label>
+                            <input type="text" class="form-control" id="miror_suku_bunga" name="miror_suku_bunga"
+                                value="20%" disabled>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="miror_suku_bunga_re" class="form-label fw-bold">Suku Bunga Re-invest</label>
+                            <input type="text" class="form-control" id="miror_suku_bunga_re" name="miror_suku_bunga_re"
+                                value="12.50%" disabled>
+                        </div>
+                    </div>
+
+                    <!-- Persyaratan Kelayakan Bisnis -->
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
+                        <h4 class="text-center text-primary mb-4">Persyaratan Kelayakan Bisnis</h4>
+
+                        <div class="mb-3">
+                            <label for="miror_arr" class="form-label fw-bold">ARR</label>
+                            <input type="text" class="form-control" id="miror_arr" name="miror_arr" value="45%"
+                                disabled>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="miror_payback" class="form-label fw-bold">Payback</label>
+                            <input type="text" class="form-control" id="miror_payback" name="miror_payback"
+                                value="3 Tahun" disabled>
+                        </div>
+                    </div>
+
+                    <!-- Data Aktiva -->
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm bg-white">
+                        <h4 class="text-center text-primary mb-3">Data Aktiva</h4>
+
+                        <!-- Input Fields for Data Aktiva -->
+                        <div class="mb-3">
+                            <label for="pat_harga_perolehan" class="form-label fw-bold">Harga Perolehan (Cost)</label>
+                            <input type="text" class="form-control" id="pat_harga_perolehan" name="pat_harga_perolehan"
+                                disabled placeholder="Mengikuti Pembelian Aktiva Tetap">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="pat_nilai_sisa" class="form-label fw-bold">Nilai Sisa (Salvage)</label>
+                            <input type="text" class="form-control" id="pat_nilai_sisa" name="pat_nilai_sisa" disabled
+                                value="2.000.000.000">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="pat_umur_ekonomis" class="form-label fw-bold">Umur Ekonomis (Life)</label>
+                            <input type="text" class="form-control" id="pat_umur_ekonomis" name="pat_umur_ekonomis"
+                                value="5 Tahun" disabled>
+                        </div>
+                    </div>
+
+                    <!-- Dropdown for Penyusutan Aktiva Tetap -->
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm bg-white">
+                        <h4 class="text-center text-primary mb-3">Penyusutan Aktiva Tetap</h4>
+                        <div class="mb-3">
+                            <label for="metode_penyusutan" class="form-label fw-bold">Pilih salah satu metode
+                                penyusutan:</label>
+                            <select class="form-select" id="metode_penyusutan" name="metode_penyusutan"
+                                onchange="calculateDepreciation()">
+                                <option value="" selected disabled>Pilih Metode Penyusutan</option>
+                                <option value="garis_lurus">1. Garis Lurus</option>
+                                <option value="angka_tahun">2. Angka Tahun</option>
+                                <option value="saldo_menurun">3. Saldo Menurun</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Aliran Kas -->
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm text-center">
+                        <h4 class="text-center text-primary mb-4">Aliran Kas</h4>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th>Keterangan</th>
+                                        <th>EAT</th>
+                                        <th>Depresiasi</th>
+                                        <th>Cash Inflow</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="0_akhir_tahun">0</td>
+                                        <td id="0_debet_penyusutan">0</td>
+                                        <td id="0_kredit_akm_penyusutan">0</td>
+                                        <td id="0_total_akm_penyusutan">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Radio Pilihan Kriteria Investasi -->
+                    <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm text-center">
+                        <h5 class="text-primary mb-3">Apakah Anda akan menampilkan penilaian investasi dengan berbagai
+                            kriteria?</h5>
+                        <p>Klik salah satu pilihan!</p>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="penilaian_investasi"
+                                id="penilaian_investasi_ya" value="ya">
+                            <label class="form-check-label fw-bold" for="penilaian_investasi_ya">Ya</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="penilaian_investasi"
+                                id="penilaian_investasi_tidak" value="tidak">
+                            <label class="form-check-label fw-bold" for="penilaian_investasi_tidak">Tidak</label>
+                        </div>
+
+                        <div class="table-responsive mt-3">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td>ARR</td>
+                                        <td>40%</td>
+                                        <td>Tidak Layak</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PP</td>
+                                        <td>40%</td>
+                                        <td>Tidak Layak</td>
+                                    </tr>
+                                    <tr>
+                                        <td>IRR</td>
+                                        <td>40%</td>
+                                        <td>Tidak Layak</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MIRR</td>
+                                        <td>40%</td>
+                                        <td>Tidak Layak</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NPV</td>
+                                        <td>40%</td>
+                                        <td>Tidak Layak</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PI</td>
+                                        <td>40%</td>
+                                        <td>Tidak Layak</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
