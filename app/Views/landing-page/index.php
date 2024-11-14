@@ -160,7 +160,7 @@
             font-size: 32px;
             margin-bottom: 40px;
             background: linear-gradient(to right, #009EF2, #F32323);
-            -webkit-background-clip: text;
+            
             -webkit-text-fill-color: transparent;
             font-weight: 500;
         }
@@ -225,7 +225,7 @@
             font-size: 32px;
             margin-bottom: 60px;
             background: linear-gradient(to right, #009EF2, #F32323);
-            -webkit-background-clip: text;
+            
             -webkit-text-fill-color: transparent;
             font-weight: 500;
         }
@@ -298,7 +298,7 @@
             font-size: 32px;
             margin-bottom: 60px;
             background: linear-gradient(to right, #009EF2, #F32323);
-            -webkit-background-clip: text;
+            
             -webkit-text-fill-color: transparent;
             font-weight: 500;
         }
@@ -673,7 +673,7 @@
     <nav class="navbar navbar-expand-lg bg-light sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="#" alt="Logo SonicPulse" class="logo" loading="lazy">
+                <img src="<?= base_url('img/acumalaka.png') ?>" alt="Logo SonicPulse" class="logo" loading="lazy">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -714,30 +714,14 @@
         </div>
     </nav>
 
-    <!-- Slider Carousel -->
-    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item">
-                <img src="#" class="d-block w-100" alt="Slide" loading="lazy">
-            </div>
-            <div class="carousel-item active">
-                <img src="#" class="d-block w-100" alt="Default Slide Corousel" loading="lazy">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Sebelumnya</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Berikutnya</span>
-        </button>
+    <!-- Static Image -->
+    <div class="static-image">
+        <img src="<?= base_url('img/slider-1.jpg') ?>" class="d-block w-100" alt="Slide" loading="lazy">
     </div>
-
 
     <!-- Logo -->
     <div class="logo-sonic">
-        <img src="#" alt="Logo SonicPulse" class="image-logo" loading="lazy">
+        <img src="<?= base_url('img/acumalaka.png') ?>" alt="Logo SonicPulse" class="image-logo" loading="lazy">
     </div>
 
 
@@ -747,7 +731,7 @@
         <div class="row align-items-center mt-4">
             <div class="col-md-6 d-flex justify-content-center">
                 <div class="stacked-images-container">
-                    <img src="#" alt="Image Utama Tentang Kami" class="img-fluid first" loading="lazy">
+                    <img src="<?= base_url('img/acumalaka.png') ?>" alt="Image Utama Tentang Kami" class="img-fluid first" loading="lazy">
                 </div>
             </div>
             <div class="col-md-6">
@@ -773,7 +757,7 @@
 
             <a href="#" style="text-decoration: none; color: #009EF2;">
                 <div class="card">
-                    <img src="#" class="card-img-top" alt="Image Produk SonicPulse" loading="lazy">
+                    <img src="<?= base_url('img/acumalaka.png') ?>" class="card-img-top" alt="Image Produk SonicPulse" loading="lazy">
                     <div class="card-body">
                         <h4 class="card-title">Nama Produk</h4>
                     </div>
@@ -789,7 +773,7 @@
 
             <a href="#" style="text-decoration: none; color: inherit;">
                 <div class="card">
-                    <img src="#" class="card-img-top" alt="Image Aktivitas SonicPulse" loading="lazy">
+                    <img src="<?= base_url('img/acumalaka.png') ?>" class="card-img-top" alt="Image Aktivitas SonicPulse" loading="lazy">
                     <div class="card-body">
                         <h4 class="card-title">Nama Aktivitas</h4>
                         <p class="card-text">Deskripsi Aktivitas</p>
@@ -804,7 +788,7 @@
     <div class="container kontak-kami">
         <h1 class="text-center">Kontak Kami</h1>
         <div class="map-container">
-            <iframe src="#" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d151986.1181827674!2d-2.3882730515438357!3d53.472336445240664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487a4d4c5226f5db%3A0xd9be143804fe6baa!2sManchester%2C%20Britania%20Raya!5e0!3m2!1sid!2sid!4v1731554829948!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe>
         </div>
 
         <div class="container kontak-kami text-center">
@@ -845,11 +829,11 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
-        </script>
+    </script>
 
     <script>
         // Hide loader after page loads
-        window.addEventListener('load', function () {
+        window.addEventListener('load', function() {
             document.querySelector('.loader-container').style.display = 'none';
         });
     </script>

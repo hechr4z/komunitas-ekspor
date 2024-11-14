@@ -109,6 +109,25 @@ class CreateMemberTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
             ],
+            'link_landing_page' => [
+                'type' => 'TEXT',
+            ],
+            'warna_utama' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+            ],
+            'warna_sekunder' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+            ],
+            'font_utama' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+            ],
+            'font_sekunder' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+            ],
         ]);
 
         $this->forge->addKey('id_member', true);
