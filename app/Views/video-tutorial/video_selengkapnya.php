@@ -60,7 +60,7 @@
 
 <!-- Halaman untuk kategori video -->
 <div class="pendaftaran-section pt-5 pb-2 text-center">
-    <h2 class="text-custom-title">Kategori Video: <?= ($lang === 'en') ? $kategori['nama_kategori_video_en'] : $kategori['nama_kategori_video']; ?> </h2>
+    <h2 class="text-custom-title"><?= lang('blog.videoTutorialTitle'); ?>: <?= ($lang === 'en') ? $kategori['nama_kategori_video_en'] : $kategori['nama_kategori_video']; ?> </h2>
 </div>
 
 <div class="container">
@@ -74,13 +74,15 @@
                             <img src="<?= base_url('/img/' . $video['thumbnail']); ?>" class="card-img-top img-fluid" alt="<?= $video['judul_video']; ?>" style="object-fit: cover; object-position: center; aspect-ratio: 16/9;" loading="lazy">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                    <?= $video['judul_video']; ?>
+                                    <?= ($lang == 'en') ? $video['judul_video_en'] : $video['judul_video']; ?>
                                 </h5>
                                 <div class="my-2 d-flex justify-content-between align-items-center">
-                                    <span class="badge"><?= $kategori['nama_kategori_video']; ?></span>
+                                    <span class="badge">
+                                        <?= ($lang == 'en') ? $kategori['nama_kategori_video_en'] : $kategori['nama_kategori_video']; ?>
+                                    </span>
                                 </div>
                                 <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                    <?= $video['deskripsi_video']; ?>
+                                    <?= ($lang == 'en') ? $video['deskripsi_video_en'] : $video['deskripsi_video']; ?>
                                 </p>
                             </div>
                         </div>
@@ -99,8 +101,10 @@
 
 <!-- Back Button -->
 <div class="artikel-detail-footer text-center mt-5">
-    <a href="<?= base_url('video-tutorial'); ?>" class="btn btn-custom">Kembali ke Video</a>
+    <a href="<?= base_url(($lang == 'en') ? 'en/video-tutorial' : 'id/tutorial-video'); ?>" class="btn btn-custom"><?= lang('Blog.backtovideos') ?></a>
+    </a>
 </div>
+
 
 
 
