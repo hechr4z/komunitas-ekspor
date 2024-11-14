@@ -580,6 +580,11 @@ class KomunitasEkspor extends BaseController
         return view('data-member/detail', $data);
     }
 
+    public function visitor_landing_page()
+    {
+        return view('landing-page/index');
+    }
+
     public function member_data_member()
     {
         $model_webprofile = new WebProfile();
