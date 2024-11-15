@@ -30,8 +30,8 @@ class SliderSeeder extends Seeder
                 'img_slider' => 'slider-3.jpg',
                 'judul_slider' => 'Kolaborasi & Networking Global',
                 'judul_slider_en' => 'Global Collaboration & Networking',
-                'deskripsi_slider' => 'Komunitas ini menghubungkan Anda dengan buyer dan pelaku ekspor dari berbagai negara.',
-                'deskripsi_slider_en' => 'This community connects you with buyers and exporters from various countries.',
+                'deskripsi_slider' => 'Komunitas ini menghubungkan Anda dengan buyer dan pelaku ekspor dari negara.',
+                'deskripsi_slider_en' => 'This community connects you with buyers and exporters from countries.',
             ],
         ];
 

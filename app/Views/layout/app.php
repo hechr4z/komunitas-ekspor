@@ -317,6 +317,7 @@
         .border-top2 {
             margin-right: 20px;
         }
+
         .bottom-footer {
             margin-left: 110px;
         }
@@ -341,62 +342,197 @@
         }
     }
 
+
+    @media (max-width: 425px) {
+        .header,
+        .container,
+        .head,
+        .icon,
+        .icon-text {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .icon-text {
+            font-size: 6px;
+            margin-left: 5px;
+        }
+
+        .head .dropdown {
+            margin-right: 5px;
+        }
+
+        .border-top2 {
+            position: relative;
+            left: 10px;
+        }
+
+        .sosmed i {
+            font-size: 15px;
+            position: relative;
+            left: 25px;
+        }
+
+        .kei {
+            margin-left: 5px;
+        }
+
+        .navbar-toggler {
+            margin-right: 5px;
+        }
+
+        .footer img {
+            margin-left: 5px;
+        }
+
+        .footer p {
+            margin-left: 10px;
+            font-size: 10px;
+        }
+
+        .col-md-2 h5 {
+            margin-left: 10px;
+        }
+
+        .py-4 p {
+            font-size: 11px;
+            position: relative;
+            left: 10px;
+            top: 4px;
+        }
+    }
+
+    @media (max-width: 375px) {
+
+        .header,
+        .container,
+        .head,
+        .icon,
+        .icon-text {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .icon-text {
+            font-size: 5px;
+            margin-left: 5px;
+        }
+
+        .head .dropdown {
+            margin-right: 5px;
+        }
+
+        .sosmed i {
+            font-size: 15px;
+            position: relative;
+            left: 25px;
+        }
+
+        .border-top2 {
+            position: relative;
+            left: 10px;
+        }
+
+        .kei {
+            margin-left: 5px;
+        }
+
+        .navbar-toggler {
+            margin-right: 5px;
+        }
+
+        .footer img {
+            margin-left: 5px;
+        }
+
+        .footer p {
+            margin-left: 10px;
+            font-size: 10px;
+        }
+
+        .col-md-2 h5 {
+            margin-left: 10px;
+        }
+
+        .py-4 p {
+            font-size: 11px;
+            position: relative;
+            right: 20px;
+            top: 4px;
+        }
+    }
+
     @media (max-width: 320px) {
-    .header, .container, .head, .icon, .icon-text {
-        width: 100%;
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        overflow: hidden;
-    }
-    .icon {
-        font-size: 4px;
-        margin-left: 5px;
-    }
-    .social-link {
-        width: 2px;
-    }
-    .language-btn {
-        width: 50px;
-        margin-right: 5px;
-    }
-    .navbar-toggler {
-        margin-right: 5px;
-    }
-    .kei {
-        margin-left: 5px;
-    }
 
-    .bottom-footer {
-        font-size: 9px;
-        position: relative;
-        right: 20px;
-        top: 5px;
-    }
+        .header,
+        .container,
+        .head,
+        .icon,
+        .icon-text {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
 
-    .col-md-6 p {
-        margin-left: 10px;
-        font-size: 15px;
-    }
+        .icon {
+            font-size: 4px;
+            margin-left: 5px;
+        }
 
-    .col-md-6 img {
-        margin-left: 15px;
-    }
+        .social-link {
+            width: 2px;
+        }
 
-    .col-md-2 p {
-        margin-left: 15px;
-    }
+        .language-btn {
+            width: 50px;
+            margin-right: 5px;
+        }
 
-    .col-md-2 h5 {
-        margin-left: 15px;
-    }
-    
-    .sosmed i {
-        margin-left: 15px;
-        font-size: 15px;
-    }
-}
+        .navbar-toggler {
+            margin-right: 5px;
+        }
 
+        .kei {
+            margin-left: 5px;
+        }
+
+        .bottom-footer {
+            font-size: 9px;
+            position: relative;
+            right: 20px;
+            top: 5px;
+        }
+
+        .col-md-6 p {
+            margin-left: 10px;
+            font-size: 15px;
+        }
+
+        .col-md-6 img {
+            margin-left: 15px;
+        }
+
+        .col-md-2 p {
+            margin-left: 15px;
+        }
+
+        .col-md-2 h5 {
+            margin-left: 15px;
+        }
+
+        .sosmed i {
+            margin-left: 15px;
+            font-size: 15px;
+        }
+    }
 </style>
 
 <body>
@@ -467,19 +603,19 @@
         <div class="container">
             <div class="head d-flex justify-content-between align-items-center" style="width: 100%; height: 40px;">
                 <!-- Alamat dan Email -->
-                <div class="icon d-flex justify-content-start gap-3">
-                    <div class=" d-flex align-items-center gap-2 icon-text text-light" style="white-space: nowrap;">
-                        <i class="fas fa-map-marker-alt m-0" style=" color: white;"></i>
+                <div class="icon d-flex justify-content-start">
+                    <div class=" d-flex align-items-center gap-2 icon-text text-light">
+                        <i class="fas fa-map-marker-alt" style=" color: white;"></i>
                         <p class="mb-0" style="color: white;"><?= $webprofile[0]['lokasi_web'] ?></p>
                     </div>
-                    <div class=" d-flex align-items-center gap-2 icon-text text-light" style="white-space: nowrap;">
-                        <i class="fas fa-envelope m-0" style=" color: white;"></i>
+                    <div class=" d-flex align-items-center gap-2 icon-text text-light">
+                        <i class="fas fa-envelope" style=" color: white;"></i>
                         <p class="mb-0" style="color: white; "><?= $webprofile[0]['email_web'] ?></p>
                     </div>
                 </div>
                 <!-- Ikon Sosial Media dan Garis -->
                 <div class="d-flex align-items-center">
-                    <div class="sosmed d-flex gap-3 me-4">
+                    <div class="sosmed d-flex gap-2 me-4">
                         <a href="<?= 'https://' . $webprofile[0]['link_ig_web'] ?>" target="_blank" class="social-link">
                             <i class="fab fa-instagram"></i>
                         </a>

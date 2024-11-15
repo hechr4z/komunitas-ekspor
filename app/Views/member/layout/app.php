@@ -305,10 +305,114 @@
 
     /* end */
     @media (max-width: 768px) {
+
+        .header,
+        .container,
+        .head,
+        .icon,
+        .icon-text {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .icon-text {
+            position: relative;
+            left: 50px;
+        }
+
         .border-top {
             width: 90px !important;
             height: 1.5px !important;
             margin: 10px 0 !important;
+        }
+
+        .navbar img {
+            margin-left: 50px;
+        }
+
+        .py-4 p {
+            text-align: center;
+        }
+
+        .col-md-6 img {
+            margin-left: 30px;
+        }
+
+        .col-md-6 p {
+            margin-left: 30px;
+        }
+
+        .container2 {
+            margin-left: 20px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .col-md-2 h5 {
+            margin-left: 30px;
+        }
+
+        .col-md-2 p {
+            margin-left: 30px;
+        }
+
+        .icon-text {
+            font-size: 10px;
+        }
+    }
+
+    @media (max-width: 425px) {
+        .icon-text {
+            font-size: 6px;
+            position: relative;
+            left: 30px;
+        }
+
+        .social-link {
+            position: relative;
+            right: 20px;
+        }
+
+        .navbar img {
+            position: relative;
+            right: 30px;
+        }
+
+        .navbar-toggler {
+            margin-right: 20px;
+        }
+
+        .py-4 p {
+            font-size: 13px;
+            position: relative;
+            right: 22px;
+            top: 4px;
+        }
+    }
+
+    @media (max-width: 375px) {
+        .py-4 p {
+            font-size: 10px;
+            position: relative;
+            right: 22px;
+            top: 4px;
+        }
+    }
+
+    @media (max-width: 320px) {
+        .icon-text {
+            font-size: 5px;
+            position: relative;
+            left: 20px;
+        }
+        .py-4 p {
+            font-size: 9px;
+            position: relative;
+            right: 22px;
+            top: 3px;
         }
     }
 </style>
@@ -321,17 +425,17 @@
                 <!-- Alamat dan Email -->
                 <div class="d-flex justify-content-start gap-3">
                     <div class="d-flex align-items-center gap-2 icon-text text-light" style="white-space: nowrap;">
-                        <i class="fas fa-map-marker-alt m-0" style="font-size: 12px; color: white;"></i>
-                        <p class="mb-0" style="color: white; font-size: 12px;"><?= $webprofile[0]['lokasi_web'] ?></p>
+                        <i class="fas fa-map-marker-alt m-0" style="color: white;"></i>
+                        <p class="mb-0" style="color: white;"><?= $webprofile[0]['lokasi_web'] ?></p>
                     </div>
                     <div class="d-flex align-items-center gap-2 icon-text text-light" style="white-space: nowrap;">
-                        <i class="fas fa-envelope m-0" style="font-size: 12px; color: white;"></i>
-                        <p class="mb-0" style="color: white; font-size: 12px;"><?= $webprofile[0]['email_web'] ?></p>
+                        <i class="fas fa-envelope m-0" style="color: white;"></i>
+                        <p class="mb-0" style="color: white;"><?= $webprofile[0]['email_web'] ?></p>
                     </div>
                 </div>
                 <!-- Ikon Sosial Media dan Garis -->
-                <div class="d-flex align-items-center" style="margin-left: 500px;">
-                    <div class="d-flex gap-3" style="margin-left: 190px;">
+                <div class="d-flex align-items-center">
+                    <div class="d-flex gap-2">
                         <a href="<?= 'https://' . $webprofile[0]['link_ig_web'] ?>" target="_blank" class="social-link">
                             <i class="fab fa-instagram"></i>
                         </a>
