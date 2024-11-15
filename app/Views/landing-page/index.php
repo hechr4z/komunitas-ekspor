@@ -22,6 +22,25 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Marope:wght@400;700&display=swap" rel="stylesheet">
     <style>
+
+            #about {
+        background: #f9f9f9;
+        padding: 60px 0;
+    }
+    .image-logo {
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
         body {
             font-family: 'Manrope', sans-serif;
             margin: 0;
@@ -145,25 +164,7 @@
             height: 40vh;
         }
 
-        .image-logo {
-            max-width: 20%;
-            height: auto;
-        }
 
-        .tentang-kami {
-            width: 100%;
-            height: auto;
-            padding-bottom: 50px;
-        }
-
-        .tentang-kami h1 {
-            font-size: 32px;
-            margin-bottom: 40px;
-            background: linear-gradient(to right, #009EF2, #F32323);
-            
-            -webkit-text-fill-color: transparent;
-            font-weight: 500;
-        }
 
         .tentang-kami .headline p {
             font-size: 28px;
@@ -219,23 +220,6 @@
 
         .produk-kami {
             padding: 60px 0;
-        }
-
-        .produk-kami h1 {
-            font-size: 32px;
-            margin-bottom: 60px;
-            background: linear-gradient(to right, #009EF2, #F32323);
-            
-            -webkit-text-fill-color: transparent;
-            font-weight: 500;
-        }
-
-        .produk-kami .cards-container {
-            display: flex;
-            justify-content: space-evenly;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            margin-top: 20px;
         }
 
         .card {
@@ -629,9 +613,7 @@
 
             .produk-kami .cards-container {
                 display: flex;
-                justify-content: space-evenly;
-                align-items: flex-start;
-                flex-wrap: wrap;
+                justify-content: center;
                 margin-top: 40px;
             }
 
@@ -685,19 +667,16 @@
                         <a class="nav-link" style="color: #009EF2;" href="#">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tentang</a>
+                        <a class="nav-link" href="#">Profile Perusahaan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Artikel</a>
+                        <a class="nav-link" href="#">Sertifikat</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Produk</a>
+                        <a class="nav-link" href="#">Data Produk</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Aktivitas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Kontak</a>
+                        <a class="nav-link" href="#">Lokasi</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -719,43 +698,70 @@
         <img src="<?= base_url('img/slider-1.jpg') ?>" class="d-block w-100" alt="Slide" loading="lazy">
     </div>
 
-    <!-- Logo -->
-    <div class="logo-sonic">
-        <img src="<?= base_url('img/acumalaka.png') ?>" alt="Logo SonicPulse" class="image-logo" loading="lazy">
-    </div>
-
-
-    <!-- Tentang Kami -->
-    <div class="container-fluid tentang-kami" style="background-color: #F5FAFF;">
-        <h1 class="text-center mt-5 pt-5">Tentang Kami</h1>
-        <div class="row align-items-center mt-4">
-            <div class="col-md-6 d-flex justify-content-center">
-                <div class="stacked-images-container">
-                    <img src="<?= base_url('img/acumalaka.png') ?>" alt="Image Utama Tentang Kami" class="img-fluid first" loading="lazy">
+<!-- About Section -->
+<section id="about" class="py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Logo Section -->
+            <div class="col-md-5 text-center mb-4 mb-md-0">
+                <div class="logo-sonic">
+                    <img src="<?= base_url('img/p21.jpg') ?>" alt="Logo SonicPulse" class="image-logo img-fluid" loading="lazy">
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="headline">
-                    <p>
-                        Nama Perusahaan
-                    </p>
-                </div>
-                <p>
-                    Deskripsi Perusahaan
+            
+            <!-- Text Section -->
+            <div class="col-md-7">
+                <h2 class="display-5 fw-bold">Profile Perusahaan</h2>
+                <p class="lead text-muted">
+                    Welcome to SonicPulse! We are dedicated to delivering high-quality sound experiences. Our team works tirelessly to provide innovative and creative sound solutions tailored to your needs.
                 </p>
-                <div class="text">
-                    <a href="#" class="btn baca-selengkapnya">Baca Selengkapnya</a>
+                <p class="text-muted">
+                    With years of experience in the industry, SonicPulse has grown from a small company into a trusted provider of advanced sound solutions. Our mission is to bring immersive and cutting-edge audio experiences to all our clients.
+                </p>
+
+                <!-- Additional Info Section -->
+                <div class="mt-4">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Data Produk:</strong> High-Quality Audio Devices
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Kategori Produk:</strong> Speakers, Headphones, Audio Accessories
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Tahun Didirikan:</strong> 2015
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
     <!-- Produk Kami -->
     <div class="container-fluid produk-kami">
-        <h1 class="text-center mt-5">Produk Kami</h1>
+        <h1 class="text-center">Produk Kami</h1>
         <div class="cards-container">
 
-            <a href="#" style="text-decoration: none; color: #009EF2;">
+            <a class="d-flex justify-content-center gap-5 mt-5" href="#" style="text-decoration: none; color: #009EF2;">
+                <div class="card">
+                    <img src="<?= base_url('img/acumalaka.png') ?>" class="card-img-top" alt="Image Produk SonicPulse" loading="lazy">
+                    <div class="card-body">
+                        <h4 class="card-title">Nama Produk</h4>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="<?= base_url('img/acumalaka.png') ?>" class="card-img-top" alt="Image Produk SonicPulse" loading="lazy">
+                    <div class="card-body">
+                        <h4 class="card-title">Nama Produk</h4>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="<?= base_url('img/acumalaka.png') ?>" class="card-img-top" alt="Image Produk SonicPulse" loading="lazy">
+                    <div class="card-body">
+                        <h4 class="card-title">Nama Produk</h4>
+                    </div>
+                </div>
                 <div class="card">
                     <img src="<?= base_url('img/acumalaka.png') ?>" class="card-img-top" alt="Image Produk SonicPulse" loading="lazy">
                     <div class="card-body">
@@ -766,17 +772,17 @@
         </div>
     </div>
 
-    <!-- Aktivitas Kami -->
+    <!-- Sertifikat Kami -->
     <div class="container-fluid produk-kami" style="background-color: #F5FAFF;">
-        <h1 class="text-center">Aktivitas Kami</h1>
+        <h1 class="text-center">Sertifikat Kami</h1>
         <div class="cards-container">
 
             <a href="#" style="text-decoration: none; color: inherit;">
                 <div class="card">
                     <img src="<?= base_url('img/acumalaka.png') ?>" class="card-img-top" alt="Image Aktivitas SonicPulse" loading="lazy">
                     <div class="card-body">
-                        <h4 class="card-title">Nama Aktivitas</h4>
-                        <p class="card-text">Deskripsi Aktivitas</p>
+                        <h4 class="card-title">Nama Sertifikat</h4>
+                        <p class="card-text">Deskripsi Sertifikat</p>
                     </div>
                 </div>
             </a>

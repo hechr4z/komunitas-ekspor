@@ -279,6 +279,78 @@ $this->setData([
         }
     }
 
+    @media (max-width: 425px) {
+        .member h1 {
+            font-size: 15px;
+        }
+
+        .member h5 {
+            font-size: 15px;
+        }
+
+        .benefit h2 {
+            font-size: 20px;
+        }
+
+        .benefit p {
+            font-size: 8px;
+        }
+
+        .footer-custom h2 {
+            font-size: 15px;
+        }
+
+        .footer-custom p {
+            font-size: 15px;
+        }
+
+        .peta h5 {
+            font-size: 13px;
+        }
+
+        .peta h1 {
+            font-size: 12px;
+        }
+    }
+
+    @media (max-width: 375px) {
+        .member h1 {
+            font-size: 15px;
+        }
+
+        .member h5 {
+            font-size: 15px;
+        }
+
+        .carousel-caption h5 {
+            font-size: 15px;
+        }
+
+        .benefit h2 {
+            font-size: 20px;
+        }
+
+        .benefit p {
+            font-size: 8px;
+        }
+
+        .footer-custom h2 {
+            font-size: 15px;
+        }
+
+        .footer-custom p {
+            font-size: 10px;
+        }
+
+        .peta h5 {
+            font-size: 13px;
+        }
+
+        .peta h1 {
+            font-size: 12px;
+        }
+    }
+
     @media (max-width: 320px) {
         .carousel-caption h5 {
             font-size: 10px;
