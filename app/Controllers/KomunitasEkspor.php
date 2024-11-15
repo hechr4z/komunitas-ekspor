@@ -465,6 +465,11 @@ class KomunitasEkspor extends BaseController
         return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid request']);
     }
 
+    public function visitor_landing_page()
+    {
+        return view('landing-page/index');
+    }
+
     public function visitor_data_member()
     {
         $model_webprofile = new WebProfile();
