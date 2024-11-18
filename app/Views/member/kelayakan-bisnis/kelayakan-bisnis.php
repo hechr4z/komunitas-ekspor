@@ -582,7 +582,7 @@
 
                         <div class="mb-3">
                             <label for="iror_investasi" class="form-label fw-bold">Investasi</label>
-                            <input type="text" class="form-control" id="iror_investasi" name="iror_investasi" placeholder="Masukkan Nilai Investasi">
+                            <input type="text" class="form-control" id="iror_investasi" name="iror_investasi" placeholder="Hasil Penjumlahan Pembelian Aktiva Tetap Dan Kebutuhan Modal Kerja" disabled>
                         </div>
 
                         <div class="mb-3">
@@ -592,7 +592,7 @@
 
                         <div class="mb-3">
                             <label for="iror_suku_bunga" class="form-label fw-bold">Suku Bunga</label>
-                            <input type="text" class="form-control" id="iror_suku_bunga" name="iror_suku_bunga" placeholder="Masukkan Suku Bunga (%)">
+                            <input type="text" class="form-control" id="iror_suku_bunga" name="iror_suku_bunga" placeholder="Mengikuti Tingkat Suku Bunga" value="20%" disabled>
                         </div>
                     </div>
 
@@ -611,10 +611,40 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td id="0_akhir_tahun">0</td>
-                                        <td id="0_debet_penyusutan">0</td>
-                                        <td id="0_kredit_akm_penyusutan">0</td>
-                                        <td id="0_total_akm_penyusutan">0</td>
+                                        <td id="0_iror_keterangan">Tahun Ke-0</td>
+                                        <td id="0_iror_laba_set_pajak">0</td>
+                                        <td id="0_iror_penyusutan">0</td>
+                                        <td id="0_iror_aliran_kas_masuk"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="1_iror_keterangan">Tahun Ke-1</td>
+                                        <td id="1_iror_laba_set_pajak"></td>
+                                        <td id="1_iror_penyusutan"></td>
+                                        <td id="1_iror_aliran_kas_masuk"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="2_iror_keterangan">Tahun Ke-2</td>
+                                        <td id="2_iror_laba_set_pajak"></td>
+                                        <td id="2_iror_penyusutan"></td>
+                                        <td id="2_iror_aliran_kas_masuk"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="3_iror_keterangan">Tahun Ke-3</td>
+                                        <td id="3_iror_laba_set_pajak"></td>
+                                        <td id="3_iror_penyusutan"></td>
+                                        <td id="3_iror_aliran_kas_masuk"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="4_iror_keterangan">Tahun Ke-4</td>
+                                        <td id="4_iror_laba_set_pajak"></td>
+                                        <td id="4_iror_penyusutan"></td>
+                                        <td id="4_iror_aliran_kas_masuk"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="5_iror_keterangan">Tahun Ke-5</td>
+                                        <td id="5_iror_laba_set_pajak"></td>
+                                        <td id="5_iror_penyusutan"></td>
+                                        <td id="5_iror_aliran_kas_masuk"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -625,8 +655,8 @@
                     <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
 
                         <div class="mb-3">
-                            <label for="internal_ror" class="form-label fw-bold">Internal Rate of Return (IRR)</label>
-                            <input type="text" class="form-control" id="internal_ror" name="internal_ror" disabled placeholder="26.36%">
+                            <label for="irr" class="form-label fw-bold">Internal Rate of Return (IRR)</label>
+                            <input type="text" class="form-control" id="irr" name="irr" disabled placeholder="Belum Ada Nilai">
                         </div>
                     </div>
 
@@ -1052,7 +1082,9 @@
         // Display formatted result in `aror_investasi`
         document.getElementById('aror_investasi').value = total.toLocaleString("id-ID");
         document.getElementById('mpp_investasi').value = total.toLocaleString("id-ID");
+        document.getElementById('iror_investasi').value = total.toLocaleString("id-ID");
         document.getElementById('0_mpp_aliran_kas_masuk').innerText = total.toLocaleString("id-ID");
+        document.getElementById('0_iror_aliran_kas_masuk').innerText = total.toLocaleString("id-ID");
         document.getElementById('investasi_awal').value = total.toLocaleString("id-ID");
 
         const totalAverage = total / 2;
@@ -1064,6 +1096,7 @@
         formatNumber(input);
         document.getElementById(`${year}_aror_laba_set_pajak`).innerText = input.value;
         document.getElementById(`${year}_mpp_laba_set_pajak`).innerText = input.value;
+        document.getElementById(`${year}_iror_laba_set_pajak`).innerText = input.value;
     }
 
     function calculatePaybackPeriod(initialInvestment, cashFlows) {
@@ -1103,12 +1136,13 @@
                 const aliranKasMasuk = eatValue + depresiasiTahunan + (tahun === 5 ? nilaiSisa : 0);
                 document.getElementById(`${tahun}_aror_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
                 document.getElementById(`${tahun}_mpp_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
+                document.getElementById(`${tahun}_iror_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
 
                 // Penyusutan dan akumulasi penyusutan
                 const totalAkumulasiPenyusutan = depresiasiTahunan * tahun;
                 const nilaiBukuAktiva = hargaPerolehan - totalAkumulasiPenyusutan;
 
-                ["debet_penyusutan", "kredit_akm_penyusutan", "aror_penyusutan", "mpp_penyusutan"].forEach(id =>
+                ["debet_penyusutan", "kredit_akm_penyusutan", "aror_penyusutan", "mpp_penyusutan", "iror_penyusutan"].forEach(id =>
                     document.getElementById(`${tahun}_${id}`).innerText = depresiasiTahunan.toLocaleString("id-ID")
                 );
                 document.getElementById(`${tahun}_total_akm_penyusutan`).innerText = totalAkumulasiPenyusutan.toLocaleString("id-ID");
@@ -1131,14 +1165,9 @@
             const averageInvestment = calculateInvestment(averageEatValue, total / 2);
             document.getElementById('arr_average_investment').value = parseFloat(averageInvestment).toLocaleString("id-ID") + "%";
 
-            const arr1 = 50 || null;
+            const arr1 = 50;
             let kesimpulanInvestasi = '';
-
-            if (arr1 !== null && !isNaN(arr1)) {
-                kesimpulanInvestasi = (averageInvestment >= arr1) ?
-                    'Investasi Layak Dijalankan' :
-                    'Investasi Tidak Layak Dijalankan';
-            }
+            kesimpulanInvestasi = (averageInvestment >= arr1) ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
 
             document.getElementById('aror_kesimpulan_investasi').value = kesimpulanInvestasi;
 
@@ -1153,15 +1182,51 @@
             const paybackPeriod = calculatePaybackPeriod(investasiAwal, aliranKasMasuk);
             document.getElementById('periode_payback').value = `${paybackPeriod.tahun} Tahun ${paybackPeriod.bulan} Bulan`;
 
-            const payback = 3 || null;
-
-            if (payback !== null && !isNaN(payback)) {
-                kesimpulanInvestasi = (paybackPeriod.tahun <= payback) ?
-                    'Investasi Layak Dijalankan' :
-                    'Investasi Tidak Layak Dijalankan';
-            }
+            const payback = 3;
+            kesimpulanInvestasi = (paybackPeriod.tahun <= payback) ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
 
             document.getElementById('mpp_kesimpulan_investasi').value = kesimpulanInvestasi;
+
+            // Perhitungan IRR
+            function calculateNPV(rate, cashFlows) {
+                let npv = 0;
+                for (let t = 0; t < cashFlows.length; t++) {
+                    npv += cashFlows[t] / Math.pow(1 + rate, t);
+                }
+                return npv;
+            }
+
+            function calculateIRR(cashFlows, initialRate = 0.20, tolerance = 0.00001, maxIterations = 10000) {
+                let rate = initialRate;
+                let npv = calculateNPV(rate, cashFlows);
+                let iterations = 0;
+
+                // Menggunakan pendekatan iterasi yang lebih halus dengan meningkatkan jumlah iterasi
+                while (Math.abs(npv) > tolerance && iterations < maxIterations) {
+                    rate += (npv > 0) ? 0.00001 : -0.00001; // Mengurangi langkah perubahan rate untuk akurasi lebih tinggi
+                    npv = calculateNPV(rate, cashFlows);
+                    iterations++;
+                }
+
+                // Kembalikan hasil IRR
+                return rate;
+            }
+
+            // Mengambil aliran kas (kas masuk untuk tiap tahun)
+            const cashFlows = [-investasiAwal]; // Memasukkan investasi awal sebagai nilai negatif
+            for (let tahun = 1; tahun <= 5; tahun++) {
+                const aliranKasMasuk = parseFloat(document.getElementById(`${tahun}_iror_aliran_kas_masuk`).innerText.replace(/\./g, '')) || 0;
+                cashFlows.push(aliranKasMasuk); // Menambahkan aliran kas masuk per tahun
+            }
+
+            // Hitung IRR
+            const irr = calculateIRR(cashFlows);
+            document.getElementById('irr').value = (irr * 100).toFixed(2) + "%"; // Menampilkan IRR dalam persen
+
+            const sukuBunga = 20;
+
+            kesimpulanInvestasi = ((irr * 100).toFixed(2) >= sukuBunga) ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
+            document.getElementById('iror_kesimpulan_investasi').value = kesimpulanInvestasi;
         } else if (metode === "angka_tahun" && !isNaN(hargaPerolehan) && !isNaN(nilaiSisa)) {
             const depreciationFactors = [5, 4, 3, 2, 1];
             const totalDepreciableValue = hargaPerolehan - nilaiSisa;
@@ -1180,9 +1245,10 @@
                 const aliranKasMasuk = eatValue + depreciation + (tahun === 5 ? nilaiSisa : 0);
                 document.getElementById(`${tahun}_aror_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
                 document.getElementById(`${tahun}_mpp_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
+                document.getElementById(`${tahun}_iror_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
 
                 // Menampilkan nilai depresiasi
-                ["debet_penyusutan", "kredit_akm_penyusutan", "aror_penyusutan", "mpp_penyusutan"].forEach(id =>
+                ["debet_penyusutan", "kredit_akm_penyusutan", "aror_penyusutan", "mpp_penyusutan", "iror_penyusutan"].forEach(id =>
                     document.getElementById(`${tahun}_${id}`).innerText = depreciation.toLocaleString("id-ID")
                 );
 
@@ -1209,14 +1275,10 @@
             const averageInvestment = calculateInvestment(averageEatValue, total / 2);
             document.getElementById('arr_average_investment').value = parseFloat(averageInvestment).toLocaleString("id-ID") + "%";
 
-            const arr1 = 50 || null;
+            const arr1 = 50;
             let kesimpulanInvestasi = '';
 
-            if (arr1 !== null && !isNaN(arr1)) {
-                kesimpulanInvestasi = (averageInvestment >= arr1) ?
-                    'Investasi Layak Dijalankan' :
-                    'Investasi Tidak Layak Dijalankan';
-            }
+            kesimpulanInvestasi = (averageInvestment >= arr1) ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
 
             document.getElementById('aror_kesimpulan_investasi').value = kesimpulanInvestasi;
 
@@ -1232,15 +1294,52 @@
             const paybackPeriod = calculatePaybackPeriod(investasiAwal, aliranKasMasuk);
             document.getElementById('periode_payback').value = `${paybackPeriod.tahun} Tahun ${paybackPeriod.bulan} Bulan`;
 
-            const payback = 3 || null;
+            const payback = 3;
 
-            if (payback !== null && !isNaN(payback)) {
-                kesimpulanInvestasi = (paybackPeriod.tahun <= payback) ?
-                    'Investasi Layak Dijalankan' :
-                    'Investasi Tidak Layak Dijalankan';
-            }
+            kesimpulanInvestasi = (paybackPeriod.tahun <= payback) ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
 
             document.getElementById('mpp_kesimpulan_investasi').value = kesimpulanInvestasi;
+
+            // Perhitungan IRR
+            function calculateNPV(rate, cashFlows) {
+                let npv = 0;
+                for (let t = 0; t < cashFlows.length; t++) {
+                    npv += cashFlows[t] / Math.pow(1 + rate, t);
+                }
+                return npv;
+            }
+
+            function calculateIRR(cashFlows, initialRate = 0.20, tolerance = 0.00001, maxIterations = 10000) {
+                let rate = initialRate;
+                let npv = calculateNPV(rate, cashFlows);
+                let iterations = 0;
+
+                // Menggunakan pendekatan iterasi yang lebih halus dengan meningkatkan jumlah iterasi
+                while (Math.abs(npv) > tolerance && iterations < maxIterations) {
+                    rate += (npv > 0) ? 0.00001 : -0.00001; // Mengurangi langkah perubahan rate untuk akurasi lebih tinggi
+                    npv = calculateNPV(rate, cashFlows);
+                    iterations++;
+                }
+
+                // Kembalikan hasil IRR
+                return rate;
+            }
+
+            // Mengambil aliran kas (kas masuk untuk tiap tahun)
+            const cashFlows = [-investasiAwal]; // Memasukkan investasi awal sebagai nilai negatif
+            for (let tahun = 1; tahun <= 5; tahun++) {
+                const aliranKasMasuk = parseFloat(document.getElementById(`${tahun}_iror_aliran_kas_masuk`).innerText.replace(/\./g, '')) || 0;
+                cashFlows.push(aliranKasMasuk); // Menambahkan aliran kas masuk per tahun
+            }
+
+            // Hitung IRR
+            const irr = calculateIRR(cashFlows);
+            document.getElementById('irr').value = (irr * 100).toFixed(2) + "%"; // Menampilkan IRR dalam persen
+
+            const sukuBunga = 20;
+
+            kesimpulanInvestasi = ((irr * 100).toFixed(2) >= sukuBunga) ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
+            document.getElementById('iror_kesimpulan_investasi').value = kesimpulanInvestasi;
         } else if (metode === "saldo_menurun" && !isNaN(hargaPerolehan) && !isNaN(nilaiSisa)) {
             const depreciationRate = 0.369;
             const years = 5;
@@ -1261,8 +1360,9 @@
                 // Displaying values
                 document.getElementById(`${i}_aror_aliran_kas_masuk`).innerText = aliranKasMasukYear.toLocaleString("id-ID");
                 document.getElementById(`${i}_mpp_aliran_kas_masuk`).innerText = aliranKasMasukYear.toLocaleString("id-ID");
+                document.getElementById(`${i}_iror_aliran_kas_masuk`).innerText = aliranKasMasukYear.toLocaleString("id-ID");
 
-                ["debet_penyusutan", "kredit_akm_penyusutan", "aror_penyusutan", "mpp_penyusutan"].forEach(id =>
+                ["debet_penyusutan", "kredit_akm_penyusutan", "aror_penyusutan", "mpp_penyusutan", "iror_penyusutan"].forEach(id =>
                     document.getElementById(`${i}_${id}`).innerText = depreciation.toLocaleString("id-ID")
                 );
 
@@ -1290,12 +1390,10 @@
             document.getElementById('arr_average_investment').value = parseFloat(averageInvestment).toLocaleString("id-ID") + "%";
 
             // Investment conclusion
-            const arr1 = 50 || null;
+            const arr1 = 50;
             let kesimpulanInvestasi = '';
 
-            if (arr1 !== null && !isNaN(arr1)) {
-                kesimpulanInvestasi = (averageInvestment >= arr1) ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
-            }
+            kesimpulanInvestasi = (averageInvestment >= arr1) ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
 
             document.getElementById('aror_kesimpulan_investasi').value = kesimpulanInvestasi;
 
@@ -1303,15 +1401,52 @@
             const paybackPeriod = calculatePaybackPeriod(aktivaTetap + modalKerja, aliranKasMasuk);
             document.getElementById('periode_payback').value = `${paybackPeriod.tahun} Tahun ${paybackPeriod.bulan} Bulan`;
 
-            const payback = 3 || null;
+            const payback = 3;
 
-            if (payback !== null && !isNaN(payback)) {
-                kesimpulanInvestasi = (paybackPeriod.tahun <= payback) ?
-                    'Investasi Layak Dijalankan' :
-                    'Investasi Tidak Layak Dijalankan';
-            }
+            kesimpulanInvestasi = (paybackPeriod.tahun <= payback) ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
 
             document.getElementById('mpp_kesimpulan_investasi').value = kesimpulanInvestasi;
+
+            // Perhitungan IRR
+            function calculateNPV(rate, cashFlows) {
+                let npv = 0;
+                for (let t = 0; t < cashFlows.length; t++) {
+                    npv += cashFlows[t] / Math.pow(1 + rate, t);
+                }
+                return npv;
+            }
+
+            function calculateIRRNewtonRaphson(cashFlows, initialRate = 0.1, maxIterations = 1000, tolerance = 1e-6) {
+                let rate = initialRate;
+                for (let i = 0; i < maxIterations; i++) {
+                    let npv = 0;
+                    let derivative = 0;
+                    for (let t = 0; t < cashFlows.length; t++) {
+                        npv += cashFlows[t] / Math.pow(1 + rate, t);
+                        derivative -= t * cashFlows[t] / Math.pow(1 + rate, t + 1);
+                    }
+                    const newRate = rate - npv / derivative;
+                    if (Math.abs(newRate - rate) < tolerance) return newRate;
+                    rate = newRate;
+                }
+                return rate; // Mengembalikan hasil jika tidak konvergen dalam iterasi maksimal
+            }
+
+            // Mengambil aliran kas (kas masuk untuk tiap tahun)
+            const cashFlows = [-total]; // Memasukkan investasi awal sebagai nilai negatif
+            for (let tahun = 1; tahun <= 5; tahun++) {
+                const aliranKasMasuk = parseFloat(document.getElementById(`${tahun}_iror_aliran_kas_masuk`).innerText.replace(/\./g, '')) || 0;
+                cashFlows.push(aliranKasMasuk); // Menambahkan aliran kas masuk per tahun
+            }
+
+            // Hitung IRR
+            const irr = calculateIRRNewtonRaphson(cashFlows);
+            document.getElementById('irr').value = (irr * 100).toFixed(2) + "%"; // Menampilkan IRR dalam persen
+
+            const sukuBunga = 20;
+
+            kesimpulanInvestasi = ((irr * 100).toFixed(2) >= sukuBunga) ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
+            document.getElementById('iror_kesimpulan_investasi').value = kesimpulanInvestasi;
         }
     }
 </script>
