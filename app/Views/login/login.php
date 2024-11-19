@@ -114,7 +114,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-custom mt-3 mb-2" style="width: 100%;">Login Member</button>
-                    <button type="submit" class="btn btn-danger mb-2" style="width: 100%;">Kembali</button>
+                    <button type="button" onclick="history.back();" class="btn btn-danger mb-2" style="width: 100%;">Kembali</button>
                 </form>
             </div>
         </div><!--//card-->
