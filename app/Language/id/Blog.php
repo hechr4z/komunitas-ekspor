@@ -11,7 +11,7 @@ return [
     'headerApp1' => 'Kalkulator Harga Ekspor',
     'headerApp2' => 'Monitoring Progres Pemasaran',
     'headerApp3' => 'Audit Website',
-    'headerApp4' => 'Kelayakan Bisnis',
+    'headerApp4' => 'Kelayakan Investasi',
     'headerBuyers' => 'Data Buyers',
     //endnavbar
 
@@ -189,7 +189,7 @@ return [
     'wantToOpenApp1' => 'Mau Buka Aplikasi Kalkulator Harga Ekspor?',
     'wantToOpenApp2' => 'Mau Buka Aplikasi Monitoring Progres Pemasaran?',
     'wantToOpenApp3' => 'Mau Buka Aplikasi Audit Website?',
-    'wantToOpenApp4' => 'Mau Buka Aplikasi Kelayakan Bisnis?',
+    'wantToOpenApp4' => 'Mau Buka Aplikasi Kelayakan Investasi?',
 
     'letsGoRegisterSA' => 'Yuk Daftar Member Dulu!',
     'registerSA' => 'Daftar',
