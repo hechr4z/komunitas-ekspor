@@ -373,7 +373,7 @@
                     <?php if (!empty($kategori_belajar_ekspor)): ?>
                         <!-- Tampilkan link ke semua kategori -->
                         <div class="submenu-item">
-                            <a href="<?= base_url(($lang === 'en' ? 'en/export-learning' : '/idbelajar-ekspor')); ?>" class="submenu-link <?= empty($active_category) ? 'active' : ''; ?>">
+                            <a href="<?= base_url(($lang === 'en' ? 'en/export-learning' : '/id/belajar-ekspor')); ?>" class="submenu-link <?= empty($active_category) ? 'active' : ''; ?>">
                                 <?= lang('Blog.filterAllPlaceholder') ?>
                             </a>
                         </div>
