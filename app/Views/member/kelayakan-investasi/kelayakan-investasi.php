@@ -665,7 +665,7 @@
                         <h4 class="text-center text-primary mb-4">Kesimpulan Investasi</h4>
 
                         <div class="mb-3">
-                            <input type="text" class="form-control text-center text-uppercase fw-bold" id="iror_kesimpulan_investasi" name="iror_kesimpulan_investasi" disabled placeholder="Investasi Layak Dijalankan / Investasi Tidak Layak Dijalankan">
+                            <input type="text" class="form-control text-center text-uppercase fw-bold" id="iror_kesimpulan_investasi" name="iror_kesimpulan_investasi" disabled placeholder="Belum Ada Kesimpulan">
                         </div>
                     </div>
                 </div>
@@ -750,13 +750,13 @@
                     <!-- View MIRR -->
                     <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
                         <div class="mb-3">
-                            <label for="reinvest" class="form-label fw-bold">Re-investment Rate</label>
-                            <input type="text" class="form-control" id="reinvest" name="reinvest" disabled placeholder="12.50%">
+                            <label for="reinvest_rate" class="form-label fw-bold">Re-investment Rate</label>
+                            <input type="text" class="form-control" id="reinvest_rate" name="reinvest_rate" disabled placeholder="12.50%">
                         </div>
 
                         <div class="mb-3">
-                            <label for="mirr" class="form-label fw-bold">Modified Internal Rate of Return/MIRR</label>
-                            <input type="text" class="form-control" id="mirr" name="mirr" disabled placeholder="19.88%">
+                            <label for="miror_mirr" class="form-label fw-bold">Modified Internal Rate of Return / MIRR</label>
+                            <input type="text" class="form-control" id="miror_mirr" name="miror_mirr" disabled placeholder="Belum Ada Nilai">
                         </div>
                     </div>
 
@@ -765,7 +765,7 @@
                         <h4 class="text-center text-primary mb-4">Kesimpulan Investasi</h4>
 
                         <div class="mb-3">
-                            <input type="text" class="form-control text-center text-uppercase fw-bold" id="miror_kesimpulan_investasi" name="miror_kesimpulan_investasi" disabled placeholder="Investasi Layak / Investasi Tidak Layak">
+                            <input type="text" class="form-control text-center text-uppercase fw-bold" id="miror_kesimpulan_investasi" name="miror_kesimpulan_investasi" disabled placeholder="Belum Ada Kesimpulan">
                         </div>
                     </div>
                 </div>
@@ -1261,6 +1261,38 @@
 
             kesimpulanInvestasi = ((irr * 100).toFixed(2) >= sukuBunga) ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
             document.getElementById('iror_kesimpulan_investasi').value = kesimpulanInvestasi;
+
+            // Perhitungan MIRR
+            function calculateMIRR(cashFlows, financeRate, reinvestmentRate) {
+                let pvNegatif = 0; // Nilai sekarang dari arus kas negatif
+                let fvPositif = 0; // Nilai masa depan dari arus kas positif
+                const n = cashFlows.length - 1; // Jumlah periode
+
+                for (let t = 0; t < cashFlows.length; t++) {
+                    if (cashFlows[t] < 0) {
+                        // Hitung nilai sekarang (PV) untuk arus kas negatif
+                        pvNegatif += cashFlows[t] / Math.pow(1 + financeRate, t);
+                    } else {
+                        // Hitung nilai masa depan (FV) untuk arus kas positif
+                        fvPositif += cashFlows[t] * Math.pow(1 + reinvestmentRate, n - t);
+                    }
+                }
+
+                // Rumus MIRR
+                const mirr = Math.pow(fvPositif / -pvNegatif, 1 / n) - 1;
+                return mirr;
+            }
+
+            // Finance rate dan reinvestment rate
+            const financeRate = 0.20; // 20%
+            const reinvestmentRate = 0.125; // 12.50%
+
+            // Perhitungan MIRR menggunakan arus kas (cashFlows)
+            const mirr = calculateMIRR(cashFlows, financeRate, reinvestmentRate);
+            document.getElementById('miror_mirr').value = (mirr * 100).toFixed(2) + "%"; // Menampilkan MIRR dalam persen
+
+            kesimpulanInvestasi = ((mirr * 100).toFixed(2) >= sukuBunga) ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
+            document.getElementById('miror_kesimpulan_investasi').value = kesimpulanInvestasi;
         } else if (metode === "angka_tahun" && !isNaN(hargaPerolehan) && !isNaN(nilaiSisa)) {
             const depreciationFactors = [5, 4, 3, 2, 1];
             const totalDepreciableValue = hargaPerolehan - nilaiSisa;
@@ -1375,6 +1407,38 @@
 
             kesimpulanInvestasi = ((irr * 100).toFixed(2) >= sukuBunga) ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
             document.getElementById('iror_kesimpulan_investasi').value = kesimpulanInvestasi;
+
+            // Perhitungan MIRR
+            function calculateMIRR(cashFlows, financeRate, reinvestmentRate) {
+                let pvNegatif = 0; // Nilai sekarang dari arus kas negatif
+                let fvPositif = 0; // Nilai masa depan dari arus kas positif
+                const n = cashFlows.length - 1; // Jumlah periode
+
+                for (let t = 0; t < cashFlows.length; t++) {
+                    if (cashFlows[t] < 0) {
+                        // Hitung nilai sekarang (PV) untuk arus kas negatif
+                        pvNegatif += cashFlows[t] / Math.pow(1 + financeRate, t);
+                    } else {
+                        // Hitung nilai masa depan (FV) untuk arus kas positif
+                        fvPositif += cashFlows[t] * Math.pow(1 + reinvestmentRate, n - t);
+                    }
+                }
+
+                // Rumus MIRR
+                const mirr = Math.pow(fvPositif / -pvNegatif, 1 / n) - 1;
+                return mirr;
+            }
+
+            // Finance rate dan reinvestment rate
+            const financeRate = 0.20; // 20%
+            const reinvestmentRate = 0.125; // 12.50%
+
+            // Perhitungan MIRR menggunakan arus kas (cashFlows)
+            const mirr = calculateMIRR(cashFlows, financeRate, reinvestmentRate);
+            document.getElementById('miror_mirr').value = (mirr * 100).toFixed(2) + "%"; // Menampilkan MIRR dalam persen
+
+            kesimpulanInvestasi = ((mirr * 100).toFixed(2) >= sukuBunga) ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
+            document.getElementById('miror_kesimpulan_investasi').value = kesimpulanInvestasi;
         } else if (metode === "saldo_menurun" && !isNaN(hargaPerolehan) && !isNaN(nilaiSisa)) {
             const depreciationRate = 0.369;
             const years = 5;
@@ -1483,6 +1547,38 @@
 
             kesimpulanInvestasi = ((irr * 100).toFixed(2) >= sukuBunga) ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
             document.getElementById('iror_kesimpulan_investasi').value = kesimpulanInvestasi;
+
+            // Perhitungan MIRR
+            function calculateMIRR(cashFlows, financeRate, reinvestmentRate) {
+                let pvNegatif = 0; // Nilai sekarang dari arus kas negatif
+                let fvPositif = 0; // Nilai masa depan dari arus kas positif
+                const n = cashFlows.length - 1; // Jumlah periode
+
+                for (let t = 0; t < cashFlows.length; t++) {
+                    if (cashFlows[t] < 0) {
+                        // Hitung nilai sekarang (PV) untuk arus kas negatif
+                        pvNegatif += cashFlows[t] / Math.pow(1 + financeRate, t);
+                    } else {
+                        // Hitung nilai masa depan (FV) untuk arus kas positif
+                        fvPositif += cashFlows[t] * Math.pow(1 + reinvestmentRate, n - t);
+                    }
+                }
+
+                // Rumus MIRR
+                const mirr = Math.pow(fvPositif / -pvNegatif, 1 / n) - 1;
+                return mirr;
+            }
+
+            // Finance rate dan reinvestment rate
+            const financeRate = 0.20; // 20%
+            const reinvestmentRate = 0.125; // 12.50%
+
+            // Perhitungan MIRR menggunakan arus kas (cashFlows)
+            const mirr = calculateMIRR(cashFlows, financeRate, reinvestmentRate);
+            document.getElementById('miror_mirr').value = (mirr * 100).toFixed(2) + "%"; // Menampilkan MIRR dalam persen
+
+            kesimpulanInvestasi = ((mirr * 100).toFixed(2) >= sukuBunga) ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
+            document.getElementById('miror_kesimpulan_investasi').value = kesimpulanInvestasi;
         }
     }
 </script>
