@@ -2,13 +2,18 @@
 <?= $this->section('content'); ?>
 
 <style>
+    /* Video Detail Section */
+    .video-detail-section {
+        padding: 0px 15px;
+    }
+
     .card {
         transition: box-shadow 0.3s ease, transform 0.3s ease;
     }
 
     .card:hover {
-        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-        transform: translateY(-5px);
+        box-shadow: 0px 0px 25px #03AADE !important;
+        transform: translateY(-5px) !important;
     }
 
     .badge {
@@ -54,12 +59,16 @@
         .card-text {
             display: none;
         }
+
+        .kategori-container {
+            padding: 0px 15px;
+        }
     }
 </style>
 
 
 <!-- judul -->
-<div class="pendaftaran-section container py-5 text-center">
+<div class="video-detail-section container py-5 text-center">
     <h2 class="text-custom-title"><?= lang('Blog.videoTutorialTitle') ?></h2>
     <p class="text-custom-paragraph mt-2"><?= lang('Blog.videoTutorialDescription') ?>
     </p>
@@ -67,7 +76,7 @@
 <div class="container">
     <!-- Looping untuk setiap kategori -->
     <?php foreach ($kategori_vidio as $kategori) : ?>
-        <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="kategori-container d-flex justify-content-between align-items-center mb-3">
             <h5 class="kategori font-weight-bold mb-0">
                 <?= lang('Blog.videoCategory') ?>
                 <?= ($lang === 'en') ? $kategori['nama_kategori_video_en'] : $kategori['nama_kategori_video']; ?>
@@ -76,9 +85,9 @@
                 <?= lang('Blog.readMore') ?>
             </a>
         </div>
-        <hr style="border-top: 2px solid #000;">
+        <hr class="kategori-container" style="border-top: 2px solid #000;">
 
-        <div class="row row-cols-1 row-cols-md-3 g-4 mt-1 mb-5">
+        <div class="row container row-cols-1 row-cols-md-3 g-4 mt-1 mb-5">
             <!-- Looping untuk setiap video tutorial dalam kategori -->
             <?php if (!empty($video_tutorial[$kategori['nama_kategori_video']])): ?>
                 <?php foreach ($video_tutorial[$kategori['nama_kategori_video']] as $video): ?>

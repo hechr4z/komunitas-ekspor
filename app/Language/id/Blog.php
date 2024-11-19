@@ -85,7 +85,7 @@ return [
     'videoTutorialDescription' => 'Temukan video tutorial dari komunitas kami,<br>dan pelajari dengan mendalam melalui video-video yang informatif dan mudah dipahami.',
     // Video Category Section
     'noVideosAvailable' => 'Belum ada video yang tersedia di kategori ini.',
-    'readMore' => 'Selengkapnya',
+    'readMore' => 'Semua',
     'videoCategory' => 'Video Kategori:',
     'titleDesc' => 'Deskripsi',
     'titleOther' => 'Video Lainnya',
