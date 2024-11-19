@@ -4185,7 +4185,7 @@ class KomunitasEkspor extends BaseController
     }
 
     // Invesment
-    public function kelayakan_bisnis()
+    public function kelayakan_investasi()
     {
         $model_webprofile = new WebProfile();
 
@@ -4193,6 +4193,6 @@ class KomunitasEkspor extends BaseController
 
         $data['webprofile'] = $webprofile;
 
-        return view('member/kelayakan-bisnis/kelayakan-bisnis', $data);
+        return view('member/kelayakan-investasi/kelayakan-investasi', $data);
     }
 }
