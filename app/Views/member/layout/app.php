@@ -517,8 +517,8 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item nav-link" href="<?= base_url('kelayakan-bisnis') ?>">
-                                            Kelayakan Bisnis
+                                        <a class="dropdown-item nav-link" href="<?= base_url('kelayakan-investasi') ?>">
+                                            Kelayakan Investasi
                                         </a>
                                     </li>
                                 </ul>
@@ -651,8 +651,8 @@
                                 </a>
                             </p>
                             <p>
-                                <a href="<?= base_url('kelayakan-bisnis') ?>" class="footer-link">
-                                    Kelayakan Bisnis
+                                <a href="<?= base_url('kelayakan-investasi') ?>" class="footer-link">
+                                    Kelayakan Investasi
                                 </a>
                             </p>
                         </div>
