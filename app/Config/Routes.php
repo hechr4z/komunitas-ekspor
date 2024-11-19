@@ -129,8 +129,8 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->post('add-website-audit', 'KomunitasEkspor::add_website_audit');
     $routes->get('delete-website-audit/(:num)', 'KomunitasEkspor::delete_website_audit/$1');
 
-    // Member - Kelayakan Bisnis
-    $routes->get('/kelayakan-bisnis', 'KomunitasEkspor::kelayakan_bisnis');
+    // Member - Kelayakan Investasi
+    $routes->get('/kelayakan-investasi', 'KomunitasEkspor::kelayakan_investasi');
 });
 
 $routes->group('', ['filter' => 'admin'], function ($routes) {
