@@ -777,18 +777,18 @@
                         <h4 class="text-center text-primary mb-4">Net Present Value</h4>
 
                         <div class="mb-3">
-                            <label for="miror_investasi" class="form-label fw-bold">Investasi</label>
-                            <input type="text" class="form-control" id="miror_investasi" name="miror_investasi" value="200000000000" disabled>
+                            <label for="npv_investasi" class="form-label fw-bold">Investasi</label>
+                            <input type="text" class="form-control" id="npv_investasi" name="npv_investasi" placeholder="Hasil Penjumlahan Pembelian Aktiva Tetap Dan Kebutuhan Modal Kerja" disabled>
                         </div>
 
                         <div class="mb-3">
-                            <label for="miror_usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
-                            <input type="text" class="form-control" id="miror_usia_ekonomis" name="miror_usia_ekonomis" value="5 Tahun" disabled>
+                            <label for="npv_usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
+                            <input type="text" class="form-control" id="npv_usia_ekonomis" name="npv_usia_ekonomis" value="5 Tahun" disabled>
                         </div>
 
                         <div class="mb-3">
-                            <label for="miror_suku_bunga" class="form-label fw-bold">Suku Bunga</label>
-                            <input type="text" class="form-control" id="miror_suku_bunga" name="miror_suku_bunga" value="20%" disabled>
+                            <label for="npv_suku_bunga" class="form-label fw-bold">Suku Bunga</label>
+                            <input type="text" class="form-control" id="npv_suku_bunga" name="npv_suku_bunga" placeholder="Mengikuti Tingkat Suku Bunga" value="20%" disabled>
                         </div>
                     </div>
 
@@ -807,10 +807,40 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td id="0_akhir_tahun">0</td>
-                                        <td id="0_debet_penyusutan">0</td>
-                                        <td id="0_kredit_akm_penyusutan">0</td>
-                                        <td id="0_total_akm_penyusutan">0</td>
+                                        <td id="0_npv_keterangan">Tahun Ke-0</td>
+                                        <td id="0_npv_laba_set_pajak">0</td>
+                                        <td id="0_npv_penyusutan">0</td>
+                                        <td id="0_npv_aliran_kas_masuk"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="1_npv_keterangan">Tahun Ke-1</td>
+                                        <td id="1_npv_laba_set_pajak"></td>
+                                        <td id="1_npv_penyusutan"></td>
+                                        <td id="1_npv_aliran_kas_masuk"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="2_npv_keterangan">Tahun Ke-2</td>
+                                        <td id="2_npv_laba_set_pajak"></td>
+                                        <td id="2_npv_penyusutan"></td>
+                                        <td id="2_npv_aliran_kas_masuk"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="3_npv_keterangan">Tahun Ke-3</td>
+                                        <td id="3_npv_laba_set_pajak"></td>
+                                        <td id="3_npv_penyusutan"></td>
+                                        <td id="3_npv_aliran_kas_masuk"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="4_npv_keterangan">Tahun Ke-4</td>
+                                        <td id="4_npv_laba_set_pajak"></td>
+                                        <td id="4_npv_penyusutan"></td>
+                                        <td id="4_npv_aliran_kas_masuk"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="5_npv_keterangan">Tahun Ke-5</td>
+                                        <td id="5_npv_laba_set_pajak"></td>
+                                        <td id="5_npv_penyusutan"></td>
+                                        <td id="5_npv_aliran_kas_masuk"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -822,7 +852,6 @@
                         <div class="mb-3">
                             <label for="npv" class="form-label fw-bold">Net Present Value(NPV)</label>
                             <input type="text" class="form-control" id="npv" name="npv" value="20%" disabled>
-
                         </div>
                     </div>
 
@@ -831,7 +860,7 @@
                         <h4 class="text-center text-primary mb-4">Kesimpulan Investasi</h4>
 
                         <div class="mb-3">
-                            <input type="text" class="form-control text-center text-uppercase fw-bold" id="miror_kesimpulan_investasi" name="miror_kesimpulan_investasi" disabled placeholder="Investasi Layak Dijalankan / Investasi Tidak Layak Dijalankan">
+                            <input type="text" class="form-control text-center text-uppercase fw-bold" id="npv_kesimpulan_investasi" name="npv_kesimpulan_investasi" disabled placeholder="Belum Ada Kesimpulan">
                         </div>
                     </div>
                 </div>
@@ -1114,9 +1143,11 @@
         document.getElementById('mpp_investasi').value = total.toLocaleString("id-ID");
         document.getElementById('iror_investasi').value = total.toLocaleString("id-ID");
         document.getElementById('miror_investasi').value = total.toLocaleString("id-ID");
+        document.getElementById('npv_investasi').value = total.toLocaleString("id-ID");
         document.getElementById('0_mpp_aliran_kas_masuk').innerText = total.toLocaleString("id-ID");
         document.getElementById('0_iror_aliran_kas_masuk').innerText = total.toLocaleString("id-ID");
         document.getElementById('0_miror_aliran_kas_masuk').innerText = total.toLocaleString("id-ID");
+        document.getElementById('0_npv_aliran_kas_masuk').innerText = total.toLocaleString("id-ID");
         document.getElementById('investasi_awal').value = total.toLocaleString("id-ID");
 
         const totalAverage = total / 2;
@@ -1130,6 +1161,7 @@
         document.getElementById(`${year}_mpp_laba_set_pajak`).innerText = input.value;
         document.getElementById(`${year}_iror_laba_set_pajak`).innerText = input.value;
         document.getElementById(`${year}_miror_laba_set_pajak`).innerText = input.value;
+        document.getElementById(`${year}_npv_laba_set_pajak`).innerText = input.value;
     }
 
     function calculatePaybackPeriod(initialInvestment, cashFlows) {
@@ -1171,12 +1203,13 @@
                 document.getElementById(`${tahun}_mpp_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
                 document.getElementById(`${tahun}_iror_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
                 document.getElementById(`${tahun}_miror_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
+                document.getElementById(`${tahun}_npv_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
 
                 // Penyusutan dan akumulasi penyusutan
                 const totalAkumulasiPenyusutan = depresiasiTahunan * tahun;
                 const nilaiBukuAktiva = hargaPerolehan - totalAkumulasiPenyusutan;
 
-                ["debet_penyusutan", "kredit_akm_penyusutan", "aror_penyusutan", "mpp_penyusutan", "iror_penyusutan", "miror_penyusutan"].forEach(id =>
+                ["debet_penyusutan", "kredit_akm_penyusutan", "aror_penyusutan", "mpp_penyusutan", "iror_penyusutan", "miror_penyusutan", "npv_penyusutan"].forEach(id =>
                     document.getElementById(`${tahun}_${id}`).innerText = depresiasiTahunan.toLocaleString("id-ID")
                 );
                 document.getElementById(`${tahun}_total_akm_penyusutan`).innerText = totalAkumulasiPenyusutan.toLocaleString("id-ID");
@@ -1313,9 +1346,10 @@
                 document.getElementById(`${tahun}_mpp_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
                 document.getElementById(`${tahun}_iror_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
                 document.getElementById(`${tahun}_miror_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
+                document.getElementById(`${tahun}_npv_aliran_kas_masuk`).innerText = aliranKasMasuk.toLocaleString("id-ID");
 
                 // Menampilkan nilai depresiasi
-                ["debet_penyusutan", "kredit_akm_penyusutan", "aror_penyusutan", "mpp_penyusutan", "iror_penyusutan", "miror_penyusutan"].forEach(id =>
+                ["debet_penyusutan", "kredit_akm_penyusutan", "aror_penyusutan", "mpp_penyusutan", "iror_penyusutan", "miror_penyusutan", "npv_penyusutan"].forEach(id =>
                     document.getElementById(`${tahun}_${id}`).innerText = depreciation.toLocaleString("id-ID")
                 );
 
@@ -1461,8 +1495,9 @@
                 document.getElementById(`${i}_mpp_aliran_kas_masuk`).innerText = aliranKasMasukYear.toLocaleString("id-ID");
                 document.getElementById(`${i}_iror_aliran_kas_masuk`).innerText = aliranKasMasukYear.toLocaleString("id-ID");
                 document.getElementById(`${i}_miror_aliran_kas_masuk`).innerText = aliranKasMasukYear.toLocaleString("id-ID");
+                document.getElementById(`${i}_npv_aliran_kas_masuk`).innerText = aliranKasMasukYear.toLocaleString("id-ID");
 
-                ["debet_penyusutan", "kredit_akm_penyusutan", "aror_penyusutan", "mpp_penyusutan", "iror_penyusutan", "miror_penyusutan"].forEach(id =>
+                ["debet_penyusutan", "kredit_akm_penyusutan", "aror_penyusutan", "mpp_penyusutan", "iror_penyusutan", "miror_penyusutan", "npv_penyusutan"].forEach(id =>
                     document.getElementById(`${i}_${id}`).innerText = depreciation.toLocaleString("id-ID")
                 );
 
