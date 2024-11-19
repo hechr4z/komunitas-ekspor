@@ -31,14 +31,6 @@
         border-radius: 8px;
     }
 
-    .btn-primary {
-        background-color: #007bff;
-        border: none;
-        margin-top: auto;
-        border-radius: 8px;
-        width: 100%;
-    }
-
     .tab-content {
         margin-top: 20px;
     }
@@ -48,11 +40,11 @@
     }
 
     .custom-tab:hover {
-        color: #007bff;
+        color: #03AADE;
     }
 
     .nav-link.active {
-        color: #007bff !important;
+        color: #03AADE !important;
     }
 
     .section-title {
@@ -72,16 +64,6 @@
         font-weight: bold;
     }
 
-    .product-img {
-        margin: 10px;
-        /* Add margin to create space around the image */
-        border-radius: 8px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        width: calc(100% - 20px);
-        /* Adjusts width to account for the margin */
-        object-fit: cover;
-    }
-
     .hover-card {
         transition: box-shadow 0.3s ease, transform 0.3s ease;
     }
@@ -91,7 +73,7 @@
         transform: translateY(-5px) !important;
     }
 
-    .member-img {
+    .member-img .product-img {
         margin: 10px;
         border-radius: 8px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -99,10 +81,28 @@
         object-fit: cover;
     }
 
-    .card .btn:hover {
-        background-color: #F2BF02 !important;
-        color: #fff;
+    .btn-custom {
+        background-color: #03AADE;
+        text-align: center;
+        color: #ffffff;
         border: none;
+        margin-top: auto;
+        border-radius: 8px;
+        width: 100%;
+    }
+
+    .btn-custom:hover {
+        background-color: #F2BF02;
+        color: #ffffff;
+    }
+
+    .container {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .member-section {
+        text-align: center;
     }
 </style>
 
@@ -248,7 +248,7 @@
                                                 <?= $item['sertifikat'] ?>
                                             </span>
                                         </p>
-                                        <button class="btn btn-primary" data-bs-toggle="modal"
+                                        <button class="btn btn-custom" data-bs-toggle="modal"
                                             data-bs-target="#certificateModal"
                                             data-filename="<?= base_url('certificate/' . $item['sertifikat']) ?>">Lihat</button>
                                     </div>
@@ -282,40 +282,36 @@
                     <div class="row">
                         <!-- Card Product -->
                         <?php if (empty($produk)): ?>
-                            <div class="col-md-12">
+                            <div class="d-flex flex-wrap justify-content-center">
                                 <div class="alert alert-info text-center" role="alert">
                                     Masih belum ada Produk
                                 </div>
                             </div>
                         <?php else: ?>
-                            <?php foreach ($produk as $item): ?>
-                                <div class="col-md-4 mb-5">
+                            <div class="d-flex flex-wrap justify-content-center">
+                                <?php foreach ($produk as $item): ?>
                                     <a href="#" class="text-decoration-none" style="color: inherit;" data-bs-toggle="modal"
                                         data-bs-target="#productModal1" data-nama="<?= $item['nama_produk'] ?>"
                                         data-deskripsi="<?= $item['deskripsi_produk'] ?>" data-hscode="<?= $item['hs_code'] ?>"
                                         data-minorder="<?= $item['minimum_order_qty'] ?>"
                                         data-kapasitas="<?= $item['kapasitas_produksi_bln'] ?>"
                                         data-foto="<?= base_url('img/' . $item['foto_produk']) ?>">
-                                        <div class="card hover-card mx-4 shadow-sm"
-                                            style="cursor: pointer; transition: transform 0.2s; height: 100%;">
+                                        <div class="card hover-card mx-4 mb-5 shadow-sm"
+                                            style="width: 18rem; cursor: pointer; transition: transform 0.2s;">
                                             <img src="<?= base_url('img/' . $item['foto_produk']) ?>"
                                                 class="card-img-top img-fluid product-img" alt="Product Photo"
                                                 style="height: 220px;">
-                                            <div class="card-body d-flex flex-column">
+                                            <div class="card-body text-center">
                                                 <h5 class="card-title"><?= $item['nama_produk'] ?></h5>
-                                                <p class="card-text text-truncate-description text-justify flex-grow-1">
-                                                    <?= $item['deskripsi_produk'] ?>
-                                                </p>
-                                                <button type="button" class="btn btn-primary mt-auto">
-                                                    Lihat Detail
-                                                </button>
+                                                <p class="card-text"><?= $item['deskripsi_produk'] ?></p>
+                                                <span class="btn btn-custom mt-auto" style="border-radius: 8px;">Lihat
+                                                    Detail</span>
                                             </div>
                                         </div>
                                     </a>
-                                </div>
-                            <?php endforeach; ?>
+                                <?php endforeach; ?>
+                            </div>
                         <?php endif; ?>
-
 
                         <!-- Modal for Product Details -->
                         <div class="modal fade" id="productModal1" tabindex="-1" aria-labelledby="productModalLabel1"
@@ -328,47 +324,50 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <div class="row">
+                                        <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
                                             <!-- Foto Produk -->
-                                            <div class="col-md-6">
+                                            <div class="mb-4">
                                                 <img id="productImage" src="" class="img-fluid rounded mb-3"
                                                     alt="Product Photo">
                                             </div>
-                                            <!-- Detail Produk -->
-                                            <div class="col-md-6">
-                                                <h5 class="mb-4 fw-bold">Informasi Produk</h5>
-                                                <div class="mb-3">
-                                                    <label for="namaProduk" class="form-label"><strong>Nama
-                                                            Produk</strong></label>
-                                                    <input type="text" class="form-control" id="namaProduk" value=""
-                                                        readonly>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="deskripsiProduk" class="form-label"><strong>Deskripsi
-                                                            Produk</strong></label>
-                                                    <textarea class="form-control" id="deskripsiProduk" rows="6"
-                                                        readonly></textarea>
-                                                </div>
 
-                                                <div class="mb-3">
-                                                    <label for="hsCode" class="form-label"><strong>Kode
-                                                            HS</strong></label>
-                                                    <input type="text" class="form-control" id="hsCode" value=""
-                                                        readonly>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="minOrderQty" class="form-label"><strong>Jumlah Pesanan
-                                                            Minimal</strong></label>
-                                                    <input type="number" class="form-control" id="minOrderQty" value=""
-                                                        readonly>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="kapasitasProduksi" class="form-label"><strong>Kapasitas
-                                                            Produksi Bulanan</strong></label>
-                                                    <input type="number" class="form-control" id="kapasitasProduksi"
-                                                        value="" readonly>
-                                                </div>
+                                            <!-- Detail Produk -->
+                                            <h5 class="mb-4 fw-bold">Informasi Produk</h5>
+
+                                            <div class="mb-3">
+                                                <label for="namaProduk" class="form-label fw-bold tex">Nama
+                                                    Produk</label>
+                                                <input type="text" class="form-control" id="namaProduk" value=""
+                                                    disabled placeholder="Belum Ada Nilai">
                                             </div>
+
+                                            <div class="mb-3">
+                                                <label for="deskripsiProduk" class="form-label fw-bold">Deskripsi
+                                                    Produk</label>
+                                                <textarea class="form-control" id="deskripsiProduk" rows="4" disabled
+                                                    placeholder="Belum Ada Deskripsi"></textarea>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="hsCode" class="form-label fw-bold">Kode HS</label>
+                                                <input type="text" class="form-control" id="hsCode" value="" disabled
+                                                    placeholder="Belum Ada Nilai">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="minOrderQty" class="form-label fw-bold">Jumlah Pesanan
+                                                    Minimal</label>
+                                                <input type="number" class="form-control" id="minOrderQty" value=""
+                                                    disabled placeholder="Belum Ada Nilai">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="kapasitasProduksi" class="form-label fw-bold">Kapasitas
+                                                    Produksi Bulanan</label>
+                                                <input type="number" class="form-control" id="kapasitasProduksi"
+                                                    value="" disabled placeholder="Belum Ada Nilai">
+                                            </div>
+
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -408,7 +407,7 @@
                             <div class="card-body text-center">
                                 <h5 class="card-title"><?= $item['username'] ?></h5>
                                 <p class="card-text"><?= $item['nama_perusahaan'] ?></p>
-                                <span class="btn btn-primary mt-auto" style="border-radius: 8px;">Lihat Profil</span>
+                                <span class="btn btn-custom mt-auto" style="border-radius: 8px;">Lihat Profil</span>
                             </div>
                         </div>
                     </a>
