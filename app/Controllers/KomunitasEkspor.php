@@ -785,6 +785,74 @@ class KomunitasEkspor extends BaseController
         return view('member/edit-profile', $data);
     }
 
+    public function updateFotoProfil()
+    {
+        // Ambil ID user dari session
+        $userId = session()->get('user_id');
+        if (!$userId) {
+            return redirect()->to('/login')->with('error', 'Anda harus login terlebih dahulu.');
+        }
+
+        $memberModel = new Member();
+
+        // Ambil data pengguna dari database
+        $member = $memberModel->find($userId);
+
+        if (!$member) {
+            return redirect()->back()->with('error', 'Data member tidak ditemukan.');
+        }
+
+        // Validasi file yang diupload
+        if (!$this->validate([
+            'foto_profil' => [
+                'rules' => 'uploaded[foto_profil]|is_image[foto_profil]|mime_in[foto_profil,image/jpg,image/jpeg,image/png]|max_size[foto_profil,8048]',
+                'errors' => [
+                    'uploaded' => 'Silakan pilih file untuk diupload.',
+                    'is_image' => 'File yang diupload harus berupa gambar.',
+                    'mime_in' => 'Gambar harus berformat jpg, jpeg, atau png.',
+                    'max_size' => 'Ukuran gambar maksimal 2MB.',
+                ],
+            ],
+        ])) {
+            return redirect()->back()->withInput()->with('error', $this->validator->getErrors());
+        }
+
+        // Ambil file yang diupload
+        $file = $this->request->getFile('foto_profil');
+        $newFileName = $file->getRandomName(); // Nama file baru
+
+        if ($file->isValid() && !$file->hasMoved()) {
+            $file->move('img', $newFileName); // Simpan file baru
+        } else {
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat mengupload file.');
+        }
+
+        // Siapkan data untuk diupdate
+        $data = ['foto_profil' => $newFileName];
+
+        // Perbarui data di database
+        $updateStatus = $memberModel->update($userId, $data);
+
+        if ($updateStatus) {
+            // Hapus file lama jika ada
+            $oldFileName = $member['foto_profil'];
+            if ($oldFileName && file_exists('img/' . $oldFileName)) {
+                unlink('img/' . $oldFileName);
+            }
+
+            return redirect()->to('/edit-profile')->with('success', 'Foto profil berhasil diperbarui.');
+        } else {
+            // Jika update gagal, hapus file baru
+            if (file_exists('img/' . $newFileName)) {
+                unlink('img/' . $newFileName);
+            }
+
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat menyimpan data.');
+        }
+    }
+
+
+
     public function ubah_informasi_akun()
     {
         $session = session();

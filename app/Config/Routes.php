@@ -8,7 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 $routes->group('id', function ($routes) {
     // Visitor - Beranda
     $routes->get('/', 'KomunitasEkspor::index');
-    
+
     // Visitor - Landing Page Member
     $routes->get('landing-page', 'KomunitasEkspor::visitor_landing_page');
 
@@ -72,6 +72,7 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
 
     // Member - Edit Member
     $routes->get('/edit-profile', 'KomunitasEkspor::edit_profile');
+    $routes->post('/update-foto-profil', 'KomunitasEkspor::updateFotoProfil');
     $routes->post('/ubah-informasi-akun', 'KomunitasEkspor::ubah_informasi_akun');
     $routes->post('/ubah-profil-perusahaan', 'KomunitasEkspor::ubah_profil_perusahaan');
     $routes->post('/add-sertifikat', 'KomunitasEkspor::add_sertifikat');
