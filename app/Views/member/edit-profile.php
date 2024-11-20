@@ -2,26 +2,26 @@
 <?= $this->section('content'); ?>
 
 <style>
-.lingkaran {
-    margin: auto;
-    overflow: hidden;
-    border-radius: 50%;
-    position: relative;
-    width: 250px;
-    height: 250px;
-}
+    .lingkaran {
+        margin: auto;
+        overflow: hidden;
+        border-radius: 50%;
+        position: relative;
+        width: 250px;
+        height: 250px;
+    }
 
-.lingkaran img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+    .lingkaran img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 
-.btn-custom {
+    .btn-custom {
         text-align: center;
         color: #ffffff;
     }
@@ -32,6 +32,7 @@
         background-color: #F2BF02 !important;
         /* Mengubah warna saat hover menjadi #F2BF02 */
     }
+
     .img-fluid {
         border-radius: 8px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -112,14 +113,14 @@
     }
 
     /* Mengatur warna teks tombol aktif */
-.nav-tabs .nav-link.active {
-    color: #03AADE !important;
-}
+    .nav-tabs .nav-link.active {
+        color: #03AADE !important;
+    }
 
-/* Opsional: Mengatur efek hover untuk konsistensi */
-.nav-tabs .nav-link:hover {
-    color: #03AADE;
-}
+    /* Opsional: Mengatur efek hover untuk konsistensi */
+    .nav-tabs .nav-link:hover {
+        color: #03AADE;
+    }
 
 
     /* Animasi */
@@ -170,6 +171,7 @@
         .card {
             margin-left: 50px;
         }
+
         .card-body h5 {
             font-size: 1.25rem;
             /* Adjust title size */
@@ -190,6 +192,7 @@
         .card {
             margin-left: 40px;
         }
+
         .row .col-md-4 {
             flex-basis: 100%;
             /* Full width card on mobile */
@@ -205,6 +208,7 @@
             /* Smaller title on mobile */
         }
     }
+
     @media (max-width: 425px) {
         .card {
             margin-right: 40px;
@@ -219,10 +223,10 @@
 
     @media (max-width: 320px) {
         .lingkaran {
-        width: 200px;
-        height: 200px;
-        right: 5px;
-    }
+            width: 200px;
+            height: 200px;
+            right: 5px;
+        }
     }
 </style>
 
@@ -232,20 +236,49 @@
         <p>Anda Dapat mengubah data diri anda</p>
     </div>
     <div class="card p-4 shadow-sm mt-5">
-        <!-- Image at the top -->
-        <div class="text-center mb-3 shadow lingkaran">
-    <img src="<?= base_url('img/' . $member['foto_profil']); ?>" class="img-fluid logo" alt="">
-</div>
+        <?php if (session()->getFlashdata('error')): ?>
+            <div class="alert alert-danger">
+                <?= is_array(session()->getFlashdata('error')) ? implode('<br>', session()->getFlashdata('error')) : session()->getFlashdata('error'); ?>
+            </div>
+        <?php endif; ?>
 
-        <div class="text-center" style="position: relative; top: -40px;">
-            <button class="btn btn-custom" onclick="document.getElementById('fileInput').click()" style="width: 45px; height: 45px; display: inline-flex; align-items: center; justify-content: center; background-color: #03AADE;">
-                <i class="fas fa-edit" style="font-size: 17px;"></i>
-            </button>
-        </div>
-        <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="previewImage(event)">
-        <div class="text-center mb-3">
-            <button type="submit" class="btn btn-custom" style="width: 100px; background-color: #03AADE;">Submit</button>
-        </div>
+        <?php if (session()->getFlashdata('success')): ?>
+            <div class="alert alert-success">
+                <?= session()->getFlashdata('success'); ?>
+            </div>
+        <?php endif; ?>
+
+        <!-- Form untuk upload foto -->
+        <form action="<?= base_url('/update-foto-profil'); ?>" method="post" enctype="multipart/form-data">
+            <?= csrf_field(); ?>
+
+            <div class="text-center mb-3 shadow lingkaran">
+                <!-- Image Preview -->
+                <img id="profileImage"
+                    src="<?= base_url('img/' . ($member['foto_profil'] ?? 'default.jpg')); ?>"
+                    alt="Foto Profil">
+            </div>
+
+            <!-- Upload Button -->
+            <div>
+                <div class="text-center" style="position: relative; top: -40px;">
+                    <button type="button" class="btn btn-custom" onclick="document.getElementById('fileInput').click()"
+                        style="width: 45px; height: 45px; display: inline-flex; align-items: center; justify-content: center; background-color: #03AADE;">
+                        <i class="fas fa-edit" style="font-size: 17px; color: #fff;"></i>
+                    </button>
+                </div>
+
+                <!-- Hidden File Input -->
+                <input type="file" id="fileInput" name="foto_profil" accept="image/*"
+                    style="display: none;" onchange="previewImage(event)">
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center mb-3">
+                <button type="submit" class="btn btn-custom"
+                    style="width: 100px; background-color: #03AADE; color: #fff;">Submit</button>
+            </div>
+        </form>
         <h4 class="text-center mt-1"><?= $member['username'] ?></h4>
         <?php if (session()->get('errors')) : ?>
             <div class="alert alert-danger">
@@ -566,7 +599,7 @@
         </div>
     </div>
 </div>
-
+</div>
 <script>
     const certificateModal = document.getElementById('certificateModal');
     certificateModal.addEventListener('show.bs.modal', function(event) {
