@@ -489,6 +489,8 @@
 
         .social-link {
             width: 2px;
+            position: relative;
+            right: 15px;
         }
 
         .language-btn {
@@ -605,11 +607,11 @@
                 <!-- Alamat dan Email -->
                 <div class="icon d-flex justify-content-start">
                     <div class=" d-flex align-items-center gap-2 icon-text text-light">
-                        <i class="fas fa-map-marker-alt" style=" color: white;"></i>
+                        <i class="fas fa-map-marker-alt" style="color: white;"></i>
                         <p class="mb-0" style="color: white;"><?= $webprofile[0]['lokasi_web'] ?></p>
                     </div>
-                    <div class=" d-flex align-items-center gap-2 icon-text text-light">
-                        <i class="fas fa-envelope" style=" color: white;"></i>
+                    <div class=" d-flex align-items-center gap-2 icon-text text-light ms-3">
+                        <i class="fas fa-envelope" style="color: white;"></i>
                         <p class="mb-0" style="color: white; "><?= $webprofile[0]['email_web'] ?></p>
                     </div>
                 </div>

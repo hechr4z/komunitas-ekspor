@@ -15,6 +15,27 @@
         background-color: #F2BF02 !important;
         /* Mengubah warna saat hover menjadi #F2BF02 */
     }
+
+    @media (max-width: 768px) {
+        .detail {
+            margin-left: 30px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .row {
+            margin-left: 30px;
+        }
+    }
+
+    @media (max-width: 425px) {
+        .row {
+            margin-right: 30px;
+        }
+        .detail {
+            margin-right: 30px;
+        }
+    }
 </style>
 
 <section class="container mt-4">
@@ -43,7 +64,7 @@
     </div>
 
     <!-- Pengumuman Lainnya -->
-    <div class="row mt-5">
+    <div class="row mt-5 detail">
         <h3>Pengumuman Lainnya</h3>
         <?php foreach ($pengumuman_lainnya as $item): ?>
             <div class="col-md-4 mb-4">
