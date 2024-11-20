@@ -117,8 +117,8 @@
     <div class="col-lg-12">
         <div class="card p-4 shadow-sm">
             <!-- Image at the top -->
-            <div class="text-center mb-3 shadow"
-                style="width: 250px; height: 250px; margin: auto; overflow: hidden; border-radius: 50%; position: relative;">
+            <div class="text-center mb-4 shadow"
+                style="width: 300px; height: 300px; margin: auto; overflow: hidden; border-radius: 50%; position: relative;">
                 <img src="<?= base_url('img/' . $member['foto_profil']); ?>" class="img-fluid" alt=""
                     style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
             </div>
@@ -131,7 +131,7 @@
                 <span class="badge badge-lg bg-light text-dark p-2" style="font-size: 18px;">
                     <?php echo lang('Blog.referralCode') ?><?= $member['username'] ?>
                 </span>
-                <span class="badge badge-lg bg-light text-dark p-2" style="font-size: 18px;">
+                <span class="badge badge-lg bg-light text-dark p-2 mt-2" style="font-size: 18px;">
                     <?php echo lang('Blog.emailDetail') ?><?= $member['email'] ?>
                 </span>
             </div>
