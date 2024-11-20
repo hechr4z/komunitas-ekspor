@@ -2,6 +2,36 @@
 <?= $this->section('content'); ?>
 
 <style>
+.lingkaran {
+    margin: auto;
+    overflow: hidden;
+    border-radius: 50%;
+    position: relative;
+    width: 250px;
+    height: 250px;
+}
+
+.lingkaran img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn-custom {
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .btn-custom:hover {
+        color: #fff;
+        box-shadow: 0px 0px 10px #F2BF02;
+        background-color: #F2BF02 !important;
+        /* Mengubah warna saat hover menjadi #F2BF02 */
+    }
     .img-fluid {
         border-radius: 8px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -81,6 +111,17 @@
         transform: translateY(-5px);
     }
 
+    /* Mengatur warna teks tombol aktif */
+.nav-tabs .nav-link.active {
+    color: #03AADE !important;
+}
+
+/* Opsional: Mengatur efek hover untuk konsistensi */
+.nav-tabs .nav-link:hover {
+    color: #03AADE;
+}
+
+
     /* Animasi */
     @keyframes fadeIn {
         from {
@@ -126,6 +167,9 @@
     /* end */
 
     @media (max-width: 768px) {
+        .card {
+            margin-left: 50px;
+        }
         .card-body h5 {
             font-size: 1.25rem;
             /* Adjust title size */
@@ -143,6 +187,9 @@
     }
 
     @media (max-width: 576px) {
+        .card {
+            margin-left: 40px;
+        }
         .row .col-md-4 {
             flex-basis: 100%;
             /* Full width card on mobile */
@@ -158,28 +205,46 @@
             /* Smaller title on mobile */
         }
     }
+    @media (max-width: 425px) {
+        .card {
+            margin-right: 40px;
+        }
+    }
 
-    @media (max-width: 320px) {}
+    @media (max-width: 375px) {
+        .card {
+            margin-right: 40px;
+        }
+    }
+
+    @media (max-width: 320px) {
+        .lingkaran {
+        width: 200px;
+        height: 200px;
+        right: 5px;
+    }
+    }
 </style>
 
 <div class="container mt-4">
-    <div class="text-center mt-5">
+    <div class="judul text-center mt-5">
         <h2>Edit Profile</h2>
         <p>Anda Dapat mengubah data diri anda</p>
     </div>
     <div class="card p-4 shadow-sm mt-5">
         <!-- Image at the top -->
-        <div class="text-center mb-3 shadow" style="width: 250px; height: 250px; margin: auto; overflow: hidden; border-radius: 50%; position: relative;">
-            <img src="<?= base_url('img/' . $member['foto_profil']); ?>" class="img-fluid" alt="" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-        </div>
+        <div class="text-center mb-3 shadow lingkaran">
+    <img src="<?= base_url('img/' . $member['foto_profil']); ?>" class="img-fluid logo" alt="">
+</div>
+
         <div class="text-center" style="position: relative; top: -40px;">
-            <button class="btn btn-warning btn-sm rounded-circle" onclick="document.getElementById('fileInput').click()" style="width: 45px; height: 45px; display: inline-flex; align-items: center; justify-content: center;">
+            <button class="btn btn-custom" onclick="document.getElementById('fileInput').click()" style="width: 45px; height: 45px; display: inline-flex; align-items: center; justify-content: center; background-color: #03AADE;">
                 <i class="fas fa-edit" style="font-size: 17px;"></i>
             </button>
         </div>
         <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="previewImage(event)">
         <div class="text-center mb-3">
-            <button type="submit" class="btn btn-warning" style="width: 100px;">Submit</button>
+            <button type="submit" class="btn btn-custom" style="width: 100px; background-color: #03AADE;">Submit</button>
         </div>
         <h4 class="text-center mt-1"><?= $member['username'] ?></h4>
         <?php if (session()->get('errors')) : ?>
@@ -220,7 +285,7 @@
                             <label for="password" class="form-label">Password</label>
                             <input type="text" class="form-control" id="password" name="password" placeholder="Masukkan Password">
                         </div>
-                        <button type="submit" class="btn btn-warning mt-3">Submit</button>
+                        <button type="submit" class="btn btn-custom" style="background-color: #03AADE;">Submit</button>
                     </div>
                 </form>
             </div>
@@ -274,7 +339,7 @@
                             <label for="longitude" class="form-label">Longitude</label>
                             <input type="text" class="form-control" id="longitude" name="longitude" value="<?= $member['longitude'] ?>" placeholder="Masukkan Longitude">
                         </div>
-                        <button type="submit" class="btn btn-warning mt-3">Submit</button>
+                        <button type="submit" class="btn btn-custom" style="background-color: #03AADE;">Submit</button>
                     </div>
                 </form>
             </div>
@@ -288,7 +353,7 @@
                         <div class="input-group">
                             <input type="file" class="form-control" id="sertifikat" name="sertifikat">
                         </div>
-                        <button type="submit" class="btn btn-warning mt-3">Submit</button>
+                        <button type="submit" class="btn btn-custom mt-3" style="background-color: #03AADE;">Submit</button>
                     </div>
                 </form>
                 <div class="container mt-4">
@@ -383,7 +448,7 @@
                             <label for="kapasitas_produksi_bln" class="form-label">Kapasitas Produk</label>
                             <input type="text" class="form-control" id="kapasitas_produksi_bln" name="kapasitas_produksi_bln">
                         </div>
-                        <button type="submit" class="btn btn-warning mt-3">Submit</button>
+                        <button type="submit" class="btn btn-custom" style="background-color: #03AADE;">Submit</button>
                     </div>
                 </form>
                 <div class="container mt-4">
