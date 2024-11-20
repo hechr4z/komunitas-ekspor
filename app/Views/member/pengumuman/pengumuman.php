@@ -32,7 +32,7 @@
 <section class="container mt-4">
     <div class="text-center mt-5">
         <h2 class="animate__animated animate__fadeInDown">Pengumuman</h2>
-        <p class="animate__animated animate__fadeInUp">Pengumuman special untuk anda</p>
+        <p class="animate__animated animate__fadeInUp">Pengumuman special untuk Anda</p>
     </div>
 
     <div class="row mt-5">
