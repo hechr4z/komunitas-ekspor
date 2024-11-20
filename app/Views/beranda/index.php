@@ -271,15 +271,45 @@ $this->setData([
 
     @media (max-width: 576px) {
         .benefit p {
-            font-size: 8px;
+            font-size: 13px;
+        }
+
+        .peta h5 {
+            font-size: 20px;
+        }
+
+        .peta h1 {
+            font-size: 20px;
+        }
+
+        .member h5 {
+            font-size: 20px;
+        }
+
+        .member h1 {
+            font-size: 20px;
         }
 
         .peta h1 {
             font-size: 18px;
         }
+
+        .manfaat p {
+            font-size: 15px;
+        }
+
+        .manfaat h6 {
+            font-size: 18px;
+        }
     }
 
     @media (max-width: 425px) {
+        .card-member {
+            width: 80%;
+            height: 100%;
+            position: relative;
+            left: 40px;
+        }
         .member h1 {
             font-size: 15px;
         }
@@ -293,7 +323,7 @@ $this->setData([
         }
 
         .benefit p {
-            font-size: 8px;
+            font-size: 12px;
         }
 
         .footer-custom h2 {
@@ -305,21 +335,30 @@ $this->setData([
         }
 
         .peta h5 {
-            font-size: 13px;
+            font-size: 15px;
         }
 
         .peta h1 {
-            font-size: 12px;
+            font-size: 15px;
+        }
+
+        .animasi h2 {
+            font-size: 17px;
+        }
+
+        .animasi p {
+            font-size: 15px;
+            margin: 10px;
         }
     }
 
     @media (max-width: 375px) {
         .member h1 {
-            font-size: 15px;
+            font-size: 13px;
         }
 
         .member h5 {
-            font-size: 15px;
+            font-size: 13px;
         }
 
         .carousel-caption h5 {
@@ -331,7 +370,7 @@ $this->setData([
         }
 
         .benefit p {
-            font-size: 8px;
+            font-size: 10px;
         }
 
         .footer-custom h2 {
@@ -347,17 +386,17 @@ $this->setData([
         }
 
         .peta h1 {
-            font-size: 12px;
+            font-size: 13px;
         }
     }
 
     @media (max-width: 320px) {
         .carousel-caption h5 {
-            font-size: 10px;
+            font-size: 13px;
         }
 
         .carousel-caption p {
-            font-size: 5px;
+            font-size: 8px;
         }
 
         .btn-outline-light {
@@ -365,15 +404,15 @@ $this->setData([
         }
 
         .member h5 {
-            font-size: 10px;
+            font-size: 12px;
+        }
+
+        .member h1 {
+            font-size: 12px;
         }
 
         .garis {
             width: 35px;
-        }
-
-        .member h1 {
-            font-size: 13px;
         }
 
         .border-top2 {
@@ -404,11 +443,15 @@ $this->setData([
         }
 
         .benefit p {
-            font-size: 5px;
+            font-size: 9px;
         }
 
         .background-image {
             padding-top: 30px;
+        }
+
+        .card-member img {
+            margin-right: 15px;
         }
 
         .background-image h2 {
@@ -420,11 +463,18 @@ $this->setData([
         }
 
         .peta h5 {
-            font-size: 10px;
+            font-size: 12px;
         }
 
         .peta h1 {
-            font-size: 10px;
+            font-size: 11px;
+        }
+
+        .col-md-6 p {
+            margin-right: 20px;
+        }
+        .col-md-6 a {
+            margin-left: 10px;
         }
     }
 </style>
