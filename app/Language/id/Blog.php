@@ -37,7 +37,7 @@ return [
     'joinUsDescription' => 'Ayo, bergabunglah dengan komunitas eksportir kami dan tingkatkan peluang bisnis Anda. Jadilah bagian dari jaringan yang mendukung kesuksesan.',
     // Manfaat Join Member Section
     'benefitsJoinTitle' => 'MANFAAT JOIN MEMBER',
-    'benefitsJoinDescription' => 'Menjadi anggota komunitas ekspor memberikan akses ke peluang yang lebih luas dan dukungan yang berharga. <br> Bergabunglah untuk meningkatkan jaringan dan keterampilan Anda.',
+    'benefitsJoinDescription' => 'Menjadi anggota komunitas ekspor memberikan akses ke peluang <br> yang lebih luas dan dukungan yang berharga.',
     // Sub-sections
     // 'businessOpportunities' => 'Peluang Bisnis',
     // 'networkAccess' => 'Akses ke Jaringan Bisnis. <br> Kesempatan Kolaborasi Internasional',
