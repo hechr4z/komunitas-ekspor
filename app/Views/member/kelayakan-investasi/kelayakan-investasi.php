@@ -153,7 +153,7 @@
 
                         <div class="mb-3">
                             <label for="usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
-                            <input type="text" class="form-control" id="usia_ekonomis" name="usia_ekonomis" value="5 Tahun" disabled>
+                            <input type="text" class="form-control" id="usia_ekonomis" name="usia_ekonomis" placeholder="5 Tahun" disabled>
                         </div>
                     </div>
 
@@ -201,7 +201,7 @@
                         <h4 class="text-center text-primary mb-3">Tingkat Suku Bunga</h4>
                         <div class="mb-3">
                             <div class="mb-3 d-flex justify-content-center" style="width: 50%; margin: 0 auto;">
-                                <input type="text" class="form-control-plaintext text-center" id="tingkat_suku_bunga" name="tingkat_suku_bunga" value="20%" disabled>
+                                <input type="text" class="form-control-plaintext text-center" id="tingkat_suku_bunga" name="tingkat_suku_bunga" placeholder="20%" disabled>
                             </div>
                         </div>
                     </div>
@@ -217,11 +217,11 @@
                             </div>
                             <div class="mb-3">
                                 <label for="dfi_nilai_sisa" class="form-label fw-bold">Nilai Sisa (Salvage)</label>
-                                <input type="text" class="form-control" id="dfi_nilai_sisa" name="dfi_nilai_sisa" value="2.000.000.000" disabled>
+                                <input type="text" class="form-control" id="dfi_nilai_sisa" name="dfi_nilai_sisa" placeholder="2.000.000.000" disabled>
                             </div>
                             <div class="mb-3">
                                 <label for="dfi_umur_ekonomis" class="form-label fw-bold">Umur Ekonomis (Life)</label>
-                                <input type="text" class="form-control" id="dfi_umur_ekonomis" name="dfi_umur_ekonomis" value="5 Tahun" disabled>
+                                <input type="text" class="form-control" id="dfi_umur_ekonomis" name="dfi_umur_ekonomis" placeholder="5 Tahun" disabled>
                             </div>
                         </div>
 
@@ -241,7 +241,7 @@
                                         <tr>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" id="arr_1" placeholder="Masukkan ARR 1" value="50" disabled>
+                                                    <input type="text" class="form-control" id="arr_1" placeholder="50" disabled>
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">%</span>
                                                     </div>
@@ -249,7 +249,7 @@
                                             </td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" id="payback" placeholder="Masukkan Payback" value="3" disabled>
+                                                    <input type="text" class="form-control" id="payback" placeholder="3" disabled>
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">Tahun</span>
                                                     </div>
@@ -260,7 +260,7 @@
                                         <tr>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="arr_2" placeholder="Masukkan ARR 2" value="20" disabled>
+                                                    <input type="text" class="form-control" name="arr_2" placeholder="20" disabled>
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">%</span>
                                                     </div>
@@ -305,12 +305,12 @@
 
                         <div class="mb-3">
                             <label for="pat_nilai_sisa" class="form-label fw-bold">Nilai Sisa (Salvage)</label>
-                            <input type="text" class="form-control" id="pat_nilai_sisa" name="pat_nilai_sisa" disabled value="2.000.000.000">
+                            <input type="text" class="form-control" id="pat_nilai_sisa" name="pat_nilai_sisa" disabled placeholder="2.000.000.000">
                         </div>
 
                         <div class="mb-3">
                             <label for="pat_umur_ekonomis" class="form-label fw-bold">Umur Ekonomis (Life)</label>
-                            <input type="text" class="form-control" id="pat_umur_ekonomis" name="pat_umur_ekonomis" value="5 Tahun" disabled>
+                            <input type="text" class="form-control" id="pat_umur_ekonomis" name="pat_umur_ekonomis" placeholder="5 Tahun" disabled>
                         </div>
                     </div>
 
@@ -390,7 +390,7 @@
 
                         <div class="mb-3">
                             <label for="aror_usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
-                            <input type="text" class="form-control" id="aror_usia_ekonomis" name="aror_usia_ekonomis" value="5 Tahun" disabled>
+                            <input type="text" class="form-control" id="aror_usia_ekonomis" name="aror_usia_ekonomis" placeholder="5 Tahun" disabled>
                         </div>
                     </div>
 
@@ -491,12 +491,12 @@
 
                         <div class="mb-3">
                             <label for="mpp_usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
-                            <input type="text" class="form-control" id="mpp_usia_ekonomis" name="mpp_usia_ekonomis" value="5 Tahun" disabled>
+                            <input type="text" class="form-control" id="mpp_usia_ekonomis" name="mpp_usia_ekonomis" placeholder="5 Tahun" disabled>
                         </div>
 
                         <div class="mb-3">
                             <label for="mpp_suku_bunga" class="form-label fw-bold">Suku Bunga</label>
-                            <input type="text" class="form-control" id="mpp_suku_bunga" name="mpp_suku_bunga" placeholder="Mengikuti Tingkat Suku Bunga" value="20%" disabled>
+                            <input type="text" class="form-control" id="mpp_suku_bunga" name="mpp_suku_bunga" placeholder="20%" disabled>
                         </div>
                     </div>
 
@@ -587,12 +587,12 @@
 
                         <div class="mb-3">
                             <label for="iror_usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
-                            <input type="text" class="form-control" id="iror_usia_ekonomis" name="iror_usia_ekonomis" value="5 Tahun" disabled>
+                            <input type="text" class="form-control" id="iror_usia_ekonomis" name="iror_usia_ekonomis" placeholder="5 Tahun" disabled>
                         </div>
 
                         <div class="mb-3">
                             <label for="iror_suku_bunga" class="form-label fw-bold">Suku Bunga</label>
-                            <input type="text" class="form-control" id="iror_suku_bunga" name="iror_suku_bunga" placeholder="Mengikuti Tingkat Suku Bunga" value="20%" disabled>
+                            <input type="text" class="form-control" id="iror_suku_bunga" name="iror_suku_bunga" placeholder="20%" disabled>
                         </div>
                     </div>
 
@@ -683,12 +683,12 @@
 
                         <div class="mb-3">
                             <label for="miror_usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
-                            <input type="text" class="form-control" id="miror_usia_ekonomis" name="miror_usia_ekonomis" value="5 Tahun" disabled>
+                            <input type="text" class="form-control" id="miror_usia_ekonomis" name="miror_usia_ekonomis" placeholder="5 Tahun" disabled>
                         </div>
 
                         <div class="mb-3">
                             <label for="miror_suku_bunga" class="form-label fw-bold">Suku Bunga</label>
-                            <input type="text" class="form-control" id="miror_suku_bunga" name="miror_suku_bunga" placeholder="Mengikuti Tingkat Suku Bunga" value="20%" disabled>
+                            <input type="text" class="form-control" id="miror_suku_bunga" name="miror_suku_bunga" placeholder="20%" disabled>
                         </div>
                     </div>
 
@@ -783,12 +783,12 @@
 
                         <div class="mb-3">
                             <label for="npv_usia_ekonomis" class="form-label fw-bold">Usia Ekonomis</label>
-                            <input type="text" class="form-control" id="npv_usia_ekonomis" name="npv_usia_ekonomis" value="5 Tahun" disabled>
+                            <input type="text" class="form-control" id="npv_usia_ekonomis" name="npv_usia_ekonomis" placeholder="5 Tahun" disabled>
                         </div>
 
                         <div class="mb-3">
                             <label for="npv_suku_bunga" class="form-label fw-bold">Suku Bunga</label>
-                            <input type="text" class="form-control" id="npv_suku_bunga" name="npv_suku_bunga" placeholder="Mengikuti Tingkat Suku Bunga" value="20%" disabled>
+                            <input type="text" class="form-control" id="npv_suku_bunga" name="npv_suku_bunga" placeholder="20%" disabled>
                         </div>
                     </div>
 
@@ -850,8 +850,8 @@
                     <!-- View NPV -->
                     <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm">
                         <div class="mb-3">
-                            <label for="npv" class="form-label fw-bold">Net Present Value(NPV)</label>
-                            <input type="text" class="form-control" id="npv" name="npv" value="20%" disabled>
+                            <label for="npv_npv" class="form-label fw-bold">Net Present Value(NPV)</label>
+                            <input type="text" class="form-control" id="npv_npv" name="npv_npv" placeholder="Belum Ada Nilai" disabled>
                         </div>
                     </div>
 
@@ -1326,6 +1326,28 @@
 
             kesimpulanInvestasi = ((mirr * 100).toFixed(2) >= sukuBunga) ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
             document.getElementById('miror_kesimpulan_investasi').value = kesimpulanInvestasi;
+
+            function calculateNPV(rate, cashFlows) {
+                let npv = 0;
+                for (let t = 1; t <= cashFlows.length; t++) {
+                    npv += cashFlows[t - 1] / Math.pow(1 + rate, t); // Memulai diskonto dari tahun ke-1
+                }
+                return npv;
+            }
+
+            // Tingkat diskonto (20%)
+            const discountRate = 0.20;
+
+            // Hitung NPV
+            const npv = calculateNPV(discountRate, cashFlows);
+            const npvRound = Math.round(npv);
+
+            // Tampilkan hasil NPV
+            document.getElementById('npv_npv').value = npvRound.toLocaleString("id-ID"); // Format hasil dalam Rupiah
+
+            // Menentukan kesimpulan investasi
+            kesimpulanInvestasi = npv > 0 ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
+            document.getElementById('npv_kesimpulan_investasi').value = kesimpulanInvestasi;
         } else if (metode === "angka_tahun" && !isNaN(hargaPerolehan) && !isNaN(nilaiSisa)) {
             const depreciationFactors = [5, 4, 3, 2, 1];
             const totalDepreciableValue = hargaPerolehan - nilaiSisa;
@@ -1473,6 +1495,28 @@
 
             kesimpulanInvestasi = ((mirr * 100).toFixed(2) >= sukuBunga) ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
             document.getElementById('miror_kesimpulan_investasi').value = kesimpulanInvestasi;
+
+            function calculateNPV(rate, cashFlows) {
+                let npv = 0;
+                for (let t = 1; t <= cashFlows.length; t++) {
+                    npv += cashFlows[t - 1] / Math.pow(1 + rate, t); // Memulai diskonto dari tahun ke-1
+                }
+                return npv;
+            }
+
+            // Tingkat diskonto (20%)
+            const discountRate = 0.20;
+
+            // Hitung NPV
+            const npv = calculateNPV(discountRate, cashFlows);
+            const npvRound = Math.round(npv);
+
+            // Tampilkan hasil NPV
+            document.getElementById('npv_npv').value = npvRound.toLocaleString("id-ID"); // Format hasil dalam Rupiah
+
+            // Menentukan kesimpulan investasi
+            kesimpulanInvestasi = npv > 0 ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
+            document.getElementById('npv_kesimpulan_investasi').value = kesimpulanInvestasi;
         } else if (metode === "saldo_menurun" && !isNaN(hargaPerolehan) && !isNaN(nilaiSisa)) {
             const depreciationRate = 0.369;
             const years = 5;
@@ -1614,6 +1658,28 @@
 
             kesimpulanInvestasi = ((mirr * 100).toFixed(2) >= sukuBunga) ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
             document.getElementById('miror_kesimpulan_investasi').value = kesimpulanInvestasi;
+
+            function calculateNPV(rate, cashFlows) {
+                let npv = 0;
+                for (let t = 1; t <= cashFlows.length; t++) {
+                    npv += cashFlows[t - 1] / Math.pow(1 + rate, t); // Memulai diskonto dari tahun ke-1
+                }
+                return npv;
+            }
+
+            // Tingkat diskonto (20%)
+            const discountRate = 0.20;
+
+            // Hitung NPV
+            const npv = calculateNPV(discountRate, cashFlows);
+            const npvRound = Math.round(npv);
+
+            // Tampilkan hasil NPV
+            document.getElementById('npv_npv').value = npvRound.toLocaleString("id-ID"); // Format hasil dalam Rupiah
+
+            // Menentukan kesimpulan investasi
+            kesimpulanInvestasi = npv > 0 ? 'Investasi Layak Dijalankan' : 'Investasi Tidak Layak Dijalankan';
+            document.getElementById('npv_kesimpulan_investasi').value = kesimpulanInvestasi;
         }
     }
 </script>
