@@ -2,13 +2,18 @@
 <?= $this->section('content'); ?>
 
 <style>
+    /* Video Detail Section */
+    .video-detail-section {
+        padding: 0px 15px;
+    }
+
     .card {
         transition: box-shadow 0.3s ease, transform 0.3s ease;
     }
 
     .card:hover {
-        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-        transform: translateY(-5px);
+        box-shadow: 0px 0px 25px #03AADE !important;
+        transform: translateY(-5px) !important;
     }
 
     .badge {
@@ -55,16 +60,23 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         transform: scale(1.02);
     }
+
+    @media (max-width: 768px) {
+        .kategori-container {
+            padding: 0px 15px;
+        }
+    }
 </style>
 
 
 <!-- Halaman untuk kategori video -->
-<div class="pendaftaran-section pt-5 pb-2 text-center">
+
+<div class="video-detail-section pt-5 pb-2 text-center">
     <h2 class="text-custom-title"><?= lang('Blog.videoTutorialTitle'); ?>: <?= ($lang === 'en') ? $kategori['nama_kategori_video_en'] : $kategori['nama_kategori_video']; ?> </h2>
 </div>
 
 <div class="container">
-    <div class="row row-cols-1 row-cols-md-3 g-4 mt-1 mb-5">
+    <div class="row container row-cols-1 row-cols-md-3 g-4 mt-1 mb-5">
         <!-- Looping untuk setiap video tutorial dalam kategori -->
         <?php if (!empty($video_tutorial)): ?>
             <?php foreach ($video_tutorial as $video): ?>
