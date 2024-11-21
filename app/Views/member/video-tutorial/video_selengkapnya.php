@@ -74,36 +74,38 @@
     <h2 class="text-custom-title">Kategori Video: <?= $kategori['nama_kategori_video']; ?></h2>
 </div>
 
-<div class="row container row-cols-1 row-cols-md-3 g-4 mt-1 mb-5">
-    <!-- Looping untuk setiap video tutorial dalam kategori -->
-    <?php if (!empty($video_tutorial)): ?>
-        <?php foreach ($video_tutorial as $video): ?>
-            <div class="col">
-                <a href="<?= base_url('/member-video-tutorial-detail/' . $video['slug']); ?>" class="text-decoration-none">
-                    <div class="card h-100">
-                        <img src="<?= base_url('/img/' . $video['thumbnail']); ?>" class="card-img-top img-fluid" alt="<?= $video['judul_video']; ?>" style="object-fit: cover; object-position: center; aspect-ratio: 16/9;" loading="lazy">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                <?= $video['judul_video']; ?>
-                            </h5>
-                            <div class="my-2 d-flex justify-content-between align-items-center">
-                                <span class="badge"><?= $kategori['nama_kategori_video']; ?></span>
+<div class="container">
+    <div class="row container row-cols-1 row-cols-md-3 g-4 mt-1 mb-5">
+        <!-- Looping untuk setiap video tutorial dalam kategori -->
+        <?php if (!empty($video_tutorial)): ?>
+            <?php foreach ($video_tutorial as $video): ?>
+                <div class="col">
+                    <a href="<?= base_url('/member-video-tutorial-detail/' . $video['slug']); ?>" class="text-decoration-none">
+                        <div class="card h-100">
+                            <img src="<?= base_url('/img/' . $video['thumbnail']); ?>" class="card-img-top img-fluid" alt="<?= $video['judul_video']; ?>" style="object-fit: cover; object-position: center; aspect-ratio: 16/9;" loading="lazy">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+                                    <?= $video['judul_video']; ?>
+                                </h5>
+                                <div class="my-2 d-flex justify-content-between align-items-center">
+                                    <span class="badge"><?= $kategori['nama_kategori_video']; ?></span>
+                                </div>
+                                <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+                                    <?= $video['deskripsi_video']; ?>
+                                </p>
                             </div>
-                            <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                <?= $video['deskripsi_video']; ?>
-                            </p>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="col-12">
+                <div class="alert alert-info text-center" role="alert">
+                    Belum ada video yang tersedia untuk kategori ini.
+                </div>
             </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <div class="col-12">
-            <div class="alert alert-info text-center" role="alert">
-                Belum ada video yang tersedia untuk kategori ini.
-            </div>
-        </div>
-    <?php endif; ?>
+        <?php endif; ?>
+    </div>
 </div>
 
 <!-- Back Button -->
