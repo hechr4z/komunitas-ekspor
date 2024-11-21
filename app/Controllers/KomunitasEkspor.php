@@ -131,8 +131,6 @@ class KomunitasEkspor extends BaseController
         // Query pencarian: mencari berdasarkan judul, tags, atau deskripsi
         $hasilPencarian = $belajarEksporModel->like('judul_belajar_ekspor', $keyword)
             ->orLike('judul_belajar_ekspor_en', $keyword)
-            ->orLike('tags', $keyword)
-            ->orLike('tags_en', $keyword)
             ->orLike('deskripsi_belajar_ekspor', $keyword)
             ->orLike('deskripsi_belajar_ekspor_en', $keyword)
             ->getAllWithCategory(); // Pastikan method ini mengembalikan data dengan kategori
@@ -1734,7 +1732,6 @@ class KomunitasEkspor extends BaseController
 
         // Query pencarian: mencari berdasarkan judul, tags, atau deskripsi
         $hasilPencarian = $belajarEksporModel->like('judul_belajar_ekspor', $keyword)
-            ->orLike('tags', $keyword)
             ->orLike('deskripsi_belajar_ekspor', $keyword)
             ->getAllWithCategory(); // Pastikan method ini mengembalikan data dengan kategori
 
