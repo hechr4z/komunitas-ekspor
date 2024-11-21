@@ -36,7 +36,6 @@
     }
 
     .container {
-        text-align: center;
         margin: 0 auto;
     }
 
@@ -61,7 +60,7 @@
             </div>
         <?php else: ?>
             <!-- Card -->
-            <div class="d-flex flex-wrap justify-content-center" style="gap: 25px;">
+            <div class="d-flex flex-wrap justify-content-center mt-5" style="gap: 10px;">
                 <?php foreach ($member as $item): ?>
                     <a href="<?= base_url('/member-detail-member/' . $item['slug']); ?>" class="text-decoration-none"
                         style="color: inherit;">
