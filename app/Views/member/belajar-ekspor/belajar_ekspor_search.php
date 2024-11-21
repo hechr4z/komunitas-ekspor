@@ -2,6 +2,11 @@
 <?= $this->section('content'); ?>
 
 <style>
+    /* Artikel Detail Section */
+    .artikel-detail-section {
+        padding: 0px 15px;
+    }
+
     /* css */
     /* start css search */
     .form button {
@@ -261,8 +266,8 @@
     }
 
     .card:hover {
-        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-        transform: translateY(-5px);
+        box-shadow: 0px 0px 25px #03AADE !important;
+        transform: translateY(-5px) !important;
     }
 
     .badge {
@@ -305,6 +310,7 @@
         }
 
         .filter-container {
+            padding: 0px 15px;
             display: flex;
             justify-content: flex-end;
             margin-bottom: 20px;
@@ -325,7 +331,7 @@
 </style>
 
 <!-- judul -->
-<div class="pendaftaran-section container py-5" style="text-align: center;">
+<div class="artikel-detail-section py-5" style="text-align: center;">
     <h2 class="text-custom-title">Belajar Ekspor</h2>
     <?php if (!empty($keyword)): ?>
         <p class="text-custom-paragraph mt-2">Menampilkan hasil pencarian untuk: <strong><?= esc($keyword) ?></strong></p>
@@ -348,8 +354,8 @@
     <!-- Search Bar End -->
 </div>
 
-<section>
-    <div class="container">
+<section class="container">
+    <div class="filter-container">
         <div class="row g-4 mb-5">
             <?php if (!empty($hasilPencarian)): ?>
                 <?php foreach ($hasilPencarian as $item): ?>
