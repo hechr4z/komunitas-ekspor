@@ -105,162 +105,6 @@
 
     /* end search css */
 
-    /* start filter css */
-    .filter-container {
-        display: flex;
-        justify-content: flex-end;
-        margin-bottom: 20px;
-    }
-
-    .menu {
-        font-size: 16px;
-        line-height: 1.6;
-        color: #000000;
-        width: fit-content;
-        display: flex;
-        list-style: none;
-        margin-right: 0;
-        background-color: #03AADE;
-        border-radius: 30px;
-    }
-
-    .menu:hover {
-        background-color: #F2BF02;
-    }
-
-    .menu a {
-        text-decoration: none;
-        color: inherit;
-        font-family: inherit;
-        font-size: inherit;
-        line-height: inherit;
-    }
-
-    .menu .link {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        padding: 12px 36px;
-        border-radius: 30px;
-        overflow: hidden;
-        transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    .menu .link::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #F2BF02;
-        z-index: -1;
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.48s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    .menu .link svg {
-        width: 14px;
-        height: 14px;
-        fill: #ffffff;
-        transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    .menu .item {
-        position: relative;
-    }
-
-    .menu .item .submenu {
-        display: flex;
-        background-color: #fff;
-        flex-direction: column;
-        align-items: center;
-        position: absolute;
-        top: 100%;
-        border-radius: 0 0 30px 30px;
-        left: 0;
-        width: 100%;
-        overflow: hidden;
-        border: 1px solid #cccccc;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-12px);
-        transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
-        z-index: 1;
-        pointer-events: none;
-        list-style: none;
-    }
-
-    .menu .item:hover .submenu {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-        pointer-events: auto;
-        border-top: transparent;
-        border-color: #03AADE;
-    }
-
-    .menu .item:hover .link {
-        color: #ffffff;
-        border-radius: 30px 30px 0 0;
-    }
-
-    .menu .item:hover .link::after {
-        transform: scaleX(1);
-        transform-origin: right;
-    }
-
-    .menu .item:hover .link svg {
-        fill: #ffffff;
-        transform: rotate(-180deg);
-    }
-
-    .submenu .submenu-item {
-        width: 100%;
-        transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    .submenu .submenu-link {
-        display: block;
-        padding: 12px 24px;
-        width: 100%;
-        position: relative;
-        text-align: center;
-        transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    .submenu .submenu-item:last-child .submenu-link {
-        border-bottom: none;
-    }
-
-    .submenu .submenu-link::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: scaleX(0);
-        width: 100%;
-        height: 100%;
-        background-color: #03AADE;
-        z-index: -1;
-        transform-origin: left;
-        transition: transform 0.48s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    .submenu .submenu-link:hover:before {
-        transform: scaleX(1);
-        transform-origin: right;
-    }
-
-    .submenu .submenu-link:hover {
-        color: #ffffff;
-    }
-
-    /* end filter css */
-
     .card {
         transition: box-shadow 0.3s ease, transform 0.3s ease;
     }
@@ -302,44 +146,31 @@
         color: #03AADE;
     }
 
+    .alert {
+        margin: 0 auto;
+        max-width: 600px;
+        /* Sesuaikan lebar maksimal */
+    }
+
+
     /*responsive mobile*/
     @media (max-width: 768px) {
         .form {
             --width-of-input: 250px;
             --height-of-input: 45px;
         }
-
-        .filter-container {
-            padding: 0px 15px;
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 20px;
-        }
-
-        .menu {
-            font-size: 12px;
-            line-height: 1.2;
-            color: #000000;
-            width: fit-content;
-            display: flex;
-            list-style: none;
-            margin-right: 0;
-            background-color: #03AADE;
-            border-radius: 30px;
-        }
     }
 </style>
 
 <!-- judul -->
 <div class="artikel-detail-section py-5" style="text-align: center;">
-    <h2 class="text-custom-title"><?= lang('Blog.searchTitle') ?></h2>
+    <h2 class="artikel-detail-section text-custom-title"><?= lang('Blog.searchTitle') ?></h2>
     <?php if (!empty($keyword)): ?>
         <p class="text-custom-paragraph mt-2"><?= lang('Blog.searchResults') ?> <strong><?= esc($keyword) ?></strong></p>
     <?php endif; ?>
 
     <!-- Search Bar Start -->
     <form class="form mt-4" action="<?= base_url(($lang == 'en') ? 'en/export-learning/search' : 'id/belajar-ekspor/search') ?>" method="GET">
-
         <button>
             <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
                 <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -384,11 +215,12 @@
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
-                <div class="col-12">
+                <div class="col-12 d-flex justify-content-center">
                     <div class="alert alert-info text-center" role="alert">
                         <?= lang('Blog.noArticlesFound') ?>
                     </div>
                 </div>
+
             <?php endif; ?>
         </div>
     </div>
