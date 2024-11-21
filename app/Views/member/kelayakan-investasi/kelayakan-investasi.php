@@ -87,6 +87,35 @@
     #filter-form .form-control {
         width: 100%;
     }
+
+    @media (max-width: 425px) {
+
+        /* Pastikan layout tidak berdampingan */
+        .d-flex.justify-content-between {
+            flex-direction: column;
+            /* Ubah ke kolom (vertikal) */
+            gap: 20px;
+            /* Tambahkan jarak antar elemen */
+        }
+
+        .col-md-5 {
+            width: 100%;
+            /* Buat elemen mengambil lebar penuh layar */
+        }
+
+        .col-md-5 h4 {
+            font-size: 16px;
+            /* Sesuaikan ukuran judul */
+        }
+
+        /* Responsif untuk input suku bunga */
+        #tingkat_suku_bunga {
+            text-align: center;
+            /* Pastikan input berada di tengah */
+            font-size: 14px;
+            /* Ukuran font lebih kecil */
+        }
+    }
 </style>
 
 <!-- Title Section -->
