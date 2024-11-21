@@ -340,6 +340,24 @@
         .bottom-footer {
             margin-left: 20px;
         }
+
+        .footer img {
+            margin-left: 20px;
+        }
+        .footer p {
+            margin-left: 20px;
+        }
+        .footer a {
+            margin-left: 10px;
+        }
+
+        .footer h5 {
+            margin-left: 20px;
+        }
+
+        .col-md-2 p {
+            margin-left: 10px;
+        }
     }
 
 
@@ -354,6 +372,10 @@
             margin: 0;
             box-sizing: border-box;
             overflow: hidden;
+        }
+
+        .icon {
+            margin-left: 10px;
         }
 
         .icon-text {
@@ -424,6 +446,8 @@
             margin-left: 5px;
         }
 
+
+
         .head .dropdown {
             margin-right: 5px;
         }
@@ -484,13 +508,14 @@
 
         .icon {
             font-size: 4px;
-            margin-left: 5px;
+            margin-left: 10px;
         }
 
         .social-link {
             width: 2px;
             position: relative;
             right: 15px;
+            margin-left: 10px;
         }
 
         .language-btn {
@@ -533,6 +558,11 @@
         .sosmed i {
             margin-left: 15px;
             font-size: 15px;
+        }
+
+        .login {
+            width: 40px;
+            height: 25px;
         }
     }
 </style>
@@ -610,7 +640,7 @@
                         <i class="fas fa-map-marker-alt" style="color: white;"></i>
                         <p class="mb-0" style="color: white;"><?= $webprofile[0]['lokasi_web'] ?></p>
                     </div>
-                    <div class=" d-flex align-items-center gap-2 icon-text text-light ms-3">
+                    <div class=" d-flex align-items-center gap-2 icon-text text-light ms-2">
                         <i class="fas fa-envelope" style="color: white;"></i>
                         <p class="mb-0" style="color: white; "><?= $webprofile[0]['email_web'] ?></p>
                     </div>
@@ -717,7 +747,7 @@
                     <?php else: ?>
                         <!-- Jika belum login, tampilkan tombol Login dengan kondisi bahasa -->
                         <a href="<?= base_url('/login') ?>">
-                            <button type="button" class="btn btn-outline-light">Login</button>
+                            <button type="button" class="btn btn-outline-light login">Login</button>
                         </a>
                     <?php endif; ?>
 
