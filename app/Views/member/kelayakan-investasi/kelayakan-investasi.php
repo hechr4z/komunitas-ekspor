@@ -190,38 +190,29 @@
                     <div class="col-md-10 mx-auto mt-4 p-4 rounded shadow-sm bg-white">
                         <h4 class="text-center text-primary mb-3">Prediksi Laba Setelah Pajak (EAT)</h4>
 
-                        <!-- Editable Table -->
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <thead class="table-primary">
-                                    <tr>
-                                        <th>Tahun Ke-1</th>
-                                        <th>Tahun Ke-2</th>
-                                        <th>Tahun Ke-3</th>
-                                        <th>Tahun Ke-4</th>
-                                        <th>Tahun Ke-5</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <input type="text" class="form-control" id="eat_1" placeholder="Masukkan Prediksi" oninput="eat(this, 1)">
-                                        </td>
-                                        <td>
-                                            <input type="text" class="form-control" id="eat_2" placeholder="Masukkan Prediksi" oninput="eat(this, 2)">
-                                        </td>
-                                        <td>
-                                            <input type="text" class="form-control" id="eat_3" placeholder="Masukkan Prediksi" oninput="eat(this, 3)">
-                                        </td>
-                                        <td>
-                                            <input type="text" class="form-control" id="eat_4" placeholder="Masukkan Prediksi" oninput="eat(this, 4)">
-                                        </td>
-                                        <td>
-                                            <input type="text" class="form-control" id="eat_5" placeholder="Masukkan Prediksi" oninput="eat(this, 5)">
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="mb-3">
+                            <label for="eat_1" class="form-label fw-bold">Tahun ke-1</label>
+                            <input type="text" class="form-control" id="eat_1" name="eat_1" placeholder="Masukkan Prediksi Tahun ke-1" oninput="eat(this, 1)">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="eat_2" class="form-label fw-bold">Tahun ke-2</label>
+                            <input type="text" class="form-control" id="eat_2" name="eat_2" placeholder="Masukkan Prediksi Tahun ke-2" oninput="eat(this, 2)">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="eat_3" class="form-label fw-bold">Tahun ke-3</label>
+                            <input type="text" class="form-control" id="eat_3" name="eat_3" placeholder="Masukkan Prediksi Tahun ke-3" oninput="eat(this, 3)">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="eat_4" class="form-label fw-bold">Tahun ke-4</label>
+                            <input type="text" class="form-control" id="eat_4" name="eat_4" placeholder="Masukkan Prediksi Tahun ke-4" oninput="eat(this, 4)">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="eat_5" class="form-label fw-bold">Tahun ke-5</label>
+                            <input type="text" class="form-control" id="eat_5" name="eat_5" placeholder="Masukkan Prediksi Tahun ke-5" oninput="eat(this, 5)">
                         </div>
                     </div>
 
