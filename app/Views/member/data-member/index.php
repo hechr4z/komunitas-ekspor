@@ -49,7 +49,8 @@
     <!-- judul -->
     <div class="py-5" style="text-align: center;">
         <h2 class="text-custom-title">Data Member</h2>
-        <p class="text-custom-paragraph mt-2">Berikut data member Komunitas Ekspor Indonesia</p>
+        <p class="text-custom-paragraph mt-2">Berikut adalah halaman yang menampilkan data member dari Komunitas Ekspor
+            Indonesia</p>
     </div>
     <div class="container">
         <?php if (empty($member)): ?>
