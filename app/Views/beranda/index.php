@@ -19,6 +19,49 @@ $this->setData([
 <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 
 <style>
+    /* card member plan */
+    /* Card Hover Effect */
+    .card {
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Recommended Label */
+    .recommended-label {
+        background-color: #FF5733;
+        font-size: 0.9rem;
+        font-weight: bold;
+        top: -10px;
+        left: px;
+        border-radius: 5px;
+        z-index: 2;
+    }
+
+    /* Scrollable List Styling */
+    .benefits-list {
+        text-align: left;
+        font-size: 0.9rem;
+        padding-right: 10px;
+        scrollbar-width: thin;
+        /* For Firefox */
+    }
+
+    .benefits-list::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .benefits-list::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 3px;
+    }
+
+    /* end */
+
+
     .carousel-item img {
         width: 100%;
         height: 500px;
@@ -127,6 +170,17 @@ $this->setData([
     /* end */
 
     @media (max-width: 768px) {
+
+        .header,
+        .container,
+        .head {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
         .carousel-item img {
             max-height: 400px;
         }
@@ -152,6 +206,10 @@ $this->setData([
             font-size: 25px;
         }
 
+        .isi {
+            margin-right: 50px;
+        }
+
         .popular h5 {
             font-size: 15px;
         }
@@ -161,7 +219,7 @@ $this->setData([
         }
 
         .benefit p {
-            font-size: 10px;
+            font-size: 13px;
         }
 
         .peta h1 {
@@ -169,7 +227,7 @@ $this->setData([
         }
 
         .manfaat p {
-            font-size: 10px;
+            font-size: 13px;
             margin-top: 15px;
         }
 
@@ -209,10 +267,6 @@ $this->setData([
             /* Adjust heading size */
         }
 
-        .card-body {
-            padding: 20px;
-            /* Adjust padding for smaller screens */
-        }
 
         .daftar-img {
             width: 100%;
@@ -267,11 +321,34 @@ $this->setData([
             height: auto !important;
             margin-top: 0;
         }
+
+        .card-member {
+            position: relative;
+            left: 25px;
+        }
+
+        .card-body a {
+            margin-left: 20px;
+        }
+
+        .gambar-peta {
+            position: relative;
+            left: 45px;
+        }
+
+        .pacakage {
+            margin-left: 40px;
+        }
     }
 
     @media (max-width: 576px) {
         .benefit p {
             font-size: 13px;
+        }
+
+        .gambar-peta {
+            position: relative;
+            left: 35px;
         }
 
         .peta h5 {
@@ -280,6 +357,10 @@ $this->setData([
 
         .peta h1 {
             font-size: 20px;
+        }
+
+        .card-body a {
+            margin-left: 20px;
         }
 
         .member h5 {
@@ -301,6 +382,13 @@ $this->setData([
         .manfaat h6 {
             font-size: 18px;
         }
+        .kata1 h1 {
+            font-size: 25px;
+            margin-left: 30px;
+        }
+        .pacakage {
+            margin-right: 10px;
+        }
     }
 
     @media (max-width: 425px) {
@@ -310,8 +398,15 @@ $this->setData([
             position: relative;
             left: 40px;
         }
+
         .member h1 {
             font-size: 15px;
+        }
+
+        .gambar-peta {
+            position: relative;
+            left: 37px;
+            width: 350px;
         }
 
         .member h5 {
@@ -350,6 +445,20 @@ $this->setData([
             font-size: 15px;
             margin: 10px;
         }
+
+        .kata1 h1 {
+            font-size: 19px;
+            position: relative;
+            right: 15px;
+        }
+
+        .kata1 h5 {
+            font-size: 17px;
+        }
+        .pacakage {
+            margin-right: 40px;
+        }
+        
     }
 
     @media (max-width: 375px) {
@@ -387,6 +496,24 @@ $this->setData([
 
         .peta h1 {
             font-size: 13px;
+        }
+
+        .kata1 h1 {
+            font-size: 15px;
+            position: relative;
+            right: 15px;
+        }
+
+        .kata1 h5 {
+            font-size: 14px;
+        }
+        .pacakage {
+            margin-right: 40px;
+        }
+
+        .gambar-peta .map {
+            position: relative;
+            right: 50px;
         }
     }
 
@@ -473,8 +600,26 @@ $this->setData([
         .col-md-6 p {
             margin-right: 20px;
         }
+
         .col-md-6 a {
             margin-left: 10px;
+        }
+
+        .kata1 h1 {
+            font-size: 14px;
+            position: relative;
+            right: 15px;
+        }
+
+        .kata1 h5 {
+            font-size: 14px;
+        }
+        .pacakage {
+            margin-right: 40px;
+        }
+        .gambar-peta .map {
+            position: relative;
+            right: 110px;
         }
     }
 </style>
@@ -587,7 +732,7 @@ $this->setData([
 
 <!-- tombol daftar -->
 <section class="container-fluid text-dark rounded-5 daftar-section" style="background-color: #03AADE; max-width: 1100px; margin-top: 80px; padding: 40px;">
-    <div class="row align-items-center text-center text-md-start">
+    <div class="isi row align-items-center text-center text-md-start">
         <!-- Teks Section -->
         <div class="col-md-6 mb-4 mb-md-0 d-flex flex-column align-items-center align-items-md-start">
             <div class="card-body p-3 p-md-5">
@@ -677,8 +822,6 @@ $this->setData([
 </section>
 <!-- end -->
 
-
-
 <!-- ajakan -->
 <section class="animasi mt-5 footer-custom" style="background-color: #03AADE; width: 100%; height: 350px;">
     <div class="background-image animated-element">
@@ -695,6 +838,130 @@ $this->setData([
 </section>
 <!-- ajakan end -->
 
+<!-- Card Section -->
+<section class="container mt-5">
+    <div class="kata1 text-center">
+    <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center align-items-center mb-2">
+                <div class="border-top6 mx-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
+            </div>
+            <h5 class="fw-lighter">YOUR PACKAGE</h5>
+            <div class="d-flex justify-content-center align-items-center mb-2">
+                <div class="border-top7 ms-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
+            </div>
+        </div>
+        <h1 class="fw-bold text-dark"><span style="color: #03AADE;">CHOOSE THE RIGHT PACKAGE</span> FOR YOU</h1>
+    </div>
+
+    <div class="pacakage row mt-3 g-4">
+        <!-- Non Member Card -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-lg rounded text-center">
+                <div class="card-header bg-secondary text-white py-4">
+                    <h5 class="mb-0 fw-bold">Non Member</h5>
+                </div>
+                <div class="card-body">
+                    <i class="fas fa-user-slash fa-3x text-secondary mb-4"></i>
+                    <h6 class="fw-bold">Basic Access</h6>
+                    <h6 class="fw-bold text-secondary"> Rp. 0</h6>
+                    <p>Akses dasar untuk eksplorasi awal</p>
+                    <div class="benefits-list" style="max-height: 150px; overflow-y: auto;">
+                        <hr>
+                        <p class="mb-2">- Beranda</p>
+                        <hr>
+                        <p class="mb-2">- Tentang KEI</p>
+                        <hr>
+                    </div>
+                </div>
+                <div class="card-footer bg-light py-3">
+                    <button class="btn btn-outline-secondary btn-sm" disabled>Current Package</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Member Free Card -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-lg rounded text-center">
+                <div class="card-header bg-info text-white py-4">
+                    <h5 class="mb-0 fw-bold">Member Free</h5>
+                </div>
+                <div class="card-body">
+                    <i class="fas fa-user fa-3x text-info mb-4"></i>
+                    <h6 class="fw-bold">Enhanced Features</h6>
+                    <h6 class="fw-bold text-info">Didaftrakan</h6>
+                    <p>Bergabunglah sekarang untuk lebih banyak fitur!</p>
+                    <div class="benefits-list" style="max-height: 150px; overflow-y: auto;">
+                        <hr>
+                        <p class="mb-2">- Beranda</p>
+                        <hr>
+                        <p class="mb-2">- Tentang KEI</p>
+                        <hr>
+                        <p class="mb-2">- Belajar Ekspor (10 materi)</p>
+                        <hr>
+                        <p class="mb-2">- Video Tutorial (3 video)</p>
+                        <hr>
+                        <p class="mb-2">- Aplikasi Kalkulator Harga Ekspor</p>
+                        <hr>
+                        <p class="mb-2">- Aplikasi MPM</p>
+                        <hr>
+                        <p class="mb-2">- Data produk (1)</p>
+                        <hr>
+                    </div>
+                </div>
+                <div class="card-footer bg-light py-3">
+                    <button class="btn btn-info btn-sm">Join Now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Member Premium Card -->
+        <div class="col-md-4 position-relative">
+            <div class="recommended-label position-absolute text-white px-3 py-1">Recommended</div>
+            <div class="card h-100 border-0 shadow-lg rounded text-center">
+                <div class="card-header bg-primary text-white py-4">
+                    <h5 class="mb-0 fw-bold">Member Premium</h5>
+                </div>
+                <div class="card-body">
+                    <i class="fas fa-crown fa-3x text-primary mb-4"></i>
+                    <h6 class="fw-bold">Full Access</h6>
+                    <h6 class="fw-bold text-primary"> Rp. 150.000 / Bulan</h6>
+                    <p>Dapatkan semua fitur premium sekarang juga!</p>
+                    <div class="benefits-list" style="max-height: 150px; overflow-y: auto;">
+                        <hr>
+                        <p class="mb-2">- Beranda</p>
+                        <hr>
+                        <p class="mb-2">- Tentang KEI</p>
+                        <hr>
+                        <p class="mb-2">- Belajar Ekspor (10 materi)</p>
+                        <hr>
+                        <p class="mb-2">- Video Tutorial (3 video)</p>
+                        <hr>
+                        <p class="mb-2">- Aplikasi Kalkulator Harga Ekspor</p>
+                        <hr>
+                        <p class="mb-2">- Aplikasi MPM</p>
+                        <hr>
+                        <p class="mb-2">- Aplikasi Website Audit</p>
+                        <hr>
+                        <p class="mb-2">- Aplikasi Kelayakan Investasi</p>
+                        <hr>
+                        <p class="mb-2">- Data member</p>
+                        <hr>
+                        <p class="mb-2">- Data buyers</p>
+                        <hr>
+                        <p class="mb-2">- Mendapatkan Landing-Page KEI</p>
+                        <hr>
+                        <p class="mb-2">- Data produk (3)</p>
+                        <hr>
+                    </div>
+                </div>
+                <div class="card-footer bg-light py-3">
+                    <button class="btn btn-primary btn-sm">Upgrade Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- peta -->
 <section class="container peta2">
     <div class="peta mt-5">
@@ -709,8 +976,8 @@ $this->setData([
         </div>
         <h1 class="text-center" data-en="TOP MEMBERS SPOTLIGHT" data-id="SOROTAN MEMBER UNGGUL"><b><?= lang('Blog.communityMemberSpotlightTitle'); ?><span style="color: #03AADE;"> <?= lang('Blog.communityMemberSpotlightTitle2'); ?></span></b></h1>
     </div>
-    <div class="container mt-5">
-        <div id="map" style="width: 100%; height: 700px;"></div>
+    <div class="container gambar-peta mt-5">
+        <div id="map" class="map" style="width: 100%; height: 700px;"></div>
     </div>
 </section>
 <!-- end -->
