@@ -18,29 +18,64 @@
     <link rel="alternate" hreflang="id" href="#" />
     <link rel="alternate" hreflang="en" href="#" />
 
+
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Marope:wght@400;700&display=swap" rel="stylesheet">
-    <style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
-            #about {
-        background: #f9f9f9;
-        padding: 60px 0;
-    }
-    .image-logo {
-        width: 100%;
-        height: 100%;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-    }
-    .btn-primary {
-        background-color: #007bff;
-        border-color: #007bff;
-    }
-    .btn-primary:hover {
-        background-color: #0056b3;
-        border-color: #0056b3;
-    }
+    <style>
+.whatsapp-float {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 30px;
+    background-color: #25d366;
+    color: white; /* Warna ikon */
+    border-radius: 50%;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.whatsapp-float i {
+    color: white; /* Warna ikon tetap putih */
+}
+
+.whatsapp-float:hover {
+    background-color: #128c7e; /* Warna latar belakang saat hover */
+    text-decoration: none;
+}
+
+
+        #about {
+            background: #f9f9f9;
+            padding: 60px 0;
+        }
+
+        .image-logo {
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
         body {
             font-family: 'Manrope', sans-serif;
             margin: 0;
@@ -282,7 +317,7 @@
             font-size: 32px;
             margin-bottom: 60px;
             background: linear-gradient(to right, #009EF2, #F32323);
-            
+
             -webkit-text-fill-color: transparent;
             font-weight: 500;
         }
@@ -695,48 +730,48 @@
 
     <!-- Static Image -->
     <div class="static-image">
-        <img src="<?= base_url('img/slider-1.jpg') ?>" class="d-block w-100" alt="Slide" loading="lazy">
+        <img src="<?= base_url('img/slider-1.jpg') ?>" class="d-block w-100" style="height: 650px;" alt="Slide" loading="lazy">
     </div>
 
-<!-- About Section -->
-<section id="about" class="py-5 bg-light">
-    <div class="container">
-        <div class="row align-items-center">
-            <!-- Logo Section -->
-            <div class="col-md-5 text-center mb-4 mb-md-0">
-                <div class="logo-sonic">
-                    <img src="<?= base_url('img/p21.jpg') ?>" alt="Logo SonicPulse" class="image-logo img-fluid" loading="lazy">
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Logo Section -->
+                <div class="col-md-5 text-center mb-4 mb-md-0">
+                    <div class="logo-sonic">
+                        <img src="<?= base_url('img/p21.jpg') ?>" alt="Logo SonicPulse" class="image-logo img-fluid" loading="lazy">
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Text Section -->
-            <div class="col-md-7">
-                <h2 class="display-5 fw-bold">Profile Perusahaan</h2>
-                <p class="lead text-muted">
-                    Welcome to SonicPulse! We are dedicated to delivering high-quality sound experiences. Our team works tirelessly to provide innovative and creative sound solutions tailored to your needs.
-                </p>
-                <p class="text-muted">
-                    With years of experience in the industry, SonicPulse has grown from a small company into a trusted provider of advanced sound solutions. Our mission is to bring immersive and cutting-edge audio experiences to all our clients.
-                </p>
 
-                <!-- Additional Info Section -->
-                <div class="mt-4">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <strong>Data Produk:</strong> High-Quality Audio Devices
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Kategori Produk:</strong> Speakers, Headphones, Audio Accessories
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Tahun Didirikan:</strong> 2015
-                        </li>
-                    </ul>
+                <!-- Text Section -->
+                <div class="col-md-7">
+                    <h2 class="display-5 fw-bold">Profile Perusahaan</h2>
+                    <p class="lead text-muted">
+                        Welcome to SonicPulse! We are dedicated to delivering high-quality sound experiences. Our team works tirelessly to provide innovative and creative sound solutions tailored to your needs.
+                    </p>
+                    <p class="text-muted">
+                        With years of experience in the industry, SonicPulse has grown from a small company into a trusted provider of advanced sound solutions. Our mission is to bring immersive and cutting-edge audio experiences to all our clients.
+                    </p>
+
+                    <!-- Additional Info Section -->
+                    <div class="mt-4">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <strong>Data Produk:</strong> High-Quality Audio Devices
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Kategori Produk:</strong> Speakers, Headphones, Audio Accessories
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Tahun Didirikan:</strong> 2015
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Produk Kami -->
     <div class="container-fluid produk-kami">
@@ -827,11 +862,20 @@
         </div>
     </div>
 
+    <a href="https://wa.me/085722715317351" target="_blank" class="whatsapp-float">
+    <i class="fab fa-whatsapp whatsapp-icon"></i>
+</a>
+
+
     <!-- Footer -->
     <footer>
         <div class="text-center p-3" style="background-color: #555; color:#ffff;"> &copy; 1 Januari Copyright:
             Footer123
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
