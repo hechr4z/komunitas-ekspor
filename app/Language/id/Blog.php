@@ -93,7 +93,7 @@ return [
 
     //halaman data member
     'dataMemberTitle' => 'Data Member',
-    'dataMemberSubtitle' => 'Berikut data member Komunitas Ekspor Indonesia',
+    'dataMemberSubtitle' => 'Berikut adalah halaman yang menampilkan data member dari Komunitas Ekspor Indonesia',
     'btndataMember' => 'Lihat Profil',
 
     //halaman detail data member
@@ -164,7 +164,7 @@ return [
     //halaman data buyers
     // Buyers Data Section
     'buyersDataTitle' => 'Data Buyers',
-    'buyersDataDescription' => 'Berikut data buyers Komunitas Ekspor Indonesia',
+    'buyersDataDescription' => 'Berikut adalah halaman yang menampilkan data buyers dari Komunitas Ekspor Indonesia',
 
     // Search Results Section
     'searchResultsFor' => 'Menampilkan hasil pencarian untuk:',

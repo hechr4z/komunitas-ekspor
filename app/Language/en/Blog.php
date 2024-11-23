@@ -88,7 +88,7 @@ return [
 
     //halaman data member
     'dataMemberTitle' => 'Member Data',
-    'dataMemberSubtitle' => 'Here is the member data of the Indonesian Export Community',
+    'dataMemberSubtitle' => 'The following is a page that displays member data from Indonesian Export Commodities',
     'btndataMember' => 'See Profile',
 
     //halaman detail data member
@@ -164,7 +164,7 @@ return [
     //halaman data buyers
     // Buyers Data Section
     'buyersDataTitle' => 'Buyers Data',
-    'buyersDataDescription' => 'Here is the buyers data for the Indonesian Export Community',
+    'buyersDataDescription' => 'The following is a page that displays buyers data from the Indonesian Export Community.',
 
     // Search Results Section
     'searchResultsFor' => 'Displaying search results for:',
