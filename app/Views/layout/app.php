@@ -306,6 +306,8 @@
     @media (max-width: 768px) {
         .icon {
             font-size: 10px;
+            position: relative;
+            left: 20px;
         }
 
         .border-top {
@@ -318,45 +320,60 @@
             margin-right: 20px;
         }
 
-        .bottom-footer {
-            margin-left: 110px;
+        .bottom-footer p {
+            margin-left: 50px;
+        }
+        
+        .navbar img {
+            margin-left: 20px;
+        }
+        .footer img {
+            margin-left: 20px;
+        }
+        .col-md-6 p {
+            margin-left: 20px;
+        }
+        .container2 {
+            margin-left: 20px;
         }
     }
 
     @media (max-width: 576px) {
-        .icon {
-            font-size: 8px;
-        }
 
         .header,
         .container,
         .head {
-            padding: 0;
-            margin: 0 auto;
-            overflow-x: hidden;
             width: 100%;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .icon {
+            font-size: 8px;
         }
 
+
         .bottom-footer {
-            margin-left: 20px;
+            text-align: center;
         }
 
         .footer img {
-            margin-left: 20px;
+            margin-left: 40px;
         }
         .footer p {
-            margin-left: 20px;
+            margin-left: 40px;
         }
         .footer a {
             margin-left: 10px;
         }
 
         .footer h5 {
-            margin-left: 20px;
+            margin-left: 40px;
         }
 
         .col-md-2 p {
-            margin-left: 10px;
+            margin-left: 30px;
         }
     }
 
@@ -364,9 +381,7 @@
     @media (max-width: 425px) {
         .header,
         .container,
-        .head,
-        .icon,
-        .icon-text {
+        .head {
             width: 100%;
             padding: 0;
             margin: 0;
@@ -374,8 +389,8 @@
             overflow: hidden;
         }
 
-        .icon {
-            margin-left: 10px;
+        .navbar-custom button {
+            margin-right: 10px;
         }
 
         .icon-text {
@@ -407,16 +422,20 @@
         }
 
         .footer img {
-            margin-left: 5px;
+            margin-left: 30px;
         }
 
         .footer p {
-            margin-left: 10px;
+            margin-left: 35px;
             font-size: 10px;
         }
 
         .col-md-2 h5 {
-            margin-left: 10px;
+            margin-left: 35px;
+        }
+
+        .col-md-2 p {
+            margin-left: 25px;
         }
 
         .py-4 p {
@@ -425,15 +444,16 @@
             left: 10px;
             top: 4px;
         }
+
+        .bottom-footer p {
+            margin-right: 60px;
+        }
     }
 
     @media (max-width: 375px) {
 
         .header,
-        .container,
-        .head,
-        .icon,
-        .icon-text {
+        .head {
             width: 100%;
             padding: 0;
             margin: 0;
@@ -442,8 +462,7 @@
         }
 
         .icon-text {
-            font-size: 5px;
-            margin-left: 5px;
+            font-size: 4.5px;
         }
 
 
@@ -472,16 +491,20 @@
         }
 
         .footer img {
-            margin-left: 5px;
+            margin-left: 25px;
         }
 
         .footer p {
-            margin-left: 10px;
-            font-size: 10px;
+            margin-left: 30px;
+            font-size: 13px;
         }
 
         .col-md-2 h5 {
-            margin-left: 10px;
+            margin-left: 30px;
+        }
+
+        .col-md-2 p {
+            margin-left: 20px;
         }
 
         .py-4 p {
@@ -496,9 +519,7 @@
 
         .header,
         .container,
-        .head,
-        .icon,
-        .icon-text {
+        .head {
             width: 100%;
             padding: 0;
             margin: 0;
@@ -506,9 +527,8 @@
             overflow: hidden;
         }
 
-        .icon {
-            font-size: 4px;
-            margin-left: 10px;
+        .icon-text {
+            font-size: 3,5px;
         }
 
         .social-link {
@@ -531,16 +551,14 @@
             margin-left: 5px;
         }
 
-        .bottom-footer {
-            font-size: 9px;
-            position: relative;
-            right: 20px;
-            top: 5px;
+        .col-md-6 p {
+            margin-left: 25px;
+            font-size: 10px;
         }
 
-        .col-md-6 p {
-            margin-left: 10px;
-            font-size: 15px;
+        .col-md-6 a {
+            position: relative;
+            right: 10px;
         }
 
         .col-md-6 img {
@@ -548,11 +566,11 @@
         }
 
         .col-md-2 p {
-            margin-left: 15px;
+            margin-left: 20px;
         }
 
         .col-md-2 h5 {
-            margin-left: 15px;
+            margin-left: 28px;
         }
 
         .sosmed i {
@@ -640,7 +658,7 @@
                         <i class="fas fa-map-marker-alt" style="color: white;"></i>
                         <p class="mb-0" style="color: white;"><?= $webprofile[0]['lokasi_web'] ?></p>
                     </div>
-                    <div class=" d-flex align-items-center gap-2 icon-text text-light ms-2">
+                    <div class="d-flex align-items-center gap-2 icon-text text-light ms-2">
                         <i class="fas fa-envelope" style="color: white;"></i>
                         <p class="mb-0" style="color: white; "><?= $webprofile[0]['email_web'] ?></p>
                     </div>
@@ -845,7 +863,7 @@
     <!-- Bottom Footer -->
     <div class="py-4" style="background-color: #F2BF02; height: 70px;">
         <div class="container bottom-footer">
-            <p class="text-light mb-0 ms-5 ps-1"><?= $webprofile[0]['footer_text'] ?></p>
+            <p class="text-light" style="text-align: center;"><?= $webprofile[0]['footer_text'] ?></p>
         </div>
     </div>
 
