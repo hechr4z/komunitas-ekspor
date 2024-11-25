@@ -67,6 +67,42 @@ class KomunitasEkspor extends BaseController
         return view('beranda/index', $data);
     }
 
+    public function freeindex()
+    {
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
+        $model_slider = new Slider();
+        $model_member = new Member();
+        $model_manfaatjoin = new ManfaatJoin();
+
+        $slider = $model_slider->findAll();
+        $member = $model_member->where('role', 'member')->findAll();
+        $top4_member = $model_member
+            ->where('role', 'member')
+            ->orderBy('popular_point', 'DESC')
+            ->limit(4)
+            ->findAll();
+        $manfaatjoin = $model_manfaatjoin->findAll();
+
+        foreach ($member as &$item) {
+            $item['slug'] = url_title($item['username'], '-', true);
+        }
+
+        $data['slider'] = $slider;
+        $data['member'] = $member;
+        $data['manfaatjoin'] = $manfaatjoin;
+        $data['top4_member'] = $top4_member;
+
+        return view('member/beranda/index', $data);
+    }
+
     public function belajar_ekspor($slug = null)
     {
         $lang = session()->get('lang') ?? 'id';
@@ -413,12 +449,29 @@ class KomunitasEkspor extends BaseController
             ($referral ? "Kode Referral: $referral\n" : "");
 
         // Nomor tujuan WA
-        $nomor_wa = '6283153270924'; // Ganti dengan nomor WA yang benar
+        $nomor_wa = '6283153270334'; // Ganti dengan nomor WA yang benar
 
         // Membuat URL WhatsApp dengan pesan
         $whatsapp = "https://wa.me/$nomor_wa?text=" . urlencode($pesan);
 
         // Redirect ke WhatsApp dengan pesan yang sudah dibuat
+        return redirect()->to($whatsapp);
+    }
+
+    public function daftarMemberPremium(){
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_member = new Member();
+
+        $member = $model_member->where('id_member', $user_id)->first();
+
+        $pesan = "Saya " . $member['username'] . ", Ingin Mendaftar Member Premium Komunitas Ekspor Indonesia!";
+
+        $nomor_wa = '6283153270334';
+
+        $whatsapp = "https://wa.me/$nomor_wa?text=" . urlencode($pesan);
+
         return redirect()->to($whatsapp);
     }
 
