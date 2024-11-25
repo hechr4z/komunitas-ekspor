@@ -2,6 +2,15 @@
 <?= $this->section('content'); ?>
 
 <style>
+    /* Artikel Detail Section */
+    .pendaftaran-section {
+        padding: 0px 15px;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
     /*css*/
     .card {
         margin-top: 20px;
@@ -18,7 +27,8 @@
     }
 
     .line-separator {
-        width: 65%;
+        width: 100%;
+        min-width: 50px;
         height: 2px;
         background-color: #000;
         margin: 20px 0;
@@ -81,6 +91,11 @@
 
     /*responsive mobile*/
     @media (max-width: 768px) {
+
+        .h3 {
+            margin-top: 30px;
+        }
+
         .form-group {
             display: block;
         }
@@ -103,14 +118,14 @@
 
 
 <!-- judul -->
-<div class="pendaftaran-section py-5" style="text-align: center;">
+<div class="pendaftaran-section pt-5 text-center">
     <h2 class="text-custom-title"><?= lang('Blog.pendaftaranJudul'); ?></h2>
     <p class="text-custom-paragraph mt-2"><?= lang('Blog.pendaftaranDeskripsi'); ?></p>
 </div>
 
 <!-- Form Pendaftaran -->
 <div class="container py-5">
-    <div class="row gx-4">
+    <div class="row container gx-4">
         <div class="col-md-6 left-section">
             <h3><?= lang('Blog.keuntunganMember'); ?></h3>
             <hr class="line-separator">
