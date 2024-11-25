@@ -323,16 +323,19 @@
         .bottom-footer p {
             margin-left: 50px;
         }
-        
+
         .navbar img {
             margin-left: 20px;
         }
+
         .footer img {
             margin-left: 20px;
         }
+
         .col-md-6 p {
             margin-left: 20px;
         }
+
         .container2 {
             margin-left: 20px;
         }
@@ -349,6 +352,7 @@
             box-sizing: border-box;
             overflow: hidden;
         }
+
         .icon {
             font-size: 8px;
         }
@@ -361,9 +365,11 @@
         .footer img {
             margin-left: 40px;
         }
+
         .footer p {
             margin-left: 40px;
         }
+
         .footer a {
             margin-left: 10px;
         }
@@ -379,6 +385,7 @@
 
 
     @media (max-width: 425px) {
+
         .header,
         .container,
         .head {
@@ -528,7 +535,7 @@
         }
 
         .icon-text {
-            font-size: 3,5px;
+            font-size: 3, 5px;
         }
 
         .social-link {
@@ -723,9 +730,8 @@
                                     <?php echo lang('Blog.headerArtikel'); ?>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-light">
-                                    <li><a class="dropdown-item nav-link" href="<?= base_url($lang .  '/' . $belajarEksporLink) ?>"><?php echo lang('Blog.headerArtikel'); ?></a></li>
-                                    <li><a class="dropdown-item nav-link" href="<?= base_url($lang . '/' . $videoTutorialLink) ?>"><?php echo lang('Blog.headerVideo'); ?>
-                                        </a></li>
+                                    <li onclick="showSweetAlertBE()"><a class="dropdown-item nav-link" href="#"><?php echo lang('Blog.headerArtikel'); ?></a></li>
+                                    <li onclick="showSweetAlertTV()"><a class="dropdown-item nav-link" href="#"><?php echo lang('Blog.headerVideo'); ?></a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -734,8 +740,8 @@
                         <a class="nav-link" href="<?= base_url($lang .  '/' . $pendaftaranLink) ?>"><?php echo lang('Blog.headerPendaftaran'); ?>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url($lang .  '/' . $memberLink) ?>"><?php echo lang('Blog.headerMember'); ?></a>
+                    <li class="nav-item" onclick="showSweetAlertDM()">
+                        <a class="nav-link" href="#"><?php echo lang('Blog.headerMember'); ?></a>
                     </li>
                     <div id="navbarNavDarkDropdown">
                         <ul class="navbar-nav">
@@ -747,13 +753,13 @@
                                     <li onclick="showSweetAlertKHE()"><a class="dropdown-item nav-link" href="#"><?php echo lang('Blog.headerApp1'); ?></a></li>
                                     <li onclick="showSweetAlertMPP()"><a class="dropdown-item nav-link" href="#"><?php echo lang('Blog.headerApp2'); ?></a></li>
                                     <li onclick="showSweetAlertAW()"><a class="dropdown-item nav-link" href="#"><?php echo lang('Blog.headerApp3'); ?></a></li>
-                                    <li onclick="showSweetAlertKB()"><a class="dropdown-item nav-link" href="#"><?php echo lang('Blog.headerApp4'); ?></a></li>
+                                    <li onclick="showSweetAlertKI()"><a class="dropdown-item nav-link" href="#"><?php echo lang('Blog.headerApp4'); ?></a></li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url($lang . '/' . $buyersLink) ?>"><?php echo lang('Blog.headerBuyers'); ?>
+                    <li class="nav-item" onclick="showSweetAlertDB()">
+                        <a class="nav-link" href="#"><?php echo lang('Blog.headerBuyers'); ?>
                         </a>
                     </li>
                     <div class="border-top line " style="width: 1.5px; height: 40px; background-color: white; margin: 0 23px;"></div>
@@ -839,10 +845,10 @@
                     <div class="col-md-2">
                         <h5 class="mt-4"><b>Menu</b></h5>
                         <div class="list-unstyled pt-2">
-                            <p><a href="<?= base_url($lang .  '/' . $belajarEksporLink) ?>" class="footer-link"><?php echo lang('Blog.headerArtikel'); ?></a></p>
-                            <p><a href="<?= base_url($lang .  '/' . $videoTutorialLink) ?>" class="footer-link"><?php echo lang('Blog.headerVideo'); ?></a></p>
-                            <p><a href="<?= base_url($lang .  '/' . $memberLink) ?>" class="footer-link"><?php echo lang('Blog.headerMember'); ?></a></p>
-                            <p><a href="<?= base_url($lang .  '/' . $buyersLink) ?>" class="footer-link"><?php echo lang('Blog.headerBuyers'); ?></a></p>
+                            <p onclick="showSweetAlertBE()"><a href="#" class="footer-link"><?php echo lang('Blog.headerArtikel'); ?></a></p>
+                            <p onclick="showSweetAlertTV()"><a href="#" class="footer-link"><?php echo lang('Blog.headerVideo'); ?></a></p>
+                            <p onclick="showSweetAlertDM()"><a href="#" class="footer-link"><?php echo lang('Blog.headerMember'); ?></a></p>
+                            <p onclick="showSweetAlertDB()"><a href="#" class="footer-link"><?php echo lang('Blog.headerBuyers'); ?></a></p>
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -851,7 +857,7 @@
                             <p onclick="showSweetAlertKHE()"><a href="#" class="footer-link"><?php echo lang('Blog.headerApp1'); ?></a></p>
                             <p onclick="showSweetAlertMPM()"><a href="#" class="footer-link"><?php echo lang('Blog.headerApp2'); ?></a></p>
                             <p onclick="showSweetAlertAW()"><a href="#" class="footer-link"><?php echo lang('Blog.headerApp3'); ?></a></p>
-                            <p onclick="showSweetAlertKB()"><a href="#" class="footer-link"><?php echo lang('Blog.headerApp4'); ?></a></p>
+                            <p onclick="showSweetAlertKI()"><a href="#" class="footer-link"><?php echo lang('Blog.headerApp4'); ?></a></p>
                         </div>
                     </div>
                 </div>
@@ -878,6 +884,57 @@
                 navbar.classList.remove('scrolled');
             }
         });
+
+        function showSweetAlertBE() {
+            Swal.fire({
+                title: "<?php echo lang('Blog.wantToOpenBE'); ?>",
+                text: "<?php echo lang('Blog.letsGoRegisterSA'); ?>",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "<?php echo lang('Blog.registerSA'); ?>",
+                cancelButtonText: "<?php echo lang('Blog.laterSA'); ?>"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>";
+                } else {
+                    Swal.fire("<?php echo lang('Blog.dontForgetSA'); ?>");
+                }
+            });
+        }
+
+        function showSweetAlertTV() {
+            Swal.fire({
+                title: "<?php echo lang('Blog.wantToOpenTV'); ?>",
+                text: "<?php echo lang('Blog.letsGoRegisterSA'); ?>",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "<?php echo lang('Blog.registerSA'); ?>",
+                cancelButtonText: "<?php echo lang('Blog.laterSA'); ?>"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>";
+                } else {
+                    Swal.fire("<?php echo lang('Blog.dontForgetSA'); ?>");
+                }
+            });
+        }
+
+        function showSweetAlertDM() {
+            Swal.fire({
+                title: "<?php echo lang('Blog.wantToOpenDM'); ?>",
+                text: "<?php echo lang('Blog.letsGoRegisterSAPremium'); ?>",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "<?php echo lang('Blog.registerSA'); ?>",
+                cancelButtonText: "<?php echo lang('Blog.laterSA'); ?>"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>";
+                } else {
+                    Swal.fire("<?php echo lang('Blog.dontForgetSA'); ?>");
+                }
+            });
+        }
 
         function showSweetAlertKHE() {
             Swal.fire({
@@ -916,7 +973,7 @@
         function showSweetAlertAW() {
             Swal.fire({
                 title: "<?php echo lang('Blog.wantToOpenApp3'); ?>",
-                text: "<?php echo lang('Blog.letsGoRegisterSA'); ?>",
+                text: "<?php echo lang('Blog.letsGoRegisterSAPremium'); ?>",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonText: "<?php echo lang('Blog.registerSA'); ?>",
@@ -930,10 +987,27 @@
             });
         }
 
-        function showSweetAlertKB() {
+        function showSweetAlertKI() {
             Swal.fire({
                 title: "<?php echo lang('Blog.wantToOpenApp4'); ?>",
-                text: "<?php echo lang('Blog.letsGoRegisterSA'); ?>",
+                text: "<?php echo lang('Blog.letsGoRegisterSAPremium'); ?>",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "<?php echo lang('Blog.registerSA'); ?>",
+                cancelButtonText: "<?php echo lang('Blog.laterSA'); ?>"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>";
+                } else {
+                    Swal.fire("<?php echo lang('Blog.dontForgetSA'); ?>");
+                }
+            });
+        }
+
+        function showSweetAlertDB() {
+            Swal.fire({
+                title: "<?php echo lang('Blog.wantToOpenDB'); ?>",
+                text: "<?php echo lang('Blog.letsGoRegisterSAPremium'); ?>",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonText: "<?php echo lang('Blog.registerSA'); ?>",
