@@ -186,12 +186,17 @@ return [
     'backtoArticle' => 'Kembali ke Artikel',
 
     // Sweetalert
+    'wantToOpenBE' => 'Mau Buka Fitur Belajar Ekspor?',
+    'wantToOpenTV' => 'Mau Buka Fitur Tutorial Video?',
+    'wantToOpenDM' => 'Mau Buka Fitur Data Member?',
     'wantToOpenApp1' => 'Mau Buka Aplikasi Kalkulator Harga Ekspor?',
     'wantToOpenApp2' => 'Mau Buka Aplikasi Monitoring Progres Pemasaran?',
     'wantToOpenApp3' => 'Mau Buka Aplikasi Audit Website?',
     'wantToOpenApp4' => 'Mau Buka Aplikasi Kelayakan Investasi?',
+    'wantToOpenDB' => 'Mau Buka Fitur Data Buyers?',
 
     'letsGoRegisterSA' => 'Yuk Daftar Member Dulu!',
+    'letsGoRegisterSAPremium' => 'Yuk Daftar Member Premium Dulu!',
     'registerSA' => 'Daftar',
     'laterSA' => 'Nanti',
 
