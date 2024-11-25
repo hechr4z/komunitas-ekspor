@@ -408,6 +408,7 @@
             position: relative;
             left: 20px;
         }
+
         .py-4 p {
             font-size: 9px;
             position: relative;
@@ -465,6 +466,11 @@
             <div class="collapse navbar-collapse line" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto d-flex align-items-center">
                     <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('/beranda') ?>">
+                            Beranda
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('/pengumuman') ?>">
                             Pengumuman
                         </a>
@@ -511,13 +517,13 @@
                                             Marketing Progress Monitoring
                                         </a>
                                     </li>
-                                    <li>
-                                        <a class="dropdown-item nav-link" href="<?= base_url('website-audit') ?>">
+                                    <li onclick="showSweetAlertAW()">
+                                        <a class="dropdown-item nav-link" href="#">
                                             Website Audit
                                         </a>
                                     </li>
-                                    <li>
-                                        <a class="dropdown-item nav-link" href="<?= base_url('kelayakan-investasi') ?>">
+                                    <li onclick="showSweetAlertKI()">
+                                        <a class="dropdown-item nav-link" href="#">
                                             Kelayakan Investasi
                                         </a>
                                     </li>
@@ -525,13 +531,13 @@
                             </li>
                         </ul>
                     </div>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('member-data-member') ?>">
+                    <li class="nav-item" onclick="showSweetAlertDM()">
+                        <a class="nav-link" href="#">
                             Data Member
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('member-data-buyers') ?>">
+                    <li class="nav-item" onclick="showSweetAlertDB()">
+                        <a class="nav-link" href="#">
                             Data Buyers
                         </a>
                     </li>
@@ -624,11 +630,12 @@
                     <div class="col-md-2">
                         <h5 class="mt-4"><b>Menu</b></h5>
                         <div class="list-unstyled pt-2">
+                            <p><a href="<?= base_url('beranda') ?>" class="footer-link">Beranda</a></p>
                             <p><a href="<?= base_url('pengumuman') ?>" class="footer-link">Pengumuman</a></p>
                             <p><a href="<?= base_url('member-belajar-ekspor') ?>" class="footer-link">Belajar Ekspor</a></p>
                             <p><a href="<?= base_url('member-video-tutorial') ?>" class="footer-link">Video Tutorial</a></p>
-                            <p><a href="<?= base_url('member-data-member') ?>" class="footer-link">Data Member</a></p>
-                            <p><a href="<?= base_url('member-data-buyers') ?>" class="footer-link">Data Buyers</a></p>
+                            <p onclick="showSweetAlertDM()"><a href="#" class="footer-link">Data Member</a></p>
+                            <p onclick="showSweetAlertDB()"><a href="#" class="footer-link">Data Buyers</a></p>
                             <p><a href="<?= base_url('edit-profile') ?>" class="footer-link">Edit Profile</a></p>
                         </div>
                     </div>
@@ -645,13 +652,13 @@
                                     Marketing Progress Monitoring
                                 </a>
                             </p>
-                            <p>
-                                <a href="<?= base_url('website-audit') ?>" class="footer-link">
+                            <p onclick="showSweetAlertAW()">
+                                <a href="#" class="footer-link">
                                     Website Audit
                                 </a>
                             </p>
-                            <p>
-                                <a href="<?= base_url('kelayakan-investasi') ?>" class="footer-link">
+                            <p onclick="showSweetAlertKI()">
+                                <a href="#" class="footer-link">
                                     Kelayakan Investasi
                                 </a>
                             </p>
@@ -670,6 +677,8 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.querySelector('.navbar-custom');
@@ -679,6 +688,74 @@
                 navbar.classList.remove('scrolled');
             }
         });
+
+        function showSweetAlertAW() {
+            Swal.fire({
+                title: "Mau Buka Aplikasi Audit Website?",
+                text: "Yuk Daftar Member Premium Dulu",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Daftar",
+                cancelButtonText: "Nanti"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.open("<?= base_url('/daftar-premium') ?>", "_blank");
+                } else {
+                    Swal.fire("Oke, Jangan Lupa Daftar!");
+                }
+            });
+        }
+
+        function showSweetAlertKI() {
+            Swal.fire({
+                title: "Mau Buka Aplikasi Kelayakan Investasi?",
+                text: "Yuk Daftar Member Premium Dulu",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Daftar",
+                cancelButtonText: "Nanti"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.open("<?= base_url('/daftar-premium') ?>", "_blank");
+                } else {
+                    Swal.fire("Oke, Jangan Lupa Daftar!");
+                }
+            });
+        }
+
+        function showSweetAlertDM() {
+            Swal.fire({
+                title: "Mau Buka Fitur Data Member?",
+                text: "Yuk Daftar Member Premium Dulu",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Daftar",
+                cancelButtonText: "Nanti"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.open("<?= base_url('/daftar-premium') ?>", "_blank");
+                } else {
+                    Swal.fire("Oke, Jangan Lupa Daftar!");
+                }
+            });
+        }
+
+        function showSweetAlertDB() {
+            Swal.fire({
+                title: "Mau Buka Fitur Data Buyers?",
+                text: "Yuk Daftar Member Premium Dulu",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Daftar",
+                cancelButtonText: "Nanti"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.open("<?= base_url('/daftar-premium') ?>", "_blank");
+                } else {
+                    Swal.fire("Oke, Jangan Lupa Daftar!");
+                }
+            });
+        }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
