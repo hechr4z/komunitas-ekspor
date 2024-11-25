@@ -21,7 +21,8 @@ class VidioTutorialModel extends Model
         'deskripsi_video',
         'deskripsi_video_en',
         'slug',
-        'slug_en'
+        'slug_en',
+        'created_at',
     ];
 
     // Method untuk mengambil semua video tutorial dan join dengan kategori video

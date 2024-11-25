@@ -50,6 +50,10 @@ class CreateVidioTutorialTables extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '150',
             ],
+            'created_at' => [
+                'type'    => 'DATETIME',
+                'null'    => true,
+            ],
         ]);
 
         // Set primary key
