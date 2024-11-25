@@ -382,10 +382,12 @@ $this->setData([
         .manfaat h6 {
             font-size: 18px;
         }
+
         .kata1 h1 {
             font-size: 25px;
             margin-left: 30px;
         }
+
         .pacakage {
             margin-right: 10px;
         }
@@ -455,10 +457,11 @@ $this->setData([
         .kata1 h5 {
             font-size: 17px;
         }
+
         .pacakage {
             margin-right: 40px;
         }
-        
+
     }
 
     @media (max-width: 375px) {
@@ -507,6 +510,7 @@ $this->setData([
         .kata1 h5 {
             font-size: 14px;
         }
+
         .pacakage {
             margin-right: 40px;
         }
@@ -614,9 +618,11 @@ $this->setData([
         .kata1 h5 {
             font-size: 14px;
         }
+
         .pacakage {
             margin-right: 40px;
         }
+
         .gambar-peta .map {
             position: relative;
             right: 110px;
@@ -776,50 +782,37 @@ $this->setData([
     </div>
     <div class="container">
         <div class="manfaat row g-4 justify-content-center">
-            <!-- Item 1 -->
-            <div class="col-12 col-md-4 d-flex flex-column align-items-center text-center">
-                <div class="rounded-circle d-flex justify-content-center align-items-center" style="background-color: #03AADE; width: 100px; height: 100px;">
-                    <svg class="logo text-light" xmlns="http://www.w3.org/2000/svg" width="60px" height="60px" viewBox="0 0 32 32">
-                        <path fill="currentColor" d="M16 1c-8.84 0-16 7.16-16 16s7.16 16 16 16 16-7.16 16-16S24.84 1 16 1zm0 28c-6.61 0-12-5.39-12-12S9.39 5 16 5s12 5.39 12 12-5.39 12-12 12z" />
-                        <path fill="currentColor" d="<?= $manfaatjoin[0]['path_d'] ?>" />
-                    </svg>
+            <?php foreach ($manfaatjoin as $manfaat): ?>
+                <div class="col-12 col-md-4 d-flex flex-column align-items-center text-center">
+                    <div class=" d-flex justify-content-center align-items-center"
+                        style="background-color: #ffffff; width: 100px; height: 100px; border-radius:10px;">
+                        <?php if (!empty($manfaat['path_d'])): ?>
+                            <!-- Menampilkan gambar dari path_d -->
+                            <img src="<?= base_url('img/' . $manfaat['path_d']); ?>"
+                                alt="Icon"
+                                width="90px"
+                                height="90px"
+                                style="object-fit: cover;" />
+                        <?php else: ?>
+                            <!-- Gambar default jika path_d kosong -->
+                            <img src="<?= base_url('img/icons/default-icon.png'); ?>"
+                                alt="Default Icon"
+                                width="60px"
+                                height="60px"
+                                style="object-fit: cover;" />
+                        <?php endif; ?>
+                    </div>
+                    <div class="mt-3">
+                        <h6><b><?= ($lang == 'en') ? $manfaat['judul_manfaat_en'] : $manfaat['judul_manfaat']; ?></b></h6>
+                        <p><?= ($lang == 'en') ? $manfaat['deskripsi_manfaat_en'] : $manfaat['deskripsi_manfaat']; ?></p>
+                    </div>
                 </div>
-                <div class="mt-3">
-                    <h6><b><?= ($lang == 'en') ? $manfaatjoin[0]['judul_manfaat_en'] : $manfaatjoin[0]['judul_manfaat'] ?></b></h6>
-                    <p><?= ($lang == 'en') ? $manfaatjoin[0]['deskripsi_manfaat_en'] : $manfaatjoin[0]['deskripsi_manfaat'] ?></p>
-                </div>
-            </div>
-
-            <!-- Item 2 -->
-            <div class="col-12 col-md-4 d-flex flex-column align-items-center text-center">
-                <div class="rounded-circle d-flex justify-content-center align-items-center" style="background-color: #03AADE; width: 100px; height: 100px;">
-                    <svg class="logo text-light" xmlns="http://www.w3.org/2000/svg" width="60px" height="60px" viewBox="0 0 32 32">
-                        <path fill="currentColor" d="M16 1c-8.84 0-16 7.16-16 16s7.16 16 16 16 16-7.16 16-16S24.84 1 16 1zm0 28c-6.61 0-12-5.39-12-12S9.39 5 16 5s12 5.39 12 12-5.39 12-12 12z" />
-                        <path fill="currentColor" d="<?= $manfaatjoin[1]['path_d'] ?>" />
-                    </svg>
-                </div>
-                <div class="mt-3">
-                    <h6><b><?= ($lang == 'en') ? $manfaatjoin[1]['judul_manfaat_en'] : $manfaatjoin[1]['judul_manfaat'] ?></b></h6>
-                    <p><?= ($lang == 'en') ? $manfaatjoin[1]['deskripsi_manfaat_en'] : $manfaatjoin[1]['deskripsi_manfaat'] ?></p>
-                </div>
-            </div>
-
-            <!-- Item 3 -->
-            <div class="col-12 col-md-4 d-flex flex-column align-items-center text-center">
-                <div class="rounded-circle d-flex justify-content-center align-items-center" style="background-color: #03AADE; width: 100px; height: 100px;">
-                    <svg class="logo text-light" xmlns="http://www.w3.org/2000/svg" width="60px" height="60px" viewBox="0 0 32 32">
-                        <path fill="currentColor" d="M16 1c-8.84 0-16 7.16-16 16s7.16 16 16 16 16-7.16 16-16S24.84 1 16 1zm0 28c-6.61 0-12-5.39-12-12S9.39 5 16 5s12 5.39 12 12-5.39 12-12 12z" />
-                        <path fill="currentColor" d="<?= $manfaatjoin[2]['path_d'] ?>" />
-                    </svg>
-                </div>
-                <div class="mt-3">
-                    <h6><b><?= ($lang == 'en') ? $manfaatjoin[2]['judul_manfaat_en'] : $manfaatjoin[2]['judul_manfaat'] ?></b></h6>
-                    <p><?= ($lang == 'en') ? $manfaatjoin[2]['deskripsi_manfaat_en'] : $manfaatjoin[2]['deskripsi_manfaat'] ?></p>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
+
 </section>
+
 <!-- end -->
 
 <!-- ajakan -->
@@ -841,7 +834,7 @@ $this->setData([
 <!-- Card Section -->
 <section class="container mt-5">
     <div class="kata1 text-center">
-    <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center">
             <div class="d-flex justify-content-center align-items-center mb-2">
                 <div class="border-top6 mx-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
             </div>
