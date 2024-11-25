@@ -484,35 +484,41 @@
             <!-- Data Produk -->
             <div class="tab-pane fade" id="produk" role="tabpanel" aria-labelledby="produk-tab">
                 <h5 class="mb-4">Data Produk</h5>
-                <form action="<?= base_url('/add-produk'); ?>" method="POST" enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="foto_produk" class="form-label">Foto Produk</label>
-                            <input type="file" class="form-control" id="foto_produk" name="foto_produk">
+                <?php if (empty($produk)): ?>
+                    <form action="<?= base_url('/add-produk'); ?>" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="foto_produk" class="form-label">Foto Produk</label>
+                                <input type="file" class="form-control" id="foto_produk" name="foto_produk">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="nama_produk" class="form-label">Nama Produk</label>
+                                <input type="text" class="form-control" id="nama_produk" name="nama_produk">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="deskripsi_produk" class="form-label">Deskripsi Produk</label>
+                                <input type="text" class="form-control" id="deskripsi_produk" name="deskripsi_produk">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="hs_code" class="form-label">HS Code</label>
+                                <input type="text" class="form-control" id="hs_code" name="hs_code">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="minimum_order_qty" class="form-label">Minimum Order</label>
+                                <input type="text" class="form-control" id="minimum_order_qty" name="minimum_order_qty">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="kapasitas_produksi_bln" class="form-label">Kapasitas Produk</label>
+                                <input type="text" class="form-control" id="kapasitas_produksi_bln" name="kapasitas_produksi_bln">
+                            </div>
+                            <button type="submit" class="btn btn-custom" style="background-color: #03AADE;">Submit</button>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="nama_produk" class="form-label">Nama Produk</label>
-                            <input type="text" class="form-control" id="nama_produk" name="nama_produk">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="deskripsi_produk" class="form-label">Deskripsi Produk</label>
-                            <input type="text" class="form-control" id="deskripsi_produk" name="deskripsi_produk">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="hs_code" class="form-label">HS Code</label>
-                            <input type="text" class="form-control" id="hs_code" name="hs_code">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="minimum_order_qty" class="form-label">Minimum Order</label>
-                            <input type="text" class="form-control" id="minimum_order_qty" name="minimum_order_qty">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="kapasitas_produksi_bln" class="form-label">Kapasitas Produk</label>
-                            <input type="text" class="form-control" id="kapasitas_produksi_bln" name="kapasitas_produksi_bln">
-                        </div>
-                        <button type="submit" class="btn btn-custom" style="background-color: #03AADE;">Submit</button>
+                    </form>
+                <?php else: ?>
+                    <div class="alert alert-info">
+                        Anda sudah memiliki 1 produk. Daftar Member Premium agar dapat menambah hingga 3 produk!
                     </div>
-                </form>
+                <?php endif; ?>
                 <div class="container mt-4">
                     <div class="p-4 mt-5">
                         <div class="text-center">
