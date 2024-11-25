@@ -186,12 +186,17 @@ return [
     'backtoArticle' => 'Back to Article',
 
     // Sweetalert
+    'wantToOpenBE' => 'Want To Open Export Learning Feature?',
+    'wantToOpenTV' => 'Want To Open Video Tutorials Feature?',
+    'wantToOpenDM' => 'Want To Open Member Data Feature?',
     'wantToOpenApp1' => 'Want To Open The Export Price Calculator Application?',
     'wantToOpenApp2' => 'Want To Open A Marketing Progress Monitoring Application?',
     'wantToOpenApp3' => 'Want To Open A Website Audit Application?',
     'wantToOpenApp4' => 'Want To Open A Investment Feasibility Application?',
+    'wantToOpenDB' => 'Want To Open Buyers Data Feature?',
 
     'letsGoRegisterSA' => 'Come On, Register As A Member First!',
+    'letsGoRegisterSAPremium' => 'Come On, Register As A Premium Member First!',
     'registerSA' => 'Register',
     'laterSA' => 'Later',
 
