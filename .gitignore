@@ -129,3 +129,6 @@ nb-configuration.xml
 /public/img/*
 /public/certificate
 !public/img/admin.png
+!public/img/certificate.png
+!public/img/configuration.png
+!public/img/presentation.png
