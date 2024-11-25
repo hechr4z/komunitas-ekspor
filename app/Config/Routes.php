@@ -13,21 +13,21 @@ $routes->group('id', function ($routes) {
     $routes->get('landing-page', 'KomunitasEkspor::visitor_landing_page');
 
     // Visitor - Belajar Ekspor
-    $routes->get('belajar-ekspor', 'KomunitasEkspor::belajar_ekspor');
-    $routes->get('belajar-ekspor/search', 'KomunitasEkspor::search_belajar_ekspor');
-    $routes->get('belajar-ekspor/(:segment)', 'KomunitasEkspor::belajar_ekspor_detail/$1');
-    $routes->get('kategori/(:any)', 'KomunitasEkspor::kategori_belajar_ekspor/$1');
+    // $routes->get('belajar-ekspor', 'KomunitasEkspor::belajar_ekspor');
+    // $routes->get('belajar-ekspor/search', 'KomunitasEkspor::search_belajar_ekspor');
+    // $routes->get('belajar-ekspor/(:segment)', 'KomunitasEkspor::belajar_ekspor_detail/$1');
+    // $routes->get('kategori/(:any)', 'KomunitasEkspor::kategori_belajar_ekspor/$1');
 
     // Visitior - Video Tutorial
-    $routes->get('tutorial-video', 'KomunitasEkspor::video_tutorial');
-    $routes->get('tutorial-video/kategori/(:segment)', 'KomunitasEkspor::video_selengkapnya/$1');
-    $routes->get('tutorial-video/(:segment)', 'KomunitasEkspor::video_tutorial_detail/$1');
+    // $routes->get('tutorial-video', 'KomunitasEkspor::video_tutorial');
+    // $routes->get('tutorial-video/kategori/(:segment)', 'KomunitasEkspor::video_selengkapnya/$1');
+    // $routes->get('tutorial-video/(:segment)', 'KomunitasEkspor::video_tutorial_detail/$1');
 
     $routes->get('pendaftaran', 'KomunitasEkspor::pendaftaran');
 
     // Visitor - Data Member
-    $routes->get('data-member', 'KomunitasEkspor::visitor_data_member');
-    $routes->get('detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
+    // $routes->get('data-member', 'KomunitasEkspor::visitor_data_member');
+    // $routes->get('detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
 
     // Visitor - Data Buyer
     $routes->get('data-buyers', 'KomunitasEkspor::data_buyers');
@@ -38,21 +38,21 @@ $routes->group('en', function ($routes) {
     $routes->get('/', 'KomunitasEkspor::index');
 
     // Visitor - Belajar Ekspor
-    $routes->get('export-learning', 'KomunitasEkspor::belajar_ekspor');
-    $routes->get('export-learning/search', 'KomunitasEkspor::search_belajar_ekspor');
-    $routes->get('export-learning/(:segment)', 'KomunitasEkspor::belajar_ekspor_detail/$1');
-    $routes->get('category/(:any)', 'KomunitasEkspor::kategori_belajar_ekspor/$1');
+    // $routes->get('export-learning', 'KomunitasEkspor::belajar_ekspor');
+    // $routes->get('export-learning/search', 'KomunitasEkspor::search_belajar_ekspor');
+    // $routes->get('export-learning/(:segment)', 'KomunitasEkspor::belajar_ekspor_detail/$1');
+    // $routes->get('category/(:any)', 'KomunitasEkspor::kategori_belajar_ekspor/$1');
 
     // Visitior - Video Tutorial
-    $routes->get('video-tutorial', 'KomunitasEkspor::video_tutorial');
-    $routes->get('video-tutorial/category/(:segment)', 'KomunitasEkspor::video_selengkapnya/$1');
-    $routes->get('video-tutorial/(:segment)', 'KomunitasEkspor::video_tutorial_detail/$1');
+    // $routes->get('video-tutorial', 'KomunitasEkspor::video_tutorial');
+    // $routes->get('video-tutorial/category/(:segment)', 'KomunitasEkspor::video_selengkapnya/$1');
+    // $routes->get('video-tutorial/(:segment)', 'KomunitasEkspor::video_tutorial_detail/$1');
 
     $routes->get('registration', 'KomunitasEkspor::pendaftaran');
 
     // Visitor - Data Member
-    $routes->get('data-member', 'KomunitasEkspor::visitor_data_member');
-    $routes->get('detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
+    // $routes->get('data-member', 'KomunitasEkspor::visitor_data_member');
+    // $routes->get('detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
 
     // Visitor - Data Buyer
     $routes->get('data-buyers', 'KomunitasEkspor::data_buyers');
