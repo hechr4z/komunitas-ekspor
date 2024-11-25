@@ -70,6 +70,12 @@ $routes->post('/daftar-member', 'KomunitasEkspor::registrasiMember');
 
 $routes->group('', ['filter' => 'auth'], function ($routes) {
 
+    // Member - Daftar Premium
+    $routes->get('/daftar-premium', 'KomunitasEkspor::daftarMemberPremium');
+
+    // Member - Beranda
+    $routes->get('/beranda', 'KomunitasEkspor::freeindex');
+
     // Member - Edit Member
     $routes->get('/edit-profile', 'KomunitasEkspor::edit_profile');
     $routes->post('/update-foto-profil', 'KomunitasEkspor::updateFotoProfil');
@@ -108,11 +114,11 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->get('mpm/getEmailsByDate/(:num)/(:num)', 'KomunitasEkspor::getEmailsByDate/$1/$2');
 
     // Member - Data Member
-    $routes->get('member-data-member', 'KomunitasEkspor::member_data_member');
-    $routes->get('member-detail-member/(:any)', 'KomunitasEkspor::member_detail_member/$1');
+    // $routes->get('member-data-member', 'KomunitasEkspor::member_data_member');
+    // $routes->get('member-detail-member/(:any)', 'KomunitasEkspor::member_detail_member/$1');
 
     // Member = Data Buyers
-    $routes->get('/member-data-buyers', 'KomunitasEkspor::member_data_buyers');
+    // $routes->get('/member-data-buyers', 'KomunitasEkspor::member_data_buyers');
 
     // Member - Belajar Ekspor
     $routes->get('member-belajar-ekspor', 'KomunitasEkspor::member_belajar_ekspor');
@@ -126,12 +132,12 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->get('/member-video-tutorial-detail/(:segment)', 'KomunitasEkspor::member_video_tutorial_detail/$1');
 
     // Member - Website Audit
-    $routes->get('website-audit', 'KomunitasEkspor::website_audit');
-    $routes->post('add-website-audit', 'KomunitasEkspor::add_website_audit');
-    $routes->get('delete-website-audit/(:num)', 'KomunitasEkspor::delete_website_audit/$1');
+    // $routes->get('website-audit', 'KomunitasEkspor::website_audit');
+    // $routes->post('add-website-audit', 'KomunitasEkspor::add_website_audit');
+    // $routes->get('delete-website-audit/(:num)', 'KomunitasEkspor::delete_website_audit/$1');
 
     // Member - Kelayakan Investasi
-    $routes->get('/kelayakan-investasi', 'KomunitasEkspor::kelayakan_investasi');
+    // $routes->get('/kelayakan-investasi', 'KomunitasEkspor::kelayakan_investasi');
 });
 
 $routes->group('', ['filter' => 'admin'], function ($routes) {
