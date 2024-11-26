@@ -1887,7 +1887,7 @@ class KomunitasEkspor extends BaseController
         return view('member/belajar-ekspor/belajar_ekspor_detail', $data);
     }
 
-    public function premium_belajar_ekspor_detail($slug)
+    public function preminium_belajar_ekspor_detail($slug)
     {
         $model_webprofile = new WebProfile();
 
@@ -1918,7 +1918,7 @@ class KomunitasEkspor extends BaseController
             'webprofile' => $webprofile,
         ];
 
-        return view('member/belajar-ekspor/belajar_ekspor_detail', $data);
+        return view('preminium/belajar-ekspor/belajar_ekspor_detail', $data);
     }
 
     public function member_preminium_video_tutorial($slug = null)
@@ -1952,7 +1952,7 @@ class KomunitasEkspor extends BaseController
         $data['kategori_vidio'] = $kategori;
         $data['selected_category'] = $slug;
 
-        return view('member_preminium/video-tutorial/video_tutorial', $data);
+        return view('preminium/video-tutorial/video_tutorial', $data);
     }
 
     public function member_video_tutorial($slug = null)
