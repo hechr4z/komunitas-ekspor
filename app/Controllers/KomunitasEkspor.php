@@ -1084,8 +1084,6 @@ class KomunitasEkspor extends BaseController
         }
     }
 
-
-
     public function ubah_informasi_akun()
     {
         $session = session();
@@ -1329,6 +1327,346 @@ class KomunitasEkspor extends BaseController
         } else {
             // Redirect dengan pesan error jika produk tidak ditemukan atau tidak dimiliki user yang sedang login
             return redirect()->to('/edit-profile')->withInput()->with('errors', ['Anda tidak memiliki izin untuk menghapus produk ini']);
+        }
+    }
+
+    public function edit_profile_premium()
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
+        $model_member = new Member();
+        $model_sertifikat = new Sertifikat();
+        $model_produk = new Produk();
+
+        $member = $model_member->where('id_member', $user_id)->first();
+        $sertifikat = $model_sertifikat->where('id_member', $user_id)->findAll();
+        $produk = $model_produk->where('id_member', $user_id)->findAll();
+        $jumlahProduk = $model_produk->where('id_member', $user_id)->countAll();
+
+        $data['member'] = $member;
+        $data['sertifikat'] = $sertifikat;
+        $data['produk'] = $produk;
+        $data['jumlahProduk'] = $jumlahProduk;
+
+        return view('premium/edit-profile', $data);
+    }
+
+    public function updateFotoProfil_premium()
+    {
+        // Ambil ID user dari session
+        $userId = session()->get('user_id');
+        if (!$userId) {
+            return redirect()->to('/login')->with('error', 'Anda harus login terlebih dahulu.');
+        }
+
+        $memberModel = new Member();
+
+        // Ambil data pengguna dari database
+        $member = $memberModel->find($userId);
+
+        if (!$member) {
+            return redirect()->back()->with('error', 'Data member tidak ditemukan.');
+        }
+
+        // Validasi file yang diupload
+        if (!$this->validate([
+            'foto_profil' => [
+                'rules' => 'uploaded[foto_profil]|is_image[foto_profil]|mime_in[foto_profil,image/jpg,image/jpeg,image/png]|max_size[foto_profil,8048]',
+                'errors' => [
+                    'uploaded' => 'Silakan pilih file untuk diupload.',
+                    'is_image' => 'File yang diupload harus berupa gambar.',
+                    'mime_in' => 'Gambar harus berformat jpg, jpeg, atau png.',
+                    'max_size' => 'Ukuran gambar maksimal 2MB.',
+                ],
+            ],
+        ])) {
+            return redirect()->back()->withInput()->with('error', $this->validator->getErrors());
+        }
+
+        // Ambil file yang diupload
+        $file = $this->request->getFile('foto_profil');
+        $newFileName = $file->getRandomName(); // Nama file baru
+
+        if ($file->isValid() && !$file->hasMoved()) {
+            $file->move('img', $newFileName); // Simpan file baru
+        } else {
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat mengupload file.');
+        }
+
+        // Siapkan data untuk diupdate
+        $data = ['foto_profil' => $newFileName];
+
+        // Perbarui data di database
+        $updateStatus = $memberModel->update($userId, $data);
+
+        if ($updateStatus) {
+            // Hapus file lama jika ada
+            $oldFileName = $member['foto_profil'];
+            if ($oldFileName && file_exists('img/' . $oldFileName)) {
+                unlink('img/' . $oldFileName);
+            }
+
+            return redirect()->to('/edit-profile-premium')->with('success', 'Foto profil berhasil diperbarui.');
+        } else {
+            // Jika update gagal, hapus file baru
+            if (file_exists('img/' . $newFileName)) {
+                unlink('img/' . $newFileName);
+            }
+
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat menyimpan data.');
+        }
+    }
+
+    public function ubah_informasi_akun_premium()
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_member = new Member();
+
+        $email = $this->request->getPost('email');
+        $password = $this->request->getPost('password');
+
+        if ($email != null && $password == null) {
+            $data = [
+                'email' => $email,
+            ];
+
+            $model_member->update($user_id, $data);
+        } elseif ($email == null && $password != null) {
+            $data = [
+                'password' => password_hash($password, PASSWORD_DEFAULT),
+            ];
+
+            $model_member->update($user_id, $data);
+        } elseif ($email != null && $password != null) {
+            $data = [
+                'email' => $email,
+                'password' => password_hash($password, PASSWORD_DEFAULT),
+            ];
+
+            $model_member->update($user_id, $data);
+        }
+
+        return redirect()->to('/edit-profile-premium');
+    }
+
+    public function ubah_profil_perusahaan_premium()
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_member = new Member();
+
+        $tr = new GoogleTranslate('en');
+
+        $fields = [
+            'nama_perusahaan',
+            'tipe_bisnis',
+            'deskripsi_perusahaan',
+            'produk_utama',
+            'tahun_dibentuk',
+            'skala_bisnis',
+            'kategori_produk',
+            'pic',
+            'pic_phone',
+            'latitude',
+            'longitude'
+        ];
+
+        // Initialize validation rules without individual error messages
+        $validationRules = array_fill_keys($fields, [
+            'rules' => 'required'
+        ]);
+
+        // Perform validation
+        if (!$this->validate($validationRules)) {
+            // Get all validation errors
+            $errors = $this->validator->getErrors();
+
+            // Count the number of missing fields
+            $missingCount = count($errors);
+
+            // Set the custom error message with the missing count
+            $generalErrorMessage = "Ada $missingCount Input Yang Masih Belum Diisi!";
+
+            // Redirect back with the input and only the general error message
+            return redirect()->back()->withInput()->with('errors', ['general' => $generalErrorMessage]);
+        }
+
+        $data = [
+            'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
+            'tipe_bisnis' => $this->request->getPost('tipe_bisnis'),
+            'tipe_bisnis_en' => $tr->translate($this->request->getPost('tipe_bisnis')),
+            'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
+            'deskripsi_perusahaan_en' => $tr->translate($this->request->getPost('deskripsi_perusahaan')),
+            'produk_utama' => $this->request->getPost('produk_utama'),
+            'produk_utama_en' => $tr->translate($this->request->getPost('produk_utama')),
+            'tahun_dibentuk' => $this->request->getPost('tahun_dibentuk'),
+            'skala_bisnis' => $this->request->getPost('skala_bisnis'),
+            'skala_bisnis_en' => $tr->translate($this->request->getPost('skala_bisnis')),
+            'kategori_produk' => $this->request->getPost('kategori_produk'),
+            'kategori_produk_en' => $tr->translate($this->request->getPost('kategori_produk')),
+            'pic' => $this->request->getPost('pic'),
+            'pic_phone' => $this->request->getPost('pic_phone'),
+            'latitude' => $this->request->getPost('latitude'),
+            'longitude' => $this->request->getPost('longitude'),
+        ];
+
+        $model_member->update($user_id, $data);
+
+        return redirect()->to('/edit-profile-premium');
+    }
+
+    public function add_sertifikat_premium()
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_sertifikat = new Sertifikat();
+
+        $fileSertifikat = $this->request->getFile('sertifikat');
+        $namaFile = null;
+        if ($fileSertifikat && $fileSertifikat->isValid() && !$fileSertifikat->hasMoved()) {
+            $namaFile = uniqid() . '.' . $fileSertifikat->getClientExtension();
+            $fileSertifikat->move(ROOTPATH . 'public/certificate', $namaFile);
+        }
+
+        $data = [
+            'id_member' => $user_id,
+            'sertifikat' => $namaFile,
+        ];
+
+        // Insert data into the database
+        $model_sertifikat->insert($data);
+
+        // Redirect after successful insert
+        return redirect()->to('/edit-profile-premium');
+    }
+
+    public function delete_sertifikat_premium($id)
+    {
+        $session = session();
+        $user_id = $session->get('user_id'); // Ambil user_id dari sesi
+
+        $model_sertifikat = new Sertifikat();
+        $sertifikat = $model_sertifikat->find($id);
+
+        // Cek apakah sertifikat ada dan apakah sertifikat milik user yang sedang login
+        if ($sertifikat && $sertifikat['id_member'] == $user_id) {
+            // Hapus file foto sertifikat jika ada
+            if ($sertifikat['sertifikat'] && file_exists(ROOTPATH . 'public/certificate/' . $sertifikat['sertifikat'])) {
+                unlink(ROOTPATH . 'public/certificate/' . $sertifikat['sertifikat']);
+            }
+
+            // Hapus sertifikat dari database
+            $model_sertifikat->delete($id);
+
+            return redirect()->to('/edit-profile-premium')->with('success', 'Sertifikat berhasil dihapus');
+        } else {
+            // Redirect dengan pesan error jika sertifikat tidak ditemukan atau tidak dimiliki user yang sedang login
+            return redirect()->to('/edit-profile-premium')->withInput()->with('errors', ['Anda tidak memiliki izin untuk menghapus sertifikat ini']);
+        }
+    }
+
+    public function add_produk_premium()
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_produk = new Produk();
+
+        $tr = new GoogleTranslate('en');
+
+        $fields = [
+            'nama_produk',
+            'deskripsi_produk',
+            'hs_code',
+            'minimum_order_qty',
+            'kapasitas_produksi_bln',
+        ];
+
+        // Set validation rules without `foto_produk` and apply only required rules
+        $validationRules = array_fill_keys($fields, [
+            'rules' => 'required'
+        ]);
+
+        // Validate other fields
+        if (!$this->validate($validationRules)) {
+            $errors = $this->validator->getErrors();
+        } else {
+            $errors = [];
+        }
+
+        // Separate check for `foto_produk`
+        $fotoProduk = $this->request->getFile('foto_produk');
+        if (!$fotoProduk || !$fotoProduk->isValid()) {
+            $errors['foto_produk'] = "Foto produk harus diunggah!";
+        }
+
+        // Count errors and handle response if there are any missing inputs
+        if (!empty($errors)) {
+            $missingCount = count($errors);
+            $generalErrorMessage = "Ada $missingCount Input Yang Masih Belum Diisi!";
+            return redirect()->back()->withInput()->with('errors', ['general' => $generalErrorMessage]);
+        }
+
+        // Process and move `foto_produk` if uploaded
+        $namaFile = null;
+        if ($fotoProduk && $fotoProduk->isValid() && !$fotoProduk->hasMoved()) {
+            $namaFile = uniqid() . '.' . $fotoProduk->getClientExtension();
+            $fotoProduk->move(ROOTPATH . 'public/img', $namaFile);
+        }
+
+        // Prepare data for insertion
+        $data = [
+            'id_member' => $user_id,
+            'foto_produk' => $namaFile,
+            'nama_produk' => $this->request->getPost('nama_produk'),
+            'nama_produk_en' => $tr->translate($this->request->getPost('nama_produk')),
+            'deskripsi_produk' => $this->request->getPost('deskripsi_produk'),
+            'deskripsi_produk_en' => $tr->translate($this->request->getPost('deskripsi_produk')),
+            'hs_code' => $this->request->getPost('hs_code'),
+            'minimum_order_qty' => $this->request->getPost('minimum_order_qty'),
+            'kapasitas_produksi_bln' => $this->request->getPost('kapasitas_produksi_bln'),
+        ];
+
+        // Insert data into the database
+        $model_produk->insert($data);
+
+        // Redirect after successful insert
+        return redirect()->to('/edit-profile-premium');
+    }
+
+    public function delete_produk_premium($id)
+    {
+        $session = session();
+        $user_id = $session->get('user_id'); // Ambil user_id dari sesi
+
+        $model_produk = new Produk();
+        $produk = $model_produk->find($id);
+
+        // Cek apakah produk ada dan apakah produk milik user yang sedang login
+        if ($produk && $produk['id_member'] == $user_id) {
+            // Hapus file foto produk jika ada
+            if ($produk['foto_produk'] && file_exists(ROOTPATH . 'public/img/' . $produk['foto_produk'])) {
+                unlink(ROOTPATH . 'public/img/' . $produk['foto_produk']);
+            }
+
+            // Hapus produk dari database
+            $model_produk->delete($id);
+
+            return redirect()->to('/edit-profile-premium')->with('success', 'Produk berhasil dihapus');
+        } else {
+            // Redirect dengan pesan error jika produk tidak ditemukan atau tidak dimiliki user yang sedang login
+            return redirect()->to('/edit-profile-premium')->withInput()->with('errors', ['Anda tidak memiliki izin untuk menghapus produk ini']);
         }
     }
 
