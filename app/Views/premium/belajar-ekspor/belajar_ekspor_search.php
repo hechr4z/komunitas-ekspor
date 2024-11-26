@@ -1,4 +1,4 @@
-<?= $this->extend('member/layout/app'); ?>
+<?= $this->extend('premium/layout/app'); ?>
 <?= $this->section('content'); ?>
 
 <style>
@@ -163,7 +163,7 @@
     <?php endif; ?>
 
     <!-- Search Bar Start -->
-    <form class="form mt-4" action="<?= base_url('member-belajar-ekspor/search') ?>" method="GET">
+    <form class="form mt-4" action="<?= base_url('premium-belajar-ekspor/search') ?>" method="GET">
         <button>
             <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
                 <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -199,7 +199,7 @@
                                 <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
                                     <?= $item['deskripsi_belajar_ekspor']; ?>
                                 </p>
-                                <a href="<?= base_url('member-belajar-ekspor-detail/' . $item['slug']); ?>" class="btn btn-custom mt-auto" style="width: 100%; display: block; text-align: center;">Baca Selengkapnya</a>
+                                <a href="<?= base_url('premium-belajar-ekspor-detail/' . $item['slug']); ?>" class="btn btn-custom mt-auto" style="width: 100%; display: block; text-align: center;">Baca Selengkapnya</a>
                             </div>
                         </div>
                     </div>
