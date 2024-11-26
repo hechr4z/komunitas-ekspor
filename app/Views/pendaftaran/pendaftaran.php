@@ -89,6 +89,13 @@
         color: #ffffff;
     }
 
+    .radio-group label {
+        display: block;
+        /* Membuat radio button dan teks berada dalam satu baris vertikal */
+        margin-bottom: 5px;
+        /* Memberikan jarak antar radio button */
+    }
+
     /*responsive mobile*/
     @media (max-width: 768px) {
 
@@ -111,6 +118,10 @@
         }
 
         .showpw {
+            margin-left: 10px;
+        }
+
+        .radiobutton {
             margin-left: 10px;
         }
     }
@@ -210,10 +221,30 @@
                         <input type="text" id="referral" name="referral" placeholder="<?= lang('Blog.placeholderReferral'); ?>" value="<?= old('referral') ?>">
                     </div>
 
+                    <div class="form-group">
+                        <label>Jenis Member</label>
+                        <div class="form-check d-flex align-items-start">
+                            <input class="form-check-input" type="radio" name="pilihan" id="memberPremium" value="option1" required>
+                            <label class="form-check-label ms-2" for="memberPremium">
+                                Member Premium
+                            </label>
+                        </div>
+                        <div class="form-check d-flex align-items-start">
+                            <input class="form-check-input" type="radio" name="pilihan" id="memberFree" value="option2" required>
+                            <label class="form-check-label ms-2" for="memberFree">
+                                Member Free
+                            </label>
+                        </div>
+                    </div>
+
+
+
+
                     <div class="textcontent mt-5">
                         <h5><?= lang('Blog.profilPerusahaan'); ?></h5>
                         <hr class="line-separatorkecil">
                     </div>
+
 
                     <!-- Nama Perusahaan -->
                     <div class="form-group">
