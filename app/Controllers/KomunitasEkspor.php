@@ -47,9 +47,9 @@ class KomunitasEkspor extends BaseController
         $model_manfaatjoin = new ManfaatJoin();
 
         $slider = $model_slider->findAll();
-        $member = $model_member->where('role', 'member')->findAll();
+        $member = $model_member->whereIn('role', ['member', 'premium'])->findAll();
         $top4_member = $model_member
-            ->where('role', 'member')
+            ->whereIn('role', ['member', 'premium'])
             ->orderBy('popular_point', 'DESC')
             ->limit(4)
             ->findAll();
@@ -83,9 +83,9 @@ class KomunitasEkspor extends BaseController
         $model_manfaatjoin = new ManfaatJoin();
 
         $slider = $model_slider->findAll();
-        $member = $model_member->where('role', 'member')->findAll();
+        $member = $model_member->whereIn('role', ['member', 'premium'])->findAll();
         $top4_member = $model_member
-            ->where('role', 'member')
+            ->whereIn('role', ['member', 'premium'])
             ->orderBy('popular_point', 'DESC')
             ->limit(4)
             ->findAll();
@@ -1859,7 +1859,7 @@ class KomunitasEkspor extends BaseController
             $data['active_category'] = null;
         }
 
-        return view('member/belajar-ekspor/belajar_ekspor', $data);
+        return view('premium/belajar-ekspor/belajar_ekspor', $data);
     }
 
     public function premium_search_belajar_ekspor()
@@ -1901,7 +1901,7 @@ class KomunitasEkspor extends BaseController
         $data['active_category'] = null;
 
         // Render view hasil pencarian
-        return view('member/belajar-ekspor/belajar_ekspor_search', $data);
+        return view('premium/belajar-ekspor/belajar_ekspor_search', $data);
     }
 
     public function premium_kategori_belajar_ekspor($slug)
@@ -1931,7 +1931,7 @@ class KomunitasEkspor extends BaseController
         // Mengirim data kategori yang dipilih untuk ditampilkan di view
         $data['active_category'] = $kategori['id_kategori_belajar_ekspor'];
 
-        return view('member/belajar-ekspor/belajar_ekspor', $data);
+        return view('premium/belajar-ekspor/belajar_ekspor', $data);
     }
 
     public function member_belajar_ekspor_detail($slug)
@@ -1968,7 +1968,7 @@ class KomunitasEkspor extends BaseController
         return view('member/belajar-ekspor/belajar_ekspor_detail', $data);
     }
 
-    public function preminium_belajar_ekspor_detail($slug)
+    public function premium_belajar_ekspor_detail($slug)
     {
         $model_webprofile = new WebProfile();
 
@@ -1999,10 +1999,10 @@ class KomunitasEkspor extends BaseController
             'webprofile' => $webprofile,
         ];
 
-        return view('preminium/belajar-ekspor/belajar_ekspor_detail', $data);
+        return view('premium/belajar-ekspor/belajar_ekspor_detail', $data);
     }
 
-    public function member_preminium_video_tutorial($slug = null)
+    public function premium_video_tutorial($slug = null)
     {
         $model_webprofile = new WebProfile();
 
@@ -2033,7 +2033,7 @@ class KomunitasEkspor extends BaseController
         $data['kategori_vidio'] = $kategori;
         $data['selected_category'] = $slug;
 
-        return view('preminium/video-tutorial/video_tutorial', $data);
+        return view('premium/video-tutorial/video_tutorial', $data);
     }
 
     public function member_video_tutorial($slug = null)
@@ -2065,7 +2065,7 @@ class KomunitasEkspor extends BaseController
         return view('member/video-tutorial/video_tutorial', $data);
     }
 
-    public function member_video_selengkapnya($slug)
+    public function premium_video_selengkapnya($slug)
     {
         $model_webprofile = new WebProfile();
 
@@ -2091,7 +2091,7 @@ class KomunitasEkspor extends BaseController
             'webprofile' => $webprofile,
         ];
 
-        return view('member/video-tutorial/video_selengkapnya', $data);
+        return view('premium/video-tutorial/video_selengkapnya', $data);
     }
 
     public function member_video_tutorial_detail($slug)
@@ -2135,6 +2135,41 @@ class KomunitasEkspor extends BaseController
         return view('member/video-tutorial/video_tutorial_detail', $data);
     }
 
+    public function premium_video_tutorial_detail($slug)
+    {
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        // Inisialisasi model untuk video dan kategori
+        $vidioModel = new VidioTutorialModel();
+        $kategoriModel = new KategoriVidioModel();
+
+        // Mengambil data video berdasarkan slug
+        $video = $vidioModel->getVideoBySlug($slug);
+
+        // Memastikan bahwa video ditemukan, jika tidak redirect atau tampilkan error
+        if (!$video) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException("Video tidak ditemukan");
+        }
+
+        // Mengambil video terkait berdasarkan kategori video saat ini
+        $related_videos = $vidioModel->getRelatedVideos($video['id_kategori_video'], $video['id_video']);
+
+        // Mengambil informasi kategori video
+        $kategori = $kategoriModel->find($video['id_kategori_video']);
+
+        // Menyiapkan data untuk dikirimkan ke view
+        $data = [
+            'video' => $video,
+            'related_videos' => $related_videos,
+            'kategori' => $kategori,
+            'webprofile' => $webprofile,
+        ];
+
+        // Mengembalikan view dengan data yang telah disiapkan
+        return view('premium/video-tutorial/video_tutorial_detail', $data);
+    }
 
     public function website_audit()
     {
