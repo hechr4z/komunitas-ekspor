@@ -301,9 +301,6 @@
             <li class="nav-item" role="presentation">
                 <button class="nav-link custom-tab" id="produk-tab" data-bs-toggle="tab" data-bs-target="#produk" type="button" role="tab" aria-controls="produk" aria-selected="false">Data Produk</button>
             </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link custom-tab" id="landing-tab" data-bs-toggle="tab" data-bs-target="#landingPage" type="button" role="tab" aria-controls="landingPage" aria-selected="false">Landing Page</button>
-            </li>
         </ul>
 
         <!-- Tabs Content -->
@@ -452,32 +449,6 @@
                                 frameborder="0"></iframe>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="tab-content mt-4" id="myTabContent">
-                <!-- Tab Landing Page -->
-                <div class="tab-pane fade" id="landingPage" role="tabpanel" aria-labelledby="landing-tab">
-                    <h5>Edit Landing Page</h5>
-                    <form>
-                        <!-- Input untuk warna Primary -->
-                        <div class="mb-3">
-                            <label for="primaryColor" class="form-label">Primary Color</label>
-                            <input type="color" class="form-control form-control-color" id="primaryColor" name="primaryColor" value="#007bff">
-                        </div>
-                        <!-- Input untuk warna Secondary -->
-                        <div class="mb-3">
-                            <label for="secondaryColor" class="form-label">Secondary Color</label>
-                            <input type="color" class="form-control form-control-color" id="secondaryColor" name="secondaryColor" value="#6c757d">
-                        </div>
-                        <!-- Input untuk gambar -->
-                        <div class="mb-3">
-                            <label for="landingImage" class="form-label">Upload Gambar</label>
-                            <input type="file" class="form-control" id="landingImage" name="landingImage" accept="image/*">
-                        </div>
-                        <!-- Tombol Simpan -->
-                        <button type="submit" class="btn btn-custom" style="background-color: #03AADE; width: 100%;">Submit</button>
-                    </form>
                 </div>
             </div>
 
