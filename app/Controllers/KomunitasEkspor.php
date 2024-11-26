@@ -1671,7 +1671,7 @@ class KomunitasEkspor extends BaseController
                 if ($user['role'] === 'admin') {
                     return redirect()->to('/admin-dashboard');  // Redirect to admin dashboard
                 } else {
-                    return redirect()->to('/pengumuman');  // Redirect to regular user page
+                    return redirect()->to('/beranda');  // Redirect to regular user page
                 }
             } else {
                 // Password incorrect
