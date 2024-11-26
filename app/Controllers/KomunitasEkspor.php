@@ -281,7 +281,7 @@ class KomunitasEkspor extends BaseController
         return view('pendaftaran/pendaftaran', $data);
     }
 
-    public function video_tutorial($slug = null)
+    public function video_tutorial_member($slug = null)
     {
         $lang = session()->get('lang') ?? 'id';
         $data['lang'] = $lang;
@@ -291,7 +291,6 @@ class KomunitasEkspor extends BaseController
         $webprofile = $model_webprofile->findAll();
 
         $data['webprofile'] = $webprofile;
-
         $vidioModel = new VidioTutorialModel();
         $kategoriModel = new KategoriVidioModel();
 
@@ -458,7 +457,8 @@ class KomunitasEkspor extends BaseController
         return redirect()->to($whatsapp);
     }
 
-    public function daftarMemberPremium(){
+    public function daftarMemberPremium()
+    {
         $session = session();
         $user_id = $session->get('user_id');
 
@@ -1869,7 +1869,7 @@ class KomunitasEkspor extends BaseController
         return view('member/belajar-ekspor/belajar_ekspor_detail', $data);
     }
 
-    public function member_video_tutorial($slug = null)
+    public function member_preminium_video_tutorial($slug = null)
     {
         $model_webprofile = new WebProfile();
 
@@ -1900,9 +1900,37 @@ class KomunitasEkspor extends BaseController
         $data['kategori_vidio'] = $kategori;
         $data['selected_category'] = $slug;
 
-        return view('member/video-tutorial/video_tutorial', $data);
+        return view('member_preminium/video-tutorial/video_tutorial', $data);
     }
 
+    public function member_video_tutorial($slug = null)
+    {
+        $model_webprofile = new WebProfile();
+        $vidioModel = new VidioTutorialModel();
+        $kategoriModel = new KategoriVidioModel();
+
+        // Mengambil data profil web
+        $webprofile = $model_webprofile->findAll();
+
+        // Mengambil semua kategori
+        $kategori = $kategoriModel->findAll();
+
+        // Mengambil 3 video terlama
+        $video = $vidioModel
+            ->orderBy('created_at', 'ASC') // Urutkan berdasarkan tanggal pembuatan (terlama)
+            ->limit(3)                     // Batasi hanya 3 data
+            ->getAllVideos();
+
+        // Menyiapkan data untuk dikirimkan ke view
+        $data = [
+            'webprofile' => $webprofile,
+            'video_tutorial' => $video, // Hanya 3 video terlama
+            'kategori_vidio' => $kategori,
+            'selected_category' => $slug,
+        ];
+
+        return view('member/video-tutorial/video_tutorial', $data);
+    }
 
     public function member_video_selengkapnya($slug)
     {
@@ -1951,8 +1979,13 @@ class KomunitasEkspor extends BaseController
             throw new \CodeIgniter\Exceptions\PageNotFoundException("Video tidak ditemukan");
         }
 
-        // Mengambil video terkait berdasarkan kategori video saat ini, dan pastikan tidak mengambil video yang sedang dilihat
-        $related_videos = $vidioModel->getRelatedVideos($video['id_kategori_video'], $video['id_video']);
+        // Mengambil video terkait berdasarkan kategori video saat ini
+        // Urutkan berdasarkan tanggal pembuatan terlama dan tidak termasuk video yang sedang dilihat
+        $related_videos = $vidioModel
+            ->where('id_video !=', $video['id_video'])
+            ->orderBy('created_at', 'ASC')
+            ->limit(2)
+            ->findAll();
 
         // Mengambil informasi kategori video
         $kategori = $kategoriModel->find($video['id_kategori_video']);
@@ -1968,6 +2001,7 @@ class KomunitasEkspor extends BaseController
         // Mengembalikan view dengan data yang telah disiapkan
         return view('member/video-tutorial/video_tutorial_detail', $data);
     }
+
 
     public function website_audit()
     {
