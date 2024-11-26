@@ -902,7 +902,9 @@ $this->setData([
                     </div>
                 </div>
                 <div class="card-footer bg-light py-3">
-                    <button class="btn btn-info btn-sm">Join Now</button>
+                    <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
+                        <button class="btn btn-info btn-sm">Join Now</button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -948,7 +950,9 @@ $this->setData([
                     </div>
                 </div>
                 <div class="card-footer bg-light py-3">
-                    <button class="btn btn-primary btn-sm">Upgrade Now</button>
+                    <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
+                        <button class="btn btn-primary btn-sm">Join Now</button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -998,7 +1002,6 @@ $this->setData([
                 '<div class="card-body">' +
                 '<h6 class="card-title text-center" style="font-weight: bold; word-wrap: break-word; white-space: normal;"><?= $item['username'] ?></h6>' +
                 '<p class="card-text text-center text-muted" style="font-size: 0.9rem; word-wrap: break-word; white-space: normal;"><?= $item['nama_perusahaan'] ?></p>' +
-                '<span class="btn btn-primary btn-sm mt-2" style="border-radius: 8px; width: 100%;"><?php echo lang('Blog.btndataMember') ?></span>' +
                 '</div></div></a></div>'
             );
             markers.addLayer(marker);
