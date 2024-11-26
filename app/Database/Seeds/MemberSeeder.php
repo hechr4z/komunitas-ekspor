@@ -12,7 +12,7 @@ class MemberSeeder extends Seeder
         $data = [
             [
                 'id_member' => 1,
-                'role' => 'member',
+                'role' => 'premium',
                 'username' => 'rafqiputra',
                 'password' => password_hash('rafqiputra', PASSWORD_DEFAULT),
                 'foto_profil' => 'p1.jpg',
