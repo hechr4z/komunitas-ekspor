@@ -1,4 +1,4 @@
-<?= $this->extend('member/layout/app'); ?>
+<?= $this->extend('premium/layout/app'); ?>
 <?= $this->section('content'); ?>
 
 <style>
@@ -79,7 +79,7 @@
     <?php foreach ($kategori_vidio as $kategori) : ?>
         <div class="kategori-container d-flex justify-content-between align-items-center mb-3">
             <h5 class="kategori font-weight-bold mb-0">Video Kategori: <?= $kategori['nama_kategori_video']; ?></h5>
-            <a href="<?= base_url('/member-video-tutorial-selengkapnya/' . $kategori['slug']); ?>" class="btn btn-custom">Semua</a>
+            <a href="<?= base_url('/premium-video-tutorial-selengkapnya/' . $kategori['slug']); ?>" class="btn btn-custom">Semua</a>
         </div>
         <hr class="kategori-container" style="border-top: 2px solid #000;">
 
@@ -90,7 +90,7 @@
                     <!-- Hanya menampilkan video yang sesuai dengan kategori saat ini -->
                     <?php if ($video['id_kategori_video'] == $kategori['id_kategori_video']): ?>
                         <div class="col">
-                            <a href="<?= base_url('/member-video-tutorial-detail/' . $video['slug']); ?>" class="text-decoration-none">
+                            <a href="<?= base_url('/premium-video-tutorial-detail/' . $video['slug']); ?>" class="text-decoration-none">
                                 <div class="card h-100">
                                     <img src="<?= base_url('/img/' . $video['thumbnail']); ?>" class="card-img-top img-fluid" alt="<?= $video['judul_video']; ?>" style="object-fit: cover; object-position: center; aspect-ratio: 16/9;" loading="lazy">
                                     <div class="card-body d-flex flex-column">
