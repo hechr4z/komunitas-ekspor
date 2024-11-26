@@ -33,8 +33,8 @@ $routes->group('id', function ($routes) {
     // $routes->get('detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
 
     // Visitor - Data Buyer
-    $routes->get('data-buyers', 'KomunitasEkspor::data_buyers');
-    $routes->get('data-buyers/search', 'KomunitasEkspor::search_buyers');
+    // $routes->get('data-buyers', 'KomunitasEkspor::data_buyers');
+    // $routes->get('data-buyers/search', 'KomunitasEkspor::search_buyers');
 });
 
 $routes->group('en', function ($routes) {
@@ -61,8 +61,8 @@ $routes->group('en', function ($routes) {
     // $routes->get('detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
 
     // Visitor - Data Buyer
-    $routes->get('data-buyers', 'KomunitasEkspor::data_buyers');
-    $routes->get('data-buyers/search', 'KomunitasEkspor::search_buyers');
+    // $routes->get('data-buyers', 'KomunitasEkspor::data_buyers');
+    // $routes->get('data-buyers/search', 'KomunitasEkspor::search_buyers');
 });
 
 $routes->post('/user/checkAvailability', 'KomunitasEkspor::checkAvailability');
@@ -193,14 +193,14 @@ $routes->group('', ['filter' => 'premium'], function ($routes) {
     $routes->get('delete-website-audit/(:num)', 'KomunitasEkspor::delete_website_audit/$1');
 
     // Premium - Kelayakan Investasi
-    $routes->get('/kelayakan-investasi', 'KomunitasEkspor::kelayakan_investasi');
+    $routes->get('kelayakan-investasi', 'KomunitasEkspor::kelayakan_investasi');
 
-    // Member - Data Member
-    // $routes->get('member-data-member', 'KomunitasEkspor::member_data_member');
-    // $routes->get('member-detail-member/(:any)', 'KomunitasEkspor::member_detail_member/$1');
+    // Premium - Data Member
+    $routes->get('data-member', 'KomunitasEkspor::data_member');
+    $routes->get('detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
 
-    // Member = Data Buyers
-    // $routes->get('/member-data-buyers', 'KomunitasEkspor::member_data_buyers');
+    // Premium  Data Buyers
+    $routes->get('data-buyers', 'KomunitasEkspor::data_buyers');
 
     // Premium - Belajar Ekspor
     $routes->get('premium-belajar-ekspor', 'KomunitasEkspor::premium_belajar_ekspor');
