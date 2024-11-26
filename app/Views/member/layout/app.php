@@ -457,7 +457,7 @@
     <!-- start navbar -->
     <nav class="navbar navbar-custom navbar-expand-lg sticky-top" style="background-color: #03AADE;">
         <div class="container d-flex justify-content-between align-items-center py-1">
-            <img onclick="window.location.href='/pengumuman'" style="width:160px;"
+            <img onclick="window.location.href='/beranda'" style="width:160px;"
                 src="<?= base_url('img/' . $webprofile[0]['logo_web']); ?>" alt="logo">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
