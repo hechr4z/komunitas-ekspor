@@ -531,13 +531,13 @@
                             </li>
                         </ul>
                     </div>
-                    <li class="nav-item" onclick="showSweetAlertDM()">
-                        <a class="nav-link" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('data-member') ?>">
                             Data Member
                         </a>
                     </li>
-                    <li class="nav-item" onclick="showSweetAlertDB()">
-                        <a class="nav-link" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('data-buyers') ?>">
                             Data Buyers
                         </a>
                     </li>
@@ -634,8 +634,8 @@
                             <p><a href="<?= base_url('pengumuman-premium') ?>" class="footer-link">Pengumuman</a></p>
                             <p><a href="<?= base_url('premium-belajar-ekspor') ?>" class="footer-link">Belajar Ekspor</a></p>
                             <p><a href="<?= base_url('premium-video-tutorial') ?>" class="footer-link">Video Tutorial</a></p>
-                            <p onclick="showSweetAlertDM()"><a href="#" class="footer-link">Data Member</a></p>
-                            <p onclick="showSweetAlertDB()"><a href="#" class="footer-link">Data Buyers</a></p>
+                            <p><a href="<?= base_url('data-member') ?>" class="footer-link">Data Member</a></p>
+                            <p><a href="<?= base_url('data-buyers') ?>" class="footer-link">Data Buyers</a></p>
                             <p><a href="<?= base_url('edit-profile') ?>" class="footer-link">Edit Profile</a></p>
                         </div>
                     </div>
