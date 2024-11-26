@@ -103,6 +103,20 @@ class KomunitasEkspor extends BaseController
         return view('member/beranda/index', $data);
     }
 
+    public function tentang_kami()
+    {
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
+        return view('tentang/index', $data);
+    }
+
     public function premiumindex()
     {
         $lang = session()->get('lang') ?? 'id';

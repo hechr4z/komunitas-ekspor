@@ -607,6 +607,7 @@
 
     // Definisikan tautan untuk setiap halaman berdasarkan bahasa
     $homeLink = ($lang_segment === 'en/') ? '/' : '/';
+    $aboutLink = ($lang_segment === 'en/') ? 'about-us' : 'tentang-kami';
     $belajarEksporLink = ($lang_segment === 'en/') ? 'export-learning' : 'belajar-ekspor';
     $pendaftaranLink = ($lang_segment === 'en/') ? 'registration' : 'pendaftaran';
     $videoTutorialLink = ($lang_segment === 'en/') ? 'video-tutorial' : 'tutorial-video';
@@ -615,6 +616,7 @@
 
     // Buat array untuk menggantikan segmen berdasarkan bahasa
     $replace_map = [
+        'tentang-kami' => 'about-us',
         'pendaftaran' => 'registration',
         'belajar-ekspor' => 'export-learning',
         'kategori' => 'category',
@@ -721,6 +723,10 @@
                 <ul class="navbar-nav ms-auto d-flex align-items-center">
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('/') ?>"> <?php echo lang('Blog.headerBeranda'); ?>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url($lang .  '/' . $aboutLink) ?>"><?php echo lang('Blog.headerTentang'); ?>
                         </a>
                     </li>
                     <div id="navbarNavDarkDropdown">

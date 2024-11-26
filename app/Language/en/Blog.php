@@ -2,6 +2,7 @@
 return [
     //navbar
     'headerBeranda' => 'Home',
+    'headerTentang' => 'About Us',
     'headerArtikel' => 'Export Learning',
     'headerPendaftaran' => 'Registration',
     'headerVideo' => 'Video Tutorials',
@@ -53,6 +54,9 @@ return [
     'communityMemberSpotlightTitle' => 'INDONESIAN EXPORT',
     'communityMemberSpotlightTitle2' => 'COMMUNITY MEMBER SPOTLIGHT',
 
+    //halaman_tentang_kami
+    'tentangTitle' => 'About',
+    'timTitle' => 'our team',
 
     //halaman_belajar_ekspor
     'belajarEksporTitle' => 'Learn Exporting',

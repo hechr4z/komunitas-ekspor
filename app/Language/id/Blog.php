@@ -3,6 +3,7 @@ return [
 
     //navbar
     'headerBeranda' => 'Beranda',
+    'headerTentang' => 'Tentang Kami',
     'headerArtikel' => 'Belajar Ekspor',
     'headerPendaftaran' => 'Pendaftaran',
     'headerVideo' => 'Tutorial Video',
@@ -57,6 +58,9 @@ return [
     'communityMemberSpotlightTitle' => 'SOROTAN MEMBER',
     'communityMemberSpotlightTitle2' => 'KOMUNITAS EKSPOR INDONESIA',
 
+    //halaman_belajar_tentang_kami
+    'tentangTitle' => 'Tentang Kami',
+    'timTitle' => 'Tim Kami',
 
     //halaman_belajar_ekspor
     'belajarEksporTitle' => 'Belajar Ekspor',
