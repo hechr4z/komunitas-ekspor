@@ -508,22 +508,22 @@
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-light">
                                     <li>
-                                        <a class="dropdown-item nav-link" href="<?= base_url('kalkulator-ekspor') ?>">
+                                        <a class="dropdown-item nav-link" href="<?= base_url('kalkulator-ekspor-premium') ?>">
                                             Kalkulator Harga Ekspor
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item nav-link" href="<?= base_url('mpm') ?>">
+                                        <a class="dropdown-item nav-link" href="<?= base_url('mpm-premium') ?>">
                                             Marketing Progress Monitoring
                                         </a>
                                     </li>
-                                    <li onclick="showSweetAlertAW()">
-                                        <a class="dropdown-item nav-link" href="#">
+                                    <li>
+                                        <a class="dropdown-item nav-link" href="<?= base_url('website-audit') ?>">
                                             Website Audit
                                         </a>
                                     </li>
-                                    <li onclick="showSweetAlertKI()">
-                                        <a class="dropdown-item nav-link" href="#">
+                                    <li>
+                                        <a class="dropdown-item nav-link" href="<?= base_url('kelayakan-investasi') ?>">
                                             Kelayakan Investasi
                                         </a>
                                     </li>
@@ -643,22 +643,22 @@
                         <h5 class="mt-4"><b>Aplikasi</b></h5>
                         <div class="list-unstyled pt-2">
                             <p>
-                                <a href="<?= base_url('kalkulator-ekspor') ?>" class="footer-link">
+                                <a href="<?= base_url('kalkulator-ekspor-premium') ?>" class="footer-link">
                                     Kalkulator Harga Ekspor
                                 </a>
                             </p>
                             <p>
-                                <a href="<?= base_url('mpm') ?>" class="footer-link">
+                                <a href="<?= base_url('mpm-premium') ?>" class="footer-link">
                                     Marketing Progress Monitoring
                                 </a>
                             </p>
-                            <p onclick="showSweetAlertAW()">
-                                <a href="#" class="footer-link">
+                            <p>
+                                <a href="<?= base_url('website-audit') ?>" class="footer-link">
                                     Website Audit
                                 </a>
                             </p>
-                            <p onclick="showSweetAlertKI()">
-                                <a href="#" class="footer-link">
+                            <p>
+                                <a href="<?= base_url('kelayakan-investasi') ?>" class="footer-link">
                                     Kelayakan Investasi
                                 </a>
                             </p>
@@ -677,8 +677,6 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script>
         window.addEventListener('scroll', function() {
             var navbar = document.querySelector('.navbar-custom');
@@ -688,74 +686,6 @@
                 navbar.classList.remove('scrolled');
             }
         });
-
-        function showSweetAlertAW() {
-            Swal.fire({
-                title: "Mau Buka Aplikasi Audit Website?",
-                text: "Yuk Daftar Member Premium Dulu",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Daftar",
-                cancelButtonText: "Nanti"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.open("<?= base_url('/daftar-premium') ?>", "_blank");
-                } else {
-                    Swal.fire("Oke, Jangan Lupa Daftar!");
-                }
-            });
-        }
-
-        function showSweetAlertKI() {
-            Swal.fire({
-                title: "Mau Buka Aplikasi Kelayakan Investasi?",
-                text: "Yuk Daftar Member Premium Dulu",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Daftar",
-                cancelButtonText: "Nanti"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.open("<?= base_url('/daftar-premium') ?>", "_blank");
-                } else {
-                    Swal.fire("Oke, Jangan Lupa Daftar!");
-                }
-            });
-        }
-
-        function showSweetAlertDM() {
-            Swal.fire({
-                title: "Mau Buka Fitur Data Member?",
-                text: "Yuk Daftar Member Premium Dulu",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Daftar",
-                cancelButtonText: "Nanti"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.open("<?= base_url('/daftar-premium') ?>", "_blank");
-                } else {
-                    Swal.fire("Oke, Jangan Lupa Daftar!");
-                }
-            });
-        }
-
-        function showSweetAlertDB() {
-            Swal.fire({
-                title: "Mau Buka Fitur Data Buyers?",
-                text: "Yuk Daftar Member Premium Dulu",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Daftar",
-                cancelButtonText: "Nanti"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.open("<?= base_url('/daftar-premium') ?>", "_blank");
-                } else {
-                    Swal.fire("Oke, Jangan Lupa Daftar!");
-                }
-            });
-        }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
