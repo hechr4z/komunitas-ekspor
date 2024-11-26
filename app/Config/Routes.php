@@ -150,15 +150,15 @@ $routes->group('', ['filter' => 'premium'], function ($routes) {
     // Premium - Beranda
     $routes->get('/beranda-premium', 'KomunitasEkspor::premiumindex');
 
-    // Member - Edit Member
-    $routes->get('/edit-profile', 'KomunitasEkspor::edit_profile');
-    $routes->post('/update-foto-profil', 'KomunitasEkspor::updateFotoProfil');
-    $routes->post('/ubah-informasi-akun', 'KomunitasEkspor::ubah_informasi_akun');
-    $routes->post('/ubah-profil-perusahaan', 'KomunitasEkspor::ubah_profil_perusahaan');
-    $routes->post('/add-sertifikat', 'KomunitasEkspor::add_sertifikat');
-    $routes->get('/delete-sertifikat/(:num)', 'KomunitasEkspor::delete_sertifikat/$1');
-    $routes->post('/add-produk', 'KomunitasEkspor::add_produk');
-    $routes->get('/delete-produk/(:num)', 'KomunitasEkspor::delete_produk/$1');
+    // Premium - Edit Member
+    $routes->get('/edit-profile-premium', 'KomunitasEkspor::edit_profile_premium');
+    $routes->post('/update-foto-profil-premium', 'KomunitasEkspor::updateFotoProfil_premium');
+    $routes->post('/ubah-informasi-akun-premium', 'KomunitasEkspor::ubah_informasi_akun_premium');
+    $routes->post('/ubah-profil-perusahaan-premium', 'KomunitasEkspor::ubah_profil_perusahaan_premium');
+    $routes->post('/add-sertifikat-premium', 'KomunitasEkspor::add_sertifikat_premium');
+    $routes->get('/delete-sertifikat-premium/(:num)', 'KomunitasEkspor::delete_sertifikat_premium/$1');
+    $routes->post('/add-produk-premium', 'KomunitasEkspor::add_produk_premium');
+    $routes->get('/delete-produk-premium/(:num)', 'KomunitasEkspor::delete_produk_premium/$1');
 
     // Premium - Aplikasi Kalkulator Ekspor
     $routes->get('/kalkulator-ekspor-premium', 'KomunitasEkspor::index_kalkulator_premium');
