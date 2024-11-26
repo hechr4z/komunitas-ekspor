@@ -1,4 +1,4 @@
-<?= $this->extend('member/layout/app'); ?>
+<?= $this->extend('premium/layout/app'); ?>
 <?= $this->section('content'); ?>
 
 <style>
@@ -122,7 +122,7 @@
                     <?php foreach ($related_videos as $related_video): ?>
                         <!-- card lainnya -->
                         <div class="card bg-white border border-top-0 p-3 rounded shadow-sm mb-3">
-                            <a href="<?= base_url('/member-video-tutorial-detail/' . $related_video['slug']); ?>" class="text-decoration-none">
+                            <a href="<?= base_url('/premium-video-tutorial-detail/' . $related_video['slug']); ?>" class="text-decoration-none">
                                 <div class="d-flex align-items-center bg-white rounded border border-light overflow-hidden shadow-sm">
                                     <img class="img-fluid" style="object-fit: cover; width: 100px; height: 100px;" src="<?= base_url('/img/' . $related_video['thumbnail']); ?>" alt="Thumbnail Video">
                                     <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center">
