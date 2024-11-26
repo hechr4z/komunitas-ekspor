@@ -653,9 +653,6 @@ $this->setData([
                 <div class="carousel-caption d-block text-light mb-3">
                     <h5><?= ($lang == 'en') ? $slider[0]['judul_slider_en'] : $slider[0]['judul_slider'] ?></h5>
                     <p><?= ($lang == 'en') ? $slider[0]['deskripsi_slider_en'] : $slider[0]['deskripsi_slider'] ?></p>
-                    <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
-                        <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
-                    </a>
                 </div>
             </div>
             <!-- Slide 2 -->
@@ -664,9 +661,6 @@ $this->setData([
                 <div class="carousel-caption d-block text-light mb-3">
                     <h5><?= ($lang == 'en') ? $slider[1]['judul_slider_en'] : $slider[1]['judul_slider'] ?></h5>
                     <p><?= ($lang == 'en') ? $slider[1]['deskripsi_slider_en'] : $slider[1]['deskripsi_slider'] ?></p>
-                    <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
-                        <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
-                    </a>
                 </div>
             </div>
             <!-- Slide 3 -->
@@ -675,9 +669,6 @@ $this->setData([
                 <div class="carousel-caption d-block text-light mb-3">
                     <h5><?= ($lang == 'en') ? $slider[2]['judul_slider_en'] : $slider[2]['judul_slider'] ?></h5>
                     <p><?= ($lang == 'en') ? $slider[2]['deskripsi_slider_en'] : $slider[2]['deskripsi_slider'] ?></p>
-                    <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
-                        <button type="button" class="btn btn-outline-light"><?= lang('Blog.btnCarousel'); ?></button>
-                    </a>
                 </div>
             </div>
         </div>
@@ -751,11 +742,6 @@ $this->setData([
                 <p class="text-light fw-lighter mb-4" style="font-size: 16px;">
                     <?= lang('Blog.joinUsDescription'); ?>
                 </p>
-                <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>">
-                    <button type="button" class="btn btn-outline-light btn-lg px-4 py-2" style="font-size: 16px;">
-                        <?= lang('Blog.btnCarousel'); ?>
-                    </button>
-                </a>
             </div>
         </div>
 
@@ -818,14 +804,9 @@ $this->setData([
 <!-- ajakan -->
 <section class="animasi mt-5 footer-custom" style="background-color: #03AADE; width: 100%; height: 350px;">
     <div class="background-image animated-element">
-        <div class="centered-text">
-            <h2 class="text-center text-light" style="padding-top: 100px; font-family: Lato, sans-serif;"><b><?= lang('Blog.joinExporterCommunityTitle'); ?></b></h2>
+        <div class="centered-text align-items-center">
+            <h2 class="text-center text-light" style="padding-top: 140px; font-family: Lato, sans-serif;"><b><?= lang('Blog.joinExporterCommunityTitle'); ?></b></h2>
             <p class="text-center fw-lighter text-light"><?= lang('Blog.joinExporterCommunityDescription'); ?></p>
-        </div>
-        <div class="text-center centered-button pt-2">
-            <a href="<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>" class="btn btn-outline-light">
-                <?= lang('Blog.btnCarousel'); ?>
-            </a>
         </div>
     </div>
 </section>
@@ -866,9 +847,6 @@ $this->setData([
                         <hr>
                     </div>
                 </div>
-                <div class="card-footer bg-light py-3">
-                    <button class="btn btn-outline-secondary btn-sm" disabled>Current Package</button>
-                </div>
             </div>
         </div>
 
@@ -902,7 +880,7 @@ $this->setData([
                     </div>
                 </div>
                 <div class="card-footer bg-light py-3">
-                    <button class="btn btn-info btn-sm">Join Now</button>
+                    <button class="btn btn-outline-secondary btn-sm" disabled>Current Package</button>
                 </div>
             </div>
         </div>
@@ -948,7 +926,9 @@ $this->setData([
                     </div>
                 </div>
                 <div class="card-footer bg-light py-3">
-                    <button class="btn btn-primary btn-sm">Upgrade Now</button>
+                    <a href="<?= base_url('/daftar-premium') ?>" target="_blank">
+                        <button class="btn btn-primary btn-sm">Upgrade Now</button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -998,7 +978,6 @@ $this->setData([
                 '<div class="card-body">' +
                 '<h6 class="card-title text-center" style="font-weight: bold; word-wrap: break-word; white-space: normal;"><?= $item['username'] ?></h6>' +
                 '<p class="card-text text-center text-muted" style="font-size: 0.9rem; word-wrap: break-word; white-space: normal;"><?= $item['nama_perusahaan'] ?></p>' +
-                '<span class="btn btn-primary btn-sm mt-2" style="border-radius: 8px; width: 100%;"><?php echo lang('Blog.btndataMember') ?></span>' +
                 '</div></div></a></div>'
             );
             markers.addLayer(marker);

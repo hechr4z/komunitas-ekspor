@@ -146,6 +146,74 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     // $routes->get('/kelayakan-investasi', 'KomunitasEkspor::kelayakan_investasi');
 });
 
+$routes->group('', ['filter' => 'premium'], function ($routes) {
+    // Member - Beranda
+    $routes->get('/beranda-premium', 'KomunitasEkspor::premiumindex');
+
+    // Member - Edit Member
+    $routes->get('/edit-profile', 'KomunitasEkspor::edit_profile');
+    $routes->post('/update-foto-profil', 'KomunitasEkspor::updateFotoProfil');
+    $routes->post('/ubah-informasi-akun', 'KomunitasEkspor::ubah_informasi_akun');
+    $routes->post('/ubah-profil-perusahaan', 'KomunitasEkspor::ubah_profil_perusahaan');
+    $routes->post('/add-sertifikat', 'KomunitasEkspor::add_sertifikat');
+    $routes->get('/delete-sertifikat/(:num)', 'KomunitasEkspor::delete_sertifikat/$1');
+    $routes->post('/add-produk', 'KomunitasEkspor::add_produk');
+    $routes->get('/delete-produk/(:num)', 'KomunitasEkspor::delete_produk/$1');
+
+    // Visitor - Aplikasi Kalkulator Ekspor
+    $routes->get('/kalkulator-ekspor', 'KomunitasEkspor::index_kalkulator');
+
+    $routes->post('/ganti-satuan/(:num)', 'KomunitasEkspor::ganti_satuan/$1');
+
+    $routes->post('/komponen-exwork/add', 'KomunitasEkspor::add_exwork');
+    $routes->get('/komponen-exwork/delete/(:num)', 'KomunitasEkspor::delete_exwork/$1');
+
+    $routes->post('/komponen-fob/add', 'KomunitasEkspor::add_fob');
+    $routes->get('/komponen-fob/delete/(:num)', 'KomunitasEkspor::delete_fob/$1');
+
+    $routes->post('/komponen-cfr/add', 'KomunitasEkspor::add_cfr');
+    $routes->get('/komponen-cfr/delete/(:num)', 'KomunitasEkspor::delete_cfr/$1');
+
+    $routes->post('/komponen-cif/add', 'KomunitasEkspor::add_cif');
+    $routes->get('/komponen-cif/delete/(:num)', 'KomunitasEkspor::delete_cif/$1');
+
+    // Member - Pengumuman
+    $routes->get('/pengumuman-premium', 'KomunitasEkspor::pengumuman_premium');
+    $routes->get('/detail-pengumuman-premium/(:segment)', 'KomunitasEkspor::detail_pengumuman_premium/$1');
+
+    // MPM
+    $routes->get('/mpm', 'KomunitasEkspor::mpm');
+    $routes->post('/mpm-add', 'KomunitasEkspor::add_mpm');
+    $routes->post('/mpm-edit', 'KomunitasEkspor::edit_mpm');
+    $routes->get('mpm/getEmailsByDate/(:num)/(:num)', 'KomunitasEkspor::getEmailsByDate/$1/$2');
+
+    // Member - Data Member
+    // $routes->get('member-data-member', 'KomunitasEkspor::member_data_member');
+    // $routes->get('member-detail-member/(:any)', 'KomunitasEkspor::member_detail_member/$1');
+
+    // Member = Data Buyers
+    // $routes->get('/member-data-buyers', 'KomunitasEkspor::member_data_buyers');
+
+    // Member - Belajar Ekspor
+    $routes->get('member-belajar-ekspor', 'KomunitasEkspor::member_belajar_ekspor');
+    // $routes->get('member-belajar-ekspor/search', 'KomunitasEkspor::member_search_belajar_ekspor');
+    $routes->get('member-belajar-ekspor-detail/(:segment)', 'KomunitasEkspor::member_belajar_ekspor_detail/$1');
+    // $routes->get('member-kategori/(:any)', 'KomunitasEkspor::member_kategori_belajar_ekspor/$1');
+
+    // Member - Video Tutorial
+    $routes->get('/member-video-tutorial', 'KomunitasEkspor::member_video_tutorial');
+    $routes->get('/member-video-tutorial-selengkapnya/(:segment)', 'KomunitasEkspor::member_video_selengkapnya/$1');
+    $routes->get('/member-video-tutorial-detail/(:segment)', 'KomunitasEkspor::member_video_tutorial_detail/$1');
+
+    // Member - Website Audit
+    // $routes->get('website-audit', 'KomunitasEkspor::website_audit');
+    // $routes->post('add-website-audit', 'KomunitasEkspor::add_website_audit');
+    // $routes->get('delete-website-audit/(:num)', 'KomunitasEkspor::delete_website_audit/$1');
+
+    // Member - Kelayakan Investasi
+    // $routes->get('/kelayakan-investasi', 'KomunitasEkspor::kelayakan_investasi');
+});
+
 $routes->group('', ['filter' => 'admin'], function ($routes) {
     // Admin - Dashboard
     $routes->get('/admin-dashboard', 'KomunitasEkspor::admin_dashboard');

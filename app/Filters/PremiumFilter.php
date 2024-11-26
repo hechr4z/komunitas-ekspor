@@ -6,7 +6,7 @@ use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class AuthFilter implements FilterInterface
+class PremiumFilter implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -25,8 +25,9 @@ class AuthFilter implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        if (!session()->get('logged_in') || (session()->get('role') !== 'member' && session()->get('role') !== 'admin')) {
-            // Redirect to login if not an admin
+        // Check if the user is logged in and is an admin
+        if (!session()->get('logged_in') || (session()->get('role') !== 'premium' && session()->get('role') !== 'admin')) {
+            // Redirect to login if not logged in or not premium/admin
             return redirect()->to('/login');
         }
     }

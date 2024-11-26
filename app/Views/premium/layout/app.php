@@ -457,7 +457,7 @@
     <!-- start navbar -->
     <nav class="navbar navbar-custom navbar-expand-lg sticky-top" style="background-color: #03AADE;">
         <div class="container d-flex justify-content-between align-items-center py-1">
-            <img onclick="window.location.href='/beranda'" style="width:160px;"
+            <img onclick="window.location.href='/beranda-premium'" style="width:160px;"
                 src="<?= base_url('img/' . $webprofile[0]['logo_web']); ?>" alt="logo">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -466,12 +466,12 @@
             <div class="collapse navbar-collapse line" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto d-flex align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('/beranda') ?>">
+                        <a class="nav-link" href="<?= base_url('/beranda-premium') ?>">
                             Beranda
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('/pengumuman') ?>">
+                        <a class="nav-link" href="<?= base_url('/pengumuman-premium') ?>">
                             Pengumuman
                         </a>
                     </li>
@@ -630,8 +630,8 @@
                     <div class="col-md-2">
                         <h5 class="mt-4"><b>Menu</b></h5>
                         <div class="list-unstyled pt-2">
-                            <p><a href="<?= base_url('beranda') ?>" class="footer-link">Beranda</a></p>
-                            <p><a href="<?= base_url('pengumuman') ?>" class="footer-link">Pengumuman</a></p>
+                            <p><a href="<?= base_url('beranda-premium') ?>" class="footer-link">Beranda</a></p>
+                            <p><a href="<?= base_url('pengumuman-premium') ?>" class="footer-link">Pengumuman</a></p>
                             <p><a href="<?= base_url('member-belajar-ekspor') ?>" class="footer-link">Belajar Ekspor</a></p>
                             <p><a href="<?= base_url('member-video-tutorial') ?>" class="footer-link">Video Tutorial</a></p>
                             <p onclick="showSweetAlertDM()"><a href="#" class="footer-link">Data Member</a></p>

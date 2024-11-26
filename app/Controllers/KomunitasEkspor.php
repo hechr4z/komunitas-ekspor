@@ -117,6 +117,42 @@ class KomunitasEkspor extends BaseController
         return view('tentang/index', $data);
     }
 
+    public function premiumindex()
+    {
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
+        $model_slider = new Slider();
+        $model_member = new Member();
+        $model_manfaatjoin = new ManfaatJoin();
+
+        $slider = $model_slider->findAll();
+        $member = $model_member->whereIn('role', ['member', 'premium'])->findAll();
+        $top4_member = $model_member
+            ->whereIn('role', ['member', 'premium'])
+            ->orderBy('popular_point', 'DESC')
+            ->limit(4)
+            ->findAll();
+        $manfaatjoin = $model_manfaatjoin->findAll();
+
+        foreach ($member as &$item) {
+            $item['slug'] = url_title($item['username'], '-', true);
+        }
+
+        $data['slider'] = $slider;
+        $data['member'] = $member;
+        $data['manfaatjoin'] = $manfaatjoin;
+        $data['top4_member'] = $top4_member;
+
+        return view('premium/beranda/index', $data);
+    }
+
     public function belajar_ekspor($slug = null)
     {
         $lang = session()->get('lang') ?? 'id';
@@ -1439,6 +1475,20 @@ class KomunitasEkspor extends BaseController
         return view('member/pengumuman/pengumuman', $data);
     }
 
+    public function pengumuman_premium()
+    {
+        $model_webprofile = new WebProfile();
+        $model_pengumuman = new Pengumuman();
+
+        $pengumuman = $model_pengumuman->findAll();
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+        $data['pengumuman'] = $pengumuman;
+
+        return view('premium/pengumuman/pengumuman', $data);
+    }
+
     public function detail_pengumuman($slug = null)
     {
         $model_webprofile = new WebProfile();
@@ -1452,6 +1502,21 @@ class KomunitasEkspor extends BaseController
         $data['pengumuman_lainnya'] = $model_pengumuman->where('slug !=', $slug)->findAll(3); // Limit untuk 3 pengumuman lainnya
 
         return view('member/pengumuman/detail-pengumuman', $data);
+    }
+
+    public function detail_pengumuman_premium($slug = null)
+    {
+        $model_webprofile = new WebProfile();
+        $model_pengumuman = new Pengumuman();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+        $data['pengumuman'] = $model_pengumuman->where('slug', $slug)->first();
+        // Mendapatkan pengumuman lainnya, selain yang sedang dibuka
+        $data['pengumuman_lainnya'] = $model_pengumuman->where('slug !=', $slug)->findAll(3); // Limit untuk 3 pengumuman lainnya
+
+        return view('premium/pengumuman/detail-pengumuman', $data);
     }
 
     public function mpm()
@@ -1684,8 +1749,10 @@ class KomunitasEkspor extends BaseController
                 // Check if the user is an admin
                 if ($user['role'] === 'admin') {
                     return redirect()->to('/admin-dashboard');  // Redirect to admin dashboard
-                } else {
-                    return redirect()->to('/pengumuman');  // Redirect to regular user page
+                } else if ($user['role'] === 'member') {
+                    return redirect()->to('/beranda');  // Redirect to regular user page
+                } else if ($user['role'] === 'premium') {
+                    return redirect()->to('/beranda-premium');  // Redirect to regular user page
                 }
             } else {
                 // Password incorrect
