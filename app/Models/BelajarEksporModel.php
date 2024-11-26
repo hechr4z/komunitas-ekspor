@@ -37,6 +37,25 @@ class BelajarEksporModel extends Model
             ->join('kategori_belajar_ekspor', 'kategori_belajar_ekspor.id_kategori_belajar_ekspor = belajar_ekspor.id_kategori_belajar_ekspor')
             ->findAll();
     }
+    
+    public function getFreeCategory()
+    {
+        return $this->select('belajar_ekspor.*, kategori_belajar_ekspor.nama_kategori, kategori_belajar_ekspor.nama_kategori_en')
+            ->join('kategori_belajar_ekspor', 'kategori_belajar_ekspor.id_kategori_belajar_ekspor = belajar_ekspor.id_kategori_belajar_ekspor')
+            ->orderBy('created_at', 'ASC')
+            ->limit(10)
+            ->findAll();
+    }
+
+    public function getRelatedFreeCategory($slug)
+    {
+        return $this->select('belajar_ekspor.*, kategori_belajar_ekspor.nama_kategori, kategori_belajar_ekspor.nama_kategori_en')
+            ->join('kategori_belajar_ekspor', 'kategori_belajar_ekspor.id_kategori_belajar_ekspor = belajar_ekspor.id_kategori_belajar_ekspor')
+            ->where('belajar_ekspor.slug !=', $slug)
+            ->orderBy('created_at', 'ASC')
+            ->limit(3)
+            ->findAll();
+    }
 
     public function getByCategory($id_kategori)
     {

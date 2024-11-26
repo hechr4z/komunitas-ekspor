@@ -336,9 +336,66 @@
     <p class="text-custom-paragraph mt-2">Tingkatkan bisnis Anda dengan strategi ekspor yang tepat!
         <br>Belajar ekspor sekarang, kuasai pasar global!
     </p>
+    <!-- Search Bar Start -->
+    <form class="form mt-4" action="<?= base_url('member-belajar-ekspor/search') ?>" method="GET">
+        <button type="submit">
+            <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
+                <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+        </button>
+        <input class="input" name="keyword" placeholder="Cari Materi Ekspor..." required="" type="text" autocomplete="off">
+    </form>
+    <button class="reset" type="reset">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+    </button>
+    <!-- Search Bar End -->
 </div>
 
 <section class="container">
+    <!-- start filter -->
+    <div class="filter-container">
+        <div class="menu">
+            <div class="item">
+                <a href="#" class="link text-light">
+                    <span>Filter Kategori</span>
+                    <svg viewBox="0 0 360 360" xml:space="preserve">
+                        <g id="SVGRepo_iconCarrier">
+                            <path
+                                id="XMLID_225_"
+                                d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393 c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393 s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"></path>
+                        </g>
+                    </svg>
+                </a>
+                <div class="submenu">
+                    <!-- Tampilkan kategori dari database -->
+                    <?php if (!empty($kategori_belajar_ekspor)): ?>
+                        <!-- Tampilkan link ke semua kategori -->
+                        <div class="submenu-item">
+                            <a href="<?= base_url('member-belajar-ekspor'); ?>" class="submenu-link <?= empty($active_category) ? 'active' : ''; ?>">
+                                Semua Kategori
+                            </a>
+                        </div>
+                        <!-- Loop kategori -->
+                        <?php foreach ($kategori_belajar_ekspor as $item): ?>
+                            <div class="submenu-item">
+                                <a href="<?= base_url('member-kategori/' . $item['slug']); ?>" class="submenu-link <?= $active_category == $item['id_kategori_belajar_ekspor'] ? 'active' : ''; ?>">
+                                    <?= $item['nama_kategori']; ?>
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="submenu-item">
+                            <span class="submenu-link">Tidak ada kategori</span>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end filter -->
+
     <div class="row container g-4 mb-5">
         <?php if (!empty($belajar_ekspor)): ?>
             <!-- Menampilkan artikel sesuai kategori -->
@@ -370,6 +427,9 @@
                 </div>
             </div>
         <?php endif; ?>
+    </div>
+    <div class="lebih mt-5" style="display: flex; justify-content: center;">
+        <a href="#" class="btn btn-custom mt-auto" style="min-width: 50px; text-align: center;">Lihat Lebih Banyak ></a>
     </div>
 </section>
 
