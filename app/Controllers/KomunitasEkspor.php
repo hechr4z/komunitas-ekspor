@@ -1441,7 +1441,7 @@ class KomunitasEkspor extends BaseController
             $model_cif->insert($data);
         }
 
-        return redirect()->to('/')->with('success', 'Komponen CIF berhasil ditambahkan!');
+        return redirect()->to('/kalkulator-ekspor')->with('success', 'Komponen CIF berhasil ditambahkan!');
     }
 
     public function delete_cif($id)
@@ -1458,6 +1458,267 @@ class KomunitasEkspor extends BaseController
             return redirect()->to('/kalkulator-ekspor')->with('success', 'Produk berhasil dihapus');
         } else {
             return redirect()->to('/kalkulator-ekspor')->withInput()->with('errors', ['Anda tidak memiliki izin untuk menghapus produk ini']);
+        }
+    }
+
+    public function index_kalkulator_premium()
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
+        $model_exwork = new Exwork();
+        $model_fob = new FOB();
+        $model_cfr = new CFR();
+        $model_cif = new CIF();
+        $model_satuan = new Satuan();
+
+        $exwork = $model_exwork->where('id_member', $user_id)->findAll();
+        $fob = $model_fob->where('id_member', $user_id)->findAll();
+        $cfr = $model_cfr->where('id_member', $user_id)->findAll();
+        $cif = $model_cif->where('id_member', $user_id)->findAll();
+        $satuan = $model_satuan->where('id_member', $user_id)->findAll();
+
+        $data['exwork'] = $exwork;
+        $data['fob'] = $fob;
+        $data['cfr'] = $cfr;
+        $data['cif'] = $cif;
+        $data['satuan'] = $satuan;
+
+        return view('premium/kalkulator-ekspor/kalkulator_ekspor', $data);
+    }
+
+    public function ganti_satuan_premium($id)
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_satuan = new Satuan();
+
+        // Mencari satuan berdasarkan ID
+        $satuan = $model_satuan->find($id);
+
+        // Jika satuan ditemukan, lakukan update
+        if ($satuan) {
+            // Mengambil input dari form
+            $data = [
+                'id_member' => $user_id,
+                'satuan' => $this->request->getPost('satuan'),
+            ];
+
+            // Melakukan update data pada model
+            $model_satuan->update($id, $data);
+
+            // Redirect setelah update berhasil
+            return redirect()->to('/kalkulator-ekspor-premium');
+        } else {
+            // Jika data tidak ditemukan, bisa diarahkan ke halaman error
+            return redirect()->to('/kalkulator-ekspor-premium')->with('error', 'Data satuan tidak ditemukan.');
+        }
+    }
+
+    public function add_exwork_premium()
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        // Validate input
+        $validation = \Config\Services::validation();
+        $validation->setRules([
+            'komponenExwork.*' => 'required',  // Ensure each component is required
+        ]);
+
+        if (!$this->validate($validation->getRules())) {
+            // If validation fails, redirect back with errors
+            return redirect()->back()->with('errors', $validation->getErrors())->withInput();
+        }
+
+        // Get the array of komponenExwork
+        $komponenExworkArray = $this->request->getPost('komponenExwork');
+
+        $model_exwork = new Exwork();
+
+        // Loop through the array and insert each komponenExwork into the database
+        foreach ($komponenExworkArray as $komponenExwork) {
+            $data = [
+                'id_member' => $user_id,
+                'komponen_exwork' => esc($komponenExwork),  // Sanitize the input
+            ];
+            $model_exwork->insert($data);
+        }
+
+        return redirect()->to('/kalkulator-ekspor-premium')->with('success', 'Komponen Exwork berhasil ditambahkan!');
+    }
+
+    public function delete_exwork_premium($id)
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_exwork = new Exwork();
+
+        $exwork = $model_exwork->find($id);
+
+        if ($exwork && $exwork['id_member'] == $user_id) {
+            $model_exwork->delete($id);
+            return redirect()->to('/kalkulator-ekspor-premium')->with('success', 'Produk berhasil dihapus');
+        } else {
+            return redirect()->to('/kalkulator-ekspor-premium')->withInput()->with('errors', ['Anda tidak memiliki izin untuk menghapus produk ini']);
+        }
+    }
+
+    public function add_fob_premium()
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        // Validate input
+        $validation = \Config\Services::validation();
+        $validation->setRules([
+            'komponenFOB.*' => 'required',  // Ensure each component is required
+        ]);
+
+        if (!$this->validate($validation->getRules())) {
+            // If validation fails, redirect back with errors
+            return redirect()->back()->with('errors', $validation->getErrors())->withInput();
+        }
+
+        // Get the array of komponenFOB
+        $komponenFOBArray = $this->request->getPost('komponenFOB');
+
+        $model_fob = new FOB();
+
+        // Loop through the array and insert each komponenFOB into the database
+        foreach ($komponenFOBArray as $komponenFOB) {
+            $data = [
+                'id_member' => $user_id,
+                'komponen_fob' => esc($komponenFOB),  // Sanitize the input
+            ];
+            $model_fob->insert($data);
+        }
+
+        return redirect()->to('/kalkulator-ekspor-premium')->with('success', 'Komponen FOB berhasil ditambahkan!');
+    }
+
+    public function delete_fob_premium($id)
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_fob = new FOB();
+
+        $fob = $model_fob->find($id);
+
+        if ($fob && $fob['id_member'] == $user_id) {
+            $model_fob->delete($id);
+            return redirect()->to('/kalkulator-ekspor-premium')->with('success', 'Produk berhasil dihapus');
+        } else {
+            return redirect()->to('/kalkulator-ekspor-premium')->withInput()->with('errors', ['Anda tidak memiliki izin untuk menghapus produk ini']);
+        }
+    }
+
+    public function add_cfr_premium()
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        // Validate input
+        $validation = \Config\Services::validation();
+        $validation->setRules([
+            'komponenCFR.*' => 'required',  // Ensure each component is required
+        ]);
+
+        if (!$this->validate($validation->getRules())) {
+            // If validation fails, redirect back with errors
+            return redirect()->back()->with('errors', $validation->getErrors())->withInput();
+        }
+
+        // Get the array of komponenCFR
+        $komponenCFRArray = $this->request->getPost('komponenCFR');
+
+        $model_cfr = new CFR();
+
+        // Loop through the array and insert each komponenCFR into the database
+        foreach ($komponenCFRArray as $komponenCFR) {
+            $data = [
+                'id_member' => $user_id,
+                'komponen_cfr' => esc($komponenCFR),  // Sanitize the input
+            ];
+            $model_cfr->insert($data);
+        }
+
+        return redirect()->to('/kalkulator-ekspor-premium')->with('success', 'Komponen CFR berhasil ditambahkan!');
+    }
+
+    public function delete_cfr_premium($id)
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_cfr = new CFR();
+
+        $cfr = $model_cfr->find($id);
+
+        if ($cfr && $cfr['id_member'] == $user_id) {
+            $model_cfr->delete($id);
+            return redirect()->to('/kalkulator-ekspor-premium')->with('success', 'Produk berhasil dihapus');
+        } else {
+            return redirect()->to('/kalkulator-ekspor-premium')->withInput()->with('errors', ['Anda tidak memiliki izin untuk menghapus produk ini']);
+        }
+    }
+
+    public function add_cif_premium()
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        // Validate input
+        $validation = \Config\Services::validation();
+        $validation->setRules([
+            'komponenCIF.*' => 'required',  // Ensure each component is required
+        ]);
+
+        if (!$this->validate($validation->getRules())) {
+            // If validation fails, redirect back with errors
+            return redirect()->back()->with('errors', $validation->getErrors())->withInput();
+        }
+
+        // Get the array of komponenCIF
+        $komponenCIFArray = $this->request->getPost('komponenCIF');
+
+        $model_cif = new CIF();
+
+        // Loop through the array and insert each komponenCIF into the database
+        foreach ($komponenCIFArray as $komponenCIF) {
+            $data = [
+                'id_member' => $user_id,
+                'komponen_cif' => esc($komponenCIF),  // Sanitize the input
+            ];
+            $model_cif->insert($data);
+        }
+
+        return redirect()->to('/kalkulator-ekspor-premium')->with('success', 'Komponen CIF berhasil ditambahkan!');
+    }
+
+    public function delete_cif_premium($id)
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_cif = new CIF();
+
+        $cif = $model_cif->find($id);
+
+        if ($cif && $cif['id_member'] == $user_id) {
+            $model_cif->delete($id);
+            return redirect()->to('/kalkulator-ekspor-premium')->with('success', 'Produk berhasil dihapus');
+        } else {
+            return redirect()->to('/kalkulator-ekspor-premium')->withInput()->with('errors', ['Anda tidak memiliki izin untuk menghapus produk ini']);
         }
     }
 
@@ -1693,6 +1954,204 @@ class KomunitasEkspor extends BaseController
     }
 
     public function getEmailsByDate($month, $year)
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_mpm = new MPM();
+
+        // Ambil jumlah email yang dikirim per tanggal dalam bulan dan tahun tertentu
+        $result = $model_mpm
+            ->select('DAY(tgl_kirim_email) as hari, COUNT(*) as jumlah_email')
+            ->where('id_member', $user_id)
+            ->where('MONTH(tgl_kirim_email)', $month)
+            ->where('YEAR(tgl_kirim_email)', $year)
+            ->groupBy('hari')
+            ->findAll();
+
+        // Buat array dengan format [hari => jumlah_email]
+        $emailData = [];
+        foreach ($result as $row) {
+            $emailData[$row['hari']] = $row['jumlah_email'];
+        }
+
+        return $this->response->setJSON($emailData);
+    }
+
+    public function mpm_premium()
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $model_webprofile = new WebProfile();
+
+        $webprofile = $model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
+        $model_mpm = new MPM();
+
+        // Cari tahun paling lama yang ada di database
+        $oldest_year = $model_mpm
+            ->select('YEAR(tgl_kirim_email) as tahun_kirim')
+            ->orderBy('tahun_kirim', 'ASC') // Ambil yang terlama
+            ->first(); // Hanya ambil satu record (tahun terlama)
+
+        // Jika data ada, set tahun terlama dari database, jika tidak, default ke tahun sekarang
+        $start_year = isset($oldest_year['tahun_kirim']) ? $oldest_year['tahun_kirim'] : date('Y');
+
+        $current_year = date('Y'); // Tahun sekarang
+
+        // Buat array tahun dari tahun terlama hingga tahun saat ini
+        $years = [];
+        for ($year = $start_year; $year <= $current_year; $year++) {
+            $years[] = $year;
+        }
+
+        // Balik array agar tahun terbaru ada di atas
+        $years = array_reverse($years);
+
+        // // Ambil data dari database hanya untuk tahun-tahun yang ada
+        // $mpm_data = $model_mpm
+        //     ->select('YEAR(tgl_kirim_email) as tahun_kirim, COUNT(*) as jumlah') // Hitung jumlah data per tahun
+        //     ->groupBy('tahun_kirim')
+        //     ->orderBy('tahun_kirim', 'DESC')
+        //     ->findAll();
+
+        // // Buat array untuk memetakan data dari database berdasarkan tahun
+        // $mpm_year = [];
+        // foreach ($mpm_data as $data) {
+        //     $mpm_year[$data['tahun_kirim']] = $data['jumlah']; // Simpan jumlah data per tahun
+        // }
+
+        // Set pagination
+        $perPage = 10; // Number of members per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
+
+        $mpmtable = $model_mpm->where('id_member', $user_id)->paginate($perPage);
+
+        $bulanIndonesia = [
+            'January' => 'Januari',
+            'February' => 'Februari',
+            'March' => 'Maret',
+            'April' => 'April',
+            'May' => 'Mei',
+            'June' => 'Juni',
+            'July' => 'Juli',
+            'August' => 'Agustus',
+            'September' => 'September',
+            'October' => 'Oktober',
+            'November' => 'November',
+            'December' => 'Desember'
+        ];
+
+        foreach ($mpmtable as &$item) {
+            // Mengubah format tgl_kirim_email
+            $tgl_kirim = date('d F Y', strtotime($item['tgl_kirim_email']));
+            $bulanInggris_kirim = date('F', strtotime($item['tgl_kirim_email']));
+            $item['tgl_kirim_email'] = str_replace($bulanInggris_kirim, $bulanIndonesia[$bulanInggris_kirim], $tgl_kirim);
+
+            // Memeriksa jika update_terakhir bernilai null
+            if (is_null($item['update_terakhir'])) {
+                $item['update_terakhir'] = '';
+            } else {
+                // Mengubah format update_terakhir jika tidak null
+                $tgl_update = date('d F Y', strtotime($item['update_terakhir']));
+                $bulanInggris_update = date('F', strtotime($item['update_terakhir']));
+                $item['update_terakhir'] = str_replace($bulanInggris_update, $bulanIndonesia[$bulanInggris_update], $tgl_update);
+            }
+        }
+
+        $data['mpmtable'] = $mpmtable;
+        $data['pager'] = $model_mpm->pager;
+        $data['page'] = $page;
+        $data['perPage'] = $perPage;
+        $data['years'] = $years; // Semua tahun dari yang terlama sampai sekarang, dengan urutan terbaru di atas
+        // $data['mpm_year'] = $mpm_year; // Data dari database
+
+        return view('premium/mpm/mpm', $data);
+    }
+
+    public function add_mpm_premium()
+    {
+        $session = session();
+        $user_id = $session->get('user_id');
+
+        $tgl_kirim_email = $this->request->getPost('tgl_kirim_email');
+
+        $bulanIndonesia = [
+            'January' => 'Januari',
+            'February' => 'Februari',
+            'March' => 'Maret',
+            'April' => 'April',
+            'May' => 'Mei',
+            'June' => 'Juni',
+            'July' => 'Juli',
+            'August' => 'Agustus',
+            'September' => 'September',
+            'October' => 'Oktober',
+            'November' => 'November',
+            'December' => 'Desember'
+        ];
+
+        $tgl = date('d F Y', strtotime($tgl_kirim_email));
+        $bulanInggris = date('F', strtotime($tgl_kirim_email));
+        $tgl_kirim_email = str_replace($bulanInggris, $bulanIndonesia[$bulanInggris], $tgl);
+
+        $data = [
+            'id_member' => $user_id,
+            'tgl_kirim_email' => $this->request->getPost('tgl_kirim_email'),
+            'update_terakhir' => NULL,
+            'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
+            'negara_perusahaan' => $this->request->getPost('negara_perusahaan'),
+            'status_progres' => $this->request->getPost('status_progres'),
+            'progres' => '1. Mengirim email pada tanggal ' . $tgl_kirim_email,
+        ];
+
+        $model_mpm = new MPM();
+        $model_mpm->insert($data);
+
+        return redirect()->to('/mpm-premium');
+    }
+
+    public function edit_mpm_premium()
+    {
+        $model_mpm = new MPM();
+
+        // Ambil ID MPM yang akan diedit
+        $id_mpm = $this->request->getPost('id_mpm');
+
+        // Ambil ID user yang sedang login
+        $session = session();
+        $user_id = $session->get('user_id');  // Sesuaikan dengan session yang kamu pakai
+
+        // Cari data MPM berdasarkan ID MPM
+        $mpm = $model_mpm->find($id_mpm);
+
+        // Pastikan data ditemukan
+        if (!$mpm) {
+            return redirect()->to('/mpm-premium')->withInput()->with('errors', ['MPM tidak ditemukan.']);
+        }
+
+        // Cek apakah user yang sedang login adalah pemilik MPM tersebut
+        if ($mpm['id_member'] != $user_id) {
+            // Jika ID user yang sedang login tidak sama dengan id_member MPM, larang akses
+            return redirect()->to('/mpm-premium')->withInput()->with('errors', ['Anda tidak memiliki izin untuk mengedit MPM ini.']);
+        }
+
+        // Jika lolos pengecekan, lanjutkan untuk mengupdate MPM
+        $now = Time::now();
+        $data = [
+            'update_terakhir' => $now,
+            'progres' => $this->request->getPost('progres'),
+        ];
+
+        $model_mpm->update($id_mpm, $data);
+
+        return redirect()->to('/mpm-premium')->with('success', 'MPM telah berhasil diperbarui.');
+    }
+
+    public function getEmailsByDate_premium($month, $year)
     {
         $session = session();
         $user_id = $session->get('user_id');
@@ -2188,7 +2647,7 @@ class KomunitasEkspor extends BaseController
 
         $data['webaudit'] = $webaudit;
 
-        return view('member/website-audit/website-audit', $data);
+        return view('premium/website-audit/website-audit', $data);
     }
 
     public function add_website_audit()
@@ -4513,6 +4972,6 @@ class KomunitasEkspor extends BaseController
 
         $data['webprofile'] = $webprofile;
 
-        return view('member/kelayakan-investasi/kelayakan-investasi', $data);
+        return view('premium/kelayakan-investasi/kelayakan-investasi', $data);
     }
 }
