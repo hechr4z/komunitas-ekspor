@@ -9,6 +9,9 @@ $routes->group('id', function ($routes) {
     // Visitor - Beranda
     $routes->get('/', 'KomunitasEkspor::index');
 
+    // Visitor - Tentang Kami
+    $routes->get('tentang-kami', 'KomunitasEkspor::tentang_kami');
+
     // Visitor - Landing Page Member
     $routes->get('landing-page', 'KomunitasEkspor::visitor_landing_page');
 
@@ -36,6 +39,9 @@ $routes->group('id', function ($routes) {
 
 $routes->group('en', function ($routes) {
     $routes->get('/', 'KomunitasEkspor::index');
+
+    // Visitor - Tentang Kami
+    $routes->get('about-us', 'KomunitasEkspor::tentang_kami');
 
     // Visitor - Belajar Ekspor
     // $routes->get('export-learning', 'KomunitasEkspor::belajar_ekspor');
