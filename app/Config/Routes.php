@@ -160,32 +160,40 @@ $routes->group('', ['filter' => 'premium'], function ($routes) {
     $routes->post('/add-produk', 'KomunitasEkspor::add_produk');
     $routes->get('/delete-produk/(:num)', 'KomunitasEkspor::delete_produk/$1');
 
-    // Visitor - Aplikasi Kalkulator Ekspor
-    $routes->get('/kalkulator-ekspor', 'KomunitasEkspor::index_kalkulator');
+    // Premium - Aplikasi Kalkulator Ekspor
+    $routes->get('/kalkulator-ekspor-premium', 'KomunitasEkspor::index_kalkulator_premium');
 
-    $routes->post('/ganti-satuan/(:num)', 'KomunitasEkspor::ganti_satuan/$1');
+    $routes->post('/ganti-satuan-premium/(:num)', 'KomunitasEkspor::ganti_satuan_premium/$1');
 
-    $routes->post('/komponen-exwork/add', 'KomunitasEkspor::add_exwork');
-    $routes->get('/komponen-exwork/delete/(:num)', 'KomunitasEkspor::delete_exwork/$1');
+    $routes->post('/komponen-exwork-premium/add', 'KomunitasEkspor::add_exwork_premium');
+    $routes->get('/komponen-exwork-premium/delete/(:num)', 'KomunitasEkspor::delete_exwork_premium/$1');
 
-    $routes->post('/komponen-fob/add', 'KomunitasEkspor::add_fob');
-    $routes->get('/komponen-fob/delete/(:num)', 'KomunitasEkspor::delete_fob/$1');
+    $routes->post('/komponen-fob-premium/add', 'KomunitasEkspor::add_fob_premium');
+    $routes->get('/komponen-fob-premium/delete/(:num)', 'KomunitasEkspor::delete_fob_premium/$1');
 
-    $routes->post('/komponen-cfr/add', 'KomunitasEkspor::add_cfr');
-    $routes->get('/komponen-cfr/delete/(:num)', 'KomunitasEkspor::delete_cfr/$1');
+    $routes->post('/komponen-cfr-premium/add', 'KomunitasEkspor::add_cfr_premium');
+    $routes->get('/komponen-cfr-premium/delete/(:num)', 'KomunitasEkspor::delete_cfr_premium/$1');
 
-    $routes->post('/komponen-cif/add', 'KomunitasEkspor::add_cif');
-    $routes->get('/komponen-cif/delete/(:num)', 'KomunitasEkspor::delete_cif/$1');
+    $routes->post('/komponen-cif-premium/add', 'KomunitasEkspor::add_cif_premium');
+    $routes->get('/komponen-cif-premium/delete/(:num)', 'KomunitasEkspor::delete_cif_premium/$1');
 
-    // Member - Pengumuman
+    // Premium - Pengumuman
     $routes->get('/pengumuman-premium', 'KomunitasEkspor::pengumuman_premium');
     $routes->get('/detail-pengumuman-premium/(:segment)', 'KomunitasEkspor::detail_pengumuman_premium/$1');
 
     // MPM
-    $routes->get('/mpm', 'KomunitasEkspor::mpm');
-    $routes->post('/mpm-add', 'KomunitasEkspor::add_mpm');
-    $routes->post('/mpm-edit', 'KomunitasEkspor::edit_mpm');
-    $routes->get('mpm/getEmailsByDate/(:num)/(:num)', 'KomunitasEkspor::getEmailsByDate/$1/$2');
+    $routes->get('/mpm-premium', 'KomunitasEkspor::mpm_premium');
+    $routes->post('/mpm-add-premium', 'KomunitasEkspor::add_mpm_premium');
+    $routes->post('/mpm-edit-premium', 'KomunitasEkspor::edit_mpm_premium');
+    $routes->get('mpm-premium/getEmailsByDate/(:num)/(:num)', 'KomunitasEkspor::getEmailsByDate_premium/$1/$2');
+
+    // Premium - Website Audit
+    $routes->get('website-audit', 'KomunitasEkspor::website_audit');
+    $routes->post('add-website-audit', 'KomunitasEkspor::add_website_audit');
+    $routes->get('delete-website-audit/(:num)', 'KomunitasEkspor::delete_website_audit/$1');
+
+    // Premium - Kelayakan Investasi
+    $routes->get('/kelayakan-investasi', 'KomunitasEkspor::kelayakan_investasi');
 
     // Member - Data Member
     // $routes->get('member-data-member', 'KomunitasEkspor::member_data_member');
@@ -204,14 +212,6 @@ $routes->group('', ['filter' => 'premium'], function ($routes) {
     $routes->get('/premium-video-tutorial', 'KomunitasEkspor::premium_video_tutorial');
     $routes->get('/premium-video-tutorial-selengkapnya/(:segment)', 'KomunitasEkspor::premium_video_selengkapnya/$1');
     $routes->get('/premium-video-tutorial-detail/(:segment)', 'KomunitasEkspor::premium_video_tutorial_detail/$1');
-
-    // Member - Website Audit
-    // $routes->get('website-audit', 'KomunitasEkspor::website_audit');
-    // $routes->post('add-website-audit', 'KomunitasEkspor::add_website_audit');
-    // $routes->get('delete-website-audit/(:num)', 'KomunitasEkspor::delete_website_audit/$1');
-
-    // Member - Kelayakan Investasi
-    // $routes->get('/kelayakan-investasi', 'KomunitasEkspor::kelayakan_investasi');
 });
 
 $routes->group('', ['filter' => 'admin'], function ($routes) {
