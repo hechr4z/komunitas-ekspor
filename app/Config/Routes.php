@@ -122,9 +122,9 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
 
     // Member - Belajar Ekspor
     $routes->get('member-belajar-ekspor', 'KomunitasEkspor::member_belajar_ekspor');
-    $routes->get('member-belajar-ekspor/search', 'KomunitasEkspor::member_search_belajar_ekspor');
+    // $routes->get('member-belajar-ekspor/search', 'KomunitasEkspor::member_search_belajar_ekspor');
     $routes->get('member-belajar-ekspor-detail/(:segment)', 'KomunitasEkspor::member_belajar_ekspor_detail/$1');
-    $routes->get('member-kategori/(:any)', 'KomunitasEkspor::member_kategori_belajar_ekspor/$1');
+    // $routes->get('member-kategori/(:any)', 'KomunitasEkspor::member_kategori_belajar_ekspor/$1');
 
     // Member - Video Tutorial
     $routes->get('/member-video-tutorial', 'KomunitasEkspor::member_video_tutorial');
