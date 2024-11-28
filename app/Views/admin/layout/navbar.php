@@ -169,7 +169,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link <?= (current_url() == base_url('admin-website-audit') || current_url() == base_url('admin-search-website-audit')) ? 'active' : '' ?>" href="<?= base_url('admin-website-audit') ?>">
+                    <a class="nav-link <?= (current_url() == base_url('admin-website-audit') || current_url() == base_url('admin-search-website-audit') || (strpos(current_url(), base_url('admin-process-website-audit')) === 0)) ? 'active' : '' ?>" href="<?= base_url('admin-website-audit') ?>">
                         <span class="nav-icon">
                             <i class="fa-solid fa-globe"></i>
                         </span>
