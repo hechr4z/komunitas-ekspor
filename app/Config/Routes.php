@@ -333,8 +333,8 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
     // Admin - Website Audit
     $routes->get('/admin-website-audit', 'KomunitasEkspor::admin_website_audit');
     $routes->get('/admin-search-website-audit', 'KomunitasEkspor::admin_search_website_audit');
-    $routes->get('/admin-add-website-audit', 'KomunitasEkspor::admin_add_website_audit');
-    $routes->get('/admin-edit-website-audit', 'KomunitasEkspor::admin_edit_website_audit');
+    $routes->get('/admin-process-website-audit/(:num)', 'KomunitasEkspor::admin_process_website_audit/$1');
+    $routes->post('/admin-done-website-audit/(:num)', 'KomunitasEkspor::admin_done_website_audit/$1');
 
     // Admin - Pengumuman
     $routes->get('/admin-pengumuman', 'KomunitasEkspor::admin_pengumuman');
