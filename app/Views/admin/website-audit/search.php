@@ -235,6 +235,7 @@
                                         <th class="text-center" valign="middle">Catatan Fitur</th>
                                         <th class="text-center" valign="middle">Catatan Bahasa</th>
                                         <th class="text-center" valign="middle">Catatan SEO</th>
+                                        <th class="text-center" valign="middle">Aksi</th>
                                     </tr>
                                 </thead>
                                 <?php if (empty($hasilPencarian)): ?>
@@ -274,6 +275,15 @@
                                         <td class="text-center align-middle col-fixed">
                                             <div class="text-truncate-multiline" data-bs-toggle="tooltip" title="<?= $item['catatan_seo'] ?>">
                                                 <?= $item['catatan_seo'] ?>
+                                            </div>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <?php if ($item['status_verifikasi'] === 'waiting'): ?>
+                                                    <a href="<?= base_url('admin-process-website-audit/' . $item['id_webaudit']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Audit</a>
+                                                <?php else: ?>
+                                                    <!-- Nothing -->
+                                                <?php endif; ?>
                                             </div>
                                         </td>
                                     </tr>
