@@ -5209,14 +5209,111 @@ class KomunitasEkspor extends BaseController
         return view('admin/website-audit/search', $data);
     }
 
-    public function admin_add_website_audit()
+    public function admin_process_website_audit($id)
     {
-        return view('admin/website-audit/add');
+        $model_webaudit = new WebsiteAudit();
+        $model_member = new Member();
+
+        $webaudit = $model_webaudit->find($id);
+
+        $member = $model_member->whereIn('role', ['member', 'premium'])->select('id_member, username')->findAll();
+
+        $data['webaudit'] = $webaudit;
+        $data['member'] = $member;
+
+        return view('admin/website-audit/process', $data);
     }
 
-    public function admin_edit_website_audit()
+    public function admin_done_website_audit($id)
     {
-        return view('admin/website-audit/edit');
+        $model_webaudit = new WebsiteAudit();
+
+        $fitur = $this->request->getPost('fitur');
+        $bahasa = $this->request->getPost('bahasa');
+        $seo = $this->request->getPost('seo');
+
+        $catatan_fitur_profil_perusahaan = "Fitur Profil Perusahaan masih belum benar";
+        $catatan_fitur_katalog_produk = "Fitur Katalog Produk masih belum benar";
+        $catatan_fitur_kontak = "Fitur Kontak masih belum benar";
+        $catatan_fitur_blog_artikel = "Fitur Blog / Artikel Edukasi masih belum benar";
+        $catatan_fitur_aktivitas_berita = "Fitur Aktivitas Perusahaan / Berita masih belum benar";
+        $catatan_fitur_sosmed_marketplace = "Fitur Integrasi Ke Social Media / Marketplace masih belum benar";
+        $catatan_bahasa_inggris = "Bahasa Inggris masih belum benar";
+        $catatan_bahasa_indonesia = "Bahasa Indonesia masih belum benar";
+        $catatan_seo_meta_tags = "SEO Meta Tags Optimalisasi masih belum benar";
+        $catatan_seo_struktur_data = "SEO Struktur Data masih belum benar";
+        $catatan_seo_keyword_research = "SEO Keyword Research masih belum benar";
+
+        if (!empty($fitur)) {
+            if (in_array('Profil Perusahaan', $fitur)) {
+                $catatan_fitur_profil_perusahaan = "";
+            }
+            if (in_array('Katalog Produk', $fitur)) {
+                $catatan_fitur_katalog_produk = "";
+            }
+            if (in_array('Kontak', $fitur)) {
+                $catatan_fitur_kontak = "";
+            }
+            if (in_array('Blog / Artikel Edukasi', $fitur)) {
+                $catatan_fitur_blog_artikel = "";
+            }
+            if (in_array('Aktivitas Perusahaan / Berita', $fitur)) {
+                $catatan_fitur_aktivitas_berita = "";
+            }
+            if (in_array('Integrasi Ke Social Media / Marketplace', $fitur)) {
+                $catatan_fitur_sosmed_marketplace = "";
+            }
+        }
+        if (!empty($bahasa)) {
+            if (in_array('Inggris', $bahasa)) {
+                $catatan_bahasa_inggris = "";
+            }
+            if (in_array('Indonesia', $bahasa)) {
+                $catatan_bahasa_indonesia = "";
+            }
+        }
+        if (!empty($seo)) {
+            if (in_array('Meta Tags Optimalisasi', $seo)) {
+                $catatan_seo_meta_tags = "";
+            }
+            if (in_array('Struktur Data', $seo)) {
+                $catatan_seo_struktur_data = "";
+            }
+            if (in_array('Keyword Research', $seo)) {
+                $catatan_seo_keyword_research = "";
+            }
+        }
+
+        $catatan_fitur = implode(', ', array_filter([
+            $catatan_fitur_profil_perusahaan,
+            $catatan_fitur_katalog_produk,
+            $catatan_fitur_kontak,
+            $catatan_fitur_blog_artikel,
+            $catatan_fitur_aktivitas_berita,
+            $catatan_fitur_sosmed_marketplace
+        ]));
+        $catatan_bahasa = implode(', ', array_filter([
+            $catatan_bahasa_inggris,
+            $catatan_bahasa_indonesia
+        ]));
+        $catatan_seo = implode(', ', array_filter([
+            $catatan_seo_meta_tags,
+            $catatan_seo_struktur_data,
+            $catatan_seo_keyword_research
+        ]));
+
+        $status_verifikasi = empty($catatan_fitur) && empty($catatan_bahasa) && empty($catatan_seo) ? 'true' : 'false';
+
+        $data = [
+            'status_verifikasi' => $status_verifikasi,
+            'catatan_fitur' => $catatan_fitur,
+            'catatan_bahasa' => $catatan_bahasa,
+            'catatan_seo' => $catatan_seo,
+        ];
+
+        $model_webaudit->update($id, $data);
+
+        return redirect()->to('/admin-website-audit');
     }
 
     public function admin_pengumuman()
