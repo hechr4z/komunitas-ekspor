@@ -3625,7 +3625,7 @@ class KomunitasEkspor extends BaseController
     {
         $model_member = new Member();
 
-        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
+        $member = $model_member->whereIn('role', ['member', 'premium'])->select('id_member, username')->findAll();
 
         $data['member'] = $member;
 
@@ -3639,7 +3639,7 @@ class KomunitasEkspor extends BaseController
 
         $id_member = $this->request->getPost('id_member');
 
-        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
+        $memberData = $model_member->where('id_member', $id_member)->whereIn('role', ['member', 'premium'])->first();
 
         if (!$memberData) {
             return redirect()->to('/admin-produk')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
@@ -3679,7 +3679,7 @@ class KomunitasEkspor extends BaseController
 
         $produk = $model_produk->find($id);
 
-        $member = $model_member->where('role', 'member')->select('id_member, username')->findAll();
+        $member = $model_member->whereIn('role', ['member', 'premium'])->select('id_member, username')->findAll();
 
         $data['produk'] = $produk;
         $data['member'] = $member;
@@ -3694,7 +3694,7 @@ class KomunitasEkspor extends BaseController
 
         $id_member = $this->request->getPost('id_member');
 
-        $memberData = $model_member->where('id_member', $id_member)->where('role', 'member')->first();
+        $memberData = $model_member->where('id_member', $id_member)->whereIn('role', ['member', 'premium'])->first();
 
         if (!$memberData) {
             return redirect()->to('/admin-produk')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
