@@ -3184,7 +3184,7 @@ class KomunitasEkspor extends BaseController
         $kategoribelajarekspor = $model_kategoribelajarekspor->countAll();
         $kategorivideo = $model_kategorivideo->countAll();
         $manfaatjoin = $model_manfaatjoin->countAll();
-        $member = $model_member->where('role', 'member')->countAllResults();
+        $member = $model_member->whereIn('role', ['member', 'premium'])->countAllResults();
         $mpm = $model_mpm->countAll();
         $pengumuman = $model_pengumuman->countAll();
         $produk = $model_produk->countAll();
@@ -3226,7 +3226,7 @@ class KomunitasEkspor extends BaseController
         $page = $this->request->getVar('page') ?? 1;
 
         $member = $model_member
-            ->where('role', 'member')
+            ->whereIn('role', ['member', 'premium'])
             ->orderBy('tanggal_verifikasi', 'DESC')
             ->paginate($perPage);
 
@@ -3253,8 +3253,10 @@ class KomunitasEkspor extends BaseController
 
         // Query pencarian: mencari berdasarkan judul, tags, atau deskripsi
         $hasilPencarian = $model_member
-            ->where('role', 'member')
-            ->like('username', $keyword)
+            ->whereIn('role', ['member', 'premium'])
+            ->groupStart()
+            ->like('role', $keyword)
+            ->orLike('username', $keyword)
             ->orLike('kode_referral', $keyword)
             ->orLike('popular_point', $keyword)
             ->orLike('nama_perusahaan', $keyword)
@@ -3269,6 +3271,7 @@ class KomunitasEkspor extends BaseController
             ->orLike('kategori_produk', $keyword)
             ->orLike('latitude', $keyword)
             ->orLike('longitude', $keyword)
+            ->groupEnd()
             ->orderBy('tanggal_verifikasi', 'DESC')
             ->paginate($perPage); // Pastikan method ini mengembalikan data dengan kategori
 
@@ -3313,12 +3316,12 @@ class KomunitasEkspor extends BaseController
         }
 
         $data = [
-            'role' => 'member',
+            'role' => $this->request->getPost('role'),
             'username' => $this->request->getPost('username_referral'),
             'password' => password_hash($password, PASSWORD_DEFAULT),
             'foto_profil' => $namaFile,
             'kode_referral' => $this->request->getPost('username_referral'),
-            'popular_point' => $this->request->getPost('popular_point'),
+            'popular_point' => 0,
             'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
             'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
             'deskripsi_perusahaan_en' => $tr->translate($this->request->getPost('deskripsi_perusahaan')),
@@ -3356,7 +3359,7 @@ class KomunitasEkspor extends BaseController
     {
         $model_member = new Member();
 
-        $member = $model_member->where('role', 'member')->find($id);
+        $member = $model_member->whereIn('role', ['member', 'premium'])->find($id);
 
         $data['member'] = $member;
 
@@ -3397,6 +3400,7 @@ class KomunitasEkspor extends BaseController
 
         // Populate the remaining fields for data array
         $data = array_merge($data, [
+            'role' => $this->request->getPost('role'),
             'username' => $this->request->getPost('username_referral'),
             'kode_referral' => $this->request->getPost('username_referral'),
             'popular_point' => $this->request->getPost('popular_point'),
@@ -3429,7 +3433,7 @@ class KomunitasEkspor extends BaseController
     {
         $model_member = new Member();
 
-        $member = $model_member->where('role', 'member')->find($id);
+        $member = $model_member->whereIn('role', ['member', 'premium'])->find($id);
 
         if ($member['foto_profil'] && file_exists(ROOTPATH . 'public/img/' . $member['foto_profil'])) {
             unlink(ROOTPATH . 'public/img/' . $member['foto_profil']);
