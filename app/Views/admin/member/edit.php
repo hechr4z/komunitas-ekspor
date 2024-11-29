@@ -10,6 +10,23 @@
                 <div class="app-card app-card-settings shadow-sm p-4">
                     <div class="card-body">
                         <form action="<?= base_url('admin-update-member/' . $member['id_member']) ?>" method="post" enctype="multipart/form-data">
+
+                            <div class="mb-3">
+                                <label>Jenis Member</label>
+                                <div class="form-check d-flex align-items-start">
+                                    <input class="form-check-input" type="radio" name="role" id="memberPremium" value="premium" required <?= $member['role'] == 'premium' ? 'checked' : '' ?>>
+                                    <label class="form-check-label ms-2" for="memberPremium">
+                                        Member Premium
+                                    </label>
+                                </div>
+                                <div class="form-check d-flex align-items-start">
+                                    <input class="form-check-input" type="radio" name="role" id="memberFree" value="member" required <?= $member['role'] == 'member' ? 'checked' : '' ?>>
+                                    <label class="form-check-label ms-2" for="memberFree">
+                                        Member Free
+                                    </label>
+                                </div>
+                            </div>
+
                             <div class="mb-3">
                                 <label class="form-label">Username & Kode Referral</label>
                                 <input type="text" class="form-control" value="<?= $member['username'] ?>" name="username_referral" placeholder="Masukkan Username & Kode Referral" required>
