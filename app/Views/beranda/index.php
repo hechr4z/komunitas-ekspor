@@ -857,12 +857,12 @@ $this->setData([
                     <i class="fas fa-user-slash fa-3x text-secondary mb-4"></i>
                     <h6 class="fw-bold">Basic Access</h6>
                     <h6 class="fw-bold text-secondary"> Rp. 0</h6>
-                    <p>Akses dasar untuk eksplorasi awal</p>
+                    <p><?php echo lang('Blog.deskNonMember'); ?></p>
                     <div class="benefits-list" style="max-height: 150px; overflow-y: auto;">
                         <hr>
-                        <p class="mb-2">- Beranda</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerBeranda'); ?></p>
                         <hr>
-                        <p class="mb-2">- Tentang Kami</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerTentang'); ?></p>
                         <hr>
                     </div>
                 </div>
@@ -881,23 +881,23 @@ $this->setData([
                 <div class="card-body">
                     <i class="fas fa-user fa-3x text-info mb-4"></i>
                     <h6 class="fw-bold">Enhanced Features</h6>
-                    <h6 class="fw-bold text-info">Didaftrakan</h6>
-                    <p>Bergabunglah sekarang untuk lebih banyak fitur!</p>
+                    <h6 class="fw-bold text-info"><?php echo lang('Blog.packageRegistered'); ?></h6>
+                    <p><?php echo lang('Blog.deskMemberFree'); ?></p>
                     <div class="benefits-list" style="max-height: 150px; overflow-y: auto;">
                         <hr>
-                        <p class="mb-2">- Beranda</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerBeranda'); ?></p>
                         <hr>
-                        <p class="mb-2">- Tentang Kami</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerTentang'); ?></p>
                         <hr>
-                        <p class="mb-2">- Belajar Ekspor (10 Materi)</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerArtikel'); ?> (10 <?php echo lang('Blog.packageSubject'); ?>)</p>
                         <hr>
-                        <p class="mb-2">- Video Tutorial (3 Video)</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerVideo'); ?> (3 <?php echo lang('Blog.packageVideo'); ?>)</p>
                         <hr>
-                        <p class="mb-2">- Aplikasi Kalkulator Harga Ekspor</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?> <?php echo lang('Blog.headerApp1'); ?></p>
                         <hr>
-                        <p class="mb-2">- Aplikasi MPM</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?> <?php echo lang('Blog.headerApp2'); ?></p>
                         <hr>
-                        <p class="mb-2">- Data Produk (1 Produk)</p>
+                        <p class="mb-2">- <?php echo lang('Blog.productData'); ?> (1 <?php echo lang('Blog.product'); ?>)</p>
                         <hr>
                     </div>
                 </div>
@@ -919,33 +919,33 @@ $this->setData([
                 <div class="card-body">
                     <i class="fas fa-crown fa-3x text-primary mb-4"></i>
                     <h6 class="fw-bold">Full Access</h6>
-                    <h6 class="fw-bold text-primary"> Rp. 150.000 / Bulan</h6>
-                    <p>Dapatkan semua fitur premium sekarang juga!</p>
+                    <h6 class="fw-bold text-primary"> Rp. 150.000 / <?php echo lang('Blog.packageMonth'); ?></h6>
+                    <p><?php echo lang('Blog.deskMemberPremium'); ?></p>
                     <div class="benefits-list" style="max-height: 150px; overflow-y: auto;">
                         <hr>
-                        <p class="mb-2">- Beranda</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerBeranda'); ?></p>
                         <hr>
-                        <p class="mb-2">- Tentang Kami</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerTentang'); ?></p>
                         <hr>
-                        <p class="mb-2">- Belajar Ekspor (Semua Materi)</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerArtikel'); ?> (<?php echo lang('Blog.packageAllSubject'); ?>)</p>
                         <hr>
-                        <p class="mb-2">- Video Tutorial (Semua Video)</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerVideo'); ?> (<?php echo lang('Blog.packageAllVideo'); ?>)</p>
                         <hr>
-                        <p class="mb-2">- Aplikasi Kalkulator Harga Ekspor</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?> <?php echo lang('Blog.headerApp1'); ?></p>
                         <hr>
-                        <p class="mb-2">- Aplikasi MPM</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?> <?php echo lang('Blog.headerApp2'); ?></p>
                         <hr>
-                        <p class="mb-2">- Aplikasi Website Audit</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?> <?php echo lang('Blog.headerApp3'); ?></p>
                         <hr>
-                        <p class="mb-2">- Aplikasi Kelayakan Investasi</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerAplikasi'); ?> <?php echo lang('Blog.headerApp4'); ?></p>
                         <hr>
-                        <p class="mb-2">- Data Member</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerMember'); ?></p>
                         <hr>
-                        <p class="mb-2">- Data Buyers</p>
+                        <p class="mb-2">- <?php echo lang('Blog.headerBuyers'); ?></p>
                         <hr>
-                        <p class="mb-2">- Mendapatkan Landing-Page KEI</p>
+                        <p class="mb-2">- <?php echo lang('Blog.packageLP'); ?></p>
                         <hr>
-                        <p class="mb-2">- Data Produk (3 Produk)</p>
+                        <p class="mb-2">- <?php echo lang('Blog.productData'); ?> (3 <?php echo lang('Blog.product'); ?>)</p>
                         <hr>
                     </div>
                 </div>
