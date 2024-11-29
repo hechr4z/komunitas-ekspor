@@ -206,6 +206,7 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center align-middle">No</th>
+                                        <th class="text-center align-middle">Role</th>
                                         <th class="text-center align-middle">Username & Kode Referral</th>
                                         <th class="text-center align-middle">Foto Profil</th>
                                         <th class="text-center align-middle">Popular Point</th>
@@ -227,7 +228,7 @@
                                 <?php if (empty($member)): ?>
                                     <tbody>
                                         <tr>
-                                            <td colspan="17" class="text-center">Masih belum ada Data Member.</td>
+                                            <td colspan="18" class="text-center">Masih belum ada Data Member.</td>
                                         </tr>
                                     </tbody>
                             </table>
@@ -237,6 +238,7 @@
                                 <?php foreach ($member as $item) : ?>
                                     <tr>
                                         <td class="text-center align-middle"><?= $start++ ?></td>
+                                        <td class="text-center align-middle"><?= $item['role'] ?></td>
                                         <td class="text-center align-middle"><?= $item['username'] ?></td>
                                         <td class="align-middle"><img src="<?= base_url('/img/' . $item['foto_profil']) ?>" class="img-thumbnail"></td>
                                         <td class="text-center align-middle"><?= $item['popular_point'] ?></td>
