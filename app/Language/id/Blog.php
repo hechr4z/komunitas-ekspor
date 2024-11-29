@@ -105,6 +105,7 @@ return [
     'companyProfile' => 'Profil Perusahaan',
     'certificate' => 'Sertifikat',
     'productData' => 'Data Produk',
+    'product' => 'Produk',
     'companyName' => 'Nama Perusahaan: ',
     'companyDesc' => 'Deskripsi Perusahaan: ',
     'businessType' => 'Tipe Bisnis: ',
@@ -205,4 +206,15 @@ return [
     'laterSA' => 'Nanti',
 
     'dontForgetSA' => 'Oke, Jangan Lupa Daftar!',
+
+    'packageLP' => 'Mendapatkan Landing-Page KEI',
+    'packageSubject' => 'Materi',
+    'packageAllSubject' => 'Semua Materi',
+    'packageVideo' => 'Video',
+    'packageAllVideo' => 'Semua Video',
+    'packageMonth' => 'Bulan',
+    'packageRegistered' => 'Didaftarkan',
+    'deskNonMember' => 'Akses dasar untuk eksplorasi awal',
+    'deskMemberFree' => 'Bergabunglah sekarang untuk lebih banyak fitur!',
+    'deskMemberPremium' => 'Dapatkan semua fitur premium sekarang juga!',
 ];
