@@ -843,7 +843,7 @@ $this->setData([
                         <hr>
                         <p class="mb-2">- Beranda</p>
                         <hr>
-                        <p class="mb-2">- Tentang KEI</p>
+                        <p class="mb-2">- Tentang Kami</p>
                         <hr>
                     </div>
                 </div>
@@ -865,17 +865,17 @@ $this->setData([
                         <hr>
                         <p class="mb-2">- Beranda</p>
                         <hr>
-                        <p class="mb-2">- Tentang KEI</p>
+                        <p class="mb-2">- Tentang Kami</p>
                         <hr>
-                        <p class="mb-2">- Belajar Ekspor (10 materi)</p>
+                        <p class="mb-2">- Belajar Ekspor (10 Materi)</p>
                         <hr>
-                        <p class="mb-2">- Video Tutorial (3 video)</p>
+                        <p class="mb-2">- Video Tutorial (3 Video)</p>
                         <hr>
                         <p class="mb-2">- Aplikasi Kalkulator Harga Ekspor</p>
                         <hr>
                         <p class="mb-2">- Aplikasi MPM</p>
                         <hr>
-                        <p class="mb-2">- Data produk (1)</p>
+                        <p class="mb-2">- Data Produk (1 Produk)</p>
                         <hr>
                     </div>
                 </div>
@@ -898,11 +898,11 @@ $this->setData([
                         <hr>
                         <p class="mb-2">- Beranda</p>
                         <hr>
-                        <p class="mb-2">- Tentang KEI</p>
+                        <p class="mb-2">- Tentang Kami</p>
                         <hr>
-                        <p class="mb-2">- Belajar Ekspor (10 materi)</p>
+                        <p class="mb-2">- Belajar Ekspor (Semua Materi)</p>
                         <hr>
-                        <p class="mb-2">- Video Tutorial (3 video)</p>
+                        <p class="mb-2">- Video Tutorial (Semua Video)</p>
                         <hr>
                         <p class="mb-2">- Aplikasi Kalkulator Harga Ekspor</p>
                         <hr>
@@ -912,13 +912,13 @@ $this->setData([
                         <hr>
                         <p class="mb-2">- Aplikasi Kelayakan Investasi</p>
                         <hr>
-                        <p class="mb-2">- Data member</p>
+                        <p class="mb-2">- Data Member</p>
                         <hr>
-                        <p class="mb-2">- Data buyers</p>
+                        <p class="mb-2">- Data Buyers</p>
                         <hr>
                         <p class="mb-2">- Mendapatkan Landing-Page KEI</p>
                         <hr>
-                        <p class="mb-2">- Data produk (3)</p>
+                        <p class="mb-2">- Data Produk (3 Produk)</p>
                         <hr>
                     </div>
                 </div>

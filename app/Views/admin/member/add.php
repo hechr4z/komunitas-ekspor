@@ -10,6 +10,23 @@
                 <div class="app-card app-card-settings shadow-sm p-4">
                     <div class="card-body">
                         <form action="<?= base_url('admin-create-member') ?>" method="post" enctype="multipart/form-data">
+
+                            <div class="mb-3">
+                                <label>Jenis Member</label>
+                                <div class="form-check d-flex align-items-start">
+                                    <input class="form-check-input" type="radio" name="role" id="memberPremium" value="premium" required>
+                                    <label class="form-check-label ms-2" for="memberPremium">
+                                        Member Premium
+                                    </label>
+                                </div>
+                                <div class="form-check d-flex align-items-start">
+                                    <input class="form-check-input" type="radio" name="role" id="memberFree" value="member" required>
+                                    <label class="form-check-label ms-2" for="memberFree">
+                                        Member Free
+                                    </label>
+                                </div>
+                            </div>
+
                             <div class="mb-3">
                                 <label class="form-label">Username & Kode Referral</label>
                                 <input type="text" class="form-control" name="username_referral" placeholder="Masukkan Username & Kode Referral" required>
@@ -30,11 +47,6 @@
                                 <input type="file" class="form-control" name="foto_profil" id="foto_profil" onchange="previewImage()">
                                 <img id="preview" src="https://via.placeholder.com/100" alt="Foto Member"
                                     class="img-thumbnail mt-2" style="max-width: 100px;">
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Popular Point</label>
-                                <input type="text" class="form-control" name="popular_point" placeholder="Masukkan Popular Point" required>
                             </div>
 
                             <div class="mb-3">

@@ -7,7 +7,7 @@ return [
     'headerPendaftaran' => 'Registration',
     'headerVideo' => 'Video Tutorials',
     'headerMember' => 'Member Data',
-    'headerAplikasi' => 'Applications',
+    'headerAplikasi' => 'Application',
     'headerApp1' => 'Export Price Calculator',
     'headerApp2' => 'Marketing Progress Monitoring',
     'headerApp3' => 'Website Audit',
@@ -100,6 +100,7 @@ return [
     'companyProfile' => 'Company Profile',
     'certificate' => 'Certificate',
     'productData' => 'Product Data',
+    'product' => 'Product',
     'companyName' => 'Company Name: ',
     'companyDesc' => 'Company Description: ',
     'businessType' => 'Business Type: ',
@@ -205,4 +206,15 @@ return [
     'laterSA' => 'Later',
 
     'dontForgetSA' => 'OK, Dont Forget To Register!',
+
+    'packageLP' => 'Get KEI Landing-Page',
+    'packageSubject' => 'Subject',
+    'packageAllSubject' => 'All Subject',
+    'packageVideo' => 'Video',
+    'packageAllVideo' => 'All Video',
+    'packageMonth' => 'Month',
+    'packageRegistered' => 'Registered',
+    'deskNonMember' => 'Basic access for initial exploration',
+    'deskMemberFree' => 'Join now for more features!',
+    'deskMemberPremium' => 'Get all premium features now!',
 ];
