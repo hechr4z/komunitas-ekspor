@@ -20,5 +20,6 @@ class AllInOne extends Seeder
         $this->call(WebProfileSeeder::class);
         $this->call(ManfaatJoinSeeder::class);
         $this->call(Pengumuman::class);
+        $this->call(TentangSeeder::class);
     }
 }

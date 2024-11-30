@@ -4,21 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ManfaatJoin extends Model
+class TentangKami extends Model
 {
-    protected $table            = 'manfaatjoin';
-    protected $primaryKey       = 'id_manfaatjoin';
+    protected $table            = 'tentang_kami';
+    protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [
-        'gambar',
-        'judul_manfaat',
-        'judul_manfaat_en',
-        'deskripsi_manfaat',
-        'deskripsi_manfaat_en',
-    ];
+    protected $allowedFields    = ['gambar_perusahaan', 'deskripsi_perusahaan', 'deskripsi_perusahaan_en', 'slug'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

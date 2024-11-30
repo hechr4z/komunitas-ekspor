@@ -56,7 +56,7 @@ return [
 
     //halaman_tentang_kami
     'tentangTitle' => 'About',
-    'timTitle' => 'our team',
+    'layananTitle' => 'our services',
 
     //halaman_belajar_ekspor
     'belajarEksporTitle' => 'Learn Exporting',
