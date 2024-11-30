@@ -861,7 +861,7 @@
                         <h5 class="mt-4"><b><?php echo lang('Blog.headerAplikasi'); ?></b></h5>
                         <div class="list-unstyled pt-2">
                             <p onclick="showSweetAlertKHE()"><a href="#" class="footer-link"><?php echo lang('Blog.headerApp1'); ?></a></p>
-                            <p onclick="showSweetAlertMPM()"><a href="#" class="footer-link"><?php echo lang('Blog.headerApp2'); ?></a></p>
+                            <p onclick="showSweetAlertMPP()"><a href="#" class="footer-link"><?php echo lang('Blog.headerApp2'); ?></a></p>
                             <p onclick="showSweetAlertAW()"><a href="#" class="footer-link"><?php echo lang('Blog.headerApp3'); ?></a></p>
                             <p onclick="showSweetAlertKI()"><a href="#" class="footer-link"><?php echo lang('Blog.headerApp4'); ?></a></p>
                         </div>
