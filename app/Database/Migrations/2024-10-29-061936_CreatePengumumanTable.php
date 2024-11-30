@@ -29,6 +29,14 @@ class CreatePengumumanTable extends Migration
                 'type' => 'TEXT',
                 'null' => false,
             ],
+            'start_date' => [
+                'type'    => 'DATETIME',
+                'null'    => false,
+            ],
+            'end_date' => [
+                'type'    => 'DATETIME',
+                'null'    => false,
+            ],
             'created_at' => [
                 'type'    => 'DATETIME',
                 'null'    => true,

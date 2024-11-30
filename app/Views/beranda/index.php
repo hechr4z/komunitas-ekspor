@@ -786,15 +786,15 @@ $this->setData([
                 <div class="col-12 col-md-4 d-flex flex-column align-items-center text-center">
                     <div class=" d-flex justify-content-center align-items-center"
                         style="background-color: #ffffff; width: 100px; height: 100px; border-radius:10px;">
-                        <?php if (!empty($manfaat['path_d'])): ?>
-                            <!-- Menampilkan gambar dari path_d -->
-                            <img src="<?= base_url('img/' . $manfaat['path_d']); ?>"
+                        <?php if (!empty($manfaat['gambar'])): ?>
+                            <!-- Menampilkan gambar dari gambar -->
+                            <img src="<?= base_url('img/' . $manfaat['gambar']); ?>"
                                 alt="Icon"
                                 width="90px"
                                 height="90px"
                                 style="object-fit: cover;" />
                         <?php else: ?>
-                            <!-- Gambar default jika path_d kosong -->
+                            <!-- Gambar default jika gambar kosong -->
                             <img src="<?= base_url('img/icons/default-icon.png'); ?>"
                                 alt="Default Icon"
                                 width="60px"

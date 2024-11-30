@@ -11,7 +11,7 @@ class ManfaatJoinSeeder extends Seeder
         $data = [
             [
                 'id_manfaatjoin' => 1,
-                'path_d' => 'presentation.png',
+                'gambar' => 'presentation.png',
                 'judul_manfaat' => 'Peluang Bisnis',
                 'judul_manfaat_en' => 'Business Opportunities',
                 'deskripsi_manfaat' => 'Akses Jaringan Bisnis',
@@ -19,7 +19,7 @@ class ManfaatJoinSeeder extends Seeder
             ],
             [
                 'id_manfaatjoin' => 2,
-                'path_d' => 'configuration.png',
+                'gambar' => 'configuration.png',
                 'judul_manfaat' => 'Pelatihan',
                 'judul_manfaat_en' => 'Training and Workshops',
                 'deskripsi_manfaat' => 'Akses Pelatihan Gratis',
@@ -27,7 +27,7 @@ class ManfaatJoinSeeder extends Seeder
             ],
             [
                 'id_manfaatjoin' => 3,
-                'path_d' => 'certificate.png',
+                'gambar' => 'certificate.png',
                 'judul_manfaat' => 'Sertifikat',
                 'judul_manfaat_en' => 'Certificates',
                 'deskripsi_manfaat' => 'Mendapatkan Sertifikat Resmi',

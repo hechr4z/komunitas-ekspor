@@ -15,7 +15,7 @@ class CreateManfaatJoinTable extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'path_d' => [
+            'gambar' => [
                 'type'       => 'TEXT',
             ],
             'judul_manfaat' => [

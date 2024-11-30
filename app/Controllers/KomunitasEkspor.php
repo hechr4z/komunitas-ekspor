@@ -24,6 +24,7 @@ use App\Models\Slider;
 use App\Models\WebProfile;
 use App\Models\ManfaatJoin;
 use App\Models\Pengumuman;
+use App\Models\TentangKami;
 use CodeIgniter\I18n\Time;
 use DateTime;
 use Exception;
@@ -109,10 +110,16 @@ class KomunitasEkspor extends BaseController
         $data['lang'] = $lang;
 
         $model_webprofile = new WebProfile();
+        $model_tentang = new TentangKami();
+        $model_manfaatjoin = new ManfaatJoin();
 
         $webprofile = $model_webprofile->findAll();
+        $tentang = $model_tentang->first();
+        $manfaat = $model_manfaatjoin->findAll();
 
         $data['webprofile'] = $webprofile;
+        $data['tentang_kami'] = $tentang;
+        $data['manfaatjoin'] = $manfaat;
 
         return view('tentang/index', $data);
     }
