@@ -370,7 +370,12 @@
                 </div>
             </div>
         <?php endif; ?>
+
     </div>
 </section>
+<div class="container" style="text-align: center;">
+    <a href="#" class="btn btn-custom" style="text-align: center;">Daftar Sebagai Member Premium</a>
+</div>
+
 
 <?= $this->endSection(); ?>
