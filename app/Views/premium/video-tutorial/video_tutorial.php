@@ -103,6 +103,7 @@
                                         <p style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
                                             <?= $video['deskripsi_video']; ?>
                                         </p>
+                                        <button class="btn btn-custom mt-auto">Baca Selengkapnya</button>
                                     </div>
                                 </div>
                             </a>
