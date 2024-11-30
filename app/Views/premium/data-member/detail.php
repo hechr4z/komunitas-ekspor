@@ -152,7 +152,7 @@
             <div class="tab-content mt-4" id="myTabContent">
                 <div class="tab-pane fade show active" id="personal-info" role="tabpanel"
                     aria-labelledby="personal-info-tab">
-                    <h5 class="mb-4">Kode Refferal: </h5>
+                    <h5 class="mb-4">Profil Perusahaan: </h5>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="card p-3 shadow-sm bg-light">
