@@ -110,12 +110,29 @@
     </div>
 </div>
 
-<div class="container" style="text-align: center;">
-    <a href="#" class="btn btn-custom" style="text-align: center;">Daftar Sebagai Member Premium</a>
+<div class="container" style="text-align: center;" onclick="showSweetAlertVT()">
+    <a href="#" class="btn btn-custom" style="text-align: center;">Lihat Semua Video</a>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
-
+<script>
+    function showSweetAlertVT() {
+        Swal.fire({
+            title: "Mau Lihat Semua Video Tutorial?",
+            text: "Yuk Daftar Member Premium Dulu",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Daftar",
+            cancelButtonText: "Nanti"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.open("<?= base_url('/daftar-premium') ?>", "_blank");
+            } else {
+                Swal.fire("Oke, Jangan Lupa Daftar!");
+            }
+        });
+    }
+</script>
 
 <?= $this->endSection(); ?>
