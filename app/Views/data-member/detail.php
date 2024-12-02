@@ -241,7 +241,7 @@
                         <?php if (empty($sertifikat)): ?>
                             <div class="col-md-12">
                                 <div class="alert alert-info text-center" role="alert">
-                                    Masih belum ada Sertifikat
+                                    <?php echo lang('Blog.alertSertifikatDataMember') ?>
                                 </div>
                             </div>
                         <?php else: ?>
@@ -291,7 +291,7 @@
                         <?php if (empty($produk)): ?>
                             <div class="col-md-12">
                                 <div class="alert alert-info text-center" role="alert">
-                                    Masih belum ada Produk
+                                    <?php echo lang('Blog.alertProdukDataMember') ?>
                                 </div>
                             </div>
                         <?php else: ?>
@@ -399,7 +399,7 @@
         <?php if (empty($members)): ?>
             <div class="d-flex flex-wrap justify-content-center">
                 <div class="alert alert-info text-center" role="alert">
-                    Masih belum ada Member Lainnya
+                    <?php echo lang('Blog.alertOtherDataMember') ?>
                 </div>
             </div>
         <?php else: ?>
@@ -421,14 +421,14 @@
                     </a>
                 <?php endforeach; ?>
             </div>
-        </div>
-    <?php endif; ?>
+    </div>
+<?php endif; ?>
 </div>
 </div>
 
 <script>
     const certificateModal = document.getElementById('certificateModal');
-    certificateModal.addEventListener('show.bs.modal', function (event) {
+    certificateModal.addEventListener('show.bs.modal', function(event) {
         const button = event.relatedTarget;
         const filename = button.getAttribute('data-filename');
         const iframe = document.getElementById('certificateFrame');
@@ -436,7 +436,7 @@
     });
 
     const productModal = document.getElementById('productModal1');
-    productModal.addEventListener('show.bs.modal', function (event) {
+    productModal.addEventListener('show.bs.modal', function(event) {
         const button = event.relatedTarget;
         const productName = button.getAttribute('data-nama');
         const productDescription = button.getAttribute('data-deskripsi');
