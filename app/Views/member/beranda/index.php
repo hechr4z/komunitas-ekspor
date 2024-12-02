@@ -972,12 +972,13 @@ $this->setData([
             var marker = L.marker([<?= $item['latitude'] ?>, <?= $item['longitude'] ?>]);
             marker.bindPopup(
                 '<div style="width: 200px; font-family: Arial, sans-serif;">' +
-                '<a href="<?= base_url($lang . '/detail-member/' . $item['slug']); ?>" style="text-decoration: none;">' +
+                '<a href="<?= base_url('/member-detail-member/' . $item['slug']); ?>" style="text-decoration: none;">' +
                 '<div class="card h-100 shadow-sm" style="cursor: pointer; border-radius: 12px; overflow: hidden;">' +
                 '<img src="<?= base_url('img/' . $item['foto_profil']); ?>" class="card-img-top" alt="Member Image" style="height: 120px; object-fit: cover;">' +
                 '<div class="card-body">' +
                 '<h6 class="card-title text-center" style="font-weight: bold; word-wrap: break-word; white-space: normal;"><?= $item['username'] ?></h6>' +
                 '<p class="card-text text-center text-muted" style="font-size: 0.9rem; word-wrap: break-word; white-space: normal;"><?= $item['nama_perusahaan'] ?></p>' +
+                '<span class="btn btn-primary btn-sm mt-2" style="border-radius: 8px; width: 100%;">Lihat Profil</span>' +
                 '</div></div></a></div>'
             );
             markers.addLayer(marker);
