@@ -55,7 +55,7 @@
         <?php if (empty($member)): ?>
             <div class="col-12 mb-5">
                 <div class="alert alert-info text-center" role="alert">
-                    Masih belum ada Data Member.
+                    <?php echo lang('Blog.alertDataMember') ?>
                 </div>
             </div>
         <?php else: ?>
