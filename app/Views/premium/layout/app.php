@@ -532,7 +532,7 @@
                         </ul>
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('data-member') ?>">
+                        <a class="nav-link" href="<?= base_url('premium-data-member') ?>">
                             Data Member
                         </a>
                     </li>
@@ -634,7 +634,7 @@
                             <p><a href="<?= base_url('pengumuman-premium') ?>" class="footer-link">Pengumuman</a></p>
                             <p><a href="<?= base_url('premium-belajar-ekspor') ?>" class="footer-link">Belajar Ekspor</a></p>
                             <p><a href="<?= base_url('premium-video-tutorial') ?>" class="footer-link">Video Tutorial</a></p>
-                            <p><a href="<?= base_url('data-member') ?>" class="footer-link">Data Member</a></p>
+                            <p><a href="<?= base_url('premium-data-member') ?>" class="footer-link">Data Member</a></p>
                             <p><a href="<?= base_url('data-buyers') ?>" class="footer-link">Data Buyers</a></p>
                             <p><a href="<?= base_url('edit-profile-premium') ?>" class="footer-link">Edit Profile</a></p>
                         </div>
