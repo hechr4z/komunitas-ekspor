@@ -531,8 +531,8 @@
                             </li>
                         </ul>
                     </div>
-                    <li class="nav-item" onclick="showSweetAlertDM()">
-                        <a class="nav-link" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('member-data-member') ?>">
                             Data Member
                         </a>
                     </li>
@@ -634,7 +634,7 @@
                             <p><a href="<?= base_url('pengumuman') ?>" class="footer-link">Pengumuman</a></p>
                             <p><a href="<?= base_url('member-belajar-ekspor') ?>" class="footer-link">Belajar Ekspor</a></p>
                             <p><a href="<?= base_url('member-video-tutorial') ?>" class="footer-link">Video Tutorial</a></p>
-                            <p onclick="showSweetAlertDM()"><a href="#" class="footer-link">Data Member</a></p>
+                            <p><a href="<?= base_url('member-data-member') ?>" class="footer-link">Data Member</a></p>
                             <p onclick="showSweetAlertDB()"><a href="#" class="footer-link">Data Buyers</a></p>
                             <p><a href="<?= base_url('edit-profile') ?>" class="footer-link">Edit Profile</a></p>
                         </div>
@@ -709,23 +709,6 @@
         function showSweetAlertKI() {
             Swal.fire({
                 title: "Mau Buka Aplikasi Kelayakan Investasi?",
-                text: "Yuk Daftar Member Premium Dulu",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Daftar",
-                cancelButtonText: "Nanti"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.open("<?= base_url('/daftar-premium') ?>", "_blank");
-                } else {
-                    Swal.fire("Oke, Jangan Lupa Daftar!");
-                }
-            });
-        }
-
-        function showSweetAlertDM() {
-            Swal.fire({
-                title: "Mau Buka Fitur Data Member?",
                 text: "Yuk Daftar Member Premium Dulu",
                 icon: "warning",
                 showCancelButton: true,
