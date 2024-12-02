@@ -171,7 +171,7 @@
     <div class="container-xl">
         <div class="row g-3 mb-4 align-items-center justify-content-between">
             <div class="col-auto">
-                <h1 class="app-page-title mb-0" style="color: #03AADE;">Manfaat Join</h1>
+                <h1 class="app-page-title mb-0" style="color: #03AADE;">Tentang Komunitas Ekspor Indonesia</h1>
             </div>
         </div>
 
@@ -180,33 +180,34 @@
                 <div class="app-card app-card-orders-table shadow-sm mb-5">
                     <div class="app-card-body">
                         <div class="table-responsive">
-                            <table class="table app-table-hover mb-0 text-left">
+                            <table class="table app-table-hover table-bordered mb-0 text-left">
                                 <thead>
                                     <tr>
                                         <th class="text-center align-middle">No</th>
-                                        <th class="text-center align-middle">Foto</th>
-                                        <th class="text-center align-middle">Judul</th>
-                                        <th class="text-center align-middle" style="width: 150px;">Deskripsi</th>
+                                        <th class="text-center align-middle">Logo Perusahaan</th>
+                                        <th class="text-center align-middle" style="width: 500px;">Deskripsi Perusahaan</th>
+                                        <th class="text-center align-middle" style="width: 100px;">Slug</th>
                                         <th class="text-center align-middle">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $no = 1; ?>
-                                    <?php foreach ($manfaatjoin as $item): ?>
+                                    <?php foreach ($tentang_kami as $item): ?>
                                         <tr>
                                             <td class="text-center align-middle"><?= $no++; ?></td>
                                             <td class="text-center align-middle">
-                                                <img src="<?= base_url('/img/' . $item['gambar']) ?>" alt="<?= $item['judul_manfaat']; ?>" class="img-fluid" style="max-width: 80px;">
-                                            </td>
-                                            <td class="text-center align-middle"><?= $item['judul_manfaat']; ?></td>
-                                            <td class="text-center align-middle" style="width: 120px;">
-                                                <div style="max-height: 100px; overflow-y: auto;">
-                                                    <?= $item['deskripsi_manfaat']; ?>
-                                                </div>
+                                                <img src="<?= base_url('/img/' . $item['gambar_perusahaan']) ?>" alt="gambar perusahaan" class="img-fluid" style="max-width: 150px;">
                                             </td>
                                             <td class="text-center align-middle">
+                                                <div style="max-height: 150px; overflow-y: auto;">
+                                                    <?= $item['deskripsi_perusahaan']; ?>
+                                                </div>
+                                            </td>
+                                            <td class="text-center align-middle"><?= $item['slug']; ?></td>
+
+                                            <td class="text-center align-middle">
                                                 <div class="d-flex justify-content-center align-items-center">
-                                                    <a href="<?= base_url('/admin-edit-manfaat-join/' . $item['id_manfaatjoin']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
+                                                    <a href="<?= base_url('/admin-edit-tentang-kami/' . $item['id']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
                                                 </div>
                                             </td>
                                         </tr>

@@ -213,6 +213,15 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link <?= (current_url() == base_url('admin-tentang-kami')) ? 'active' : '' ?>" href="<?= base_url('admin-tentang-kami') ?>">
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-city"></i>
+                        </span>
+                        <span class="nav-link-text">Tentang Kami</span>
+                    </a>
+                </li>
+
                 </li>
             </ul>
         </nav>
