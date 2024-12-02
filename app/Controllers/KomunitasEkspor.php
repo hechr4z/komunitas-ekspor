@@ -578,7 +578,7 @@ class KomunitasEkspor extends BaseController
         return view('landing-page/index');
     }
 
-    public function data_member()
+    public function premium_data_member()
     {
         $model_webprofile = new WebProfile();
 
@@ -612,7 +612,7 @@ class KomunitasEkspor extends BaseController
         return view('premium/data-member/index', $data);
     }
 
-    public function detail_member($slug)
+    public function premium_detail_member($slug)
     {
         $model_webprofile = new WebProfile();
 
@@ -676,39 +676,39 @@ class KomunitasEkspor extends BaseController
         return view('premium/data-member/detail', $data);
     }
 
-    // public function visitor_data_member()
-    // {
-    //     $model_webprofile = new WebProfile();
+    public function visitor_data_member()
+    {
+        $model_webprofile = new WebProfile();
 
-    //     $webprofile = $model_webprofile->findAll();
+        $webprofile = $model_webprofile->findAll();
 
-    //     $data['webprofile'] = $webprofile;
+        $data['webprofile'] = $webprofile;
 
-    //     $lang = session()->get('lang') ?? 'id';
-    //     $data['lang'] = $lang;
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
 
-    //     $model_member = new Member();
+        $model_member = new Member();
 
-    //     // Set pagination
-    //     $perPage = 12; // Number of members per page
-    //     $page = $this->request->getVar('page') ?? 1; // Get the current page number
+        // Set pagination
+        $perPage = 12; // Number of members per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
 
-    //     // Fetch members with pagination
-    //     $members = $model_member
-    //         ->where('role', 'member')
-    //         ->orderBy('popular_point', 'DESC')
-    //         ->paginate($perPage);
+        // Fetch members with pagination
+        $members = $model_member
+            ->whereIn('role', ['member', 'premium'])
+            ->orderBy('popular_point', 'DESC')
+            ->paginate($perPage);
 
-    //     // Modify members to add slug
-    //     foreach ($members as &$item) {
-    //         $item['slug'] = url_title($item['username'], '-', true);
-    //     }
+        // Modify members to add slug
+        foreach ($members as &$item) {
+            $item['slug'] = url_title($item['username'], '-', true);
+        }
 
-    //     $data['member'] = $members;
-    //     $data['pager'] = $model_member->pager; // Get the pager instance
+        $data['member'] = $members;
+        $data['pager'] = $model_member->pager; // Get the pager instance
 
-    //     return view('data-member/index', $data);
-    // }
+        return view('data-member/index', $data);
+    }
 
     // public function data_member_visitor()
     // {
@@ -730,167 +730,167 @@ class KomunitasEkspor extends BaseController
     //     return view('data-member/index', $data);
     // }
 
-    // public function detail_member($slug)
-    // {
-    //     $model_webprofile = new WebProfile();
+    public function visitor_detail_member($slug)
+    {
+        $model_webprofile = new WebProfile();
 
-    //     $webprofile = $model_webprofile->findAll();
+        $webprofile = $model_webprofile->findAll();
 
-    //     $data['webprofile'] = $webprofile;
+        $data['webprofile'] = $webprofile;
 
-    //     $lang = session()->get('lang') ?? 'id';
-    //     $data['lang'] = $lang;
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
 
-    //     $model_member = new Member();
-    //     $model_sertifikat = new Sertifikat();
-    //     $model_produk = new Produk();
+        $model_member = new Member();
+        $model_sertifikat = new Sertifikat();
+        $model_produk = new Produk();
 
-    //     // Cari member berdasarkan username, karena slug dibuat dari username
-    //     $member = $model_member->where('role', 'member')->where('username', url_title($slug, '-', true))->first();
+        // Cari member berdasarkan username, karena slug dibuat dari username
+        $member = $model_member->whereIn('role', ['member', 'premium'])->where('username', url_title($slug, '-', true))->first();
 
-    //     // Jika member ditemukan
-    //     if ($member) {
-    //         // Iterasi setiap field dalam array member
-    //         foreach ($member as $key => $value) {
-    //             // Cek jika field kosong atau null
-    //             if (empty($value)) {
-    //                 $member[$key] = '-';
-    //             }
-    //         }
-    //     } else {
-    //         // Jika member tidak ditemukan, lemparkan 404
-    //         throw new \CodeIgniter\Exceptions\PageNotFoundException('Member tidak ditemukan: ' . $slug);
-    //     }
+        // Jika member ditemukan
+        if ($member) {
+            // Iterasi setiap field dalam array member
+            foreach ($member as $key => $value) {
+                // Cek jika field kosong atau null
+                if (empty($value)) {
+                    $member[$key] = '-';
+                }
+            }
+        } else {
+            // Jika member tidak ditemukan, lemparkan 404
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Member tidak ditemukan: ' . $slug);
+        }
 
-    //     // Top 3 popular members
-    //     $members = $model_member
-    //         ->where('role', 'member')
-    //         ->orderBy('popular_point', 'DESC')
-    //         ->findAll(); // Tambahkan findAll() untuk mengambil data
+        // Top 3 popular members
+        $members = $model_member
+            ->whereIn('role', ['member', 'premium'])
+            ->orderBy('popular_point', 'DESC')
+            ->findAll(); // Tambahkan findAll() untuk mengambil data
 
-    //     $top3_members = [];
-    //     foreach ($members as $key => $item) {
-    //         if ($item['id_member'] != $member['id_member']) {
-    //             // Buat slug dari judul_artikel dan tanggal
-    //             $item['slug'] = url_title($item['username'], '-', true);
-    //             $top3_members[] = $item;
-    //         }
-    //     }
+        $top3_members = [];
+        foreach ($members as $key => $item) {
+            if ($item['id_member'] != $member['id_member']) {
+                // Buat slug dari judul_artikel dan tanggal
+                $item['slug'] = url_title($item['username'], '-', true);
+                $top3_members[] = $item;
+            }
+        }
 
-    //     $top3_members = array_slice($top3_members, 0, 3);
+        $top3_members = array_slice($top3_members, 0, 3);
 
-    //     $member_id = $member['id_member'];
+        $member_id = $member['id_member'];
 
-    //     // Mengambil data sertifikat dan produk berdasarkan id_member
-    //     $sertifikat = $model_sertifikat->where('id_member', $member_id)->findAll();
-    //     $produk = $model_produk->where('id_member', $member_id)->findAll();
+        // Mengambil data sertifikat dan produk berdasarkan id_member
+        $sertifikat = $model_sertifikat->where('id_member', $member_id)->findAll();
+        $produk = $model_produk->where('id_member', $member_id)->findAll();
 
-    //     // Kirimkan data ke view
-    //     $data['member'] = $member;
-    //     $data['members'] = $top3_members;
-    //     $data['sertifikat'] = $sertifikat;
-    //     $data['produk'] = $produk;
+        // Kirimkan data ke view
+        $data['member'] = $member;
+        $data['members'] = $top3_members;
+        $data['sertifikat'] = $sertifikat;
+        $data['produk'] = $produk;
 
-    //     return view('data-member/detail', $data);
-    // }
+        return view('data-member/detail', $data);
+    }
 
-    // public function member_data_member()
-    // {
-    //     $model_webprofile = new WebProfile();
+    public function member_data_member()
+    {
+        $model_webprofile = new WebProfile();
 
-    //     $webprofile = $model_webprofile->findAll();
+        $webprofile = $model_webprofile->findAll();
 
-    //     $data['webprofile'] = $webprofile;
+        $data['webprofile'] = $webprofile;
 
-    //     $lang = session()->get('lang') ?? 'id';
-    //     $data['lang'] = $lang;
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
 
-    //     $model_member = new Member();
+        $model_member = new Member();
 
-    //     // Set pagination
-    //     $perPage = 12; // Number of members per page
-    //     $page = $this->request->getVar('page') ?? 1; // Get the current page number
+        // Set pagination
+        $perPage = 12; // Number of members per page
+        $page = $this->request->getVar('page') ?? 1; // Get the current page number
 
-    //     // Fetch members with pagination
-    //     $members = $model_member
-    //         ->where('role', 'member')
-    //         ->orderBy('popular_point', 'DESC')
-    //         ->paginate($perPage);
+        // Fetch members with pagination
+        $members = $model_member
+            ->whereIn('role', ['member', 'premium'])
+            ->orderBy('popular_point', 'DESC')
+            ->paginate($perPage);
 
-    //     // Modify members to add slug
-    //     foreach ($members as &$item) {
-    //         $item['slug'] = url_title($item['username'], '-', true);
-    //     }
+        // Modify members to add slug
+        foreach ($members as &$item) {
+            $item['slug'] = url_title($item['username'], '-', true);
+        }
 
-    //     $data['member'] = $members;
-    //     $data['pager'] = $model_member->pager; // Get the pager instance
+        $data['member'] = $members;
+        $data['pager'] = $model_member->pager; // Get the pager instance
 
-    //     return view('member/data-member/index', $data);
-    // }
+        return view('member/data-member/index', $data);
+    }
 
-    // public function member_detail_member($slug)
-    // {
-    //     $model_webprofile = new WebProfile();
+    public function member_detail_member($slug)
+    {
+        $model_webprofile = new WebProfile();
 
-    //     $webprofile = $model_webprofile->findAll();
+        $webprofile = $model_webprofile->findAll();
 
-    //     $data['webprofile'] = $webprofile;
+        $data['webprofile'] = $webprofile;
 
-    //     $lang = session()->get('lang') ?? 'id';
-    //     $data['lang'] = $lang;
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
 
-    //     $model_member = new Member();
-    //     $model_sertifikat = new Sertifikat();
-    //     $model_produk = new Produk();
+        $model_member = new Member();
+        $model_sertifikat = new Sertifikat();
+        $model_produk = new Produk();
 
-    //     // Cari member berdasarkan username, karena slug dibuat dari username
-    //     $member = $model_member->where('role', 'member')->where('username', url_title($slug, '-', true))->first();
+        // Cari member berdasarkan username, karena slug dibuat dari username
+        $member = $model_member->whereIn('role', ['member', 'premium'])->where('username', url_title($slug, '-', true))->first();
 
-    //     // Jika member ditemukan
-    //     if ($member) {
-    //         // Iterasi setiap field dalam array member
-    //         foreach ($member as $key => $value) {
-    //             // Cek jika field kosong atau null
-    //             if (empty($value)) {
-    //                 $member[$key] = '-';
-    //             }
-    //         }
-    //     } else {
-    //         // Jika member tidak ditemukan, lemparkan 404
-    //         throw new \CodeIgniter\Exceptions\PageNotFoundException('Member tidak ditemukan: ' . $slug);
-    //     }
+        // Jika member ditemukan
+        if ($member) {
+            // Iterasi setiap field dalam array member
+            foreach ($member as $key => $value) {
+                // Cek jika field kosong atau null
+                if (empty($value)) {
+                    $member[$key] = '-';
+                }
+            }
+        } else {
+            // Jika member tidak ditemukan, lemparkan 404
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Member tidak ditemukan: ' . $slug);
+        }
 
-    //     // Top 3 popular members
-    //     $members = $model_member
-    //         ->where('role', 'member')
-    //         ->orderBy('popular_point', 'DESC')
-    //         ->findAll(); // Tambahkan findAll() untuk mengambil data
+        // Top 3 popular members
+        $members = $model_member
+            ->whereIn('role', ['member', 'premium'])
+            ->orderBy('popular_point', 'DESC')
+            ->findAll(); // Tambahkan findAll() untuk mengambil data
 
-    //     $top3_members = [];
-    //     foreach ($members as $key => $item) {
-    //         if ($item['id_member'] != $member['id_member']) {
-    //             // Buat slug dari judul_artikel dan tanggal
-    //             $item['slug'] = url_title($item['username'], '-', true);
-    //             $top3_members[] = $item;
-    //         }
-    //     }
+        $top3_members = [];
+        foreach ($members as $key => $item) {
+            if ($item['id_member'] != $member['id_member']) {
+                // Buat slug dari judul_artikel dan tanggal
+                $item['slug'] = url_title($item['username'], '-', true);
+                $top3_members[] = $item;
+            }
+        }
 
-    //     $top3_members = array_slice($top3_members, 0, 3);
+        $top3_members = array_slice($top3_members, 0, 3);
 
-    //     $member_id = $member['id_member'];
+        $member_id = $member['id_member'];
 
-    //     // Mengambil data sertifikat dan produk berdasarkan id_member
-    //     $sertifikat = $model_sertifikat->where('id_member', $member_id)->findAll();
-    //     $produk = $model_produk->where('id_member', $member_id)->findAll();
+        // Mengambil data sertifikat dan produk berdasarkan id_member
+        $sertifikat = $model_sertifikat->where('id_member', $member_id)->findAll();
+        $produk = $model_produk->where('id_member', $member_id)->findAll();
 
-    //     // Kirimkan data ke view
-    //     $data['member'] = $member;
-    //     $data['members'] = $top3_members;
-    //     $data['sertifikat'] = $sertifikat;
-    //     $data['produk'] = $produk;
+        // Kirimkan data ke view
+        $data['member'] = $member;
+        $data['members'] = $top3_members;
+        $data['sertifikat'] = $sertifikat;
+        $data['produk'] = $produk;
 
-    //     return view('member/data-member/detail', $data);
-    // }
+        return view('member/data-member/detail', $data);
+    }
 
     // public function data_buyers()
     // {

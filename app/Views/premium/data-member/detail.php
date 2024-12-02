@@ -53,7 +53,7 @@
 
     .text-truncate-description {
         display: -webkit-box;
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 4;
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -301,7 +301,9 @@
                                                 style="height: 220px;">
                                             <div class="card-body text-center">
                                                 <h5 class="card-title"><?= $item['nama_produk'] ?></h5>
-                                                <p class="card-text"><?= $item['deskripsi_produk'] ?></p>
+                                                <p class="card-text text-truncate-description" style="text-align: justify;">
+                                                    <?= $item['deskripsi_produk'] ?>
+                                                </p>
                                                 <span class="btn btn-custom mt-auto" style="border-radius: 8px;">Lihat
                                                     Detail</span>
                                             </div>
@@ -396,7 +398,7 @@
         <?php else: ?>
             <div class="d-flex flex-wrap justify-content-center">
                 <?php foreach ($members as $item): ?>
-                    <a href="<?= base_url('/detail-member/' . $item['slug']); ?>" class="text-decoration-none"
+                    <a href="<?= base_url('/premium-detail-member/' . $item['slug']); ?>" class="text-decoration-none"
                         style="color: inherit;">
                         <div class="card hover-card mx-4 mb-5 shadow-sm"
                             style="width: 18rem; cursor: pointer; transition: transform 0.2s;">

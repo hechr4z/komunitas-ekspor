@@ -1,4 +1,4 @@
-<?= $this->extend('layout/app'); ?>
+<?= $this->extend('member/layout/app'); ?>
 <?= $this->section('content'); ?>
 
 <style>
@@ -48,21 +48,22 @@
 <section class="member-section">
     <!-- judul -->
     <div class="py-5" style="text-align: center;">
-        <h2 class="text-custom-title"> <?php echo lang('Blog.dataMemberTitle') ?></h2>
-        <p class="text-custom-paragraph mt-2"> <?php echo lang('Blog.dataMemberSubtitle') ?></p>
+        <h2 class="text-custom-title">Data Member</h2>
+        <p class="text-custom-paragraph mt-2">Berikut adalah halaman yang menampilkan data member dari Komunitas Ekspor
+            Indonesia</p>
     </div>
     <div class="container">
         <?php if (empty($member)): ?>
             <div class="col-12 mb-5">
                 <div class="alert alert-info text-center" role="alert">
-                    <?php echo lang('Blog.alertDataMember') ?>
+                    Masih belum ada Data Member.
                 </div>
             </div>
         <?php else: ?>
             <!-- Card -->
             <div class="d-flex flex-wrap justify-content-center mt-5" style="gap: 10px;">
                 <?php foreach ($member as $item): ?>
-                    <a href="<?= base_url($lang . '/detail-member/' . $item['slug']); ?>" class="text-decoration-none"
+                    <a href="<?= base_url('/member-detail-member/' . $item['slug']); ?>" class="text-decoration-none"
                         style="color: inherit;">
                         <div class="card hover-card mx-4 mb-5 shadow-sm"
                             style="width: 18rem; cursor: pointer; transition: transform 0.2s;">
@@ -71,7 +72,7 @@
                             <div class="card-body text-center">
                                 <h5 class="card-title"><?= $item['username'] ?></h5>
                                 <p class="card-text"><?= $item['nama_perusahaan'] ?></p>
-                                <span class="btn btn-custom mt-auto"><?php echo lang('Blog.btndataMember') ?></span>
+                                <span class="btn btn-custom mt-auto" style="border-radius: 8px;">Lihat Profil</span>
                             </div>
                         </div>
                     </a>

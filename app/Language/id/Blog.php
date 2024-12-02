@@ -27,7 +27,7 @@ return [
     'btnCarousel' => 'Daftar Sekarang',
     // Populer Member Section
     'populerMemberTitle' => 'POPULER MEMBER',
-    'topMemberSpotlightTitle' => 'TOP MEMBER SPOTLIGHT',
+    'topMemberSpotlightTitle' => 'TOP MEMBER',
     'populerMemberSubtitle' => 'Populer Member',
     // 'communityTitle' => 'Komunitas Ekspor Indonesia',
     'populerMemberDescription' => 'Member Populer Komunitas Ekspor',
@@ -217,4 +217,11 @@ return [
     'deskNonMember' => 'Akses dasar untuk eksplorasi awal',
     'deskMemberFree' => 'Bergabunglah sekarang untuk lebih banyak fitur!',
     'deskMemberPremium' => 'Dapatkan semua fitur premium sekarang juga!',
+
+    'alertSliderBeranda' => 'Masih belum ada Data Slider',
+    'alertDataMemberBeranda' => 'Masih belum ada Data Member',
+    'alertDataMember' => 'Masih belum ada Data Member',
+    'alertSertifikatDataMember' => 'Masih belum ada Sertifikat',
+    'alertProdukDataMember' => 'Masih belum ada Produk',
+    'alertOtherDataMember' => 'Masih belum ada Member Lainnya',
 ];
