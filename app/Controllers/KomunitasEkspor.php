@@ -2204,7 +2204,7 @@ class KomunitasEkspor extends BaseController
         $model_webprofile = new WebProfile();
         $model_pengumuman = new Pengumuman();
 
-        $pengumuman = $model_pengumuman->findAll();
+        $pengumuman = $model_pengumuman->get_active_pengumuman();
         $webprofile = $model_webprofile->findAll();
 
         $data['webprofile'] = $webprofile;
@@ -2218,7 +2218,7 @@ class KomunitasEkspor extends BaseController
         $model_webprofile = new WebProfile();
         $model_pengumuman = new Pengumuman();
 
-        $pengumuman = $model_pengumuman->findAll();
+        $pengumuman = $model_pengumuman->get_active_pengumuman();
         $webprofile = $model_webprofile->findAll();
 
         $data['webprofile'] = $webprofile;
@@ -2237,7 +2237,7 @@ class KomunitasEkspor extends BaseController
         $data['webprofile'] = $webprofile;
         $data['pengumuman'] = $model_pengumuman->where('slug', $slug)->first();
         // Mendapatkan pengumuman lainnya, selain yang sedang dibuka
-        $data['pengumuman_lainnya'] = $model_pengumuman->where('slug !=', $slug)->findAll(3); // Limit untuk 3 pengumuman lainnya
+        $data['pengumuman_lainnya'] = $model_pengumuman->where('slug !=', $slug)->get_active_pengumuman(3); // Limit untuk 3 pengumuman lainnya
 
         return view('member/pengumuman/detail-pengumuman', $data);
     }
@@ -2252,7 +2252,7 @@ class KomunitasEkspor extends BaseController
         $data['webprofile'] = $webprofile;
         $data['pengumuman'] = $model_pengumuman->where('slug', $slug)->first();
         // Mendapatkan pengumuman lainnya, selain yang sedang dibuka
-        $data['pengumuman_lainnya'] = $model_pengumuman->where('slug !=', $slug)->findAll(3); // Limit untuk 3 pengumuman lainnya
+        $data['pengumuman_lainnya'] = $model_pengumuman->where('slug !=', $slug)->get_active_pengumuman(3); // Limit untuk 3 pengumuman lainnya
 
         return view('premium/pengumuman/detail-pengumuman', $data);
     }
@@ -3181,6 +3181,7 @@ class KomunitasEkspor extends BaseController
         $model_videotutorial = new VidioTutorialModel();
         $model_webprofile = new WebProfile();
         $model_websiteaudit = new WebsiteAudit();
+        $model_tentang = new TentangKami();
 
         $belajarekspor = $model_belajarekspor->countAll();
         $buyers = $model_buyers->countAll();
@@ -3201,6 +3202,7 @@ class KomunitasEkspor extends BaseController
         $videotutorial = $model_videotutorial->countAll();
         $webprofile = $model_webprofile->countAll();
         $websiteaudit = $model_websiteaudit->countAll();
+        $tentang = $model_tentang->countAll();
 
         $data['belajarekspor'] = $belajarekspor;
         $data['buyers'] = $buyers;
@@ -3221,6 +3223,7 @@ class KomunitasEkspor extends BaseController
         $data['videotutorial'] = $videotutorial;
         $data['webprofile'] = $webprofile;
         $data['websiteaudit'] = $websiteaudit;
+        $data['tentang_kami'] = $tentang;
 
         return view('admin/dashboard/index', $data);
     }
@@ -5345,6 +5348,8 @@ class KomunitasEkspor extends BaseController
         $data = [
             'judul_pengumuman' => $this->request->getPost('judul_pengumuman'),
             'deskripsi_pengumuman' => $this->request->getPost('deskripsi_pengumuman'),
+            'start_date' => $this->request->getPost('start_date'),
+            'end_date' => $this->request->getPost('end_date'),
             'slug' => $this->request->getPost('slug')
         ];
 
@@ -5394,6 +5399,8 @@ class KomunitasEkspor extends BaseController
         $data = [
             'judul_pengumuman' => $this->request->getPost('judul_pengumuman'),
             'deskripsi_pengumuman' => $this->request->getPost('deskripsi_pengumuman'),
+            'start_date' => $this->request->getPost('start_date'),
+            'end_date' => $this->request->getPost('end_date'),
             'slug' => $this->request->getPost('slug')
         ];
 
@@ -5533,12 +5540,127 @@ class KomunitasEkspor extends BaseController
 
     public function admin_web_profile()
     {
-        return view('admin/web-profile/index');
+        $Model_webprofile = new WebProfile();
+
+        $webprofile = $Model_webprofile->findAll();
+
+        $data['webprofile'] = $webprofile;
+
+        return view('admin/web-profile/index', $data);
     }
 
-    public function admin_edit_web_profile()
+    public function admin_edit_web_profile($id)
     {
-        return view('admin/web-profile/edit');
+        $Model_webprofile = new WebProfile();
+
+        $webprofile = $Model_webprofile->find($id);
+
+        $data['webprofile'] = $webprofile;
+
+        return view('admin/web-profile/edit', $data);
+    }
+
+    public function admin_update_webprofile($id)
+    {
+        $tr = new GoogleTranslate('en');
+
+        $Model_webprofile = new WebProfile();
+
+        $webprofile = $Model_webprofile->find($id);
+
+        $data = [
+            'nama_web' => $this->request->getPost('nama_web'),
+            'nama_web_en' => $tr->translate($this->request->getPost('nama_web')),
+            'deskripsi_web' => $this->request->getPost('deskripsi_webprofile'),
+            'deskripsi_web_en' => $tr->translate($this->request->getPost('deskripsi_webprofile')),
+            'lokasi_web' => $this->request->getPost('lokasi_web'),
+            'email_web' => $this->request->getPost('email_web'),
+            'link_ig_web' => $this->request->getPost('link_ig_web'),
+            'link_yt_web' => $this->request->getPost('link_yt_web'),
+            'link_fb_web' => $this->request->getPost('link_fb_web'),
+            'footer_text' => $this->request->getPost('footer_text'),
+        ];
+
+        // Menangani upload gambar jika ada file baru
+        $file = $this->request->getFile('logo_web');
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            // Menghapus gambar lama jika ada dan file baru berhasil diunggah
+            if (file_exists(FCPATH . 'img/' . $webprofile['logo_web'])) {
+                unlink(FCPATH . 'img/' . $webprofile['logo_web']);
+            }
+
+            // Simpan gambar baru dan tambahkan ke data
+            $newName = $file->getRandomName();
+            $file->move('img/', $newName);
+            $data['logo_web'] = $newName;
+        } else {
+            // Jika tidak ada gambar baru, tetap gunakan gambar lama
+            $data['logo_web'] = $webprofile['logo_web'];
+        }
+
+        $Model_webprofile->update($id, $data);
+
+        return redirect()->to('/admin-web-profile');
+    }
+
+    // Tentang Kami
+    public function admin_tentang_kami()
+    {
+        $model_tentang = new TentangKami();
+
+        $tentang = $model_tentang->findAll();
+
+        $data['tentang_kami'] = $tentang;
+
+        return view('admin/tentang-kami/index', $data);
+    }
+
+    public function edit_admin_tentang_kami($id)
+    {
+        $model_tentang = new TentangKami();
+
+        $tentang = $model_tentang->find($id);
+
+        $data['tentang_kami'] = $tentang;
+
+        return view('admin/tentang-kami/edit', $data);
+    }
+
+    public function update_admin_tentang_kami($id)
+    {
+        $tr = new GoogleTranslate('en');
+
+        $model_tentang = new TentangKami();
+
+        $tentang = $model_tentang->find($id);
+
+        $data = [
+            'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
+            'deskripsi_perusahaan_en' => $tr->translate($this->request->getPost('deskripsi_perusahaan')),
+            'slug' => $this->request->getPost('slug'),
+            'slug_en' => $tr->translate($this->request->getPost('slug')),
+        ];
+
+        // Menangani upload gambar jika ada file baru
+        $file = $this->request->getFile('gambar_perusahaan');
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            // Menghapus gambar lama jika ada dan file baru berhasil diunggah
+            if (file_exists(FCPATH . 'img/' . $tentang['gambar_perusahaan'])) {
+                unlink(FCPATH . 'img/' . $tentang['gambar_perusahaan']);
+            }
+
+            // Simpan gambar baru dan tambahkan ke data
+            $newName = $file->getRandomName();
+            $file->move('img/', $newName);
+            $data['gambar_perusahaan'] = $newName;
+        } else {
+            // Jika tidak ada gambar baru, tetap gunakan gambar lama
+            $data['gambar_perusahaan'] = $tentang['gambar_perusahaan'];
+        }
+
+        $model_tentang->update($id, $data);
+
+        return redirect()->to('/admin-tentang-kami');
     }
 
     // Invesment

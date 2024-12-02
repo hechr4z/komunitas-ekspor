@@ -196,7 +196,7 @@
                                         <tr>
                                             <td class="text-center align-middle"><?= $no++; ?></td>
                                             <td class="text-center align-middle">
-                                                <img src="<?= base_url('/img/' . $item['path_d']) ?>" alt="<?= $item['judul_manfaat']; ?>" class="img-fluid" style="max-width: 80px;">
+                                                <img src="<?= base_url('/img/' . $item['gambar']) ?>" alt="<?= $item['judul_manfaat']; ?>" class="img-fluid" style="max-width: 80px;">
                                             </td>
                                             <td class="text-center align-middle"><?= $item['judul_manfaat']; ?></td>
                                             <td class="text-center align-middle" style="width: 120px;">

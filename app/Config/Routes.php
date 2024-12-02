@@ -358,5 +358,11 @@ $routes->group('', ['filter' => 'admin'], function ($routes) {
 
     // Admin - Web Profile
     $routes->get('/admin-web-profile', 'KomunitasEkspor::admin_web_profile');
-    $routes->get('/admin-edit-web-profile', 'KomunitasEkspor::admin_edit_web_profile');
+    $routes->get('/admin-edit-web-profile/(:num)', 'KomunitasEkspor::admin_edit_web_profile/$1');
+    $routes->post('/admin-update-webprofile/(:num)', 'KomunitasEkspor::admin_update_webprofile/$1');
+
+    // Admin - tentang kami
+    $routes->get('/admin-tentang-kami', 'KomunitasEkspor::admin_tentang_kami');
+    $routes->get('/admin-edit-tentang-kami/(:num)', 'KomunitasEkspor::edit_admin_tentang_kami/$1');
+    $routes->post('/admin-update-tentang-kami/(:num)', 'KomunitasEkspor::update_admin_tentang_kami/$1');
 });

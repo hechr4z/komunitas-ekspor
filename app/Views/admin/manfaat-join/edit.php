@@ -31,10 +31,10 @@
 
                             <div class="mb-3">
                                 <label for="foto_artikel" class="form-label">Icon Manfaat</label>
-                                <input type="file" class="form-control" id="foto_artikel" name="path_d" accept="image/*" onchange="previewImage(event)">
+                                <input type="file" class="form-control" id="foto_artikel" name="gambar" accept="image/*" onchange="previewImage(event)">
                                 <div class="mt-2">
                                     <?php if (!empty($belajar_ekspor['foto_belajar_ekspor'])) : ?>
-                                        <img id="preview" src="<?= base_url('/img/' . $manfaatjoin['path_d']); ?>" class="img-fluid" alt="<?= esc($manfaatjoin['judul_manfaat']); ?>" style="max-width: 200px;">
+                                        <img id="preview" src="<?= base_url('/img/' . $manfaatjoin['gambar']); ?>" class="img-fluid" alt="<?= esc($manfaatjoin['judul_manfaat']); ?>" style="max-width: 200px;">
                                     <?php else : ?>
                                         <p>Belum ada foto yang diunggah.</p>
                                     <?php endif; ?>
