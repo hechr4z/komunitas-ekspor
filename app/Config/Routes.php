@@ -29,8 +29,8 @@ $routes->group('id', function ($routes) {
     $routes->get('pendaftaran', 'KomunitasEkspor::pendaftaran');
 
     // Visitor - Data Member
-    // $routes->get('data-member', 'KomunitasEkspor::visitor_data_member');
-    // $routes->get('detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
+    $routes->get('data-member', 'KomunitasEkspor::visitor_data_member');
+    $routes->get('detail-member/(:any)', 'KomunitasEkspor::visitor_detail_member/$1');
 
     // Visitor - Data Buyer
     // $routes->get('data-buyers', 'KomunitasEkspor::data_buyers');
@@ -57,8 +57,8 @@ $routes->group('en', function ($routes) {
     $routes->get('registration', 'KomunitasEkspor::pendaftaran');
 
     // Visitor - Data Member
-    // $routes->get('data-member', 'KomunitasEkspor::visitor_data_member');
-    // $routes->get('detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
+    $routes->get('data-member', 'KomunitasEkspor::visitor_data_member');
+    $routes->get('detail-member/(:any)', 'KomunitasEkspor::visitor_detail_member/$1');
 
     // Visitor - Data Buyer
     // $routes->get('data-buyers', 'KomunitasEkspor::data_buyers');
@@ -120,8 +120,8 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->get('mpm/getEmailsByDate/(:num)/(:num)', 'KomunitasEkspor::getEmailsByDate/$1/$2');
 
     // Member - Data Member
-    // $routes->get('member-data-member', 'KomunitasEkspor::member_data_member');
-    // $routes->get('member-detail-member/(:any)', 'KomunitasEkspor::member_detail_member/$1');
+    $routes->get('member-data-member', 'KomunitasEkspor::member_data_member');
+    $routes->get('member-detail-member/(:any)', 'KomunitasEkspor::member_detail_member/$1');
 
     // Member = Data Buyers
     // $routes->get('/member-data-buyers', 'KomunitasEkspor::member_data_buyers');
@@ -196,8 +196,8 @@ $routes->group('', ['filter' => 'premium'], function ($routes) {
     $routes->get('kelayakan-investasi', 'KomunitasEkspor::kelayakan_investasi');
 
     // Premium - Data Member
-    $routes->get('data-member', 'KomunitasEkspor::data_member');
-    $routes->get('detail-member/(:any)', 'KomunitasEkspor::detail_member/$1');
+    $routes->get('premium-data-member', 'KomunitasEkspor::premium_data_member');
+    $routes->get('premium-detail-member/(:any)', 'KomunitasEkspor::premium_detail_member/$1');
 
     // Premium  Data Buyers
     $routes->get('data-buyers', 'KomunitasEkspor::data_buyers');
