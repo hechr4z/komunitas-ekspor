@@ -12,7 +12,7 @@ class TentangKami extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['gambar_perusahaan', 'deskripsi_perusahaan', 'deskripsi_perusahaan_en', 'slug'];
+    protected $allowedFields    = ['gambar_perusahaan', 'deskripsi_perusahaan', 'deskripsi_perusahaan_en', 'slug', 'slug_en'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

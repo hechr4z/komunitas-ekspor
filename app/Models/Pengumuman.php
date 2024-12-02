@@ -12,7 +12,7 @@ class Pengumuman extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['judul_pengumuman', 'poster_pengumuman', 'deskripsi_pengumuman', 'created_at', 'slug'];
+    protected $allowedFields    = ['judul_pengumuman', 'poster_pengumuman', 'deskripsi_pengumuman', 'start_date', 'end_date', 'created_at', 'slug'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -43,4 +43,14 @@ class Pengumuman extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function get_active_pengumuman()
+    {
+        $currentDate = date('Y-m-d H:i:s'); // Waktu sekarang
+
+        // Ambil pengumuman yang berada dalam rentang start_date dan end_date
+        return $this->where('start_date <=', $currentDate)
+            ->where('end_date >=', $currentDate)
+            ->findAll();
+    }
 }
