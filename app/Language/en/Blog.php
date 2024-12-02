@@ -56,7 +56,7 @@ return [
 
     //halaman_tentang_kami
     'tentangTitle' => 'About',
-    'layananTitle' => 'our services',
+    'layananTitle' => 'Our Services',
 
     //halaman_belajar_ekspor
     'belajarEksporTitle' => 'Learn Exporting',
@@ -114,7 +114,7 @@ return [
 
 
     'populerMember' => 'POPULAR MEMBER',
-    'topMemberSpotlight' => 'TOP MEMBER SPOTLIGHT',
+    'topMemberSpotlight' => 'TOP MEMBER',
     'populerMemberLower' => 'Popular Member',
     'komunitasEksporIndonesia' => 'Indonesian Export Community',
     'memberPopulerKomunitasEkspor' => 'Popular Members of Export Community',
@@ -217,4 +217,11 @@ return [
     'deskNonMember' => 'Basic access for initial exploration',
     'deskMemberFree' => 'Join now for more features!',
     'deskMemberPremium' => 'Get all premium features now!',
+
+    'alertSliderBeranda' => 'Still no Data Slider',
+    'alertDataMemberBeranda' => 'Still no Data Member',
+    'alertDataMember' => 'Still no Data Member',
+    'alertSertifikatDataMember' => 'Still no Certificate',
+    'alertProdukDataMember' => 'Still no Product',
+    'alertOtherDataMember' => 'There are still no other members',
 ];
