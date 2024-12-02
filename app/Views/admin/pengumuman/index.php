@@ -209,38 +209,55 @@
                             <table class="table app-table-hover table-bordered mb-0 text-left">
                                 <thead>
                                     <tr>
-                                        <th class="text-center" valign="middle">No</th>
-                                        <th class="text-center" valign="middle">Judul Pengumuman</th>
-                                        <th class="text-center" valign="middle">Poster Pengumuman</th>
-                                        <th class="text-center" valign="middle">Deskripsi Video</th>
-                                        <th class="text-center" valign="middle">Aksi</th>
+                                        <th class="text-center align-middle">No</th>
+                                        <th class="text-center align-middle">Judul Pengumuman</th>
+                                        <th class="text-center align-middle">Poster Pengumuman</th>
+                                        <th class="text-center align-middle">Deskripsi</th>
+                                        <th class="text-center align-middle">Tanggal Mulai</th>
+                                        <th class="text-center align-middle">Tanggal Berakhir</th>
+                                        <th class="text-center align-middle">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $no = 1; ?>
-                                    <?php foreach ($pengumuman as $item): ?>
+                                    <?php if (!empty($pengumuman)): ?>
+                                        <?php $no = 1; ?>
+                                        <?php foreach ($pengumuman as $item): ?>
+                                            <tr>
+                                                <td class="text-center align-middle"><?= $no++; ?></td>
+                                                <td class="align-middle"><?= esc($item['judul_pengumuman']); ?></td>
+                                                <td class="text-center align-middle">
+                                                    <img src="<?= base_url('/img/' . esc($item['poster_pengumuman'])); ?>"
+                                                        alt="<?= esc($item['judul_pengumuman']); ?>"
+                                                        class="img-thumbnail" style="max-width: 100px;">
+                                                </td>
+                                                <td class="align-middle">
+                                                    <div style="max-height: 150px; overflow-y: auto;">
+                                                        <?= esc($item['deskripsi_pengumuman']); ?>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center align-middle">
+                                                    <?= !empty($item['start_date']) ? date('d M Y, H:i', strtotime($item['start_date'])) : '<em>Belum ditentukan</em>'; ?>
+                                                </td>
+                                                <td class="text-center align-middle">
+                                                    <?= !empty($item['end_date']) ? date('d M Y, H:i', strtotime($item['end_date'])) : '<em>Belum ditentukan</em>'; ?>
+                                                </td>
+                                                <td class="text-center align-middle">
+                                                    <div class="d-flex justify-content-center align-items-center">
+                                                        <a href="<?= base_url('/admin-delete-pengumuman/' . $item['id_pengumuman']); ?>"
+                                                            class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
+                                                        <a href="<?= base_url('/admin-edit-pengumuman/' . $item['id_pengumuman']); ?>"
+                                                            class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
                                         <tr>
-                                            <td class="text-center" valign="middle"><?= $no++; ?></td>
-                                            <td class="text-center" valign="middle"><?= $item['judul_pengumuman']; ?></td>
-                                            <td class="text-center" valign="middle">
-                                                <img src="<?= base_url('/img/' . $item['poster_pengumuman']) ?>" alt="<?= $item['judul_pengumuman']; ?>" class="img-thumbnail" style="max-width: 100px;">
-                                            </td>
-                                            <td class="text-center" valign="middle">
-                                                <div style="max-height: 150px; overflow-y: auto;">
-                                                    <?= $item['deskripsi_pengumuman']; ?>
-                                                </div>
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                <div class="d-flex justify-content-center align-items-center">
-                                                    <a href="<?= base_url('/admin-delete-pengumuman/' . $item['id_pengumuman']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
-                                                    <a href="<?= base_url('/admin-edit-pengumuman/' . $item['id_pengumuman']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>
-                                                </div>
-                                            </td>
+                                            <td colspan="7" class="text-center"><em>Tidak ada data pengumuman tersedia.</em></td>
                                         </tr>
-                                    <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
-
                         </div><!--//table-responsive-->
                     </div><!--//app-card-body-->
                 </div><!--//app-card-->
