@@ -746,8 +746,8 @@
                         <a class="nav-link" href="<?= base_url($lang .  '/' . $pendaftaranLink) ?>"><?php echo lang('Blog.headerPendaftaran'); ?>
                         </a>
                     </li>
-                    <li class="nav-item" onclick="showSweetAlertDM()">
-                        <a class="nav-link" href="#"><?php echo lang('Blog.headerMember'); ?></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url($lang .  '/' . $memberLink) ?>"><?php echo lang('Blog.headerMember'); ?></a>
                     </li>
                     <div id="navbarNavDarkDropdown">
                         <ul class="navbar-nav">
@@ -853,7 +853,7 @@
                         <div class="list-unstyled pt-2">
                             <p onclick="showSweetAlertBE()"><a href="#" class="footer-link"><?php echo lang('Blog.headerArtikel'); ?></a></p>
                             <p onclick="showSweetAlertTV()"><a href="#" class="footer-link"><?php echo lang('Blog.headerVideo'); ?></a></p>
-                            <p onclick="showSweetAlertDM()"><a href="#" class="footer-link"><?php echo lang('Blog.headerMember'); ?></a></p>
+                            <p><a href="<?= base_url($lang .  '/' . $memberLink) ?>" class="footer-link"><?php echo lang('Blog.headerMember'); ?></a></p>
                             <p onclick="showSweetAlertDB()"><a href="#" class="footer-link"><?php echo lang('Blog.headerBuyers'); ?></a></p>
                         </div>
                     </div>
@@ -912,23 +912,6 @@
             Swal.fire({
                 title: "<?php echo lang('Blog.wantToOpenTV'); ?>",
                 text: "<?php echo lang('Blog.letsGoRegisterSA'); ?>",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "<?php echo lang('Blog.registerSA'); ?>",
-                cancelButtonText: "<?php echo lang('Blog.laterSA'); ?>"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "<?= ($lang == 'en') ? base_url('/en/registration') : base_url('/id/pendaftaran') ?>";
-                } else {
-                    Swal.fire("<?php echo lang('Blog.dontForgetSA'); ?>");
-                }
-            });
-        }
-
-        function showSweetAlertDM() {
-            Swal.fire({
-                title: "<?php echo lang('Blog.wantToOpenDM'); ?>",
-                text: "<?php echo lang('Blog.letsGoRegisterSAPremium'); ?>",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonText: "<?php echo lang('Blog.registerSA'); ?>",
