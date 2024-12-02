@@ -634,7 +634,7 @@ $this->setData([
     <div class="container">
         <div class="col-12 mt-2">
             <div class="alert alert-info text-center" role="alert">
-                Masih belum ada Data Slider.
+                <?php echo lang('Blog.alertSliderBeranda'); ?>
             </div>
         </div>
     </div>
@@ -712,7 +712,7 @@ $this->setData([
         <?php if (empty($top4_member)): ?>
             <div class="col-12 mt-2">
                 <div class="alert alert-info text-center" role="alert">
-                    Masih belum ada Data Member.
+                    <?php echo lang('Blog.alertDataMemberBeranda'); ?>
                 </div>
             </div>
         <?php else: ?>
@@ -1002,6 +1002,7 @@ $this->setData([
                 '<div class="card-body">' +
                 '<h6 class="card-title text-center" style="font-weight: bold; word-wrap: break-word; white-space: normal;"><?= $item['username'] ?></h6>' +
                 '<p class="card-text text-center text-muted" style="font-size: 0.9rem; word-wrap: break-word; white-space: normal;"><?= $item['nama_perusahaan'] ?></p>' +
+                '<span class="btn btn-primary btn-sm mt-2" style="border-radius: 8px; width: 100%;"><?php echo lang('Blog.btndataMember') ?></span>' +
                 '</div></div></a></div>'
             );
             markers.addLayer(marker);
