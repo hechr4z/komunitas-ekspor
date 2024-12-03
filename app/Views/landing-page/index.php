@@ -18,7 +18,7 @@
     <link rel="alternate" hreflang="id" href="#" />
     <link rel="alternate" hreflang="en" href="#" />
 
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -473,8 +473,42 @@
                 height: 400px !important;
             }
 
-            .tentang-kami p {
-                font-size: 18px;
+            #profile .row {
+                display: flex;
+                flex-direction: column;
+                /* Susun elemen secara vertikal */
+                align-items: center;
+                /* Pusatkan elemen secara horizontal */
+            }
+
+            #profile .col-md-5,
+            #profile .col-md-7 {
+                width: 100%;
+                /* Elemen menggunakan lebar penuh */
+                text-align: center;
+                /* Teks di tengah */
+                margin-top: 40px;
+            }
+
+            #profile .image-logo {
+                max-width: 100%;
+                /* Gambar responsif */
+                height: auto;
+            }
+
+            #profile h2 {
+                font-size: 24px;
+                /* Ukuran heading lebih kecil */
+            }
+
+            #profile p {
+                font-size: 14px;
+                /* Ukuran teks lebih kecil */
+            }
+
+            #profile .list-group-item {
+                font-size: 14px;
+                /* Ukuran teks dalam daftar */
             }
 
             .baca-selengkapnya {
@@ -769,7 +803,7 @@
             }
 
             .navbar-brand img.logo {
-                max-width: 40%;
+                max-width: 60%;
                 /* Lebar logo lebih kecil pada layar smartphone */
             }
 
@@ -865,8 +899,15 @@
                 padding: 10px 10px;
             }
 
+            .static-image img {
+                height: auto;
+                /* Allow image height to adjust automatically */
+                max-height: 200px;
+                /* Limit the height on smaller screens */
+            }
+
             .navbar-brand img.logo {
-                max-width: 40%;
+                max-width: 60%;
                 /* Lebar logo lebih kecil pada layar smartphone sangat kecil */
             }
 
@@ -905,31 +946,48 @@
             }
 
             /* Produk Kami adjustments */
+            /* Produk Kami adjustments */
             .produk-kami .row {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                /* Memusatkan kartu secara horizontal */
             }
 
             .produk-kami .card {
-                width: 80%;
-                /* Menyesuaikan ukuran kartu agar tidak terlalu besar */
+                width: 60%;
+                /* Menyesuaikan ukuran kartu agar lebih kecil dan muat pada layar */
                 margin-bottom: 15px;
                 /* Memberikan jarak antara kartu */
+                padding: 10px;
+                /* Mengurangi padding agar teks muat */
             }
 
-            /* Mengatur teks agar tidak terpotong */
             .card-body {
-                padding: 15px;
-                /* Menambahkan padding untuk teks */
+                padding: 10px;
+                /* Mengurangi padding teks agar tidak terpotong */
             }
 
             .card img {
-                height: 220px;
-                /* Mengatur tinggi gambar agar proporsional */
+                height: 150px;
+                /* Menyesuaikan tinggi gambar agar lebih kecil */
+                width: 100%;
                 object-fit: cover;
                 /* Memastikan gambar mengisi ruang dengan baik */
+            }
+
+            .card-title {
+                font-size: 17px;
+                /* Mengurangi ukuran font judul card */
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                /* Memotong teks yang terlalu panjang jika perlu */
+            }
+
+            .card-text {
+                font-size: 10px;
+                /* Mengurangi ukuran font untuk teks deskripsi */
+                height: auto;
             }
 
             .contact .container {
@@ -991,19 +1049,19 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" style="color: #009EF2;" href="#">Beranda</a>
+                        <a class="nav-link" style="color: #009EF2;" href="#beranda">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Profile Perusahaan</a>
+                        <a class="nav-link" href="#profile">Profile Perusahaan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Sertifikat</a>
+                        <a class="nav-link" href="#sertifikat">Sertifikat</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Data Produk</a>
+                        <a class="nav-link" href="#data-produk">Data Produk</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Lokasi</a>
+                        <a class="nav-link" href="#lokasi">Lokasi</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -1026,7 +1084,7 @@
     </div>
 
     <!-- About Section -->
-    <section id="about" class="bg-light about">
+    <section id="profile" class="bg-light about mt-5">
         <div class="container">
             <div class="row align-items-center">
                 <!-- Logo Section -->
@@ -1047,7 +1105,7 @@
                     </p>
 
                     <!-- Additional Info Section -->
-                    <div class="">
+                    <div>
                         <ul class="list-group">
                             <li class="list-group-item">
                                 <strong>Data Produk:</strong> High-Quality Audio Devices
@@ -1065,8 +1123,9 @@
         </div>
     </section>
 
+
     <!-- Produk Kami -->
-    <div class="container produk-kami">
+    <div id="data-produk" class="container produk-kami">
         <h1 class="text-center">Produk Kami</h1>
         <div class="cards-container">
 
@@ -1094,7 +1153,7 @@
     </div>
 
     <!-- sertifikat -->
-    <section class="certificate-section py-5">
+    <section id="sertifikat" class="certificate-section py-5">
         <div class="container">
             <div class="row justify-content-center">
                 <h1 class="text-center">Sertifikat Kami</h1>
@@ -1108,8 +1167,6 @@
                             class="certificate-image">
                         <div class="card-body text-center">
                             <h3 class="card-title">Nama Pemilik Sertifikat 1</h3>
-                            <p class="card-text">Telah menyelesaikan pelatihan <strong>Web Development</strong> pada tanggal <strong>25 November 2024</strong>.</p>
-                            <a href="#" class="btn btn-primary mt-3">Lihat Sertifikat</a>
                         </div>
                     </div>
                 </div>
@@ -1123,8 +1180,6 @@
                             class="certificate-image">
                         <div class="card-body text-center">
                             <h3 class="card-title">Nama Pemilik Sertifikat 2</h3>
-                            <p class="card-text">Telah menyelesaikan pelatihan <strong>Data Analysis</strong> pada tanggal <strong>10 Oktober 2024</strong>.</p>
-                            <a href="#" class="btn btn-primary mt-3">Lihat Sertifikat</a>
                         </div>
                     </div>
                 </div>
@@ -1138,8 +1193,6 @@
                             class="certificate-image">
                         <div class="card-body text-center">
                             <h3 class="card-title">Nama Pemilik Sertifikat 3</h3>
-                            <p class="card-text">Telah menyelesaikan pelatihan <strong>UI/UX Design</strong> pada tanggal <strong>15 September 2024</strong>.</p>
-                            <a href="#" class="btn btn-primary mt-3">Lihat Sertifikat</a>
                         </div>
                     </div>
                 </div>
@@ -1149,7 +1202,7 @@
 
 
     <!-- Kontak Kami -->
-    <div class="container contact">
+    <div id="lokasi" class="container contact">
         <h1 class="text-center mt-5">Kontak Kami</h1>
         <div class="map-container mt-4">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d151986.1181827674!2d-2.3882730515438357!3d53.472336445240664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487a4d4c5226f5db%3A0xd9be143804fe6baa!2sManchester%2C%20Britania%20Raya!5e0!3m2!1sid!2sid!4v1731554829948!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe>
@@ -1189,7 +1242,6 @@
         <i class="fab fa-whatsapp whatsapp-icon"></i>
     </a>
 
-
     <!-- Footer -->
     <footer>
         <div class="text-center p-3 mt-5" style="background-color: #555; color:#ffff;"> &copy; 1 Januari Copyright:
@@ -1204,10 +1256,40 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
     <script>
         // Hide loader after page loads
         window.addEventListener('load', function() {
             document.querySelector('.loader-container').style.display = 'none';
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // Get the target element by the ID
+                const targetElement = document.querySelector(this.getAttribute('href'));
+
+                // Get the height of the navbar to account for the offset
+                const navbarHeight = document.querySelector('.navbar').offsetHeight;
+
+                // Scroll to the target element with an offset
+                window.scrollTo({
+                    top: targetElement.offsetTop - navbarHeight,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        window.scrollTo({
+            top: targetElement.offsetTop - navbarHeight,
+            behavior: 'smooth'
         });
     </script>
 </body>
