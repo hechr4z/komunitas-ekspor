@@ -10,7 +10,7 @@ return [
     'headerAplikasi' => 'Application',
     'headerApp1' => 'Export Price Calculator',
     'headerApp2' => 'Marketing Progress Monitoring',
-    'headerApp3' => 'Website Audit',
+    'headerApp3' => 'Audit Website',
     'headerApp4' => 'Investment Feasibility',
     'headerBuyers' => 'Buyers Data',
     //en navbar
