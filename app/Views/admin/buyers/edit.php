@@ -56,25 +56,22 @@
 
     // Function to fetch and populate country dropdown
     function populateCountryDropdown(selectElementId) {
-        fetch('https://restcountries.com/v3.1/all')
+        fetch('https://countryapi.io/api/all?apikey=hBEyyd9UoGdiYzedT8GBaPqVdRpwbhtCcJ4N6VQ2')
             .then(response => response.json())
             .then(data => {
                 const selectElement = document.getElementById(selectElementId);
 
-                // Clear existing options and add the default option
+                // Kosongkan dropdown sebelum mengisi
                 selectElement.innerHTML = '<option value="" selected disabled>Pilih Negara Perusahaan</option>';
 
-                // Sort countries alphabetically
-                data.sort((a, b) => a.name.common.localeCompare(b.name.common));
+                const countries = Object.values(data); // Konversi objek ke array
+                countries.sort((a, b) => a.name.localeCompare(b.name));
 
-                // Add countries to dropdown and set selected if it matches
-                data.forEach(country => {
+                // Tambahkan negara ke dalam dropdown
+                countries.forEach(country => {
                     const option = document.createElement('option');
-                    option.value = country.name.common;
-                    option.textContent = country.name.common;
-                    if (country.name.common === selectedCountry) {
-                        option.selected = true;
-                    }
+                    option.value = country.name;
+                    option.textContent = country.name;
                     selectElement.appendChild(option);
                 });
             })
