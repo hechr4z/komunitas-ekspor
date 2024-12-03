@@ -26,32 +26,103 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
     <style>
-.whatsapp-float {
-    position: fixed;
-    width: 50px;
-    height: 50px;
-    bottom: 20px;
-    right: 30px;
-    background-color: #25d366;
-    color: white; /* Warna ikon */
-    border-radius: 50%;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: 2px 2px 3px #999;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
 
-.whatsapp-float i {
-    color: white; /* Warna ikon tetap putih */
-}
+        .certificate-section {
+            background-color: #f8f9fa;
+        }
 
-.whatsapp-float:hover {
-    background-color: #128c7e; /* Warna latar belakang saat hover */
-    text-decoration: none;
-}
+        .certificate-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .certificate-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .ribbon {
+            background: #6c63ff;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            position: absolute;
+            top: 15px;
+            left: -25px;
+            width: 100px;
+            text-align: center;
+            transform: rotate(-45deg);
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .certificate-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .btn-primary {
+            background: #6c63ff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #b84e9f;
+        }
+
+
+        .whatsapp-float {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            bottom: 20px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            /* Warna ikon */
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .whatsapp-float i {
+            color: white;
+            /* Warna ikon tetap putih */
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+            /* Warna latar belakang saat hover */
+            text-decoration: none;
+        }
 
 
         #about {
@@ -389,23 +460,17 @@
                 padding: 10px 40px;
             }
 
+            .navbar-brand img.logo {
+                max-width: 60%;
+                /* Lebar logo lebih kecil pada layar smartphone */
+            }
+
             .logo {
-                width: 100px;
+                width: 120px;
             }
 
-            .logo-sonic {
-                height: 25vh;
-            }
-
-            .carousel-item img {
-                height: 400px;
-            }
-
-            .tentang-kami h1,
-            .kontak-kami h1,
-            .produk-kami h1 {
-                font-size: 28px;
-                margin-bottom: 30px;
+            .static-image img {
+                height: 400px !important;
             }
 
             .tentang-kami p {
@@ -414,14 +479,6 @@
 
             .baca-selengkapnya {
                 font-size: 18px;
-            }
-
-            .produk-kami .cards-container {
-                display: flex;
-                justify-content: space-evenly;
-                align-items: flex-start;
-                flex-wrap: wrap;
-                margin-top: 40px;
             }
 
             .card img {
@@ -444,7 +501,146 @@
             footer {
                 font-size: 18px;
             }
+
+            .col-md-5 img {
+                width: 100%;
+                height: 60%;
+            }
+
+            #about .col-md-7 h2 {
+                font-size: 32px;
+                /* Increase font size of the heading */
+            }
+
+            #about .col-md-7 p {
+                font-size: 12px;
+                /* Increase font size for paragraphs */
+            }
+
+            #about .col-md-7 .list-group-item {
+                font-size: 10px;
+                /* Increase font size for list items */
+            }
         }
+
+        /* Responsiveness for 576px width */
+        @media (max-width: 576px) {
+
+            /* Navbar adjustments */
+            .navbar-brand img.logo {
+                max-width: 60%;
+                /* Lebar logo lebih kecil pada layar smartphone */
+            }
+
+            .navbar-nav {
+                text-align: center;
+            }
+
+            .navbar-toggler {
+                margin-left: auto;
+            }
+
+            .navbar-collapse {
+                text-align: center;
+            }
+
+            /* Static Image adjustments */
+            .static-image img {
+                height: auto;
+                /* Allow image height to adjust automatically */
+                max-height: 400px;
+                /* Limit the height on smaller screens */
+            }
+
+            /* About Section adjustments */
+            #about .col-md-5,
+            #about .col-md-7 {
+                text-align: center;
+            }
+
+            .about .image-logo {
+                max-width: 100%;
+                height: auto;
+            }
+
+            /* Produk Kami adjustments */
+            .produk-kami .row {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                /* Memusatkan kartu secara horizontal */
+            }
+
+            .produk-kami .card {
+                width: 50%;
+                /* Menyesuaikan ukuran kartu agar tidak terlalu besar */
+                margin-bottom: 15px;
+                /* Memberikan jarak antara kartu */
+            }
+
+            /* Mengatur teks agar tidak terpotong */
+            .card-body {
+                padding: 15px;
+                /* Menambahkan padding untuk teks */
+            }
+
+            /* Sertifikat adjustments */
+            .certificate-section .certificate-card {
+                margin: auto;
+                max-width: 100%;
+            }
+
+            .certificate-section img.certificate-image {
+                width: 100%;
+                height: auto;
+            }
+
+            .contact .container {
+                display: flex;
+                flex-direction: column;
+                /* Menyusun elemen secara vertikal */
+                align-items: center;
+                /* Menyusun elemen di tengah secara horizontal */
+                gap: 20px;
+                /* Memberi jarak antar elemen */
+            }
+
+            .contact .col-md-4 {
+                width: 100%;
+                /* Membuat kolom lebar penuh */
+                max-width: 100%;
+                /* Memastikan kolom mengisi seluruh lebar container */
+            }
+
+            .form-group {
+                width: 100%;
+                /* Memastikan form group memiliki lebar penuh */
+                padding: 10px 0;
+                /* Menambah padding untuk tampilan lebih rapi */
+            }
+
+            .form-control {
+                font-size: 16px;
+                /* Ukuran font input */
+                padding: 12px;
+                /* Menambah padding agar lebih nyaman digunakan */
+                text-align: center;
+                /* Menyusun teks di tengah */
+            }
+
+            /* WhatsApp button adjustments */
+            .whatsapp-float {
+                bottom: 10px;
+                right: 10px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .whatsapp-icon {
+                font-size: 24px;
+            }
+        }
+
 
         /* Mobile L 425px */
         @media (max-width: 425px) {
@@ -452,8 +648,17 @@
                 padding: 10px 20px;
             }
 
+            .navbar-brand img.logo {
+                max-width: 60%;
+                /* Lebar logo lebih kecil pada layar smartphone */
+            }
+
             .logo {
                 width: 80px;
+            }
+
+            .static-image img {
+                height: 250px !important;
             }
 
             .logo-sonic {
@@ -467,8 +672,12 @@
             .tentang-kami h1,
             .kontak-kami h1,
             .produk-kami h1 {
-                font-size: 26px;
-                margin-bottom: 30px;
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            .col-md-7 h2 {
+                margin-top: 30px;
             }
 
             .tentang-kami img {
@@ -486,37 +695,65 @@
                 font-size: 16px;
             }
 
-            .produk-kami {
-                padding: 50px 0;
+            /* Produk Kami adjustments */
+            .produk-kami .row {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                /* Memusatkan kartu secara horizontal */
             }
 
-            .produk-kami .cards-container {
-                display: flex;
-                justify-content: space-evenly;
-                align-items: flex-start;
-                flex-wrap: wrap;
-                margin-top: 40px;
+            .produk-kami .card {
+                width: 60%;
+                /* Menyesuaikan ukuran kartu agar tidak terlalu besar */
+                margin-bottom: 15px;
+                /* Memberikan jarak antara kartu */
+            }
+
+            /* Mengatur teks agar tidak terpotong */
+            .card-body {
+                padding: 15px;
+                /* Menambahkan padding untuk teks */
             }
 
             .card img {
-                height: 280px;
+                height: 220px;
+                /* Mengatur tinggi gambar agar proporsional */
+                object-fit: cover;
+                /* Memastikan gambar mengisi ruang dengan baik */
             }
 
-            .kontak-kami {
-                padding: 40px 0;
+            .contact .container {
+                display: flex;
+                flex-direction: column;
+                /* Menyusun elemen secara vertikal */
+                align-items: center;
+                /* Menyusun elemen di tengah secara horizontal */
+                gap: 20px;
+                /* Memberi jarak antar elemen */
             }
 
-            .kontak-kami p {
+            .contact .col-md-4 {
+                width: 100%;
+                /* Membuat kolom lebar penuh */
+                max-width: 100%;
+                /* Memastikan kolom mengisi seluruh lebar container */
+            }
+
+            .form-group {
+                width: 100%;
+                /* Memastikan form group memiliki lebar penuh */
+                padding: 10px 0;
+                /* Menambah padding untuk tampilan lebih rapi */
+            }
+
+            .form-control {
                 font-size: 16px;
+                /* Ukuran font input */
+                padding: 12px;
+                /* Menambah padding agar lebih nyaman digunakan */
                 text-align: center;
-            }
-
-            .kontak-kami h3 {
-                margin-bottom: 40px;
-            }
-
-            .map-container {
-                height: 300px;
+                /* Menyusun teks di tengah */
             }
 
             footer {
@@ -524,10 +761,16 @@
             }
         }
 
+
         /* Mobile M 375px */
         @media (max-width: 375px) {
             .navbar {
                 padding: 10px 15px;
+            }
+
+            .navbar-brand img.logo {
+                max-width: 40%;
+                /* Lebar logo lebih kecil pada layar smartphone */
             }
 
             .logo {
@@ -568,16 +811,30 @@
                 padding: 40px 0;
             }
 
-            .produk-kami .cards-container {
+            /* Produk Kami adjustments */
+            .produk-kami .row {
                 display: flex;
-                justify-content: space-evenly;
-                align-items: flex-start;
-                flex-wrap: wrap;
-                margin-top: 40px;
+                flex-direction: column;
+                align-items: center;
+                /* Memusatkan kartu secara horizontal */
+            }
+
+            .produk-kami .card {
+                width: 60%;
+                /* Menyesuaikan ukuran kartu agar tidak terlalu besar */
+            }
+
+            /* Mengatur teks agar tidak terpotong */
+            .card-body {
+                padding: 15px;
+                /* Menambahkan padding untuk teks */
             }
 
             .card img {
-                height: 240px;
+                height: 220px;
+                /* Mengatur tinggi gambar agar proporsional */
+                object-fit: cover;
+                /* Memastikan gambar mengisi ruang dengan baik */
             }
 
             .kontak-kami {
@@ -606,6 +863,11 @@
         @media (max-width: 320px) {
             .navbar {
                 padding: 10px 10px;
+            }
+
+            .navbar-brand img.logo {
+                max-width: 40%;
+                /* Lebar logo lebih kecil pada layar smartphone sangat kecil */
             }
 
             .logo {
@@ -642,35 +904,65 @@
                 font-size: 12px;
             }
 
-            .produk-kami {
-                padding: 30px 0;
+            /* Produk Kami adjustments */
+            .produk-kami .row {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                /* Memusatkan kartu secara horizontal */
             }
 
-            .produk-kami .cards-container {
-                display: flex;
-                justify-content: center;
-                margin-top: 40px;
+            .produk-kami .card {
+                width: 80%;
+                /* Menyesuaikan ukuran kartu agar tidak terlalu besar */
+                margin-bottom: 15px;
+                /* Memberikan jarak antara kartu */
+            }
+
+            /* Mengatur teks agar tidak terpotong */
+            .card-body {
+                padding: 15px;
+                /* Menambahkan padding untuk teks */
             }
 
             .card img {
-                height: 200px;
+                height: 220px;
+                /* Mengatur tinggi gambar agar proporsional */
+                object-fit: cover;
+                /* Memastikan gambar mengisi ruang dengan baik */
             }
 
-            .kontak-kami {
-                padding: 20px 0;
+            .contact .container {
+                display: flex;
+                flex-direction: column;
+                /* Menyusun elemen secara vertikal */
+                align-items: center;
+                /* Menyusun elemen di tengah secara horizontal */
+                gap: 20px;
+                /* Memberi jarak antar elemen */
             }
 
-            .kontak-kami p {
-                font-size: 12px;
+            .contact .col-md-4 {
+                width: 100%;
+                /* Membuat kolom lebar penuh */
+                max-width: 100%;
+                /* Memastikan kolom mengisi seluruh lebar container */
+            }
+
+            .form-group {
+                width: 100%;
+                /* Memastikan form group memiliki lebar penuh */
+                padding: 10px 0;
+                /* Menambah padding untuk tampilan lebih rapi */
+            }
+
+            .form-control {
+                font-size: 16px;
+                /* Ukuran font input */
+                padding: 12px;
+                /* Menambah padding agar lebih nyaman digunakan */
                 text-align: center;
-            }
-
-            .kontak-kami h3 {
-                margin-bottom: 20px;
-            }
-
-            .map-container {
-                height: 300px;
+                /* Menyusun teks di tengah */
             }
 
             footer {
@@ -734,7 +1026,7 @@
     </div>
 
     <!-- About Section -->
-    <section id="about" class="py-5 bg-light">
+    <section id="about" class="bg-light about">
         <div class="container">
             <div class="row align-items-center">
                 <!-- Logo Section -->
@@ -745,7 +1037,7 @@
                 </div>
 
                 <!-- Text Section -->
-                <div class="col-md-7">
+                <div class="col-md-7 kata">
                     <h2 class="display-5 fw-bold">Profile Perusahaan</h2>
                     <p class="lead text-muted">
                         Welcome to SonicPulse! We are dedicated to delivering high-quality sound experiences. Our team works tirelessly to provide innovative and creative sound solutions tailored to your needs.
@@ -755,7 +1047,7 @@
                     </p>
 
                     <!-- Additional Info Section -->
-                    <div class="mt-4">
+                    <div class="">
                         <ul class="list-group">
                             <li class="list-group-item">
                                 <strong>Data Produk:</strong> High-Quality Audio Devices
@@ -774,17 +1066,11 @@
     </section>
 
     <!-- Produk Kami -->
-    <div class="container-fluid produk-kami">
+    <div class="container produk-kami">
         <h1 class="text-center">Produk Kami</h1>
         <div class="cards-container">
 
-            <a class="d-flex justify-content-center gap-5 mt-5" href="#" style="text-decoration: none; color: #009EF2;">
-                <div class="card">
-                    <img src="<?= base_url('img/acumalaka.png') ?>" class="card-img-top" alt="Image Produk SonicPulse" loading="lazy">
-                    <div class="card-body">
-                        <h4 class="card-title">Nama Produk</h4>
-                    </div>
-                </div>
+            <a class="row justify-content-center gap-5" href="#" style="text-decoration: none; color: #009EF2;">
                 <div class="card">
                     <img src="<?= base_url('img/acumalaka.png') ?>" class="card-img-top" alt="Image Produk SonicPulse" loading="lazy">
                     <div class="card-body">
@@ -807,34 +1093,71 @@
         </div>
     </div>
 
-    <!-- Sertifikat Kami -->
-    <div class="container-fluid produk-kami" style="background-color: #F5FAFF;">
-        <h1 class="text-center">Sertifikat Kami</h1>
-        <div class="cards-container">
-
-            <a href="#" style="text-decoration: none; color: inherit;">
-                <div class="card">
-                    <img src="<?= base_url('img/acumalaka.png') ?>" class="card-img-top" alt="Image Aktivitas SonicPulse" loading="lazy">
-                    <div class="card-body">
-                        <h4 class="card-title">Nama Sertifikat</h4>
-                        <p class="card-text">Deskripsi Sertifikat</p>
+    <!-- sertifikat -->
+    <section class="certificate-section py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <h1 class="text-center">Sertifikat Kami</h1>
+                <!-- Card 1 -->
+                <div class="col-lg-4 col-md-6 mb-4 mt-4">
+                    <div class="certificate-card shadow">
+                        <div class="ribbon">Sertifikat</div>
+                        <img
+                            src="<?= base_url('img/p23.png') ?>"
+                            alt="Certificate"
+                            class="certificate-image">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Nama Pemilik Sertifikat 1</h3>
+                            <p class="card-text">Telah menyelesaikan pelatihan <strong>Web Development</strong> pada tanggal <strong>25 November 2024</strong>.</p>
+                            <a href="#" class="btn btn-primary mt-3">Lihat Sertifikat</a>
+                        </div>
                     </div>
                 </div>
-            </a>
-
+                <!-- Card 2 -->
+                <div class="col-lg-4 col-md-6 mb-4 mt-4">
+                    <div class="certificate-card shadow">
+                        <div class="ribbon">Sertifikat</div>
+                        <img
+                            src="<?= base_url('img/p23.png') ?>"
+                            alt="Certificate"
+                            class="certificate-image">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Nama Pemilik Sertifikat 2</h3>
+                            <p class="card-text">Telah menyelesaikan pelatihan <strong>Data Analysis</strong> pada tanggal <strong>10 Oktober 2024</strong>.</p>
+                            <a href="#" class="btn btn-primary mt-3">Lihat Sertifikat</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="col-lg-4 col-md-6 mb-4 mt-4">
+                    <div class="certificate-card shadow">
+                        <div class="ribbon">Sertifikat</div>
+                        <img
+                            src="<?= base_url('img/p23.png') ?>"
+                            alt="Certificate"
+                            class="certificate-image">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Nama Pemilik Sertifikat 3</h3>
+                            <p class="card-text">Telah menyelesaikan pelatihan <strong>UI/UX Design</strong> pada tanggal <strong>15 September 2024</strong>.</p>
+                            <a href="#" class="btn btn-primary mt-3">Lihat Sertifikat</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
 
     <!-- Kontak Kami -->
-    <div class="container kontak-kami">
-        <h1 class="text-center">Kontak Kami</h1>
-        <div class="map-container">
+    <div class="container contact">
+        <h1 class="text-center mt-5">Kontak Kami</h1>
+        <div class="map-container mt-4">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d151986.1181827674!2d-2.3882730515438357!3d53.472336445240664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487a4d4c5226f5db%3A0xd9be143804fe6baa!2sManchester%2C%20Britania%20Raya!5e0!3m2!1sid!2sid!4v1731554829948!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe>
         </div>
 
-        <div class="container kontak-kami text-center">
-            <h3>Hubungi Kami disini</h3>
-            <div class="row mt-4">
+        <div class="container text-center mt-5 pt-5">
+            <h1 class="text-center">Hubungi Kami Disini</h1>
+            <div class="d-flex gap-2">
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="alamat">Alamat:</label>
@@ -863,13 +1186,13 @@
     </div>
 
     <a href="https://wa.me/085722715317351" target="_blank" class="whatsapp-float">
-    <i class="fab fa-whatsapp whatsapp-icon"></i>
-</a>
+        <i class="fab fa-whatsapp whatsapp-icon"></i>
+    </a>
 
 
     <!-- Footer -->
     <footer>
-        <div class="text-center p-3" style="background-color: #555; color:#ffff;"> &copy; 1 Januari Copyright:
+        <div class="text-center p-3 mt-5" style="background-color: #555; color:#ffff;"> &copy; 1 Januari Copyright:
             Footer123
     </footer>
 

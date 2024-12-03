@@ -589,6 +589,23 @@
             width: 40px;
             height: 25px;
         }
+
+        .dropdown-menu {
+                position: absolute;
+                top: 100%; /* Dropdown muncul tepat di bawah tombol */
+                left: 0;
+                right: 0;
+                z-index: 1060; /* Pastikan dropdown muncul di atas navbar */
+                background-color: white;
+                width: 100%;
+            }
+        
+            .language-btn {
+                padding: 5px 10px;
+                font-size: 0.875rem;
+                width: 70px;
+                height: 30px;
+            }
     }
 </style>
 
