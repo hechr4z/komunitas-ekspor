@@ -461,7 +461,7 @@
             }
 
             .navbar-brand img.logo {
-                max-width: 60%;
+                max-width: 55%;
                 /* Lebar logo lebih kecil pada layar smartphone */
             }
 
@@ -487,18 +487,22 @@
                 /* Elemen menggunakan lebar penuh */
                 text-align: center;
                 /* Teks di tengah */
-                margin-top: 40px;
             }
 
             #profile .image-logo {
-                max-width: 100%;
+                max-width: 75%;
                 /* Gambar responsif */
                 height: auto;
+                margin-top: 20px;
             }
 
             #profile h2 {
-                font-size: 24px;
+                font-size: 22px;
                 /* Ukuran heading lebih kecil */
+            }
+
+            .col-md-7 {
+                margin-bottom: 50px;
             }
 
             #profile p {
@@ -578,22 +582,14 @@
                 text-align: center;
             }
 
-            /* Static Image adjustments */
             .static-image img {
-                height: auto;
-                /* Allow image height to adjust automatically */
-                max-height: 400px;
-                /* Limit the height on smaller screens */
+                height: 300px !important;
             }
 
             /* About Section adjustments */
-            #about .col-md-5,
-            #about .col-md-7 {
-                text-align: center;
-            }
-
-            .about .image-logo {
+            #profile .image-logo {
                 max-width: 100%;
+                /* Gambar responsif */
                 height: auto;
             }
 
@@ -792,6 +788,27 @@
 
             footer {
                 font-size: 16px;
+            }
+
+            .hubungi-kami .d-flex {
+                flex-direction: column;
+                /* Ubah susunan menjadi vertikal */
+                align-items: center;
+                /* Pastikan semua elemen di tengah */
+                gap: 10px;
+                /* Jarak antar elemen */
+            }
+
+            .hubungi-kami .col-md-4 {
+                width: 100%;
+                /* Pastikan lebar kartu proporsional dengan layar */
+                margin: 0 auto;
+                /* Pusatkan kartu */
+            }
+
+            .hubungi-kami .form-control {
+                text-align: center;
+                /* Teks di dalam form menjadi rata tengah */
             }
         }
 
@@ -1123,7 +1140,6 @@
         </div>
     </section>
 
-
     <!-- Produk Kami -->
     <div id="data-produk" class="container produk-kami">
         <h1 class="text-center">Produk Kami</h1>
@@ -1202,7 +1218,7 @@
 
 
     <!-- Kontak Kami -->
-    <div id="lokasi" class="container contact">
+    <div id="lokasi" class="container contact hubungi-kami">
         <h1 class="text-center mt-5">Kontak Kami</h1>
         <div class="map-container mt-4">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d151986.1181827674!2d-2.3882730515438357!3d53.472336445240664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487a4d4c5226f5db%3A0xd9be143804fe6baa!2sManchester%2C%20Britania%20Raya!5e0!3m2!1sid!2sid!4v1731554829948!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe>
