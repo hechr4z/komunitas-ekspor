@@ -82,6 +82,9 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     // Member - Beranda
     $routes->get('/beranda', 'KomunitasEkspor::freeindex');
 
+    // Member - Tentang Kami
+    $routes->get('/member-tentang-kami', 'KomunitasEkspor::member_tentang_kami');
+
     // Member - Edit Member
     $routes->get('/edit-profile', 'KomunitasEkspor::edit_profile');
     $routes->post('/update-foto-profil', 'KomunitasEkspor::updateFotoProfil');
@@ -149,6 +152,9 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
 $routes->group('', ['filter' => 'premium'], function ($routes) {
     // Premium - Beranda
     $routes->get('/beranda-premium', 'KomunitasEkspor::premiumindex');
+
+    // Premium - Tentang Kami
+    $routes->get('/premium-tentang-kami', 'KomunitasEkspor::premium_tentang_kami');
 
     // Premium - Edit Member
     $routes->get('/edit-profile-premium', 'KomunitasEkspor::edit_profile_premium');
