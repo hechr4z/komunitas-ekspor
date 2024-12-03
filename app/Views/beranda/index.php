@@ -843,7 +843,7 @@ $this->setData([
                 <div class="border-top7 ms-2" style="width: 40px; height: 2px; background-color: #03AADE;"></div>
             </div>
         </div>
-        <h1 class="fw-bold text-dark"><span style="color: #03AADE;">CHOOSE THE RIGHT PACKAGE</span> FOR YOU</h1>
+        <h1 class="fw-bold text-dark">CHOOSE THE RIGHT PACKAGE <span style="color: #03AADE;">FOR YOU</span></h1>
     </div>
 
     <div class="pacakage row mt-3 g-4">
