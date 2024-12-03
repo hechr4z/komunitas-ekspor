@@ -464,14 +464,17 @@
                         <!-- Input untuk warna Primary -->
                         <div class="mb-3">
                             <label for="primaryColor" class="form-label">Primary Color</label>
-                            <input type="color" class="form-control form-control-color" id="primaryColor" name="primaryColor" value="<?= esc($landingPage['primary_color'] ?? '#007bff') ?>">
+                            <input type="color" class="form-control form-control-color" id="primaryColor" name="primaryColor"
+                                value="<?= esc($member['warna_utama'] ?? '#007bff') ?>"> <!-- Menampilkan warna dari database atau default -->
                         </div>
 
                         <!-- Input untuk warna Secondary -->
                         <div class="mb-3">
                             <label for="secondaryColor" class="form-label">Secondary Color</label>
-                            <input type="color" class="form-control form-control-color" id="secondaryColor" name="secondaryColor" value="<?= esc($landingPage['secondary_color'] ?? '#6c757d') ?>">
+                            <input type="color" class="form-control form-control-color" id="secondaryColor" name="secondaryColor"
+                                value="<?= esc($member['warna_sekunder'] ?? '#6c757d') ?>"> <!-- Menampilkan warna dari database atau default -->
                         </div>
+
 
                         <!-- Input untuk gambar utama -->
                         <div class="mb-3">
