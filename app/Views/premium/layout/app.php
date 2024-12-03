@@ -471,6 +471,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('/premium-tentang-kami') ?>">
+                            Tentang Kami
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('/pengumuman-premium') ?>">
                             Pengumuman
                         </a>

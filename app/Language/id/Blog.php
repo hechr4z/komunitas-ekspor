@@ -11,7 +11,7 @@ return [
     'headerAplikasi' => 'Aplikasi',
     'headerApp1' => 'Kalkulator Harga Ekspor',
     'headerApp2' => 'Monitoring Progres Pemasaran',
-    'headerApp3' => 'Audit Website',
+    'headerApp3' => 'Website Audit',
     'headerApp4' => 'Kelayakan Investasi',
     'headerBuyers' => 'Data Buyers',
     //endnavbar

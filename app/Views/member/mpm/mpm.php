@@ -369,7 +369,7 @@
 <script>
     // Fungsi untuk mengambil data negara dan mengisi elemen dropdown
     function populateCountryDropdown(selectElementId) {
-        fetch('https://restcountries.com/v3.1/all')
+        fetch('https://countryapi.io/api/all?apikey=hBEyyd9UoGdiYzedT8GBaPqVdRpwbhtCcJ4N6VQ2')
             .then(response => response.json())
             .then(data => {
                 const selectElement = document.getElementById(selectElementId);
@@ -377,14 +377,14 @@
                 // Kosongkan dropdown sebelum mengisi
                 selectElement.innerHTML = '<option value="" selected disabled>Pilih Negara Perusahaan</option>';
 
-                // Urutkan nama negara secara alfabetis
-                data.sort((a, b) => a.name.common.localeCompare(b.name.common));
+                const countries = Object.values(data); // Konversi objek ke array
+                countries.sort((a, b) => a.name.localeCompare(b.name));
 
                 // Tambahkan negara ke dalam dropdown
-                data.forEach(country => {
+                countries.forEach(country => {
                     const option = document.createElement('option');
-                    option.value = country.name.common;
-                    option.textContent = country.name.common;
+                    option.value = country.name;
+                    option.textContent = country.name;
                     selectElement.appendChild(option);
                 });
             })
