@@ -166,6 +166,9 @@ $routes->group('', ['filter' => 'premium'], function ($routes) {
     $routes->post('/add-produk-premium', 'KomunitasEkspor::add_produk_premium');
     $routes->get('/delete-produk-premium/(:num)', 'KomunitasEkspor::delete_produk_premium/$1');
 
+    // Premium - Edit Member
+    $routes->post('/ubah-warna-landing-premium', 'KomunitasEkspor::update_warna_landing_premium');
+
     // Premium - Aplikasi Kalkulator Ekspor
     $routes->get('/kalkulator-ekspor-premium', 'KomunitasEkspor::index_kalkulator_premium');
 

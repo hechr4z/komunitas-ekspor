@@ -120,11 +120,11 @@ class CreateMemberTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
             ],
-            'font_utama' => [
+            'gambar_utama' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
             ],
-            'font_sekunder' => [
+            'gambar_perusahaan' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
             ],
