@@ -1677,6 +1677,71 @@ class KomunitasEkspor extends BaseController
         }
     }
 
+    public function update_warna_landing_premium()
+    {
+        $session = session();
+        $user_id = $session->get('user_id'); // Ambil user_id dari sesi
+
+        if (!$user_id) {
+            return redirect()->to('/login')->with('error', 'Harap login terlebih dahulu.');
+        }
+
+        $member_model = new Member();
+
+        // Ambil input warna
+        $primaryColor = $this->request->getPost('primaryColor');
+        $secondaryColor = $this->request->getPost('secondaryColor');
+
+        // Validasi warna
+        if (!preg_match('/^#[0-9A-Fa-f]{6}$/', $primaryColor) || !preg_match('/^#[0-9A-Fa-f]{6}$/', $secondaryColor)) {
+            return redirect()->back()->with('error', 'Format warna tidak valid.');
+        }
+
+        // Data awal untuk disimpan
+        $data = [
+            'warna_utama' => $primaryColor,
+            'warna_sekunder' => $secondaryColor,
+        ];
+
+        // Cek keberadaan user sebelum update
+        $existingUser = $member_model->find($user_id);
+
+        if (!$existingUser) {
+            return redirect()->back()->with('error', 'Pengguna tidak ditemukan.');
+        }
+
+        // Proses upload file (gambar utama dan perusahaan)
+        $uploadFields = [
+            'gambar_utama' => 'gambar_utama',
+            'gambar_perusahaan' => 'gambar_perusahaan'
+        ];
+
+        foreach ($uploadFields as $inputName => $dbField) {
+            $file = $this->request->getFile($inputName);
+
+            if ($file && $file->isValid() && !$file->hasMoved()) {
+                $fileName = $file->getRandomName();
+                $file->move('img/', $fileName);
+
+                // Hapus gambar lama jika ada
+                if (!empty($existingUser[$dbField]) && file_exists(FCPATH . 'img/' . $existingUser[$dbField])) {
+                    unlink(FCPATH . 'img/' . $existingUser[$dbField]);
+                }
+
+                // Tambahkan nama file baru ke data
+                $data[$dbField] = $fileName;
+            }
+        }
+
+        // Simpan data ke database
+        if ($member_model->update($user_id, $data)) {
+            return redirect()->back()->with('success', 'Landing page berhasil diperbarui.');
+        } else {
+            return redirect()->back()->with('error', 'Gagal memperbarui landing page.');
+        }
+    }
+
+
     public function index_kalkulator()
     {
         $session = session();

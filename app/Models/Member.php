@@ -36,7 +36,11 @@ class Member extends Model
         'kategori_produk',
         'kategori_produk_en',
         'latitude',
-        'longitude'
+        'longitude',
+        'warna_utama',
+        'warna_sekunder',
+        'gambar_utama',
+        'gambar_perusahaan'
     ];
 
     protected bool $allowEmptyInserts = false;
@@ -68,4 +72,14 @@ class Member extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function updateOrInsert($id_member, $data)
+    {
+        $existing = $this->find($id_member);
+        if ($existing) {
+            return $this->update($id_member, $data);
+        } else {
+            return $this->insert($data);
+        }
+    }
 }

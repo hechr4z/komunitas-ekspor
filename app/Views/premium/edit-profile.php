@@ -454,32 +454,51 @@
                     </div>
                 </div>
             </div>
-
             <div class="tab-content mt-4" id="myTabContent">
                 <!-- Tab Landing Page -->
                 <div class="tab-pane fade" id="landingPage" role="tabpanel" aria-labelledby="landing-tab">
                     <h5>Edit Landing Page</h5>
-                    <form>
+                    <form action="<?= base_url('/ubah-warna-landing-premium') ?>" method="post" enctype="multipart/form-data">
+                        <?= csrf_field() ?>
+
                         <!-- Input untuk warna Primary -->
                         <div class="mb-3">
                             <label for="primaryColor" class="form-label">Primary Color</label>
-                            <input type="color" class="form-control form-control-color" id="primaryColor" name="primaryColor" value="#007bff">
+                            <input type="color" class="form-control form-control-color" id="primaryColor" name="primaryColor" value="<?= esc($landingPage['primary_color'] ?? '#007bff') ?>">
                         </div>
+
                         <!-- Input untuk warna Secondary -->
                         <div class="mb-3">
                             <label for="secondaryColor" class="form-label">Secondary Color</label>
-                            <input type="color" class="form-control form-control-color" id="secondaryColor" name="secondaryColor" value="#6c757d">
+                            <input type="color" class="form-control form-control-color" id="secondaryColor" name="secondaryColor" value="<?= esc($landingPage['secondary_color'] ?? '#6c757d') ?>">
                         </div>
-                        <!-- Input untuk gambar -->
+
+                        <!-- Input untuk gambar utama -->
                         <div class="mb-3">
-                            <label for="landingImage" class="form-label">Upload Gambar</label>
-                            <input type="file" class="form-control" id="landingImage" name="landingImage" accept="image/*">
+                            <label for="mainImage" class="form-label">Upload Gambar Utama</label>
+                            <input type="file" class="form-control" id="mainImage" name="gambar_utama" accept="image/*">
+                            <!-- Preview gambar utama jika ada -->
+                            <?php if (!empty($landingPage['gambar_utama'])): ?>
+                                <img src="<?= base_url('img/' . $landingPage['gambar_utama']) ?>" alt="Main Image" class="img-thumbnail mt-2" style="max-width: 200px;">
+                            <?php endif; ?>
                         </div>
+
+                        <!-- Input untuk gambar perusahaan -->
+                        <div class="mb-3">
+                            <label for="companyImage" class="form-label">Upload Gambar Perusahaan</label>
+                            <input type="file" class="form-control" id="companyImage" name="gambar_perusahaan" accept="image/*">
+                            <!-- Preview gambar perusahaan jika ada -->
+                            <?php if (!empty($landingPage['gambar_perusahaan'])): ?>
+                                <img src="<?= base_url('img/' . $landingPage['gambar_perusahaan']) ?>" alt="Company Image" class="img-thumbnail mt-2" style="max-width: 200px;">
+                            <?php endif; ?>
+                        </div>
+
                         <!-- Tombol Simpan -->
                         <button type="submit" class="btn btn-custom" style="background-color: #03AADE; width: 100%;">Submit</button>
                     </form>
                 </div>
             </div>
+
 
             <!-- Data Produk -->
             <div class="tab-pane fade" id="produk" role="tabpanel" aria-labelledby="produk-tab">
