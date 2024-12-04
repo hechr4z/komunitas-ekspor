@@ -219,7 +219,8 @@
             </div>
 
             <div class="col-auto">
-                <a href="<?= base_url('admin-add-sertifikat') ?>" class="btn text-white" style="background-color: #03AADE;">
+                <a href="<?= base_url('admin-add-sertifikat') ?>" class="btn text-white"
+                    style="background-color: #03AADE;">
                     + Tambah Data Sertifikat
                 </a>
             </div>
@@ -235,6 +236,8 @@
                                     <tr>
                                         <th class="text-center" valign="middle">No</th>
                                         <th class="text-center" valign="middle">Username Member</th>
+                                        <th class="text-center" valign="middle"> Nama Sertifikat</th>
+                                        <th class="text-center" valign="middle">Nama Sertifikat En</th>
                                         <th class="text-center" valign="middle">Sertifikat</th>
                                         <th class="text-center" valign="middle">Aksi</th>
                                     </tr>
@@ -242,36 +245,40 @@
                                 <?php if (empty($sertifikat)): ?>
                                     <tbody>
                                         <tr>
-                                            <td colspan="4" class="text-center">Masih belum ada Data Sertifikat.</td>
+                                            <td colspan="6" class="text-center">Masih belum ada Data Sertifikat.</td>
                                         </tr>
                                     </tbody>
-                            </table>
-                        <?php else: ?>
-                            <tbody>
-                                <?php $start = ($page - 1) * $perPage + 1; ?>
-                                <?php foreach ($sertifikat as $item) : ?>
-                                    <tr>
-                                        <td class="text-center" valign="middle"><?= $start++ ?></td>
-                                        <td class="text-center" valign="middle"><?= $item['username_member'] ?></td>
-                                        <td class="text-center" valign="middle"><?= $item['sertifikat'] ?></td>
-                                        <td class="text-center align-middle">
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                <a href="<?= base_url('admin-delete-sertifikat/' . $item['id_sertifikat']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">
-                                                    Hapus
-                                                </a>
-                                                <a href="<?= base_url('admin-edit-sertifikat/' . $item['id_sertifikat']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">
-                                                    Ubah
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                            </table>
-                            <div class="mt-2">
-                                <?= $pager->links('default', 'bootstrap_pagination') ?>
-                            </div>
-                        <?php endif; ?>
+                                </table>
+                            <?php else: ?>
+                                <tbody>
+                                    <?php $start = ($page - 1) * $perPage + 1; ?>
+                                    <?php foreach ($sertifikat as $item): ?>
+                                        <tr>
+                                            <td class="text-center" valign="middle"><?= $start++ ?></td>
+                                            <td class="text-center" valign="middle"><?= $item['username_member'] ?></td>
+                                            <td class="text-center" valign="middle"><?= $item['nama_sertifikat'] ?></td>
+                                            <td class="text-center" valign="middle"><?= $item['nama_sertifikat_en'] ?></td>
+                                            <td class="text-center" valign="middle"><?= $item['sertifikat'] ?></td>
+                                            <td class="text-center align-middle">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <a href="<?= base_url('admin-delete-sertifikat/' . $item['id_sertifikat']) ?>"
+                                                        class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">
+                                                        Hapus
+                                                    </a>
+                                                    <a href="<?= base_url('admin-edit-sertifikat/' . $item['id_sertifikat']) ?>"
+                                                        class="btn btn-sm text-white" style="background-color: #03AADE;">
+                                                        Ubah
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                                </table>
+                                <div class="mt-2">
+                                    <?= $pager->links('default', 'bootstrap_pagination') ?>
+                                </div>
+                            <?php endif; ?>
                         </div><!--//table-responsive-->
                     </div><!--//app-card-body-->
                 </div><!--//app-card-->

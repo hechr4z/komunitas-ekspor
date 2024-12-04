@@ -193,18 +193,25 @@
             <div class="col d-flex justify-content-center">
                 <form class="form" action="<?= base_url('admin-search-sertifikat') ?>" method="GET">
                     <label for="search">
-                        <input required="" autocomplete="off" placeholder="cari sertifikat" name="keyword" id="keyword" type="text">
+                        <input required="" autocomplete="off" placeholder="cari sertifikat" name="keyword" id="keyword"
+                            type="text">
                         <div class="icon">
-                            <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="swap-on">
-                                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linejoin="round" stroke-linecap="round"></path>
+                            <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="swap-on">
+                                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linejoin="round"
+                                    stroke-linecap="round"></path>
                             </svg>
-                            <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="swap-off">
-                                <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linejoin="round" stroke-linecap="round"></path>
+                            <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="swap-off">
+                                <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linejoin="round" stroke-linecap="round">
+                                </path>
                             </svg>
                         </div>
                         <button type="reset" class="close-btn">
                             <svg viewBox="0 0 20 20" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg">
-                                <path clip-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" fill-rule="evenodd"></path>
+                                <path clip-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    fill-rule="evenodd"></path>
                             </svg>
                         </button>
                     </label>
@@ -212,7 +219,8 @@
             </div>
 
             <div class="col-auto">
-                <a href="<?= base_url('admin-add-sertifikat') ?>" class="btn text-white" style="background-color: #03AADE;"> + Tambah Data Sertifikat</a>
+                <a href="<?= base_url('admin-add-sertifikat') ?>" class="btn text-white"
+                    style="background-color: #03AADE;"> + Tambah Data Sertifikat</a>
             </div>
         </div>
 
@@ -234,6 +242,8 @@
                                     <tr>
                                         <th class="text-center" valign="middle">No</th>
                                         <th class="text-center" valign="middle">Username Member</th>
+                                        <th class="text-center" valign="middle"> Nama Sertifikat</th>
+                                        <th class="text-center" valign="middle">Nama Sertifikat En</th>
                                         <th class="text-center" valign="middle">Sertifikat</th>
                                         <th class="text-center" valign="middle">Aksi</th>
                                     </tr>
@@ -244,33 +254,37 @@
                                             <td colspan="4" class="text-center">Tidak ada Sertifikat yang ditemukan.</td>
                                         </tr>
                                     </tbody>
-                            </table>
-                        <?php else: ?>
-                            <tbody>
-                                <?php $start = ($page - 1) * $perPage + 1; ?>
-                                <?php foreach ($hasilPencarian as $item) : ?>
-                                    <tr>
-                                        <td class="text-center" valign="middle"><?= $start++ ?></td>
-                                        <td class="text-center" valign="middle"><?= $item['username_member'] ?></td>
-                                        <td class="text-center" valign="middle"><?= $item['sertifikat'] ?></td>
-                                        <td class="text-center align-middle">
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                <a href="<?= base_url('admin-delete-sertifikat/' . $item['id_sertifikat']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">
-                                                    Hapus
-                                                </a>
-                                                <a href="<?= base_url('admin-edit-sertifikat/' . $item['id_sertifikat']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">
-                                                    Ubah
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                            </table>
-                            <div class="mt-2">
-                                <?= $pager->links('default', 'bootstrap_pagination') ?>
-                            </div>
-                        <?php endif; ?>
+                                </table>
+                            <?php else: ?>
+                                <tbody>
+                                    <?php $start = ($page - 1) * $perPage + 1; ?>
+                                    <?php foreach ($hasilPencarian as $item): ?>
+                                        <tr>
+                                            <td class="text-center" valign="middle"><?= $start++ ?></td>
+                                            <td class="text-center" valign="middle"><?= $item['username_member'] ?></td>
+                                            <td class="text-center" valign="middle"><?= $item['nama_sertifikat'] ?></td>
+                                            <td class="text-center" valign="middle"><?= $item['nama_sertifikat_en'] ?></td>
+                                            <td class="text-center" valign="middle"><?= $item['sertifikat'] ?></td>
+                                            <td class="text-center align-middle">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <a href="<?= base_url('admin-delete-sertifikat/' . $item['id_sertifikat']) ?>"
+                                                        class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">
+                                                        Hapus
+                                                    </a>
+                                                    <a href="<?= base_url('admin-edit-sertifikat/' . $item['id_sertifikat']) ?>"
+                                                        class="btn btn-sm text-white" style="background-color: #03AADE;">
+                                                        Ubah
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                                </table>
+                                <div class="mt-2">
+                                    <?= $pager->links('default', 'bootstrap_pagination') ?>
+                                </div>
+                            <?php endif; ?>
                         </div><!--//table-responsive-->
                     </div><!--//app-card-body-->
                 </div><!--//app-card-->
