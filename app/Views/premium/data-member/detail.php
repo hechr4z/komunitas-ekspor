@@ -251,11 +251,11 @@
                                         <i class="fas fa-file-pdf fa-lg mb-2"></i>
                                         <p><strong>Nama Sertifikat:</strong>
                                             <span class="certificate-name">
-                                                <?= $item['sertifikat'] ?>
+                                                <?= $item['nama_sertifikat'] ?>
                                             </span>
                                         </p>
                                         <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#certificateModal"
-                                            data-filename="<?= base_url('certificate/' . $item['sertifikat']) ?>">Lihat</button>
+                                            data-filename="<?= base_url('certificate/' . $item['sertifikat']) ?>" data-nama="<?= $item['nama_sertifikat'] ?>">Lihat</button>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -269,7 +269,7 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="certificateModalLabel">Sertifikat</h5>
+                                <h5 class="modal-title" id="certificateModalLabel"></h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -296,8 +296,8 @@
                             <div class="d-flex flex-wrap justify-content-center">
                                 <?php foreach ($produk as $item): ?>
                                     <a href="#" class="text-decoration-none" style="color: inherit;" data-bs-toggle="modal"
-                                        data-bs-target="#productModal1" data-nama="<?= $item['nama_produk'] ?>"
-                                        data-deskripsi="<?= $item['deskripsi_produk'] ?>" data-hscode="<?= $item['hs_code'] ?>"
+                                        data-bs-target="#productModal1" data-nama="<?= $item['nama_produk'] ?>" data-namaen="<?= $item['nama_produk_en'] ?>"
+                                        data-deskripsi="<?= $item['deskripsi_produk'] ?>" data-deskripsien="<?= $item['deskripsi_produk_en'] ?>" data-hscode="<?= $item['hs_code'] ?>"
                                         data-minorder="<?= $item['minimum_order_qty'] ?>"
                                         data-kapasitas="<?= $item['kapasitas_produksi_bln'] ?>"
                                         data-foto="<?= base_url('img/' . $item['foto_produk']) ?>">
@@ -349,10 +349,20 @@
                                             </div>
 
                                             <div class="mb-3">
+                                                <label for="namaProdukEn" class="form-label"><strong>Nama Produk (Inggris)</strong></label>
+                                                <input type="text" class="form-control" id="namaProdukEn" value="" disabled>
+                                            </div>
+
+                                            <div class="mb-3">
                                                 <label for="deskripsiProduk" class="form-label fw-bold">Deskripsi
                                                     Produk</label>
                                                 <textarea class="form-control" id="deskripsiProduk" rows="4" disabled
                                                     placeholder="Belum Ada Deskripsi"></textarea>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="deskripsiProdukEn" class="form-label"><strong>Deskripsi Produk (Inggris)</strong></label>
+                                                <textarea class="form-control" id="deskripsiProdukEn" rows="6" disabled></textarea>
                                             </div>
 
                                             <div class="mb-3">
@@ -420,25 +430,35 @@
                     </a>
                 <?php endforeach; ?>
             </div>
-        </div>
-    <?php endif; ?>
+    </div>
+<?php endif; ?>
 </div>
 </div>
 
 <script>
     const certificateModal = document.getElementById('certificateModal');
-    certificateModal.addEventListener('show.bs.modal', function (event) {
+    certificateModal.addEventListener('show.bs.modal', function(event) {
         const button = event.relatedTarget;
         const filename = button.getAttribute('data-filename');
+        const namaSertifikat = button.getAttribute('data-nama');
+
         const iframe = document.getElementById('certificateFrame');
-        iframe.src = filename; // Menetapkan src iframe ke file sertifikat
+        const modalTitle = document.getElementById('certificateModalLabel');
+
+        // Set src iframe ke file sertifikat
+        iframe.src = filename;
+
+        // Set judul modal ke nama sertifikat
+        modalTitle.textContent = namaSertifikat;
     });
 
     const productModal = document.getElementById('productModal1');
-    productModal.addEventListener('show.bs.modal', function (event) {
+    productModal.addEventListener('show.bs.modal', function(event) {
         const button = event.relatedTarget;
         const productName = button.getAttribute('data-nama');
+        const productNameEn = button.getAttribute('data-namaen');
         const productDescription = button.getAttribute('data-deskripsi');
+        const productDescriptionEn = button.getAttribute('data-deskripsien');
         const productHsCode = button.getAttribute('data-hscode');
         const productMinOrder = button.getAttribute('data-minorder');
         const productCapacity = button.getAttribute('data-kapasitas');
@@ -446,7 +466,9 @@
 
         // Update modal content
         document.getElementById('namaProduk').value = productName;
+        document.getElementById('namaProdukEn').value = productNameEn;
         document.getElementById('deskripsiProduk').value = productDescription;
+        document.getElementById('deskripsiProdukEn').value = productDescriptionEn;
         document.getElementById('hsCode').value = productHsCode;
         document.getElementById('minOrderQty').value = productMinOrder;
         document.getElementById('kapasitasProduksi').value = productCapacity;
