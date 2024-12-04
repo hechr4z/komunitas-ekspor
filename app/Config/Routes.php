@@ -13,7 +13,7 @@ $routes->group('id', function ($routes) {
     $routes->get('tentang-kami', 'KomunitasEkspor::tentang_kami');
 
     // Visitor - Landing Page Member
-    $routes->get('landing-page', 'KomunitasEkspor::visitor_landing_page');
+    $routes->get('landing-page/(:any)', 'KomunitasEkspor::visitor_landing_page/$1');
 
     // Visitor - Belajar Ekspor
     // $routes->get('belajar-ekspor', 'KomunitasEkspor::belajar_ekspor');
