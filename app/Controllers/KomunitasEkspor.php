@@ -3,8 +3,6 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Database\Seeds\KategoriBelajarEkspor;
-use Stichoza\GoogleTranslate\GoogleTranslate;
 use App\Models\BelajarEksporModel;
 use App\Models\KategoriBelajarEksporModel;
 use App\Models\Member;
@@ -613,9 +611,30 @@ class KomunitasEkspor extends BaseController
         return $this->response->setJSON(['status' => 'error', 'message' => 'Invalid request']);
     }
 
-    public function visitor_landing_page()
+    public function visitor_landing_page($slug)
     {
-        return view('landing-page/index');
+        $lang = session()->get('lang') ?? 'id';
+        $data['lang'] = $lang;
+
+        $model_member = new Member();
+        $model_sertifikat = new Sertifikat();
+        $model_produk = new Produk();
+
+        // Cari member berdasarkan username, karena slug dibuat dari username
+        $member = $model_member->where('role', 'premium')->where('username', url_title($slug, '-', true))->first();
+
+        $member_id = $member['id_member'];
+
+        // Mengambil data sertifikat dan produk berdasarkan id_member
+        $sertifikat = $model_sertifikat->where('id_member', $member_id)->findAll();
+        $produk = $model_produk->where('id_member', $member_id)->findAll();
+
+        // Kirimkan data ke view
+        $data['member'] = $member;
+        $data['sertifikat'] = $sertifikat;
+        $data['produk'] = $produk;
+
+        return view('landing-page/index', $data);
     }
 
     public function premium_data_member()
@@ -637,7 +656,7 @@ class KomunitasEkspor extends BaseController
 
         // Fetch members with pagination
         $members = $model_member
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'premium')
             ->orderBy('popular_point', 'DESC')
             ->paginate($perPage);
 
@@ -668,7 +687,7 @@ class KomunitasEkspor extends BaseController
         $model_produk = new Produk();
 
         // Cari member berdasarkan username, karena slug dibuat dari username
-        $member = $model_member->whereIn('role', ['member', 'premium'])->where('username', url_title($slug, '-', true))->first();
+        $member = $model_member->where('role', 'premium')->where('username', url_title($slug, '-', true))->first();
 
         // Jika member ditemukan
         if ($member) {
@@ -686,7 +705,7 @@ class KomunitasEkspor extends BaseController
 
         // Top 3 popular members
         $members = $model_member
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'premium')
             ->orderBy('popular_point', 'DESC')
             ->findAll(); // Tambahkan findAll() untuk mengambil data
 
@@ -735,7 +754,7 @@ class KomunitasEkspor extends BaseController
 
         // Fetch members with pagination
         $members = $model_member
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'premium')
             ->orderBy('popular_point', 'DESC')
             ->paginate($perPage);
 
@@ -786,7 +805,7 @@ class KomunitasEkspor extends BaseController
         $model_produk = new Produk();
 
         // Cari member berdasarkan username, karena slug dibuat dari username
-        $member = $model_member->whereIn('role', ['member', 'premium'])->where('username', url_title($slug, '-', true))->first();
+        $member = $model_member->where('role', 'premium')->where('username', url_title($slug, '-', true))->first();
 
         // Jika member ditemukan
         if ($member) {
@@ -804,7 +823,7 @@ class KomunitasEkspor extends BaseController
 
         // Top 3 popular members
         $members = $model_member
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'premium')
             ->orderBy('popular_point', 'DESC')
             ->findAll(); // Tambahkan findAll() untuk mengambil data
 
@@ -853,7 +872,7 @@ class KomunitasEkspor extends BaseController
 
         // Fetch members with pagination
         $members = $model_member
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'premium')
             ->orderBy('popular_point', 'DESC')
             ->paginate($perPage);
 
@@ -884,7 +903,7 @@ class KomunitasEkspor extends BaseController
         $model_produk = new Produk();
 
         // Cari member berdasarkan username, karena slug dibuat dari username
-        $member = $model_member->whereIn('role', ['member', 'premium'])->where('username', url_title($slug, '-', true))->first();
+        $member = $model_member->where('role', 'premium')->where('username', url_title($slug, '-', true))->first();
 
         // Jika member ditemukan
         if ($member) {
@@ -902,7 +921,7 @@ class KomunitasEkspor extends BaseController
 
         // Top 3 popular members
         $members = $model_member
-            ->whereIn('role', ['member', 'premium'])
+            ->where('role', 'premium')
             ->orderBy('popular_point', 'DESC')
             ->findAll(); // Tambahkan findAll() untuk mengambil data
 
@@ -1172,20 +1191,14 @@ class KomunitasEkspor extends BaseController
 
         $model_member = new Member();
 
-        $tr = new GoogleTranslate('en');
-
         $fields = [
             'nama_perusahaan',
-            'tipe_bisnis',
             'deskripsi_perusahaan',
+            'deskripsi_perusahaan_en',
             'produk_utama',
-            'tahun_dibentuk',
-            'skala_bisnis',
-            'kategori_produk',
+            'produk_utama_en',
             'pic',
             'pic_phone',
-            'latitude',
-            'longitude'
         ];
 
         // Initialize validation rules without individual error messages
@@ -1210,21 +1223,12 @@ class KomunitasEkspor extends BaseController
 
         $data = [
             'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
-            'tipe_bisnis' => $this->request->getPost('tipe_bisnis'),
-            'tipe_bisnis_en' => $tr->translate($this->request->getPost('tipe_bisnis')),
             'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
-            'deskripsi_perusahaan_en' => $tr->translate($this->request->getPost('deskripsi_perusahaan')),
+            'deskripsi_perusahaan_en' => $this->request->getPost('deskripsi_perusahaan_en'),
             'produk_utama' => $this->request->getPost('produk_utama'),
-            'produk_utama_en' => $tr->translate($this->request->getPost('produk_utama')),
-            'tahun_dibentuk' => $this->request->getPost('tahun_dibentuk'),
-            'skala_bisnis' => $this->request->getPost('skala_bisnis'),
-            'skala_bisnis_en' => $tr->translate($this->request->getPost('skala_bisnis')),
-            'kategori_produk' => $this->request->getPost('kategori_produk'),
-            'kategori_produk_en' => $tr->translate($this->request->getPost('kategori_produk')),
+            'produk_utama_en' => $this->request->getPost('produk_utama_en'),
             'pic' => $this->request->getPost('pic'),
             'pic_phone' => $this->request->getPost('pic_phone'),
-            'latitude' => $this->request->getPost('latitude'),
-            'longitude' => $this->request->getPost('longitude'),
         ];
 
         $model_member->update($user_id, $data);
@@ -1232,150 +1236,148 @@ class KomunitasEkspor extends BaseController
         return redirect()->to('/edit-profile');
     }
 
-    public function add_sertifikat()
-    {
-        $session = session();
-        $user_id = $session->get('user_id');
+    // public function add_sertifikat()
+    // {
+    //     $session = session();
+    //     $user_id = $session->get('user_id');
 
-        $model_sertifikat = new Sertifikat();
+    //     $model_sertifikat = new Sertifikat();
 
-        $fileSertifikat = $this->request->getFile('sertifikat');
-        $namaFile = null;
-        if ($fileSertifikat && $fileSertifikat->isValid() && !$fileSertifikat->hasMoved()) {
-            $namaFile = uniqid() . '.' . $fileSertifikat->getClientExtension();
-            $fileSertifikat->move(ROOTPATH . 'public/certificate', $namaFile);
-        }
+    //     $fileSertifikat = $this->request->getFile('sertifikat');
+    //     $namaFile = null;
+    //     if ($fileSertifikat && $fileSertifikat->isValid() && !$fileSertifikat->hasMoved()) {
+    //         $namaFile = uniqid() . '.' . $fileSertifikat->getClientExtension();
+    //         $fileSertifikat->move(ROOTPATH . 'public/certificate', $namaFile);
+    //     }
 
-        $data = [
-            'id_member' => $user_id,
-            'sertifikat' => $namaFile,
-        ];
+    //     $data = [
+    //         'id_member' => $user_id,
+    //         'sertifikat' => $namaFile,
+    //     ];
 
-        // Insert data into the database
-        $model_sertifikat->insert($data);
+    //     // Insert data into the database
+    //     $model_sertifikat->insert($data);
 
-        // Redirect after successful insert
-        return redirect()->to('/edit-profile');
-    }
+    //     // Redirect after successful insert
+    //     return redirect()->to('/edit-profile');
+    // }
 
-    public function delete_sertifikat($id)
-    {
-        $session = session();
-        $user_id = $session->get('user_id'); // Ambil user_id dari sesi
+    // public function delete_sertifikat($id)
+    // {
+    //     $session = session();
+    //     $user_id = $session->get('user_id'); // Ambil user_id dari sesi
 
-        $model_sertifikat = new Sertifikat();
-        $sertifikat = $model_sertifikat->find($id);
+    //     $model_sertifikat = new Sertifikat();
+    //     $sertifikat = $model_sertifikat->find($id);
 
-        // Cek apakah sertifikat ada dan apakah sertifikat milik user yang sedang login
-        if ($sertifikat && $sertifikat['id_member'] == $user_id) {
-            // Hapus file foto sertifikat jika ada
-            if ($sertifikat['sertifikat'] && file_exists(ROOTPATH . 'public/certificate/' . $sertifikat['sertifikat'])) {
-                unlink(ROOTPATH . 'public/certificate/' . $sertifikat['sertifikat']);
-            }
+    //     // Cek apakah sertifikat ada dan apakah sertifikat milik user yang sedang login
+    //     if ($sertifikat && $sertifikat['id_member'] == $user_id) {
+    //         // Hapus file foto sertifikat jika ada
+    //         if ($sertifikat['sertifikat'] && file_exists(ROOTPATH . 'public/certificate/' . $sertifikat['sertifikat'])) {
+    //             unlink(ROOTPATH . 'public/certificate/' . $sertifikat['sertifikat']);
+    //         }
 
-            // Hapus sertifikat dari database
-            $model_sertifikat->delete($id);
+    //         // Hapus sertifikat dari database
+    //         $model_sertifikat->delete($id);
 
-            return redirect()->to('/edit-profile')->with('success', 'Sertifikat berhasil dihapus');
-        } else {
-            // Redirect dengan pesan error jika sertifikat tidak ditemukan atau tidak dimiliki user yang sedang login
-            return redirect()->to('/edit-profile')->withInput()->with('errors', ['Anda tidak memiliki izin untuk menghapus sertifikat ini']);
-        }
-    }
+    //         return redirect()->to('/edit-profile')->with('success', 'Sertifikat berhasil dihapus');
+    //     } else {
+    //         // Redirect dengan pesan error jika sertifikat tidak ditemukan atau tidak dimiliki user yang sedang login
+    //         return redirect()->to('/edit-profile')->withInput()->with('errors', ['Anda tidak memiliki izin untuk menghapus sertifikat ini']);
+    //     }
+    // }
 
-    public function add_produk()
-    {
-        $session = session();
-        $user_id = $session->get('user_id');
+    // public function add_produk()
+    // {
+    //     $session = session();
+    //     $user_id = $session->get('user_id');
 
-        $model_produk = new Produk();
+    //     $model_produk = new Produk();
 
-        $tr = new GoogleTranslate('en');
+    //     $fields = [
+    //         'nama_produk',
+    //         'deskripsi_produk',
+    //         'hs_code',
+    //         'minimum_order_qty',
+    //         'kapasitas_produksi_bln',
+    //     ];
 
-        $fields = [
-            'nama_produk',
-            'deskripsi_produk',
-            'hs_code',
-            'minimum_order_qty',
-            'kapasitas_produksi_bln',
-        ];
+    //     // Set validation rules without `foto_produk` and apply only required rules
+    //     $validationRules = array_fill_keys($fields, [
+    //         'rules' => 'required'
+    //     ]);
 
-        // Set validation rules without `foto_produk` and apply only required rules
-        $validationRules = array_fill_keys($fields, [
-            'rules' => 'required'
-        ]);
+    //     // Validate other fields
+    //     if (!$this->validate($validationRules)) {
+    //         $errors = $this->validator->getErrors();
+    //     } else {
+    //         $errors = [];
+    //     }
 
-        // Validate other fields
-        if (!$this->validate($validationRules)) {
-            $errors = $this->validator->getErrors();
-        } else {
-            $errors = [];
-        }
+    //     // Separate check for `foto_produk`
+    //     $fotoProduk = $this->request->getFile('foto_produk');
+    //     if (!$fotoProduk || !$fotoProduk->isValid()) {
+    //         $errors['foto_produk'] = "Foto produk harus diunggah!";
+    //     }
 
-        // Separate check for `foto_produk`
-        $fotoProduk = $this->request->getFile('foto_produk');
-        if (!$fotoProduk || !$fotoProduk->isValid()) {
-            $errors['foto_produk'] = "Foto produk harus diunggah!";
-        }
+    //     // Count errors and handle response if there are any missing inputs
+    //     if (!empty($errors)) {
+    //         $missingCount = count($errors);
+    //         $generalErrorMessage = "Ada $missingCount Input Yang Masih Belum Diisi!";
+    //         return redirect()->back()->withInput()->with('errors', ['general' => $generalErrorMessage]);
+    //     }
 
-        // Count errors and handle response if there are any missing inputs
-        if (!empty($errors)) {
-            $missingCount = count($errors);
-            $generalErrorMessage = "Ada $missingCount Input Yang Masih Belum Diisi!";
-            return redirect()->back()->withInput()->with('errors', ['general' => $generalErrorMessage]);
-        }
+    //     // Process and move `foto_produk` if uploaded
+    //     $namaFile = null;
+    //     if ($fotoProduk && $fotoProduk->isValid() && !$fotoProduk->hasMoved()) {
+    //         $namaFile = uniqid() . '.' . $fotoProduk->getClientExtension();
+    //         $fotoProduk->move(ROOTPATH . 'public/img', $namaFile);
+    //     }
 
-        // Process and move `foto_produk` if uploaded
-        $namaFile = null;
-        if ($fotoProduk && $fotoProduk->isValid() && !$fotoProduk->hasMoved()) {
-            $namaFile = uniqid() . '.' . $fotoProduk->getClientExtension();
-            $fotoProduk->move(ROOTPATH . 'public/img', $namaFile);
-        }
+    //     // Prepare data for insertion
+    //     $data = [
+    //         'id_member' => $user_id,
+    //         'foto_produk' => $namaFile,
+    //         'nama_produk' => $this->request->getPost('nama_produk'),
+    //         'nama_produk_en' => $this->request->getPost('nama_produk'),
+    //         'deskripsi_produk' => $this->request->getPost('deskripsi_produk'),
+    //         'deskripsi_produk_en' => $this->request->getPost('deskripsi_produk'),
+    //         'hs_code' => $this->request->getPost('hs_code'),
+    //         'minimum_order_qty' => $this->request->getPost('minimum_order_qty'),
+    //         'kapasitas_produksi_bln' => $this->request->getPost('kapasitas_produksi_bln'),
+    //     ];
 
-        // Prepare data for insertion
-        $data = [
-            'id_member' => $user_id,
-            'foto_produk' => $namaFile,
-            'nama_produk' => $this->request->getPost('nama_produk'),
-            'nama_produk_en' => $tr->translate($this->request->getPost('nama_produk')),
-            'deskripsi_produk' => $this->request->getPost('deskripsi_produk'),
-            'deskripsi_produk_en' => $tr->translate($this->request->getPost('deskripsi_produk')),
-            'hs_code' => $this->request->getPost('hs_code'),
-            'minimum_order_qty' => $this->request->getPost('minimum_order_qty'),
-            'kapasitas_produksi_bln' => $this->request->getPost('kapasitas_produksi_bln'),
-        ];
+    //     // Insert data into the database
+    //     $model_produk->insert($data);
 
-        // Insert data into the database
-        $model_produk->insert($data);
+    //     // Redirect after successful insert
+    //     return redirect()->to('/edit-profile');
+    // }
 
-        // Redirect after successful insert
-        return redirect()->to('/edit-profile');
-    }
+    // public function delete_produk($id)
+    // {
+    //     $session = session();
+    //     $user_id = $session->get('user_id'); // Ambil user_id dari sesi
 
-    public function delete_produk($id)
-    {
-        $session = session();
-        $user_id = $session->get('user_id'); // Ambil user_id dari sesi
+    //     $model_produk = new Produk();
+    //     $produk = $model_produk->find($id);
 
-        $model_produk = new Produk();
-        $produk = $model_produk->find($id);
+    //     // Cek apakah produk ada dan apakah produk milik user yang sedang login
+    //     if ($produk && $produk['id_member'] == $user_id) {
+    //         // Hapus file foto produk jika ada
+    //         if ($produk['foto_produk'] && file_exists(ROOTPATH . 'public/img/' . $produk['foto_produk'])) {
+    //             unlink(ROOTPATH . 'public/img/' . $produk['foto_produk']);
+    //         }
 
-        // Cek apakah produk ada dan apakah produk milik user yang sedang login
-        if ($produk && $produk['id_member'] == $user_id) {
-            // Hapus file foto produk jika ada
-            if ($produk['foto_produk'] && file_exists(ROOTPATH . 'public/img/' . $produk['foto_produk'])) {
-                unlink(ROOTPATH . 'public/img/' . $produk['foto_produk']);
-            }
+    //         // Hapus produk dari database
+    //         $model_produk->delete($id);
 
-            // Hapus produk dari database
-            $model_produk->delete($id);
-
-            return redirect()->to('/edit-profile')->with('success', 'Produk berhasil dihapus');
-        } else {
-            // Redirect dengan pesan error jika produk tidak ditemukan atau tidak dimiliki user yang sedang login
-            return redirect()->to('/edit-profile')->withInput()->with('errors', ['Anda tidak memiliki izin untuk menghapus produk ini']);
-        }
-    }
+    //         return redirect()->to('/edit-profile')->with('success', 'Produk berhasil dihapus');
+    //     } else {
+    //         // Redirect dengan pesan error jika produk tidak ditemukan atau tidak dimiliki user yang sedang login
+    //         return redirect()->to('/edit-profile')->withInput()->with('errors', ['Anda tidak memiliki izin untuk menghapus produk ini']);
+    //     }
+    // }
 
     public function edit_profile_premium()
     {
@@ -1512,16 +1514,19 @@ class KomunitasEkspor extends BaseController
 
         $model_member = new Member();
 
-        $tr = new GoogleTranslate('en');
-
         $fields = [
             'nama_perusahaan',
             'tipe_bisnis',
+            'tipe_bisnis_en',
             'deskripsi_perusahaan',
+            'deskripsi_perusahaan_en',
             'produk_utama',
+            'produk_utama_en',
             'tahun_dibentuk',
             'skala_bisnis',
+            'skala_bisnis_en',
             'kategori_produk',
+            'kategori_produk_en',
             'pic',
             'pic_phone',
             'latitude',
@@ -1551,16 +1556,16 @@ class KomunitasEkspor extends BaseController
         $data = [
             'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
             'tipe_bisnis' => $this->request->getPost('tipe_bisnis'),
-            'tipe_bisnis_en' => $tr->translate($this->request->getPost('tipe_bisnis')),
+            'tipe_bisnis_en' => $this->request->getPost('tipe_bisnis_en'),
             'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
-            'deskripsi_perusahaan_en' => $tr->translate($this->request->getPost('deskripsi_perusahaan')),
+            'deskripsi_perusahaan_en' => $this->request->getPost('deskripsi_perusahaan_en'),
             'produk_utama' => $this->request->getPost('produk_utama'),
-            'produk_utama_en' => $tr->translate($this->request->getPost('produk_utama')),
+            'produk_utama_en' => $this->request->getPost('produk_utama_en'),
             'tahun_dibentuk' => $this->request->getPost('tahun_dibentuk'),
             'skala_bisnis' => $this->request->getPost('skala_bisnis'),
-            'skala_bisnis_en' => $tr->translate($this->request->getPost('skala_bisnis')),
+            'skala_bisnis_en' => $this->request->getPost('skala_bisnis_en'),
             'kategori_produk' => $this->request->getPost('kategori_produk'),
-            'kategori_produk_en' => $tr->translate($this->request->getPost('kategori_produk')),
+            'kategori_produk_en' => $this->request->getPost('kategori_produk_en'),
             'pic' => $this->request->getPost('pic'),
             'pic_phone' => $this->request->getPost('pic_phone'),
             'latitude' => $this->request->getPost('latitude'),
@@ -1589,6 +1594,8 @@ class KomunitasEkspor extends BaseController
         $data = [
             'id_member' => $user_id,
             'sertifikat' => $namaFile,
+            'nama_sertifikat' => $this->request->getPost('nama_sertifikat'),
+            'nama_sertifikat_en' => $this->request->getPost('nama_sertifikat_en'),
         ];
 
         // Insert data into the database
@@ -1630,11 +1637,11 @@ class KomunitasEkspor extends BaseController
 
         $model_produk = new Produk();
 
-        $tr = new GoogleTranslate('en');
-
         $fields = [
             'nama_produk',
+            'nama_produk_en',
             'deskripsi_produk',
+            'deskripsi_produk_en',
             'hs_code',
             'minimum_order_qty',
             'kapasitas_produksi_bln',
@@ -1677,9 +1684,9 @@ class KomunitasEkspor extends BaseController
             'id_member' => $user_id,
             'foto_produk' => $namaFile,
             'nama_produk' => $this->request->getPost('nama_produk'),
-            'nama_produk_en' => $tr->translate($this->request->getPost('nama_produk')),
+            'nama_produk_en' => $this->request->getPost('nama_produk_en'),
             'deskripsi_produk' => $this->request->getPost('deskripsi_produk'),
-            'deskripsi_produk_en' => $tr->translate($this->request->getPost('deskripsi_produk')),
+            'deskripsi_produk_en' => $this->request->getPost('deskripsi_produk_en'),
             'hs_code' => $this->request->getPost('hs_code'),
             'minimum_order_qty' => $this->request->getPost('minimum_order_qty'),
             'kapasitas_produksi_bln' => $this->request->getPost('kapasitas_produksi_bln'),
@@ -3416,8 +3423,6 @@ class KomunitasEkspor extends BaseController
         $model_member = new Member();
         $model_satuan = new Satuan();
 
-        $tr = new GoogleTranslate('en');
-
         $now = Time::now();
 
         $password = $this->request->getPost('password');
@@ -3439,20 +3444,20 @@ class KomunitasEkspor extends BaseController
             'popular_point' => 0,
             'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
             'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
-            'deskripsi_perusahaan_en' => $tr->translate($this->request->getPost('deskripsi_perusahaan')),
+            'deskripsi_perusahaan_en' => $this->request->getPost('deskripsi_perusahaan'),
             'tipe_bisnis' => $this->request->getPost('tipe_bisnis'),
-            'tipe_bisnis_en' => $tr->translate($this->request->getPost('tipe_bisnis')),
+            'tipe_bisnis_en' => $this->request->getPost('tipe_bisnis'),
             'produk_utama' => $this->request->getPost('produk_utama'),
-            'produk_utama_en' => $tr->translate($this->request->getPost('produk_utama')),
+            'produk_utama_en' => $this->request->getPost('produk_utama'),
             'tahun_dibentuk' => $this->request->getPost('tahun_dibentuk'),
             'skala_bisnis' => $this->request->getPost('skala_bisnis'),
-            'skala_bisnis_en' => $tr->translate($this->request->getPost('skala_bisnis')),
+            'skala_bisnis_en' => $this->request->getPost('skala_bisnis'),
             'email' => $this->request->getPost('email'),
             'pic' => $this->request->getPost('pic'),
             'pic_phone' => $this->request->getPost('pic_phone'),
             'tanggal_verifikasi' => $now,
             'kategori_produk' => $this->request->getPost('kategori_produk'),
-            'kategori_produk_en' => $tr->translate($this->request->getPost('kategori_produk')),
+            'kategori_produk_en' => $this->request->getPost('kategori_produk'),
             'latitude' => $this->request->getPost('latitude'),
             'longitude' => $this->request->getPost('longitude'),
         ];
@@ -3485,7 +3490,6 @@ class KomunitasEkspor extends BaseController
     {
         $model_member = new Member();
         $member = $model_member->find($id);
-        $tr = new GoogleTranslate('en');
         $password = $this->request->getPost('password');
         $fotoProfil = $this->request->getFile('foto_profil');
         $data = []; // Initialize data array
@@ -3521,19 +3525,19 @@ class KomunitasEkspor extends BaseController
             'popular_point' => $this->request->getPost('popular_point'),
             'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
             'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
-            'deskripsi_perusahaan_en' => $tr->translate($this->request->getPost('deskripsi_perusahaan')),
+            'deskripsi_perusahaan_en' => $this->request->getPost('deskripsi_perusahaan'),
             'tipe_bisnis' => $this->request->getPost('tipe_bisnis'),
-            'tipe_bisnis_en' => $tr->translate($this->request->getPost('tipe_bisnis')),
+            'tipe_bisnis_en' => $this->request->getPost('tipe_bisnis'),
             'produk_utama' => $this->request->getPost('produk_utama'),
-            'produk_utama_en' => $tr->translate($this->request->getPost('produk_utama')),
+            'produk_utama_en' => $this->request->getPost('produk_utama'),
             'tahun_dibentuk' => $this->request->getPost('tahun_dibentuk'),
             'skala_bisnis' => $this->request->getPost('skala_bisnis'),
-            'skala_bisnis_en' => $tr->translate($this->request->getPost('skala_bisnis')),
+            'skala_bisnis_en' => $this->request->getPost('skala_bisnis'),
             'email' => $this->request->getPost('email'),
             'pic' => $this->request->getPost('pic'),
             'pic_phone' => $this->request->getPost('pic_phone'),
             'kategori_produk' => $this->request->getPost('kategori_produk'),
-            'kategori_produk_en' => $tr->translate($this->request->getPost('kategori_produk')),
+            'kategori_produk_en' => $this->request->getPost('kategori_produk'),
             'latitude' => $this->request->getPost('latitude'),
             'longitude' => $this->request->getPost('longitude'),
         ]);
@@ -3762,8 +3766,6 @@ class KomunitasEkspor extends BaseController
             return redirect()->to('/admin-produk')->withInput()->with('errors', ['ID Member tidak valid atau bukan seorang member']);
         }
 
-        $tr = new GoogleTranslate('en');
-
         $fotoProduk = $this->request->getFile('foto_produk');
 
         $namaFile = null;
@@ -3776,9 +3778,9 @@ class KomunitasEkspor extends BaseController
             'id_member' => $id_member,
             'foto_produk' => $namaFile,
             'nama_produk' => $this->request->getPost('nama_produk'),
-            'nama_produk_en' => $tr->translate($this->request->getPost('nama_produk')),
+            'nama_produk_en' => $this->request->getPost('nama_produk'),
             'deskripsi_produk' => $this->request->getPost('deskripsi_produk'),
-            'deskripsi_produk_en' => $tr->translate($this->request->getPost('deskripsi_produk')),
+            'deskripsi_produk_en' => $this->request->getPost('deskripsi_produk'),
             'hs_code' => $this->request->getPost('hs_code'),
             'minimum_order_qty' => $this->request->getPost('minimum_order_qty'),
             'kapasitas_produksi_bln' => $this->request->getPost('kapasitas_produksi_bln'),
@@ -3819,8 +3821,6 @@ class KomunitasEkspor extends BaseController
 
         $produk = $model_produk->find($id);
 
-        $tr = new GoogleTranslate('en');
-
         $fotoProduk = $this->request->getFile('foto_produk');
 
         if ($fotoProduk->isValid() && !$fotoProduk->hasMoved()) {
@@ -3843,9 +3843,9 @@ class KomunitasEkspor extends BaseController
         $data = array_merge($data, [
             'id_member' => $id_member,
             'nama_produk' => $this->request->getPost('nama_produk'),
-            'nama_produk_en' => $tr->translate($this->request->getPost('nama_produk')),
+            'nama_produk_en' => $this->request->getPost('nama_produk'),
             'deskripsi_produk' => $this->request->getPost('deskripsi_produk'),
-            'deskripsi_produk_en' => $tr->translate($this->request->getPost('deskripsi_produk')),
+            'deskripsi_produk_en' => $this->request->getPost('deskripsi_produk'),
             'hs_code' => $this->request->getPost('hs_code'),
             'minimum_order_qty' => $this->request->getPost('minimum_order_qty'),
             'kapasitas_produksi_bln' => $this->request->getPost('kapasitas_produksi_bln'),
@@ -4099,23 +4099,21 @@ class KomunitasEkspor extends BaseController
 
     public function admin_belajar_ekspor_store()
     {
-        $tr = new GoogleTranslate('en');
-
         $model_belajarekspor = new BelajarEksporModel();
 
         $data = [
             'judul_belajar_ekspor' => $this->request->getPost('judul_belajar_ekspor'),
-            'judul_belajar_ekspor_en' => $tr->translate($this->request->getPost('judul_belajar_ekspor')),
+            'judul_belajar_ekspor_en' => $this->request->getPost('judul_belajar_ekspor'),
             'id_kategori_belajar_ekspor' => $this->request->getPost('id_kategori'),
-            'id_kategori_en' => $tr->translate($this->request->getPost('id_kategori')),
+            'id_kategori_en' => $this->request->getPost('id_kategori'),
             'deskripsi_belajar_ekspor' => $this->request->getPost('deskripsi_belajar_ekspor'),
-            'deskripsi_belajar_ekspor_en' => $tr->translate($this->request->getPost('deskripsi_belajar_ekspor')),
+            'deskripsi_belajar_ekspor_en' => $this->request->getPost('deskripsi_belajar_ekspor'),
             'slug' => $this->request->getPost('slug'),
-            'slug_en' => $tr->translate($this->request->getPost('slug')),
+            'slug_en' => $this->request->getPost('slug'),
             'meta_title' => $this->request->getPost('meta_title'),
-            'meta_title_en' => $tr->translate($this->request->getPost('meta_title')),
+            'meta_title_en' => $this->request->getPost('meta_title'),
             'meta_deskripsi' => $this->request->getPost('meta_deskripsi'),
-            'meta_deskripsi_en' => $tr->translate($this->request->getPost('meta_deskripsi')),
+            'meta_deskripsi_en' => $this->request->getPost('meta_deskripsi'),
         ];
 
         // Mengambil file gambar
@@ -4152,8 +4150,6 @@ class KomunitasEkspor extends BaseController
 
     public function admin_belajar_ekspor_update($id)
     {
-        $tr = new GoogleTranslate('en');
-
         $model_belajarekspor = new BelajarEksporModel();
         $model_kategori = new KategoriBelajarEksporModel();
 
@@ -4166,17 +4162,17 @@ class KomunitasEkspor extends BaseController
         // Menyiapkan data yang akan diperbarui
         $data = [
             'judul_belajar_ekspor' => $this->request->getPost('judul_belajar_ekspor'),
-            'judul_belajar_ekspor_en' => $tr->translate($this->request->getPost('judul_belajar_ekspor')),
+            'judul_belajar_ekspor_en' => $this->request->getPost('judul_belajar_ekspor'),
             'id_kategori_belajar_ekspor' => $this->request->getPost('id_kategori'),
-            'id_kategori_en' => $tr->translate($this->request->getPost('id_kategori')),
+            'id_kategori_en' => $this->request->getPost('id_kategori'),
             'deskripsi_belajar_ekspor' => $this->request->getPost('deskripsi_belajar_ekspor'),
-            'deskripsi_belajar_ekspor_en' => $tr->translate($this->request->getPost('deskripsi_belajar_ekspor')),
+            'deskripsi_belajar_ekspor_en' => $this->request->getPost('deskripsi_belajar_ekspor'),
             'slug' => $this->request->getPost('slug'),
-            'slug_en' => $tr->translate($this->request->getPost('slug')),
+            'slug_en' => $this->request->getPost('slug'),
             'meta_title' => $this->request->getPost('meta_title'),
-            'meta_title_en' => $tr->translate($this->request->getPost('meta_title')),
+            'meta_title_en' => $this->request->getPost('meta_title'),
             'meta_deskripsi' => $this->request->getPost('meta_deskripsi'),
-            'meta_deskripsi_en' => $tr->translate($this->request->getPost('meta_deskripsi')),
+            'meta_deskripsi_en' => $this->request->getPost('meta_deskripsi'),
         ];
 
         // Menangani upload gambar jika ada file baru
@@ -4231,15 +4227,14 @@ class KomunitasEkspor extends BaseController
 
     public function admin_kategori_belajar_ekspor_store()
     {
-        $tr = new GoogleTranslate('en');
 
         $kategori_model = new KategoriBelajarEksporModel();
 
         $data = [
             'nama_kategori' => $this->request->getPost('nama_kategori'),
-            'nama_kategori_en' => $tr->translate($this->request->getPost('nama_kategori')),
+            'nama_kategori_en' => $this->request->getPost('nama_kategori'),
             'slug' => $this->request->getPost('slug'),
-            'slug_en' => $tr->translate($this->request->getPost('slug')),
+            'slug_en' => $this->request->getPost('slug'),
         ];
 
         $kategori_model->insert($data);
@@ -4260,15 +4255,13 @@ class KomunitasEkspor extends BaseController
 
     public function admin_kategori_belajar_ekspor_update($id)
     {
-        $tr = new GoogleTranslate('en');
-
         $kategori_model = new KategoriBelajarEksporModel();
 
         $data = [
             'nama_kategori' => $this->request->getPost('nama_kategori'),
-            'nama_kategori_en' => $tr->translate($this->request->getPost('nama_kategori')),
+            'nama_kategori_en' => $this->request->getPost('nama_kategori'),
             'slug' => $this->request->getPost('slug'),
-            'slug_en' => $tr->translate($this->request->getPost('slug')),
+            'slug_en' => $this->request->getPost('slug'),
         ];
 
         $kategori_model->update($id, $data);
@@ -4309,19 +4302,17 @@ class KomunitasEkspor extends BaseController
 
     public function admin_video_tutorial_store()
     {
-        $tr = new GoogleTranslate('en');
-
         $model_video = new VidioTutorialModel();
 
         $data = [
             'judul_video' => $this->request->getPost('judul_video'),
-            'judul_video_en' => $tr->translate($this->request->getPost('judul_video')),
+            'judul_video_en' => $this->request->getPost('judul_video'),
             'id_kategori_video' => $this->request->getPost('id_kategori'), // Menggunakan nilai asli, bukan hasil terjemahan
             'video_url' => $this->request->getPost('video_url'),
             'deskripsi_video' => $this->request->getPost('deskripsi_video'),
-            'deskripsi_video_en' => $tr->translate($this->request->getPost('deskripsi_video')),
+            'deskripsi_video_en' => $this->request->getPost('deskripsi_video'),
             'slug' => $this->request->getPost('slug'),
-            'slug_en' => $tr->translate($this->request->getPost('slug')),
+            'slug_en' => $this->request->getPost('slug'),
         ];
 
         // Mengambil file gambar
@@ -4358,8 +4349,6 @@ class KomunitasEkspor extends BaseController
 
     public function admin_video_tutorial_update($id)
     {
-        $tr = new GoogleTranslate('en');
-
         $model_video = new VidioTutorialModel();
 
         $existingData = $model_video->find($id);
@@ -4369,13 +4358,13 @@ class KomunitasEkspor extends BaseController
 
         $data = [
             'judul_video' => $this->request->getPost('judul_video'),
-            'judul_video_en' => $tr->translate($this->request->getPost('judul_video')),
+            'judul_video_en' => $this->request->getPost('judul_video'),
             'id_kategori_video' => $this->request->getPost('id_kategori'), // Menggunakan nilai asli, bukan hasil terjemahan
             'video_url' => $this->request->getPost('video_url'),
             'deskripsi_video' => $this->request->getPost('deskripsi_video'),
-            'deskripsi_video_en' => $tr->translate($this->request->getPost('deskripsi_video')),
+            'deskripsi_video_en' => $this->request->getPost('deskripsi_video'),
             'slug' => $this->request->getPost('slug'),
-            'slug_en' => $tr->translate($this->request->getPost('slug')),
+            'slug_en' => $this->request->getPost('slug'),
         ];
 
         // Menangani upload gambar jika ada file baru
@@ -4427,15 +4416,13 @@ class KomunitasEkspor extends BaseController
 
     public function admin_kategori_vidio_tutorial_store()
     {
-        $tr = new GoogleTranslate('en');
-
         $kategori_video = new KategoriVidioModel();
 
         $data = [
             'nama_kategori_video' => $this->request->getPost('kategori_vidio'),
-            'nama_kategori_video_en' => $tr->translate($this->request->getPost('kategori_vidio')),
+            'nama_kategori_video_en' => $this->request->getPost('kategori_vidio'),
             'slug' => $this->request->getPost('slug'),
-            'slug_en' => $tr->translate($this->request->getPost('slug')),
+            'slug_en' => $this->request->getPost('slug'),
         ];
 
         $kategori_video->insert($data);
@@ -4456,15 +4443,13 @@ class KomunitasEkspor extends BaseController
 
     public function admin_kategori_video_tutorial_update($id)
     {
-        $tr = new GoogleTranslate('en');
-
         $kategori_video = new KategoriVidioModel();
 
         $data = [
             'nama_kategori_video' => $this->request->getPost('kategori_video'),
-            'kategori_kategori_video_en' => $tr->translate($this->request->getPost('kategori_video')),
+            'kategori_kategori_video_en' => $this->request->getPost('kategori_video'),
             'slug' => $this->request->getPost('slug'),
-            'slug_en' => $tr->translate($this->request->getPost('slug')),
+            'slug_en' => $this->request->getPost('slug'),
         ];
 
         $kategori_video->update($id, $data);
@@ -5583,8 +5568,6 @@ class KomunitasEkspor extends BaseController
 
     public function admin_update_manfaat_join($id)
     {
-        $tr = new GoogleTranslate('en');
-
         $model_manfaatjoin = new ManfaatJoin();
 
         $existingData = $model_manfaatjoin->find($id);
@@ -5594,9 +5577,9 @@ class KomunitasEkspor extends BaseController
 
         $data = [
             'judul_manfaat' => $this->request->getPost('judul_manfaat'),
-            'judul_manfaat_en' => $tr->translate($this->request->getPost('judul_manfaat')),
+            'judul_manfaat_en' => $this->request->getPost('judul_manfaat'),
             'deskripsi_manfaat' => $this->request->getPost('deskripsi_manfaat'),
-            'deskripsi_manfaat_en' => $tr->translate($this->request->getPost('deskripsi_manfaat')),
+            'deskripsi_manfaat_en' => $this->request->getPost('deskripsi_manfaat'),
         ];
 
         $model_manfaatjoin->update($id, $data);
@@ -5685,17 +5668,15 @@ class KomunitasEkspor extends BaseController
 
     public function admin_update_webprofile($id)
     {
-        $tr = new GoogleTranslate('en');
-
         $Model_webprofile = new WebProfile();
 
         $webprofile = $Model_webprofile->find($id);
 
         $data = [
             'nama_web' => $this->request->getPost('nama_web'),
-            'nama_web_en' => $tr->translate($this->request->getPost('nama_web')),
+            'nama_web_en' => $this->request->getPost('nama_web'),
             'deskripsi_web' => $this->request->getPost('deskripsi_webprofile'),
-            'deskripsi_web_en' => $tr->translate($this->request->getPost('deskripsi_webprofile')),
+            'deskripsi_web_en' => $this->request->getPost('deskripsi_webprofile'),
             'lokasi_web' => $this->request->getPost('lokasi_web'),
             'email_web' => $this->request->getPost('email_web'),
             'link_ig_web' => $this->request->getPost('link_ig_web'),
@@ -5751,17 +5732,15 @@ class KomunitasEkspor extends BaseController
 
     public function update_admin_tentang_kami($id)
     {
-        $tr = new GoogleTranslate('en');
-
         $model_tentang = new TentangKami();
 
         $tentang = $model_tentang->find($id);
 
         $data = [
             'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
-            'deskripsi_perusahaan_en' => $tr->translate($this->request->getPost('deskripsi_perusahaan')),
+            'deskripsi_perusahaan_en' => $this->request->getPost('deskripsi_perusahaan'),
             'slug' => $this->request->getPost('slug'),
-            'slug_en' => $tr->translate($this->request->getPost('slug')),
+            'slug_en' => $this->request->getPost('slug'),
         ];
 
         // Menangani upload gambar jika ada file baru
