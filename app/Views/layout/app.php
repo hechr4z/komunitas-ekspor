@@ -147,6 +147,19 @@
         color: #fff;
     }
 
+    .container {
+    overflow: visible;
+}
+
+.header {
+    overflow: visible;
+}
+
+.container, .navbar, .header {
+    overflow: visible !important;
+}
+
+
     /* end */
     .dropdown-menu {
         position: absolute;

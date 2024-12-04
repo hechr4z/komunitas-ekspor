@@ -1072,10 +1072,10 @@
                         <a class="nav-link" href="#profile">Profile Perusahaan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#sertifikat">Sertifikat</a>
+                        <a class="nav-link" href="#data-produk">Data Produk</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#data-produk">Data Produk</a>
+                        <a class="nav-link" href="#sertifikat">Sertifikat</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#lokasi">Lokasi</a>
