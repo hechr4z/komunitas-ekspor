@@ -28,13 +28,17 @@
                             <?= csrf_field(); ?>
 
                             <div class="mb-3">
-                                <label class="form-label">Judul</label>
-                                <input type="text" class="form-control" name="judul_belajar_ekspor" placeholder="Masukkan Judul Video" required>
+                                <label class="form-label">Judul Materi Indonesia</label>
+                                <input type="text" class="form-control" name="judul_belajar_ekspor" placeholder="Masukkan Judul Materi" required>
                             </div>
 
+                            <div class="mb-3">
+                                <label class="form-label">Judul Materi English</label>
+                                <input type="text" class="form-control" name="judul_belajar_ekspor_en" placeholder="Masukkan Judul Materi" required>
+                            </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Foto Artikel</label>
+                                <label class="form-label">Foto Materi</label>
                                 <input type="file" class="form-control" name="foto_belajar_ekspor" accept="image/*" required>
                             </div>
 
@@ -51,8 +55,12 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Deskripsi</label>
-                                <textarea class="form-control tiny" id="deskripsi_artikel" name="deskripsi_belajar_ekspor" row="5" placeholder="Masukkan Deskripsi Video"></textarea>
+                                <label class="form-label">Deskripsi Indonesia</label>
+                                <textarea class="form-control tiny" id="deskripsi_artikel" name="deskripsi_belajar_ekspor" row="5" placeholder="Masukkan Deskripsi Materi"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Deskripsi English</label>
+                                <textarea class="form-control tiny" id="deskripsi_artikel_en" name="deskripsi_belajar_ekspor_en" row="5" placeholder="Masukkan Deskripsi Materi"></textarea>
                             </div>
 
                             <div class="mb-3">
@@ -62,12 +70,12 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Meta Title</label>
-                                <input type="text" class="form-control" name="meta_title" placeholder="Masukkan Meta Title Video" required>
+                                <input type="text" class="form-control" name="meta_title" placeholder="Masukkan Meta Title Materi" required>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Meta Description</label>
-                                <input type="text" class="form-control" name="meta_deskripsi" placeholder="Masukkan Meta Deskripsi Video" required>
+                                <input type="text" class="form-control" name="meta_deskripsi" placeholder="Masukkan Meta Deskripsi Materi" required>
                             </div>
 
                             <button type="submit" class="btn text-white" style="background-color: #03AADE;">Simpan</button>
@@ -88,5 +96,11 @@
             console.error(error);
         });
 </script>
-
+<script>
+    ClassicEditor
+        .create(document.querySelector('#deskripsi_artikel_en'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 <?= $this->endSection('content'); ?>

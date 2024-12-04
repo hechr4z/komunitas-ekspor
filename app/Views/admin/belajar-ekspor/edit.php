@@ -25,12 +25,17 @@
                             <?= csrf_field(); ?>
 
                             <div class="mb-3">
-                                <label for="belajar-ekspor_in" class="form-label">Judul Artikel</label>
+                                <label for="belajar-ekspor_in" class="form-label">Judul Materi Indonesia</label>
                                 <input type="text" class="form-control" id="belajar-ekspor_in" name="judul_belajar_ekspor" value="<?= esc($belajar_ekspor['judul_belajar_ekspor']); ?>" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="foto_artikel" class="form-label">Foto Artikel</label>
+                                <label for="belajar-ekspor_in" class="form-label">Judul Materi English</label>
+                                <input type="text" class="form-control" id="belajar-ekspor_in" name="judul_belajar_ekspor_en" value="<?= esc($belajar_ekspor['judul_belajar_ekspor_en']); ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="foto_artikel" class="form-label">Foto Materi</label>
                                 <input type="file" class="form-control" id="foto_artikel" name="foto_belajar_ekspor" accept="image/*" onchange="previewImage(event)">
                                 <div class="mt-2">
                                     <?php if (!empty($belajar_ekspor['foto_belajar_ekspor'])) : ?>
@@ -53,10 +58,14 @@
                                 </select>
                             </div>
 
+                            <div class="mb-3">
+                                <label for="deskripsi_artikel_in" class="form-label">Deskripsi Indonesia</label>
+                                <textarea class="form-control tiny" id="deskripsi_artikel_in" name="deskripsi_belajar_ekspor" rows="4" required><?= esc($belajar_ekspor['deskripsi_belajar_ekspor']); ?></textarea>
+                            </div>
 
                             <div class="mb-3">
-                                <label for="deskripsi_artikel_in" class="form-label">Deskripsi</label>
-                                <textarea class="form-control tiny" id="deskripsi_artikel_in" name="deskripsi_belajar_ekspor" rows="4" required><?= esc($belajar_ekspor['deskripsi_belajar_ekspor']); ?></textarea>
+                                <label for="deskripsi_artikel_in" class="form-label">Deskripsi English</label>
+                                <textarea class="form-control tiny" id="deskripsi_artikel_en" name="deskripsi_belajar_ekspor_en" rows="4" required><?= esc($belajar_ekspor['deskripsi_belajar_ekspor_en']); ?></textarea>
                             </div>
 
                             <div class="mb-3">
@@ -102,6 +111,12 @@
             console.error(error);
         });
 </script>
-
+<script>
+    ClassicEditor
+        .create(document.querySelector('#deskripsi_artikel_en'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 
 <?= $this->endSection('content') ?>
