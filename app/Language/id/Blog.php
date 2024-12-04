@@ -224,4 +224,7 @@ return [
     'alertSertifikatDataMember' => 'Masih belum ada Sertifikat',
     'alertProdukDataMember' => 'Masih belum ada Produk',
     'alertOtherDataMember' => 'Masih belum ada Member Lainnya',
+
+    'gambarUtamaLandingPage' => 'Masih belum ada Gambar Utama',
+    'gambarPerusahaanLandingPage' => 'Masih belum ada Gambar Perusahaan',
 ];
