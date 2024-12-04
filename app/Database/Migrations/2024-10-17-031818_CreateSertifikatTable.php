@@ -20,6 +20,14 @@ class CreateSertifikatTable extends Migration
                 'constraint'     => 11,
                 'unsigned'       => true,
             ],
+            'nama_sertifikat' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+            ],
+            'nama_sertifikat_en' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+            ],
             'sertifikat' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
