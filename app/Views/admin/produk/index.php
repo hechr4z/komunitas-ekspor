@@ -236,7 +236,9 @@
                                         <th class="text-center" valign="middle">Username Member</th>
                                         <th class="text-center" valign="middle">Foto Produk</th>
                                         <th class="text-center" valign="middle">Nama Produk</th>
+                                        <th class="text-center" valign="middle">Nama Produk En</th>
                                         <th class="text-center valign-middle col-fixed">Deskripsi Produk</th>
+                                        <th class="text-center valign-middle col-fixed">Deskripsi Produk En</th>
                                         <th class="text-center" valign="middle">HS Code</th>
                                         <th class="text-center" valign="middle">Minimum Order</th>
                                         <th class="text-center" valign="middle">Kapasitas Produksi Per Bulan</th>
@@ -249,44 +251,54 @@
                                             <td colspan="9" class="text-center">Masih belum ada Data Produk.</td>
                                         </tr>
                                     </tbody>
-                            </table>
-                        <?php else: ?>
-                            <tbody>
-                                <?php $start = ($page - 1) * $perPage + 1; ?>
-                                <?php foreach ($produk as $item) : ?>
-                                    <tr>
-                                        <td class="text-center" valign="middle"><?= $start++ ?></td>
-                                        <td class="text-center" valign="middle"><?= $item['username_member'] ?></td>
-                                        <td class="align-middle">
-                                            <img src="<?= base_url('img/' . $item['foto_produk']) ?>" class="img-thumbnail">
-                                        </td>
-                                        <td class="text-center" valign="middle"><?= $item['nama_produk'] ?></td>
-                                        <td class="text-center align-middle col-fixed">
-                                            <div class="text-truncate-multiline" data-bs-toggle="tooltip" title="<?= $item['deskripsi_produk'] ?>">
-                                                <?= $item['deskripsi_produk'] ?>
-                                            </div>
-                                        </td>
-                                        <td class="text-center" valign="middle"><?= $item['hs_code'] ?></td>
-                                        <td class="text-center" valign="middle"><?= $item['minimum_order_qty'] ?></td>
-                                        <td class="text-center" valign="middle"><?= $item['kapasitas_produksi_bln'] ?></td>
-                                        <td class="text-center align-middle">
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                <a href="<?= base_url('admin-delete-produk/' . $item['id_produk']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">
-                                                    Hapus
-                                                </a>
-                                                <a href="<?= base_url('admin-edit-produk/' . $item['id_produk']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">
-                                                    Ubah
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                            </table>
-                            <div class="mt-2">
-                                <?= $pager->links('default', 'bootstrap_pagination') ?>
-                            </div>
-                        <?php endif; ?>
+                                </table>
+                            <?php else: ?>
+                                <tbody>
+                                    <?php $start = ($page - 1) * $perPage + 1; ?>
+                                    <?php foreach ($produk as $item): ?>
+                                        <tr>
+                                            <td class="text-center" valign="middle"><?= $start++ ?></td>
+                                            <td class="text-center" valign="middle"><?= $item['username_member'] ?></td>
+                                            <td class="align-middle">
+                                                <img src="<?= base_url('img/' . $item['foto_produk']) ?>" class="img-thumbnail">
+                                            </td>
+                                            <td class="text-center" valign="middle"><?= $item['nama_produk'] ?></td>
+                                            <td class="text-center" valign="middle"><?= $item['nama_produk_en'] ?></td>
+                                            <td class="text-center align-middle col-fixed">
+                                                <div class="text-truncate-multiline" data-bs-toggle="tooltip"
+                                                    title="<?= $item['deskripsi_produk'] ?>">
+                                                    <?= $item['deskripsi_produk'] ?>
+                                                </div>
+                                            </td>
+                                            <td class="text-center align-middle col-fixed">
+                                                <div class="text-truncate-multiline" data-bs-toggle="tooltip"
+                                                    title="<?= $item['deskripsi_produk_en'] ?>">
+                                                    <?= $item['deskripsi_produk_en'] ?>
+                                                </div>
+                                            </td>
+                                            <td class="text-center" valign="middle"><?= $item['hs_code'] ?></td>
+                                            <td class="text-center" valign="middle"><?= $item['minimum_order_qty'] ?></td>
+                                            <td class="text-center" valign="middle"><?= $item['kapasitas_produksi_bln'] ?></td>
+                                            <td class="text-center align-middle">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <a href="<?= base_url('admin-delete-produk/' . $item['id_produk']) ?>"
+                                                        class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">
+                                                        Hapus
+                                                    </a>
+                                                    <a href="<?= base_url('admin-edit-produk/' . $item['id_produk']) ?>"
+                                                        class="btn btn-sm text-white" style="background-color: #03AADE;">
+                                                        Ubah
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                                </table>
+                                <div class="mt-2">
+                                    <?= $pager->links('default', 'bootstrap_pagination') ?>
+                                </div>
+                            <?php endif; ?>
                         </div><!--//table-responsive-->
                     </div><!--//app-card-body-->
                 </div><!--//app-card-->
@@ -297,9 +309,9 @@
 
 <script>
     // Initialize tooltips
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-        tooltipTriggerList.forEach(function(tooltipTriggerEl) {
+        tooltipTriggerList.forEach(function (tooltipTriggerEl) {
             new bootstrap.Tooltip(tooltipTriggerEl);
         });
     });
