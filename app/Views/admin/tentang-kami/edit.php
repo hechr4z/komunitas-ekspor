@@ -3,8 +3,8 @@
 
 <div class="app-content pt-3 p-md-3 p-lg-4">
     <div class="container-xl">
-        <h1 class="app-page-title">Edit Tentang Komunitas Ekspor Indonesia</h1>
-        <hr class="mb-4">
+        <h1 class="app-page-title" style="color: #03AADE;">Edit Tentang Komunitas Ekspor Indonesia</h1>
+        <hr class=" mb-4">
 
         <?php if (session()->getFlashdata('success')) : ?>
             <div class="alert alert-success">
@@ -37,13 +37,23 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="deskripsi_perusahaan" class="form-label">Deskripsi</label>
+                                <label for="deskripsi_perusahaan" class="form-label">Deskripsi Indonesia</label>
                                 <textarea class="form-control" id="deskripsi_artikel_in" name="deskripsi_perusahaan" rows="4" required><?= esc($tentang_kami['deskripsi_perusahaan']); ?></textarea>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Slug</label>
+                                <label for="deskripsi_perusahaan" class="form-label">Deskripsi English</label>
+                                <textarea class="form-control" id="deskripsi_artikel_en" name="deskripsi_perusahaan_en" rows="4" required><?= esc($tentang_kami['deskripsi_perusahaan_en']); ?></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Slug Indonesia</label>
                                 <input type="text" class="form-control" name="slug" placeholder="ex. cara-ekspor-barang" value="<?= esc($tentang_kami['slug']); ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Slug English</label>
+                                <input type="text" class="form-control" name="slug_en" placeholder="ex. cara-ekspor-barang" value="<?= esc($tentang_kami['slug_en']); ?>" required>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
@@ -79,7 +89,16 @@
             });
     });
 </script>
-
+<script>
+    // Ensure the editor is initialized after the DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        ClassicEditor
+            .create(document.querySelector('#deskripsi_artikel_en'))
+            .catch(error => {
+                console.error(error);
+            });
+    });
+</script>
 
 
 <?= $this->endSection('content') ?>

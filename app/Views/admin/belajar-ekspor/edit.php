@@ -69,18 +69,33 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="slug_in" class="form-label">Slug</label>
+                                <label for="slug_in" class="form-label">Slug Indonesia</label>
                                 <input type="text" class="form-control" id="slug_in" name="slug" value="<?= esc($belajar_ekspor['slug']); ?>" placeholder="Pisahkan dengan koma" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="meta_title_in" class="form-label">Meta Title</label>
+                                <label for="slug_in" class="form-label">Slug English</label>
+                                <input type="text" class="form-control" id="slug_in" name="slug_en" value="<?= esc($belajar_ekspor['slug_en']); ?>" placeholder="Pisahkan dengan koma" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="meta_title_in" class="form-label">Meta Title Indonesia</label>
                                 <input type="text" class="form-control" id="meta_title_in" name="meta_title" value="<?= esc($belajar_ekspor['meta_title']); ?>" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="meta_description_in" class="form-label">Meta Description</label>
+                                <label for="meta_title_in" class="form-label">Meta Title English</label>
+                                <input type="text" class="form-control" id="meta_title_in" name="meta_title_en" value="<?= esc($belajar_ekspor['meta_title_en']); ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="meta_description_in" class="form-label">Meta Deskripsi Indonesia</label>
                                 <input type="text" class="form-control" id="meta_description_in" name="meta_deskripsi" value="<?= esc($belajar_ekspor['meta_deskripsi']); ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="meta_description_in" class="form-label">Meta Deskripsi English</label>
+                                <input type="text" class="form-control" id="meta_description_in" name="meta_deskripsi_en" value="<?= esc($belajar_ekspor['meta_deskripsi_en']); ?>" required>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>

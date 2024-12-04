@@ -4103,17 +4103,17 @@ class KomunitasEkspor extends BaseController
 
         $data = [
             'judul_belajar_ekspor' => $this->request->getPost('judul_belajar_ekspor'),
-            'judul_belajar_ekspor_en' => $this->request->getPost('judul_belajar_ekspor'),
+            'judul_belajar_ekspor_en' => $this->request->getPost('judul_belajar_ekspor_en'),
             'id_kategori_belajar_ekspor' => $this->request->getPost('id_kategori'),
             'id_kategori_en' => $this->request->getPost('id_kategori'),
             'deskripsi_belajar_ekspor' => $this->request->getPost('deskripsi_belajar_ekspor'),
-            'deskripsi_belajar_ekspor_en' => $this->request->getPost('deskripsi_belajar_ekspor'),
+            'deskripsi_belajar_ekspor_en' => $this->request->getPost('deskripsi_belajar_ekspor_en'),
             'slug' => $this->request->getPost('slug'),
-            'slug_en' => $this->request->getPost('slug'),
+            'slug_en' => $this->request->getPost('slug_en'),
             'meta_title' => $this->request->getPost('meta_title'),
-            'meta_title_en' => $this->request->getPost('meta_title'),
+            'meta_title_en' => $this->request->getPost('meta_title_en'),
             'meta_deskripsi' => $this->request->getPost('meta_deskripsi'),
-            'meta_deskripsi_en' => $this->request->getPost('meta_deskripsi'),
+            'meta_deskripsi_en' => $this->request->getPost('meta_deskripsi_en'),
         ];
 
         // Mengambil file gambar
@@ -4162,17 +4162,17 @@ class KomunitasEkspor extends BaseController
         // Menyiapkan data yang akan diperbarui
         $data = [
             'judul_belajar_ekspor' => $this->request->getPost('judul_belajar_ekspor'),
-            'judul_belajar_ekspor_en' => $this->request->getPost('judul_belajar_ekspor'),
+            'judul_belajar_ekspor_en' => $this->request->getPost('judul_belajar_ekspor_en'),
             'id_kategori_belajar_ekspor' => $this->request->getPost('id_kategori'),
             'id_kategori_en' => $this->request->getPost('id_kategori'),
             'deskripsi_belajar_ekspor' => $this->request->getPost('deskripsi_belajar_ekspor'),
-            'deskripsi_belajar_ekspor_en' => $this->request->getPost('deskripsi_belajar_ekspor'),
+            'deskripsi_belajar_ekspor_en' => $this->request->getPost('deskripsi_belajar_ekspor_en'),
             'slug' => $this->request->getPost('slug'),
-            'slug_en' => $this->request->getPost('slug'),
+            'slug_en' => $this->request->getPost('slug_en'),
             'meta_title' => $this->request->getPost('meta_title'),
-            'meta_title_en' => $this->request->getPost('meta_title'),
+            'meta_title_en' => $this->request->getPost('meta_title_en'),
             'meta_deskripsi' => $this->request->getPost('meta_deskripsi'),
-            'meta_deskripsi_en' => $this->request->getPost('meta_deskripsi'),
+            'meta_deskripsi_en' => $this->request->getPost('meta_deskripsi_en'),
         ];
 
         // Menangani upload gambar jika ada file baru
@@ -4232,9 +4232,9 @@ class KomunitasEkspor extends BaseController
 
         $data = [
             'nama_kategori' => $this->request->getPost('nama_kategori'),
-            'nama_kategori_en' => $this->request->getPost('nama_kategori'),
+            'nama_kategori_en' => $this->request->getPost('nama_kategori_en'),
             'slug' => $this->request->getPost('slug'),
-            'slug_en' => $this->request->getPost('slug'),
+            'slug_en' => $this->request->getPost('slug_en'),
         ];
 
         $kategori_model->insert($data);
@@ -4259,9 +4259,9 @@ class KomunitasEkspor extends BaseController
 
         $data = [
             'nama_kategori' => $this->request->getPost('nama_kategori'),
-            'nama_kategori_en' => $this->request->getPost('nama_kategori'),
+            'nama_kategori_en' => $this->request->getPost('nama_kategori_en'),
             'slug' => $this->request->getPost('slug'),
-            'slug_en' => $this->request->getPost('slug'),
+            'slug_en' => $this->request->getPost('slug_en'),
         ];
 
         $kategori_model->update($id, $data);
@@ -4306,13 +4306,13 @@ class KomunitasEkspor extends BaseController
 
         $data = [
             'judul_video' => $this->request->getPost('judul_video'),
-            'judul_video_en' => $this->request->getPost('judul_video'),
+            'judul_video_en' => $this->request->getPost('judul_video_en'),
             'id_kategori_video' => $this->request->getPost('id_kategori'), // Menggunakan nilai asli, bukan hasil terjemahan
             'video_url' => $this->request->getPost('video_url'),
             'deskripsi_video' => $this->request->getPost('deskripsi_video'),
-            'deskripsi_video_en' => $this->request->getPost('deskripsi_video'),
+            'deskripsi_video_en' => $this->request->getPost('deskripsi_video_en'),
             'slug' => $this->request->getPost('slug'),
-            'slug_en' => $this->request->getPost('slug'),
+            'slug_en' => $this->request->getPost('slug_en'),
         ];
 
         // Mengambil file gambar
@@ -4358,13 +4358,13 @@ class KomunitasEkspor extends BaseController
 
         $data = [
             'judul_video' => $this->request->getPost('judul_video'),
-            'judul_video_en' => $this->request->getPost('judul_video'),
+            'judul_video_en' => $this->request->getPost('judul_video_en'),
             'id_kategori_video' => $this->request->getPost('id_kategori'), // Menggunakan nilai asli, bukan hasil terjemahan
             'video_url' => $this->request->getPost('video_url'),
             'deskripsi_video' => $this->request->getPost('deskripsi_video'),
-            'deskripsi_video_en' => $this->request->getPost('deskripsi_video'),
+            'deskripsi_video_en' => $this->request->getPost('deskripsi_video_en'),
             'slug' => $this->request->getPost('slug'),
-            'slug_en' => $this->request->getPost('slug'),
+            'slug_en' => $this->request->getPost('slug_en'),
         ];
 
         // Menangani upload gambar jika ada file baru
@@ -4420,9 +4420,9 @@ class KomunitasEkspor extends BaseController
 
         $data = [
             'nama_kategori_video' => $this->request->getPost('kategori_vidio'),
-            'nama_kategori_video_en' => $this->request->getPost('kategori_vidio'),
+            'nama_kategori_video_en' => $this->request->getPost('kategori_vidio_en'),
             'slug' => $this->request->getPost('slug'),
-            'slug_en' => $this->request->getPost('slug'),
+            'slug_en' => $this->request->getPost('slug_en'),
         ];
 
         $kategori_video->insert($data);
@@ -4447,9 +4447,9 @@ class KomunitasEkspor extends BaseController
 
         $data = [
             'nama_kategori_video' => $this->request->getPost('kategori_video'),
-            'kategori_kategori_video_en' => $this->request->getPost('kategori_video'),
+            'nama_kategori_video_en' => $this->request->getPost('kategori_video_en'),
             'slug' => $this->request->getPost('slug'),
-            'slug_en' => $this->request->getPost('slug'),
+            'slug_en' => $this->request->getPost('slug_en'),
         ];
 
         $kategori_video->update($id, $data);
@@ -5577,10 +5577,27 @@ class KomunitasEkspor extends BaseController
 
         $data = [
             'judul_manfaat' => $this->request->getPost('judul_manfaat'),
-            'judul_manfaat_en' => $this->request->getPost('judul_manfaat'),
+            'judul_manfaat_en' => $this->request->getPost('judul_manfaat_en'),
             'deskripsi_manfaat' => $this->request->getPost('deskripsi_manfaat'),
-            'deskripsi_manfaat_en' => $this->request->getPost('deskripsi_manfaat'),
+            'deskripsi_manfaat_en' => $this->request->getPost('deskripsi_manfaat_en'),
         ];
+
+        // Menangani upload gambar jika ada file baru
+        $file = $this->request->getFile('gambar');
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            // Menghapus gambar lama jika ada dan file baru berhasil diunggah
+            if (file_exists(FCPATH . 'img/' . $existingData['gambar'])) {
+                unlink(FCPATH . 'img/' . $existingData['gambar']);
+            }
+
+            // Simpan gambar baru dan tambahkan ke data
+            $newName = $file->getRandomName();
+            $file->move('img/', $newName);
+            $data['gambar'] = $newName;
+        } else {
+            // Jika tidak ada gambar baru, tetap gunakan gambar lama
+            $data['gambar'] = $existingData['gambar'];
+        }
 
         $model_manfaatjoin->update($id, $data);
 
@@ -5617,7 +5634,9 @@ class KomunitasEkspor extends BaseController
 
         $data = [
             'judul_slider' => $this->request->getPost('judul_slider'),
+            'judul_slider_en' => $this->request->getPost('judul_slider_en'),
             'deskripsi_slider' => $this->request->getPost('deskripsi_slider'),
+            'deskripsi_slider_en' => $this->request->getPost('deskripsi_slider_en'),
         ];
 
         // Menangani upload gambar jika ada file baru
@@ -5674,9 +5693,9 @@ class KomunitasEkspor extends BaseController
 
         $data = [
             'nama_web' => $this->request->getPost('nama_web'),
-            'nama_web_en' => $this->request->getPost('nama_web'),
+            'nama_web_en' => $this->request->getPost('nama_web_en'),
             'deskripsi_web' => $this->request->getPost('deskripsi_webprofile'),
-            'deskripsi_web_en' => $this->request->getPost('deskripsi_webprofile'),
+            'deskripsi_web_en' => $this->request->getPost('deskripsi_webprofile_en'),
             'lokasi_web' => $this->request->getPost('lokasi_web'),
             'email_web' => $this->request->getPost('email_web'),
             'link_ig_web' => $this->request->getPost('link_ig_web'),
@@ -5738,9 +5757,9 @@ class KomunitasEkspor extends BaseController
 
         $data = [
             'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
-            'deskripsi_perusahaan_en' => $this->request->getPost('deskripsi_perusahaan'),
+            'deskripsi_perusahaan_en' => $this->request->getPost('deskripsi_perusahaan_en'),
             'slug' => $this->request->getPost('slug'),
-            'slug_en' => $this->request->getPost('slug'),
+            'slug_en' => $this->request->getPost('slug_en'),
         ];
 
         // Menangani upload gambar jika ada file baru

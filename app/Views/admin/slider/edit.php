@@ -13,8 +13,13 @@
                             <?= csrf_field(); ?>
 
                             <div class="mb-3">
-                                <label class="form-label">Judul Slider</label>
+                                <label class="form-label">Judul Slider Indonesia</label>
                                 <input type="text" class="form-control" name="judul_slider" value="<?= esc($slider['judul_slider']); ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Judul Slider English</label>
+                                <input type="text" class="form-control" name="judul_slider_en" value="<?= esc($slider['judul_slider_en']); ?>" required>
                             </div>
 
                             <div class="mb-3">
@@ -25,8 +30,13 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Deskripsi Slider</label>
+                                <label class="form-label">Deskripsi Slider Indonesia</label>
                                 <textarea class="form-control" id="deskripsi_video" name="deskripsi_slider"><?= esc($slider['deskripsi_slider']); ?></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Deskripsi Slider English</label>
+                                <textarea class="form-control" id="deskripsi_video_en" name="deskripsi_slider_en"><?= esc($slider['deskripsi_slider_en']); ?></textarea>
                             </div>
 
                             <div class="mb-3">
@@ -50,5 +60,11 @@
             console.error(error);
         });
 </script>
-
+<script>
+    ClassicEditor
+        .create(document.querySelector('#deskripsi_video_en'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 <?= $this->endSection(); ?>

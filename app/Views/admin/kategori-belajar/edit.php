@@ -12,12 +12,23 @@
                         <form action="<?= base_url('/admin-kategori-belajar-ekspor-update/' . $kategori_belajar_ekspor['id_kategori_belajar_ekspor']); ?>" method="POST">
                             <?= csrf_field(); ?>
                             <div class="mb-3">
-                                <label class="form-label">Nama Kategori</label>
+                                <label class="form-label">Nama Kategori Indonesia</label>
                                 <input type="text" class="form-control" name="nama_kategori" value="<?= esc($kategori_belajar_ekspor['nama_kategori']); ?>" required>
                             </div>
+
                             <div class="mb-3">
-                                <label class="form-label">Slug</label>
+                                <label class="form-label">Nama Kategori English</label>
+                                <input type="text" class="form-control" name="nama_kategori_en" value="<?= esc($kategori_belajar_ekspor['nama_kategori_en']); ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Slug Indonesia</label>
                                 <input type="text" class="form-control" name="slug" value="<?= esc($kategori_belajar_ekspor['slug']); ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Slug English</label>
+                                <input type="text" class="form-control" name="slug_en" value="<?= esc($kategori_belajar_ekspor['slug_en']); ?>" required>
                             </div>
                             <button type="submit" class="btn text-white" style="background-color: #03AADE;">Simpan Perubahan</button>
                             <a href="<?= base_url('admin-kategori-belajar-ekspor') ?>" class="btn btn-secondary">Kembali</a>

@@ -64,18 +64,33 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Slug</label>
+                                <label class="form-label">Slug Indonesia</label>
                                 <input type="text" class="form-control" name="slug" placeholder="ex. cara-ekspor-barang" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Meta Title</label>
+                                <label class="form-label">Slug English</label>
+                                <input type="text" class="form-control" name="slug_en" placeholder="ex. cara-ekspor-barang" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Meta Title Indonesia</label>
                                 <input type="text" class="form-control" name="meta_title" placeholder="Masukkan Meta Title Materi" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Meta Description</label>
+                                <label class="form-label">Meta Title English</label>
+                                <input type="text" class="form-control" name="meta_title_en" placeholder="Masukkan Meta Title Materi" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Meta Deskripsi Indonesia</label>
                                 <input type="text" class="form-control" name="meta_deskripsi" placeholder="Masukkan Meta Deskripsi Materi" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Meta Deskripsi English</label>
+                                <input type="text" class="form-control" name="meta_deskripsi_en" placeholder="Masukkan Meta Deskripsi Materi" required>
                             </div>
 
                             <button type="submit" class="btn text-white" style="background-color: #03AADE;">Simpan</button>
