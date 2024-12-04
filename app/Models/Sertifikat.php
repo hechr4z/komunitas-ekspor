@@ -12,7 +12,7 @@ class Sertifikat extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_member', 'sertifikat'];
+    protected $allowedFields    = ['id_member', 'nama_sertifikat', 'nama_sertifikat_en', 'sertifikat'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
