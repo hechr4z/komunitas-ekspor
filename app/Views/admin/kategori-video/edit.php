@@ -13,12 +13,23 @@
                             <?= csrf_field(); ?>
 
                             <div class="mb-3">
-                                <label class="form-label">Kategori Video</label>
+                                <label class="form-label">Kategori Video Indonesia</label>
                                 <input type="text" class="form-control" name="kategori_video" value="<?= esc($kategori_video['nama_kategori_video']); ?>" required>
                             </div>
+
                             <div class="mb-3">
-                                <label class="form-label">Kategori Video</label>
+                                <label class="form-label">Kategori Video English</label>
+                                <input type="text" class="form-control" name="kategori_video_en" value="<?= esc($kategori_video['nama_kategori_video_en']); ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Slug Indonesia</label>
                                 <input type="text" class="form-control" name="slug" value="<?= esc($kategori_video['slug']); ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Slug English</label>
+                                <input type="text" class="form-control" name="slug_en" value="<?= esc($kategori_video['slug_en']); ?>" required>
                             </div>
                             <div class="mb-3">
                                 <button type="submit" class="btn text-white" style="background-color: #03AADE;">Simpan</button>

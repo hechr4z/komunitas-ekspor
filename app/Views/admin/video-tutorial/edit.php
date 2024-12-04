@@ -13,8 +13,13 @@
                             <?= csrf_field(); ?>
 
                             <div class="mb-3">
-                                <label class="form-label">Judul Video</label>
+                                <label class="form-label">Judul Video Indonesia</label>
                                 <input type="text" class="form-control" name="judul_video" value="<?= esc($video_tutorial['judul_video']); ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Judul Video English</label>
+                                <input type="text" class="form-control" name="judul_video_en" value="<?= esc($video_tutorial['judul_video_en']); ?>" required>
                             </div>
 
                             <div class="mb-3">
@@ -42,13 +47,23 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Deskripsi Video</label>
+                                <label class="form-label">Deskripsi Video Indonesia</label>
                                 <textarea class="form-control" id="deskripsi_video" name="deskripsi_video"><?= esc($video_tutorial['deskripsi_video']); ?></textarea>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Slug</label>
+                                <label class="form-label">Deskripsi Video English</label>
+                                <textarea class="form-control" id="deskripsi_video_en" name="deskripsi_video_en"><?= esc($video_tutorial['deskripsi_video_en']); ?></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Slug Indonesia</label>
                                 <input type="text" class="form-control" name="slug" placeholder="ex. cara-ekspor-barang" value="<?= esc($video_tutorial['slug']); ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Slug English</label>
+                                <input type="text" class="form-control" name="slug_en" placeholder="ex. cara-ekspor-barang" value="<?= esc($video_tutorial['slug_en']); ?>" required>
                             </div>
 
                             <div class="mb-3">
@@ -72,5 +87,11 @@
             console.error(error);
         });
 </script>
-
+<script>
+    ClassicEditor
+        .create(document.querySelector('#deskripsi_video_en'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 <?= $this->endSection(); ?>

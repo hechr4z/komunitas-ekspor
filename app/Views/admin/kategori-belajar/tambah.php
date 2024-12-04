@@ -11,13 +11,23 @@
                     <div class="card-body">
                         <form action="<?= base_url('/admin-kategori-belajar-ekspor-create') ?>" method="POST">
                             <div class="mb-3">
-                                <label class="form-label">Nama Kategori</label>
-                                <input type="text" class="form-control" name="nama_kategori" required>
+                                <label class="form-label">Nama Kategori Indonesia</label>
+                                <input type="text" class="form-control" name="nama_kategori" placeholder="Masukkan Kategori Materi" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Slug</label>
-                                <input type="text" class="form-control" name="slug" value="" required>
+                                <label class="form-label">Nama Kategori English</label>
+                                <input type="text" class="form-control" name="nama_kategori_en" placeholder="Masukkan Kategori Materi" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Slug Indonesia</label>
+                                <input type="text" class="form-control" name="slug" placeholder="ex. cara-ekspor-barang" value="" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Slug English</label>
+                                <input type="text" class="form-control" name="slug_en" placeholder="ex. cara-ekspor-barang" value="" required>
                             </div>
 
                             <div class="mb-3">

@@ -13,8 +13,13 @@
                             <?= csrf_field(); ?>
 
                             <div class="mb-3">
-                                <label for="nama_web" class="form-label">Judul Web Profile</label>
+                                <label for="nama_web" class="form-label">Judul Web Profile Indonesia</label>
                                 <input type="text" class="form-control" id="nama_web" name="nama_web" value="<?= esc($webprofile['nama_web']); ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="nama_web" class="form-label">Judul Web Profile English</label>
+                                <input type="text" class="form-control" id="nama_web" name="nama_web_en" value="<?= esc($webprofile['nama_web_en']); ?>" required>
                             </div>
 
                             <div class="mb-3">
@@ -29,8 +34,13 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="deskripsi_webprofile" class="form-label">Deskripsi Web Profile</label>
+                                <label for="deskripsi_webprofile" class="form-label">Deskripsi Web Profile Indonesia</label>
                                 <textarea class="form-control" id="deskripsi_webprofile" name="deskripsi_webprofile"><?= esc($webprofile['deskripsi_web']); ?></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="deskripsi_webprofile" class="form-label">Deskripsi Web Profile English</label>
+                                <textarea class="form-control" id="deskripsi_webprofile_en" name="deskripsi_webprofile_en"><?= esc($webprofile['deskripsi_web_en']); ?></textarea>
                             </div>
 
                             <div class="mb-3">
@@ -108,6 +118,14 @@
                 console.error(error);
             });
     });
+</script>
+<script>
+    // CKEditor
+    ClassicEditor
+        .create(document.querySelector('#deskripsi_webprofile_en'))
+        .catch(error => {
+            console.error(error);
+        });
 </script>
 
 <?= $this->endSection(); ?>

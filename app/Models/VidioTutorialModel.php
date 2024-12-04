@@ -23,6 +23,7 @@ class VidioTutorialModel extends Model
         'slug',
         'slug_en',
         'created_at',
+        'updated_at'
     ];
 
     // Method untuk mengambil semua video tutorial dan join dengan kategori video
@@ -80,7 +81,7 @@ class VidioTutorialModel extends Model
     protected array $castHandlers = [];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

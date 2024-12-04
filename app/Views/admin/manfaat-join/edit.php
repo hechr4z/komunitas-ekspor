@@ -25,8 +25,13 @@
                             <?= csrf_field(); ?>
 
                             <div class="mb-3">
-                                <label for="belajar-ekspor_in" class="form-label">Judul Manfaat</label>
+                                <label for="belajar-ekspor_in" class="form-label">Judul Manfaat Indonesia</label>
                                 <input type="text" class="form-control" id="belajar-ekspor_in" name="judul_manfaat" value="<?= esc($manfaatjoin['judul_manfaat']); ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="belajar-ekspor_in" class="form-label">Judul Manfaat English</label>
+                                <input type="text" class="form-control" id="belajar-ekspor_in" name="judul_manfaat_en" value="<?= esc($manfaatjoin['judul_manfaat_en']); ?>" required>
                             </div>
 
                             <div class="mb-3">
@@ -42,8 +47,13 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="deskripsi_artikel_in" class="form-label">Deskripsi</label>
+                                <label for="deskripsi_artikel_in" class="form-label">Deskripsi Indonesia</label>
                                 <textarea class="form-control tiny" id="deskripsi_artikel_in" name="deskripsi_manfaat" rows="4" required><?= esc($manfaatjoin['deskripsi_manfaat']); ?></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="deskripsi_artikel_in" class="form-label">Deskripsi English</label>
+                                <textarea class="form-control tiny" id="deskripsi_artikel_en" name="deskripsi_manfaat_en" rows="4" required><?= esc($manfaatjoin['deskripsi_manfaat_en']); ?></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
@@ -74,6 +84,12 @@
             console.error(error);
         });
 </script>
-
+<script>
+    ClassicEditor
+        .create(document.querySelector('#deskripsi_artikel_en'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 
 <?= $this->endSection('content') ?>
