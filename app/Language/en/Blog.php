@@ -6,7 +6,7 @@ return [
     'headerArtikel' => 'Export Learning',
     'headerPendaftaran' => 'Registration',
     'headerVideo' => 'Video Tutorials',
-    'headerMember' => 'Member Data',
+    'headerMember' => 'Members',
     'headerAplikasi' => 'Application',
     'headerApp1' => 'Export Price Calculator',
     'headerApp2' => 'Marketing Progress Monitoring',
@@ -224,4 +224,7 @@ return [
     'alertSertifikatDataMember' => 'Still no Certificate',
     'alertProdukDataMember' => 'Still no Product',
     'alertOtherDataMember' => 'There are still no other members',
+
+    'gambarUtamaLandingPage' => 'Still no Main Image',
+    'gambarPerusahaanLandingPage' => 'Still no Company Image',
 ];
