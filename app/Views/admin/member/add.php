@@ -13,7 +13,7 @@
                             enctype="multipart/form-data">
 
                             <div class="mb-3">
-                                <label>Jenis Member</label>
+                                <label class="form-label">Jenis Member<span style="color: red;">*</span></label>
                                 <div class="form-check d-flex align-items-start">
                                     <input class="form-check-input" type="radio" name="role" id="memberPremium"
                                         value="premium" required>
@@ -31,16 +31,16 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Username & Kode Referral</label>
+                                <label class="form-label">Username & Kode Referral<span style="color: red;">*</span></label>
                                 <input type="text" class="form-control" name="username_referral"
                                     placeholder="Masukkan Username & Kode Referral" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Password</label>
+                                <label class="form-label">Password<span style="color: red;">*</span></label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="password" name="password"
-                                        placeholder="Masukkan Password">
+                                        placeholder="Masukkan Password" required>
                                     <button type="button" class="btn btn-outline-secondary" id="togglePassword">
                                         <i class="fa fa-eye"></i>
                                     </button>
@@ -48,29 +48,29 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Foto Profil</label>
+                                <label class="form-label">Foto Profil<span style="color: red;">*</span></label>
                                 <input type="file" class="form-control" name="foto_profil" id="foto_profil"
-                                    onchange="previewImage()">
+                                    onchange="previewImage()" required>
                                 <img id="preview" src="https://via.placeholder.com/100" alt="Foto Member"
                                     class="img-thumbnail mt-2" style="max-width: 100px;">
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Nama Perusahaan</label>
+                                <label class="form-label">Nama Perusahaan<span style="color: red;">*</span></label>
                                 <input type="text" class="form-control" name="nama_perusahaan"
-                                    placeholder="Masukkan Nama Perusahaan">
+                                    placeholder="Masukkan Nama Perusahaan" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Deskripsi Perusahaan</label>
+                                <label class="form-label">Deskripsi Perusahaan<span style="color: red;">*</span></label>
                                 <textarea class="form-control" name="deskripsi_perusahaan" style="height: 120px;"
-                                    placeholder="Masukkan Deskripsi Perusahaan"></textarea>
+                                    placeholder="Masukkan Deskripsi Perusahaan" required></textarea>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Deskripsi Perusahaan En</label>
+                                <label class="form-label">Deskripsi Perusahaan En<span style="color: red;">*</span></label>
                                 <textarea class="form-control" name="deskripsi_perusahaan_en" style="height: 120px;"
-                                    placeholder="Masukkan Deskripsi Perusahaan Versi Bahasa Inggris"></textarea>
+                                    placeholder="Masukkan Deskripsi Perusahaan Versi Bahasa Inggris" required></textarea>
                             </div>
 
                             <div class="mb-3">
@@ -86,15 +86,20 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Produk Utama</label>
+                                <label class="form-label">Produk Utama<span style="color: red;">*</span></label>
                                 <input type="text" class="form-control" name="produk_utama"
-                                    placeholder="Masukkan Produk Utama">
+                                    placeholder="Masukkan Produk Utama" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Produk Utama En</label>
+                                <label class="form-label">Produk Utama En<span style="color: red;">*</span></label>
                                 <input type="text" class="form-control" name="produk_utama_en"
-                                    placeholder="Masukkan Produk Utama Versi Bahasa Inggris">
+                                    placeholder="Masukkan Produk Utama Versi Bahasa Inggris" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Tahun Dibentuk</label>
+                                <input type="text" class="form-control" name="tahun_dibentuk" placeholder="Masukkan Tahun Dibentuk">
                             </div>
 
                             <div class="mb-3">
@@ -118,25 +123,24 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control" name="email" placeholder="Masukkan Email"
-                                    required>
+                                <label class="form-label">Email<span style="color: red;">*</span></label>
+                                <input type="email" class="form-control" name="email" placeholder="Masukkan Email" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">PIC</label>
-                                <input type="text" class="form-control" name="pic" placeholder="Masukkan PIC">
+                                <label class="form-label">PIC<span style="color: red;">*</span></label>
+                                <input type="text" class="form-control" name="pic" placeholder="Masukkan PIC" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">PIC Phone</label>
+                                <label class="form-label">PIC Phone<span style="color: red;">*</span></label>
                                 <input type="text" class="form-control" name="pic_phone"
-                                    placeholder="Masukkan PIC Phone">
+                                    placeholder="Masukkan PIC Phone" required>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Kategori Produk</label>
-                                <select class="form-control" id="kategori_produk" name="kategori_produk" required>
+                                <select class="form-control" id="kategori_produk" name="kategori_produk">
                                     <option value="">Pilih Kategori Produk</option>
                                     <option value="Agrikultur">Agrikultur</option>
                                     <option value="Perkebunan">Perkebunan</option>
@@ -160,7 +164,7 @@
                                     <option value="Produk Digital dan IT">Produk Digital dan IT</option>
                                     <option value="Produk Ramah Lingkungan">Produk Ramah Lingkungan</option>
                                     <option value="Alat Tulis dan Kantor">Alat Tulis dan Kantor</option>
-                                    <option value="Peralatan Rumah Tangga">>Peralatan Rumah Tangga</option>
+                                    <option value="Peralatan Rumah Tangga">Peralatan Rumah Tangga</option>
                                     <option value="Alat Olahraga">Alat Olahraga</option>
                                     <option value="Produk Fashion dan Aksesoris">Produk Fashion dan Aksesoris</option>
                                 </select>
@@ -168,7 +172,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Kategori Produk En</label>
-                                <select class="form-control" id="kategori_produk_en" name="kategori_produk_en" required>
+                                <select class="form-control" id="kategori_produk_en" name="kategori_produk_en">
                                     <option value="">Pilih Kategori Produk</option>
                                     <option value="Agriculture">Agriculture</option>
                                     <option value="Plantation">Plantation</option>
@@ -200,14 +204,14 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Latitude</label>
-                                <input type="text" class="form-control" name="latitude" placeholder="Masukkan Latitude">
+                                <label class="form-label">Latitude<span style="color: red;">*</span></label>
+                                <input type="text" class="form-control" name="latitude" placeholder="Masukkan Latitude" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Longitude</label>
+                                <label class="form-label">Longitude<span style="color: red;">*</span></label>
                                 <input type="text" class="form-control" name="longitude"
-                                    placeholder="Masukkan Longitude">
+                                    placeholder="Masukkan Longitude" required>
                             </div>
 
                             <div class="mb-3">
@@ -228,7 +232,7 @@
     const togglePassword = document.querySelector("#togglePassword");
     const password = document.querySelector("#password");
 
-    togglePassword.addEventListener("click", function () {
+    togglePassword.addEventListener("click", function() {
         const type = password.getAttribute("type") === "password" ? "text" : "password";
         password.setAttribute("type", type);
 
@@ -241,7 +245,7 @@
         const preview = document.getElementById('preview');
         const reader = new FileReader();
 
-        reader.onload = function (e) {
+        reader.onload = function(e) {
             preview.src = e.target.result;
         }
 
