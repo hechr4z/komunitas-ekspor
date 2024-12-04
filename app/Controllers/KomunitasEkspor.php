@@ -3383,14 +3383,19 @@ class KomunitasEkspor extends BaseController
             ->orLike('popular_point', $keyword)
             ->orLike('nama_perusahaan', $keyword)
             ->orLike('deskripsi_perusahaan', $keyword)
+            ->orLike('deskripsi_perusahaan_en', $keyword)
             ->orLike('tipe_bisnis', $keyword)
+            ->orLike('tipe_bisnis_en', $keyword)
             ->orLike('produk_utama', $keyword)
+            ->orLike('produk_utama_en', $keyword)
             ->orLike('tahun_dibentuk', $keyword)
             ->orLike('skala_bisnis', $keyword)
+            ->orLike('skala_bisnis_en', $keyword)
             ->orLike('email', $keyword)
             ->orLike('pic', $keyword)
             ->orLike('pic_phone', $keyword)
             ->orLike('kategori_produk', $keyword)
+            ->orLike('kategori_produk_en', $keyword)
             ->orLike('latitude', $keyword)
             ->orLike('longitude', $keyword)
             ->groupEnd()
@@ -3444,20 +3449,20 @@ class KomunitasEkspor extends BaseController
             'popular_point' => 0,
             'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
             'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
-            'deskripsi_perusahaan_en' => $this->request->getPost('deskripsi_perusahaan'),
+            'deskripsi_perusahaan_en' => $this->request->getPost('deskripsi_perusahaan_en'),
             'tipe_bisnis' => $this->request->getPost('tipe_bisnis'),
-            'tipe_bisnis_en' => $this->request->getPost('tipe_bisnis'),
+            'tipe_bisnis_en' => $this->request->getPost('tipe_bisnis_en'),
             'produk_utama' => $this->request->getPost('produk_utama'),
-            'produk_utama_en' => $this->request->getPost('produk_utama'),
+            'produk_utama_en' => $this->request->getPost('produk_utama_en'),
             'tahun_dibentuk' => $this->request->getPost('tahun_dibentuk'),
             'skala_bisnis' => $this->request->getPost('skala_bisnis'),
-            'skala_bisnis_en' => $this->request->getPost('skala_bisnis'),
+            'skala_bisnis_en' => $this->request->getPost('skala_bisnis_en'),
             'email' => $this->request->getPost('email'),
             'pic' => $this->request->getPost('pic'),
             'pic_phone' => $this->request->getPost('pic_phone'),
             'tanggal_verifikasi' => $now,
             'kategori_produk' => $this->request->getPost('kategori_produk'),
-            'kategori_produk_en' => $this->request->getPost('kategori_produk'),
+            'kategori_produk_en' => $this->request->getPost('kategori_produk_en'),
             'latitude' => $this->request->getPost('latitude'),
             'longitude' => $this->request->getPost('longitude'),
         ];
@@ -3525,19 +3530,19 @@ class KomunitasEkspor extends BaseController
             'popular_point' => $this->request->getPost('popular_point'),
             'nama_perusahaan' => $this->request->getPost('nama_perusahaan'),
             'deskripsi_perusahaan' => $this->request->getPost('deskripsi_perusahaan'),
-            'deskripsi_perusahaan_en' => $this->request->getPost('deskripsi_perusahaan'),
+            'deskripsi_perusahaan_en' => $this->request->getPost('deskripsi_perusahaan_en'),
             'tipe_bisnis' => $this->request->getPost('tipe_bisnis'),
-            'tipe_bisnis_en' => $this->request->getPost('tipe_bisnis'),
+            'tipe_bisnis_en' => $this->request->getPost('tipe_bisnis_en'),
             'produk_utama' => $this->request->getPost('produk_utama'),
-            'produk_utama_en' => $this->request->getPost('produk_utama'),
+            'produk_utama_en' => $this->request->getPost('produk_utama_en'),
             'tahun_dibentuk' => $this->request->getPost('tahun_dibentuk'),
             'skala_bisnis' => $this->request->getPost('skala_bisnis'),
-            'skala_bisnis_en' => $this->request->getPost('skala_bisnis'),
+            'skala_bisnis_en' => $this->request->getPost('skala_bisnis_en'),
             'email' => $this->request->getPost('email'),
             'pic' => $this->request->getPost('pic'),
             'pic_phone' => $this->request->getPost('pic_phone'),
             'kategori_produk' => $this->request->getPost('kategori_produk'),
-            'kategori_produk_en' => $this->request->getPost('kategori_produk'),
+            'kategori_produk_en' => $this->request->getPost('kategori_produk_en'),
             'latitude' => $this->request->getPost('latitude'),
             'longitude' => $this->request->getPost('longitude'),
         ]);
