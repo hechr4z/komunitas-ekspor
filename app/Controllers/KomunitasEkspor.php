@@ -4105,11 +4105,11 @@ class KomunitasEkspor extends BaseController
 
         $data = [
             'judul_belajar_ekspor' => $this->request->getPost('judul_belajar_ekspor'),
-            'judul_belajar_ekspor_en' => $this->request->getPost('judul_belajar_ekspor_en'),
+            'judul_belajar_ekspor_en' => $tr->translate($this->request->getPost('judul_belajar_ekspor')),
             'id_kategori_belajar_ekspor' => $this->request->getPost('id_kategori'),
             'id_kategori_en' => $tr->translate($this->request->getPost('id_kategori')),
             'deskripsi_belajar_ekspor' => $this->request->getPost('deskripsi_belajar_ekspor'),
-            'deskripsi_belajar_ekspor_en' => $this->request->getPost('deskripsi_belajar_ekspor_en'),
+            'deskripsi_belajar_ekspor_en' => $tr->translate($this->request->getPost('deskripsi_belajar_ekspor')),
             'slug' => $this->request->getPost('slug'),
             'slug_en' => $tr->translate($this->request->getPost('slug')),
             'meta_title' => $this->request->getPost('meta_title'),
@@ -4166,11 +4166,11 @@ class KomunitasEkspor extends BaseController
         // Menyiapkan data yang akan diperbarui
         $data = [
             'judul_belajar_ekspor' => $this->request->getPost('judul_belajar_ekspor'),
-            'judul_belajar_ekspor_en' => $this->request->getPost('judul_belajar_ekspor_en'),
+            'judul_belajar_ekspor_en' => $tr->translate($this->request->getPost('judul_belajar_ekspor')),
             'id_kategori_belajar_ekspor' => $this->request->getPost('id_kategori'),
             'id_kategori_en' => $tr->translate($this->request->getPost('id_kategori')),
             'deskripsi_belajar_ekspor' => $this->request->getPost('deskripsi_belajar_ekspor'),
-            'deskripsi_belajar_ekspor_en' => $this->request->getPost('deskripsi_belajar_ekspor_en'),
+            'deskripsi_belajar_ekspor_en' => $tr->translate($this->request->getPost('deskripsi_belajar_ekspor')),
             'slug' => $this->request->getPost('slug'),
             'slug_en' => $tr->translate($this->request->getPost('slug')),
             'meta_title' => $this->request->getPost('meta_title'),
