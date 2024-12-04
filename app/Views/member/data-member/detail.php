@@ -53,7 +53,7 @@
 
     .text-truncate-description {
         display: -webkit-box;
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 4;
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -127,6 +127,13 @@
                 <span class="badge badge-lg bg-light text-dark p-2 mt-2" style="font-size: 18px;">
                     Email: <?= $member['email'] ?>
                 </span>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center mb-3">
+                <a href="#" class="btn btn-custom" style="width: 125px;">
+                    Landing Page
+                </a>
             </div>
 
             <!-- Tabs Navigation -->
@@ -242,7 +249,7 @@
                                 <div class="col-md-6 mb-3">
                                     <div class="card p-3 shadow-sm bg-light">
                                         <i class="fas fa-file-pdf fa-lg mb-2"></i>
-                                        <p><strong>Nama File:</strong>
+                                        <p><strong>Nama Sertifikat:</strong>
                                             <span class="certificate-name">
                                                 <?= $item['sertifikat'] ?>
                                             </span>
@@ -280,7 +287,7 @@
                     <div class="row">
                         <!-- Card Product -->
                         <?php if (empty($produk)): ?>
-                            <div class="d-flex flex-wrap justify-content-center">
+                            <div class="col-md-12">
                                 <div class="alert alert-info text-center" role="alert">
                                     Masih belum ada Produk
                                 </div>
@@ -301,7 +308,10 @@
                                                 style="height: 220px;">
                                             <div class="card-body text-center">
                                                 <h5 class="card-title"><?= $item['nama_produk'] ?></h5>
-                                                <p class="card-text"><?= $item['deskripsi_produk'] ?></p>
+                                                <p class="card-text card-text text-truncate-description"
+                                                    style="text-align: justify;">
+                                                    <?= $item['deskripsi_produk'] ?>
+                                                </p>
                                                 <span class="btn btn-custom mt-auto" style="border-radius: 8px;">Lihat
                                                     Detail</span>
                                             </div>
@@ -388,7 +398,7 @@
             <h4 class="text-uppercase font-weight-bold text-center mb-4">Member Populer</h4>
         </div>
         <?php if (empty($members)): ?>
-            <div class="d-flex flex-wrap justify-content-center">
+            <div class="col-md-12">
                 <div class="alert alert-info text-center" role="alert">
                     Masih belum ada Member Lainnya
                 </div>
