@@ -236,7 +236,7 @@
                                     <tr>
                                         <th class="text-center" valign="middle">No</th>
                                         <th class="text-center" valign="middle">Username Member</th>
-                                        <th class="text-center" valign="middle"> Nama Sertifikat</th>
+                                        <th class="text-center" valign="middle">Nama Sertifikat</th>
                                         <th class="text-center" valign="middle">Nama Sertifikat En</th>
                                         <th class="text-center" valign="middle">Sertifikat</th>
                                         <th class="text-center" valign="middle">Aksi</th>
