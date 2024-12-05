@@ -3728,7 +3728,9 @@ class KomunitasEkspor extends BaseController
             ->join('member', 'member.id_member = produk.id_member', 'left')
             ->groupStart() // Memulai grup kondisi
             ->like('produk.nama_produk', $keyword)
+            ->orLike('produk.nama_produk_en', $keyword)
             ->orLike('produk.deskripsi_produk', $keyword)
+            ->orLike('produk.deskripsi_produk_en', $keyword)
             ->orLike('produk.hs_code', $keyword)
             ->orLike('produk.minimum_order_qty', $keyword)
             ->orLike('produk.kapasitas_produksi_bln', $keyword)
@@ -3783,9 +3785,9 @@ class KomunitasEkspor extends BaseController
             'id_member' => $id_member,
             'foto_produk' => $namaFile,
             'nama_produk' => $this->request->getPost('nama_produk'),
-            'nama_produk_en' => $this->request->getPost('nama_produk'),
+            'nama_produk_en' => $this->request->getPost('nama_produk_en'),
             'deskripsi_produk' => $this->request->getPost('deskripsi_produk'),
-            'deskripsi_produk_en' => $this->request->getPost('deskripsi_produk'),
+            'deskripsi_produk_en' => $this->request->getPost('deskripsi_produk_en'),
             'hs_code' => $this->request->getPost('hs_code'),
             'minimum_order_qty' => $this->request->getPost('minimum_order_qty'),
             'kapasitas_produksi_bln' => $this->request->getPost('kapasitas_produksi_bln'),
@@ -3848,9 +3850,9 @@ class KomunitasEkspor extends BaseController
         $data = array_merge($data, [
             'id_member' => $id_member,
             'nama_produk' => $this->request->getPost('nama_produk'),
-            'nama_produk_en' => $this->request->getPost('nama_produk'),
+            'nama_produk_en' => $this->request->getPost('nama_produk_en'),
             'deskripsi_produk' => $this->request->getPost('deskripsi_produk'),
-            'deskripsi_produk_en' => $this->request->getPost('deskripsi_produk'),
+            'deskripsi_produk_en' => $this->request->getPost('deskripsi_produk_en'),
             'hs_code' => $this->request->getPost('hs_code'),
             'minimum_order_qty' => $this->request->getPost('minimum_order_qty'),
             'kapasitas_produksi_bln' => $this->request->getPost('kapasitas_produksi_bln'),
