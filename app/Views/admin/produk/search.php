@@ -256,7 +256,7 @@
                                 <?php if (empty($hasilPencarian)): ?>
                                     <tbody>
                                         <tr>
-                                            <td colspan="9" class="text-center">Tidak ada Produk yang ditemukan.</td>
+                                            <td colspan="11" class="text-center">Tidak ada Produk yang ditemukan.</td>
                                         </tr>
                                     </tbody>
                                 </table>
