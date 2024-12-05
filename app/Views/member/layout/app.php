@@ -551,14 +551,18 @@
                             Edit Profile
                         </a>
                     </li>
-                    <div class="border-top"
-                        style="width: 1.5px; height: 40px; background-color: white; margin: 0 23px;"></div>
+                    <div class="border-top" style="width: 1.5px; height: 40px; background-color: white; margin: 0 23px;"></div>
                     <?php if (session()->get('logged_in')): ?>
-                        <!-- Dropdown untuk pengguna yang sudah login -->
                         <div class="dropdown">
                             <div class="dropdown-toggle nav-link" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bi bi-person-circle" style="font-size: 20px;"></i> <?= session()->get('username') ?>
                             </div>
+                            <?php if (session()->get('role') == 'admin'): ?>
+                                <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                                    <li><a class="dropdown-item" href="<?= base_url('/admin-dashboard') ?>"><i class="bi bi-box-arrow-in-left" style="color: #03AADE; font-size: 20px;"></i> Tampilan Admin</a></li>
+                                    <li><a class="dropdown-item" href="<?= base_url('/logout') ?>"><i class="bi bi-box-arrow-in-left" style="color: red; font-size: 20px;"></i> Logout</a></li>
+                                </ul>
+                            <?php endif; ?>
                             <ul class="dropdown-menu" aria-labelledby="userDropdown">
                                 <li><a class="dropdown-item" href="<?= base_url('/logout') ?>"><i class="bi bi-box-arrow-in-left" style="color: red; font-size: 20px;"></i> Logout</a></li>
                             </ul>
