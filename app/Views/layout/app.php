@@ -148,16 +148,18 @@
     }
 
     .container {
-    overflow: visible;
-}
+        overflow: visible;
+    }
 
-.header {
-    overflow: visible;
-}
+    .header {
+        overflow: visible;
+    }
 
-.container, .navbar, .header {
-    overflow: visible !important;
-}
+    .container,
+    .navbar,
+    .header {
+        overflow: visible !important;
+    }
 
 
     /* end */
@@ -604,21 +606,23 @@
         }
 
         .dropdown-menu {
-                position: absolute;
-                top: 100%; /* Dropdown muncul tepat di bawah tombol */
-                left: 0;
-                right: 0;
-                z-index: 1060; /* Pastikan dropdown muncul di atas navbar */
-                background-color: white;
-                width: 100%;
-            }
-        
-            .language-btn {
-                padding: 5px 10px;
-                font-size: 0.875rem;
-                width: 70px;
-                height: 30px;
-            }
+            position: absolute;
+            top: 100%;
+            /* Dropdown muncul tepat di bawah tombol */
+            left: 0;
+            right: 0;
+            z-index: 1060;
+            /* Pastikan dropdown muncul di atas navbar */
+            background-color: white;
+            width: 100%;
+        }
+
+        .language-btn {
+            padding: 5px 10px;
+            font-size: 0.875rem;
+            width: 70px;
+            height: 30px;
+        }
     }
 </style>
 
@@ -800,17 +804,19 @@
                     </li>
                     <div class="border-top line " style="width: 1.5px; height: 40px; background-color: white; margin: 0 23px;"></div>
                     <?php if (session()->get('logged_in')): ?>
-                        <!-- Jika sudah login, tampilkan tombol Logout -->
+                        <?php if (session()->get('role') == 'admin'): ?>
+                            <a href="<?= base_url('/admin-dashboard') ?>">
+                                <button type="button" class="btn btn-outline-light">Tampilan Admin</button>
+                            </a>
+                        <?php endif; ?>
                         <a href="<?= base_url('/logout') ?>">
                             <button type="button" class="btn btn-outline-light">Logout</button>
                         </a>
                     <?php else: ?>
-                        <!-- Jika belum login, tampilkan tombol Login dengan kondisi bahasa -->
                         <a href="<?= base_url('/login') ?>">
                             <button type="button" class="btn btn-outline-light login">Login</button>
                         </a>
                     <?php endif; ?>
-
                 </ul>
             </div>
         </div>
