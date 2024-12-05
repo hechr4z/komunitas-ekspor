@@ -242,7 +242,7 @@
                                     <tr>
                                         <th class="text-center" valign="middle">No</th>
                                         <th class="text-center" valign="middle">Username Member</th>
-                                        <th class="text-center" valign="middle"> Nama Sertifikat</th>
+                                        <th class="text-center" valign="middle">Nama Sertifikat</th>
                                         <th class="text-center" valign="middle">Nama Sertifikat En</th>
                                         <th class="text-center" valign="middle">Sertifikat</th>
                                         <th class="text-center" valign="middle">Aksi</th>
@@ -251,7 +251,7 @@
                                 <?php if (empty($hasilPencarian)): ?>
                                     <tbody>
                                         <tr>
-                                            <td colspan="4" class="text-center">Tidak ada Sertifikat yang ditemukan.</td>
+                                            <td colspan="6" class="text-center">Tidak ada Sertifikat yang ditemukan.</td>
                                         </tr>
                                     </tbody>
                                 </table>
