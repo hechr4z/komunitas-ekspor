@@ -26,13 +26,13 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Nama Sertifikat</label>
-                                <input type="text" class="form-control" value="" name="nama_sertifikat"
+                                <input type="text" class="form-control" value="<?= $sertifikat['nama_sertifikat'] ?>" name="nama_sertifikat"
                                     value="Masukkan Nama Sertifikat" required>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Nama Sertifikat En</label>
-                                <input type="text" class="form-control" value="" name="nama_sertifikat_en"
+                                <input type="text" class="form-control" value="<?= $sertifikat['nama_sertifikat_en'] ?>" name="nama_sertifikat_en"
                                     value="Masukkan Nama Sertifikat Versi Bahasa Indonesia" required>
                             </div>
 
