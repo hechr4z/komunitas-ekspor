@@ -21,7 +21,8 @@
                                 <img src="<?= base_url('img/admin.png') ?>" alt="Gambar Admin">
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-                                <li><a class="dropdown-item" href="<?= base_url('/pengumuman') ?>">Tampilan Member</a></li>
+                                <li><a class="dropdown-item" href="<?= base_url('/beranda-premium') ?>">Tampilan Member Premium</a></li>
+                                <li><a class="dropdown-item" href="<?= base_url('/beranda') ?>">Tampilan Member Free</a></li>
                                 <li><a class="dropdown-item" href="<?= base_url('/') ?>">Tampilan Non Member</a></li>
                                 <li><a class="dropdown-item" href="<?= site_url('logout') ?>">Log Out</a></li>
                             </ul>
