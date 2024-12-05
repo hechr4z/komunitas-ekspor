@@ -3919,7 +3919,9 @@ class KomunitasEkspor extends BaseController
             ->select('sertifikat.*, member.username AS username_member')
             ->join('member', 'member.id_member = sertifikat.id_member', 'left')
             ->groupStart() // Memulai grup kondisi
-            ->like('sertifikat.sertifikat', $keyword)
+            ->like('sertifikat.nama_sertifikat', $keyword)
+            ->orLike('sertifikat.nama_sertifikat_en', $keyword)
+            ->orLike('sertifikat.sertifikat', $keyword)
             ->orLike('member.username', $keyword) // Pencarian di `username` dari `member`
             ->groupEnd() // Mengakhiri grup kondisi
             ->whereIn('role', ['member', 'premium'])
@@ -3970,6 +3972,8 @@ class KomunitasEkspor extends BaseController
 
         $data = [
             'id_member' => $id_member,
+            'nama_sertifikat' => $this->request->getPost('nama_sertifikat'),
+            'nama_sertifikat_en' => $this->request->getPost('nama_sertifikat_en'),
             'sertifikat' => $namaFile,
         ];
 
@@ -4029,6 +4033,8 @@ class KomunitasEkspor extends BaseController
 
         $data = array_merge($data, [
             'id_member' => $id_member,
+            'nama_sertifikat' => $this->request->getPost('nama_sertifikat'),
+            'nama_sertifikat_en' => $this->request->getPost('nama_sertifikat_en'),
         ]);
 
         $model_sertifikat->update($id, $data);
