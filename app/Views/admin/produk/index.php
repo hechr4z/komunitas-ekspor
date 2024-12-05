@@ -248,7 +248,7 @@
                                 <?php if (empty($produk)): ?>
                                     <tbody>
                                         <tr>
-                                            <td colspan="9" class="text-center">Masih belum ada Data Produk.</td>
+                                            <td colspan="11" class="text-center">Masih belum ada Data Produk.</td>
                                         </tr>
                                     </tbody>
                                 </table>
