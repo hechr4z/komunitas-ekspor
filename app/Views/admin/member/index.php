@@ -241,7 +241,7 @@
                                 <?php if (empty($member)): ?>
                                     <tbody>
                                         <tr>
-                                            <td colspan="18" class="text-center">Masih belum ada Data Member.</td>
+                                            <td colspan="23" class="text-center">Masih belum ada Data Member.</td>
                                         </tr>
                                     </tbody>
                                 </table>
