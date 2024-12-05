@@ -250,7 +250,7 @@
                                 <?php if (empty($hasilPencarian)): ?>
                                     <tbody>
                                         <tr>
-                                            <td colspan="18" class="text-center">Tidak ada member yang ditemukan.</td>
+                                            <td colspan="23" class="text-center">Tidak ada member yang ditemukan.</td>
                                         </tr>
                                     </tbody>
                                 </table>
