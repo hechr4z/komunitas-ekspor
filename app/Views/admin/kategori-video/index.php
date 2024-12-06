@@ -66,7 +66,8 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" valign="middle">No</th>
-                                        <th class="text-center" valign="middle">Kategori Video</th>
+                                        <th class="text-center" valign="middle">Kategori Video Indonesia</th>
+                                        <th class="text-center" valign="middle">Kategori Video English</th>
                                         <th class="text-center" valign="middle">Aksi</th>
                                     </tr>
                                 </thead>
@@ -79,6 +80,7 @@
                                         <tr>
                                             <td class="text-center" valign="middle"><?= $no++; ?></td>
                                             <td class="text-center" valign="middle"><?= $item['nama_kategori_video']; ?></td>
+                                            <td class="text-center" valign="middle"><?= $item['nama_kategori_video_en']; ?></td>
                                             <td class="text-center align-middle">
                                                 <div class="d-flex justify-content-center align-items-center">
                                                     <a href="<?= base_url('/admin-kategori-video-tutorial-delete/' . $item['id_kategori_video']) ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>

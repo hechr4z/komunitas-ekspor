@@ -185,7 +185,8 @@
                                     <tr>
                                         <th class="text-center align-middle">No</th>
                                         <th class="text-center align-middle">Logo Perusahaan</th>
-                                        <th class="text-center align-middle" style="width: 500px;">Deskripsi Perusahaan</th>
+                                        <th class="text-center align-middle" style="width: 500px;">Deskripsi Perusahaan Indonesia</th>
+                                        <th class="text-center align-middle" style="width: 500px;">Deskripsi Perusahaan English</th>
                                         <th class="text-center align-middle" style="width: 100px;">Slug</th>
                                         <th class="text-center align-middle">Aksi</th>
                                     </tr>
@@ -201,6 +202,11 @@
                                             <td class="text-center align-middle">
                                                 <div style="max-height: 150px; overflow-y: auto;">
                                                     <?= $item['deskripsi_perusahaan']; ?>
+                                                </div>
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                <div style="max-height: 150px; overflow-y: auto;">
+                                                    <?= $item['deskripsi_perusahaan_en']; ?>
                                                 </div>
                                             </td>
                                             <td class="text-center align-middle"><?= $item['slug']; ?></td>
