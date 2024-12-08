@@ -207,8 +207,10 @@
                                     <tr>
                                         <th class="text-center" valign="middle">No</th>
                                         <th class="text-center" valign="middle">Gambar Slider</th>
-                                        <th class="text-center" valign="middle">Judul Slider</th>
-                                        <th class="text-center" valign="middle">Deskripsi Slider</th>
+                                        <th class="text-center" valign="middle">Judul Slider Indonesia</th>
+                                        <th class="text-center" valign="middle">Judul Slider English</th>
+                                        <th class="text-center" valign="middle">Deskripsi Slider Indonesia</th>
+                                        <th class="text-center" valign="middle">Deskripsi Slider English</th>
                                         <th class="text-center" valign="middle">Aksi</th>
                                     </tr>
                                 </thead>
@@ -217,11 +219,13 @@
                                     <?php foreach ($slider as $item): ?>
                                         <tr>
                                             <td class="text-center" valign="middle"><?= $no++; ?></td>
-                                            <td class="text-center" valign="middle"><?= $item['judul_slider']; ?></td>
                                             <td class="text-center" valign="middle">
                                                 <img src="<?= base_url('/img/' . $item['img_slider']) ?>" alt="<?= $item['judul_slider']; ?>" class="img-thumbnail" style="max-width: 100px;">
                                             </td>
+                                            <td class="text-center" valign="middle"><?= $item['judul_slider']; ?></td>
+                                            <td class="text-center" valign="middle"><?= $item['judul_slider_en']; ?></td>
                                             <td class="text-center" valign="middle"><?= $item['deskripsi_slider']; ?></td>
+                                            <td class="text-center" valign="middle"><?= $item['deskripsi_slider_en']; ?></td>
                                             <td class="text-center align-middle">
                                                 <div class="d-flex justify-content-center align-items-center">
                                                     <a href="<?= base_url('/admin-edit-slider/' . $item['id_slider']) ?>" class="btn btn-sm text-white" style="background-color: #03AADE;">Ubah</a>

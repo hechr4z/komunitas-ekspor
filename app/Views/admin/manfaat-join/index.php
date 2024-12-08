@@ -185,8 +185,10 @@
                                     <tr>
                                         <th class="text-center align-middle">No</th>
                                         <th class="text-center align-middle">Foto</th>
-                                        <th class="text-center align-middle">Judul</th>
-                                        <th class="text-center align-middle" style="width: 150px;">Deskripsi</th>
+                                        <th class="text-center align-middle">Judul Indonesia</th>
+                                        <th class="text-center align-middle">Judul English</th>
+                                        <th class="text-center align-middle" style="width: 150px;">Deskripsi Indonesia</th>
+                                        <th class="text-center align-middle" style="width: 150px;">Deskripsi English</th>
                                         <th class="text-center align-middle">Aksi</th>
                                     </tr>
                                 </thead>
@@ -199,9 +201,15 @@
                                                 <img src="<?= base_url('/img/' . $item['gambar']) ?>" alt="<?= $item['judul_manfaat']; ?>" class="img-fluid" style="max-width: 80px;">
                                             </td>
                                             <td class="text-center align-middle"><?= $item['judul_manfaat']; ?></td>
+                                            <td class="text-center align-middle"><?= $item['judul_manfaat_en']; ?></td>
                                             <td class="text-center align-middle" style="width: 120px;">
                                                 <div style="max-height: 100px; overflow-y: auto;">
                                                     <?= $item['deskripsi_manfaat']; ?>
+                                                </div>
+                                            </td>
+                                            <td class="text-center align-middle" style="width: 120px;">
+                                                <div style="max-height: 100px; overflow-y: auto;">
+                                                    <?= $item['deskripsi_manfaat_en']; ?>
                                                 </div>
                                             </td>
                                             <td class="text-center align-middle">

@@ -185,8 +185,10 @@
                                     <tr>
                                         <th class="text-center align-middle">No</th>
                                         <th class="text-center align-middle">Logo Perusahaan</th>
-                                        <th class="text-center align-middle" style="width: 100px;">Nama Web</th>
-                                        <th class="text-center align-middle" style="width: 500px;">Deskripsi Perusahaan</th>
+                                        <th class="text-center align-middle" style="width: 100px;">Nama Web Indonesia</th>
+                                        <th class="text-center align-middle" style="width: 100px;">Nama Web English</th>
+                                        <th class="text-center align-middle" style="width: 500px;">Deskripsi Perusahaan Indonesia</th>
+                                        <th class="text-center align-middle" style="width: 500px;">Deskripsi Perusahaan English</th>
                                         <th class="text-center align-middle" style="width: 100px;">Lokasi Web</th>
                                         <th class="text-center align-middle" style="width: 100px;">Email Web</th>
                                         <th class="text-center align-middle">Link IG</th>
@@ -205,9 +207,15 @@
                                                 <img src="<?= base_url('/img/' . $item['logo_web']) ?>" alt="gambar perusahaan" class="img-fluid" style="max-width: 150px;">
                                             </td>
                                             <td class="text-center align-middle"><?= $item['nama_web']; ?></td>
+                                            <td class="text-center align-middle"><?= $item['nama_web_en']; ?></td>
                                             <td class="text-center align-middle">
                                                 <div style="max-height: 150px; overflow-y: auto;">
                                                     <?= $item['deskripsi_web']; ?>
+                                                </div>
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                <div style="max-height: 150px; overflow-y: auto;">
+                                                    <?= $item['deskripsi_web_en']; ?>
                                                 </div>
                                             </td>
                                             <td class="text-center align-middle"><?= $item['lokasi_web']; ?></td>

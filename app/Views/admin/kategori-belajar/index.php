@@ -66,7 +66,8 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">No</th>
-                                        <th class="text-center">Nama Kategori</th>
+                                        <th class="text-center">Nama Kategori Indonesia</th>
+                                        <th class="text-center">Nama Kategori English</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
@@ -76,6 +77,7 @@
                                         <tr>
                                             <td class="text-center"><?= $no++; ?></td>
                                             <td class="text-center"><?= $item['nama_kategori']; ?></td>
+                                            <td class="text-center"><?= $item['nama_kategori_en']; ?></td>
                                             <td class="text-center align-middle">
                                                 <div class="d-flex justify-content-center align-items-center">
                                                     <a href="<?= base_url('/admin-kategori-belajar-ekspor-delete/' . $item['id_kategori_belajar_ekspor']); ?>" class="btn btn-sm text-white me-2" style="background-color: #F2BF02;">Hapus</a>
