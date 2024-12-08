@@ -1397,7 +1397,7 @@ class KomunitasEkspor extends BaseController
         $member = $model_member->where('id_member', $user_id)->first();
         $sertifikat = $model_sertifikat->where('id_member', $user_id)->findAll();
         $produk = $model_produk->where('id_member', $user_id)->findAll();
-        $jumlahProduk = $model_produk->where('id_member', $user_id)->countAll();
+        $jumlahProduk = $model_produk->where('id_member', $user_id)->countAllResults();
 
         $data['member'] = $member;
         $data['sertifikat'] = $sertifikat;
