@@ -634,7 +634,7 @@
                                 <input type="text" class="form-control" id="minimum_order_qty" name="minimum_order_qty">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="kapasitas_produksi_bln" class="form-label">Kapasitas Produk</label>
+                                <label for="kapasitas_produksi_bln" class="form-label">Kapasitas Produk Bulanan</label>
                                 <input type="text" class="form-control" id="kapasitas_produksi_bln" name="kapasitas_produksi_bln">
                             </div>
                             <button type="submit" class="btn btn-custom" style="background-color: #03AADE;">Submit</button>
