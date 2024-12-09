@@ -224,13 +224,13 @@
                     <div class="form-group">
                         <label>Jenis Member</label>
                         <div class="form-check d-flex align-items-start">
-                            <input class="form-check-input" type="radio" name="pilihan" id="memberPremium" value="option1" required>
+                            <input class="form-check-input" type="radio" name="pilihan" id="memberPremium" value="Member Premium" required>
                             <label class="form-check-label ms-2" for="memberPremium">
                                 Member Premium
                             </label>
                         </div>
                         <div class="form-check d-flex align-items-start">
-                            <input class="form-check-input" type="radio" name="pilihan" id="memberFree" value="option2" required>
+                            <input class="form-check-input" type="radio" name="pilihan" id="memberFree" value="Member Free" required>
                             <label class="form-check-label ms-2" for="memberFree">
                                 Member Free
                             </label>

@@ -515,6 +515,7 @@ class KomunitasEkspor extends BaseController
         $nama_perusahaan = $this->request->getPost('nama_perusahaan');
         $pic = $this->request->getPost('pic');
         $nomor_pic = $this->request->getPost('nomor_pic');
+        $pilihan = $this->request->getPost('pilihan');
 
         // Cek apakah username sudah ada di database
         $existingUserByUsername = $userModel->where('username', $username)->first();
@@ -540,6 +541,7 @@ class KomunitasEkspor extends BaseController
             "Nama Perusahaan: $nama_perusahaan\n" .
             "Nama PIC: $pic\n" .
             "Nomor PIC: $nomor_pic\n" .
+            "Jenis Member: $pilihan\n" .
             ($referral ? "Kode Referral: $referral\n" : "");
 
         // Nomor tujuan WA
