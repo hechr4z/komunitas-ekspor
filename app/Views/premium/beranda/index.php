@@ -892,7 +892,7 @@ $this->setData([
                 <div class="card-body">
                     <i class="fas fa-crown fa-3x text-primary mb-4"></i>
                     <h6 class="fw-bold">Full Access</h6>
-                    <h6 class="fw-bold text-primary"> Rp. 150.000 / Bulan</h6>
+                    <h6 class="fw-bold text-primary">Didaftarkan (Data Harus Lengkap)</h6>
                     <p>Dapatkan semua fitur premium sekarang juga!</p>
                     <div class="benefits-list" style="max-height: 150px; overflow-y: auto;">
                         <hr>
