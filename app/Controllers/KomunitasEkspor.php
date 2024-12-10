@@ -2792,6 +2792,7 @@ class KomunitasEkspor extends BaseController
                     'user_id' => $user['id_member'],
                     'username' => $user['username'],
                     'role' => $user['role'],  // Store role in session
+                    'status_premium' => $user['status_premium'],
                     'logged_in' => true
                 ];
                 $session->set($sessionData);
@@ -2799,7 +2800,7 @@ class KomunitasEkspor extends BaseController
                 // Check if the user is an admin
                 if ($user['role'] === 'admin') {
                     return redirect()->to('/admin-dashboard');  // Redirect to admin dashboard
-                } else if ($user['role'] === 'member') {
+                } else if ($user['role'] === 'member' || ($user['role'] === 'premium' && $user['status_premium'] !== 'verified')) {
                     return redirect()->to('/beranda');  // Redirect to regular user page
                 } else if ($user['role'] === 'premium') {
                     return redirect()->to('/beranda-premium');  // Redirect to regular user page
@@ -3442,8 +3443,17 @@ class KomunitasEkspor extends BaseController
             $fotoProfil->move(ROOTPATH . 'public/img', $namaFile);
         }
 
+        $role = $this->request->getPost('role');
+
+        if ($role == 'premium') {
+            $status_premium = 'pending';
+        } else {
+            $status_premium = null;
+        }
+
         $data = [
-            'role' => $this->request->getPost('role'),
+            'role' => $role,
+            'status_premium' => $status_premium,
             'username' => $this->request->getPost('username_referral'),
             'password' => password_hash($password, PASSWORD_DEFAULT),
             'foto_profil' => $namaFile,
@@ -3527,6 +3537,7 @@ class KomunitasEkspor extends BaseController
         // Populate the remaining fields for data array
         $data = array_merge($data, [
             'role' => $this->request->getPost('role'),
+            'status_premium' => $this->request->getPost('status_premium'),
             'username' => $this->request->getPost('username_referral'),
             'kode_referral' => $this->request->getPost('username_referral'),
             'popular_point' => $this->request->getPost('popular_point'),
