@@ -505,7 +505,7 @@ class KomunitasEkspor extends BaseController
 
     public function registrasiMember()
     {
-        $userModel = new Member(); // Asumsikan UserModel digunakan untuk mengakses tabel pengguna
+        $userModel = new Member();
 
         // Ambil input dari form
         $username = $this->request->getPost('username');
@@ -516,33 +516,61 @@ class KomunitasEkspor extends BaseController
         $pic = $this->request->getPost('pic');
         $nomor_pic = $this->request->getPost('nomor_pic');
         $pilihan = $this->request->getPost('pilihan');
+        $maps = $this->request->getPost('maps');
 
-        // Cek apakah username sudah ada di database
+        // Validasi data
         $existingUserByUsername = $userModel->where('username', $username)->first();
         if ($existingUserByUsername) {
-            return redirect()->back()->withInput()->with('error', 'Username sudah digunakan. Silakan pilih username lain.');
+            return redirect()->back()->withInput()->with('error', 'Username sudah digunakan.');
         }
 
-        // Cek apakah email sudah ada di database
         $existingUserByEmail = $userModel->where('email', $email)->first();
         if ($existingUserByEmail) {
-            return redirect()->back()->withInput()->with('error', 'Email sudah digunakan. Silakan gunakan email lain.');
+            return redirect()->back()->withInput()->with('error', 'Email sudah digunakan.');
         }
 
         if ($referral && $referral == $username) {
             return redirect()->back()->withInput()->with('error', 'Kode referral tidak boleh sama dengan username.');
         }
 
-        // Pesan untuk WhatsApp
-        $pesan = "Pendaftaran Member Komunitas Ekspor Indonesia Baru:\n\n" .
+        // Buat pesan WA
+        $pesan = "Pendaftaran Member Baru:\n\n" .
             "Username: $username\n" .
             "Email: $email\n" .
-            "Password: $password\n" .
             "Nama Perusahaan: $nama_perusahaan\n" .
             "Nama PIC: $pic\n" .
             "Nomor PIC: $nomor_pic\n" .
             "Jenis Member: $pilihan\n" .
-            ($referral ? "Kode Referral: $referral\n" : "");
+            ($referral ? "Kode Referral: $referral\n" : "") .
+            "Lokasi Google Maps: $maps\n";
+
+        // Tambahkan data tambahan sesuai jenis member
+        if ($pilihan === 'Member Premium') {
+            $pesan .=
+                "\nMohon Lengkapi Data Perusahaan Berikut;\n" .
+                "Deskripsi Perusahaan: \n" .
+                "Deskripsi Perusahaan (EN): \n" .
+                "Tipe Bisnis: \n" .
+                "Tipe Bisnis (EN): \n" .
+                "Produk Utama: \n" .
+                "Produk Utama (EN): \n" .
+                "Tahun Dibentuk: \n" .
+                "Skala Bisnis: \n" .
+                "Skala Bisnis (EN): \n" .
+                "Kategori Produk: \n" .
+                "Kategori Produk (EN): \n";
+
+            $pesan .=
+                "\nCatatan\n" .
+                "- Mohon pastikan lokasi perusahaan sudah benar.\n" .
+                "- Mohon lengkapi data dengan versi Bahasa Inggris (EN).\n" .
+                "- Mohon pastikan Data perusahaan sudah benar.\n";
+        } elseif ($pilihan === 'Member Free') {
+            $pesan .=
+                "\nCatatan\n" .
+                "- Mohon pastikan lokasi perusahaan sudah benar.\n" .
+                "- Mohon pastikan data sudah benar.\n";
+        }
 
         // Nomor tujuan WA
         $nomor_wa = '6283153270334'; // Ganti dengan nomor WA yang benar
@@ -553,6 +581,7 @@ class KomunitasEkspor extends BaseController
         // Redirect ke WhatsApp dengan pesan yang sudah dibuat
         return redirect()->to($whatsapp);
     }
+
 
     public function daftarMemberPremium()
     {
@@ -691,10 +720,10 @@ class KomunitasEkspor extends BaseController
 
         // Cari member berdasarkan username, karena slug dibuat dari username
         $member = $model_member
-        ->where('role', 'premium')
-        ->where('status_premium', 'verified')
-        ->where('username', url_title($slug, '-', true))
-        ->first();
+            ->where('role', 'premium')
+            ->where('status_premium', 'verified')
+            ->where('username', url_title($slug, '-', true))
+            ->first();
 
         // Jika member ditemukan
         if ($member) {
@@ -815,10 +844,10 @@ class KomunitasEkspor extends BaseController
 
         // Cari member berdasarkan username, karena slug dibuat dari username
         $member = $model_member
-        ->where('role', 'premium')
-        ->where('status_premium', 'verified')
-        ->where('username', url_title($slug, '-', true))
-        ->first();
+            ->where('role', 'premium')
+            ->where('status_premium', 'verified')
+            ->where('username', url_title($slug, '-', true))
+            ->first();
 
         // Jika member ditemukan
         if ($member) {
@@ -919,10 +948,10 @@ class KomunitasEkspor extends BaseController
 
         // Cari member berdasarkan username, karena slug dibuat dari username
         $member = $model_member
-        ->where('role', 'premium')
-        ->where('status_premium', 'verified')
-        ->where('username', url_title($slug, '-', true))
-        ->first();
+            ->where('role', 'premium')
+            ->where('status_premium', 'verified')
+            ->where('username', url_title($slug, '-', true))
+            ->first();
 
         // Jika member ditemukan
         if ($member) {
