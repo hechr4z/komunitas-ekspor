@@ -48,9 +48,9 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Foto Profil<span style="color: red;">*</span></label>
+                                <label class="form-label">Foto Profil</label>
                                 <input type="file" class="form-control" name="foto_profil" id="foto_profil"
-                                    onchange="previewImage()" required>
+                                    onchange="previewImage()">
                                 <img id="preview" src="https://via.placeholder.com/100" alt="Foto Member"
                                     class="img-thumbnail mt-2" style="max-width: 100px;">
                             </div>
@@ -62,15 +62,15 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Deskripsi Perusahaan<span style="color: red;">*</span></label>
+                                <label class="form-label">Deskripsi Perusahaan</label>
                                 <textarea class="form-control" name="deskripsi_perusahaan" style="height: 120px;"
-                                    placeholder="Masukkan Deskripsi Perusahaan" required></textarea>
+                                    placeholder="Masukkan Deskripsi Perusahaan"></textarea>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Deskripsi Perusahaan En<span style="color: red;">*</span></label>
+                                <label class="form-label">Deskripsi Perusahaan En</label>
                                 <textarea class="form-control" name="deskripsi_perusahaan_en" style="height: 120px;"
-                                    placeholder="Masukkan Deskripsi Perusahaan Versi Bahasa Inggris" required></textarea>
+                                    placeholder="Masukkan Deskripsi Perusahaan Versi Bahasa Inggris"></textarea>
                             </div>
 
                             <div class="mb-3">
@@ -86,15 +86,15 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Produk Utama<span style="color: red;">*</span></label>
+                                <label class="form-label">Produk Utama</label>
                                 <input type="text" class="form-control" name="produk_utama"
-                                    placeholder="Masukkan Produk Utama" required>
+                                    placeholder="Masukkan Produk Utama">
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Produk Utama En<span style="color: red;">*</span></label>
+                                <label class="form-label">Produk Utama En</label>
                                 <input type="text" class="form-control" name="produk_utama_en"
-                                    placeholder="Masukkan Produk Utama Versi Bahasa Inggris" required>
+                                    placeholder="Masukkan Produk Utama Versi Bahasa Inggris">
                             </div>
 
                             <div class="mb-3">
