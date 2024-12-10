@@ -3470,6 +3470,12 @@ class KomunitasEkspor extends BaseController
             $status_premium = null;
         }
 
+        $tahun_dibentuk = $this->request->getPost('tahun_dibentuk');
+
+        if ($tahun_dibentuk == null) {
+            $tahun_dibentuk = 1950;
+        }
+
         $data = [
             'role' => $role,
             'status_premium' => $status_premium,
@@ -3485,7 +3491,7 @@ class KomunitasEkspor extends BaseController
             'tipe_bisnis_en' => $this->request->getPost('tipe_bisnis_en'),
             'produk_utama' => $this->request->getPost('produk_utama'),
             'produk_utama_en' => $this->request->getPost('produk_utama_en'),
-            'tahun_dibentuk' => $this->request->getPost('tahun_dibentuk'),
+            'tahun_dibentuk' => $tahun_dibentuk,
             'skala_bisnis' => $this->request->getPost('skala_bisnis'),
             'skala_bisnis_en' => $this->request->getPost('skala_bisnis_en'),
             'email' => $this->request->getPost('email'),
