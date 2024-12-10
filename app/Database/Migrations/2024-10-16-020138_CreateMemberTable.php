@@ -20,6 +20,11 @@ class CreateMemberTable extends Migration
                 'constraint' => 255,
                 'default'    => 'user',
             ],
+            'status_premium' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+                'null'       => true,
+            ],
             'username' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
@@ -31,6 +36,7 @@ class CreateMemberTable extends Migration
             'foto_profil' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
+                'null'       => true,
             ],
             'kode_referral' => [
                 'type'       => 'VARCHAR',
