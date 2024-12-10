@@ -212,7 +212,7 @@ return [
     'packageAllSubject' => 'All Subject',
     'packageVideo' => 'Video',
     'packageAllVideo' => 'All Video',
-    'packageMonth' => 'Month',
+    'packageCompleteData' => 'Registered (Data Must Be Complete)',
     'packageRegistered' => 'Registered',
     'deskNonMember' => 'Basic access for initial exploration',
     'deskMemberFree' => 'Join now for more features!',
