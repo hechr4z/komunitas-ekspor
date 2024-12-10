@@ -25,8 +25,15 @@ class AuthFilter implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        if (!session()->get('logged_in') || (session()->get('role') !== 'member' && session()->get('role') !== 'admin')) {
-            // Redirect to login if not an admin
+        if (
+            !session()->get('logged_in') ||
+            (
+                session()->get('role') !== 'member' &&
+                session()->get('role') !== 'admin' &&
+                !(session()->get('role') === 'premium' && session()->get('status_premium') === 'pending')
+            )
+        ) {
+            // Redirect to login if not logged in, or not a valid role
             return redirect()->to('/login');
         }
     }
