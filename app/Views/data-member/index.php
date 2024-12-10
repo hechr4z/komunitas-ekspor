@@ -64,10 +64,12 @@
                 <?php foreach ($member as $item): ?>
                     <a href="<?= base_url($lang . '/detail-member/' . $item['slug']); ?>" class="text-decoration-none"
                         style="color: inherit;">
-                        <div class="card hover-card mx-4 mb-5 shadow-sm"
-                            style="width: 18rem; cursor: pointer; transition: transform 0.2s;">
-                            <img src="<?= base_url('img/' . $item['foto_profil']) ?>" class="card-img-top img-fluid member-img"
-                                alt="Member Photo" style="height: 220px;">
+                        <div class="card hover-card mx-4 mb-5 shadow-sm" style="width: 18rem; cursor: pointer; transition: transform 0.2s;">
+                            <?php if (empty($item['foto_profil'])): ?>
+                                <img src="https://via.placeholder.com/500" class="card-img-top img-fluid member-img" alt="Member Photo" style="height: 220px;">
+                            <?php else: ?>
+                                <img src="<?= base_url('img/' . $item['foto_profil']) ?>" class="card-img-top img-fluid member-img" alt="Member Photo" style="height: 220px;">
+                            <?php endif; ?>
                             <div class="card-body text-center">
                                 <h5 class="card-title"><?= $item['username'] ?></h5>
                                 <p class="card-text"><?= $item['nama_perusahaan'] ?></p>
