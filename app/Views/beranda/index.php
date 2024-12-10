@@ -919,7 +919,7 @@ $this->setData([
                 <div class="card-body">
                     <i class="fas fa-crown fa-3x text-primary mb-4"></i>
                     <h6 class="fw-bold">Full Access</h6>
-                    <h6 class="fw-bold text-primary"> Rp. 150.000 / <?php echo lang('Blog.packageMonth'); ?></h6>
+                    <h6 class="fw-bold text-primary"><?php echo lang('Blog.packageCompleteData'); ?></h6>
                     <p><?php echo lang('Blog.deskMemberPremium'); ?></p>
                     <div class="benefits-list" style="max-height: 150px; overflow-y: auto;">
                         <hr>
