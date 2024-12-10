@@ -691,18 +691,18 @@ class KomunitasEkspor extends BaseController
 
         // Cari member berdasarkan username, karena slug dibuat dari username
         $member = $model_member
-        ->where('role', 'premium')
-        ->where('status_premium', 'verified')
-        ->where('username', url_title($slug, '-', true))
-        ->first();
+            ->where('role', 'premium')
+            ->where('status_premium', 'verified')
+            ->where('username', url_title($slug, '-', true))
+            ->first();
 
         // Jika member ditemukan
         if ($member) {
             // Iterasi setiap field dalam array member
             foreach ($member as $key => $value) {
-                // Cek jika field kosong atau null
                 if (empty($value)) {
-                    $member[$key] = '-';
+                    // Tetapkan nilai default khusus
+                    $member[$key] = ($key === 'foto_profil') ? null : '-';
                 }
             }
         } else {
@@ -815,18 +815,18 @@ class KomunitasEkspor extends BaseController
 
         // Cari member berdasarkan username, karena slug dibuat dari username
         $member = $model_member
-        ->where('role', 'premium')
-        ->where('status_premium', 'verified')
-        ->where('username', url_title($slug, '-', true))
-        ->first();
+            ->where('role', 'premium')
+            ->where('status_premium', 'verified')
+            ->where('username', url_title($slug, '-', true))
+            ->first();
 
         // Jika member ditemukan
         if ($member) {
             // Iterasi setiap field dalam array member
             foreach ($member as $key => $value) {
-                // Cek jika field kosong atau null
                 if (empty($value)) {
-                    $member[$key] = '-';
+                    // Tetapkan nilai default khusus
+                    $member[$key] = ($key === 'foto_profil') ? null : '-';
                 }
             }
         } else {
@@ -919,18 +919,18 @@ class KomunitasEkspor extends BaseController
 
         // Cari member berdasarkan username, karena slug dibuat dari username
         $member = $model_member
-        ->where('role', 'premium')
-        ->where('status_premium', 'verified')
-        ->where('username', url_title($slug, '-', true))
-        ->first();
+            ->where('role', 'premium')
+            ->where('status_premium', 'verified')
+            ->where('username', url_title($slug, '-', true))
+            ->first();
 
         // Jika member ditemukan
         if ($member) {
             // Iterasi setiap field dalam array member
             foreach ($member as $key => $value) {
-                // Cek jika field kosong atau null
                 if (empty($value)) {
-                    $member[$key] = '-';
+                    // Tetapkan nilai default khusus
+                    $member[$key] = ($key === 'foto_profil') ? null : '-';
                 }
             }
         } else {
