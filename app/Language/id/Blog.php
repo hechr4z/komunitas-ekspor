@@ -212,7 +212,7 @@ return [
     'packageAllSubject' => 'Semua Materi',
     'packageVideo' => 'Video',
     'packageAllVideo' => 'Semua Video',
-    'packageMonth' => 'Bulan',
+    'packageCompleteData' => 'Didaftarkan (Data Harus Lengkap)',
     'packageRegistered' => 'Didaftarkan',
     'deskNonMember' => 'Akses dasar untuk eksplorasi awal',
     'deskMemberFree' => 'Bergabunglah sekarang untuk lebih banyak fitur!',
