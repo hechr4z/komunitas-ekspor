@@ -14,6 +14,7 @@ class Member extends Model
     protected $protectFields    = true;
     protected $allowedFields = [
         'role',
+        'status_premium',
         'username',
         'password',
         'foto_profil',
