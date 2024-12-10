@@ -215,6 +215,7 @@
                                     <tr>
                                         <th class="text-center align-middle">No</th>
                                         <th class="text-center align-middle">Role</th>
+                                        <th class="text-center align-middle">Status Premium</th>
                                         <th class="text-center align-middle">Username & Kode Referral</th>
                                         <th class="text-center align-middle">Foto Profil</th>
                                         <th class="text-center align-middle">Popular Point</th>
@@ -241,91 +242,95 @@
                                 <?php if (empty($member)): ?>
                                     <tbody>
                                         <tr>
-                                            <td colspan="23" class="text-center">Masih belum ada Data Member.</td>
+                                            <td colspan="24" class="text-center">Masih belum ada Data Member.</td>
                                         </tr>
                                     </tbody>
-                                </table>
-                            <?php else: ?>
-                                <tbody>
-                                    <?php $start = ($page - 1) * $perPage + 1; ?>
-                                    <?php foreach ($member as $item): ?>
-                                        <tr>
-                                            <td class="text-center align-middle"><?= $start++ ?></td>
-                                            <td class="text-center align-middle"><?= $item['role'] ?></td>
-                                            <td class="text-center align-middle"><?= $item['username'] ?></td>
-                                            <td class="align-middle"><img src="<?= base_url('/img/' . $item['foto_profil']) ?>"
-                                                    class="img-thumbnail"></td>
-                                            <td class="text-center align-middle"><?= $item['popular_point'] ?></td>
-                                            <td class="text-center align-middle col-fixed">
-                                                <div class="text-truncate-multiline" data-bs-toggle="tooltip"
-                                                    title="<?= $item['nama_perusahaan'] ?>">
-                                                    <?= $item['nama_perusahaan'] ?>
-                                                </div>
-                                            </td>
-                                            <td class="text-center align-middle col-fixed">
-                                                <div class="text-truncate-multiline" data-bs-toggle="tooltip"
-                                                    title="<?= $item['deskripsi_perusahaan'] ?>">
-                                                    <?= $item['deskripsi_perusahaan'] ?>
-                                                </div>
-                                            </td>
-                                            <td class="text-center align-middle col-fixed">
-                                                <div class="text-truncate-multiline" data-bs-toggle="tooltip"
-                                                    title="<?= $item['deskripsi_perusahaan_en'] ?>">
-                                                    <?= $item['deskripsi_perusahaan_en'] ?>
-                                                </div>
-                                            </td>
-                                            <td class="text-center align-middle col-fixed">
-                                                <div class="text-truncate-multiline" data-bs-toggle="tooltip"
-                                                    title="<?= $item['tipe_bisnis'] ?>">
-                                                    <?= $item['tipe_bisnis'] ?>
-                                                </div>
-                                            </td>
-                                            <td class="text-center align-middle col-fixed">
-                                                <div class="text-truncate-multiline" data-bs-toggle="tooltip"
-                                                    title="<?= $item['tipe_bisnis_en'] ?>">
-                                                    <?= $item['tipe_bisnis_en'] ?>
-                                                </div>
-                                            </td>
-                                            <td class="text-center align-middle col-fixed">
-                                                <div class="text-truncate-multiline" data-bs-toggle="tooltip"
-                                                    title="<?= $item['produk_utama'] ?>">
-                                                    <?= $item['produk_utama'] ?>
-                                                </div>
-                                            </td>
-                                            <td class="text-center align-middle col-fixed">
-                                                <div class="text-truncate-multiline" data-bs-toggle="tooltip"
-                                                    title="<?= $item['produk_utama_en'] ?>">
-                                                    <?= $item['produk_utama_en'] ?>
-                                                </div>
-                                            </td>
-                                            <td class="text-center align-middle"><?= $item['tahun_dibentuk'] ?></td>
-                                            <td class="text-center align-middle"><?= $item['skala_bisnis'] ?></td>
-                                            <td class="text-center align-middle"><?= $item['skala_bisnis_en'] ?></td>
-                                            <td class="text-center align-middle"><?= $item['email'] ?></td>
-                                            <td class="text-center align-middle"><?= $item['pic'] ?></td>
-                                            <td class="text-center align-middle"><?= $item['pic_phone'] ?></td>
-                                            <td class="text-center align-middle"><?= $item['kategori_produk'] ?></td>
-                                            <td class="text-center align-middle"><?= $item['kategori_produk_en'] ?></td>
-                                            <td class="text-center align-middle"><?= $item['latitude'] ?></td>
-                                            <td class="text-center align-middle"><?= $item['longitude'] ?></td>
-                                            <td class="text-center align-middle">
-                                                <div class="d-flex justify-content-center align-items-center">
-                                                    <a href="<?= base_url('admin-delete-member/' . $item['id_member']) ?>"
-                                                        class="btn btn-sm text-white me-2"
-                                                        style="background-color: #F2BF02;">Hapus</a>
-                                                    <a href="<?= base_url('admin-edit-member/' . $item['id_member']) ?>"
-                                                        class="btn btn-sm text-white"
-                                                        style="background-color: #03AADE;">Ubah</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                                </table>
-                                <div class="mt-2">
-                                    <?= $pager->links('default', 'bootstrap_pagination') ?>
-                                </div>
-                            <?php endif; ?>
+                            </table>
+                        <?php else: ?>
+                            <tbody>
+                                <?php $start = ($page - 1) * $perPage + 1; ?>
+                                <?php foreach ($member as $item): ?>
+                                    <tr>
+                                        <td class="text-center align-middle"><?= $start++ ?></td>
+                                        <td class="text-center align-middle"><?= $item['role'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['status_premium'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['username'] ?></td>
+                                        <?php if (empty($item['foto_profil'])): ?>
+                                            <td class="align-middle"><img src="https://via.placeholder.com/100" class="img-thumbnail"></td>
+                                        <?php else: ?>
+                                            <td class="align-middle"><img src="<?= base_url('/img/' . $item['foto_profil']) ?>" class="img-thumbnail"></td>
+                                        <?php endif; ?>
+                                        <td class="text-center align-middle"><?= $item['popular_point'] ?></td>
+                                        <td class="text-center align-middle col-fixed">
+                                            <div class="text-truncate-multiline" data-bs-toggle="tooltip"
+                                                title="<?= $item['nama_perusahaan'] ?>">
+                                                <?= $item['nama_perusahaan'] ?>
+                                            </div>
+                                        </td>
+                                        <td class="text-center align-middle col-fixed">
+                                            <div class="text-truncate-multiline" data-bs-toggle="tooltip"
+                                                title="<?= $item['deskripsi_perusahaan'] ?>">
+                                                <?= $item['deskripsi_perusahaan'] ?>
+                                            </div>
+                                        </td>
+                                        <td class="text-center align-middle col-fixed">
+                                            <div class="text-truncate-multiline" data-bs-toggle="tooltip"
+                                                title="<?= $item['deskripsi_perusahaan_en'] ?>">
+                                                <?= $item['deskripsi_perusahaan_en'] ?>
+                                            </div>
+                                        </td>
+                                        <td class="text-center align-middle col-fixed">
+                                            <div class="text-truncate-multiline" data-bs-toggle="tooltip"
+                                                title="<?= $item['tipe_bisnis'] ?>">
+                                                <?= $item['tipe_bisnis'] ?>
+                                            </div>
+                                        </td>
+                                        <td class="text-center align-middle col-fixed">
+                                            <div class="text-truncate-multiline" data-bs-toggle="tooltip"
+                                                title="<?= $item['tipe_bisnis_en'] ?>">
+                                                <?= $item['tipe_bisnis_en'] ?>
+                                            </div>
+                                        </td>
+                                        <td class="text-center align-middle col-fixed">
+                                            <div class="text-truncate-multiline" data-bs-toggle="tooltip"
+                                                title="<?= $item['produk_utama'] ?>">
+                                                <?= $item['produk_utama'] ?>
+                                            </div>
+                                        </td>
+                                        <td class="text-center align-middle col-fixed">
+                                            <div class="text-truncate-multiline" data-bs-toggle="tooltip"
+                                                title="<?= $item['produk_utama_en'] ?>">
+                                                <?= $item['produk_utama_en'] ?>
+                                            </div>
+                                        </td>
+                                        <td class="text-center align-middle"><?= $item['tahun_dibentuk'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['skala_bisnis'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['skala_bisnis_en'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['email'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['pic'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['pic_phone'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['kategori_produk'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['kategori_produk_en'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['latitude'] ?></td>
+                                        <td class="text-center align-middle"><?= $item['longitude'] ?></td>
+                                        <td class="text-center align-middle">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <a href="<?= base_url('admin-delete-member/' . $item['id_member']) ?>"
+                                                    class="btn btn-sm text-white me-2"
+                                                    style="background-color: #F2BF02;">Hapus</a>
+                                                <a href="<?= base_url('admin-edit-member/' . $item['id_member']) ?>"
+                                                    class="btn btn-sm text-white"
+                                                    style="background-color: #03AADE;">Ubah</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                            </table>
+                            <div class="mt-2">
+                                <?= $pager->links('default', 'bootstrap_pagination') ?>
+                            </div>
+                        <?php endif; ?>
                         </div>
                     </div>
                 </div><!--//app-card-->
@@ -336,9 +341,9 @@
 
 <script>
     // Initialize tooltips
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-        tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+        tooltipTriggerList.forEach(function(tooltipTriggerEl) {
             new bootstrap.Tooltip(tooltipTriggerEl);
         });
     });
