@@ -3399,6 +3399,7 @@ class KomunitasEkspor extends BaseController
             ->whereIn('role', ['member', 'premium'])
             ->groupStart()
             ->like('role', $keyword)
+            ->orLike('status_premium', $keyword)
             ->orLike('username', $keyword)
             ->orLike('kode_referral', $keyword)
             ->orLike('popular_point', $keyword)
