@@ -116,10 +116,12 @@
     <div class="col-lg-12">
         <div class="card p-4 shadow-sm">
             <!-- Image at the top -->
-            <div class="text-center mb-4 shadow"
-                style="width: 250px; height: 250px; margin: auto; overflow: hidden; border-radius: 50%; position: relative;">
-                <img src="<?= base_url('img/' . $member['foto_profil']); ?>" class="img-fluid" alt=""
-                    style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <div class="text-center mb-4 shadow" style="width: 250px; height: 250px; margin: auto; overflow: hidden; border-radius: 50%; position: relative;">
+                <?php if (empty($member['foto_profil'])): ?>
+                    <img src="https://via.placeholder.com/500" class="img-fluid" alt="" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                <?php else: ?>
+                    <img src="<?= base_url('img/' . $member['foto_profil']); ?>" class="img-fluid" alt="" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                <?php endif; ?>
             </div>
 
             <!-- Member Information -->
@@ -457,13 +459,13 @@
         <?php else: ?>
             <div class="d-flex flex-wrap justify-content-center">
                 <?php foreach ($members as $item): ?>
-                    <a href=" <?= base_url($lang . '/detail-member/' . $item['slug']); ?>" class="text-decoration-none"
-                        style="color: inherit;">
-
-                        <div class="card hover-card mx-4 mb-5 shadow-sm"
-                            style=" width: 18rem; cursor: pointer; transition: transform 0.2s;">
-                            <img src="<?= base_url('img/' . $item['foto_profil']) ?>" class="card-img-top img-fluid member-img"
-                                alt="Member Photo" style="height: 220px;">
+                    <a href=" <?= base_url($lang . '/detail-member/' . $item['slug']); ?>" class="text-decoration-none" style="color: inherit;">
+                        <div class="card hover-card mx-4 mb-5 shadow-sm" style=" width: 18rem; cursor: pointer; transition: transform 0.2s;">
+                            <?php if (empty($item['foto_profil'])): ?>
+                                <img src="https://via.placeholder.com/500" class="card-img-top img-fluid member-img" alt="Member Photo" style="height: 220px;">
+                            <?php else: ?>
+                                <img src="<?= base_url('img/' . $item['foto_profil']) ?>" class="card-img-top img-fluid member-img" alt="Member Photo" style="height: 220px;">
+                            <?php endif; ?>
                             <div class="card-body text-center">
                                 <h5 class="card-title">
                                     <?= $item['username'] ?>
