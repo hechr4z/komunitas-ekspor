@@ -25,9 +25,12 @@ class PremiumFilter implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        // Check if the user is logged in and is an admin
-        if (!session()->get('logged_in') || (session()->get('role') !== 'premium' && session()->get('role') !== 'admin')) {
-            // Redirect to login if not logged in or not premium/admin
+        if (
+            !session()->get('logged_in') ||
+            (session()->get('role') !== 'premium' && session()->get('role') !== 'admin') ||
+            (session()->get('role') === 'premium' && session()->get('status_premium') !== 'verified')
+        ) {
+            // Redirect to login if not logged in, not premium/admin, or premium with invalid status
             return redirect()->to('/login');
         }
     }
