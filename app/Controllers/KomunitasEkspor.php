@@ -729,9 +729,9 @@ class KomunitasEkspor extends BaseController
         if ($member) {
             // Iterasi setiap field dalam array member
             foreach ($member as $key => $value) {
-                // Cek jika field kosong atau null
                 if (empty($value)) {
-                    $member[$key] = '-';
+                    // Tetapkan nilai default khusus
+                    $member[$key] = ($key === 'foto_profil') ? null : '-';
                 }
             }
         } else {
@@ -853,9 +853,9 @@ class KomunitasEkspor extends BaseController
         if ($member) {
             // Iterasi setiap field dalam array member
             foreach ($member as $key => $value) {
-                // Cek jika field kosong atau null
                 if (empty($value)) {
-                    $member[$key] = '-';
+                    // Tetapkan nilai default khusus
+                    $member[$key] = ($key === 'foto_profil') ? null : '-';
                 }
             }
         } else {
@@ -957,9 +957,9 @@ class KomunitasEkspor extends BaseController
         if ($member) {
             // Iterasi setiap field dalam array member
             foreach ($member as $key => $value) {
-                // Cek jika field kosong atau null
                 if (empty($value)) {
-                    $member[$key] = '-';
+                    // Tetapkan nilai default khusus
+                    $member[$key] = ($key === 'foto_profil') ? null : '-';
                 }
             }
         } else {
@@ -3428,6 +3428,7 @@ class KomunitasEkspor extends BaseController
             ->whereIn('role', ['member', 'premium'])
             ->groupStart()
             ->like('role', $keyword)
+            ->orLike('status_premium', $keyword)
             ->orLike('username', $keyword)
             ->orLike('kode_referral', $keyword)
             ->orLike('popular_point', $keyword)
@@ -3498,6 +3499,12 @@ class KomunitasEkspor extends BaseController
             $status_premium = null;
         }
 
+        $tahun_dibentuk = $this->request->getPost('tahun_dibentuk');
+
+        if ($tahun_dibentuk == null) {
+            $tahun_dibentuk = 1950;
+        }
+
         $data = [
             'role' => $role,
             'status_premium' => $status_premium,
@@ -3513,7 +3520,7 @@ class KomunitasEkspor extends BaseController
             'tipe_bisnis_en' => $this->request->getPost('tipe_bisnis_en'),
             'produk_utama' => $this->request->getPost('produk_utama'),
             'produk_utama_en' => $this->request->getPost('produk_utama_en'),
-            'tahun_dibentuk' => $this->request->getPost('tahun_dibentuk'),
+            'tahun_dibentuk' => $tahun_dibentuk,
             'skala_bisnis' => $this->request->getPost('skala_bisnis'),
             'skala_bisnis_en' => $this->request->getPost('skala_bisnis_en'),
             'email' => $this->request->getPost('email'),
