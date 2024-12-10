@@ -31,6 +31,24 @@
                             </div>
 
                             <div class="mb-3">
+                                <label class="form-label">Status Premium</label>
+                                <div class="form-check d-flex align-items-start">
+                                    <input class="form-check-input" type="radio" name="status_premium" id="verified"
+                                        value="verified" <?= $member['status_premium'] == 'verified' ? 'checked' : '' ?>>
+                                    <label class="form-check-label ms-2" for="verified">
+                                        Verified
+                                    </label>
+                                </div>
+                                <div class="form-check d-flex align-items-start">
+                                    <input class="form-check-input" type="radio" name="status_premium" id="pending"
+                                        value="pending" <?= $member['status_premium'] == 'pending' ? 'checked' : '' ?>>
+                                    <label class="form-check-label ms-2" for="pending">
+                                        Pending
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
                                 <label class="form-label">Username & Kode Referral</label>
                                 <input type="text" class="form-control" value="<?= $member['username'] ?>"
                                     name="username_referral" placeholder="Masukkan Username & Kode Referral">
@@ -51,8 +69,11 @@
                                 <label class="form-label">Foto Profil</label>
                                 <input type="file" class="form-control" name="foto_profil" id="foto_profil"
                                     onchange="previewImage()">
-                                <img id="preview" src="<?= base_url('img/' . $member['foto_profil']) ?>"
-                                    alt="Foto Member" class="img-thumbnail mt-2" style="max-width: 100px;">
+                                <?php if (empty($member['foto_profil'])): ?>
+                                    <img id="preview" src="https://via.placeholder.com/100" alt="Foto Member" class="img-thumbnail mt-2" style="max-width: 100px;">
+                                <?php else: ?>
+                                    <img id="preview" src="<?= base_url('img/' . $member['foto_profil']) ?>" alt="Foto Member" class="img-thumbnail mt-2" style="max-width: 100px;">
+                                <?php endif; ?>
                             </div>
 
                             <div class="mb-3">
