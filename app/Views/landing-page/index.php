@@ -499,6 +499,7 @@
             #profile h2 {
                 font-size: 22px;
                 /* Ukuran heading lebih kecil */
+                margin-top: 30px;
             }
 
             .col-md-7 {
@@ -697,6 +698,11 @@
 
             .carousel-item img {
                 height: 350px;
+            }
+
+            #profile h2 {
+                font-size: 18px;
+                margin-top: 70px;
             }
 
             .tentang-kami h1,
@@ -1097,7 +1103,8 @@
 
     <!-- Static Image -->
     <div class="static-image">
-        <img src="<?= base_url('img/slider-1.jpg') ?>" class="d-block w-100" style="height: 650px;" alt="Slide" loading="lazy">
+        <img src="<?= base_url('img/slider-1.jpg') ?>" class="d-block w-100" style="height: 650px;" alt="Slide"
+            loading="lazy">
     </div>
 
     <!-- About Section -->
@@ -1107,7 +1114,8 @@
                 <!-- Logo Section -->
                 <div class="col-md-5 text-center mb-4 mb-md-0">
                     <div class="logo-sonic">
-                        <img src="<?= base_url('img/p21.jpg') ?>" alt="Logo SonicPulse" class="image-logo img-fluid" loading="lazy">
+                        <img src="<?= base_url('img/p21.jpg') ?>" alt="Logo SonicPulse" class="image-logo img-fluid"
+                            loading="lazy">
                     </div>
                 </div>
 
@@ -1115,10 +1123,13 @@
                 <div class="col-md-7 kata">
                     <h2 class="display-5 fw-bold">Profile Perusahaan</h2>
                     <p class="lead text-muted">
-                        Welcome to SonicPulse! We are dedicated to delivering high-quality sound experiences. Our team works tirelessly to provide innovative and creative sound solutions tailored to your needs.
+                        Welcome to SonicPulse! We are dedicated to delivering high-quality sound experiences. Our team
+                        works tirelessly to provide innovative and creative sound solutions tailored to your needs.
                     </p>
                     <p class="text-muted">
-                        With years of experience in the industry, SonicPulse has grown from a small company into a trusted provider of advanced sound solutions. Our mission is to bring immersive and cutting-edge audio experiences to all our clients.
+                        With years of experience in the industry, SonicPulse has grown from a small company into a
+                        trusted provider of advanced sound solutions. Our mission is to bring immersive and cutting-edge
+                        audio experiences to all our clients.
                     </p>
 
                     <!-- Additional Info Section -->
@@ -1147,19 +1158,22 @@
 
             <a class="row justify-content-center gap-5" href="#" style="text-decoration: none; color: #009EF2;">
                 <div class="card">
-                    <img src="<?= base_url('img/acumalaka.png') ?>" class="card-img-top" alt="Image Produk SonicPulse" loading="lazy">
+                    <img src="<?= base_url('img/acumalaka.png') ?>" class="card-img-top" alt="Image Produk SonicPulse"
+                        loading="lazy">
                     <div class="card-body">
                         <h4 class="card-title">Nama Produk</h4>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="<?= base_url('img/acumalaka.png') ?>" class="card-img-top" alt="Image Produk SonicPulse" loading="lazy">
+                    <img src="<?= base_url('img/acumalaka.png') ?>" class="card-img-top" alt="Image Produk SonicPulse"
+                        loading="lazy">
                     <div class="card-body">
                         <h4 class="card-title">Nama Produk</h4>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="<?= base_url('img/acumalaka.png') ?>" class="card-img-top" alt="Image Produk SonicPulse" loading="lazy">
+                    <img src="<?= base_url('img/acumalaka.png') ?>" class="card-img-top" alt="Image Produk SonicPulse"
+                        loading="lazy">
                     <div class="card-body">
                         <h4 class="card-title">Nama Produk</h4>
                     </div>
@@ -1177,10 +1191,7 @@
                 <div class="col-lg-4 col-md-6 mb-4 mt-4">
                     <div class="certificate-card shadow">
                         <div class="ribbon">Sertifikat</div>
-                        <img
-                            src="<?= base_url('img/p23.png') ?>"
-                            alt="Certificate"
-                            class="certificate-image">
+                        <img src="<?= base_url('img/p23.png') ?>" alt="Certificate" class="certificate-image">
                         <div class="card-body text-center">
                             <h3 class="card-title">Nama Pemilik Sertifikat 1</h3>
                         </div>
@@ -1190,10 +1201,7 @@
                 <div class="col-lg-4 col-md-6 mb-4 mt-4">
                     <div class="certificate-card shadow">
                         <div class="ribbon">Sertifikat</div>
-                        <img
-                            src="<?= base_url('img/p23.png') ?>"
-                            alt="Certificate"
-                            class="certificate-image">
+                        <img src="<?= base_url('img/p23.png') ?>" alt="Certificate" class="certificate-image">
                         <div class="card-body text-center">
                             <h3 class="card-title">Nama Pemilik Sertifikat 2</h3>
                         </div>
@@ -1203,10 +1211,7 @@
                 <div class="col-lg-4 col-md-6 mb-4 mt-4">
                     <div class="certificate-card shadow">
                         <div class="ribbon">Sertifikat</div>
-                        <img
-                            src="<?= base_url('img/p23.png') ?>"
-                            alt="Certificate"
-                            class="certificate-image">
+                        <img src="<?= base_url('img/p23.png') ?>" alt="Certificate" class="certificate-image">
                         <div class="card-body text-center">
                             <h3 class="card-title">Nama Pemilik Sertifikat 3</h3>
                         </div>
@@ -1221,7 +1226,9 @@
     <div id="lokasi" class="container contact hubungi-kami">
         <h1 class="text-center mt-5">Kontak Kami</h1>
         <div class="map-container mt-4">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d151986.1181827674!2d-2.3882730515438357!3d53.472336445240664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487a4d4c5226f5db%3A0xd9be143804fe6baa!2sManchester%2C%20Britania%20Raya!5e0!3m2!1sid!2sid!4v1731554829948!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d151986.1181827674!2d-2.3882730515438357!3d53.472336445240664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487a4d4c5226f5db%3A0xd9be143804fe6baa!2sManchester%2C%20Britania%20Raya!5e0!3m2!1sid!2sid!4v1731554829948!5m2!1sid!2sid"
+                allowfullscreen="" loading="lazy"></iframe>
         </div>
 
         <div class="container text-center mt-5 pt-5">
@@ -1266,11 +1273,11 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
-    </script>
+        </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
-    </script>
+        </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -1281,12 +1288,12 @@
 
     <script>
         // Hide loader after page loads
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             document.querySelector('.loader-container').style.display = 'none';
         });
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
 
                 // Get the target element by the ID
