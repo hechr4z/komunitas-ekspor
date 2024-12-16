@@ -1063,7 +1063,7 @@
     <nav class="navbar navbar-expand-lg bg-light sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="<?= base_url('img/acumalaka.png') ?>" alt="Logo SonicPulse" class="logo" loading="lazy">
+                <img src="<?= base_url('img/' . $member['foto_profil']); ?>" alt="Logo SonicPulse" class="logo" loading="lazy">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -1075,16 +1075,16 @@
                         <a class="nav-link" style="color: #009EF2;" href="#beranda">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#profile">Profile Perusahaan</a>
+                        <a class="nav-link" href="#profile">Profil <?= $member['nama_perusahaan']; ?></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#data-produk">Data Produk</a>
+                        <a class="nav-link" href="#data-produk">Produk</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#sertifikat">Sertifikat</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#lokasi">Lokasi</a>
+                        <a class="nav-link" href="#kontak">Kontak</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -1103,8 +1103,7 @@
 
     <!-- Static Image -->
     <div class="static-image">
-        <img src="<?= base_url('img/slider-1.jpg') ?>" class="d-block w-100" style="height: 650px;" alt="Slide"
-            loading="lazy">
+        <img src="<?= (!$member['gambar_utama']) ? base_url('img/companymain.jpeg') : base_url('img/' . $member['gambar_utama']); ?>" class="d-block w-100" style="height: 650px;" alt="Slide" loading="lazy">
     </div>
 
     <!-- About Section -->
@@ -1114,35 +1113,27 @@
                 <!-- Logo Section -->
                 <div class="col-md-5 text-center mb-4 mb-md-0">
                     <div class="logo-sonic">
-                        <img src="<?= base_url('img/p21.jpg') ?>" alt="Logo SonicPulse" class="image-logo img-fluid"
-                            loading="lazy">
+                        <img src="<?= (!$member['gambar_perusahaan']) ? base_url('img/company.png') : base_url('img/' . $member['gambar_perusahaan']); ?>" alt="Logo SonicPulse" class="image-logo img-fluid" loading="lazy">
                     </div>
                 </div>
 
                 <!-- Text Section -->
                 <div class="col-md-7 kata">
-                    <h2 class="display-5 fw-bold">Profile Perusahaan</h2>
+                    <h2 class="display-5 fw-bold">Profil <?= $member['nama_perusahaan']; ?></h2>
                     <p class="lead text-muted">
-                        Welcome to SonicPulse! We are dedicated to delivering high-quality sound experiences. Our team
-                        works tirelessly to provide innovative and creative sound solutions tailored to your needs.
+                        <?= $member['deskripsi_perusahaan'] ?>
                     </p>
-                    <p class="text-muted">
-                        With years of experience in the industry, SonicPulse has grown from a small company into a
-                        trusted provider of advanced sound solutions. Our mission is to bring immersive and cutting-edge
-                        audio experiences to all our clients.
-                    </p>
-
                     <!-- Additional Info Section -->
                     <div>
                         <ul class="list-group">
                             <li class="list-group-item">
-                                <strong>Data Produk:</strong> High-Quality Audio Devices
+                                <strong>Data Produk:</strong> <?= (!$member['produk_utama']) ? 'Belum Ada Produk Utama' : $member['produk_utama']; ?>
                             </li>
                             <li class="list-group-item">
-                                <strong>Kategori Produk:</strong> Speakers, Headphones, Audio Accessories
+                                <strong>Kategori Produk:</strong> <?= (!$member['kategori_produk']) ? 'Belum Ada Kategori Produk' : $member['kategori_produk']; ?>
                             </li>
                             <li class="list-group-item">
-                                <strong>Tahun Didirikan:</strong> 2015
+                                <strong>Tahun Didirikan:</strong> <?= (!$member['tahun_dibentuk']) ? '0000' : $member['tahun_dibentuk']; ?>
                             </li>
                         </ul>
                     </div>
@@ -1157,27 +1148,22 @@
         <div class="cards-container">
 
             <a class="row justify-content-center gap-5" href="#" style="text-decoration: none; color: #009EF2;">
-                <div class="card">
-                    <img src="<?= base_url('img/acumalaka.png') ?>" class="card-img-top" alt="Image Produk SonicPulse"
-                        loading="lazy">
-                    <div class="card-body">
-                        <h4 class="card-title">Nama Produk</h4>
+                <?php if (!empty($produk)): ?>
+                    <?php foreach ($produk as $item) : ?>
+                        <div class="card">
+                            <img src="<?= base_url('img/' . $produk['foto_produk']); ?>" class="card-img-top" alt="Image Produk SonicPulse" loading="lazy">
+                            <div class="card-body">
+                                <h4 class="card-title"><?= $produk['nama_produk']; ?></h4>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="col-12 mt-2">
+                        <div class="alert alert-info text-center" role="alert">
+                            Belum ada Produk.
+                        </div>
                     </div>
-                </div>
-                <div class="card">
-                    <img src="<?= base_url('img/acumalaka.png') ?>" class="card-img-top" alt="Image Produk SonicPulse"
-                        loading="lazy">
-                    <div class="card-body">
-                        <h4 class="card-title">Nama Produk</h4>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="<?= base_url('img/acumalaka.png') ?>" class="card-img-top" alt="Image Produk SonicPulse"
-                        loading="lazy">
-                    <div class="card-body">
-                        <h4 class="card-title">Nama Produk</h4>
-                    </div>
-                </div>
+                <?php endif; ?>
             </a>
         </div>
     </div>
@@ -1187,48 +1173,35 @@
         <div class="container">
             <div class="row justify-content-center">
                 <h1 class="text-center">Sertifikat Kami</h1>
-                <!-- Card 1 -->
-                <div class="col-lg-4 col-md-6 mb-4 mt-4">
-                    <div class="certificate-card shadow">
-                        <div class="ribbon">Sertifikat</div>
-                        <img src="<?= base_url('img/p23.png') ?>" alt="Certificate" class="certificate-image">
-                        <div class="card-body text-center">
-                            <h3 class="card-title">Nama Pemilik Sertifikat 1</h3>
+                <?php if (!empty($sertifikat)): ?>
+                    <?php foreach ($sertifikat as $item) : ?>
+                        <div class="col-lg-4 col-md-6 mb-4 mt-4">
+                            <div class="certificate-card shadow">
+                                <div class="ribbon">Sertifikat</div>
+                                <img src="<?= base_url('img/' . $member['foto_profil']) ?>" alt="Certificate" class="certificate-image">
+                                <div class="card-body text-center">
+                                    <h3 class="card-title"><?= $item['nama_sertifikat']; ?></h3>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="col-12 mt-2">
+                        <div class="alert alert-info text-center" role="alert">
+                            Belum ada Sertifikat.
                         </div>
                     </div>
-                </div>
-                <!-- Card 2 -->
-                <div class="col-lg-4 col-md-6 mb-4 mt-4">
-                    <div class="certificate-card shadow">
-                        <div class="ribbon">Sertifikat</div>
-                        <img src="<?= base_url('img/p23.png') ?>" alt="Certificate" class="certificate-image">
-                        <div class="card-body text-center">
-                            <h3 class="card-title">Nama Pemilik Sertifikat 2</h3>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card 3 -->
-                <div class="col-lg-4 col-md-6 mb-4 mt-4">
-                    <div class="certificate-card shadow">
-                        <div class="ribbon">Sertifikat</div>
-                        <img src="<?= base_url('img/p23.png') ?>" alt="Certificate" class="certificate-image">
-                        <div class="card-body text-center">
-                            <h3 class="card-title">Nama Pemilik Sertifikat 3</h3>
-                        </div>
-                    </div>
-                </div>
+                <?php endif; ?>
             </div>
         </div>
     </section>
 
 
     <!-- Kontak Kami -->
-    <div id="lokasi" class="container contact hubungi-kami">
+    <div id="kontak" class="container contact hubungi-kami">
         <h1 class="text-center mt-5">Kontak Kami</h1>
         <div class="map-container mt-4">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d151986.1181827674!2d-2.3882730515438357!3d53.472336445240664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487a4d4c5226f5db%3A0xd9be143804fe6baa!2sManchester%2C%20Britania%20Raya!5e0!3m2!1sid!2sid!4v1731554829948!5m2!1sid!2sid"
-                allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d151986.1181827674!2d-2.3882730515438357!3d53.472336445240664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487a4d4c5226f5db%3A0xd9be143804fe6baa!2sManchester%2C%20Britania%20Raya!5e0!3m2!1sid!2sid!4v1731554829948!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe>
         </div>
 
         <div class="container text-center mt-5 pt-5">
@@ -1236,17 +1209,16 @@
             <div class="d-flex gap-2">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="alamat">Alamat:</label>
-                        <input type="text" id="alamat" value="Alamat" readonly class="form-control">
+                        <label for="nama">Nama:</label>
+                        <input type="text" id="nama" value="<?= $member['pic']; ?>" readonly class="form-control">
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="no_hp">Telepon:</label>
-                        <a href="https://wa.me/085722715317351" class="form-control text-decoration-none"
-                            target="_blank" style="background-color: #f8f9fa; color: #212529;">
-                            087621735135173
+                        <a href="<?php echo 'https://wa.me/' . $member['pic_phone']; ?>" class="form-control text-decoration-none" target="_blank" style="background-color: #f8f9fa; color: #212529;">
+                            <?= $member['pic_phone']; ?>
                         </a>
                     </div>
                 </div>
@@ -1254,46 +1226,35 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="email" id="email" value="Email@gmail.com" readonly class="form-control">
+                        <input type="email" id="email" value="<?= $member['email']; ?>" readonly class="form-control">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <a href="https://wa.me/085722715317351" target="_blank" class="whatsapp-float">
+    <a href="<?php echo 'https://wa.me/' . $member['pic_phone']; ?>" target="_blank" class="whatsapp-float">
         <i class="fab fa-whatsapp whatsapp-icon"></i>
     </a>
 
     <!-- Footer -->
     <footer>
-        <div class="text-center p-3 mt-5" style="background-color: #555; color:#ffff;"> &copy; 1 Januari Copyright:
-            Footer123
+        <div class="text-center p-3 mt-5" style="background-color: #555; color:#ffff;"> &copy; 2024 Copyright: Komunitas Ekspor Indonesia
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
-        </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
-        </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
     <script>
         // Hide loader after page loads
-        window.addEventListener('load', function () {
+        window.addEventListener('load', function() {
             document.querySelector('.loader-container').style.display = 'none';
         });
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
 
                 // Get the target element by the ID
